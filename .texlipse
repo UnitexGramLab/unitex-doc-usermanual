@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Fri Oct 10 10:37:51 CEST 2008
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=UnitexManual.tex
+outputFile=UnitexManual.pdf
+langSpell=en
+markDer=true
+srcDir=

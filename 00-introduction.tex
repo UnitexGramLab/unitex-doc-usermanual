@@ -1,0 +1,117 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+Unitex is a collection of programs developped for the analysis of texts in
+natural language by using linguistic resources and tools. These resources
+consist of electronic dictionaries, grammars and lexicon-grammar tables,
+initially developed  for French by Maurice Gross and his students  at the
+Laboratoire d'Automatique Documentaire et Linguistique (LADL).\index{LADL}
+Similar resources have been developed for other languages in the context of the
+RELEX laboratory network.
+
+\bigskip
+\noindent The electronic dictionaries specify the simple and compound words of a
+language together with their lemmas and a set of grammatical (semantic and inflectional)
+codes. The availability of these dictionaries is a major advantage compared to
+the usual utilities for pattern searching as the information they contain can be
+used  for searching and matching,  thus  describing large classes of words using
+very simple patterns. The dictionaries are presented in the DELA formalism and
+were constructed  by teams of  linguists for several languages (French, English,
+Greek, Italian, Spanish, German, Thai, Korean, Polish, Norwegian, Portuguese,
+etc.)
+
+\bigskip
+\noindent The grammars used here are representations of linguistic phenomena on the
+basis of  recursive transition networks (RTN), a formalism closely related to
+finite state automata. Numerous studies have shown the adequacy of automata for
+linguistic problems at all descriptive levels  from morphology and syntax to
+phonetic issues. Grammars created with Unitex carry this approach further  by
+using a formalism even more powerful than automata. These grammars are
+represented as graphs that the user can easily create and update.
+
+\bigskip
+\noindent Lexicon-grammar tables are matrices describing
+properties of some words. Many such tables have been constructed   for all
+simple verbs in French as a way of describing their relevant
+syntactic properties. Experience has shown that every word has a
+quasi-unique behavior, and these tables are a way to present the 
+grammar of every element in the lexicon, hence the name lexicon-grammar 
+for this linguistic theory. Unitex offers a way to
+automatically build grammars from lexicon-grammar tables.
+
+\bigskip
+\noindent Unitex can be viewed as a tool in which one can put linguistic resources
+and use them. Its technical characteristics are its portability,  modularity,
+the possibility of dealing with languages that use special writing systems (e.g. many
+Asian languages), and its openness, thanks to its open source distribution. Its
+linguistic characteristics are the ones that have motivated the elaboration of
+these resources: precision, completeness, and the taking into account of frozen
+expressions, most notably those which concern the enumeration of compound words.
+
+
+\section*{What's new from version 1.2 ?}
+\addcontentsline{toc}{section}{What's new from version 1.2 ?}
+Here are some interesting new features:
+\begin{itemize}
+  \item left contexts
+  \item morphological mode in \verb$Locate$
+  \item brand new version of \verb$Convert$
+  \item replacement of \verb$Inflect$ by \verb$MultiFlex$ that can inflect compound words
+  and that can handle consonant skeletons for semitic languages
+  \item introduction of the text alignment tool \verb$XAlign$
+  \item no size limit for text file display
+  \item SVG export of graphs
+\end{itemize}
+
+\bigskip \noindent From a computational point of view, a special effort has been
+made to clean and comment the source code of Unitex programs in order to
+facilitate the integration of new components. Moreover, the development of Unitex
+is now made with a SVN server, which makes collaborative work much more easier.
+
+
+\section*{Content}
+\addcontentsline{toc}{section}{Content}
+\noindent Chapter \ref{chap-installation} describes how to install and run
+Unitex.
+
+\bigskip \noindent Chapter \ref{chap-texte} presents the different steps in the
+analysis of  a text.
+
+\bigskip \noindent Chapter \ref{chap-dictionaries} describes the formalism of
+the DELA electronic dictionaries and the different operations that can be applied to them.
+
+\bigskip \noindent Chapters \ref{chap-regexp} and \ref{chap-grammaires-locales}
+present different means for making text searches more effective. 
+Chapter \ref{chap-grammaires-locales} describes in detail how to use the graph
+editor.
+
+\bigskip \noindent Chapter \ref{chap-grammaires-avancées} is concerned with the
+different possible applications of grammars. The particularities of each type of grammar are
+presented.
+
+\bigskip \noindent Chapter \ref{chap-automate-du-texte} introduces the  concept
+of text automaton and describes the properties of this notion. This chapter also describes 
+operations on this object, in particular, how to disambiguate lexical items with
+the ELAG program.
+
+\bigskip \noindent Chapter \ref{chap-lexique-grammaire} contains an introduction
+to lexicon-grammar tables, followed by a description of the method of constructing grammars based on these
+tables.
+
+\bigskip \noindent Chapter \ref{chap-alignment} describes the text
+alignment module, based on the XAlign tool.
+
+\bigskip \noindent Chapter \ref{chap-multiflex} describes the compound word
+inflection module, as a complement of the simple word inflection mechanism
+presented in chapter \ref{chap-dictionaries}.
+
+\bigskip \noindent Chapter \ref{chap-programmes-externes} contains a detailed
+description of the external programs that make up the Unitex system.
+
+\bigskip \noindent Chapter \ref{chap-formats-de-fichiers} contains descriptions
+of all file formats used in the system.
+
+
+\bigskip \noindent The reader will find in appendix the GPL and LGPL licenses
+under which the Unitex source code is released, as well as the LGPLLR license
+which applies for the linguistic data distributed with Unitex.
