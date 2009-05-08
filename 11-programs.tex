@@ -6,18 +6,21 @@ composed. These programs, which can be found in the \verb+Unitex/App+ folder, ar
 automatically called by the interface. It is possible to see the commands that
 have been executed by clicking on "Info>Console". It is also
 possible to see the options of the different programs on
-"Info>Help on commands".
+"Info>Help on commands".
+
 \bigskip
 \noindent WARNING: many programs use the text directory
 (\verb+my_text_snt+). This directory is created by the graphical interface after
 the normalization of the text. If you work with the command line, you have to
 create the directory manually before the execution of the program
-\verb+Normalize+.\index{Directory!text}
+\verb+Normalize+.\index{Directory!text}
+
 \bigskip
 \noindent WARNING (2): whenever a parameter contains spaces, it needs to
 be enclosed in quotation marks so it will not be considered as multiple
 parameters.
-\index{Text!directory of}\index{External programs!\verb+Normalization+}\index{\verb+Normalization+}
+\index{Text!directory of}\index{External programs!\verb+Normalization+}\index{\verb+Normalization+}
+
 
 
 \section{CheckDic}\index{External programs!\verb+CheckDic+}\index{\verb+CheckDic+}
@@ -41,7 +44,8 @@ of the dictionary that is to be verified.
 list of all characters occurring in the inflected and canonical forms of words in
 the text, the list of grammatical codes and syntax, as well as the list of
 inflection codes used. The results of the verification are stored in a file
-called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
+called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
+
 
 
 \section{Compress}\index{External programs!\verb+Compress+}\index{\verb+Compress+}
@@ -66,11 +70,13 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 \begin{itemize}
   \item \verb+dico.bin+: a binary file containing the minimum automaton of the inflected forms of the dictionary;
   \item \verb+dico.inf+: a text file containing the compressed forms required for the reconstruction of the dictionary
-  lines from the inflected forms contained in the automaton.\end{itemize}
+  lines from the inflected forms contained in the automaton.
+\end{itemize}
 
 \bigskip
 \noindent For more details on the format of these files, see chapter
-\ref{chap-formats-de-fichiers}.
+\ref{chap-formats-de-fichiers}.
+
 
 
 \section{Concord}\index{External programs!\verb+Concord+}\index{\verb+Concord+}\index{Concordance}
@@ -81,7 +87,8 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 \noindent This program takes a concordance index file produced by the program
 \verb+Locate+ and produces a concordance. It is also possible to produce a
 modified text version taking into account the transducer outputs associated to
-the occurrences. Here is the description of the parameters:
+the occurrences. Here is the description of the parameters:
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -160,13 +167,15 @@ the occurrences. Here is the description of the parameters:
 if the concordance was constructed in text mode, a file called
 \verb+concord.html+ if the output mode was \verb+--html+ or \verb+--glossanet+,
 and a text file with the name defined by the user of the program if the program has
-constructed a modified version of the text.
+constructed a modified version of the text.
+
 \bigskip
 \noindent In \verb+--html+ mode, the occurrence is coded as a hypertext link. The reference
 associated to this link is of the form \verb+<a href="X Y Z">+. \verb+X+ et
 \verb+Y+ represent the beginning and ending positions of the occurrence in
 characters in the file \verb+text_name.snt+. \verb+Z+ represents the number of
-the sentence in which the occurrence was found.
+the sentence in which the occurrence was found.
+
 
 
 \section{ConcorDiff}\index{External programs!\verb+ConcorDiff+}\index{\verb+ConcorDiff+}
@@ -255,7 +264,9 @@ use a combination of the following options:
 \end{itemize}
 
 \bigskip
-\noindent The encodings can take values in the following list (non exhaustive,see below):
+\noindent The encodings can take values in the following list (non exhaustive,
+see below):
+
 \bigskip
 \verb$FRENCH$
 
@@ -324,7 +335,8 @@ use a combination of the following options:
 
 \bigskip
 \noindent This program applies dictionaries to a text. The text must have been cut up into
-lexical units by the \verb+Tokenize+ program.
+lexical units by the \verb+Tokenize+ program.
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -343,10 +355,12 @@ a dictionary. The dictionary must be a \verb+.bin+ dictionary (obtained with
 the \verb+Compress+ program) or a dictionary graph in the \verb+.fst2+ format (see section
 \ref{section-application-dictionnaires}, page \pageref{section-application-dictionnaires}).
 \index{File!\verb+.bin+}It is possible to give priorities to the dictionaries. For details see 
-section \ref{section-priorités-dictionnaires}.
+section \ref{section-priorités-dictionnaires}.
+
 \bigskip
 \noindent The program \verb+Dico+ produces the following files, and saves
-them in the directory of the text:
+them in the directory of the text:
+
 \begin{itemize}
   \index{File!\verb+dlf+}\index{File!\verb+dlc+}\index{File!\verb+err+}\index{File!\verb+stat_dic.n+}
   \item \verb+dlf+: dictionary of simple words in the text;
@@ -360,7 +374,8 @@ them in the directory of the text:
 
 \bigskip
 \noindent NOTE: Files \verb+dlf+, \verb+dlc+ and \verb+err+ are not sorted. Use the
-program \verb+SortTxt+ to sort them.
+program \verb+SortTxt+ to sort them.
+
 
 \section{Elag}\index{External programs!\verb+Elag+}\index{\verb+Elag+}
 \verb+Elag [OPTIONS] <txtauto>+
@@ -387,7 +402,8 @@ applies to it ambiguity removal rules.\index{File!\verb+.fst2+}
 \bigskip
 \noindent This program compiles the ELAG grammar named \verb+GRAMMAR+, or all
 the grammars specified in the \verb+RULES+ file. The result is stored in the
-\verb+OUT+ file that will be used by the \verb+Elag+ program.
+\verb+OUT+ file that will be used by the \verb+Elag+ program.
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -456,7 +472,8 @@ omitting the extension \verb+.snt+.
 
 \bigskip
 \noindent The result file is a text file that contains all extracted sentences, one
-sentence per line.
+sentence per line.
+
 
 
 \section{Flatten}\index{External programs!\verb+Flatten+}\index{\verb+Flatten+}
@@ -497,7 +514,8 @@ transform it into a final state transducer.
 
 \bigskip
 \noindent This program takes a \verb+.fst2+ file and lists the sequences
-recognized by this grammar. The parameters are:
+recognized by this grammar. The parameters are:
+
 \begin{itemize}
   \item \verb$fname$ : grammar name, including \verb@.fst2@;
   \item \verb$-o out$ : specifies the output file, \verb@lst.txt@ by default;
@@ -505,31 +523,39 @@ recognized by this grammar. The parameters are:
   (\verb$t$) or not (\verb$a$) the outputs of the grammars if any. \verb$s$
   indicates that there is only one initial state, whereas \verb$m$ indicates that
   there are several ones (this mode is useful in Korean). The default value is
-  \verb$-a s$;
+  \verb$-a s$;
+
   \item \verb$-l line#$ : maximum number of lines to be printed in the output file;
   \item \verb$-i subname$ : indicates that the recursive exploration must end
   when the program enters in graph \verb$subname$. This parameter can be used
-  several times in order to specify several stop graphs;
+  several times in order to specify several stop graphs;
+
   \item \verb$-p s/f/d$ : \verb$s$ displays paths graph by graph; \verb$f$
   (default) displays global paths; \verb$d$ displays global paths with
-  information on nested graph calls;
+  information on nested graph calls;
+
   \item \verb$-c SS=0xXXXX$: replaces symbol \verb$SS$ when it appears between
   angle brackets by the Unicode character whose hexadecimal number is
-  \verb$0xXXXX$;
+  \verb$0xXXXX$;
+
   \item \verb$-s "L[,R]"$ : specifies the left (\verb$L$) and right (\verb$R$)
-  delimiters that will enclose items. By default, no delimiters are specified;
+  delimiters that will enclose items. By default, no delimiters are specified;
+
   \item \verb$-s0 "Str"$ : if the program must take  outputs into account, this
   parameter specifies the sequence \verb$Str$ that will be inserted between input
-  and output. By default, there is no separator;
+  and output. By default, there is no separator;
+
   \item \verb$-f a/s$ : if the program must take  outputs into account, this
   parameter specifies the format of the lines that will be generated:
   \verb$in0 in1 out0 out1$ (\verb$s$) or \verb$in0 out0 in1 out1$ (\verb$a$). The default
-  value is \verb$s$;
+  value is \verb$s$;
+
   \item \verb$-v$ : prints information during the process (verbose mode);
   
   \item \verb$-rx "L,[R]"$: specifies how cycles must be displayed. \verb$L$ and
   \verb$R$ are delimiters. If we consider the graph shown on Figure \ref{cycle},
-  here are the results for \verb$L$="\verb$[$" and \verb$R$="\verb$]*$":
+  here are the results for \verb$L$="\verb$[$" and \verb$R$="\verb$]*$":
+
   \medskip
   \verb$il fait [très très]*$
   
@@ -550,7 +576,8 @@ recognized by this grammar. The parameters are:
 
 \bigskip
 \noindent This program applies a transducer to a text at the
-preprocessing stage, when the text has not been cut into lexical units yet.
+preprocessing stage, when the text has not been cut into lexical units yet.
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -600,7 +627,8 @@ ambiguity). See section \ref{linear-text}, page \pageref{linear-text}.
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
   \item \verb+-o TXT+/\verb+--out=TXT+: the output text file.
-\end{itemize}
+\end{itemize}
+
 
 \section{Grf2Fst2}\index{External programs!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
 \index{Graph!compilation}\index{Compilation of graphs}
@@ -611,7 +639,8 @@ ambiguity). See section \ref{linear-text}, page \pageref{linear-text}.
 This program compiles a grammar into a \verb+.fst2+ file (for more details see
 section \ref{section-compiler-une-grammaire}). The parameter \verb+graph+ 
 denotes the complete path of the main graph of the grammar, without omitting the
-extension \verb+.grf+.
+extension \verb+.grf+.
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -635,7 +664,8 @@ extension \verb+.grf+.
 \bigskip
 \noindent The result is a file with the same name as the graph passed to the
 program as a parameter, but with extension \verb+.fst2+. This file is saved in
-the same folder as \verb+graph+.
+the same folder as \verb+graph+.
+
 
 
 \section{ImplodeFst2}\index{External programs!\verb+ImplodeFst2+}\index{\verb+ImplodeFst2+}
@@ -643,7 +673,8 @@ the same folder as \verb+graph+.
 
 \bigskip
 \noindent This program computes and stores in \verb$OUT$ the \textit{compact}
-form of the text automaton \verb$<txtauto>$.\index{Text automaton!compact}
+form of the text automaton \verb$<txtauto>$.\index{Text automaton!compact}
+
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
@@ -655,7 +686,8 @@ form of the text automaton \verb$<txtauto>$.\index{Text automaton!compact}
 
 
 \section{Locate}\index{External programs!\verb+Locate+}\index{\verb+Locate+}
-\verb+Locate [OPTIONS] <fst2>+
+\verb+Locate [OPTIONS] <fst2>+
+
 \bigskip
 \noindent \index{Pattern search}
 This program applies a grammar to a text and constructs an index of the
@@ -665,7 +697,8 @@ occurrences found.
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
   \item \verb+-t TXT+/\verb+--text=TXT+: complete path of the text file, without omitting
-  the \verb+.snt+ extension;
+  the \verb+.snt+ extension;
+
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: complete path of the alphabet
   file;\index{Alphabet}\index{File!alphabet}
   
@@ -748,7 +781,8 @@ program saves the references to the found occurrences in a file called
 \verb+concord.ind+. The number of occurrences, the number of units belonging to
 those occurrences, as well as the percentage of recognized units within the text
 are saved in a file called \verb+concord.n+. These two files are stored in the
-directory of the text.
+directory of the text.
+
 
 
 \section{MergeTextAutomaton}\index{External programs!\verb+MergeTextAutomaton+}\index{\verb+MergeTextAutomaton+}
@@ -762,7 +796,8 @@ manual modifications. If the program finds a file \verb+sentenceN.grf+ in the
 same directory as \verb+<txtauto>+, it replaces the automaton of sentence
 \verb+N+ with the one represented by \verb+sentenceN.grf+. The \verb+<txtauto>+
 file is replaced by the new text automaton. The old text automaton is backed up
-in a file called \verb+text.fst2.bck+.
+in a file called \verb+text.fst2.bck+.
+
 
 \section{MultiFlex}\index{External programs!\verb+MultiFlex+}\index{\verb+MultiFlex+}
 \verb+MultiFlex [OPTIONS] <dela>+
@@ -803,7 +838,8 @@ replaced by a single space.
 \noindent This program also checks the syntax of lexical tags found in the text. All
 sequences in curly brackets should be either the sentence delimiter \verb+{S}+,
 the stop marker \verb+{STOP}+, or valid entries in the DELAF format (\verb+{aujourd'hui,.ADV}+). 
-\index{\verb+{S}+}\index{Sentence delimiter}
+\index{\verb+{S}+}\index{Sentence delimiter}
+
 \bigskip
 \noindent \index{Lexical!labels}Parameter \verb+<text>+ 
 represents the complete path of the text file. The program
@@ -813,7 +849,7 @@ creates a modified version of the text that is saved in a file with extension
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
-  \item \verb+-n+/\verb+--no_carridge_return+: every separator sequence will be turned into a single space;
+  \item \verb+-n+/\verb+--no_carriage_return+: every separator sequence will be turned into a single space;
   
   \item \verb+-r XXX+/\verb+--replacement_rules=XXX+: specifies the
   normalization rule file to be used. See section \ref{norm-file} for details about the format of
@@ -872,7 +908,9 @@ the dictionary lines that correspond to the analysis are appended to file
 \bigskip
 \noindent NOTE: for Dutch or Norwegian words, the program tries to read a text
 file containing a list of forbidden words. This file is supposed to be named
-\verb+ForbiddenWords.txt+ (see section \ref{forbidden-words}) and stored in thesame directory than \verb+BIN+.
+\verb+ForbiddenWords.txt+ (see section \ref{forbidden-words}) and stored in the
+same directory than \verb+BIN+.
+
 
 
 \section{Reconstrucao}\index{External programs!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
@@ -926,7 +964,8 @@ be a Unicode text file. The program takes into account all characters up to the
 first newline. The result file is called \verb+regexp.grf+ and is saved in the
 same directory as \verb+<txt>+.
 
-\section{SortTxt}\index{External programs!\verb+SortTxt+}\index{\verb+SortTxt+}
+\section{SortTxt}\index{External programs!\verb+SortTxt+}\index{\verb+SortTxt+}
+
 \verb+SortTxt [OPTIONS] <txt>+
 
 \index{Sorting}
@@ -945,7 +984,8 @@ same directory as \verb+<txt>+.
 
   \item \verb+-o XXX+/\verb+--sort_order=XXX+: sorts using the alphabet of the
   order defined by file \verb+XXX+. If this parameter is missing, the sorting is done according to the
-  order of Unicode characters;
+  order of Unicode characters;
+
   \item \verb+-l XXX+/\verb+--line_info=XXX+: backup the number of lines of the result file in
   file \verb+XXX+;
   
@@ -954,7 +994,8 @@ same directory as \verb+<txt>+.
 
 \bigskip
 \noindent The input text file is modified. By default,
-the sorting is performed in the order of Unicode characters, removing duplicate lines.
+the sorting is performed in the order of Unicode characters, removing duplicate lines.
+
 
 \section{Table2Grf}\index{External programs!\verb+Table2Grf+}\index{\verb+Table2Grf+}
 \verb+Table2Grf [OPTIONS] <table>+
@@ -978,7 +1019,8 @@ and a template graph.
   For instance, if you set the pattern parameter to '\verb+subgraph-@%.grf+', 
   subgraph names will be such as '\verb+subgraph-0013.grf+'. By default,
   subgraph names look like '\verb+result_0013.grf+', where '\verb+result.grf+' 
-  designates the result main graph.\end{itemize}
+  designates the result main graph.
+\end{itemize}
 
 
 \section{TagsetNormFst2}\index{External programs!\verb+TagsetNormFst2+}\index{\verb+TagsetNormFst2+}
@@ -1094,13 +1136,15 @@ extension.
 \noindent The program codes each unit as a whole. The list of units is saved in a text file
 called \verb+tokens.txt+. The sequence of codes representing the units now allows
 the coding of the text. This sequence is saved in a binary file named
-\verb+text.cod+. The program also produces the following four files:
+\verb+text.cod+. The program also produces the following four files:
+
 \begin{itemize}
   \item \verb+tok_by_freq.txt+: text file containing the units sorted by frequency;
   \item \verb+tok_by_alph.txt+: text file containing the units sorted alphabetically;
   \item \verb+stats.n+: text file containing information on the number of
   sentence separators, the number of units, the number of simple words and the
-  number of numbers;
+  number of numbers;
+
   \item \verb+enter.pos+: binary file containing the list of newline positions in
   the text. The coded representation of the text does not contain newlines, but
   spaces. Since a newline counts as two characters and a space as a single one,
@@ -1109,7 +1153,8 @@ the coding of the text. This sequence is saved in a binary file named
   the text file. File \verb+enter.pos+ is used for this by the \verb+Concord+
   program. Thanks to this, when clicking on an occurrence in a concordance, it is
   correctly selected in the text. File \verb$enter.pos$ is a binary file
-  containing the list of the positions of newlines in the text.
+  containing the list of the positions of newlines in the text.
+
 \end{itemize}
 \index{File!\verb+tok_by_freq.txt+}\index{File!\verb+tok_by_alph.txt+}
 \index{File!\verb+stats.n+}\index{File!\verb+enter.pos+}
@@ -1147,11 +1192,13 @@ extension.
 \noindent If the text is separated into sentences, the program constructs an
 automaton for each sentence. If this is not the case, the program arbitrarily
 cuts the text into sequences of 2000 lexical units and produces an automaton for
-each of these sequences.\index{Lexical!units}
+each of these sequences.\index{Lexical!units}
+
 \index{File!\verb+text.tfst+}\index{File!\verb+text.tind+}
 \bigskip
 \noindent The result is a file called \verb+text.tfst+ which is saved in the directory of
-the text. Another file named \verb+text.tind+ is also produced.
+the text. Another file named \verb+text.tind+ is also produced.
+
 \bigskip
 \noindent NOTE: The program will also try to use the \verb+tags.ind+ file, if
 any (see section \ref{tags-ind}).
