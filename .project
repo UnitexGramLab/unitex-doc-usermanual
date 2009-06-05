@@ -11,17 +11,7 @@
 			<arguments>
 				<dictionary>
 					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/net.sourceforge.texlipse.builder.TexlipseBuilder.launch</value>
-				</dictionary>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
-			<triggers>full,incremental,</triggers>
-			<arguments>
-				<dictionary>
-					<key>LaunchConfigHandle</key>
-					<value>&lt;project&gt;/.externalToolBuilders/Building with make.launch</value>
+					<value>&lt;project&gt;/.externalToolBuilders/Build with make.launch</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>
