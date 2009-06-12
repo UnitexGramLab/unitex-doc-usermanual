@@ -1,5 +1,5 @@
 \chapter{Local grammars}
-\label{chap-grammaires-locales}
+\label{chap-grammars}
 
 Local grammars are a powerful tool to represent the majority of linguistic
 phenomena. The first section presents the formalism in which these grammars are
@@ -88,7 +88,7 @@ transducer in the area of finite state automata.\index{Automata!finite state}
 
 \subsection{Creating a graph}
 In order to create a graph, click on "New" in the "FSGraph" menu. You will then
-see the window coming up as in figure~\ref{fig-nouveau-graphe}. The symbol in
+see the window coming up as in figure~\ref{fig-new-graph}. The symbol in
 arrow form is the \textit{initial state} of the graph.\index{State!initial} The
 round symbol with a square is the \textit{final state} of the
 graph.\index{State!final} The grammar only recognizes expressions that are
@@ -104,7 +104,7 @@ described along the paths between initial and final states.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-2.png}
-\caption{Empty graph\label{fig-nouveau-graphe}}
+\caption{Empty graph\label{fig-new-graph}}
 \end{center}
 \end{figure}
 
@@ -112,30 +112,32 @@ described along the paths between initial and final states.
 \noindent In order to create a box, click inside the window while pressing the Ctrl
 key.\index{Graph!creating a box} \index{Creating a Box}\index{Boxes!creating}
 A blue rectangle will appear that symbolizes the empty box that was created (see
-figure~\ref{fig-création-boîte}). After creating the box, it is automatically
-selected.
+figure~\ref{fig-box-creation}). After creating the box, it is
+automatically selected.
 
 \bigskip
 \noindent You see the contents of that box in the text field at the top of the
 window. The newly created box contains the \verb+<E>+ symbol that represents the empty word
 epsilon.\index{\verb+<E>+} Replace this symbol by the text \verb$I+you+he+she+it+we+they$ and
-press the Enter key. You see that the box now contains seven lines (see figure~\ref{fig-boîte-pronoms}).
-The \verb$+$ character serves as a separator.\index{\verb$+$} The box is displayed
-in the form of red text lines since it is not connected to another one at the moment.
+press the Enter key. You see that the box now contains seven lines (see
+figure~\ref{fig-pronoun-box}). The \verb$+$ character serves as a
+separator.\index{\verb$+$} The box is displayed in the form of red text lines since it is 
+not connected to another one at the moment.
 We often use this type of boxes to insert comments into a
 graph. \index{Graph!comments in}\index{Comments!in a graph}
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-3.png}
-\caption{Creating a box\label{fig-création-boîte}}
+\caption{Creating a box\label{fig-box-creation}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-4.png}
-\caption{Box containing \texttt{I+you+he+she+it+we+they}\label{fig-boîte-pronoms}}
+\caption{Box containing
+\texttt{I+you+he+she+it+we+they}\label{fig-pronoun-box}}
 \end{center}
 \end{figure}
 
@@ -146,25 +148,26 @@ already exists a transition between two boxes, it is deleted. It is also possibl
 to do that by clicking first on the target box and then on the
 source box while pressing Shift. In our example, after connecting the box to the initial
 and final states of the graph, we get a graph as in
-figure~\ref{fig-graphe-pronoms}:
+figure~\ref{fig-pronoun-graph}:
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-5.png}
-\caption{Graph that recognizes English pronouns\label{fig-graphe-pronoms}}
+\caption{Graph that recognizes English
+pronouns\label{fig-pronoun-graph}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent NOTE: If you double-click a box, you connect this box to itself (see
-figure~\ref{fig-boîte-avec-boucle}). To undo this double-click on the same box 
-a second time, or use the "Undo" button.
+figure~\ref{fig-loop-box}). To undo this double-click on the
+same box a second time, or use the "Undo" button.
 
 \bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-6.png}
-\caption{Box connected to itself\label{fig-boîte-avec-boucle}}
+\caption{Box connected to itself\label{fig-loop-box}}
 \end{center}
 \end{figure}
 
@@ -176,8 +179,8 @@ saving by checking if the title contains the text \verb+(Unsaved)+.
 
 
 \subsection{Sub-Graphs}
-\label{section-sous-graphes}
-\index{Graph!calling a bub-graph}\index{\verb+:+}
+\label{section-subgraphs}
+\index{Graph!calling a sub-graph}\index{\verb+:+}
 In order to call a sub-graph, its name is inserted into a box and preceded by the
 \verb+:+ character. If you enter the text:
 
@@ -185,27 +188,31 @@ In order to call a sub-graph, its name is inserted into a box and preceded by th
 \verb$alpha+:beta+gamma+:E:\greek\delta.grf$
 
 \bigskip
-\noindent into a box, you get a box similar to the one in figure~\ref{fig-appel-à-sous-graphe}:
+\noindent into a box, you get a box similar to the one in
+figure~\ref{fig-subgraph-call}:
 
 \medskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6cm]{resources/img/fig5-7.png}
-\caption{Graph that calls sub-graphs \texttt{beta} and \texttt{delta}\label{fig-appel-à-sous-graphe}}
+\caption{Graph that calls sub-graphs \texttt{beta} and
+\texttt{delta}\label{fig-subgraph-call}}
 \end{center}
 \end{figure}
 
 \noindent You can indicate the full name of the graph
-(\verb$E:\greek\delta.grf$) or simply the base name without the path (\verb$beta$); in this case, the the
+(\verb$E:\greek\delta.grf$) or simply the base name without the path (\verb$beta$); 
+in this case, the the
 sub-graph is expected to be in the same directory as the graph that references
 it. References to absolute path names should as a rule be avoided, since such
 calls are not portable. If you use such an absolute path name, the graph compiler
-will emit a warning (see figure~\ref{warning-nom-graphe-absolu}).
+will emit a warning (see figure~\ref{fig-warning-absolute-graph-name}).
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-8.png}
-\caption{Warning about a non portable graph name\label{warning-nom-graphe-absolu}}
+\caption{Warning about a non portable graph
+name\label{fig-warning-absolute-graph-name}}
 \end{center}
 \end{figure}
 
@@ -213,13 +220,13 @@ will emit a warning (see figure~\ref{warning-nom-graphe-absolu}).
 \bigskip
 \noindent For portability you should not use \verb+\+ or \verb+/+ as separator
 in graph path names. Use instead \verb+:+ which is understood as a
-system-independent separator. In figure~\ref{warning-nom-graphe-absolu} \verb+\+
-and \verb+/+ are internally converted by the graph compiler to \verb+:+
+system-independent separator. In figure~\ref{fig-warning-absolute-graph-name}
+\verb+\+ and \verb+/+ are internally converted by the graph compiler to \verb+:+
 (\verb+E::greek:delta.grf+).
 
 \bigskip
 \noindent \textbf{Graph repository}
-\label{repository-section}
+\label{section-repository}
 
 \bigskip
 \noindent When you need to call a grammar $X$ inside a grammar $Y$, a simple
@@ -257,7 +264,7 @@ in sub-directory \verb+Johnson+, we must use the call
 
 % do not remove this line jump
 \noindent \verb+::Det:Johnson:DET+
-(see Figure \ref{appel-graphe-depot}\,\footnote{To avoid confusion, graph calls
+(see Figure \ref{repository-graph-call}\,\footnote{To avoid confusion, graph calls
 that refer to the repository are displayed in brown instead of grey.}).
 
 
@@ -272,7 +279,8 @@ that refer to the repository are displayed in brown instead of grey.}).
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-11.png}
-\caption{Call to a graph located in the repository\label{appel-graphe-depot}}
+\caption{Call to a graph located in the
+repository\label{repository-graph-call}}
 \end{center}
 \end{figure}
 
@@ -361,7 +369,7 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \noindent The output associated with a box is represented in bold text below it.
 
 \subsection{Using Variables}
-\label{section-utilisation-des-variables}
+\label{section-using-variables}
 \index{Graph!variables in a}\index{Variables!within graphs}\index{\verb+$+}
 \index{Transducer!with variables}
 
@@ -372,7 +380,7 @@ the part to store. Create two boxes containing one \verb+$var1(+ and the second
 \verb+$var1)+. These boxes must not contain anything but the variable name
 preceded by \verb+$+ and followed by a parenthesis. Then link these boxes to the
 zone of the grammar to store. In the graph in
-figure~\ref{fig-exemple-utilisation-variable} you see a sequence of digits before
+figure~\ref{fig-using-variable} you see a sequence of digits before
 \verb+dollar+ or \verb+dollars+. This sequence will be stored in a variable named
 \verb+var1+.
 
@@ -380,7 +388,8 @@ figure~\ref{fig-exemple-utilisation-variable} you see a sequence of digits befor
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-15.png}
-\caption{Using the variable \texttt{var1}\label{fig-exemple-utilisation-variable}}
+\caption{Using the variable
+\texttt{var1}\label{fig-using-variable}}
 \end{center}
 \end{figure}
 
@@ -392,19 +401,19 @@ names} Unitex distinguishes between uppercase and lowercase characters.
 \bigskip
 \noindent When a variable is defined, you can use it in transducer outputs by
 surrounding its name with \verb+$+.\index{\verb+$+} The grammar in
-figure~\ref{fig-grammaire-date} recognizes a date formed by a month and a year,
-and produces the same date as an output, but in the order year-month.
+figure~\ref{fig-date-grammar} recognizes a date formed by a month and a
+year, and produces the same date as an output, but in the order year-month.
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-16.png}
-\caption{Inverting month and year in a date\label{fig-grammaire-date}}
+\caption{Inverting month and year in a date\label{fig-date-grammar}}
 \end{center}
 \end{figure}
 
 \noindent If you want to use the character \verb+$+ in the output of a box, you
-have to double it, as shown on figure~\ref{fig-exemple-utilisation-variable}.
+have to double it, as shown on figure~\ref{fig-using-variable}.
 
 \subsection{Copying lists}
 \index{Copying lists}
@@ -416,13 +425,14 @@ copy every term manually, Unitex provides a mean to copy lists. To use this,
 select the list in your text editor and copy it using <Ctrl+C> or the copy
 function integrated in your editor. Then create a box in your graph, and press
 <Ctrl+V> or use the "Paste" command in the "Edit" menu to paste it into the box.
-A window as in Figure~\ref{fig-sélection-de-contexte-pour-copie-multiple} opens:
+A window as in Figure~\ref{fig-setting-contexts-for-multiple-copy}
+opens:
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-17.png}
-\caption{Selecting a context for copying a list\label{fig-sélection-de-contexte-pour-copie-multiple}}
+\caption{Selecting a context for copying a list\label{fig-setting-contexts-for-multiple-copy}}
 \end{center}
 \end{figure}
 \index{Contexts!copy of a list}
@@ -443,13 +453,13 @@ empty. If you use the contexts  \verb+<+ and \verb+.V>+ with the following list:
 \textit{read}
 
 \bigskip
-\noindent you will get the box in figure~\ref{fig-copie-multiple}:
+\noindent you will get the box in figure~\ref{fig-multiple-copy}:
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-18.png}
-\caption{Box resulting from copying a list and applying contexts\label{fig-copie-multiple}}
+\caption{Box resulting from copying a list and applying contexts\label{fig-multiple-copy}}
 \end{center}
 \end{figure}
 
@@ -461,8 +471,8 @@ empty. If you use the contexts  \verb+<+ and \verb+.V>+ with the following list:
 \verb," + : / < > # \,
 
 \bigskip
-\noindent Table~\ref{tab-symboles-spéciaux} summarizes the meaning of these
-symbols for Unitex, as well as the ways to recognize these characters in texts.
+\noindent Table~\ref{tab-special-symbols} summarizes the meaning of
+these symbols for Unitex, as well as the ways to recognize these characters in texts.
 
 \bigskip
 \index{Meta-characters}
@@ -498,7 +508,8 @@ Unitex, and whose case must be taken verbatim & \verb$\"$
 \\
 \hline
 \end{tabular}
-\caption{Encoding of special characters in the graph editor\label{tab-symboles-spéciaux}}
+\caption{Encoding of special characters in the graph
+editor\label{tab-special-symbols}}
 \end{center}
 \end{table}
 
@@ -509,13 +520,13 @@ The toolbar on the left of a graph contains shortcuts for certain commands
 and allows you to manipulate boxes of a graph by using some "tools". This
 toolbar may be moved by clicking on the "rough" zone. It may also be dissociated
 from the graph and appear in an separate window (see
-figure~\ref{fig-barre-icones}). In this case, closing this window puts the
-toolbar back at its initial position. Each graph has its own toolbar.
+figure~\ref{fig-toolbar}). In this case, closing this window puts
+the toolbar back at its initial position. Each graph has its own toolbar.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig5-19.png}
-\caption{Toolbar\label{fig-barre-icones}}
+\caption{Toolbar\label{fig-toolbar}}
 \end{center}
 \end{figure}
 
@@ -582,7 +593,7 @@ is displayed entirely in the window.
 \index{Antialiasing}\index{Graph!antialiasing}
 Antialiasing is a shading effect that avoids pixelization
 effects.\index{Pixellisation} You can activate this effect by clicking on
-"Antialiasing..." in the "Format" sub-menu. Figure~\ref{fig-exemple-antialiasing}
+"Antialiasing..." in the "Format" sub-menu. Figure~\ref{fig-antialiasing}
 shows one graph displayed normally (the graph on top) and with antialiasing (the
 graph at the bottom).
 
@@ -590,7 +601,7 @@ graph at the bottom).
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-21.png}
-\caption{Antialiasing example\label{fig-exemple-antialiasing}}
+\caption{Antialiasing example\label{fig-antialiasing}}
 \end{center}
 \end{figure}
 
@@ -604,7 +615,7 @@ machine is not powerful enough.
 In order to get nice-looking graphs, it is useful to align the boxes, both
 horizontally and  vertically. To do this, select the boxes to align and click on
 "Alignment..." in the "Format" sub-menu of the "FSGraph" menu or press <Ctrl+M>.
-You will then see the window in Figure~\ref{fig-fenêtre-alignement}.
+You will then see the window in Figure~\ref{fig-alignment-frame}.
 
 \bigskip
 \noindent The possibilities for horizontal alignment are:
@@ -617,7 +628,7 @@ You will then see the window in Figure~\ref{fig-fenêtre-alignement}.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=6.6cm]{resources/img/fig5-22.png}
-\caption{Alignment window\label{fig-fenêtre-alignement}}
+\caption{Alignment window\label{fig-alignment-frame}}
 \end{center}
 \end{figure}
 
@@ -629,7 +640,7 @@ You will then see the window in Figure~\ref{fig-fenêtre-alignement}.
 \end{itemize}
 
 \bigskip
-\noindent Figure~\ref{fig-exemple-alignement-vertical-gauche} shows an example
+\noindent Figure~\ref{fig-vertical-left-alignment} shows an example
 of alignment. The group of boxes to the right is (quite) a copy of the ones to the
 left that was aligned.
 
@@ -637,7 +648,7 @@ left that was aligned.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=11.5cm]{resources/img/fig5-23.png}
-\caption{Example of box alignment\label{fig-exemple-alignement-vertical-gauche}}
+\caption{Example of box alignment\label{fig-vertical-left-alignment}}
 \end{center}
 \end{figure}
 
@@ -655,17 +666,18 @@ boxes.\index{Grid}
 \end{figure}
 
 \subsection{Display options, fonts and colors}
-\label{section-présentation-polices-couleurs}
+\label{section-display-fonts-colors}
 \index{Graph!display options, fonts and colors}\index{Options!configuration}
 \index{Colors!configuration}
 You can configure the display style of a graph by pressing <Ctrl+R> or by
 clicking on "Presentation..." in the "Format" sub-menu of the "FSGraph" menu,
-which opens the window as in figure~\ref{fig-configuration-aspect-graphe}.
+which opens the window as in
+figure~\ref{fig-graph-display-configuration}.
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig5-25.png}
-\caption{Configuring the display options of a graph\label{fig-configuration-aspect-graphe}}
+\caption{Configuring the display options of a graph\label{fig-graph-display-configuration}}
 \end{center}
 \end{figure}
 
@@ -698,14 +710,14 @@ which opens the window as in figure~\ref{fig-configuration-aspect-graphe}.
   "File Name" is selected;
   \item Frame: draw a frame around the graph;
   \item Right to Left: invert the reading direction of the graph (see an example
-  in figure~\ref{fig-graphe-droite-à-gauche}).
+  in figure~\ref{fig-right-to-left-graph}).
 \end{itemize}
 
 \bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-26.png}
-\caption{Graph with reading direction set to right to left\label{fig-graphe-droite-à-gauche}}
+\caption{Graph with reading direction set to right to left\label{fig-right-to-left-graph}}
 \end{center}
 \end{figure}
 
@@ -715,7 +727,7 @@ which opens the window as in figure~\ref{fig-configuration-aspect-graphe}.
 order to modify the preferences for a language as a default, click on
 "Preferences..." in the "Info" menu and choose the tab "Graph Representation".
 The preferences configuration window has an extra option concerning antialiasing
-(see figure~\ref{fig-configuration-préférences}). This option activates
+(see figure~\ref{fig-preferences}). This option activates
 antialiasing by default for all graphs in the current language. It is advised
 not to activate this option if your machine is an old slow one. You can also
 change the position of the icon bar.
@@ -725,14 +737,14 @@ change the position of the icon bar.
 \noindent NOTE: the "Right to Left" option is not present on the general graph
 configuration frame. The orientation of graphs is set per default for the
 current language, as defined in the "Text Presentation" tab (see Figure
-\ref{fig-sélection-navigateur-web},
-page \pageref{fig-sélection-navigateur-web}).
+\ref{fig-browser-selection},
+page \pageref{fig-browser-selection}).
 
 \bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig5-27.png}
-\caption{Default preferences configuration\label{fig-configuration-préférences}}
+\caption{Default preferences configuration\label{fig-preferences}}
 \end{center}
 \end{figure}
 

@@ -49,53 +49,56 @@ these resources: precision, completeness, and the taking into account of frozen
 expressions, most notably those which concern the enumeration of compound words.
 
 
-\section*{What's new from version 1.2 ?}
-\addcontentsline{toc}{section}{What's new from version 1.2 ?}
-Here are some interesting new features:
+\section*{What's new from version 2.0 ?}
+\addcontentsline{toc}{section}{What's new from version 2.0 ?}
+Here are the main new features:
 \begin{itemize}
-  \item left contexts
-  \item morphological mode in \verb$Locate$
-  \item brand new version of \verb$Convert$
-  \item replacement of \verb$Inflect$ by \verb$MultiFlex$ that can inflect compound words
-  and that can handle consonant skeletons for semitic languages
-  \item introduction of the text alignment tool \verb$XAlign$
-  \item no size limit for text file display
-  \item SVG export of graphs
+  \item introduction of \verb$LocateTfst$ that performs locate operations
+        on the text automaton
+  \item \verb$LocateTfst$ fully supports Korean
+  \item introduction of \verb$Stats$ that can compute statistics from a
+        concordance file
+  \item introduction of \verb$Uncompress$ that can rebuild a \verb$.dic$
+        dictionary from a \verb$.bin$ compressed one
+  \item introduction of ancient Georgian
+  \item the console has changed: you can view error messages emitted by
+        previous commands
+  \item Unitex programs have Unix style options
+  \item Unitex is now pure LGPL
+  \item Unitex can be compiled as a dynamic library (\verb$.dll$ or \verb$.so$)
+  \item Unitex code is thread-safe
+  \item introduction of \verb$UnitexTool$ that can be used to launch several
+  Unitex programs in one command to make scripting easier
 \end{itemize}
-
-\bigskip \noindent From a computational point of view, a special effort has been
-made to clean and comment the source code of Unitex programs in order to
-facilitate the integration of new components. Moreover, the development of Unitex
-is now made with a SVN server, which makes collaborative work much more easier.
 
 
 \section*{Content}
 \addcontentsline{toc}{section}{Content}
-\noindent Chapter \ref{chap-installation} describes how to install and run
+\noindent Chapter \ref{chap-install} describes how to install and run
 Unitex.
 
-\bigskip \noindent Chapter \ref{chap-texte} presents the different steps in the
+\bigskip \noindent Chapter \ref{chap-text} presents the different steps in the
 analysis of  a text.
 
 \bigskip \noindent Chapter \ref{chap-dictionaries} describes the formalism of
 the DELA electronic dictionaries and the different operations that can be applied to them.
 
-\bigskip \noindent Chapters \ref{chap-regexp} and \ref{chap-grammaires-locales}
+\bigskip \noindent Chapters \ref{chap-regexp} and \ref{chap-grammars}
 present different means for making text searches more effective. 
-Chapter \ref{chap-grammaires-locales} describes in detail how to use the graph
+Chapter \ref{chap-grammars} describes in detail how to use the graph
 editor.
 
-\bigskip \noindent Chapter \ref{chap-grammaires-avancées} is concerned with the
-different possible applications of grammars. The particularities of each type of grammar are
+\bigskip \noindent Chapter \ref{chap-advanced-grammars} is concerned
+with the different possible applications of grammars. The particularities of each type of grammar are
 presented.
 
-\bigskip \noindent Chapter \ref{chap-automate-du-texte} introduces the  concept
-of text automaton and describes the properties of this notion. This chapter also describes 
+\bigskip \noindent Chapter \ref{chap-text-automaton} introduces the 
+concept of text automaton and describes the properties of this notion. This chapter also describes 
 operations on this object, in particular, how to disambiguate lexical items with
 the ELAG program.
 
-\bigskip \noindent Chapter \ref{chap-lexique-grammaire} contains an introduction
-to lexicon-grammar tables, followed by a description of the method of constructing grammars based on these
+\bigskip \noindent Chapter \ref{chap-lexicon-grammar} contains an
+introduction to lexicon-grammar tables, followed by a description of the method of constructing grammars based on these
 tables.
 
 \bigskip \noindent Chapter \ref{chap-alignment} describes the text
@@ -105,13 +108,15 @@ alignment module, based on the XAlign tool.
 inflection module, as a complement of the simple word inflection mechanism
 presented in chapter \ref{chap-dictionaries}.
 
-\bigskip \noindent Chapter \ref{chap-programmes-externes} contains a detailed
-description of the external programs that make up the Unitex system.
+\bigskip \noindent Chapter \ref{chap-external-programs} contains a
+detailed description of the external programs that make up the Unitex system.
 
-\bigskip \noindent Chapter \ref{chap-formats-de-fichiers} contains descriptions
-of all file formats used in the system. 
+\bigskip \noindent Chapter \ref{chap-file-formats} contains
+descriptions of all file formats used in the system. 
 
 
 \bigskip \noindent The reader will find in appendix the LGPL license
 under which the Unitex source code is released, as well as the LGPLLR license
-which applies for the linguistic data distributed with Unitex.
+which applies for the linguistic data distributed with Unitex. There is also
+the 2-clause BSD licence that applies to the TRE library, used by Unitex for 
+morphological filters.

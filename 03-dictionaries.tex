@@ -9,13 +9,13 @@ The electronic dictionaries distributed with Unitex use the DELA syntax
 describes the simple and compound lexical entries \index{Lexical!entries} of a
 language with their grammatical, semantic and inflectional information. We
 distinguish two kinds of electronic dictionaries. The one that is used most often
-is the  dictionary of inflected forms DELAF (DELA de formes Fléchies, DELA of
-inflected forms) or DELACF (DELA de formes Composées Fléchies, DELA of compound
-inflected forms) in the case of compound forms.\index{DELAF|(}
+is the  dictionary of inflected forms DELAF (DELA de formes Fl\'echies, DELA of
+inflected forms) or DELACF (DELA de formes Compos\'ees Fl\'echies, DELA of
+compound inflected forms) in the case of compound forms.\index{DELAF|(}
 \index{DELACF}\index{Dictionaries!DELAF|(}\index{Dictionaries!DELACF}
 The second type is a dictionary of non-inflected forms called DELAS (DELA de
-formes simples, simple forms DELA) or DELAC (DELA de formes composées, compound
-forms DELA).
+formes simples, simple forms DELA) or DELAC (DELA de formes compos\'ees,
+compound forms DELA).
 \index{DELAS}\index{DELAC}\index{Dictionaries!DELAS}\index{Dictionaries!DELAC}
 
 \bigskip
@@ -25,7 +25,7 @@ inflected and non-inflected dictionaries, no matter they contain simple word,
 compound words or both.
 
 \subsection{The DELAF format}
-\label{section-format-des-DELAF}
+\label{section-DELAF-format}
 \subsubsection{Entry syntax}
 An entry of a DELAF is a line of text terminated by a newline that conforms to
 the following syntax:
@@ -57,7 +57,7 @@ apples,apple.N+conc:p/this is an example
   \bigskip \item \verb$N+Conc$ is the sequence of grammatical and semantic
   information. \index{Information!grammatical} \index{Information!semantic}In our
   example, \verb+N+ designates a noun, and \verb+Conc+ indicates that this noun
-  designates a concrete object (see table~\ref{tab-codes-sémantiques}).
+  designates a concrete object (see table~\ref{tab-semantic-codes}).
   
   Each entry must have at least one grammatical or semantic code, separated from
   the canonical form by a period. If there are more codes, these are separated by
@@ -75,9 +75,9 @@ apples,apple.N+conc:p/this is an example
   The \verb+:+ character is interpreted in OR semantics. Thus,
   \verb+:W:P1s:P2s:P1p:P2p:P3p+ means "infinitive", or "1st person singular
   present", or "2nd person singular present", etc. (see
-  table~\ref{tab-codes-flectionnels}) Since each character represents one
-  information, it is not necessary to use the same character more than once. In
-  this way, encoding the past participle using the code \verb+:PP+ would be
+  table~\ref{tab-inflectional-codes}) Since each character
+  represents one information, you must not use the same character
+  more than once. In this way, encoding the past participle using the code \verb+:PP+ would be
   exactly equivalent to using \verb+:P+ alone;\index{\verb+:+}
   
   \bigskip \item \verb+/this is an example+ is a comment. Comments are optional
@@ -202,15 +202,17 @@ bottle,.V:W:P1s:P2s:P1p:P2p:P3p
 
 \bigskip 
 \noindent Some entries that have the same grammatical and semantic entries can
-have different meanings, as it is the case for the French word \textit{poêle}
+have different meanings, as it is the case for the French word \textit{po\^ele}
 that describes a stove or a type of sheet in the masculine sense and a kitchen
 instrument in the feminine sense. You can thus distinguish the entries in  this
 case:
 
-\begin{verbatim}
-poêle,.N+z1:fs/ poêle à frire
-poêle,.N+z1:ms/ voile, linceul; appareil de chauffage
-\end{verbatim}
+\bigskip
+\noindent
+\texttt{po\^ele,.N+z1:fs/ po\^ele \`a frire}
+
+\noindent
+\texttt{po\^ele,.N+z1:ms/ voile, linceul; appareil de chauffage}
 
 \bigskip 
 \noindent NOTE: In practice, this distinction has the only consequence that the
@@ -219,9 +221,9 @@ number of entries in the dictionary increases.
 \bigskip 
 \noindent For the different programs that make up Unitex these entries are equivalent to:
 
-\begin{verbatim}
-poêle,.N+z1:fs:ms
-\end{verbatim}
+\bigskip
+\noindent
+\texttt{po\^ele,.N+z1:fs:ms}
 
 \bigskip 
 \noindent Whether this distinction is made is thus left to the  maintainers of  the dictionaries.
@@ -229,7 +231,7 @@ poêle,.N+z1:fs:ms
 \index{DELAF|)}\index{Dictionaries!DELAF|)}
 
 \subsection{The DELAS Format}
-\label{section-format-des-DELAS}
+\label{section-DELAS-format}
 \index{DELAS}\index{Dictionaries!DELAS}
 
 The DELAS format is very similar to the one used in the DELAF. The only
@@ -247,7 +249,7 @@ example above indicates that the word \textit{horse} has to be inflected using
 the grammar named \verb+N4+. It is possible to add inflectional codes to the
 entries, but the nature of the inflection operation limits the usefulness of this
 possibility. For more details see below in
-section~\ref{section-flexion-automatique}.
+section~\ref{section-automatic-inflection}.
 
 
 \subsection{Dictionary Contents}
@@ -290,7 +292,7 @@ nouns, etc.).
 \verb+V+ & verb & overeat, plug-and-play \\
 \hline
 \end{tabular}
-\caption{Frequent grammatical codes\label{tab-codes-grammaticaux}}
+\caption{Frequent grammatical codes\label{tab-grammatical-codes}}
 \end{center}
 \end{table}
 
@@ -328,14 +330,14 @@ nouns, etc.).
 \verb+i+ & intransitive verb & agree \\
 \hline
 \end{tabular}
-\caption{Some semantic codes\label{tab-codes-sémantiques}}
+\caption{Some semantic codes\label{tab-semantic-codes}}
 \end{center}
 \end{table}
 
 \bigskip
-\noindent NOTE: The  descriptions of tense in table~\ref{tab-codes-flectionnels} correspond
-to French. Nontheless, the majority of these definitions can be found in other
-languages (infinitive, present, past participle, etc.).
+\noindent NOTE: The  descriptions of tense in
+table~\ref{tab-inflectional-codes} correspond to French.
+Nontheless, the majority of these definitions can be found in other languages (infinitive, present, past participle, etc.).
 
 \bigskip
 \noindent In spite of a common base in the majority of languages, the dictionaries
@@ -388,7 +390,7 @@ we recommend that you  contact the author of the dictionary directly.
 \verb+F+ & future indicative \\
 \hline
 \end{tabular}
-\caption{Common inflectional codes\label{tab-codes-flectionnels}}
+\caption{Common inflectional codes\label{tab-inflectional-codes}}
 \end{center}
 \end{table}
 
@@ -398,11 +400,15 @@ and create his own dictionaries. For example, for educational purposes one could
 use a marker "faux-ami" (\textit{false friend}) in a French dictionary:
 
 \bigskip
-\begin{verbatim}
-blesser,.V+faux-ami/injure
-casque,.N+faux-ami/helmet
-journée,.N+faux-ami/day
-\end{verbatim}
+\noindent
+\texttt{blesser,.V+faux-ami/injure}
+
+\noindent
+\texttt{casque,.N+faux-ami/helmet}
+
+\noindent
+\texttt{journ\'ee,.N+faux-ami/day}
+
 
 \bigskip
 \noindent It is equally possible to use dictionaries to add extra information.
@@ -457,16 +463,16 @@ dictionary, you first open it by choosing "Open..." in the "DELA" menu.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig3-2.png}
-\caption{Dictionary example\label{fig-exemple-dictionnaire}}
+\caption{Dictionary example\label{fig-dictionary-example}}
 \end{center}
 \end{figure}
 
-\noindent Let's load the dictionary as in figure~\ref{fig-exemple-dictionnaire}.
+\noindent Let's load the dictionary as in figure~\ref{fig-dictionary-example}.
 Then, click on "Check Format..." in the
-"DELA" menu. A window like in figure~\ref{fig-vérification-dictionnaire} is
-opened. You must select the type of dictionary you want to check.
-After checking the dictionary in Figure~\ref{fig-exemple-dictionnaire}, 
-results are presented as shown in Figure~\ref{fig-résultat-vérification-dictionnaire}.
+"DELA" menu. A window like in
+figure~\ref{fig-dictionary-checking} is opened. You
+must select the type of dictionary you want to check. After checking the dictionary in Figure~\ref{fig-dictionary-example}, 
+results are presented as shown in Figure~\ref{fig-dictionary-checking-results}.
 
 \bigskip
 \noindent The first error is caused by a missing period. The second, by the fact
@@ -478,14 +484,14 @@ that the program didn't find any grammatical or semantic codes.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig3-3.png}
-\caption{Checking a dictionary\label{fig-vérification-dictionnaire}}
+\caption{Checking a dictionary\label{fig-dictionary-checking}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!p]
 \begin{center}
 \includegraphics[height=19.4cm]{resources/img/fig3-4.png}
-\caption{Results of checking\label{fig-résultat-vérification-dictionnaire}}
+\caption{Results of checking\label{fig-dictionary-checking-results}}
 \end{center}
 \end{figure}
 
@@ -499,16 +505,18 @@ dictionaries. The sorting depends on a number of criteria, first of all on the
 language of the text. Therefore the sorting of a Thai dictionary is done
 according to an order different from the alphabetical order.  So different in
 fact that Unitex uses a sorting procedure developed specifically for Thai (see
-chapter \ref{chap-programmes-externes}).
+chapter \ref{chap-external-programs}).
 
 \bigskip
 \noindent For European languages the sorting is usually done according to the
 lexicographical order, although there are some variants. Certain languages like
 French treat some characters as equivalent. For example, the difference between
-the characters  \verb+e+  and \verb+é+  is ignored if one wants to compare the
-words \verb+manger+ et \verb+mangés+ because the contexts \verb+r+ and \verb+s+
-allow to decide the order. The difference is only taken into account when the contexts are
-identical, as they are when comparing \verb+pêche+ and \verb+pèche+.
+the characters  \verb+e+  and \texttt{\'e}  is ignored if one wants to compare
+the words \verb+manger+ et \texttt{mang\'es} because the contexts
+\verb+r+ and \verb+s+ allow to decide the order. The difference is only taken 
+into account when the contexts are
+identical, as they are when comparing \texttt{p\^eche} and
+\texttt{p\`eche}.
 
 \bigskip \index{Alphabet!sort}
 \noindent
@@ -519,19 +527,28 @@ is named \verb+Alphabet_sort.txt+ \index{File!\verb+Alphabet_sort.txt+} and can
 be found in the user directory for the current language. By default the first
 lines of this file for French look like this:
 
-\begin{verbatim}
-AÀÂÄaàâä
-Bb
-CÇcç
-Dd
-EÉÈÊËeéèêë
-\end{verbatim}
+\bigskip
+\noindent
+\texttt{A\`A\^A\"Aa\`a\^a\"a}
+
+\noindent
+\texttt{Bb}
+
+\noindent
+\texttt{C\c{C}c\c{c}}
+
+\noindent
+\texttt{Dd}
+
+\noindent
+\texttt{E\'E\`E\^E\"Ee\'e\`e\^e\"e}
+
 
 \bigskip
 \noindent Characters in the same line are considered equivalent if the context permits. If
 two equivalent characters must be compared, they are sorted in the order they
 appear in from left to right. As can be seen from the extract above, there is no
-difference between lower and upper case. Accents and the cédille character are
+difference between lower and upper case. Accents and the c\'edille character are
 ignored as well.
 
 \bigskip
@@ -543,18 +560,18 @@ file, you can define your own sorting order.
 
 \bigskip
 \noindent NOTE: After applying the dictionaries to a text, the files
-\verb+dlf+, \verb+dlc+ and \verb+err+   are automatically sorted using this
+\verb+dlf+, \verb+dlc+ and \verb+err+ are automatically sorted using this
 program. \index{File!\verb+dlf+} \index{File!\verb+dlc+}
 \index{File!\verb+err+}
 
 
 
 \section{Automatic inflection}
-\label{section-flexion-automatique}
+\label{section-automatic-inflection}
 \index{Automatic inflection}\index{Dictionaries!automatic inflection}
 \subsection{Inflection of simple words}
 
-As described in section~\ref{section-format-des-DELAS}, a line in a DELAS
+As described in section~\ref{section-DELAS-format}, a line in a DELAS
 consists of a canonical form and a sequence of grammatical or semantic codes:
 
 \begin{verbatim}
@@ -580,15 +597,18 @@ compiled if needed. In the example above, all entries will be inflected by a gra
 
 \bigskip
 \noindent In order to  inflect a dictionary, click on "Inflect..." in the "DELA" menu. The
-window in figure~\ref{fig-configuration-flexion} allows you to specify the
+window in figure~\ref{fig-inflection-configuration} allows you to specify the
 directory in which inflectional grammars are found. By default, the subdirectory
-\verb+Inflection+ of the directory for the current language is used. 
+\verb+Inflection+ of the directory for the current language is used. You can
+also specify the kind of words your DELAS is supposed to contain. If an entry is
+found that does not correspond to your choice, an error message will be
+displayed.
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig3-5.png}
-\caption{Configuration of automatic inflection\label{fig-configuration-flexion}}
+\caption{Configuration of automatic inflection\label{fig-inflection-configuration}}
 \end{center}
 \end{figure}
 
@@ -596,12 +616,13 @@ directory in which inflectional grammars are found. By default, the subdirectory
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig3-6.png}
-\caption{Inflectional grammar \texttt{N4}\label{fig-exemple-grammaire-de-flexion}}
+\caption{Inflectional grammar
+\texttt{N4}\label{fig-example-inflectional-grammar}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Figure~\ref{fig-exemple-grammaire-de-flexion} shows an example of an
+\noindent Figure~\ref{fig-example-inflectional-grammar} shows an example of an
 inflectional grammar. The paths describe the suffixes to add or to remove to
 get to an inflected form from a canonical form, and the outputs (text in bold under the boxes) are the
 inflectional codes to add to a dictionary entry.
@@ -610,10 +631,12 @@ inflectional codes to add to a dictionary entry.
 \noindent In our example, two paths are possible. The first does not modify the
 canonical form and adds the inflectional code \verb+:s+. The second deletes a letter with
 the \verb+L+ operator, then adds the \verb+ux+ suffix and adds the inflectional
-code \verb+:mp+. Five operators are possible:
+code \verb+:mp+. Here are the operators that can be used:
 \index{\verb+L+}\index{Operator!\verb+L+}\index{\verb+R+}\index{Operator!\verb+R+}
 \index{\verb+C+}\index{Operator!\verb+C+}\index{\verb+D+}\index{Operator!\verb+D+}
 \index{\verb+U+}\index{Operator!\verb+U+}
+\index{\verb+P+}\index{Operator!\verb+P+}
+\index{\verb+W+}\index{Operator!\verb+W+}
 
 \begin{itemize}
   \item \verb+L+ (left) removes a letter from the entry
@@ -621,11 +644,12 @@ code \verb+:mp+. Five operators are possible:
   \item \verb+R+ (right) restores a letter to the entry. In French, many verbs
   of the first group are conjugated in the present singular  of the third person form  by removing the
   \verb+r+ of the infinitive and changing the 4$^{th}$ letter from the end to
-  \verb+è+: \verb+peler+ $\rightarrow$ \verb+pèle+, \verb+acheter+ $\rightarrow$
-  \verb+achète+, \verb+gérer+ $\rightarrow$ \verb+gère+, etc. Instead of
-  describing an inflectional suffix for each verb (\verb+LLLLèle+, \verb+LLLLète+
-  et \verb+LLLLère+), the \verb+R+ operator can be used to describe it in one
-  way: \verb+LLLLèRR+.
+  \texttt{\`e}: \verb+peler+ $\rightarrow$ \texttt{p\`ele},
+  \verb+acheter+ $\rightarrow$ \texttt{ach\`ete}, \texttt{g\'erer}
+  $\rightarrow$ \texttt{g\`ere}, etc. Instead of describing an inflectional
+  suffix for each verb (\texttt{LLLL\`ele}, \texttt{LLLL\`ete} and
+  \texttt{LLLL\`ere}), the \verb+R+ operator can be used to
+  describe it in one way: \texttt{LLLL\`eRR}.
   
   \item \verb+C+ (copy) duplicates a letter in the entry and moves everything on
   its right by one position. In cases like \verb+permitted+ or \verb+hopped+, we
@@ -641,9 +665,15 @@ code \verb+:mp+. Five operators are possible:
   and then \verb+Ri+ will restore the \verb+n+ and add an \verb+i+.
 
   \item \verb+U+ (unaccent) removes the accent of the current character, if
-  any. For instance the sequence \verb+LLUx+ applied to the word \verb+mangés+
-  produces the inflected form \verb+mangex+, since \verb+U+ has turn the \verb+'é'+
-  into a \verb+e+.
+  any. For instance the sequence \verb+LLUx+ applied to the word
+  \texttt{mang\'es} produces the inflected form \verb+mangex+, since \verb+U+
+  has turn the \texttt{\'e} into a \verb+e+.
+
+  \item \verb+P+ (uppercase) uppercase the initial letter of the stack. For
+  instance, the sequence \verb$Px$ will turn \verb$foo$ into \verb$Foox$.
+  
+  \item \verb+W+ (lowercase) lowercase the initial letter of the stack.
+   
 \end{itemize}
 
 \bigskip \noindent In the example below, the inflection of \verb+choose+ is
@@ -851,10 +881,11 @@ as input (for example \verb+my_dico.dic+) and produces two files:
 representation of inflected forms in which all common prefixes and suffixes are factorized. For
 example, the minimal automaton of the words \verb+me+, \verb+te+, \verb+se+,
 \verb+ma+, \verb+ta+ et \verb+sa+ can be represented by the graph shown in
-Figure~\ref{fig-exemple-automate-minimal}. \bigskip \begin{figure}[!h]
+Figure~\ref{fig-example-minimal-automaton}. \bigskip \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=5cm]{resources/img/fig3-8.png}
-\caption{Representation of a minimal automaton\label{fig-exemple-automate-minimal}}
+\caption{Representation of a minimal
+automaton\label{fig-example-minimal-automaton}}
 \end{center}
 \end{figure}
 
@@ -863,12 +894,12 @@ the "DELA" menu. The compression is independent from the language and from the c
 the dictionary. The messages produced by the program are displayed in a window
 that is not closed automatically. You can see the size of the resulting
 \verb+.bin+ file, the number of lines read and the number of inflectional codes
-created. Figure~\ref{fig-resultat-compression} shows the result of the
-compression of a dictionary of simple words. \bigskip
+created. Figure~\ref{fig-compression-result} shows the result of
+the compression of a dictionary of simple words. \bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig3-9.png}
-\caption{Results of a compression\label{fig-resultat-compression}}
+\caption{Results of a compression\label{fig-compression-result}}
 \end{center}
 \end{figure}
 
@@ -877,19 +908,20 @@ compression of a dictionary of simple words. \bigskip
 simple words and 50\% for those with compound words.
 
 \section{Applying dictionaries}
-\label{section-application-dictionnaires}
+\label{section-applying-dictionaries}
 \index{Dictionaries!applying}
 Dictionaries can be applied (1) after pre-processing or (2) by explicitly 
 clicking on "Apply Lexical Resources" in the  "Text" menu (see
-section~\ref{section-application-dictionnaires}).
+section~\ref{text-applying-dictionaries}).
 
 \bigskip
 \noindent Unitex can manipulate compressed dictionaries (\verb+.bin+) and
 dictionary graphs (\verb+.fst2+). We will now describe  the rules for applying dictionaries
-in detail. Dictionary graphs will be described in section~\ref{graphes-dicos}.
+in detail. Dictionary graphs will be described in
+section~\ref{section-dictionary-graphs}.
 
 \subsection{Priorities}
-\label{section-priorités-dictionnaires}
+\label{section-dictionary-priorities}
 \index{Dictionaries!priority}\index{Priority!of dictionaries}
 The priority rule says that  if a word in a text is found in a dictionary, this
 word will not be taken into account by dictionaries with lower priority.
@@ -929,7 +961,7 @@ On the command line, the command:
 \end{enumerate}
 
 \subsection{Application rules for dictionaries}
-\label{section-règles-application-des-transducteurs}
+\label{section-transducer-application-rules}
 
 Besides the priority rule, the application of dictionaries respects  upper  case
 letters and spaces. The upper case rule is as follows:
@@ -963,7 +995,7 @@ follows the apostrophe.
 
 
 \subsection{Dictionary graphs}
-\label{graphes-dicos}\index{Dictionary graphs}
+\label{section-dictionary-graphs}\index{Dictionary graphs}
 The \verb+Dico+\index{\verb+Dico+}\index{External programs!\verb+Dico+} program
 can also apply dictionary graphs. Dictionary graphs conform to the following
 rule: if applied by \verb+Locate+\index{\verb+Locate+}\index{External
@@ -988,16 +1020,17 @@ normal DELAF.
 \noindent Another advantage of dictionary graphs is that they can use results
 given by previous dictionaries. Thus, it is possible to apply the standard dictionary, and then tag as proper
 names all the unknown words that begin with an uppercase letter, thanks to the
-graph \verb$NPr+$ shown in figure~\ref{graphe-NPr}. The \verb$+$ in the graph
+graph \verb$NPr+$ shown in figure~\ref{graph-NPr}. The \verb$+$ in the graph
 name gives to it a low priority, so that it will be applied after the standard
 dictionary. This graph works with words that are still unknown after the
 application of the standard dictionary. Square brackets stand for a context definition.
-For more information about contexts,\index{Context} see section \ref{contextes}.
+For more information about contexts,\index{Context} see section
+\ref{section-contexts}.
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=10.5cm]{resources/img/fig3-11.png}
-\caption{Dictionary graph that tags unknown words beginning with an uppercase letter as proper names\label{graphe-NPr}}
+\caption{Dictionary graph that tags unknown words beginning with an uppercase letter as proper names\label{graph-NPr}}
 \end{center}
 \end{figure}
 
@@ -1006,7 +1039,7 @@ For more information about contexts,\index{Context} see section \ref{contextes}.
 they have exactly the same properties than syntactic graphs. So,
 you can use morphological filters and/or morphological mode.
 \index{Morphological filters}\index{Morphological mode}For instance, the
-graph shown on Figure \ref{graphe-CR} use morphological filters to recognize
+graph shown on Figure \ref{graph-CR} use morphological filters to recognize
 roman numerals. Note that it also uses contexts in order to avoid recognizing 
 uppercase letters in some contexts.
 
@@ -1015,7 +1048,7 @@ uppercase letters in some contexts.
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=24cm]{resources/img/fig3-12.png}
-\caption{Dictionary graph of roman numerals\label{graphe-CR}}
+\caption{Dictionary graph of roman numerals\label{graph-CR}}
 \end{center}
 \end{figure}
 
@@ -1034,8 +1067,8 @@ dictionaries, you can design morphological dictionary graphs. The output
 of such graphs will be used as special input for the construction of the text
 automaton. We call them ``morphological dictionary graphs'', because their
 main utility is to introduce new morphological analysis in the text automaton,
-using the morphological mode (see section \ref{morphological_mode}). This
-functionality will be helpful for agglutinative languages like Korean.
+using the morphological mode (see section \ref{section-morphological-mode}).
+This functionality will be helpful for agglutinative languages like Korean.
 
 \bigskip
 \noindent The rule is simple: any output of a dictionary graph that begins

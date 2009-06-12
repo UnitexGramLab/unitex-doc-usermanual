@@ -31,9 +31,9 @@ the many works that discuss regular expression patterns.
 \section{Tokens}
 \index{Token}
 
-In a regular expression, a token is defined as in \ref{decoupage-du-texte} (page
-\pageref{decoupage-du-texte}). Note that the symbols dot, plus, star, less than,
-opening and closing parentheses and double quotes have a
+In a regular expression, a token is defined as in \ref{tokenization} (page
+\pageref{tokenization}). Note that the symbols dot, plus,
+star, less than, opening and closing parentheses and double quotes have a
 special meaning. It is therefore necessary to precede them with an escape character
 \verb+\+ if you want to search for them. Here are some examples of valid
 tokens: \index{\verb+\+}
@@ -62,11 +62,11 @@ in quotation marks.
 A lexical mask is a search query that matches tokens or sequences of tokens.
 
 \subsection{Special symbols}
-\label{section-symboles-spéciaux}
+\label{section-special-symbols}
 \index{Meta-symbols}
 
 There are two kinds of lexical masks. The first category contains all symbols that have
-been introduced in section~\ref{section-découpage-en-phrases} except for the
+been introduced in section~\ref{section-sentence-splitting} except for the
 symbol \verb$<PNC>$, which matches punctuation signs, and \verb+<^>+, which matches a line feed.
 Since all line feeds have been replaced by spaces this symbol cannot longer be
 useful when searching for lexical masks. These symbols, also called \textit{meta-symbols}, are
@@ -96,8 +96,8 @@ the following:
 \end{itemize}
 
 \bigskip
-\noindent NOTE: as described in section \ref{decoupage-du-texte}, NO meta can be used to match the
-\verb+{STOP}+\index{\verb+{STOP}+} marker, not even \verb+<TOKEN>+.
+\noindent NOTE: as described in section \ref{tokenization}, NO meta can be used
+to match the \verb+{STOP}+\index{\verb+{STOP}+} marker, not even \verb+<TOKEN>+.
 
 \subsection{References to information in the dictionaries}
 \index{Reference to information in the dictionaries}\index{Dictionaries!refer to}
@@ -131,24 +131,29 @@ are basic. It is possible to express more complex lexical masks by using
 several grammatical or semantic codes separated by the character \verb$+$. An
 entry of the dictionary is then only found if it has all the codes that are
 present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
+\bigskip
+\noindent
+\texttt{broderies,broderie.N+z1:fp}
 
-\begin{verbatim}
-broderies,broderie.N+z1:fp
-capitales européennes,capitale européenne.N+NA+Conc+HumColl+z1:fp
-\end{verbatim}
+\noindent
+\texttt{capitales europ\'eennes,capitale europ\'eenne.N+NA+Conc+HumColl+z1:fp}
 
+\bigskip
 \noindent but not:
 
-\begin{verbatim}
-Descartes,René Descartes.N+Hum+NPropre:ms
-habitué,.A+z1:ms
-\end{verbatim}
+\bigskip
+\noindent
+\texttt{Descartes,Ren\'e Descartes.N+Hum+NPropre:ms}
 
+\noindent
+\texttt{habitu\'e,.A+z1:ms}
+
+\bigskip
 \noindent It is possible to exclude codes by preceding them with the character \verb+-+
 instead of \verb$+$. In order to be recognized, an entry has to contain all the
 codes required by the lexical mask and none of the prohibited ones. The mask
 \verb$<A-z3>$ thus recognizes all the adjectives that do not have the code
-\verb+z3+ (cf. table~\ref{tab-codes-sémantiques}).
+\verb+z3+ (cf. table~\ref{tab-semantic-codes}).
 If you want to refer to a code containing the character \verb$-$ you have to
 escape this character by preceding it with a \verb+\+. Thus, the mask
 \verb$<N+faux\-ami>$ could recognize all entries of the dictionaries containing
@@ -167,8 +172,9 @@ three following patterns are equivalent:
 
 \bigskip
 \noindent NOTE: it is not possible to use a lexical mask that only has
-prohibited codes. \verb+<-N>+ and \verb+<-A-z1>+ are thus incorrect masks. However, you can express
-such constraints using contexts (see section~\ref{contextes}).
+prohibited codes. \verb+<-N>+ and \verb+<-A-z1>+ are thus incorrect masks. 
+However, you can express
+such constraints using contexts (see section~\ref{section-contexts}).
 
 
 
@@ -259,12 +265,13 @@ being,.N+Hum:s
   \item \verb+<lire.V:P:F>+ : the verb \textit{lire} in the present or future
   tense;
   \item \verb$<suis,suivre.V>$ : the word \textit{suis} as inflected form of the
-  verb \textit{suivre} (as opposed to the form of the verb \textit{être});
+  verb \textit{suivre} (as opposed to the form of the verb \textit{\^etre});
   \item \verb$<facteur.N-Hum>$ : all nominal entries that have \textit{facteur} as
   canonical form and that do not have the semantic code \verb+Hum+;
   \item \verb$<!ADV>$ : all words that are not adverbs;
-  \item \verb$<!MOT>$ : all tokens that are not made of letters (cf. figure~\ref{fig-recherche-<!MOT>}).
-  This mask does not recognize the sentence separator \verb+{S}+ and the special tag \verb+{STOP}+.
+  \item \verb$<!MOT>$ : all tokens that are not made of letters (cf.
+  figure~\ref{fig-search-<!MOT>}). This mask does not recognize the sentence
+  separator \verb+{S}+ and the special tag \verb+{STOP}+.
   \index{\verb+{S}+}\index{Sentence separator}\index{\verb+{STOP}+}
 \end{itemize}
 
@@ -272,7 +279,8 @@ being,.N+Hum:s
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig4-2.png}
-\caption{Result of a search for the pattern \texttt{<!MOT>}\label{fig-recherche-<!MOT>}}
+\caption{Result of a search for the pattern
+\texttt{<!MOT>}\label{fig-search-<!MOT>}}
 \end{center}
 \end{figure}
 
@@ -357,19 +365,20 @@ digits.
 \noindent WARNING: It is prohibited to search for the empty word with a regular
 expression. If you try to search for \verb$(0+1+2+3+4+5+6+7+8+9)*$, the program
 will raise an error as shown in
-figure~\ref{fig-erreur-expression-reconnaissant-epsilon}.
+figure~\ref{fig-epsilon-error}.
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig4-3.png}
-\caption{Error message when searching for the empty string\label{fig-erreur-expression-reconnaissant-epsilon}}
+\caption{Error message when searching for the empty
+string\label{fig-epsilon-error}}
 \end{center}
 \end{figure}
 
 
 \section{Morphological filters}
-\label{filters}
+\label{section-filters}
 \index{Morphological filters}
 
 It is possible to apply morphological filters to the lexemes found. For that, it is necessary to
@@ -394,8 +403,10 @@ elementary filters:
   \item \verb$<<a.*s>>$: contains \verb$a$ followed by a sequence of any character, followed by \verb$s$
   \item \verb$<<ss|tt>>$: contains \verb$ss$ or \verb$tt$
   \item \verb$<<[aeiouy]>>$: contains a non accentuated vowel
-  \item \verb$<<[aeiouy]{3,5}>>$: contains a sequence of non-accentuated vowels whose length is between 3 and 5
-  \item \verb$<<ée?>>$: contains \verb$é$ followed by an optional \verb$e$
+  \item \verb$<<[aeiouy]{3,5}>>$: contains a sequence of non-accentuated vowels whose length 
+        is between 3 and 5
+  \item \texttt{<<\'ee?>>}: contains \texttt{\'e} followed by an
+  optional \verb$e$
   \item \verb$<<ss[^e]?>>$: contains \verb$ss$ followed by an optional character which is not \verb$e$
 \end{itemize}
 
@@ -405,11 +416,12 @@ elementary filters:
 \begin{itemize}
   \item \verb+<<[ai]ble$>>+: ends with \verb$able$ or \verb$ible$
   \item \verb$<<^(anti|pro)-?>>$: begins with \verb$anti$ or \verb$pro$, followed by an optional dash
-  \item \verb+<<^([rst][aeiouy]){2,}$>>+: a word formed by 2 or more sequences beginning with \verb$r$, \verb$s$
+  \item \verb+<<^([rst][aeiouy]){2,}$>>+: a word formed by 2 or more sequences beginning 
+        with \verb$r$, \verb$s$
   or \verb$t$ followed by a non-accentuated vowel
   \item \verb!<<^([^l]|l[^e])>>!: does not begin with \verb$l$ unless the second letter is an
   \verb$e$, in other words, any word except the ones starting with \verb$le$. Such constraints
-  are better described using contexts (see section~\ref{contextes}).
+  are better described using contexts (see section~\ref{section-contexts}).
 \end{itemize}
 
 \noindent By default, a morphological filter alone is regarded as applying it to the lexical
@@ -429,25 +441,26 @@ mask. Here are some examples of such combinations:
 
 \noindent \index{Case sensitivity}NOTE: By default, morphological filters are
 subject to the same variations of case as lexical masks. Thus, the filter
-\verb$<<^é>>$ will recognize all the words starting with \verb$é$, but also those
-which start with \texttt{\'E} or \verb$E$. To force the matcher to respect case, 
-add \verb$_f_$ immediately after the filter, \textit{e.g.}:
-\verb$<A><<^é>>_f_$.
+\verb$<<^b>>$ will recognize all the words starting with
+\texttt{b}, but also those which start with \texttt{B}. 
+To force the matcher to respect case, add \verb+_f_+ immediately
+after the filter, \textit{e.g.}: \verb+<<^b>>_f_+.
 
 
 \section{Search}
 \index{Search for patterns}
-\subsection{Configuration of the search}
+\subsection{Search configuration}
 In order to search for an expression, first open a text (cf.
-chapter~\ref{chap-texte}). Then click on "Locate Pattern..." in the "Text" menu.
-The window of figure~\ref{fig-configuration-recherche-expression-rationnelle}
+chapter~\ref{chap-text}). Then click on "Locate Pattern..." in the "Text" menu.
+The window of
+figure~\ref{fig-regexp-search-configuration}
 appears.
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=8.8cm]{resources/img/fig4-4.png}
-\caption{``Locate pattern'' window\label{fig-configuration-recherche-expression-rationnelle}}
+\caption{``Locate pattern'' window\label{fig-regexp-search-configuration}}
 \end{center}
 \end{figure}
 
@@ -475,7 +488,8 @@ occurrences.\index{Occurrences!number of}
 
 \bigskip
 \noindent The options of the "Grammar outputs" box do not concern regular
-expressions. They are described in  section~\ref{section-application-des-graphes-au-texte}.
+expressions. They are described in 
+section~\ref{section-applying-graphs-to-text}.
 
 \bigskip
 \noindent Enter an expression and click on "Search" in order to start the
@@ -485,17 +499,17 @@ the \verb+.fst2+ format\index{File!\verb+.fst2+} that will be used for the
 search.
 
 \subsection{Presentation of the results}
-\label{section-affichage-des-résultats}
-When the search is finished, the window of figure~\ref{fig-résultat-recherche}
-appears showing the number of matched occurrences, the number of recognized
-tokens and the ratio between this number and the total number of
+\label{section-display-occurrences}
+When the search is finished, the window of
+figure~\ref{fig-search-results} appears showing the number of matched
+occurrences, the number of recognized tokens and the ratio between this number and the total number of
 tokens in the text.
 
 \bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6.5cm]{resources/img/fig4-5.png}
-\caption{Search results \label{fig-résultat-recherche}}
+\caption{Search results \label{fig-search-results}}
 \end{center}
 \end{figure}
 
@@ -509,14 +523,14 @@ occurrences is called a \textit{concordance}.\index{Concordance}
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig4-6.png}
-\caption{Configuration of the presentation of the found occurrences\label{fig-configuration-concordance}}
+\caption{Result display configuration\label{fig-configuration-concordance}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent The "Modify text" box offers the possibility to replace the matched
 occurrences with the generated outputs. This possibility will be examined in 
-chapter~\ref{chap-grammaires-avancées}.
+chapter~\ref{chap-advanced-grammars}.
 
 \bigskip
 \noindent The "Extract units" box allows you to create a text file with all
@@ -558,11 +572,11 @@ This option is activated by default if the number of occurrences is greater than
 You can configure which web browser to use by clicking on "Preferences..." in
 the menu "Info". Click on the tab "Language \& Presentation" and
 select the program to use in the field "Html Viewer" 
-(cf. figure~\ref{fig-sélection-navigateur-web}).
+(cf. figure~\ref{fig-browser-selection}).
 
 \bigskip
 \noindent \index{Concordance frame} If you choose to open the concordance in
-Unitex, you will see a window as shown on Figure \ref{exemple-concordance}. 
+Unitex, you will see a window as shown on Figure \ref{fig-example-concordance}. 
 Utterances react as hyperlinks. If you click on an occurrence, the text frame is
 opened and the corresponding sequence is highlighted. Moreover, if the text automaton is
 available and if this window is not iconified, the sentence automaton that
@@ -572,7 +586,8 @@ contains the occurrence will be shown.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig4-7.png}
-\caption{Selection of a web browser for displaying concordances\label{fig-sélection-navigateur-web}}
+\caption{Selection of a web browser for displaying
+concordances\label{fig-browser-selection}}
 \end{center}
 \end{figure}
 
@@ -580,7 +595,69 @@ contains the occurrence will be shown.
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=18cm]{resources/img/fig4-8.png}
-\caption{Example concordance\label{exemple-concordance}}
+\caption{Example concordance\label{fig-example-concordance}}
 \end{center}
 \end{figure}
 
+\clearpage
+\subsection{Statistics}
+\label{section-statistics}
+If you select the ``Statistics'' tab in the ``Display indexed sequences..''
+frame, you will see the panel shown on figure~\ref{fig-statistics}. This panel
+allows you to get some statistics from the previously indexed sequences. 
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-9.png}
+\caption{Statistics panel\label{fig-statistics}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent In the ``Mode'' panel, you can select the kind of statistics you want:
+\begin{itemize}
+  \item left+match+right count: shows matches with left and right contexts (see
+  below). ``count'' is the number of occurrences of a given match+context
+  \item collocate count: shows the tokens that cooccur in the match context
+  \item collocate count with z-score: the previous one, plus some additionnal
+  information (number of occurrences of the collocate in the match context and
+  in the whole corpus, z-score of the collocate)
+\end{itemize}
+
+\bigskip
+\noindent In the second panel, you can set the lenght of left and right
+contexts to be used, in non space tokens. NOTE: this notion of context has
+nothing to do with contexts in grammars.
+
+\bigskip
+\noindent In the last panel, you can allow or not case variations. If you allow
+case variations, \verb$the$ and \verb$THE$ will be considered as a same token,
+and the count will be the sum of the counts of \verb$the$ and \verb$THE$.
+
+\bigskip
+\noindent The following figures show the statistics computed in each mode for
+the query \verb$<have>$ on \verb$ivanhoe.snt$.
+
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-10.png}
+\caption{left+match+right count\label{fig-statistics-mode0}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-11.png}
+\caption{collocate count\label{fig-statistics-mode1}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig4-12.png}
+\caption{collocate, count and other information\label{fig-statistics-mode2}}
+\end{center}
+\end{figure}

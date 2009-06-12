@@ -1,5 +1,5 @@
 \chapter{Loading a text}
-\label{chap-texte}
+\label{chap-text}
 
 One of the main functionalities of Unitex is to search a text for expressions.
 To do that, texts have to undergo a set of preprocessing steps that  normalize
@@ -14,8 +14,8 @@ search more effectively in the texts by using  grammars.
 \section{Selecting a language}
 \index{Selecting a language}\index{Language selection}
 When starting Unitex, the program asks you to choose the language in which you
-want to work (see figure~\ref{fig-sélection-langue}). The languages displayed are
-the ones that are present in the \verb+Unitex+ system directory and those that
+want to work (see figure~\ref{fig-language-selection}). The languages
+displayed are the ones that are present in the \verb+Unitex+ system directory and those that
 are  installed in your personal working directory. If you use a language for the
 first time, Unitex copies the system directory for this language to your personal
 directory, except for the dictionaries in order to save disk space.
@@ -38,7 +38,8 @@ active language is indicated in the title bar of the graphical interface.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=6.2cm]{resources/img/fig2-1.png}
-\caption{\label{fig-sélection-langue}Language selection when starting Unitex}
+\caption{\label{fig-language-selection}Language selection when starting
+Unitex}
 \end{center}
 \end{figure}
 
@@ -184,14 +185,14 @@ in the "Text" menu.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig2-8.png}
-\caption{Preprocessing Window\label{fig-fenêtre-de-prétraitement}}
+\caption{Preprocessing Window\label{fig-preprocessing-frame}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent 
 If you choose to preprocess the text, Unitex proposes to parameterize it
-as in the window shown in figure~\ref{fig-fenêtre-de-prétraitement}.
+as in the window shown in figure~\ref{fig-preprocessing-frame}.
 The option "Apply FST2 in MERGE mode" is used to split the text into sentences.
 The option "Apply FST2 in REPLACE mode" is used to make replacements in the text,
 especially for the normalization of non-ambiguous forms. With the option "Apply
@@ -202,7 +203,7 @@ compound words  constructed via concatenation of simple forms.  Finally, the
 option "Construct Text Automaton" is used to build the text automaton. This
 option is deactivated by default, because it consumes a large amount of memory
 and disk space if the text is too large. The construction of the text automaton
-is described in chapter~\ref{chap-automate-du-texte}.
+is described in chapter~\ref{chap-text-automaton}.
 
 \bigskip
 \noindent NOTE: If you click on "Cancel but tokenize text", the program will
@@ -241,7 +242,7 @@ This directory, called text directory,  \index{Directory!text}
 
 
 \subsection{Splitting into sentences}
-\label{section-découpage-en-phrases}
+\label{section-sentence-splitting}
 \index{Splitting into sentences}\index{Text!splitting into sentences}
 \index{Grammars!splitting into sentences}
 Splitting texts into sentences is an important preprocessing step since  this
@@ -258,7 +259,7 @@ beginning with a capital letter. Thus it may be considered as the end of the
 sentence, which would be wrong. To avoid the kind of problems caused by the
 ambiguous use of punctuation, grammars are used to  describe the different
 contexts for the end of a sentence.
-Figure~\ref{fig-exemple-découpage-en-phrases} shows an example grammar for
+Figure~\ref{fig-example-sentence-splitting} shows an example grammar for
 sentence splitting (for French sentences).
 
 \bigskip
@@ -268,9 +269,10 @@ this path produces the sentence delimiter symbol \verb+{S}+
 text.
 
 \bigskip
-\noindent The path shown at the top of figure~\ref{fig-exemple-découpage-en-phrases}
-recognizes the sequence consisting of a question mark and a word beginning with a
-capital letter and inserts the symbol \verb+{S}+ between the question mark and
+\noindent The path shown at the top of
+figure~\ref{fig-example-sentence-splitting} recognizes the sequence consisting
+of a question mark and a word beginning with a capital letter and inserts the 
+symbol \verb+{S}+ between the question mark and
 the following word. The following text:
 
 \bigskip
@@ -305,7 +307,8 @@ special symbols:
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig2-9.png}
-\caption{Sentence splitting grammar for French\label{fig-exemple-découpage-en-phrases}}
+\caption{Sentence splitting grammar for
+French\label{fig-example-sentence-splitting}}
 \end{center}
 \end{figure}
 
@@ -314,8 +317,8 @@ special symbols:
 presence of the space you have to use the special character  \verb+#+. At the
 opposite, if you want to force the presence of the space, you must use the
 sequence \verb+" "+. Lower and upper case letters are defined by an alphabet
-file\index{File!alphabet} (see chapter~\ref{chap-formats-de-fichiers}). For more
-details on grammars, see chapter~\ref{chap-grammaires-locales}.\index{Alphabet}
+file\index{File!alphabet} (see chapter~\ref{chap-file-formats}). For
+more details on grammars, see chapter~\ref{chap-grammars}.\index{Alphabet}
 For more information about sentence boundary detection, see
 \cite{ameliorer-decoupage-en-phrases}. The grammar used here is named
 \verb+Sentence.fst2+ and can be found in the following directory:
@@ -386,13 +389,14 @@ allowed for the sentence splitting grammar. The normalization grammar is called
 \verb+Fst2Txt+ \index{External programs!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
 program, but in REPLACE mode, which means that input sequences recognized by the
 grammar are replaced by the output sequences that are produced.
-Figure~\ref{fig-grammaire-de-normalisation} shows a grammar that normalizes
-verbal contractions in English.
+Figure~\ref{fig-normalization-grammar} shows a grammar that
+normalizes verbal contractions in English.
 
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig2-10.png}
-\caption{Normalization of English verbal contractions\label{fig-grammaire-de-normalisation}}
+\caption{Normalization of English verbal
+contractions\label{fig-normalization-grammar}}
 \end{center}
 \end{figure}
 
@@ -403,7 +407,7 @@ verbal contractions in English.
 \index{Text!splitting into tokens}
 \index{Token}
 \index{Tokenization}
-\label{decoupage-du-texte}
+\label{tokenization}
 Some languages, in particular Asian languages, use separators that are different
 from the ones used in  western languages. Spaces can be forbidden, optional, or
 mandatory. In order to better cope with these particularities,  Unitex splits
@@ -484,7 +488,7 @@ Corresponding token & \textit{A} &   & \textit{cat} &   & \textit{is} &  & \text
 \end{table}
 
 \bigskip
-\noindent For more details, see chapter~\ref{chap-formats-de-fichiers}.
+\noindent For more details, see chapter~\ref{chap-file-formats}.
 
 \begin{figure}[!h]
 \begin{center}
@@ -496,6 +500,7 @@ Corresponding token & \textit{A} &   & \textit{cat} &   & \textit{is} &  & \text
 
 
 \subsection{Applying dictionaries}
+\label{text-applying-dictionaries}
 \index{Dictionaries!applying}
 \index{Lexical!resources|see {Dictionaries}}
 Applying dictionaries consists of building the subset of dictionaries  consisting
@@ -544,13 +549,13 @@ files are called text dictionaries.  \index{Dictionaries!text}
 \bigskip
 \noindent As soon as the dictionary look-up  is finished, Unitex displays the sorted lists
 of simple, compound and unknown words found in a new window.
-Figure~\ref{fig-résultat-application-dictionnaires} shows the result for an
+Figure~\ref{fig-Dico-application-results} shows the result for an
 English text.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig2-12.png}
-\caption{Result after applying dictionaries to an English text\label{fig-résultat-application-dictionnaires}}
+\caption{Result after applying dictionaries to an English text\label{fig-Dico-application-results}}
 \end{center}
 \end{figure}
 
@@ -558,13 +563,13 @@ English text.
 \noindent It is also possible to apply dictionaries without preprocessing the text. In
 order to do this, click on "Apply Lexical Resources..." in the "Text" menu.
 Unitex then opens a window (see
-figure~\ref{fig-paramétrage-application-dictionnaires}) in which you can select
+figure~\ref{fig-Dico-configuration}) in which you can select
 the list of dictionaries to apply.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig2-13.png}
-\caption{Parameterizing the application of dictionaries\label{fig-paramétrage-application-dictionnaires}}
+\caption{Parameterizing the application of dictionaries\label{fig-Dico-configuration}}
 \end{center}
 \end{figure}
 
@@ -578,7 +583,7 @@ in the system are listed in the scroll list  named "System resources". Use the
 <Ctrl+click> combination to select several dictionaries. System dictionaries
 will be applied prior to user dictionaries. Within the system or user list, you
 can fix the order of dictionaries using the up and down arrows, as shown on
-figure \ref{fig-paramétrage-application-dictionnaires}. The button "Set
+figure \ref{fig-Dico-configuration}. The button "Set
 Default" allows you to define the current selection of dictionaries  as the
 default. This default selection will then be used during preprocessing if you
 activate the option "Apply All default Dictionaries".\index{Dictionaries!default
@@ -594,7 +599,7 @@ if any, will be displayed in the lower frame of the window.
 \index{Russian!compound words}\index{Analysis of compound words in Russian}
 \index{Words!compound!in Russian}
 \index{Words!compound!in Dutch}
-\label{section-mots-composés-libres-en-norvégien}
+\label{section-Norwegian-compound-words}
 In certain languages like Norwegian, German and others, it is possible to form
 new compound words by concatenating  together other words. For example, the word
 \textit{aftenblad} meaning \textit{evening journal} is obtained by combining the

@@ -1,6 +1,6 @@
 
 \chapter{Use of external programs}
-\label{chap-programmes-externes}
+\label{chap-external-programs}
 This chapter presents the use of the different programs of which Unitex is
 composed. These programs, which can be found in the \verb+Unitex/App+ folder, are
 automatically called by the interface. It is possible to see the commands that
@@ -75,7 +75,7 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 
 \bigskip
 \noindent For more details on the format of these files, see chapter
-\ref{chap-formats-de-fichiers}.
+\ref{chap-file-formats}.
 
 
 
@@ -124,7 +124,8 @@ the occurrences. Here is the description of the parameters:
   \item \verb+--RL+: right context, then left context;
   \item \verb+--RC+: left context, then occurrence.
 \end{itemize}
-\noindent For details on the sorting modes, see section \ref{section-affichage-des-résultats}.
+\noindent For details on the sorting modes, see section
+\ref{section-display-occurrences}.
 
 \bigskip
 \noindent \textbf{Output options:}
@@ -149,7 +150,7 @@ the occurrences. Here is the description of the parameters:
     characters;
   \item \verb+-m TXT+/\verb+--merge=TXT+: indicates to the program that it is supposed to
     produce a modified version of the text and save it in a file named
-    \verb+TXT+ (see section \ref{section-modification-du-texte}).
+    \verb+TXT+ (see section \ref{section-modifying-text}).
 \end{itemize}
 
 \bigskip
@@ -183,7 +184,8 @@ the sentence in which the occurrence was found.
 
 \bigskip
 \noindent This program takes two concordance files and produces an HTML page
-that shows their differences (see section \ref{concordiff}, page \pageref{concordiff}).
+that shows their differences (see section
+\ref{section-comparing-concordances}, page \pageref{section-comparing-concordances}). 
 \verb+<concor1>+ and \verb+<concor2>+ concordance index files must 
 have absolute names, because Unitex uses these names to deduce on which text
 there were computed.
@@ -353,9 +355,9 @@ lexical units by the \verb+Tokenize+ program.
 \verb+<dic_i>+ represents the path and name of
 a dictionary. The dictionary must be a \verb+.bin+ dictionary (obtained with 
 the \verb+Compress+ program) or a dictionary graph in the \verb+.fst2+ format (see section
-\ref{section-application-dictionnaires}, page \pageref{section-application-dictionnaires}).
+\ref{section-applying-dictionaries}, page \pageref{section-applying-dictionaries}).
 \index{File!\verb+.bin+}It is possible to give priorities to the dictionaries. For details see 
-section \ref{section-priorités-dictionnaires}.
+section \ref{section-dictionary-priorities}.
 
 \bigskip
 \noindent The program \verb+Dico+ produces the following files, and saves
@@ -367,7 +369,7 @@ them in the directory of the text:
   \item \verb+dlc+: dictionary of compound words in the text;
   \item \verb+err+: list of unknown words in the text;
   \item \verb+tags.ind+ : sequences to be inserted in the text automaton
-  (see section \ref{graphes-dicos}, page \pageref{graphes-dicos});
+  (see section \ref{section-dictionary-graphs}, page \pageref{section-dictionary-graphs});
   \item \verb+stat_dic.n+: file containing the number of simple words, the number
   of compound words, and the number of unknown words in the text.
 \end{itemize}
@@ -557,9 +559,11 @@ recognized by this grammar. The parameters are:
   here are the results for \verb$L$="\verb$[$" and \verb$R$="\verb$]*$":
 
   \medskip
-  \verb$il fait [très très]*$
+  \noindent
+  \texttt{il fait [tr\`es tr\`es]*}
   
-  \verb$il fait très beau$
+  \noindent
+  \texttt{il fait tr\`es beau}
 
 \begin{figure}[h]
 \begin{center}
@@ -621,7 +625,7 @@ preprocessing stage, when the text has not been cut into lexical units yet.
 \bigskip
 \noindent This programs takes a \verb$.fst2$ text automaton and produces an
 equivalent text file if the automaton is linear (i.e. with no
-ambiguity). See section \ref{linear-text}, page \pageref{linear-text}.
+ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-text}.
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -637,7 +641,7 @@ ambiguity). See section \ref{linear-text}, page \pageref{linear-text}.
 \bigskip
 \noindent \index{File!\verb+.grf+}\index{File!\verb+.fst2+}
 This program compiles a grammar into a \verb+.fst2+ file (for more details see
-section \ref{section-compiler-une-grammaire}). The parameter \verb+graph+ 
+section \ref{section-graph-compilation}). The parameter \verb+graph+ 
 denotes the complete path of the main graph of the grammar, without omitting the
 extension \verb+.grf+.
 
@@ -654,7 +658,8 @@ extension \verb+.grf+.
   character. If neither \verb+-c+ nor \verb+-a+ option is used, lexical units 
   will be sequences of any Unicode letters.
   \item \verb+-d DIR+/\verb+--pkgdir=DIR+: specifies the repository directory to
-  use (see section \ref{repository-section}, page \pageref{repository-section}).
+  use (see section \ref{section-repository}, page
+  \pageref{section-repository}).
   \item \verb+-e+/\verb+--no_empty_graph_warning+: no warning will be emitted
   when a graph matches the empty word. This option is used by \verb+MultiFlex+
   in order not to scare users with meaningless error messages when they design
@@ -805,7 +810,7 @@ in a file called \verb+text.fst2.bck+.
 \bigskip
 \noindent \index{Dictionaries!automatic inflection}\index{Automatic inflection}This 
 program carries out the automatic inflection of a DELA dictionary 
-containing simple (see section \ref{section-format-des-DELAS}) or compound word
+containing simple (see section \ref{section-DELAS-format}) or compound word
 lemmas (see chapter \ref{chap-multiflex}).
 
 \bigskip
@@ -852,7 +857,8 @@ creates a modified version of the text that is saved in a file with extension
   \item \verb+-n+/\verb+--no_carriage_return+: every separator sequence will be turned into a single space;
   
   \item \verb+-r XXX+/\verb+--replacement_rules=XXX+: specifies the
-  normalization rule file to be used. See section \ref{norm-file} for details about the format of
+  normalization rule file to be used. See section \ref{section-normalization-file} 
+  for details about the format of
   this file. By default, the program only replaces \verb+{+ and \verb+}+ by
   \verb+[+ and \verb+]+.
 \end{itemize}
@@ -908,8 +914,8 @@ the dictionary lines that correspond to the analysis are appended to file
 \bigskip
 \noindent NOTE: for Dutch or Norwegian words, the program tries to read a text
 file containing a list of forbidden words. This file is supposed to be named
-\verb+ForbiddenWords.txt+ (see section \ref{forbidden-words}) and stored in the
-same directory than \verb+BIN+.
+\verb+ForbiddenWords.txt+ (see section \ref{section-forbidden-words}) and stored
+in the same directory than \verb+BIN+.
 
 
 
@@ -1180,7 +1186,7 @@ extension.
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file;
   
   \item \verb+-c+/\verb+--clean+: indicates whether the rule of conservation of 
-  the best paths (see section \ref{section-conservation-des-meilleurs-chemins}) 
+  the best paths (see section \ref{section-keeping-best-paths}) 
   should be applied\index{Conservation of better paths};
   
   \item \verb+-n XXX+/\verb+--normalization_grammar=XXX+: name of a normalization 
@@ -1201,7 +1207,7 @@ the text. Another file named \verb+text.tind+ is also produced.
 
 \bigskip
 \noindent NOTE: The program will also try to use the \verb+tags.ind+ file, if
-any (see section \ref{tags-ind}).
+any (see section \ref{section-tags-ind}).
 
 
 
@@ -1222,7 +1228,7 @@ TEI files will contain a TEI header.
   \item \verb+-t+/\verb+--tei+: produces a TEI file (default);
 
   \item \verb+-n XXX+/\verb+--normalization=XXX+: specify the normalization
-  rule file to be used (see section \ref{norm-file});
+  rule file to be used (see section \ref{section-normalization-file});
 
   \item \verb+-o OUT+/\verb+--output=OUT+: optional output file name (default:
   \verb+file.txt+ > \verb+file.xml+);

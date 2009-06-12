@@ -1,5 +1,5 @@
 \chapter{Text automaton}
-\label{chap-automate-du-texte}
+\label{chap-text-automaton}
 \index{Automaton!of the text}
 Natural languages contain much lexical ambiguity. The text automaton is an
 effective and visual way of representing such ambiguity. Each sentence of a
@@ -16,18 +16,18 @@ text automaton for patterns.
 The text automaton explicit all possible lexical interpretations of the
 words. These different interpretations are the different entries presented in
 the dictionary of the text.
-Figure~\ref{fig-exemple-automate-de-phrase} shows the automaton of the fourth
+Figure~\ref{fig-sentence-automaton} shows the automaton of the fourth
 sentence of the text \textit{Ivanhoe}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.5cm]{resources/img/fig7-1.png}
-\caption{Sentence automaton example\label{fig-exemple-automate-de-phrase}}
+\caption{Sentence automaton example\label{fig-sentence-automaton}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent You can see in Figure~\ref{fig-exemple-automate-de-phrase}
+\noindent You can see in Figure~\ref{fig-sentence-automaton}
 that the word \verb+Here+ has three interpretations here (adjective, adverb and noun),
 \verb+haunted+ two (adjective and verb), etc. All the possible combinations are
 expressed because each interpretation of each word is connected to all the
@@ -104,7 +104,7 @@ automaton without trying to decompose them.
 \noindent In each box, the first line contains the inflected form found in the
 text, and the second line contains the canonical form if it is different. The other
 information is coded below the box.
-(cf. section~\ref{section-affichage-des-automates-de-phrase}).
+(cf. section~\ref{section-displaying-sentence-automata}).
 
 \bigskip
 \noindent The spaces that separate the lexical units are not copied into the
@@ -113,7 +113,7 @@ automaton except for the spaces inside compound words.
 \bigskip
 \noindent The case of lexical units is retained. For example, if the word
 \verb+Here+ is encountered, the capital letter is preserved (cf.
-figure~\ref{fig-exemple-automate-de-phrase}). This choice allows you to
+figure~\ref{fig-sentence-automaton}). This choice allows you to
 keep this information during the transition to the text automaton,
 which could be useful for applications where case is important as for
 recognition of proper names.
@@ -127,29 +127,30 @@ ambiguous forms by applying a normalization grammar. This grammar has to be
 called \verb+Norm.fst2+ and must be placed in your personal folder, in the
 subfolder \verb+/Graphs/Normalization+ of the desired language. The normalization
 grammars for ambiguous forms are described in
-section~\ref{section-graphes-normalisation-automate}.
+section~\ref{section-normalizing-text-automataon}.
 \bigskip
 \noindent If a sequence of the text is recognized by the normalization grammar, all the
 interpretations that are described by the grammar are inserted into the text
-automaton. Figure~\ref{fig-exemple-graphe-normalisation-automate}
-shows the part of the grammar used for the ambiguity of the
-sequence \verb+l'+ in French.
+automaton.
+Figure~\ref{fig-example-tfst-normalization-graph} shows
+the part of the grammar used for the ambiguity of the sequence \verb+l'+ in French.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8.6cm]{resources/img/fig7-4.png}
-\caption{Normalization of the sequence \texttt{l'}\label{fig-exemple-graphe-normalisation-automate}}
+\caption{Normalization of the sequence \texttt{l'}\label{fig-example-tfst-normalization-graph}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent If this grammar is applied to a French sentence containing the sequence
 \verb+l'+, a sentence automaton that is similar to the one in
-figure~\ref{fig-résultat-normalisation-automate} is obtained.
+figure~\ref{fig-tfst-normalization-results} is obtained.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.2cm]{resources/img/fig7-5.png}
-\caption{Automaton that has been normalized with the grammar of figure~\ref{fig-exemple-graphe-normalisation-automate}\label{fig-résultat-normalisation-automate}}
+\caption{Automaton that has been normalized with the grammar of 
+figure~\ref{fig-example-tfst-normalization-graph}\label{fig-tfst-normalization-results}}
 \end{center}
 \end{figure}
 
@@ -158,35 +159,35 @@ figure~\ref{fig-résultat-normalisation-automate} is obtained.
 have been applied, which has added four labels to the automaton. These labels are
 not concurrent with the two preexisting paths for the sequence \verb+l'+,
 because of the "keep best paths" heuristic (see section
-\ref{section-conservation-des-meilleurs-chemins}). The normalization at the time of the 
-construction of the automaton allows you to 
+\ref{section-keeping-best-paths}). The
+normalization at the time of the construction of the automaton allows you to 
 add paths to the automaton but not to remove ones. Removing paths will be
 partially done by the "keep best paths" heuristic, if enabled. To go further,you will need to use the ELAG disambiguation functionality.
 
 \subsection{Normalization of clitical pronouns in Portuguese}
-\label{section-normalisation-clitiques-portugais}
+\label{section-portuguese-clitics}
 \index{Clitics!normalization}\index{Normalization!of clitics in Portuguese}
 \index{Portuguese!normalization of clitics}
 In Portuguese, verbs in the future tense and in the conditional can be modified
 by the insertion of one or two clitical pronouns between the root and the suffix
-of the verb. For example, the sequence \textit{dir-me-ão} (\textit{they will tell
-me}), corresponds to the complete verbal form \textit{dirão}, associated with 
-the pronoun \textit{me}. In order to be able to manipulate this rewritten form,
+of the verb. For example, the sequence \textit{dir-me-\~ao} (\textit{they will
+tell me}), corresponds to the complete verbal form \textit{dir\~ao}, associated
+with the pronoun \textit{me}. In order to be able to manipulate this rewritten form,
 it is necessary to introduce it into the text automaton in parallel to the
 original form. Thus, the user can search one or the other form. The 
-figures~\ref{fig-1285-pas-normalise} and~\ref{fig-1285-normalise}  show the
+figures~\ref{fig-1285-not-normalized} and~\ref{fig-1285-normalized}  show the
 automaton of a sentence after normalization of the clitics.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig7-6.png}
-\caption{Non-normalized phrase automaton\label{fig-1285-pas-normalise}}
+\caption{Non-normalized phrase automaton\label{fig-1285-not-normalized}}
 \end{center}
 \end{figure}
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig7-7.png}
-\caption{Normalized phrase automaton\label{fig-1285-normalise}}
+\caption{Normalized phrase automaton\label{fig-1285-normalized}}
 \end{center}
 \end{figure}
 \clearpage
@@ -197,18 +198,19 @@ automaton of a sentence after normalization of the clitics.
 normalization grammar for these forms for each text dynamically. The grammar thus produced can then be
 used for normalizing the text automaton. The configuration window of the
 automaton construction suggests an option "Build clitic normalization grammar"
-(cf. figure~\ref{fig-configuration-construction-automate}). This option
+(cf. figure~\ref{fig-Txt2Tfst-configuration}). This option
 automatically starts the construction of the normalization grammar, which is then
 used to construct the text automaton, if you have selected the option "Apply the
 Normalization grammar".
 
 
 \subsection{Keeping the best paths}
-\label{section-conservation-des-meilleurs-chemins}
+\label{section-keeping-best-paths}
 \index{Keeping the best paths}
 An unknown word can perturb the text automaton by overlapping with a completely
 labeled sequence. Thus, in the automaton of
-figure~\ref{fig-ambiguïté-mot-inconnu}, it can be seen that the adverb
+figure~\ref{fig-unknown-word-ambiguity}, it can be seen that the
+adverb
 
 % do not remove this line jump
 \noindent \verb+aujourd'hui+ overlaps with the unknown word \verb+aujourd+,
@@ -218,35 +220,37 @@ followed by an apostrophe and the past participle of the verb \verb+huir+.
 \begin{center}
 \includegraphics[width=11.6cm]{resources/img/fig7-8.png}
 \caption{Ambiguity due to a sentence containing an unknown
-word\label{fig-ambiguïté-mot-inconnu}}
+word\label{fig-unknown-word-ambiguity}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig7-9.png}
-\caption{Automaton of a thaï sentence\label{fig-automate-phrase-thaï}}
+\caption{Automaton of a Thai
+sentence\label{fig-thai-sentence-automaton}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent This phenomenon can also take place in the treatment of certain Asian languages
-like Thaï. When words are not delimited, there is no other solution than to
+like Thai. When words are not delimited, there is no other solution than to
 consider all possible combinations, which causes the creation of numerous paths
 carrying unknown words that are mixed with the labeled paths.
-Figure~\ref{fig-automate-phrase-thaï} shows an example of such an automaton of a
-Thaï sentence.
+Figure~\ref{fig-thai-sentence-automaton} shows an example of such an automaton of a
+Thai sentence.
 \bigskip
 \noindent It is possible to suppress parasite paths. You have to select the option "Clean
 Text FST" in the configuration window for the construction of the text automaton
-(cf. figure~\ref{fig-configuration-construction-automate}).
+(cf. figure~\ref{fig-Txt2Tfst-configuration}).
 This option indicates to the automaton construction program that it should clean
 up each sentence automaton.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12.2cm]{resources/img/fig7-10.png}
-\caption{Configuration of the construction of the text automaton \label{fig-configuration-construction-automate}}
+\caption{Configuration of the construction of the text automaton
+\label{fig-Txt2Tfst-configuration}}
 \end{center}
 \end{figure}
 
@@ -257,12 +261,13 @@ fewest unlabeled tokens. For instance, the compound adverb \verb+aujourd'hui+ is
 preferred to the sequence made of \verb+aujourd+ followed by a quote and \verb+hui+, because
 \verb+aujourd+ and the quote are both unlabeled tokens, while
 the compound adverb path does not contain any unknown word.
-Figure~\ref{fig-automate-phrase-thaï-nettoyé} shows the automaton of
-figure~\ref{fig-automate-phrase-thaï} after cleaning.
+Figure~\ref{fig-clean-thai-sentence-automaton} shows the automaton of
+figure~\ref{fig-thai-sentence-automaton} after cleaning.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig7-11.png}
-\caption{Automaton of figure~\ref{fig-automate-phrase-thaï} after cleaning\label{fig-automate-phrase-thaï-nettoyé}}
+\caption{Automaton of
+figure~\ref{fig-thai-sentence-automaton} after cleaning\label{fig-clean-thai-sentence-automaton}}
 \end{center}\end{figure}
 
 \clearpage
@@ -274,7 +279,8 @@ independently from already existing rules. This chapter briefly presents the
 grammar formalism used by ELAG and describes how the program works. For more
 details, the reader may refer to \cite{elag-blanc-dister} and \cite{ELAG}.
 
-\subsection{Grammars For Resolving Ambiguities}\label{grammaires-elag}
+\subsection{Grammars For Resolving Ambiguities}
+\label{section-elag-grammars}
 \index{Grammars!ambiguity removal}
 The grammars used by ELAG have a special syntax. They consist of two parts which
 we call the \textit{if} and \textit{then} parts. The \textit{if} part of an ELAG
@@ -287,31 +293,32 @@ of the grammar, or it will be withdrawn from the text automaton.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.1cm]{resources/img/fig7-12.png}
-\caption{ELAG grammar \texttt{elag-tu.grf}\label{elag-tu}}
+\caption{ELAG grammar \texttt{elag-tu.grf}\label{fig-elag-tu}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Figure~\ref{elag-tu} shows an example of a grammar. The \textit{if}
-part recognizes a verb in the 2$^{nd}$ person singular followed by a dash and
+\noindent Figure~\ref{fig-elag-tu} shows an example of a grammar. The
+\textit{if} part recognizes a verb in the 2$^{nd}$ person singular followed by a dash and
 \verb+tu+, either as a pronoun, or as a past participle of the verb
 \verb+taire+. The \textit{then} part imposes that \verb+tu+ is then regarded as
-a pronoun. Figure~\ref{application-grammaire-tu} shows the result of the application 
-of this grammar on the sentence "\textit{Feras-tu cela
-bientôt$~$?}". One can see in the automaton at the bottom that the path
+a pronoun. Figure~\ref{fig-applying-tu-grammar} shows the result of the
+application of this grammar on the sentence "\textit{Feras-tu cela
+bient\^ot$~$?}". One can see in the automaton at the bottom that the path
 corresponding to \verb+tu+ past participle was eliminated.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig7-13.png}
-\caption{Result of applying the grammar in figure~\ref{elag-tu} \label{application-grammaire-tu}}
+\caption{Result of applying the grammar in figure~\ref{fig-elag-tu}
+\label{fig-applying-tu-grammar}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig7-14.png}
-\caption{Use of the synchronization point\label{point-de-synchronisation}}
+\caption{Use of the synchronization point\label{fig-synchronization-point}}
 \end{center}
 \end{figure}
 
@@ -322,17 +329,18 @@ parts by \verb+<!>+ in the \textit{if} part, and \verb+<=>+ in the
 \textit{then} part. These symbols form a \textit{synchronization point}.
 This makes it possible to write rules in which the \textit{if} and
 \textit{then} constraints are not necessarily aligned, as it is the
-case for example in figure~\ref{point-de-synchronisation}. This grammar is
+case for example in figure~\ref{fig-synchronization-point}. This grammar is
 interpreted in the following way: if a dash is found followed by \verb+il+,
 \verb+elle+ or \verb+on+, then this dash must be preceded by a verb, possibly
 followed by \verb+-t+. So, if one considers the sentence of the
-figure~\ref{est-il} beginning with \textit{Est-il}, one can see 
+figure~\ref{fig-est-il} beginning with \textit{Est-il}, one can see 
 that all non-verb interpretations of \verb+Est+ were removed.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig7-15.png}
-\caption{Result of the application of the grammar in figure~\ref{point-de-synchronisation}\label{est-il}}
+\caption{Result of the application of the grammar in
+figure~\ref{fig-synchronization-point}\label{fig-est-il}}
 \end{center}
 \end{figure}
 
@@ -341,11 +349,11 @@ that all non-verb interpretations of \verb+Est+ were removed.
 Before an ELAG grammar can be applied to a text automaton, the grammar must be
 compiled in a  \verb+.rul+ file. \index{File!\verb+.rul+} This operation is
 carried out via the "Elag Rules" command in the "Text" menu, which opens the
-windows shown in figure~\ref{fig:elag-rules}.
+windows shown in figure~\ref{fig-elag-rules}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-16.png}
-\caption{ELAG grammars compilation frame\label{fig:elag-rules}}
+\caption{ELAG grammars compilation frame\label{fig-elag-rules}}
 \end{center}
 \end{figure}
 
@@ -376,25 +384,25 @@ compiled before searching using the "Locate" button.
 Once you have compiled your grammar into an \verb+elag.rul+ file, you can apply
 it to a text automaton. In the text automaton window, click on the "Apply Elag
 Rule" button. A dialog box will appear which asks for the \verb+.rul+ file
-to be used (see figure~\ref{fig:text-auto1}). The default file is \verb+elag.rul+. This
-will launch the \verb+Elag+ program \index{External programs!\verb+Elag+} which
+to be used (see figure~\ref{fig-text-auto1}). The default file is
+\verb+elag.rul+. This will launch the \verb+Elag+ program \index{External programs!\verb+Elag+} which
 will try to resolve the ambiguity.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-17.png}
-\caption{Text automaton frame \label{fig:text-auto1}}
+\caption{Text automaton frame \label{fig-text-auto1}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent Once the program has finished you can view the resulting automaton by clicking on
-the "Open Elag Frame" button. As you can see in figure~\ref{fig:text-auto2},
+the "Open Elag Frame" button. As you can see in figure~\ref{fig-text-auto2},
 the windows is separated into two parts: The original text automaton can be seen
 on the top, and the result at the bottom.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-18.png}
-\caption{Splitted text automaton frame \label{fig:text-auto2}}
+\caption{Splitted text automaton frame \label{fig-text-auto2}}
 \end{center}
 \end{figure}
 
@@ -421,7 +429,7 @@ the effects of several grammars.
 It is possible to gather several ELAG grammars into a grammar collection in order
 to compile and apply them in one step. The sets of ELAG grammars are described in
 \verb+.lst+\index{File!\verb+.lst+} files. They are managed through the window
-for compiling ELAG grammars (figure~\ref{fig:elag-rules}). The label on the top
+for compiling ELAG grammars (figure~\ref{fig-elag-rules}). The label on the top
 left indicates the name of the current collection, by default \verb+elag.lst+.
 The contents of this collection are displayed in the right part of the window.
 
@@ -477,7 +485,8 @@ sentences within. The formula applied is:
 after applying the grammars gives a measure of their efficiency. All this
 information is displayed in the ELAG processing window.
 
-\subsection{Description of the tag sets}\label{tagset.def}
+\subsection{Description of the tag sets}
+\label{section-elag-tagset}
 \index{ELAG tag sets}
 
 The \verb+Elag+ and \verb+ElagComp+ programs 
@@ -498,7 +507,7 @@ Here is an extract of the \verb$tagset.def$ file used for French.
 \begin{verbatim}
 
 
-NAME français
+NAME french
 
 POS ADV
 .
@@ -524,7 +533,7 @@ PpvLE    <genre> <nombre> <pers>
 PpvLUI   <genre> <nombre> <pers>      #
 Ton      <genre> <nombre> <pers>      # lui, elle, moi
 PpvPR                                 # en y
-PronQ                                 # où qui que quoi
+PronQ                                 # ou qui que quoi
 Dnom                                  # rien
 .
 
@@ -557,7 +566,7 @@ J <pers> <nombre>
 P <pers> <nombre>
 S <pers> <nombre>
 T <pers> <nombre>
-X 1 s   # eussé dussé puissé fussé (-je)
+X 1 s   # eusse dusse puisse fusse (-je)
 Y 1 p
 Y 2 <nombre>
 K <genre> <nombre>
@@ -567,8 +576,8 @@ K <genre> <nombre>
 \bigskip
 \noindent The \verb$#$ symbol indicates that the remainder of the line is a
 comment. A comment can appear at any place in the file. The file always starts with the word
-\verb$NAME$, followed by an identifier (\verb$français$, for example). This is
-followed by the \verb$POS$ sections for each part of speech. Each section
+\verb$NAME$, followed by an identifier (\texttt{french}, for example).
+This is followed by the \verb$POS$ sections for each part of speech. Each section
 describes the structure of the lexical tags of the lexical entries belonging to
 the part of speech concerned. Each section is composed of 4 parts which are all
 optional:
@@ -682,11 +691,11 @@ difficulty, it is possible to deny an inflectional attribute by writing the
 \verb$@$ character right before one of the possible values for this attribute.
 Thus, the \verb$<A:@m@p>$ symbol recognizes all the adjectives which have neither
 a gender nor a number. Using this operator, it is possible to write grammars like
-those in figure~\ref{fig:NA}, which imposes agreement in gender and number
+those in figure~\ref{fig-NA}, which imposes agreement in gender and number
 between a name and an adjective which suits\,\footnote{This grammar is not
 completely correct, because it eliminates for example the correct analysis of the
-sentence: \textit{J'ai reçu des coups de fil de ma mère hallucinants.}}. This
-grammar will preserve the correct analysis of sentences like: \textit{Les
+sentence: \textit{J'ai re\c{c}u des coups de fil de ma m\`ere hallucinants.}}.
+This grammar will preserve the correct analysis of sentences like: \textit{Les
 personnes de bonne humeur m'insupportent}.
 
 \bigskip
@@ -697,7 +706,7 @@ subcategories defined in the \verb$discr$ part.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-19.png}
-\caption{ELAG grammar that verifies gender and number agreement\label{fig:NA}}
+\caption{ELAG grammar that verifies gender and number agreement\label{fig-NA}}
 \end{center}
 \end{figure}
 
@@ -744,12 +753,12 @@ of ambiguity.
 grammars, it is advised to proceed to a preliminary stage of normalization of the
 text automaton before applying disambiguation grammars to it. This normalization
 is carried out by applying to the text automaton a grammar not imposing any
-constraint, like that of figure~\ref{fig:elag-norm}. Note that this grammar is
+constraint, like that of figure~\ref{fig-elag-norm}. Note that this grammar is
 normally present in the Unitex distribution and precompiled in the file\verb+norm.rul+.\index{\verb+norm.rul+}\index{File!\verb+norm.rul+}
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig7-20.png}
-\caption{ELAG grammar without any constraint\label{fig:elag-norm}}
+\caption{ELAG grammar without any constraint\label{fig-elag-norm}}
 \end{center}
 \end{figure}
 
@@ -775,24 +784,25 @@ principles at the time of writing gramars.
 minimum. This can reduce considerably the compile time of a grammar. Generally, a grammar
 having many \textit{then} parts can be rewritten with one or two \textit{then} parts, without a
 loss of legibility. It is for example the case of the grammar in
-figure~\ref{fig:NA-bad}, which imposes a constraint between a verb and the
+figure~\ref{fig-NA-bad}, which imposes a constraint between a verb and the
 pronoun which follows it.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-21.png}
-\caption{ELAG grammar checking verb-pronoun agreement\label{fig:NA-bad}}
+\caption{ELAG grammar checking verb-pronoun agreement\label{fig-NA-bad}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent As one can see in figure~\ref{fig:NA-good}, one can write an
+\noindent As one can see in figure~\ref{fig-NA-good}, one can write an
 equivalent grammar by factorizing all the \textit{then} parts into only one. The two grammars will have
 exactly the same effect on the text automaton, but the second one will be
 compiled much more quickly.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-22.png}
-\caption{Optimized ELAG grammar checking verb-pronoun agreement\label{fig:NA-good}}
+\caption{Optimized ELAG grammar checking verb-pronoun
+agreement\label{fig-NA-good}}
 \end{center}
 \end{figure}
 
@@ -818,7 +828,7 @@ will consider nonexisting labels such as \verb$<je.PRO:3p>$,
 \section{Manipulation of text automata}
 
 \subsection{Displaying sentence automata}
-\label{section-affichage-des-automates-de-phrase}
+\label{section-displaying-sentence-automata}
 As we have seen above, the text automaton is in fact the collection of the
 sentence automata of a text. This structure can be represented using the format
 \verb+.fst2+, also used for representing the compiled
@@ -841,8 +851,8 @@ the canonical form if it is different. The grammatical and inflectional
 information is  displayed below the box as a transducer output.
 
 \bigskip
-\noindent Figure~\ref{fig-automate-première-phrase-Ivanhoe} shows the graph
-obtained for the first sentence of \textit{Ivanhoe}. The words \verb+Ivanhoe+,
+\noindent Figure~\ref{fig-first-sentence-Ivanhoe} shows
+the graph obtained for the first sentence of \textit{Ivanhoe}. The words \verb+Ivanhoe+,
 \verb+Walter+ and \verb+Scott+ are considered unknown words. The word \verb+by+
 corresponds to two entries in the dictionary. The word \verb+Sir+ corresponds to
 two dictionary entries as well, but since the canonical form of these entries is
@@ -852,7 +862,7 @@ case letter.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig7-23.png}
-\caption{Automaton of the first sentence of \textit{Ivanhoe}\label{fig-automate-première-phrase-Ivanhoe}}
+\caption{Automaton of the first sentence of \textit{Ivanhoe}\label{fig-first-sentence-Ivanhoe}}
 \end{center}
 \end{figure}
 
@@ -865,11 +875,11 @@ boxes or transitions. When a graph is modified, it is saved to the text file
 \noindent When you select a sentence, if a modified graph exists for this sentence, this
 one is displayed. You can then reset the automaton of that sentence by clicking
 on the botton "Reset Sentence Graph" (cf. 
-figure~\ref{fig-automate-phrase-modifié}).
+figure~\ref{fig-modified-sentence-automaton}).
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-24.png}
-\caption{Modified sentence automaton\label{fig-automate-phrase-modifié}}
+\caption{Modified sentence automaton\label{fig-modified-sentence-automaton}}
 \end{center}
 \end{figure}
 
@@ -889,7 +899,7 @@ Sentence automata are subject to the same presentation options as the
 graphs. They use the same colors and fonts as well as the antialiasing effect. In
 order to configure the appearance of the sentence automata, you  modify
 the general configuration by clicking on "Preferences..." in the "Info" menu.
-For further details, refer to section~\ref{section-présentation-polices-couleurs}.
+For further details, refer to section~\ref{section-display-fonts-colors}.
 
 \bigskip
 \noindent You can also print a sentence automaton by clicking on "Print..." in
@@ -899,16 +909,16 @@ configure this parameter, click on "Page Setup" in the
 "FSGraph" menu.
 
 \section{Converting the text automaton into linear text}
-\label{linear-text}
+\label{section-linear-text}
 \index{Text automaton!conversion into linear text}
 If the text automaton does not contain any lexical ambiguity, it is possible to
 build a text file corresponding to the unique path of the automaton. Go into the
 "Text" menu and click on "Convert FST-Text to Text...". You can set the output
-text file in the window as shown on Figure \ref{fig-7-12}.
+text file in the window as shown on Figure\ref{fig-linearization-configuration}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig7-25.png}
-\caption{Setting output file for linearization of the text automaton\label{fig-7-12}}
+\caption{Setting output file for linearization of the text automaton\label{fig-linearization-configuration}}
 \end{center}
 \end{figure}
 
@@ -926,13 +936,13 @@ will build the output file according to the following rules:
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-26.png}
-\caption{Example of a linear text automaton\label{fig-7-13}}
+\caption{Example of a linear text automaton\label{fig-linear-automaton}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent NOTE: correcting spaces in the output text can only be done manually. If the
-original text is the one of the text automaton shown on Figure \ref{fig-7-13},
+original text is the one of the text automaton shown on Figure \ref{fig-linear-automaton},
 the output text will be:
 
 \begin{verbatim}
