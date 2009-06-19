@@ -449,7 +449,7 @@ sentence separator (\verb+{S}+) or a valid lexical tag
 (\verb+{aujourd'hui,.ADV}+). The newline needs to be encoded with the two special
 characters with hexadecimal values \verb+000D+ and \verb+000A+.
 
-\subsection{.snt Files}
+\subsection{.snt files}
 \index{File!\verb+.snt+}
 \verb+.snt+ files are \verb+.txt+ files that have been processed by Unitex. These
 files should not contain any tabs. They should also not contain multiple
@@ -499,41 +499,264 @@ are encoded in 4 bytes.
 
 \section{Text Automaton}
 \subsection{The text.tfst file}
+\label{section-tfst-format}
 \index{File!\verb+text.tfst+}
-The \verb+text.tfst+ file represents the text automaton. 
+The \verb+text.tfst+ file represents the text automaton. It is a text
+file that starts with a ten digit line indicating the number of sentence
+automata it contains. Then, for each sentence automaton, you have the following
+header lines:
+
+\begin{itemize}
+    \item \verb+$XXX+\P : \verb+XXX+ = number of the sentence
+
+    \item \verb+foo foo foo...+\P : text of the sentence
+
+    \item \verb+a/b c/d e/f g/h...+\P : for each token of the sentence, we
+    have a pair \verb+x/y+: \verb+x+ is the token index in file
+    \verb+tokens.txt+, \verb+y+ is the length of the token in characters
+
+    \item \verb+X_Y+\P : \verb+X+ is the offset of the first token of the
+    sentence, in tokens from the beginning of the text; \verb+Y+ is the same,
+    but the offset is in characters from the beginning of the text.
+\end{itemize}
 
 
 \bigskip
-\noindent With the exception of the first label which is always the empty word
-(\verb+<E>+), the labels have to be either lexical units or entries in the DELAF
-format in braces.
+\noindent Then, all states of the automaton are encoded, one per line. If the
+state is final, the line starts with \verb+t+. Otherwise, the line starts with
+\verb+:+. All transitions are written as pairs \verb+x y+, \verb+x+ being the
+number of the tag, \verb+y+ being the number of the destination state. Note
+that, at the opposite of \verb+.fst2+ format, lines have not to end with a
+space. The and of state lines is marked by a line containing \verb+f+. 
+
+\bigskip
+\noindent Finally, all tags are encoded. By convention, the first tag is always
+the epsilon one:
+
+\bigskip
+\noindent \verb$@<E>$\P
+
+\noindent \verb$.$\P
+
+
+\bigskip
+\noindent Other labels have to be either lexical units or entries in the DELAF
+format in braces. They are encoded as follows:
+
+\bigskip
+\noindent \verb$@STD$\P
+
+\noindent \verb$@$\textit{content}\P
+
+\noindent \verb$@$\textit{a}\verb$.$\textit{b}\verb$.$\textit{c}\verb$-$
+\textit{x}\verb$.$\textit{y}\verb$.$\textit{z}\P
+
+\noindent \verb$.$\P
+
+
+\bigskip
+\noindent \textit{content} is the tag content. The \textit{a.b.c-x.y.z}
+information describe the zone in text covered by the tag:
+
+\begin{itemize}
+    \item \textit{a}: start offset in tokens from the beginning of the sentence;
+    \item \textit{b}: start offset in characters from the beginning of the
+    first token of the tag;
+    \item \textit{c}: start offset in logical letters from the first character
+    of the tag. This information is useful for Korean, because a tag can
+    represent a Jamo sequence that occurs inside a Hangul character. Thus, the 
+    character offset is not precise enough;
+    \item \textit{x}: end offset in tokens from the beginning of the sentence;
+    \item \textit{y}: end offset in characters from the beginning of the
+    last token of the tag;
+    \item \textit{z}: end offset in logical letters from the last character of
+    the tag. In Korean sentence automata, empty surface forms can occur that
+    correspond to the empty word in the text. In such cases, \textit{z} has
+    special value $-1$.
+\end{itemize}
+
+\bigskip
+\noindent The and of tag definitions is marked by a line containing \verb+f+.
 
 \bigskip
 \noindent Example: Here is the file that corresponds to the text \textit{He is
 drinking orange juice.}
+\bigskip
+\noindent\verb$0000000001$\P
 
-% TODO
+\noindent\verb+$1+\P
+
+\noindent\verb$He is drinking orange juice. $\P
+
+\noindent\verb$0/2 1/1 2/2 1/1 3/8 1/1 4/6 1/1 5/5 6/1 1/1$\P
+
+\noindent\verb$0_0$\P
+
+\noindent\verb$: 2 1 1 1$\P
+
+\noindent\verb$: 4 2 3 2$\P
+
+\noindent\verb$: 7 3 6 3 5 3$\P
+
+\noindent\verb$: 10 5 9 4 8 4$\P
+
+\noindent\verb$: 12 5 11 5$\P
+
+\noindent\verb$: 13 6$\P
+
+\noindent\verb$t$\P
+
+\noindent\verb$f$\P
+
+\noindent\verb$@<E>$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{He,he.N:s:p}$\P
+
+\noindent\verb$@0.0.0-0.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{He,he.PRO+Nomin:3ms}$\P
+
+\noindent\verb$@0.0.0-0.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{is,be.V:P3s}$\P
+
+\noindent\verb$@2.0.0-2.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{is,i.N:p}$\P
+
+\noindent\verb$@2.0.0-2.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drinking.A}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drinking.N:s}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drink.V:G}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange,orange.A}$\P
+
+\noindent\verb$@6.0.0-6.5.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange,orange.N:s}$\P
+
+\noindent\verb$@6.0.0-6.5.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange juice,orange juice.N+XN+z1:s}$\P
+
+\noindent\verb$@6.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{juice,juice.N+Conc:s}$\P
+
+\noindent\verb$@8.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{juice,juice.V:W:P1s:P2s:P1p:P2p:P3p}$\P
+
+\noindent\verb$@8.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@.$\P
+
+\noindent\verb$@9.0.0-9.0.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$f$\P
+
+
+
+
+
 
 \subsection{The text.tind file}
 \index{File!\verb+text.tind+}
-The \verb+text.tind+ file is an index file used to jump at correct offset
-in the \verb+text.tfst+ file when we want to load a given sentence.
-
-% TODO
-
+The \verb+text.tind+ file is an index file used to jump at correct byte offset
+in the \verb+text.tfst+ file when we want to load a given sentence. It is a
+binary file that contains $4 \times N$ bytes, where $N$ is the number of
+sentences. It gives the start offset of each sentence as a 4-byte
+little-endian sequence.
 
 
 \subsection{The cursentence.grf file}
+\label{section-cursentence_grf}
 \index{File!\verb+cursentence.grf+}
 The \verb+cursentence.grf+ file is generated by Unitex during the display of a
 sentence automaton. The \verb+Fst2Grf+ program constructs a \verb+.grf+ file from
-the \verb+text.fst2+ file that represents a sentence automaton.
+the \verb+text.fst2+ file that represents a sentence automaton.
+
+\bigskip
+\noindent NOTE: outputs of graph boxes are used to encode offsets, as defined in \verb+.tfst+ tags. Offsets are separated with spaces. For instance, here aresome lines of the graph representing the first sentence of \textit{Ivanhoe}:
+
+\bigskip
+\noindent \verb$"Ivanhoe/0 0 0 0 6 0" 100 200 2 3 4 $\P
+ 
+\noindent \verb$"{by,by.PART}/2 0 0 2 1 0" 220 150 2 5 6 $\P
+
+\noindent \verb$"{by,by.PREP}/2 0 0 2 1 0" 220 50 2 5 6 $\P
+
+\noindent \verb$"{Sir,sir.N+Hum:s}/4 0 0 4 2 0" 310 200 1 7$\P 
+
 
 
 \subsection{The sentenceN.grf file}
 Whenever the user modifies a sentence automaton, that automaton is saved under
 the name \verb+sentenceN.grf+, where \verb+N+ represents the number of the
-sentence.
+sentence. Such a graph contains offsets in graph box outputs (see note insection \ref{section-cursentence_grf}).
 
 \subsection{The cursentence.txt file}
 \index{File!\verb+cursentence.txt+}
@@ -543,52 +766,81 @@ display the text of the sentence under the automaton. That file contains the tex
 of the sentence, followed by a newline.
 \subsection{The cursentence.tok file}
 \index{File!\verb+cursentence.tok+}
+During the extraction of the sentence automaton, the numbers of the tokens that
+compose the sentence are stored in a file named \verb+cursentence.tok+. This
+file contains one line per token, each line being made of 2 integers \verb$x y$:
+\verb$x$ is the token number, \verb$y$ is the length of the token in characters.
 
-%TODO
+\bigskip
+\noindent Here is the content of this file for the first sentence of
+\textit{Ivanhoe}:
+
+\bigskip
+\noindent \verb$0 7$\P \verb$         $\textit{Ivanhoe}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$2 2$\P \verb$         $\textit{by}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$3 3$\P \verb$         $\textit{Sir}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$4 6$\P \verb$         $\textit{Walter}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$5 5$\P \verb$         $\textit{Scott}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
 
 
 \section{Concordances}
 \subsection{The concord.ind file}
 \index{File!\verb+concord.ind+}
-The \verb+concord.ind+ file is the index of the occurrences found by the program
-\verb+Locate+ during the application of a grammar. It is a text file that
-contains the starting and ending position of each occurrence, possibly
-accompanied by a sequence of letters if the construction of the concordance took
-into account the possible transducer outputs of the grammar. Here is an example
+The \verb+concord.ind+ file is the index of the occurrences found by either
+\verb+Locate+ or \verb+LocateTfst+ during the application of a grammar. It is a
+text file that contains the starting and ending positions of each occurrence,
+possibly accompanied by a sequence of letters if the construction of the concordance took
+into account the possible transducer outputs of the grammar. 
+Here is an example
 of such a file:
 
 \bigskip
 \verb$#M$\P
 
-\verb$59 63 the[ADJ= greater] part$\P
+\verb$59.0.0 63.3.0 the[ADJ= greater] part$\P
 
-\verb$67 71 the beautiful hills$\P
+\verb$67.0.0 71.4.0 the beautiful hills$\P
 
-\verb$87 91 the pleasant town$\P
+\verb$87.0.0 91.3.0 the pleasant town$\P
 
-\verb$123 127 the noble seats$\P
+\verb$123.0.0 127.4.0 the noble seats$\P
 
-\verb$157 161 the fabulous Dragon$\P
+\verb$157.0.0 161.5.0 the fabulous Dragon$\P
 
-\verb$189 193 the Civil Wars$\P
+\verb$189.0.0 193.3.0 the Civil Wars$\P
 
-\verb$455 459 the feeble interference$\P
+\verb$455.0.0 459.11.0 the feeble interference$\P
 
-\verb$463 467 the English Council$\P
+\verb$463.0.0 467.6.0 the English Council$\P
 
-\verb$568 572 the national convulsions$\P
+\verb$566.0.0 570.10.0 the national convulsions$\P
 
-\verb$592 596 the inferior gentry$\P
+\verb$590.0.0 594.5.0 the inferior gentry$\P
 
-\verb$628 632 the English constitution$\P
+\verb$626.0.0 630.11.0 the English constitution$\P
 
-\verb$698 702 the petty kings$\P
+\verb$696.0.0 700.4.0 the petty kings$\P
 
-\verb$815 819 the certain hazard$\P
+\verb$813.0.0 817.5.0 the certain hazard$\P
 
-\verb$898 902 the great Barons$\P
+\verb$896.0.0 900.5.0 the great Barons$\P
 
-\verb$940 944 the very edge$\P
+\verb$938.0.0 942.3.0 the very edge$\P
 
 \bigskip
 \noindent The first line indicates in which transduction mode the concordance has
@@ -604,7 +856,8 @@ been constructed. The three possible values are:
 
 \bigskip
 \noindent Each occurrence is described in one line. The lines start with the start
-and end position of the occurrence. These positions are given in lexical units.
+and end positions of the occurrence. These positions corresponds to the offsets
+defined in \verb$.tfst$ tags (see \ref{section-tfst-format}).
 \bigskip
 \noindent If the file has the heading line \verb+#I+, the end position of each
 occurrence is immediately followed by a newline. Otherwise, it is followed by a
@@ -682,7 +935,7 @@ the Unitex web site. \index{GlossaNet}
 
 \verb+S}IN THAT <a href="40 48 2">PLEASANT</a>&nbsp;D&nbsp;<br>+\P
 
-\verb$&nbsp;which is <a href="84 91 2">watered</a>&nbsp;by&nbsp;<br>$\P
+\verb+&nbsp;which is <a href="84 91 2">watered</a>&nbsp;by&nbsp;<br>+\P
 
 \verb$</font>$\P
 
@@ -922,7 +1175,7 @@ message describing the error, and the contents of the line. Here is an example
 of a message:
 
 \begin{verbatim}
-Line 12451: no point found
+Line 12451: unexpected end of line
 garden,N:s
 \end{verbatim}
 
@@ -949,103 +1202,109 @@ Km s warning: 1 suspect char (1 space): (K m SPACE s)
 \noindent When the following dictionary is checked:
 
 \begin{verbatim}
-1,2 et 3!,.INTJ
-abracadabra,INTJ
+1,2 et 3!,.INTJ 
+abracadabra,INTJ 
 supercalifragilisticexpialidocious,.INTJ
 damned,. INTJ
+Paul,.N+Hum+Hum
+eat,.V:W:P1s:Ps:P1p:P2p:P3p
 \end{verbatim}
 
 \bigskip
 \noindent the following \verb+CHECK_DIC.TXT+ file is obtained:
 
 \bigskip
-
 \verb$Line 1: unprotected comma in lemma$\P
 
-\verb$1,2 et 3!,.INTJ$\P
+\verb$1,2 et 3!,.INTJ $\P
 
-\verb$Line 2: no point found $\P
+\verb$Line 2: unexpected end of line$\P
 
 \verb$abracadabra,INTJ $\P
 
-\verb$----------------------------------- $\P
+\verb$Line 5: duplicate semantic code$\P
 
-\verb$----  All chars used in forms  ---- $\P
+\verb$Paul,.N+Hum+Hum$\P
 
-\verb$----------------------------------- $\P
+\verb$Line 6: an inflectional code is a subset of another$\P
 
-\verb$  (0020) $\P
+\verb$eat,.V:W:P1s:Ps:P1p:P2p:P3p$\P
 
-\verb$! (0021) $\P
+\verb$-----------------------------------$\P
 
-\verb$, (002C) $\P
+\verb$-------------  Stats  -------------$\P
 
-\verb$1 (0031) $\P
+\verb$-----------------------------------$\P
 
-\verb$2 (0032) $\P
+\verb$File: D:\My Unitex\English\Dela\axe.dic$\P
 
-\verb$3 (0033) $\P
+\verb$Type: DELAF$\P
 
-\verb$I (0049) $\P
+\verb$6 lines read$\P
 
-\verb$J (004A) $\P
+\verb$2 simple entries for 2 distinct lemmas$\P
 
-\verb$N (004E) $\P
+\verb$0 compound entry for 0 distinct lemma$\P
 
-\verb$T (0054) $\P
+\verb$-----------------------------------$\P
 
-\verb$a (0061) $\P
+\verb$----  All chars used in forms  ----$\P
 
-\verb$b (0062) $\P
+\verb$-----------------------------------$\P
 
-\verb$c (0063) $\P
+\verb$a (0061)$\P
 
-\verb$d (0064) $\P
+\verb$c (0063)$\P
 
-\verb$e (0065) $\P
+\verb$d (0064)$\P
 
-\verb$f (0066) $\P
+\verb$e (0065)$\P
 
-\verb$g (0067) $\P
+\verb$f (0066)$\P
 
-\verb$i (0069) $\P
+\verb$g (0067)$\P
 
-\verb$l (006C) $\P
+\verb$i (0069)$\P
 
-\verb$m (006D) $\P
+\verb$l (006C)$\P
 
-\verb$n (006E) $\P
+\verb$m (006D)$\P
 
-\verb$o (006F) $\P
+\verb$n (006E)$\P
 
-\verb$p (0070) $\P
+\verb$o (006F)$\P
 
-\verb$r (0072) $\P
+\verb$p (0070)$\P
 
-\verb$s (0073) $\P
+\verb$r (0072)$\P
 
-\verb$t (0074) $\P
+\verb$s (0073)$\P
 
-\verb$u (0075) $\P
+\verb$t (0074)$\P
 
-\verb$x (0078) $\P
+\verb$u (0075)$\P
 
-\verb$------------------------------------------------------------- $\P
+\verb$x (0078)$\P
 
-\verb$----    2 grammatical/semantic codes used in dictionary  ---- $\P
+\verb$-------------------------------------------------------------$\P
 
-\verb$------------------------------------------------------------- $\P
+\verb$----    2 grammatical/semantic codes used in dictionary  ----$\P
 
-\verb$INTJ $\P
+\verb$-------------------------------------------------------------$\P
 
-\verb$ INTJ warning: 1 suspect char (1 space): (SPACE I N T J) $\P
+\verb$INTJ$\P
 
-\verb$----------------------------------------------------- $\P
+\verb$ INTJ warning: 1 suspect char (1 space): (SPACE I N T J)$\P
 
-\verb$----    0 inflectional code used in dictionary  ----- $\P
+\verb$-----------------------------------------------------$\P
 
-\verb$----------------------------------------------------- $\P
+\verb$----    0 inflectional code used in dictionary  -----$\P
 
+\verb$-----------------------------------------------------$\P
+
+\bigskip
+\noindent Note that the inflectional codes of \verb+eat+ are not reported, since
+an error occurred in this line.
 
 
 \section{ELAG files}
@@ -1395,6 +1654,16 @@ following:
 \noindent The first line gives the number of found occurrences, and the second the name of
 units covered by these occurrences. The third line indicates the ratio between
 the covered units and the total number of units in the text.
+
+\subsection{The concord\_tfst.n file}
+\index{File!\verb+concord_tfst.n+}
+The \verb+concord_tfst.n+ file is a text file in the directory of the text. It
+contains information on the latest search on the text automaton and looks like
+the following:
+
+\bigskip
+\verb$23 matches(45 outputs)$\P
+
 
 
 \subsection{Normalization rule file}

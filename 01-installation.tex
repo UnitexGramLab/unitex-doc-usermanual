@@ -7,7 +7,7 @@ these systems. It also presents the procedures used to add new languages and to
 uninstall Unitex.
 
 \section{Licenses}
-
+\label{section-licences}
 \index{LGPL}\index{License!LGPL}
 Unitex is a free software. This means that the sources of the programs are
 distributed with the software, and that anyone can modify and redistribute them.
@@ -53,6 +53,7 @@ Sun Microsystems web site (\cite{site-java}) at the following address:
 with personal user accounts, you have to ask your system administrator to install
 Java.
 
+
 \section{Installation on Windows}
 \index{Installation!on Windows}
 If Unitex is to be installed on a multi-user Windows machine, it is recommended
@@ -73,8 +74,11 @@ Java executable that launches the graphical interface. You can double click on
 this icon to start the program. To facilitate launching Unitex, you may want to
 add a shortcut to this file on the desktop.
 
-\section{Installation on Linux and Mac OS X}
-\index{Installation!on Linux and Mac OS X}
+
+
+
+\section{Installation on Linux}
+\index{Installation!on Linux}
 In order to install Unitex on Linux, it is recommended to have system
 administrator permissions. Uncompress the file \verb+Unitex2.1.zip+ in a
 directory named \verb+Unitex+, by using the following command:
@@ -96,6 +100,281 @@ of Unitex with the command:
 \noindent You can then create an alias in the following way:
 
 \bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
+
+
+\section{Installation on MacOS X (Intel only)}
+\index{Installation!on MacOS X (Intel only)}
+\label{section-macos-install}
+\noindent NOTE: this short tutorial will tell you how to install and run 
+Unitex on Mac OS X (Intel). Your questions, comments, suggestions, 
+corrections are more than welcome. 
+
+\noindent Contact: \url{cedrick.fairon@uclouvain.be}
+
+\bigskip
+\noindent Installing Unitex 2.0 (and higher) on Mac OS X was an issue because 
+the software requires Java 1.6, which is not officially provided by Sun
+The workaround for Mac-Unitex users who did not want to get stuck with an 
+older version of Unitex was to install Unitex on a Windows virtual Desktop 
+from Macintosh (using Parallels, for example).
+
+\bigskip\index{SoyLatte}
+\noindent But it is now possible to install an alternative distribution of Java
+1.6 called ``SoyLatte''. SoyLatte is a functional, X11-based port of the FreeBSD
+Java 1.6 patchset to Mac OS X Intel machines. SoyLatte is initially focused on 
+supporting Java 6 development; however, the long-term view far more captivating: 
+open development of Java 7 for Mac OS X, with a release available in concert 
+with the official Sun release, supported on all recent versions of Mac OS X.
+
+
+\subsection{Before you start}
+\noindent Try it at your own risks ;-) This tutorial tells you what I have done
+to have Unitex running on my MacBook Pro (Mac OS X 10.5.7), but it offers no guarantee 
+that it will work  on your computer and it does not even guarantee that you can 
+install it safely on your computer.
+
+\bigskip
+\noindent If you are not familiar with software installation, you should ask for
+help. As Windows would put it ``Contact your Administrator'' ;-) 
+
+\bigskip
+\noindent It works only on Intel based Macintosh If you do not know whether your 
+Macintosh is an Intel machine or not, select in the Apple Menu the item 
+``About this Macintosh'', then, click on ``More info'' and in the next panel,
+click on ``Hardware'', as shown on Figure \ref{fig-mac1}.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig-mac1.png}
+\caption{Getting information on your computer\label{fig-mac1}}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\subsection{Installation}
+\noindent Some of the following installation steps will require the use of the
+terminal application. On MacOS, the terminal application is located in 
+\verb+/Applications/Utilities/Terminal.app+.  When you start this application
+(double click) a window is displayed. You will have to type in this window 
+some commands for moving, editing and installing files.
+
+\subsubsection{Install X11.app}
+\index{X11.app}
+\noindent X11 is available as an optional install on the Mac OS X v10.3 
+Panther, and Mac OS X v10.4 Tiger install disks (the disks you received 
+when you bought your computer). Run the Installer, 
+select the X11 option, and follow the instructions.
+
+\bigskip
+\noindent After installation X11 will be available in
+\verb+/Applications/Utilities/+
+
+
+\subsubsection{Download and install Unitex as usual}
+\noindent Download Unitex and uncompress it in the same way that for Linux.
+See section \ref{section-mac-compilation} for instructions on compiling
+C++ programs.
+
+
+\subsubsection{Download SoyLatte (the Java 1.6 port)} 
+\noindent It is available from
+\url{http://landonf.bikemonkey.org/static/soylatte/} 
+
+\bigskip
+\noindent Unless you know why you need another package, you will chose 
+the 32-Bit Binaries distribution (32-bit JDK for Mac OS X 10.4 and 10.5) 
+When prompted, enter the username and password: 
+
+\bigskip
+Username: \verb+jrl+
+
+Password: \verb+I am a Licensee in good standing+
+
+
+\subsubsection{Install SoyLatte}
+\noindent Either in command line mode:
+\begin{itemize}
+    \item Open the terminal (\verb+/Applications/Utilities/Terminal+)
+    \item Find the SoyLatte archive. If it is on your desktop, change the
+    current directory by typing the following command in the terminal 
+    (the character \verb+~+ means 'home directory'): 
+    
+    \bigskip
+    \verb+cd ~/Desktop/+
+    
+    \item Move (\verb+mv+) the archive anywhere on your file system (where you
+    want to install it). If you chose \verb+/usr/local+, like me, it requires the
+    administrative privileges (use \verb+sudo+ and type your password when
+    prompted). Note, if the directory does not exist, you can create it 
+    before you move the file:
+    
+    \bigskip
+    \verb+sudo mkdir /usr/local         + (only if it does not exist)
+    
+    \verb+sudo mv soylatte16-i386-1.0.3.tar.bz2 /usr/local/+
+
+    \item Uncompress the archive:
+    
+    \bigskip
+    \verb+sudo tar -jxvf /usr/local/soylatte16-i386-1.0.3.tar.bz2+ 
+\end{itemize}
+
+\bigskip
+\noindent or, using the graphical interface (finder):
+\begin{itemize}
+    \item Move (drag and drop) the archive
+    
+    %do not remove this line jump
+    \noindent \verb+soylatte16-i386-1.0.3.tar.bz2+ into the \verb+/Applications+ folder
+    \item Double-click on it... wait... it's done ;-)
+\end{itemize}
+
+
+\subsubsection{Configure your system}
+\noindent There are two approaches: you could either decide to use SoyLatte only
+with Unitex (and keep using the former version of Java that is already installed 
+on your computer for all the others Java applications) or decide to make SoyLatte 
+the default Java distribution on your machine.
+
+\bigskip
+\noindent As I have no indication that SoyLatte is bug free and fully
+functional with all applications, I chose to use SoyLatte only with 
+Unitex and kept my Java (and I recommend the same for you). If you 
+want to follow this advice: DO NOT modify your PATH variable as suggested 
+in the SoyLatte installation procedure. Instead add an ALIAS in the configuration 
+file of your shell. Here is how to do that:
+\begin{itemize}
+    \item Edit the bash configuration file, which is in your home directory 
+    (\verb+/Users/your_dir_name+); The easiest way to do it is to use a command
+    line editor like \verb+vim+ or \verb+pico+ (note: \verb+.bashrc+ is a hidden
+    file. So, normally, you will not see this file in the Finder):
+    
+    \bigskip
+    \verb+pico ~/.bashrc+
+    
+    \item In the file, type the following lines :
+    
+    \bigskip
+    \verb+alias java6='/usr/local/soylatte16-i386-1.0.3/bin/java'+
+    
+    \verb+alias unitex='cd /Applications/Unitex21beta/App ; java6 -jar+
+    
+    \verb+Unitex.jar'+
+    
+    \bigskip
+    \noindent The first line creates and alias that makes it easy to run
+    SoyLatte-Java and the second line creates and alias that makes it easy to start Unitex.
+    
+    \item Then, quit \verb+pico+ (type CTRL+x, answer ``yes'' to the question
+    ``Do you want to save?'' and then press Enter to proceed).
+\end{itemize}
+
+\noindent Changes will be active next time the \verb+.bashrc+ file is loaded
+(quit and re-launch \verb+Terminal.app+ or more simply, type \verb+bash+ to open
+a new bash session). Once you have a new bash session, type the command 
+\verb+unitex+ and let's start using Unitex on your Mac !!
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig-mac2.png}
+\caption{Running Unitex on Mac\label{fig-mac2}}
+\end{center}
+\end{figure}
+
+\subsection{How to compile Unitex C++ programs on a Macintosh}
+\label{section-mac-compilation}
+\noindent In order to install Unitex on Mac OS, you will have to compile
+Unitex C++ sources. This is not a problem if you have already the common 
+(\verb+gcc+) development tools installed on your computer (but of course, they
+are not in the standard installation).
+
+\bigskip
+\noindent If you don't know if these tools are present, don't think too long
+about it... just give a try; open a shell window, move to the Unitex sources
+directory (\verb$cd /path/to/Src/C++/build$) and run the command that starts the
+compilation: \verb+make install+
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig-mac3.png}
+\caption{Compiling Unitex C++ programs\label{fig-mac3}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent If the compilation does not start and you get an error message
+stating that the command \verb+make+ cannot be found, you probably need to
+install development programs. On Macintosh the ``all inclusive development
+bundel'' is ``Xcode'' \index{Xcode}(current version is 2.2 and it includes a lot
+of stuff among which). Your can donwload it from the Appel developer Web site.
+
+\bigskip
+\noindent The Xcode application includes a full-featured code editor, a debugger, 
+compilers, and a linker. The Xcode application provides a user interface to many 
+industry-standard and open-source tools, including \verb+gcc+, the Java compilers
+\verb+javac+ and \verb+jikes+, and \verb+gdb+. It provides all of the facilities you
+need to build a program for Mac OS X, whether it's an application, kernel
+extension, or command-line tool.
+
+\bigskip
+\noindent The only problem with Xcode is that it is HUGE to download (800 Mb).
+Of course, you will not need all the stuff included in the package... but all
+what you need is in it.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig-mac4.png}
+\caption{Xcode\label{fig-mac4}}
+\end{center}
+\end{figure}
+
+
+\bigskip
+\noindent Once on your computer the Xcode package looks like the following:
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig-mac5.png}
+\caption{Xcode package\label{fig-mac5}}
+\end{center}
+\end{figure}
+
+
+\bigskip
+\noindent Double-click on the \verb+XCodeTools.mpkg+ icon to install all the
+programs.
+
+
+\subsection{How to makes all files visible on Mac OS}
+\noindent See
+\url{http://www.macworld.com/article/51830/2006/07/showallfinder.html}.
+
+\bigskip
+\noindent Or try it right away... Type: 
+
+\bigskip
+\verb+defaults write com.apple.Finder AppleShowAllFiles ON+
+
+\bigskip
+\noindent Then restart the Finder:
+
+\bigskip
+\verb+killall Finder+
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig-mac6.png}
+\caption{Restarting the Finder\label{fig-mac6}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent To get back to the original configuration, type: 
+
+\bigskip
+\verb+defaults write com.apple.Finder AppleShowAllFiles OFF+
+
 
 \section{First use}
 If you are working on Windows, the program will ask you to choose a
@@ -154,3 +433,61 @@ the \verb+Unitex+ directory to completely delete all the program files. Under
 Windows you may have to delete the shortcut to \verb+Unitex.jar+ \index{File!\verb+Unitex.jar+} 
 if you have created one on your desktop. The same has to be done on Linux, if you have 
 created an alias.
+
+
+\section{Unitex for developpers}
+\label{section-unitex-developpers}
+If you are a programmer, you may be interested in linking your code with Unitex
+C++ sources. To facilitate such operation, you can compile Unitex as a
+dynamic library that contains all Unitex functions, except \verb+main+s, of
+course. Under Linux/MacOS, type:
+
+\bigskip
+\verb+make LIBRARY=yes+
+
+\bigskip
+\noindent and you will obtain a library named \verb+libunitex.so+. If you want
+to produce a Windows DLL named \verb+unitex.dll+, use the following commands:
+
+\bigskip
+Windows: \verb+make SYSTEM=windows LIBRARY=yes+
+
+Cross-compiling with mingw32: \verb+make SYSTEM=mingw32 LIBRARY=yes+
+
+\bigskip
+\noindent In all cases, you will also obtain a program named
+\verb+Test_lib+(\verb+.exe+). If everything worked fine, this program should 
+display the following:
+
+\begin{verbatim}
+Expression converted.
+Reg2Grf exit code: 0
+
+#Unigraph
+SIZE 1313 950
+FONT Times New Roman:  12
+OFONT Times New Roman:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 12632256
+SCOLOR 16711680
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR y
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+7
+"<E>" 100 100 1 5
+"" 100 100 0
+"a" 100 100 1 6
+"b" 100 100 1 4
+"c" 100 100 1 6
+"<E>" 100 100 2 2 3
+"<E>" 100 100 1 1
+\end{verbatim}

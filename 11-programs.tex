@@ -1,4 +1,3 @@
-
 \chapter{Use of external programs}
 \label{chap-external-programs}
 This chapter presents the use of the different programs of which Unitex is
@@ -6,7 +5,16 @@ composed. These programs, which can be found in the \verb+Unitex/App+ folder, ar
 automatically called by the interface. It is possible to see the commands that
 have been executed by clicking on "Info>Console". It is also
 possible to see the options of the different programs on
-"Info>Help on commands".
+"Info>Help on commands" (see Figure \ref{fig-help}). Note that that all Unitex
+programs support the \verb$-h$/\verb$--help$ option.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig11-1.png}
+\caption{Help on commands\label{fig-help}}
+\end{center}
+\end{figure}
 
 \bigskip
 \noindent WARNING: many programs use the text directory
@@ -22,6 +30,23 @@ parameters.
 \index{Text!directory of}\index{External programs!\verb+Normalization+}\index{\verb+Normalization+}
 
 
+\section{Console}\index{Console}
+\label{section-console}
+When Unitex launches an external program, the invoked command line is stored in
+the console. To see it, click on ``Info>Console''. When a command emits
+no error message, it is displayed with a green icon. Otherwise, the icon is a red
+triangle that you can click on to see the error messages, as shown on Figure
+\ref{fig-console}. This is useful when an error message occurs so fast that you
+cannot read it.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig11-2.png}
+\caption{Console\label{fig-console}}
+\end{center}
+\end{figure}
+
 
 \section{CheckDic}\index{External programs!\verb+CheckDic+}\index{\verb+CheckDic+}
 \index{Verification of the dictionary format}\index{Dictionaries!verification}
@@ -29,7 +54,7 @@ parameters.
 
 \bigskip
 \noindent This program carries out the verification of the format of a dictionary
-of DELAS or DELAF type. The parameter \verb+dic+ corresponds to the name
+of DELAS or DELAF type. \verb+dic+ corresponds to the name
 of the dictionary that is to be verified. 
 
 \bigskip
@@ -37,6 +62,11 @@ of the dictionary that is to be verified.
 \begin{itemize}
   \item \verb+-f+/\verb+--delaf+: checks an inflected dictionary;
   \item \verb+-s+/\verb+--delas+: checks a non inflected dictionary;
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: specifies the alphabet file to
+        use. This information is used to know wether a word is a simple one
+        (only made of letters) or not. If not specified, a default default
+        definition of letters is used (see \verb$Unicode.cpp$ source file).
+        
 \end{itemize}
 
 \bigskip
@@ -45,6 +75,9 @@ list of all characters occurring in the inflected and canonical forms of words i
 the text, the list of grammatical codes and syntax, as well as the list of
 inflection codes used. The results of the verification are stored in a file
 called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
+
+
+
 
 
 
@@ -61,7 +94,7 @@ called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
   \item \verb+-f+/\verb+--flip+: indicates
 that the inflected and canonical forms should be swapped in the compressed
 dictionary. This option is used to construct an inverse dictionary which is
-necessary for the program \verb+Reconstrucao+
+necessary for the program \verb+Reconstrucao+.
 \end{itemize}
 
 \bigskip
@@ -76,6 +109,9 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 \bigskip
 \noindent For more details on the format of these files, see chapter
 \ref{chap-file-formats}.
+
+
+
 
 
 
@@ -97,11 +133,11 @@ the occurrences. Here is the description of the parameters:
   \item \verb+-s N+/\verb+--fontsize=N+: the font size to use if the output is
   an HTML file. The font parameters are required if the output is an HTML file;
   \item \verb+-l X+/\verb+--left=X+: number of characters on the left of the 
-  occurrences. In Thai mode, this means the number of non-diacritic
+  occurrences (default=0). In Thai mode, this means the number of non-diacritic
   characters.\index{Contexts!concordance}
   \item \verb+-r X+/\verb+--right=X+: number of characters (non-diacritic ones in Thai mode) on
-  the right of the occurrences. If the occurrence is shorter than this value, the
-  concordance line is completed up to \verb+right+. If the occurrence is longer
+  the right of the occurrences (default=0). If the occurrence is shorter than
+  this value, the concordance line is completed up to \verb+right+. If the occurrence is longer
   than the length defined by \verb+right+, it is nevertheless saved as whole.
   
   \bigskip
@@ -135,6 +171,15 @@ the occurrences. Here is the description of the parameters:
   \item \verb+-t+/\verb+--text+: produces a concordance in Unicode text format; 
   \item \verb+-g SCRIPT+/\verb+--glossanet=SCRIPT+: produces a concordance for GlossaNet
   in HTML format. The HTML file is encoded in UTF-8;\index{GlossaNet}
+
+  \item \verb+-p SCRIPT+/\verb+--script=SCRIPT+: produces a HTML concordance
+  file where occurrences are links described by \verb+SCRIPT+. For instance, if
+  you use
+  
+  %do not remove this line jump
+  \verb$-phttp://www.google.com/search?q=$, you will obtain
+  a HTML concordance file where occurrences are hyperlinks to Google queries;
+
   \item \verb+-i+/\verb+--index+: produces an index of the concordance, made of the
     content of the occurrences (with the grammar outputs, if any), preceded by
     the positions of the occurrences in the text file given in characters;
@@ -159,6 +204,7 @@ the occurrences. Here is the description of the parameters:
   \item \verb+-d DIR+/\verb+--directory=DIR+: indicates to the program that
   it must not work in the same directory than \verb+<index>+ but in \verb+DIR+;
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file used for sorting;
+  \item \verb+-T+/\verb+--thai+: option to use for Thai concordances.
   \index{Alphabet}\index{File!alphabet}
 \end{itemize}
 
@@ -166,9 +212,9 @@ the occurrences. Here is the description of the parameters:
 \bigskip
 \noindent The result of the application of this program is a file called \verb+concord.txt+
 if the concordance was constructed in text mode, a file called
-\verb+concord.html+ if the output mode was \verb+--html+ or \verb+--glossanet+,
-and a text file with the name defined by the user of the program if the program has
-constructed a modified version of the text.
+\verb+concord.html+ if the output mode was \verb+--html+, \verb+--glossanet+ or
+\verb$--script$, and a text file with the name defined by the user of the program 
+if the program has constructed a modified version of the text.
 
 \bigskip
 \noindent In \verb+--html+ mode, the occurrence is coded as a hypertext link. The reference
@@ -176,6 +222,9 @@ associated to this link is of the form \verb+<a href="X Y Z">+. \verb+X+ et
 \verb+Y+ represent the beginning and ending positions of the occurrence in
 characters in the file \verb+text_name.snt+. \verb+Z+ represents the number of
 the sentence in which the occurrence was found.
+
+
+
 
 
 
@@ -198,6 +247,11 @@ there were computed.
   HTML page;
   \item \verb+-s N+/\verb+--size=N+: font size to use in output HTML page.
 \end{itemize}
+
+
+
+
+
 
 
 \section{Convert}\index{External programs!\verb+Convert+}\index{\verb+Convert+}
@@ -331,6 +385,11 @@ see below):
 \verb$UTF8$
 
 
+
+
+
+
+
 \section{Dico}\index{External programs!\verb+Dico+}\index{\verb+Dico+}
 \index{Dictionaries!application of}
 \verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
@@ -347,7 +406,9 @@ lexical units by the \verb+Tokenize+ program.
   \item \verb+-m DICS+/\verb+--morpho=DICS+: this optional parameter indicates
   which morphological dictionaries are to be used, if needed by some \verb+.fst2+
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
-  paths) separated with semi-colons.
+  paths) separated with semi-colons;
+  \item \verb+-j TABLE+/\verb+--jamo=TABLE+: specifies the Jamo conversion
+  table to use for Korean.
 \end{itemize}
 
 \bigskip
@@ -379,12 +440,18 @@ them in the directory of the text:
 program \verb+SortTxt+ to sort them.
 
 
+
+
+
+
+
+
 \section{Elag}\index{External programs!\verb+Elag+}\index{\verb+Elag+}
-\verb+Elag [OPTIONS] <txtauto>+
+\verb+Elag [OPTIONS] <tfst>+
 
 \bigskip
-\noindent This program takes a \verb+.fst2+ text automaton \verb+<txtauto>+ and
-applies to it ambiguity removal rules.\index{File!\verb+.fst2+}
+\noindent This program takes a \verb+.tfst+ text automaton \verb+<tfst>+ and
+applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -396,6 +463,11 @@ applies to it ambiguity removal rules.\index{File!\verb+.fst2+}
   \item \verb+-o OUT/--output=OUT+: output text automaton;
   \item \verb+-d DIR/--directory=DIR+: directory where ELAG rules are located.
 \end{itemize}
+
+
+
+
+
 
 
 \section{ElagComp}\index{External programs!\verb+ElagComp+}\index{\verb+ElagComp+}
@@ -418,12 +490,18 @@ the grammars specified in the \verb+RULES+ file. The result is stored in the
 \end{itemize}
 
 
+
+
+
+
+
+
 \section{Evamb}\index{External programs!\verb+Evamb+}\index{\verb+Evamb+}
-\verb+Evamb [OPTIONS] <txtauto>+
+\verb+Evamb [OPTIONS] <tfst>+
 
 \bigskip
 \noindent This program computes an average lexical ambiguity rate on the text
-automaton \verb+<txtauto>+, or just on the sentence which number is specified by
+automaton \verb+<tfst>+, or just on the sentence which number is specified by
 \verb+N+. The results of the computation are displayed on the standard output.
 The text automaton is not modified.
 
@@ -434,20 +512,10 @@ The text automaton is not modified.
 \end{itemize}
 
 
-\section{ExplodeFst2}\index{External programs!\verb+ExplodeFst2+}\index{\verb+ExplodeFst2+}
-\verb+ExplodeFst2 [OPTIONS] <txtauto>+
 
-\bigskip
-\noindent This program computes and stores in \verb+OUT+ the \textit{developed} form of the
-text automaton \verb+<txtauto>+.\index{Text automaton!developed}
 
-\bigskip
-\noindent \textbf{OPTIONS:}
-\begin{itemize}
-  \item \verb+-o OUT+/\verb+--output=OUT+: output file. By default, \verb+OUT+
-  is made of \verb+<txtauto>+ with \verb+-exp+ before the extension like:
-  \verb+foo-exp.fst2+.
-\end{itemize}
+
+
 
 
 \section{Extract}\index{External programs!\verb+Extract+}\index{\verb+Extract+}
@@ -478,6 +546,10 @@ sentence per line.
 
 
 
+
+
+
+
 \section{Flatten}\index{External programs!\verb+Flatten+}\index{\verb+Flatten+}
 \index{Graph!approximation through a final state transducer}
 \index{Approximation of a grammar through a final state transducer}
@@ -503,6 +575,9 @@ transform it into a final state transducer.
   \item \verb+-d N+/\verb+--depth=N+: maximum depth to which graph calls should 
   be unfolded. The default value is 10.
 \end{itemize}
+
+
+
 
 
 
@@ -575,6 +650,11 @@ recognized by this grammar. The parameters are:
 \end{itemize}
 
 
+
+
+
+
+
 \section{Fst2Txt}\index{External programs!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
 \verb+Fst2Txt [OPTIONS] <fst2>+
 
@@ -618,30 +698,19 @@ preprocessing stage, when the text has not been cut into lexical units yet.
 \noindent This program modifies the input text file.
 
 
-\section{Fst2Unambig}\index{External programs!\verb+Fst2Unambig+}\index{\verb+Fst2Unambig+}
-\index{Text automaton!conversion into linear text}
-\verb+Fst2Unambig [OPTIONS] <fst2>+
 
-\bigskip
-\noindent This programs takes a \verb$.fst2$ text automaton and produces an
-equivalent text file if the automaton is linear (i.e. with no
-ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-text}.
 
-\bigskip
-\noindent \textbf{OPTIONS:}
-\begin{itemize}
-  \item \verb+-o TXT+/\verb+--out=TXT+: the output text file.
-\end{itemize}
+
 
 
 \section{Grf2Fst2}\index{External programs!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
 \index{Graph!compilation}\index{Compilation of graphs}
-\verb+Grf2Fst2 [OPTIONS] graph+
+\verb+Grf2Fst2 [OPTIONS] <grf>+
 
 \bigskip
 \noindent \index{File!\verb+.grf+}\index{File!\verb+.fst2+}
 This program compiles a grammar into a \verb+.fst2+ file (for more details see
-section \ref{section-graph-compilation}). The parameter \verb+graph+ 
+section \ref{section-graph-compilation}). The parameter \verb+<grf>+ 
 denotes the complete path of the main graph of the grammar, without omitting the
 extension \verb+.grf+.
 
@@ -664,29 +733,36 @@ extension \verb+.grf+.
   when a graph matches the empty word. This option is used by \verb+MultiFlex+
   in order not to scare users with meaningless error messages when they design
   an inflection grammar that matches the empty word. 
+  \item \verb+-t+/\verb+--tfst_check+: checks wether the given graph can be
+  considered as a valid sentence automaton or not.
 \end{itemize}
 
 \bigskip
 \noindent The result is a file with the same name as the graph passed to the
 program as a parameter, but with extension \verb+.fst2+. This file is saved in
-the same folder as \verb+graph+.
+the same folder as \verb+<grf>+.
 
 
 
-\section{ImplodeFst2}\index{External programs!\verb+ImplodeFst2+}\index{\verb+ImplodeFst2+}
-\verb+ImplodeFst2 [OPTIONS] <txtauto>+
+
+
+
+\section{ImplodeTfst}\index{External
+programs!\verb+ImplodeTfst+}\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
 
 \bigskip
-\noindent This program computes and stores in \verb$OUT$ the \textit{compact}
-form of the text automaton \verb$<txtauto>$.\index{Text automaton!compact}
+\noindent This program implodes the specified text automaton by merging
+together lexical entries which only differ in their inflectional features.
 
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
-  \item \verb+-o OUT+/\verb+--output=OUT+: output file. By default, \verb+OUT+
-  is made of \verb+<txtauto>+ with \verb+-imp+ before the extension like:
-  \verb+foo-imp.fst2+.
+  \item \verb+-o OUT+/\verb+--output=OUT+: output file. By default, the input
+  text automaton is modified.
 \end{itemize}
+
+
+
 
 
 
@@ -727,7 +803,103 @@ occurrences found.
   
   \item \verb+-d DIR+/\verb+--sntdir=DIR+: puts produced files in \verb+DIR+
   instead of the text directory. Note that \verb+DIR+ must end with a file separator
-  (\verb+\+ or \verb+/+).
+  (\verb+\+ or \verb+/+);
+
+  \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
+  Korean.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Search limit options:}
+\begin{itemize}
+  \item \verb+-l+/\verb+--all+: looks for all matches (default);
+  \item \verb+-n N+/\verb+--number_of_matches=N+: stops after the first
+  \verb+N+ matches.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Matching mode options:}
+\begin{itemize}
+  \item \verb+-S+/\verb+--shortest_matches+;
+  \item \verb+-L+/\verb+--longest_matches+ (default);
+  \item \verb+-A+/\verb+--all_matches+.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Output options:}
+\begin{itemize}
+  \item \verb+-I+/\verb+--ignore+: ignore transducer outputs (default);
+  \item \verb+-M+/\verb+--merge+: merge transducer outputs with text inputs;
+  \item \verb+-R+/\verb+--replace+: replace texts inputs with corresponding
+  transducer outputs;
+  \item \verb+-p+/\verb+--protect_dic_chars+: when \verb+-M+ or \verb+-R+ mode is
+  used, \verb+-p+ protects some input characters with a backslash. This is useful
+  when \verb+Locate+ is called by \verb+Dico+ in order to avoid producing bad
+  lines like:
+  
+  %do not remove this line jump
+  \verb+3,14,.PI.NUM+
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Ambiguous output options:}
+\begin{itemize}
+  \item \verb+-b+/\verb+--ambiguous_outputs+: allows the production of several 
+  matches with same input but different outputs (default);
+  \item \verb+-z+/\verb+--no_ambiguous_outputs+: forbids ambiguous outputs. In
+  case of ambiguous outputs, one will be arbitrarily keeped, depending on the
+  internal state of the program.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Variable error options}
+
+\noindent These options have no effect if the output mode is set with
+\verb+--ignore+; otherwise, they rule the behavior of the \verb+Locate+ program
+when an output is found that contains a reference to a variable that is not correctly defined.
+\begin{itemize}
+  \item \verb+-X+/\verb+--exit_on_variable_error+: kills the program;
+  \item \verb+-Y+/\verb+--ignore_variable_errors+: acts as if the variable has
+  an empty content (default);
+  \item \verb+-Z+/\verb+--backtrack_on_variable_errors+: stop exploring the
+  current path of the grammar.
+\end{itemize}
+  
+
+\bigskip
+\noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord.n+}This 
+program saves the references to the found occurrences in a file called
+\verb+concord.ind+. The number of occurrences, the number of units belonging to
+those occurrences, as well as the percentage of recognized units within the text
+are saved in a file called \verb+concord.n+. These two files are stored in the
+directory of the text.
+
+
+
+
+
+
+
+\section{LocateTfst}\index{External programs!\verb+LocateTfst+}\index{\verb+LocateTfst+}
+\label{section-LocateTfst}
+\verb+LocateTfst [OPTIONS] <fst2>+
+
+\bigskip
+\noindent \index{Pattern search}
+Applies a grammar to a text automaton, and saves the matching sequence index in a
+file named \verb+concord.ind+, just as \verb+Locate+ does.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-t TFST+/\verb+--text=TFST+: complete path of the text automaton,
+  without omitting the \verb+.tfst+ extension;
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: complete path of the alphabet
+  file;\index{Alphabet}\index{File!alphabet}
+  
+  \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
+  Korean.
 \end{itemize}
 
 \bigskip
@@ -781,27 +953,16 @@ when an output is found that contains a reference to a variable that is not corr
   
 
 \bigskip
-\noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord.n+}This 
+\noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord_tfst.n+}This 
 program saves the references to the found occurrences in a file called
-\verb+concord.ind+. The number of occurrences, the number of units belonging to
-those occurrences, as well as the percentage of recognized units within the text
-are saved in a file called \verb+concord.n+. These two files are stored in the
+\verb+concord.ind+. The number of occurrences and the number of produced outputs
+are saved in a file called \verb+concord_tfst.n+. These two files are stored in the
 directory of the text.
 
 
 
-\section{MergeTextAutomaton}\index{External programs!\verb+MergeTextAutomaton+}\index{\verb+MergeTextAutomaton+}
-\index{File!\verb+text.fst2.bck+}
-\verb+MergeTextAutomaton <txtauto>+
 
-\bigskip
-\noindent \index{Text!automaton}\index{Reconstruction of the text automaton}This 
-program reconstructs text automaton \verb+<txtauto>+ taking into account the
-manual modifications. If the program finds a file \verb+sentenceN.grf+ in the
-same directory as \verb+<txtauto>+, it replaces the automaton of sentence
-\verb+N+ with the one represented by \verb+sentenceN.grf+. The \verb+<txtauto>+
-file is replaced by the new text automaton. The old text automaton is backed up
-in a file called \verb+text.fst2.bck+.
+
 
 
 \section{MultiFlex}\index{External programs!\verb+MultiFlex+}\index{\verb+MultiFlex+}
@@ -820,13 +981,27 @@ lemmas (see chapter \ref{chap-multiflex}).
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file;
   \item \verb+-d DIR+/\verb+--directory=DIR+: the directory containing
   \verb+Morphology+ and \verb+Equivalences+ files and inflection graphs for
-                                              single and compound words.
+                                              single and compound words;
+  \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
+  Korean;
+  \item \verb+-f FST2+/\verb+--fst2=FST2+: Jamo $\rightarrow$ Hangul transducer
+  to use for Korean;
+  \item \verb+-s+/\verb+--only-simple-words+: the program will consider
+  compound words as errors;
+  \item \verb+-c+/\verb+--only-compound-words+: the program will consider
+  simple words as errors.
 \end{itemize}
 
 \bigskip
 \noindent Note that \verb+.fst2+ inflection transducers will automatically be
 built from corresponding \verb+.grf+ files if absent or older than \verb+.grf+
 files.
+
+
+
+
+
+
 
 \section{Normalize}\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
 \index{Text!normalization}
@@ -867,6 +1042,10 @@ creates a modified version of the text that is saved in a file with extension
 \noindent WARNING: if you specify a normalization rule file, its rules will be
 applied prior to anything else. So, you have to be very careful if you
 manipulate separators in such rules.
+
+
+
+
 
 
 \section{PolyLex}\index{External programs!\verb+PolyLex+}\index{\verb+PolyLex+}
@@ -919,6 +1098,26 @@ in the same directory than \verb+BIN+.
 
 
 
+
+
+
+\section{RebuildTfst}\index{External
+programs!\verb+RebuildTfst+}\index{\verb+RebuildTfst+}
+\verb+RebuildTfst <tfst>+
+
+\bigskip
+\noindent \index{Text!automaton}\index{Reconstruction of the text automaton}This 
+program reconstructs text automaton \verb+<tfst>+ taking into account the
+manual modifications. If the program finds a file \verb+sentenceN.grf+ in the
+same directory as \verb+<tfst>+, it replaces the automaton of sentence
+\verb+N+ with the one represented by \verb+sentenceN.grf+. The input text
+automaton is modified.
+
+
+
+
+
+
 \section{Reconstrucao}\index{External programs!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
 \index{Compression of dictionaries}\index{Dictionaries!compression}
 \index{Clitics!normalization}\index{Normalization!clitics in Portuguese}
@@ -958,6 +1157,10 @@ grammar is called \verb+V-Pro-Suf+, and is stored in the
 
 
 
+
+
+
+
 \section{Reg2Grf}\index{External programs!\verb+Reg2Grf+}\index{\verb+Reg2Grf+}
 \verb+Reg2Grf <txt>+
 
@@ -969,6 +1172,12 @@ complete path to the file containing the regular expression. This file needs to
 be a Unicode text file. The program takes into account all characters up to the
 first newline. The result file is called \verb+regexp.grf+ and is saved in the
 same directory as \verb+<txt>+.
+
+
+
+
+
+
 
 \section{SortTxt}\index{External programs!\verb+SortTxt+}\index{\verb+SortTxt+}
 
@@ -1003,6 +1212,50 @@ same directory as \verb+<txt>+.
 the sorting is performed in the order of Unicode characters, removing duplicate lines.
 
 
+
+
+
+
+
+
+\section{Stats}\index{External programs!\verb+Stats+}\index{\verb+Stats+}
+
+\verb+Stats [OPTIONS] <ind>+
+
+\index{Statistics}
+\bigskip
+\noindent This program computes some statistics from the \verb+<ind>+
+concordance index file.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-m MODE+/\verb+--mode=MODE+: specifies the output to be produced:
+  \begin{itemize}
+      \item \verb+0+ = matches with left and right contexts + number of
+      occurrences;
+      \item \verb+1+ = collocates + number of occurrences;
+      \item \verb+2+ = collocates + number of occurrences + z-score.
+  \end{itemize}
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file to use;
+
+  \item \verb+-o OUT+/\verb+--output=OUT+: output file;
+
+  \item \verb+-l N+/\verb+--left=N+: length of left contexts in tokens;
+   
+  \item \verb+-r N+/\verb+--right=N+: length of right contexts in tokens;
+  
+  \item \verb+-c N+/\verb+--case=N+: case policy: \verb+0+ = case insensitive,
+  \verb+1+ = case sensitive (default).
+\end{itemize}
+
+
+
+
+
+
+
 \section{Table2Grf}\index{External programs!\verb+Table2Grf+}\index{\verb+Table2Grf+}
 \verb+Table2Grf [OPTIONS] <table>+
 
@@ -1029,22 +1282,33 @@ and a template graph.
 \end{itemize}
 
 
-\section{TagsetNormFst2}\index{External programs!\verb+TagsetNormFst2+}\index{\verb+TagsetNormFst2+}
-\verb+TagsetNormFst2 [OPTIONS] <txtauto>+
+
+
+
+
+
+\section{TagsetNormTfst}\index{External
+programs!\verb+TagsetNormTfst+}\index{\verb+TagsetNormTfst+} \verb+TagsetNormTfst [OPTIONS] <tfst>+
 
 \bigskip
-\noindent This program normalizes the specified \verb+.fst2+ text automaton according
+\noindent This program normalizes the specified \verb+.tfst+ text automaton according
 to a tagset description file, discarding undeclared dictionary codes
 and incoherent lexical entries. Inflectional features are unfactorized so 
 that \verb+{rouge,.A:fs:ms}+ will be divided into the 2 tags \verb+{rouge,.A:fs}+ 
-and \verb+{rouge,.A:ms}+. The text automaton is modified.
+and \verb+{rouge,.A:ms}+.
 
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
+  \item \verb+-o OUT+/\verb+--output=OUT+: output text automaton. By default,
+  the input text automaton is modified;
   \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: name of the tagset description
   file.
 \end{itemize}
+
+
+
+
 
 
 
@@ -1062,6 +1326,11 @@ and \verb+{rouge,.A:ms}+. The text automaton is modified.
   By default, the output file has the same name than the input one, 
   replacing \verb+.xml+ by \verb+.txt+.
 \end{itemize}
+
+
+
+
+
 
 
 \section{Tfst2Grf}\index{External
@@ -1086,7 +1355,8 @@ the given text automaton.
   output \verb+.grf+
    
 %DO NOT REMOVE THIS LINE JUMP
-  (default=\verb+Times new Roman+).
+  (default=\verb+Times new Roman+);
+  \item \verb+-z N+/\verb+--fontsize=N+: sets the font size (default=10).
 \end{itemize}
 
 \bigskip
@@ -1104,6 +1374,32 @@ directory of the text:
   numbers of the tokens that compose the
   sentence.\index{File!\verb+cursentence.tok+}
 \end{itemize}
+
+
+
+
+
+
+
+\section{Tfst2Unambig}\index{External
+programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+\index{Text automaton!conversion into linear text}
+\verb+Tfst2Unambig [OPTIONS] <tfst>+
+
+\bigskip
+\noindent This programs takes a \verb$.tfst$ text automaton and produces an
+equivalent text file if the automaton is linear (i.e. with no
+ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-text}.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-o TXT+/\verb+--out=TXT+: the output text file.
+\end{itemize}
+
+
+
+
 
 
 
@@ -1170,6 +1466,11 @@ the coding of the text. This sequence is saved in a binary file named
 
 
 
+
+
+
+
+
 \section{Txt2Tfst}\index{External
 programs!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
 
@@ -1190,8 +1491,15 @@ extension.
   should be applied\index{Conservation of better paths};
   
   \item \verb+-n XXX+/\verb+--normalization_grammar=XXX+: name of a normalization 
-  grammar that is to be applied to the text automaton. \index{Normalization!of ambiguous forms}
+  grammar that is to be applied to the text automaton; \index{Normalization!of
+  ambiguous forms}
   \index{Normalization!of the text automaton}
+  \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: Elag tagset file to use to
+  normalize dictionary entries;
+  \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
+  Korean;
+  \item \verb+-f FST2+/\verb+--fst2=FST2+: Jamo $\rightarrow$ Hangul transducer
+  to use for Korean.
 \end{itemize}
 
 \bigskip
@@ -1208,6 +1516,70 @@ the text. Another file named \verb+text.tind+ is also produced.
 \bigskip
 \noindent NOTE: The program will also try to use the \verb+tags.ind+ file, if
 any (see section \ref{section-tags-ind}).
+
+
+
+
+
+
+
+\section{Uncompress}\index{External
+programs!\verb+Uncompress+}\index{\verb+Uncompress+}
+\label{section-Uncompress}
+\verb+Uncompress [OPTIONS] <bin>+
+
+\bigskip
+\noindent This program uncompresses a \verb+.bin+ dictionary into a text file
+\verb+.dic+ one.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-o OUT+/\verb+--output=OUT+: optional output file name (default:
+  \verb+file.bin+ > \verb+file.dic+).
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{UnitexTool}\index{External
+programs!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{\verb+Scripting Unitex programs+}
+\label{section-UnitexTool}
+\verb+UnitexTool <utilities>+
+
+\bigskip
+\noindent This program is a super-program that allows you to invoke all Unitex
+external programs. With it, you can chain commands so that they will be invoked
+within a same system process, in order to speed up processing. This can done by
+invoking commands nested in round brackets as this:
+
+\bigskip
+\noindent \verb$UnitexTool { cmd #1+args } { cmd #2+args } etc.$
+
+\bigskip
+\noindent For instance, if you want to join a locate operation and the
+construction of the concordance, you can use the following command:
+
+\bigskip
+\begin{verbatim}
+UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt" 
+"D:\My Unitex\English\regexp.fst2"
+"-aD:\My Unitex\English\Alphabet.txt" -L -I -n200 
+"--morpho=D:\Unitex2.0\English\Dela\dela-en-public.bin" -b -Y }
+{ Concord "D:\My Unitex\English\Corpus\ivanhoe_snt\concord.ind" 
+"-fCourier new" -s12 -l40 -r55 --CL --html 
+"-aD:\My Unitex\English\Alphabet_sort.txt" }
+\end{verbatim}
+
+
+
+
+
+
 
 
 
