@@ -102,30 +102,46 @@ of Unitex with the command:
 \bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
 
 
-\section{Installation on MacOS X (Intel only)}
-\index{Installation!on MacOS X (Intel only)}
+\section{Installation on MacOS X}
+\index{Installation!on MacOS X}
 \label{section-macos-install}
 \noindent NOTE: this short tutorial will tell you how to install and run 
-Unitex on Mac OS X (Intel). Your questions, comments, suggestions, 
+Unitex on Mac OS X. Your questions, comments, suggestions, 
 corrections are more than welcome. 
 
 \noindent Contact: \url{cedrick.fairon@uclouvain.be}
 
 \bigskip
-\noindent Installing Unitex 2.0 (and higher) on Mac OS X was an issue because 
-the software requires Java 1.6, which is not officially provided by Sun
-The workaround for Mac-Unitex users who did not want to get stuck with an 
-older version of Unitex was to install Unitex on a Windows virtual Desktop 
-from Macintosh (using Parallels, for example).
+\noindent There is an official Java 1.6 for MacOS X 10.5, 64-bit Intel 
+(Core 2 Duo), but there is no official solution for older OS X (10.4 or older),
+PowerPC and 32-bit Intel (Core Duo). So,
+\begin{enumerate}
+    \item if you have OS X 10.5, and 64-bit MacOS, you can just get the
+    Apple JRE 1.6. The only problem is that this version does not start by
+    default. See section ``Java for Mac OS X 10.5 Update 2'', 
+    at \url{http://developer.apple.com/java/}
 
+    \item if you have an older OS X, 32-bit Intel or a PowerPC, you must try
+    SoyLatte (see below)
+\end{enumerate}
+
+\noindent\textbf{How to know if my processor is a 32 or 64-bit one ?}
+
+\noindent In the Apple menu, click on "About this Mac". If you see something
+like: "Processor : x.xx Ghz Intel Core Duo", your processor is a 32-bit one.
+
+\bigskip
+\noindent If you see "Processor : x.xx Ghz Intel Core 2 Duo", or if you
+processor is another Intel one (like Xeon), then you have a 64-bit processor.
+
+
+\subsection{SoyLatte}
 \bigskip\index{SoyLatte}
-\noindent But it is now possible to install an alternative distribution of Java
-1.6 called ``SoyLatte''. SoyLatte is a functional, X11-based port of the FreeBSD
+\noindent SoyLatte is a functional, X11-based port of the FreeBSD
 Java 1.6 patchset to Mac OS X Intel machines. SoyLatte is initially focused on 
 supporting Java 6 development; however, the long-term view far more captivating: 
 open development of Java 7 for Mac OS X, with a release available in concert 
 with the official Sun release, supported on all recent versions of Mac OS X.
-
 
 \subsection{Before you start}
 \noindent Try it at your own risks ;-) This tutorial tells you what I have done
