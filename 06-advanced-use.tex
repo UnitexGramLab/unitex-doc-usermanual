@@ -1124,8 +1124,9 @@ figure~\ref{fig-swapping-words}\label{fig-no-space-problem}}
 
 \bigskip
 \noindent If the beginning or the end of variable is malformed (end of a variable before
-its beginning or absence of the beginning or end of a variable), it will be
-ignored during the emission of outputs.
+its beginning or absence of the beginning or end of a variable), by default, it
+will be ignored during the emission of outputs. See section
+\ref{section-advanced-search-options} for other variable error policies.
 
 \bigskip
 \noindent There is no limit to the number of possible variables.
@@ -1176,9 +1177,9 @@ occurrences. By default, the search is limited to the 200 first
 occurrences.\index{Occurrences!number of}
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!h]
 \begin{center}
-\includegraphics[width=8.8cm]{resources/img/fig6-30.png}
+\includegraphics[width=9cm]{resources/img/fig6-30.png}
 \caption{Locate pattern Window\label{fig-regexp-frame}}
 \end{center}
 \end{figure}
@@ -1193,6 +1194,124 @@ outputs. This latter mode is used by default.
 \bigskip
 \noindent
 After you have selected the parameters, click on "SEARCH" to start the search.
+
+\clearpage
+\subsection{Advanced search options}
+\index{Advanced search options}
+\label{section-advanced-search-options}
+If you select the "Advanced options" tab, you will see the frame shown on
+Figure \ref{fig6-advanced-options1}.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-advanced-options1.png}
+\caption{Advanced search options\label{fig6-advanced-options1}}
+\end{center}
+\end{figure}
+
+\index{Ambiguous outputs}
+\noindent The "Ambiguous output policy" option can be illustrated with the
+graph shown on Figure \ref{fig6-advanced-options2}. When a determiner is
+followed by a word that can be either adjective or noun, it can produce two
+distinct outputs for the same text input sequence.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-advanced-options2.png}
+\caption{A graph with ambiguous outputs\label{fig6-advanced-options2}}
+\end{center}
+\end{figure}
+
+\noindent If we apply this graph on \textit{Ivanhoe} with the "Allow ambiguous
+outputs" option (the default one), we will obtain the text order
+concordance shown of Figure \ref{fig6-advanced-options3}. As you can see, two
+outputs have been produced for the input sequence \textit{the noble}.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=8.8cm]{resources/img/fig6-advanced-options3.png}
+\caption{Ambiguous outputs for \textit{the noble}\label{fig6-advanced-options3}}
+\end{center}
+\end{figure}
+
+
+\noindent At the opposite, with the "Forbid ambiguous
+outputs" option, we will obtain the text order
+concordance shown of Figure \ref{fig6-advanced-options4}, with only one
+arbitrarily chosen output for the input sequence \textit{the noble}.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-advanced-options4.png}
+\caption{Single output for \textit{the noble}\label{fig6-advanced-options4}}
+\end{center}
+\end{figure}
+
+
+\index{Variable error policy}
+\bigskip
+\noindent The "Variable error policy" option allows you to specify what
+\verb+Locate+/\verb+LocateTfst+ is supposed to do when an output is found that
+contains a reference to a variable that has not been correctly defined. Note
+that this parameter has no effect if outputs are to be ignored. 
+For instance, let us consider the graph shown on Figure
+\ref{fig6-advanced-options5}. 
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-advanced-options5.png}
+\caption{A variable \textit{A} that may be
+undefined\label{fig6-advanced-options5}}
+\end{center}
+\end{figure}
+
+\noindent With the "Ignore variable errors" option, \textit{A} will just be
+ignored, as if it had an empty content, as shown on Figure
+\ref{fig6-advanced-options6}. 
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig6-advanced-options6.png}
+\caption{
+ variable \textit{A} that may be
+undefined\label{fig6-advanced-options6}}
+\end{center}
+\end{figure}
+
+
+\noindent With the "Exit on variable error" option, \verb+Locate+/\verb+LocateTfst+
+will exit with an error message, as shown on Figure
+\ref{fig6-advanced-options7}.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-advanced-options7.png}
+\caption{Exiting on variable error\label{fig6-advanced-options7}}
+\end{center}
+\end{figure}
+
+\noindent With the "Backtrack on variable error" option,
+\verb+Locate+/\verb+LocateTfst+ will stop exploring the current path in the
+grammar. Thus, the application of grammar \ref{fig6-advanced-options5}
+will only produce matches containing an adjective, as shown on Figure 
+\ref{fig6-advanced-options8}.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig6-advanced-options8.png}
+\caption{Backtracking on variable error\label{fig6-advanced-options8}}
+\end{center}
+\end{figure}
+
+
 
 \subsection{Concordance}
 \index{Concordance}
