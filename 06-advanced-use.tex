@@ -1299,9 +1299,10 @@ will exit with an error message, as shown on Figure
 
 \noindent With the "Backtrack on variable error" option,
 \verb+Locate+/\verb+LocateTfst+ will stop exploring the current path in the
-grammar. Thus, the application of grammar \ref{fig6-advanced-options5}
-will only produce matches containing an adjective, as shown on Figure 
-\ref{fig6-advanced-options8}.
+grammar. Thus, variables play the role of switches that cut paths
+when variables are undefined. For instance, the application of grammar
+\ref{fig6-advanced-options5} will only produce matches containing an adjective, as shown on Figure 
+\ref{fig6-advanced-options8}. 
 
 \bigskip
 \begin{figure}[!h]
@@ -1332,7 +1333,7 @@ section~\ref{section-display-occurrences}.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=11cm]{resources/img/fig6-31.png}
+\includegraphics[width=10cm]{resources/img/fig6-31.png}
 \caption{Configuration for displaying the encountered occurrences
 \label{fig-configuration-display-occurrences}}
 \end{center}

@@ -27,10 +27,15 @@ create the directory manually before the execution of the program
 \noindent WARNING (2): whenever a parameter contains spaces, it needs to
 be enclosed in quotation marks so it will not be considered as multiple
 parameters.
-\index{Text!directory of}\index{External programs!\verb+Normalization+}\index{\verb+Normalization+}
+\index{Text!directory of}\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
 
+\bigskip
+\noindent WARNING (3): many programs need an \verb+Alphabet.txt+ file. For all
+those programs, this information can be omitted. In that case, a default
+definition of letters is used (see \verb+u_is_letter+ 
+in \verb$Unicode.cpp$ source file).
 
-\section{Console}\index{Console}
+\section{The console}\index{Console}
 \label{section-console}
 When Unitex launches an external program, the invoked command line is stored in
 the console. To see it, click on ``Info>Console''. When a command emits
@@ -63,9 +68,7 @@ of the dictionary that is to be verified.
   \item \verb+-f+/\verb+--delaf+: checks an inflected dictionary;
   \item \verb+-s+/\verb+--delas+: checks a non inflected dictionary;
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: specifies the alphabet file to
-        use. This information is used to know wether a word is a simple one
-        (only made of letters) or not. If not specified, a default default
-        definition of letters is used (see \verb$Unicode.cpp$ source file).
+        use. 
         
 \end{itemize}
 
@@ -408,7 +411,7 @@ lexical units by the \verb+Tokenize+ program.
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
   paths) separated with semi-colons;
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: specifies the Jamo conversion
-  table to use for Korean.
+  table to use for Korean.\index{Jamo}
 \end{itemize}
 
 \bigskip
@@ -806,7 +809,7 @@ occurrences found.
   (\verb+\+ or \verb+/+);
 
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
-  Korean.
+  Korean.\index{Jamo}
 \end{itemize}
 
 \bigskip
@@ -899,7 +902,7 @@ file named \verb+concord.ind+, just as \verb+Locate+ does.
   file;\index{Alphabet}\index{File!alphabet}
   
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
-  Korean.
+  Korean.\index{Jamo}
 \end{itemize}
 
 \bigskip
@@ -990,7 +993,7 @@ lemmas (see chapter \ref{chap-multiflex}).
   compound words as errors;
   \item \verb+-c+/\verb+--only-compound-words+: the program will consider
   simple words as errors.
-\end{itemize}
+\end{itemize}\index{Hangul}\index{Hangul}
 
 \bigskip
 \noindent Note that \verb+.fst2+ inflection transducers will automatically be
@@ -1430,6 +1433,9 @@ extension.
   sentence separator \verb+{S}+\index{\verb+{S}+}, or a lexical label 
   like \verb+{aujourd'hui,.ADV}+. \index{Sentence separator}
   \index{Lexical!labels} This is the default mode.
+
+ \item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: specifies a \verb+tokens.txt+
+ file to load and modify, instead of creating a new one from scratch.
 \end{itemize}
 
 
@@ -1499,7 +1505,7 @@ extension.
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
   Korean;
   \item \verb+-f FST2+/\verb+--fst2=FST2+: Jamo $\rightarrow$ Hangul transducer
-  to use for Korean.
+  to use for Korean.\index{Jamo}\index{Hangul}
 \end{itemize}
 
 \bigskip
@@ -1547,7 +1553,7 @@ programs!\verb+Uncompress+}\index{\verb+Uncompress+}
 
 
 \section{UnitexTool}\index{External
-programs!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{\verb+Scripting Unitex programs+}
+programs!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Scripting Unitex programs}
 \label{section-UnitexTool}
 \verb+UnitexTool <utilities>+
 

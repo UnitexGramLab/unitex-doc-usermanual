@@ -637,6 +637,8 @@ code \verb+:mp+. Here are the operators that can be used:
 \index{\verb+U+}\index{Operator!\verb+U+}
 \index{\verb+P+}\index{Operator!\verb+P+}
 \index{\verb+W+}\index{Operator!\verb+W+}
+\index{\verb+J+}\index{Operator!\verb+J+}
+\index{\verb+.+}\index{Operator!\verb+.+}
 
 \begin{itemize}
   \item \verb+L+ (left) removes a letter from the entry
@@ -676,7 +678,21 @@ code \verb+:mp+. Here are the operators that can be used:
    
 \end{itemize}
 
-\bigskip \noindent In the example below, the inflection of \verb+choose+ is
+\noindent There are also two operators dedicated to Korean:
+\begin{itemize}\index{Jamo}\index{Hangul}
+    \item \verb+J+ removes a Jamo letter. If the current character is a Hangul
+    syllab character, this character is first replaced by the equivalent Jamo
+    sequence, and then, the last Jamo letter is removed. If the current
+    character is neither a Jamo nor a Hangul, and error is raised.
+    
+    \item \verb+.+ (latin dot) inserts a syllab bound. As a side effect, if the
+    top of the stack contains Jamo letters, they are first recombined into a
+    Hangul character.
+    \end{itemize}
+
+
+\bigskip
+\noindent In the example below, the inflection of \verb+choose+ is
 shown. The sequence \verb+LLDRRn+ describes the form \verb+chosen+:
 
 \begin{itemize}
@@ -1078,7 +1094,8 @@ in order to add interpretations into the text automaton. Let us consider the
 grammar shown on Figure \ref{morphoA} that matches words made of the prefix
 \verb+un+ followed by an adjective. If we apply this grammar as a dictionary
 graph, we obtain new paths in the text automaton, as shown on Figure
-\ref{morphoB}.
+\ref{morphoB}. Note that when two tags correspond to analysis within the same
+token, the link between them is displayed with a dashed line.
 
 \begin{figure}[!ht]
 \begin{center}

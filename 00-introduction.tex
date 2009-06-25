@@ -54,7 +54,7 @@ expressions, most notably those which concern the enumeration of compound words.
 Here are the main new features:
 \begin{itemize}
   \item introduction of \verb$LocateTfst$ that performs locate operations
-        on the text automaton (\ref{section-LocateTfst})
+        on the text automaton (\ref{section-locate-tfst}, \ref{section-LocateTfst})
   \item \verb$LocateTfst$ fully supports Korean
   \item new search options (\ref{section-advanced-search-options})
   \item introduction of \verb$Stats$ that can compute statistics from a
@@ -130,3 +130,56 @@ under which the Unitex source code is released, as well as the LGPLLR license
 which applies for the linguistic data distributed with Unitex. There is also
 the 2-clause BSD licence that applies to the TRE library, used by Unitex for 
 morphological filters.
+
+
+\section*{Unitex contributors}
+\addcontentsline{toc}{section}{Unitex contributors}
+Unitex was born as a bet on the power of Open Source philosophy in the academic
+world (see \url{http://igm.univ-mlv.fr/~unitex/why_unitex.html}), 
+relying on the assumption that people would be interested in sharing
+their knowledge and skill into such an open project. The following list
+sounds like Open Source is good for science:
+
+\begin{itemize}
+    \item Olivier Blanc: has integrated the ELAG system into Unitex, originally
+    designed by Eric Laporte, Anne Monceaux and some of their students, has
+    also written \verb+RebuildTfst+ (previously known as \verb+MergeTextAutomaton+)
+    \item Matthieu Constant: author of \verb+Grf2Fst2+
+    \item Julien Decreton: author of the text editor integrated in Unitex,
+    has also designed the undo functionality in the graph editor
+    \item Claude Devis: introduction of morphological filters, 
+    based on the TRE library
+    \item Hyun-Gue Huh: author of the tools used to
+    generate Korean dictionaries
+    \item Claude Martineau: had worked on the simple word inflection part of
+    \verb+MultiFlex+
+    \item Sebastian Nagel: has optimized many parts of the code, has also
+    adapted \verb+PolyLex+ for German and Russian
+    \item Alexis Neme: has optimized \verb+Dico+ and \verb+Tokenize+, has also
+    merged \verb+Locate+ into \verb+Dico+ in order to allow dictionary graphs 
+    \item Aljosa Obuljen: author of \verb+Stats+
+    \item S\'ebastien Paumier: main developper
+    \item Agata Savary: author of \verb+MultiFlex+
+    \item Gilles Vollant: author of \verb+UnitexTool+, has optimized many
+    aspects of Unitex code (memory, speed, multi-compiler compliance, etc)
+    \item Patrick Watrin: author of \verb+XMLizer+, has worked on the
+    integration of \verb+XAlign+
+\end{itemize}
+
+\bigskip
+\noindent Moreover, Unitex would be useless without all the precious linguistic
+resources it contains. All those resources are the result of hard work done
+by people that shall not be forgotten. Some are mentionned in disclaimers that
+come with dictionaries, and complete information is available on:
+
+\bigskip
+\noindent \url{http://igm.univ-mlv.fr/~unitex/linguistic_data_bib.html}
+
+
+\section*{If you use Unitex in research projects...}
+\addcontentsline{toc}{section}{If you use Unitex in research projects...}
+Unitex has been used in several research projects. Some are listed in the
+``Related works'' section of Unitex home page. If you did some work with Unitex
+(resources, project, paper, thesis, ...) and if you want it to be referenced in
+the web site, just send a mail to \url{unitex@univ-mlv.fr}. The more visible,
+the more cited!

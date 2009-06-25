@@ -9,8 +9,8 @@ interpretations.
 \bigskip
 \noindent This chapter presents the concept of text automaton, the details of
 their construction and the operations that can be applied, in particular ambiguity
-removal with ELAG (\cite{ELAG}). It is not possible at the moment to search the
-text automaton for patterns.
+removal with ELAG (\cite{ELAG}). Since version 2.1, it is possible 
+to search the text automaton for patterns (see section\ref{section-locate-tfst}).
 
 \section{Displaying text automaton} \index{Dictionaries!of the text}
 The text automaton explicit all possible lexical interpretations of the
@@ -773,9 +773,9 @@ effects of ELAG grammars.
 
 \subsection{Grammar Optimization}
 \index{Optimizing ELAG Grammars}
-Compilation of ELAG grammars by the \verb$ElagComp$ program
-\index{External programs!\verb$ElagComp$} consists in building an automaton whose language is the
-set of the sequences of lexical tags (or lexical analyses of a sentence) which
+Compilation of ELAG grammars by the \verb+ElagComp+ program
+\index{External programs!\verb+ElagComp+} consists in building an automaton
+whose language is the set of the sequences of lexical tags (or lexical analyses of a sentence) which
 are not accepted by the grammars. This task is complex and can take a lot of
 time. It is however possible to appreciably speed it up by observing certain
 principles at the time of writing gramars.
@@ -924,9 +924,9 @@ text file in the window as shown on Figure\ref{fig-linearization-configuration}
 
 \bigskip
 \noindent If the automaton is not linear, an error message will give you the number of
-the first sentence that contain ambiguity. Otherwise, the \verb+Fst2Unambig+ program
+the first sentence that contain ambiguity. Otherwise, the \verb+Tfst2Unambig+ program
 will build the output file according to the following rules:
-\index{External programs!\verb+Fst2Unambig+}\index{\verb+Fst2Unambig+}
+\index{External programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
 \begin{itemize}
   \item the output file contains one line per sentence;
   \item every line but the last is ended by \verb+{S}+;
@@ -949,3 +949,158 @@ the output text will be:
 2 3 {cats,cat.N+Anl:p} {are,be.V:P2s:P1p:P2p:P3p} {white,white.A} .
 \end{verbatim}
 
+
+\section{Searching patterns in the text automaton}
+\label{section-locate-tfst}
+With the \verb+LocateTfst+ program, Unitex can perform search operations on the
+text automaton. The main advantages are that you can:
+\begin{itemize}
+    \item benefit from ambiguity removal;
+    \item benefit from the application of normalization grammar (see below);
+    \item work at several morphological levels (multi-word units, simple words,
+    morphemes). This is particularly interesting since you can now
+    easily manipulate agglutinative languages like Korean (for Korean, see
+    section \ref{section-korean}).
+   
+\end{itemize}
+
+ 
+\bigskip
+\noindent The rules are very similar to the ones that apply to classical
+searches with \verb+Locate+. Here are the differences:
+
+\begin{itemize}
+    \item you cannot capture sequences with variables inside right contexts, as
+    it is possible with \verb+Locate+ (see Figure \ref{fig-context6},
+    page \pageref{fig-context6})
+    
+    \item you cannot match things that are not in the text automaton: 
+    if the text automaton only contains a compound word tag and not
+    its concurrent simple word tags, you won't be able to match simple words.
+    For instance, in the sentence automaton shown on Figure
+    \ref{fig7-locatetfst1}, it is not possible to match \verb+soixante+
+    or \verb+huit+, since there are no such paths.
+    
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig7-locatetfst1.png}
+\caption{Sentence automaton that cannot match with
+pattern \textit{huit}\label{fig7-locatetfst1}}
+\end{center}
+\end{figure}
+
+    \item matched sequences can differ from sequences that will appear in
+    concordances. In fact, the text automaton may contain tags that do not
+    correspond to the raw input text, in particular when a normalization grammar
+    has been applied. For instance, if you look for the pattern \verb+<le.DET>+
+    in \textit{80jours}'s text automaton, you will obtain 7703 matches, while
+    \verb+Locate+ only finds 5763 matches. This is because some words have been normalized,
+    like \verb+au+ $\rightarrow$ \verb+à le+ or \verb+du+ $\rightarrow$
+    \verb+de le+. So, when you look for \verb+<le.DET>+, \verb+LocateTfst+
+    matches those tags that were added to the text automaton by the
+    normalization grammar, and \verb+Concord+ uses the original sequence in the
+    text to produce the concordance file, as shown on Figure
+    \ref{fig7-locatetfst2}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig7-locatetfst2.png}
+\caption{A surprising concordance for pattern
+\texttt{<le.DET>}\label{fig7-locatetfst2}}
+\end{center}
+\end{figure}
+
+    \item \verb+<TOKEN>+\index{\verb+<TOKEN>+} does not match tokens as defined
+    in \verb+tokens.txt+\index{\verb+tokens.txt+}. It matches any tag of the
+    text automaton. Matched tags can be either longer than text tokens if they
+    are compound word tags, or even shorter, if the text automaton contains 
+    morphological analysis like \verb+un+ as shown on 
+    Figure \ref{morphoB}, page \pageref{morphoB}.
+
+\end{itemize}
+
+
+\section{The special case of Korean}
+\label{section-korean}
+Korean is an agglutinative language that has a very special morphological
+system: words are made of Hangul syllabic characters, but one Hangul character
+corresponds to several Jamo alphabetic characters. For instance, you can see on
+Figure \ref{fig7-korean1} two examples of Hangul characters followed by their
+equivalent Jamo letter sequences.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=4.5cm]{resources/img/fig7-korean1.png}
+\caption{Hangul characters and their equivalent Jamo
+sequences\label{fig7-korean1}}
+\end{center}
+\end{figure}
+
+\noindent Moreover, morphemes do not correspond necessarily to Hangul
+characters. For instance, Figure \ref{fig7-korean2} shows that a given token
+(shown in green) must be analyzed as a combination of two elements: a verb and
+a modifier. The point is that the modifier is only made of one Jamo letter that
+combines with the last Hangul character of the verb in order to give the last
+Hangul character of the whole word (in green). The green tokens correspond to
+untagged tokens. Untagged tokens are not highlighted in green for other
+languages.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=6cm]{resources/img/fig7-korean2.png}
+\caption{Decomposition of a Hangul character\label{fig7-korean2}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent As a consequence, it can be convenient for Korean users to write
+grammars with mixes of Hangul and Jamo characters. Thus, a grammar like the one shown on
+Figure \ref{fig7-korean3} will match sequences like the one shown Figure 
+\ref{fig7-korean4}. Note that such a grammar with several boxes matching only
+one tag in the text automaton is not permitted for other languages than Korean. 
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=5.5cm]{resources/img/fig7-korean3.png}
+\caption{A grammar with two Jamo letters\label{fig7-korean3}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig7-korean4.png}
+\caption{Sentence automaton matched by grammar of
+Figure \ref{fig7-korean3}\label{fig7-korean4}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent REMARKS: 
+\begin{enumerate}
+    \item Jamo letters are not in the Korean alphabet file
+    (\verb+Alphabet.txt+). DO NOT ADD THEM TO THIS FILE, because it
+    would induce dysfunctions in programs.\index{Alphabet!Korean}
+    
+    \item This alphabet file contains equivalences between some Chinese
+    characters and some Hangul ones. In practice, if a grammar contains a
+    Chinese character that has such an equivalent Hangul, it will match this
+    Hangul in the text automaton. For instance, the grammar shown on Figure
+    \ref{fig7-korean5} will match the sentence of Figure \ref{fig7-korean4},
+    because the Korean alphabet file contains an equivalence for that
+    character, as shown on Figure \ref{fig7-korean6}.\index{Chinese characters}
+\end{enumerate}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig7-korean5.png}
+\caption{A grammar with a Chinese character\label{fig7-korean5}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=3.5cm]{resources/img/fig7-korean6.png}
+\caption{Extract of Korean alphabet file\label{fig7-korean6}}
+\end{center}
+\end{figure}
+ 
