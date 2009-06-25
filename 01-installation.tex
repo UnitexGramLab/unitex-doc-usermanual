@@ -116,7 +116,7 @@ corrections are more than welcome.
 (Core 2 Duo), but there is no official solution for older OS X (10.4 or older),
 PowerPC and 32-bit Intel (Core Duo). So,
 \begin{enumerate}
-    \item if you have OS X 10.5, and 64-bit MacOS, you can just get the
+    \item if you have OS X 10.5, and 64-bit Intel MacOS, you can just get the
     Apple JRE 1.6. The only problem is that this version does not start by
     default. See section ``Java for Mac OS X 10.5 Update 2'', 
     at \url{http://developer.apple.com/java/}
@@ -134,7 +134,37 @@ like: "Processor : x.xx Ghz Intel Core Duo", your processor is a 32-bit one.
 \noindent If you see "Processor : x.xx Ghz Intel Core 2 Duo", or if you
 processor is another Intel one (like Xeon), then you have a 64-bit processor.
 
+\subsection{Using the Apple Java 1.6 runtime}
+\bigskip\index{Using the Apple Java 1.6}
+\noindent If you are running Mac OS X 10.5 (or later) on 64-Bits Intel processor, you can just use the Java 1.6 from Apple.\ You can get it from \url{http://www.apple.com/support/downloads/javaformacosx105update1.html}.
 
+\noindent\ You can just start Application -> Utilities -> Java Preferences to verify the status of Java 1.6. First, be sure that "Java SE 6" is on "Java Applications" list
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/java_pref_osx.png}
+\caption{Checking and modify Java Preferences\label{fig-mac0}}
+\end{center}
+\end{figure}
+
+
+\subsubsection{Option 1 : modify the default runtime for Java Applications}
+\noindent If you don't use other Java application that need Java 1.5, you can just put "Java SE 6" at the top of the "Java Applications" list on Java Preference Utility.
+
+\subsubsection{Option 2 : Create an alias to start Java 1.6}
+\noindent If you don't want modify Java global parameters, you can create an alias
+
+    \bigskip
+    \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java"
+    
+    \bigskip
+    \verb+jre6 -jar Unitex.jar
+
+
+
+
+
+
+Then just run Unitex from Terminal
 \subsection{SoyLatte}
 \bigskip\index{SoyLatte}
 \noindent SoyLatte is a functional, X11-based port of the FreeBSD
@@ -143,7 +173,7 @@ supporting Java 6 development; however, the long-term view far more captivating:
 open development of Java 7 for Mac OS X, with a release available in concert 
 with the official Sun release, supported on all recent versions of Mac OS X.
 
-\subsection{Before you start}
+\subsubsection{Before you start}
 \noindent Try it at your own risks ;-) This tutorial tells you what I have done
 to have Unitex running on my MacBook Pro (Mac OS X 10.5.7), but it offers no guarantee 
 that it will work  on your computer and it does not even guarantee that you can 
@@ -168,7 +198,7 @@ click on ``Hardware'', as shown on Figure \ref{fig-mac1}.
 
 \clearpage
 
-\subsection{Installation}
+\subsubsection{Installation}
 \noindent Some of the following installation steps will require the use of the
 terminal application. On MacOS, the terminal application is located in 
 \verb+/Applications/Utilities/Terminal.app+.  When you start this application
@@ -315,6 +345,117 @@ compilation: \verb+make install+
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig-mac3.png}
 \caption{Compiling Unitex C++ programs\label{fig-mac3}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent If the compilation does not start and you get an error message
+stating that the command \verb+make+ cannot be found, you probably need to
+install development programs. On Macintosh the ``all inclusive development
+bundel'' is ``Xcode'' \index{Xcode}(current version is 2.2 and it includes a lot
+of stuff among which). Your can donwload it from the Appel developer Web site.
+
+\bigskip
+\noindent The Xcode application includes a full-featured code editor, a debugger, 
+compilers, and a linker. The Xcode application provides a user interface to many 
+industry-standard and open-source tools, including \verb+gcc+, the Java compilers
+\verb+javac+ and \verb+jikes+, and \verb+gdb+. It provides all of the facilities you
+need to build a program for Mac OS X, whether it's an application, kernel
+extension, or command-line tool.
+
+\bigskip
+\noindent The only problem with Xcode is that it is HUGE to download (800 Mb).
+Of course, you will not need all the stuff included in the package... but all
+what you need is in it.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig-mac4.png}
+\caption{Xcode\label{fig-mac4}}
+\end{center}
+\end{figure}
+
+
+\bigskip
+\noindent Once on your computer the Xcode package looks like the following:
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig-mac5.png}
+\caption{Xcode package\label{fig-mac5}}
+\end{center}
+\end{figure}
+
+
+\bigskip
+\noindent Double-click on the \verb+XCodeTools.mpkg+ icon to install all the
+programs.
+
+
+\subsection{How to makes all files visible on Mac OS}
+\noindent See
+\url{http://www.macworld.com/article/51830/2006/07/showallfinder.html}.
+
+\bigskip
+\noindent Or try it right away... Type: 
+
+\bigskip
+\verb+defaults write com.apple.Finder AppleShowAllFiles ON+
+
+\bigskip
+\noindent Then restart the Finder:
+
+\bigskip
+\verb+killall Finder+
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig-mac6.png}
+\caption{Restarting the Finder\label{fig-mac6}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent To get back to the original configuration, type: 
+
+\bigskip
+\verb+defaults write com.apple.Finder AppleShowAllFiles OFF+
+
+
+\section{First use}
+If you are working on Windows, the program will ask you to choose a
+\index{Directory!personal working} personal working  directory, which you can
+change later in "Info>Preferences...>Directories". To create a directory, click
+on the icon showing a file (see
+figure~\ref{fig-creation-personal-directory}).
+
+\bigskip
+\noindent If you are using Linux or MacOS, the program will automatically create a
+\verb+/unitex+ directory in your \verb+$HOME+ directory. This directory allows
+you to save your personal data. For each language that you will be using, the
+program will copy the root directory of that language to your personal
+directory, except the dictionaries. You can then modify your copy of the
+files without risking to damage the system files.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6.3cm]{resources/img/fig1-1.png}
+\caption{First use under Windows}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig1-2.png}
+\caption{First use under Linux}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig1-3.png}
+\caption{Creating the personal work
+directory\label{fig-creation-personal-directory}}
 \end{center}
 \end{figure}
 
