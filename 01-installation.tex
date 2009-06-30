@@ -151,20 +151,19 @@ processor is another Intel one (like Xeon), then you have a 64-bit processor.
 \noindent If you don't use other Java application that need Java 1.5, you can just put "Java SE 6" at the top of the "Java Applications" list on Java Preference Utility.
 
 \subsubsection{Option 2 : Create an alias to start Java 1.6}
-\noindent If you don't want modify Java global parameters, you can create an alias
+\noindent If you don't want modify Java global parameters, you can create an
+alias:
 
-    \bigskip
-    \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Commands/java"
-    
-    \bigskip
-    \verb+jre6 -jar Unitex.jar
+\bigskip
+\noindent \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/+
+\noindent \verb+1.6/Commands/java"+
+   
+\bigskip
+\noindent \verb+jre6 -jar Unitex.jar+
 
+\bigskip
+\noindent Then just run Unitex from Terminal.
 
-
-
-
-
-Then just run Unitex from Terminal
 \subsection{SoyLatte}
 \bigskip\index{SoyLatte}
 \noindent SoyLatte is a functional, X11-based port of the FreeBSD
