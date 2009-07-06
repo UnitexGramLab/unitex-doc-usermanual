@@ -67,6 +67,8 @@ of the dictionary that is to be verified.
 \begin{itemize}
   \item \verb+-f+/\verb+--delaf+: checks an inflected dictionary;
   \item \verb+-s+/\verb+--delas+: checks a non inflected dictionary;
+  \item \verb+-r+/\verb+--strict+: strict syntax checking against unprotected dot and comma;
+  \item \verb+-t+/\verb+--tolerate+: tolerate unprotected dot and comma;
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: specifies the alphabet file to
         use. 
         
@@ -79,6 +81,8 @@ the text, the list of grammatical codes and syntax, as well as the list of
 inflection codes used. The results of the verification are stored in a file
 called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
 
+\bigskip
+\noindent Select strict syntax checking detect using unprotected dot in inflected form, or unprotected comma in lemma. The tolerate option act like Unitex 2.0 and lower and don't detect them.
 
 
 
