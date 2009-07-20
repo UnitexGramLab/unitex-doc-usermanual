@@ -42,7 +42,8 @@ the console. To see it, click on ``Info>Console''. When a command emits
 no error message, it is displayed with a green icon. Otherwise, the icon is a red
 triangle that you can click on to see the error messages, as shown on Figure
 \ref{fig-console}. This is useful when an error message occurs so fast that you
-cannot read it.
+cannot read it. Note that you can export all the commands diplayed in the
+console to the clipboard with Ctrl+C.
 
 \bigskip
 \begin{figure}[!h]
@@ -68,7 +69,7 @@ of the dictionary that is to be verified.
   \item \verb+-f+/\verb+--delaf+: checks an inflected dictionary;
   \item \verb+-s+/\verb+--delas+: checks a non inflected dictionary;
   \item \verb+-r+/\verb+--strict+: strict syntax checking against unprotected dot and comma;
-  \item \verb+-t+/\verb+--tolerate+: tolerate unprotected dot and comma;
+  \item \verb+-t+/\verb+--tolerate+: tolerates unprotected dot and comma (default);
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: specifies the alphabet file to
         use. 
         
@@ -82,7 +83,9 @@ inflection codes used. The results of the verification are stored in a file
 called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
 
 \bigskip
-\noindent Select strict syntax checking detect using unprotected dot in inflected form, or unprotected comma in lemma. The tolerate option act like Unitex 2.0 and lower and don't detect them.
+\noindent Selecting strict syntax checking detects using unprotected dot in
+inflected form, or unprotected comma in lemma. The \verb+--tolerate+ option acts like Unitex 2.0
+and lower and does not detect them.
 
 
 
