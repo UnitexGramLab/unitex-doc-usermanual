@@ -510,8 +510,8 @@ search.
 \label{section-display-occurrences}
 When the search is finished, the window of
 figure~\ref{fig-search-results} appears showing the number of matched
-occurrences, the number of recognized tokens and the ratio between this number and the total number of
-tokens in the text.
+occurrences, the number of recognized tokens and the ratio between this 
+number and the total number of tokens in the text.
 
 \bigskip
 \begin{figure}[h]
@@ -524,7 +524,7 @@ tokens in the text.
 \noindent After having clicked on "OK" you will see
 window~\ref{fig-configuration-concordance} appear, which allows you to configure
 the presentation of the matched occurrences. You can also open this window by
-clicking on "Display Located Sequences..." in the "Text" menu. The list of
+clicking on "Located Sequences..." in the "Text" menu. The list of
 occurrences is called a \textit{concordance}.\index{Concordance}
 
 \bigskip
@@ -610,7 +610,7 @@ concordances\label{fig-browser-selection}}
 \clearpage
 \subsection{Statistics}
 \label{section-statistics}
-If you select the ``Statistics'' tab in the ``Display indexed sequences..''
+If you select the ``Statistics'' tab in the ``Located sequences..''
 frame, you will see the panel shown on figure~\ref{fig-statistics}. This panel
 allows you to get some statistics from the previously indexed sequences. 
 
@@ -625,12 +625,13 @@ allows you to get some statistics from the previously indexed sequences.
 \bigskip
 \noindent In the ``Mode'' panel, you can select the kind of statistics you want:
 \begin{itemize}
-  \item left+match+right count: shows matches with left and right contexts (see
-  below). ``count'' is the number of occurrences of a given match+context
-  \item collocate count: shows the tokens that cooccur in the match context
-  \item collocate count with z-score: the previous one, plus some additionnal
+  \item collocates by z-score: the previous one, plus some additionnal
   information (number of occurrences of the collocate in the match context and
   in the whole corpus, z-score of the collocate)
+  \item collocates by frequency: shows the tokens that cooccur in the match
+  context
+  \item contexts by frequency: shows matches with left and right contexts (see
+  below). ``count'' is the number of occurrences of a given match+context
 \end{itemize}
 
 \bigskip
