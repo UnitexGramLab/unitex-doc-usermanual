@@ -857,7 +857,8 @@ that illustrates how the semitic inflection process works.
   \item A digit stands for a consonant of the skeleton (\verb+1+ for the first,
   \verb+2+ for the second, etc). In our example, \verb+1+, \verb+2+ and
   \verb+3+ will respectively stand for \verb+k+, \verb+t+ and
-  \verb+b+.
+  \verb+b+. If you want to access to a letter after the ninth one, you must
+  protect its index with angles like \verb+<10>+.
   \item The output of a path must be made of sequences of the form
   \verb+{,.XXX}+. Each \verb+{+ symbol must appear alone in a box. The current
   content of the stack will be dumped between \verb+{+ and \verb+,.XXX}+ each
