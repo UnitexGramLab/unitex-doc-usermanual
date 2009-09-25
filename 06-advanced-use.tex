@@ -700,7 +700,15 @@ between double quotes).
 
    \item You can use morphological filters on \verb+<DIC>+ and patterns
    referring to dictionaries, like \verb+<be>+, \verb+<N:ms>+, etc. 
-
+   
+   \item You can use morphological filters alone or on \verb+<TOKEN>+,
+   but note that your filters will only apply to the current character. As a
+   consequence, filters like \verb+<<[1-9][0-9]>>+ that try to match more than
+   one character will never match anything. In fact, in morphological mode, 
+   morphological filters should only be used to express negations like 
+   \verb+<<[^aeiouy]>>+ (any character that is not a vowel). 
+   
+   
    \item Left and right contexts are forbidden.
 
    \item You can use outputs.
@@ -720,7 +728,7 @@ between double quotes).
     \item You can use patterns that refer to the morphological dictionaries,
     like \verb+<have>+, \verb+<V:K>+, etc. 
 
-    \item The meta \verb+#+, \verb+<PRE>+, \verb+<NB>+, \verb+<TOKEN>+,
+    \item The meta \verb+#+, \verb+<PRE>+, \verb+<NB>+, 
     \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verb+#+}
     \index{\verb+<PRE>+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+} 
     \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
