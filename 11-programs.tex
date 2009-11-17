@@ -419,7 +419,10 @@ lexical units by the \verb+Tokenize+ program.
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
   paths) separated with semi-colons;
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: specifies the Jamo conversion
-  table to use for Korean.\index{Jamo}
+  table to use for Korean;\index{Jamo}
+  \item \verb+-f FST2+/\verb+--fst2=FST2+: Jamo $\rightarrow$ Hangul transducer
+  to use for Korean.
+ 
 \end{itemize}
 
 \bigskip
@@ -818,7 +821,11 @@ occurrences found.
   (\verb+\+ or \verb+/+);
 
   \item \verb+-j TABLE+/\verb+--jamo=TABLE+: Jamo conversion table to use for
-  Korean.\index{Jamo}
+  Korean;\index{Jamo}
+  
+    \item \verb+-f FST2+/\verb+--fst2=FST2+: Jamo $\rightarrow$ Hangul transducer
+  to use for Korean.
+  
 \end{itemize}
 
 \bigskip
