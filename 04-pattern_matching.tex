@@ -110,10 +110,15 @@ text dictionaries.
 \bigskip
 \begin{itemize}
   \item \verb+<be>+: matches all the entries that have \verb+be+ as canonical
-  form;
+  form. Note that this pattern is ambiguous if \verb+be+ is also a grammatical
+  or semantic code;
+  \item \verb+<be.>+: matches all the entries that have \verb+be+ as canonical
+  form. This pattern is not ambiguous as the previous one;
   \item \verb+<be.V>+: matches all entries having \verb+be+ as canonical form
   and the grammatical code \verb+V+;
-  \item \verb+<V>+: matches all entries having the grammatical code \verb+V+;
+  \item \verb+<V>+: matches all entries having the grammatical code \verb+V+.
+  This pattern is as ambiguous as the first one. To remove the ambiguity, you
+  can use either \verb+<.V>+ or \verb$<+V>$; 
   \index{Lexical!labels}
   \item \verb+{am,be.V} or <am,be.V>+: matches all the entries having
   \verb+am+ as inflected form, \verb+be+ as canonical form and the
