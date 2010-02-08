@@ -779,9 +779,22 @@ except \verb+<DIC>+. To do that, you must set the output of the box with
 special variable named \verb+xxx+ that represents the dictionary entry that has
 matched with your pattern. Now you can get the inflected form, lemma and codes
 of the entry with \verb+$xxx.INFLECTED$+, \verb+$xxx.LEMMA$+ and
-\verb+$xxx.CODE$+, as shown on Figure \ref{fig-morpho5}. Moreover, such
-variables can be used even after the end of the morphological mode, as shown on Figure
-\ref{fig-morpho7}.
+\verb+$xxx.CODE$+, as shown on Figure \ref{fig-morpho5}. You can also use the
+following patterns:
+\begin{itemize}
+  \item \verb+$xxx.CODE.GRAM$+: provides only the first grammatical code,
+  supposed to be the POS category
+  
+  \item \verb+$xxx.CODE.SEM$+: provides all remaining grammatical codes, if any,
+  separated with \verb$+$
+  
+  \item \verb+$xxx.CODE.FLEX$+: provides all inflectional codes, if
+  any, separated with \verb$:$
+\end{itemize}
+
+\noindent Moreover, such variables can be used even after the end of the
+morphological mode, as shown on Figure \ref{fig-morpho7}. They can also be
+tested as explained in section \ref{section-variables}.
  
 \begin{figure}[!ht]
 \begin{center}
@@ -804,6 +817,10 @@ variables can be used even after the end of the morphological mode, as shown on 
 \caption{Using a morphological variable in normal mode\label{fig-morpho7}}
 \end{center}
 \end{figure}
+
+
+
+
 
 \section{Exploring grammar paths}
 \index{Exploring the paths of a grammar}
@@ -1059,8 +1076,6 @@ sequences should be retained. During preprocessing, the priority is always given
 to the longest sequences.
 
 
-
-
 \subsection{Transducer outputs with variables}
 \label{section-variables}
 \index{Variables!in graphs}\index{Transducer output!with variables}
@@ -1149,6 +1164,40 @@ figure~\ref{fig-overlapping-variables}.
 \caption{Overlapping variables\label{fig-overlapping-variables}}
 \end{center}
 \end{figure}
+
+\clearpage
+
+\bigskip
+\noindent \textbf{Testing variables}\index{Testing
+variables}\index{Variable!test}
+
+\noindent It is possible to test whether a variable has been defined or not, in
+order to block the current matching operation if the condition is not verified.
+This is done by inserting the sequence \verb+$xxx.SET$+ in the output of a
+graph box. Then, if a variable named \verb+xxx+ has been defined, this sequence
+will be ignored in the output and the matching process will go on; otherwise, matching
+will be stopped and the program will backtrack. This operates on
+normal variables as well as on dictionary entry variables defined in
+morphological mode. You can check out if a variable has not been defined in the
+same way using \verb+$xxx.UNSET$+. Figure \ref{fig-testing-a-variable} shows
+a graph that use a such a variable test. Figure
+\ref{fig-testing-a-variable-results} shows results obtained with this graph in
+MERGE mode.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-29b.png}
+\caption{Testing a variable\label{fig-testing-a-variable}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig6-29c.png}
+\caption{Results of a variable test\label{fig-testing-a-variable-results}}
+\end{center}
+\end{figure}
+
 
 \section{Applying graphs to texts}
 \label{section-applying-graphs-to-text}
