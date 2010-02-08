@@ -419,7 +419,8 @@ lexical units by the \verb+Tokenize+ program.
   \item \verb+-m DICS+/\verb+--morpho=DICS+: this optional parameter indicates
   which morphological dictionaries are to be used, if needed by some \verb+.fst2+
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
-  paths) separated with semi-colons.
+  paths) separated with semi-colons;
+  \item \verb+-K+/\verb+--korean+: tells \verb$Dico$ that it works on Korean.
  
 \end{itemize}
 
@@ -815,7 +816,9 @@ occurrences found.
   
   \item \verb+-d DIR+/\verb+--sntdir=DIR+: puts produced files in \verb+DIR+
   instead of the text directory. Note that \verb+DIR+ must end with a file separator
-  (\verb+\+ or \verb+/+).
+  (\verb+\+ or \verb+/+);
+  
+  \item \verb+-K+/\verb+--korean+: tells \verb+Locate+ that it works on Korean.
   
 \end{itemize}
 
@@ -906,7 +909,11 @@ file named \verb+concord.ind+, just as \verb+Locate+ does.
   without omitting the \verb+.tfst+ extension;
 
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: complete path of the alphabet
-  file.\index{Alphabet}\index{File!alphabet}
+  file;\index{Alphabet}\index{File!alphabet}
+  
+  \item \verb+-K+/\verb+--korean+: tells \verb+LocateTfst+ that it works on
+  Korean.
+  
 \end{itemize}
 
 \bigskip
@@ -989,6 +996,8 @@ lemmas (see chapter \ref{chap-multiflex}).
   \item \verb+-d DIR+/\verb+--directory=DIR+: the directory containing
   \verb+Morphology+ and \verb+Equivalences+ files and inflection graphs for
                                               single and compound words;
+  \item \verb+-K+/\verb+--korean+: tells \verb+MultiFlex+ that it works on
+  Korean;
   \item \verb+-s+/\verb+--only-simple-words+: the program will consider
   compound words as errors;
   \item \verb+-c+/\verb+--only-compound-words+: the program will consider
@@ -1501,7 +1510,9 @@ extension.
   ambiguous forms}
   \index{Normalization!of the text automaton}
   \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: Elag tagset file to use to
-  normalize dictionary entries.
+  normalize dictionary entries;
+  \item \verb+-K+/\verb+--korean+: tells \verb+Txt2Tfst+ that it works on
+  Korean.
 \end{itemize}
 
 \bigskip
