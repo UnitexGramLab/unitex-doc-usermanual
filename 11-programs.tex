@@ -1298,6 +1298,32 @@ and a template graph.
 
 
 
+\section{Tagger}\index{External programs!\verb+Tagger+}\index{\verb+Tagger+}
+\verb+Tagger [OPTIONS] <tfst>+
+
+\bigskip
+\noindent This program takes in input the text automaton of the specified \verb+.tfst+ and applies
+the Viterbi-Path algorithm on it. The result is a linear automaton pruned by a probabilistic way based on
+a second-order hidden Markov model. If the specified training dictionary contains tuples of simple form tags,
+the tagger could prune transitions only on inflectional codes (for example, \verb+under.A+ versus \verb+under.ADV+).
+Else if it contains tuples of compound form tags, so the tagger could prune transitions on inflectional codes 
+and also semantic codes (for example, \verb+the.DET:s+ versus \verb+the.DET:p+). That's why the automata needs to be 
+exploded before applying the tagging process. In this case, a tagset file must be specified.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file.
+  \item \verb+-o OUT+/\verb+--output=OUT+: output text automaton.
+  \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: name of the tagset description file.
+  \item \verb+-d BIN+/\verb+--dictionary=BIN+: a .bin training dictionary that contains frequencies 
+  for unigrams, bigrams and trigrams in order to compute probabilities. This file is obtained with 
+  the \verb+TrainingTagger+ program (see section \ref{section-training-dict}).
+\end{itemize}
+
+
+
+
 
 \section{TagsetNormTfst}\index{External
 programs!\verb+TagsetNormTfst+}\index{\verb+TagsetNormTfst+} \verb+TagsetNormTfst [OPTIONS] <tfst>+
@@ -1484,6 +1510,35 @@ the coding of the text. This sequence is saved in a binary file named
 
 
 
+\section{TrainingTagger}\index{External programs!\verb+TrainingTagger+}\index{\verb+TrainingTagger+}
+\verb+TrainingTagger [OPTIONS] <txt>+
+
+\bigskip
+\noindent \index{Lexicon-grammar!tables}\index{Graph!main}This 
+program automatically generates two training dictionaries from a tagged corpus text file. These dictionaries
+contain respectively simple and compound form tuples (unigrams, bigrams and trigrams) 
+and their frequencies in the corpus (see section \ref{section-training-dict}). They are used by \verb+Tagger+ program in order to compute
+probabilities. The tagged corpus file must follow the format described in section \ref{section-corpus-file}.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-a/--all_dictionaries+: indicates whether the program should produce simple and compound forms
+  dictionaries (default);
+  \item \verb+-s/--simple_forms+: indicates whether the program should produce only simple forms
+  dictionary;
+  \item \verb+-c/--compound_forms+: indicates whether the program should produce only compound forms
+  dictionary;
+  \item \verb+-n/--no_binaries+: indicates whether the program should not compress dictionaries into 
+  \verb+.bin+ files, in this case only \verb+.dic+ files are generated;
+  \item \verb+-b/--binaries+: indicates whether the program should compress dictionaries into 
+  \verb+.bin+ files (default);
+  \item \verb+-o XXX/--output=XXX+: pattern used to name output dictionaries \verb+XXX_simple.bin+
+  and \verb+XXX_compound.bin+ (default=filename of text corpus without extension);
+\end{itemize}
+
+\bigskip
+\noindent NOTE: At final stage, TrainingTagger compresses these two dictionary files into the ".bin" format.
 
 
 \section{Txt2Tfst}\index{External

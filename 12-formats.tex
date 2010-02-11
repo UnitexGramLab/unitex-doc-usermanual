@@ -497,6 +497,9 @@ in the \verb+.snt+ file. Each position is the index in the \verb+text.cod+ file
 where a newline has been replaced by a space. These positions are integers that
 are encoded in 4 bytes.
 
+
+
+
 \section{Text Automaton}
 \subsection{The text.tfst file}
 \label{section-tfst-format}
@@ -1374,6 +1377,100 @@ program.\index{\verb+Elag+}\index{External programs!\verb+Elag+} Here is the
 \verb$    PPVs/postpos.elg$\P
 
 \verb$<elag.rul-1.elg>$\P
+
+\section{Tagger files}
+This section presents files used and produced by TrainingTagger and Tagger programs.
+
+\subsection{The corpus.txt file}
+\index{File!\verb+corpus.txt+}
+\label{section-corpus-file}
+This file is used by TrainingTagger program in order to compute statistics for the Tagger program. It contains sentences 
+where each word is representing by a unit and those are one per line. Each unit is composed of a simple word, 
+followed by a slash and morpho-syntactic codes of the word. These codes are composed of 
+inflectional codes and sometimes followed by a \verb+':'+ and semantic codes. Here is an example of a corpus.txt file :
+
+\bigskip
+\verb+The/DET:s+\P
+
+\verb+president/N:s+\P
+
+\verb+of/PREP+\P
+
+\verb+France/N+\P
+
+\verb+eats/V:P3s+\P
+
+\verb+apples/N:p+\P
+
+\verb+./PONCT+\P
+
+\P
+
+\verb+He/PRO:3ms+\P
+
+\verb+loves/V:P3s+\P
+
+\verb+eating/V:G+\P
+
+\verb+./PONCT+\P
+
+\P
+
+\bigskip
+\noindent NOTE: Sentences must be separated by an empty line.
+
+
+\subsection{The training dictionaries}
+\index{File!\verb+train_dict+}
+\label{section-training-dict}
+The TrainingTagger program generates two training dictionary files (by default) used by Tagger program in order
+to compute a second-order hidden Markov model. 
+These files contain unigram, bigram and trigram tuples gathered from the tagged corpus.txt file. Tuples are
+composed of either a sequence of tags (to compute transition probability) or a sequence of tags followed by a word or a single word (to compute
+emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "simple" or "compound". In the first one, tuples are composed of tags formed of inflectional codes only. In the second one,
+tuples consists in tags formed of inflectional codes and sometimes followed by a \verb+':'+ and semantic codes.
+These tuples are followed by the sequence of punctuations ",." and then an integer representing the number of
+times this tuple appears in the corpus file.
+Here is an example of a simple forms training dictionary : 
+
+\bigskip
+\verb+the,.50+\P
+
+\verb+president,.15+\P
+
+\verb+DET the,.50+\P
+
+\verb+N president,.10+\P
+
+\verb+DET N,.200+\P
+
+\P
+
+\bigskip
+
+\noindent Here is an example of a compound forms training dictionary :
+
+\bigskip
+\verb+the,.50+\P
+
+\verb+president,.15+\P
+
+\verb+DET:s the,.30+\P
+
+\verb+N:s president,.10+\P
+
+\verb+DET:s N:s,.200+\P
+
+\P
+
+\bigskip
+\noindent A special line is added to training dictionaries in order to identify whether they contain simple or compound
+form tuples. This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for simple forms or 1 for
+compound forms.
+
+\bigskip
+\noindent NOTE: At final stage, TrainingTagger compresses these two dictionary files into the ".bin" format.
+
 
 \section{Configuration files}
 \subsection{The Config file}
