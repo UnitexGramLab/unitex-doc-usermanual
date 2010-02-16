@@ -1305,9 +1305,9 @@ and a template graph.
 \noindent This program takes in input the text automaton of the specified \verb+.tfst+ and applies
 the Viterbi-Path algorithm on it. The result is a linear automaton pruned by a probabilistic way based on
 a second-order hidden Markov model. If the specified training dictionary contains tuples of simple form tags,
-the tagger could prune transitions only on inflectional codes (for example, \verb+under.A+ versus \verb+under.ADV+).
-Else if it contains tuples of compound form tags, so the tagger could prune transitions on inflectional codes 
-and also semantic codes (for example, \verb+the.DET:s+ versus \verb+the.DET:p+). That's why the automata needs to be 
+the tagger could prune transitions only on grammatical codes (for example, \verb+under.A+ versus \verb+under.ADV+).
+Else if it contains tuples of compound form tags, so the tagger could prune transitions on grammatical 
+and inflectional codes (for example, \verb+the.DET:s+ versus \verb+the.DET:p+). That's why the automata needs to be 
 exploded before applying the tagging process. In this case, a tagset file must be specified.
 
 \bigskip
