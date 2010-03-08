@@ -75,6 +75,7 @@ the following:
 \bigskip
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
+\index{\verb+<TDIC>+}
 \begin{itemize}
   \item \verb+<E>+ : the empty word or epsilon. Matches the empty string;
   \item \verb+<TOKEN>+ : matches any token, except the space; used by default
@@ -90,6 +91,7 @@ the following:
   dictionaries;\index{Words!simple}
   \item \verb+<CDIC>+ : matches any composed word in the dictionaries of the
   text;\index{Words!compound}
+  \item \verb+<TDIC>+ : matches any tagged token like \verb+{XXX,XXX.XXX}+;
   \item \verb+<NB>+ : matches any contiguous sequence of digit (1234 is matched
   but not 1 234);
   \item \verb+#+ : prohibits the presence of space.\index{Space!prohibited}
@@ -230,7 +232,7 @@ The masks \verb+#+ and \verb+" "+ are the negation of each other.
 \index{Negation}\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
 mask \verb$<!MOT>$ recognizes all tokens that do not consist of
 letters except for the sentence separator \verb+{S}+ and the \verb+{STOP}+ marker.
-Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+ and \verb+<TOKEN>+.
+Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ and \verb+<TOKEN>+.
 
 \bigskip
 \noindent The negation is interpreted in a special way in the lexical masks
