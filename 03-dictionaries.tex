@@ -639,6 +639,9 @@ code \verb+:mp+. Here are the operators that can be used:
 \index{\verb+W+}\index{Operator!\verb+W+}
 \index{\verb+J+}\index{Operator!\verb+J+}
 \index{\verb+.+}\index{Operator!\verb+.+}
+\index{\verb+<R=?>+}\index{Operator!\verb+<R=?>+}
+\index{\verb+<I=?>+}\index{Operator!\verb+<I=?>+}
+\index{\verb+<X=n>+}\index{Operator!\verb+<X=n>+}
 
 \begin{itemize}
   \item \verb+L+ (left) removes a letter from the entry
@@ -671,10 +674,16 @@ code \verb+:mp+. Here are the operators that can be used:
   \texttt{mang\'es} produces the inflected form \verb+mangex+, since \verb+U+
   has turn the \texttt{\'e} into a \verb+e+.
 
-  \item \verb+P+ (uppercase) uppercase the initial letter of the stack. For
+  \item \verb+P+ (uppercase) uppercases the initial letter of the stack. For
   instance, the sequence \verb$Px$ will turn \verb$foo$ into \verb$Foox$.
   
-  \item \verb+W+ (lowercase) lowercase the initial letter of the stack.
+  \item \verb+W+ (lowercase) lowercases the initial letter of the stack.
+
+  \item \verb+<R=?>+ replaces the initial letter of the stack by the letter \verb+?+.
+
+  \item \verb+<I=?>+ inserts the letter \verb+?+ before the initial letter of the stack. 
+
+  \item \verb+<X=n>+ removes the first $n$ letters of the stack. 
    
 \end{itemize}
 
