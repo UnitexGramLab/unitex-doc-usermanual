@@ -595,6 +595,44 @@ transform it into a final state transducer.
 
 
 
+\section{Fst2Check}\index{External programs!\verb+Fst2Check+}\index{\verb+Fst2Check+}
+\verb+Fst2Check [OPTIONS] <fst2>+
+
+\bigskip
+\noindent This program check if a fst2 graph has no error for locate.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-y+/\verb+--loop_check+: enables error checking (loop
+  detection);
+  \item \verb+-n+/\verb+--no_loop_check+: disables error checking (default);
+  \index{Error detection in graphs}\index{Graph!error detection}\index{Errors in graphs}
+  \item \verb+-t+/\verb+--tfst_check+: checks wether the given graph can be
+  considered as a valid sentence automaton or not;
+  \item \verb+-e+/\verb+--no_empty_graph_warning+: no warning will be emitted
+  when a graph matches the empty word. This option is used by \verb+MultiFlex+
+  in order not to scare users with meaningless error messages when they design
+  an inflection grammar that matches the empty word.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{Output options:}
+\begin{itemize}
+  \item \verb+-o file+/\verb+--output=file+: output file for error message;
+  \item \verb+-a+/\verb+--append+: to open the output file in append mode;
+  \item \verb+-s+/\verb+--statistics+: display statistics about fst2 file.
+\end{itemize}
+
+\bigskip
+\noindent This program modifies the input text file.
+
+
+
+
+
+
+
 \section{Fst2List}\index{External programs!\verb+Fst2List+}\index{\verb+Fst2List+}
 \verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-f s/a][-s "L,[R]"]@
 
@@ -1650,6 +1688,60 @@ UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt"
 "-aD:\My Unitex\English\Alphabet_sort.txt" }
 \end{verbatim}
 
+
+
+
+
+
+
+
+
+\section{UnitexToolLogger}\index{External
+programs!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log Unitex programs}
+\label{section-UnitexToolLogger}
+\verb+UnitexToolLogger <utilities>+
+
+\bigskip
+\noindent This program is a superset of UnitexTool that allows execute again an
+.ulp logfile.
+It can also record a running session of an UnitexTool and create an ulp logfile.
+If UnitexToolLogger is used like UnitexTool (with another parameter than RunLog), and
+a file named unitex_logging_parameters_count.txt (in current directory) contain a path, 
+an .ulp logfile will be created for the running session.
+The .ulp file in an uncompressed zipfile (compatible with unzip), and can be useful for
+debugging.
+
+\bigskip
+\verb+UnitexToolLogger RunLog [OPTIONS] <ulp>+
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-m+/\verb+--quiet+: do not emit message when running;
+  \item \verb+-v+/\verb+--verbose+: emit message when running;
+  
+  \item \verb+-d DIR+/\verb+--rundir=DIR+: path where log is executed;
+  \item \verb+-r newfile.ulp+/\verb+--result=newfile.ulp+: name of result ulp created;
+
+  \item \verb+-c+/\verb+--clean+: remove work file after execution;
+  \item \verb+-k+/\verb+--keep+: keep work file after execution;
+
+  \item \verb+-s file.txt+/\verb+--summary=file.txt+: summary file with log compare result to be created;
+  \item \verb+-e file.txt+/\verb+--summary-error=file.txt+: summary file with error compare result to be created;
+
+  \item \verb+-b+/\verb+--no-benchmark+: do not store time execution in result log;
+
+  \item \verb+-n+/\verb+--cleanlog+: remove result ulp after execution;
+  \item \verb+-l+/\verb+--keeplog+: keep result ulp after execution;
+
+  \item \verb+-o NameTool+/\verb+--tool=NameTool+: run only log for NameTool;
+  \item \verb+-i N+/\verb+--increment=N+: increment filename <ulp> by 0 to N;
+  \item \verb+-t N+/\verb+--thread=N+: create N thread;
+  \item \verb+-a N+/\verb+--random=N+: select N time a random log in the list (in each thread);
+  \item \verb+-f N+/\verb+--break-after=N+: user cancel after N run (with one thread only);
+
+  \item \verb+-u PATH+/\verb+--unfound-location=PATH+: take dictionnary and FST2 from PATH if not found on the logfile;
+\end{itemize}
 
 
 
