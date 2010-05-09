@@ -35,6 +35,20 @@ those programs, this information can be omitted. In that case, a default
 definition of letters is used (see \verb+u_is_letter+ 
 in \verb$Unicode.cpp$ source file).
 
+\section{Creating log with UnitexToolLogger}\index{Creating log with UnitexToolLogger}
+\label{section-creating-log-UnitexToolLogger}
+You can create log of external program launches. These log can be useful for debugging
+or regression test. You just need remove or rename the UnitexTool (UnitexTool.exe under
+Windows), and then rename or copy UnitexToolLogger to UnitexTool (UnitexToolLogger.exe
+to UnitexTool.exe under Windows). Then creates an UTF8 text file named
+unitex_logging_parameters.txt. On this text file, put at the first line the path of
+a directory where the log will be written (you must have writting right on this directory),
+and put the number "1" (without quote) on the second line if the log must store the result
+file, "0" (without quote) if you prefer smaller log file. See section \ref{section-log-file} 
+for details about the format of log file. See section \ref{section-UnitexToolLogger} for
+more information about UnitexToolLogger.
+
+
 \section{The console}\index{Console}
 \label{section-console}
 When Unitex launches an external program, the invoked command line is stored in
