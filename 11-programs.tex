@@ -68,6 +68,22 @@ console to the clipboard with Ctrl+C.
 \end{figure}
 
 
+\section{Text file encoding parameters}\index{Text file encoding parameters}
+\label{section-text-file-encoding-parameters}
+Unitex uses \ref{unicode-encoding}Unicode for text file. All program which read or write
+text file share same encoding parameters. Possible format are 
+utf16le-bom, utf16le-no-bom, utf16be-bom, utf16be-no-bom, utf8-bom, utf8-no-bom, 
+for Unicode Big-Endian, Little-Endian and UTF-8, with or without Unicode byte order mark at the beginning of the file.
+For the input format, you can specify several -bom encoding separated by comma, but only one -no-bom encoding.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-k=ENCODING+/\verb+--input_encoding=ENCODING+: input text file format. Can contain several value, separated by a comma;
+  \item \verb+-q=ENCODING+/\verb+--output_encoding=ENCODING+: output text file format. 
+\end{itemize}
+
+
 \section{CheckDic}\index{External programs!\verb+CheckDic+}\index{\verb+CheckDic+}
 \index{Verification of the dictionary format}\index{Dictionaries!verification}
 \verb+CheckDic [OPTIONS] dic+
