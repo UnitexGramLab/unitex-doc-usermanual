@@ -71,10 +71,17 @@ Here are the main new features:
   \item Unitex is now pure LGPL (\ref{section-licences})
   \item Unitex can be compiled as a dynamic library (\verb$.dll$ or \verb$.so$)
   (\ref{section-unitex-developpers})
+  \item Somes Unitex programs can run without memory leak when compiled with preprocessor
+  macro UNITEX\_RELEASE\_MEMORY\_AT\_EXIT or UNITEX\_LIBRARY.
+  This include \verb$Concord$, \verb$Convert$, \verb$Dico$, \verb$Elag$, \verb$Evamb$, \verb$Extract$, \verb$Flatten$, \verb$Fst2Txt$, \verb$Grf2Fst2$, \verb$ImplodeTfst$, \verb$LocateTfst$, \verb$MultiFlex$, \verb$Normalize$, \verb$PolyLex$, \verb$Reg2Grf$, \verb$SortTxt$, \verb$TagsetNormTfst$, \verb$TEI2Txt$, \verb$Tfst2Grf$, \verb$Tfst2Unambig$, \verb$Tokenize$, \verb$Txt2Tfst$, \verb$XMLizer$.
   \item Unitex code is thread-safe
+  \item Encoding of Unicode text file can be specified (\ref{section-text-file-encoding-parameters})
   \item introduction of \verb$UnitexTool$ that can be used to launch several
   Unitex programs in one command to make scripting easier
   (\ref{section-UnitexTool})
+  \item introduction of \verb$UnitexToolLogger$ that can be used to create and
+  run again log of Unitex programs execution.
+  (\ref{section-UnitexToolLogger})
 \end{itemize}
 
 \bigskip

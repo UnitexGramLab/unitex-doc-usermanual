@@ -18,9 +18,10 @@ Unitex accepts also Unicode Big-Endian or UTF-8 files.
 This encoding allows the representation of 65536 characters by coding each of
 them in 2 bytes. In Little-Endian, the bytes are in lo-byte hi-byte order. If
 this order is reversed, we speak of Big-Endian. A text file encoded in Unicode
-Little-Endian, Big-Endian starts with the special character (Unicode byte order mark - BOM) with the hexadecimal value
-\verb+FE FF+ (Big-Endian), \verb+FF FE+ (Little-Endian) or \verb+EF BB BF+ (UTF-8). The newline symbols have to be encoded by the two characters
-\verb+00 0D+ and \verb+00 0A+ (Big-Endian), \verb+0D 00+ and \verb+0A 00+ (Little-Endian), or \verb+0D+ and \verb+0A+ (UTF-8).
+Little-Endian, Big-Endian or UTF-8 starts with the special character (Unicode Byte Order Mark - BOM) with the hexadecimal value
+\verb+FF+\,\verb+FE+ (Little-Endian), \verb+FE+\,\verb+FF+ (Big-Endian) or \verb+EF+\,\verb+BB+\,\verb+BF+ (UTF-8). The
+newline symbols have to be encoded by the two characters \verb+0D+\,\verb+00+ and \verb+0A+\,\verb+00+ (Little-Endian), 
+\verb+00+\,\verb+0D+ and \verb+00+\,\verb+0A+ (Big-Endian), or \verb+0D+ and \verb+0A+ (UTF-8).
 
 \bigskip
 \noindent Consider the following text:
@@ -38,19 +39,19 @@ Little-Endian, Big-Endian starts with the special character (Unicode byte order 
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
-header & U & n & i & t & e & x & \P & $\beta$
+BOM header & U & n & i & t & e & x & \P & $\beta$
 \\
 \hline
-\verb+FFFE+ & \verb+5500+ & \verb+6E00+ & \verb+6900+ & \verb+7400+ & \verb+6500+ & \verb+7800+
-& \verb+0D000A00+ & \verb+B203+
+\verb+FF+\,\verb+FE+ & \verb+55+\,\verb+00+ & \verb+6E+\,\verb+00+ & \verb+69+\,\verb+00+ & \verb+74+\,\verb+00+ & \verb+65+\,\verb+00+ & \verb+78+\,\verb+00+
+& \verb+0D+\,\verb+00+\,\verb+0A+\,\verb+00+ & \verb+B2+\,\verb+03+
 \\
 \hline
 \hline
 - & v & e & r & s & i & o & n & \P
 \\
 \hline
-\verb+2D00+ & \verb+7600+ & \verb+6500+ & \verb+7200+ & \verb+7300+ & \verb+6900+ & \verb+6F+\verb00+
-& \verb+6E+\verb+.00+ & \verb+0D000A00+
+\verb+2D+\,\verb+00+ & \verb+76+\,\verb+00+ & \verb+65+\,\verb+00+ & \verb+72+\,\verb+00+ & \verb+73+\,\verb+00+ & \verb+69+\,\verb+00+ & \verb+6F+\,\verb+00+
+& \verb+6E+\,\verb+00+ & \verb+0D+\,\verb+00+\,\verb+0A+\,\verb+00+
 \\
 \hline
 \end{tabular}
@@ -66,19 +67,19 @@ header & U & n & i & t & e & x & \P & $\beta$
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
-header & U & n & i & t & e & x & \P & $\beta$
+BOM header & U & n & i & t & e & x & \P & $\beta$
 \\
 \hline
-\verb+FEFF+ & \verb+0055+ & \verb+006E+ & \verb+0069+ & \verb+0074+ & \verb+0065+ & \verb+0078+
-& \verb+000D000A+ & \verb+03B2+
+\verb+FE+\,\verb+FF+ & \verb+00+\,\verb+55+ & \verb+00+\,\verb+6E+ & \verb+00+\,\verb+69+ & \verb+00+\,\verb+74+ & \verb+00+\,\verb+65+ & \verb+00+\,\verb+78+
+& \verb+00+\,\verb+0D+\,\verb+00+\,\verb+0A+ & \verb+03+\,\verb+B2+
 \\
 \hline
 \hline
 - & v & e & r & s & i & o & n & \P
 \\
 \hline
-\verb+002D+ & \verb+0076+ & \verb+0065+ & \verb+0072+ & \verb+0073+ & \verb+0069+ & \verb+006F+
-& \verb+006E+ & \verb+000D000A+
+\verb+00+\,\verb+2D+ & \verb+00+\,\verb+76+ & \verb+00+\,\verb+65+ & \verb+00+\,\verb+72+ & \verb+00+\,\verb+73+ & \verb+00+\,\verb+69+ & \verb+00+\,\verb+6F+
+& \verb+00+\,\verb+6E+ & \verb+00+\,\verb+0D+\,\verb+00+\,\verb+0A+
 \\
 \hline
 \end{tabular}
@@ -94,11 +95,11 @@ header & U & n & i & t & e & x & \P & $\beta$
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
-header & U & n & i & t & e & x & \P & $\beta$
+BOM header & U & n & i & t & e & x & \P & $\beta$
 \\
 \hline
-\verb+EFBBBF+ & \verb+55+ & \verb+6E+ & \verb+69+ & \verb+74+ & \verb+65+ & \verb+78+
-& \verb+0D 0A+ & \verb+CEB2+
+\verb+EF+\,\verb+BB+\,\verb+BF+ & \verb+55+ & \verb+6E+ & \verb+69+ & \verb+74+ & \verb+65+ & \verb+78+
+& \verb+0D+\,\verb+0A+ & \verb+CE+\,\verb+B2+
 \\
 \hline
 \hline
@@ -106,7 +107,7 @@ header & U & n & i & t & e & x & \P & $\beta$
 \\
 \hline
 \verb+2D+ & \verb+76+ & \verb+65+ & \verb+72+ & \verb+73+ & \verb+69+ & \verb+6F+
-& \verb+6E+ & \verb+0D0A+
+& \verb+6E+ & \verb+0D+\,\verb+0A+
 \\
 \hline
 \end{tabular}
@@ -116,8 +117,8 @@ header & U & n & i & t & e & x & \P & $\beta$
 
 \bigskip
 \noindent On Unicode Little-Endian, the hi-bytes and lo-bytes have been reversed, which explains why the
-start character is encoded as \verb+FFFE+ in stead of \verb+FEFF+, and
-\verb+000D+ and \verb+OO0A+ are \verb+0D00+ and \verb+0A00+ respectively.
+start character is encoded as \verb+FF+\,\verb+FE+ in stead of \verb+FE+\,\verb+FF+, and
+\verb+00+\,\verb+0D+ and \verb+00+\,\verb+0A+ are \verb+0D+\,\verb+00+ and \verb+0A+\,\verb+00+ respectively.
 
 
 
