@@ -40,8 +40,8 @@ in \verb$Unicode.cpp$ source file).
 You can create log of external program launches. These log can be useful for debugging
 or regression test. You just need remove or rename the UnitexTool (UnitexTool.exe under
 Windows), and then rename or copy UnitexToolLogger to UnitexTool (UnitexToolLogger.exe
-to UnitexTool.exe under Windows). Then creates an UTF8 text file named
-unitex_logging_parameters.txt. On this text file, put at the first line the path of
+to UnitexTool.exe under Windows). Then creates an UTF8 text file
+named unitex\_logging\_parameters.txt. On this text file, put at the first line the path of
 a directory where the log will be written (you must have writting right on this directory),
 and put the number "1" (without quote) on the second line if the log must store the result
 file, "0" (without quote) if you prefer smaller log file. See section \ref{section-log-file} 
@@ -1734,7 +1734,7 @@ programs!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log Unite
 .ulp logfile.
 It can also record a running session of an UnitexTool and create an ulp logfile.
 If UnitexToolLogger is used like UnitexTool (with another parameter than RunLog), and
-a file named unitex_logging_parameters_count.txt (in current directory) contain a path, 
+a file named unitex\_logging\_parameters\_count.txt (in current directory) contain a path, 
 an .ulp logfile will be created for the running session.
 The .ulp file in an uncompressed zipfile (compatible with unzip), and can be useful for
 debugging.
