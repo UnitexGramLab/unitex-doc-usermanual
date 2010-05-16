@@ -1691,6 +1691,34 @@ programs!\verb+Uncompress+}\index{\verb+Uncompress+}
 
 
 
+\section{Untokenize}\index{External
+programs!\verb+Untokenize+}\index{\verb+Untokenize+}
+\label{section-Untokenize}
+\verb+Untokenize [OPTIONS] <txt>+
+
+\bigskip
+\noindent Untokenizes and rebuild the orgininal text. The token list is stored into \verb+.tokens.txt+ and
+         the coded text is stored into \verb+.text.cod+.
+         The file \verb+.enter.pos+ contains the position in tokens of all the carriage return sequences.
+         These files are located in the XXX\_snt directory where XXX is <txt> without its extension.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+
+  \item \verb+-d X+/\verb+--sntdir=X+: uses directory X instead of the text directory; note that X must be (back)slash terminated
+  \item \verb+-n N+/\verb+--number_token=N+: adds tokens number each N token;
+  \item \verb+-r N+/\verb+--range=N+: emits only token from number N to end;
+  \item \verb+-r N,M+/\verb+--range=N,M+: emits only token from number N to M.
+\end{itemize}
+
+
+
+
+
+
+
+
 \section{UnitexTool}\index{External
 programs!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Scripting Unitex programs}
 \label{section-UnitexTool}
