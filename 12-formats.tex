@@ -1570,18 +1570,18 @@ grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
 \noindent NOTE: Sentences must be separated by an empty line.
 
 
-\subsection{The training dictionaries}
+\subsection{The tagger data file}
 \index{File!\verb+train_dict+}
 \label{section-training-dict}
-The TrainingTagger program generates two training dictionary files (by default) used by Tagger program in order
+The TrainingTagger program generates two data files (by default) used by Tagger program in order
 to compute a second-order hidden Markov model. 
 These files contain unigram, bigram and trigram tuples gathered from the tagged corpus.txt file. Tuples are
-composed of either a sequence of tags (to compute transition probability) or a sequence of tags followed by a word or a single word (to compute
-emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "simple" or "compound". In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
-tuples consists in tags formed of grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
+composed of either a sequence of tags (to compute transition probability) or a sequence of tags followed by a word (to compute
+emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "raw" or "inflected". In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
+tuples consist in tags formed of grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
 These tuples are followed by the sequence of punctuations ",." and then an integer representing the number of
 times this tuple appears in the corpus file.
-Here is an example of a simple forms training dictionary : 
+Here is an example of a data file with raw tags : 
 
 \bigskip
 \verb+the,.50+\P
@@ -1598,7 +1598,7 @@ Here is an example of a simple forms training dictionary :
 
 \bigskip
 
-\noindent Here is an example of a compound forms training dictionary :
+\noindent Here is an example of a data file with inflected tags :
 
 \bigskip
 \verb+the,.50+\P
@@ -1614,12 +1614,12 @@ Here is an example of a simple forms training dictionary :
 \P
 
 \bigskip
-\noindent A special line is added to training dictionaries in order to identify whether they contain simple or compound
-form tuples. This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for simple forms or 1 for
-compound forms.
+\noindent A special line is added to data files in order to identify whether the file contains raw or inflected tags. 
+This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for raw tags or 1 for
+inflected tags.
 
 \bigskip
-\noindent NOTE: At final stage, TrainingTagger compresses these two dictionary files into the ".bin" format.
+\noindent NOTE: At final stage, TrainingTagger compresses these two data files into the ".bin" format.
 
 
 \section{Configuration files}
