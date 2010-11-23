@@ -1381,9 +1381,9 @@ and a template graph.
 \bigskip
 \noindent This program takes in input the text automaton of the specified \verb+.tfst+ and applies
 the Viterbi-Path algorithm on it. The result is a linear automaton pruned by a probabilistic way based on
-a second-order hidden Markov model. If the specified tagger data file contains tuples of raw tags,
+a second-order hidden Markov model. If the specified tagger data file contains tuples of "cat" tags,
 the tagger could prune transitions only on grammatical codes (for example, \verb+under.A+ versus \verb+under.ADV+).
-Else if it contains tuples of inflected tags, so the tagger could prune transitions on grammatical 
+Else if it contains tuples of "morph" tags, so the tagger could prune transitions on grammatical 
 and inflectional codes (for example, \verb+the.DET:s+ versus \verb+the.DET:p+). That's why the automata needs to be 
 exploded before applying the tagging process. In this case, a tagset file must be specified.
 
@@ -1589,26 +1589,27 @@ the coding of the text. This sequence is saved in a binary file named
 
 \section{TrainingTagger}\index{External programs!\verb+TrainingTagger+}\index{\verb+TrainingTagger+}
 \verb+TrainingTagger [OPTIONS] <txt>+
+\label{section-TrainingTagger}
 
 \bigskip
 \noindent \index{Lexicon-grammar!tables}\index{Graph!main}This 
 program automatically generates two tagger data files from a tagged corpus text file. Those files contain tuples (unigrams, bigrams and trigrams), 
-formed by tags and words. In the first data file, tags are raw tags (i.e. only grammatical codes). In the second data file,
-tags are inflected tags (i.e. grammatical and inflectional codes). They are used by \verb+Tagger+ program in order to compute
+formed by tags and words. In the first data file, tags are "cat" tags (i.e. only grammatical codes). In the second data file,
+tags are "morph" tags (i.e. grammatical and inflectional codes). They are used by \verb+Tagger+ program in order to compute
 probabilities. The tagged corpus file must follow the format described in section \ref{section-corpus-file}.
 
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
   \item \verb+-a/--all_dictionaries+: indicates whether the program should produce all data files (default);
-  \item \verb+-r/--raw+: indicates whether the program should produce only data file with raw tags;
-  \item \verb+-i/--inflected+: indicates whether the program should produce only data file with inflected tags;
+  \item \verb+-c/--cat+: indicates whether the program should produce only data file with "cat" tags;
+  \item \verb+-m/--morph+: indicates whether the program should produce only data file with "morph" tags;
   \item \verb+-n/--no_binaries+: indicates whether the program should not compress data files into
   \verb+.bin+ files, in this case only \verb+.dic+ data files are generated;
   \item \verb+-b/--binaries+: indicates whether the program should compress data files into 
   \verb+.bin+ files (default);
-  \item \verb+-o XXX/--output=XXX+: pattern used to name output tagger data files \verb+XXX_data_raw.bin+
-  and \verb+XXX_data_inflected.bin+ (default=filename of text corpus without extension);
+  \item \verb+-o XXX/--output=XXX+: pattern used to name output tagger data files \verb+XXX_data_cat.bin+
+  and \verb+XXX_data_morph.bin+ (default=filename of text corpus without extension);
 \end{itemize}
 
 \bigskip

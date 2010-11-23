@@ -1577,11 +1577,11 @@ The TrainingTagger program generates two data files (by default) used by Tagger 
 to compute a second-order hidden Markov model. 
 These files contain unigram, bigram and trigram tuples gathered from the tagged corpus.txt file. Tuples are
 composed of either a sequence of tags (to compute transition probability) or a sequence of tags followed by a word (to compute
-emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "raw" or "inflected". In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
+emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "cat" or "morph". In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
 tuples consist in tags formed of grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
 These tuples are followed by the sequence of punctuations ",." and then an integer representing the number of
 times this tuple appears in the corpus file.
-Here is an example of a data file with raw tags : 
+Here is an example of a data file with "cat" tags : 
 
 \bigskip
 \verb+the,.50+\P
@@ -1598,7 +1598,7 @@ Here is an example of a data file with raw tags :
 
 \bigskip
 
-\noindent Here is an example of a data file with inflected tags :
+\noindent Here is an example of a data file with "morph" tags :
 
 \bigskip
 \verb+the,.50+\P
@@ -1614,9 +1614,9 @@ Here is an example of a data file with raw tags :
 \P
 
 \bigskip
-\noindent A special line is added to data files in order to identify whether the file contains raw or inflected tags. 
-This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for raw tags or 1 for
-inflected tags.
+\noindent A special line is added to data files in order to identify whether the file contains "cat" or "morph" tags. 
+This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for "cat" tags or 1 for
+"morph" tags.
 
 \bigskip
 \noindent NOTE: At final stage, TrainingTagger compresses these two data files into the ".bin" format.
