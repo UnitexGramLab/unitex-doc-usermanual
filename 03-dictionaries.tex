@@ -812,17 +812,34 @@ order to avoid having to replace the names of inflectional grammars by the real
 grammatical codes in the dictionary used, the program replaces these names by the
 longest prefixes made of letters if you have selected the "Remove class numbers"
 button. Thus, \verb+N4+ is replaced by \verb+N+. By choosing the inflectional
-grammar names carefully, one can construct a ready to use dictionary.
+grammar names carefully, one can construct a ready-to-use dictionary.
 
 \bigskip
-\noindent Let's have a look at the dictionary we get after the DELAS inflection in
-our example:
+\noindent Figure \ref{fig-inflection-result} shows the dictionary we get after the inflection of 
+our DELAS example.
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9.5cm]{resources/img/fig3-7.png}
-\caption{Result of automatic inflection}
+\caption{Result of automatic inflection\label{fig-inflection-result}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent \textbf{Semantic codes}
+
+\noindent In some languages, there are inflectional features that actually correspond to 
+semantic ones, like for instance markers for the passive form. Such codes may not appear
+as inflectional ones, but rather as semantic ones. To do that and produce semantic codes, 
+you have to insert a plus sign at the beginning of the output of a box. The box must only 
+contain the semantic code preceeded by a plus, as shown on Figure \ref{fig-inflection-sem}.
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=6cm]{resources/img/fig3-7sem.png}
+\caption{An inflection grammar with a semantic code\label{fig-inflection-sem}}
 \end{center}
 \end{figure}
 
