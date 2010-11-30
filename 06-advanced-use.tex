@@ -770,8 +770,7 @@ MUST be \verb+.bin+ ones. Once done, you can apply your grammar and get results.
 \subsection{Dictionary entry variables}
 \index{Dictionary entry variables}
 \index{Variables!Dictionary entry}
-Whereas you cannot define standard variables in morphological mode, you can
-associate variables to patterns that refer to the morphological dictionaries,
+You can associate variables to patterns that refer to the morphological dictionaries,
 except \verb+<DIC>+. To do that, you must set the output of the box with
 \verb+$xxx$+ where \verb+xxx+ is a valid variable name. That defines a
 special variable named \verb+xxx+ that represents the dictionary entry that has
@@ -815,6 +814,16 @@ tested as explained in section \ref{section-variables}.
 \caption{Using a morphological variable in normal mode\label{fig-morpho7}}
 \end{center}
 \end{figure}
+
+
+\bigskip
+\noindent \textbf{Dictionary variable in LocateTfst}
+
+\noindent In grammars to be applied with \verb+LocateTfst+, you have an extra feature. 
+Even if you are not in morphological mode, you can capture the information associated to a tag
+contained in a box of the text automaton in a dictionary variable. To do that, you have to associate 
+to your box an output of the form \verb+$:abc$+ where \verb+abc+ will be the name of your variable.
+You can then use it as dictionary variable capture in morphological mode.
 
 
 
