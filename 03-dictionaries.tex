@@ -1091,9 +1091,22 @@ Dictionary entries produced by dictionary graphs are, of course, taken
 into account by the \verb+Locate+ program. However, you can not refer to 
 them in the morphological mode since they do not belong to a morphological 
 dictionary. If you want to do so, you just have to add \verb+b+ at the end of
-the graph name. The following combinations can be used: \verb$-b$ \verb$-b-$
-\verb$-b+$ \verb$-rb$ \verb$-rb-$ \verb$-rb+$
+the graph name. If you add \verb+z+ instead, then the morphological dictionary
+will be compressed immediately, thus being usable by the next dictionary graph 
+to be applied.
  
+\subsubsection{Naming conventions}
+The whole naming scheme for dictionary graph is as follows:
+
+\verb$name(-XYZ)([-+]).fst2$
+
+\noindent where:
+\begin{itemize}
+\item \verb+X+ is in \verb+[rRmM]+: \verb+r+ means REPLACE mode; \verb+M+ means MERGE mode (default);
+\item \verb+Y+ is in \verb+[bBzZ]+: option that rules the production of a morphological dictionary (see previous section);
+\item \verb+Z+ is in \verb+[aAlLsS]+: \verb+a+ means that the graph will be applied in "All matches" mode; \verb+l+ means 
+      "Longest matches" mode (default); \verb+s+ means "Shortest matches" mode.
+\end{itemize}
 
 
 
