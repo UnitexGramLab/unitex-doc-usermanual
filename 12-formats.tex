@@ -917,6 +917,11 @@ file contains one line per token, each line being made of 2 integers \verb$x y$:
 \noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
 
 
+\subsection{The tfst\_tags\_by\_freq.txt and tfst\_tags\_by\_alph.txt files}
+\index{File!\verb+tfst_tags_by_freq.txt+}
+\index{File!\verb+tfst_tags_by_alph.txt+}
+Those files contain all the tags that appear in the text automaton sorted by frequence and alphabetical order.
+
 
 \section{Concordances}
 \subsection{The concord.ind file}
@@ -1141,6 +1146,11 @@ format (see section \ref{section-DELAF-format}).
 \subsection{err}
 \index{File!\verb+err+}
 This file is made of unkown words, one per line.
+
+\subsection{tags\_err}
+\index{File!\verb+tags_err+}
+This file is made of unkown words, one per line. The difference with the \verb+err+ file is that 
+in this one do not appear simple words that have been matched in the \verb+tags.ind+ file.
 
 \subsection{tags.ind}
 \index{File!\verb+tags.ind+}
@@ -1835,11 +1845,15 @@ directory of the current language and has the same format as the
 \verb+system_dic.def+ file. 
 The dictionaries need to be in the \verb+(current language)/Dela+ sub-directory of the personal directory of the user.
 
-\subsection{The user.cfg file}
+\subsection{The user.cfg and .unitex.cfg files}
 \index{File!\verb+.cfg+}
 Under Linux, Unitex expects the personal directory of the user to be called
-\verb+unitex+ and expects it to be in his root directory (\verb+$HOME+). Under
-Windows, it is not always possible to associate a directory to a user per
+\verb+unitex+ and expects it to be in his root directory (\verb+$HOME+). If you want
+to change this default location, a \verb+.unitex.cfg+ file is created in your home directory, and
+it contains the path to your private Unitex directory. This file is a UTF8 one.
+
+\bigskip
+\noindent Under Windows, it is not always possible to associate a directory to a user per
 default. To compensate for that, Unitex creates a \verb+.cfg+ file for each user
 that contains the path to his personal directory. This file is saved under the
 name \verb+(user login).cfg+ in the \verb+Unitex/Users+ system sub-directory.
@@ -1857,11 +1871,11 @@ designed to be displayed in the graphical interface. This section describes thes
 files and some others.
 
 
-\subsection{The dlf.n, dlc.n et err.n files}
-\index{File!\verb+dlf.n+}\index{File!\verb+dlc.n+}\index{File!\verb+err.n+}
-\index{File!\verb+dlf+}\index{File!\verb+dlc+}\index{File!\verb+err+}
-These three files are text files that are stored in the text directory. They
-contain the number of lines of the \verb+dlf+, \verb+dlc+ and \verb+err+ files
+\subsection{The dlf.n, dlc.n, err.n et tags\_err.n files}
+\index{File!\verb+dlf.n+}\index{File!\verb+dlc.n+}\index{File!\verb+err.n+}\index{File!\verb+tags_err.n+}
+\index{File!\verb+dlf+}\index{File!\verb+dlc+}\index{File!\verb+err+}\index{File!\verb+tags_err+}
+These files are text files that are stored in the text directory. They
+contain the number of lines of the \verb+dlf+, \verb+dlc+, \verb+err+ and \verb+tags_err+ files
 respectively. These numbers are followed by a newline.
 
 
@@ -1997,6 +2011,18 @@ command line used to run the tool;
   \item \verb+dest/xxx+: a copy of file created by the tool.
 \end{itemize}
 
-If the second line of unitex\_logging\_parameters.txt contain 0, these file are not recorded, but
-if the second line of unitex\_logging\_parameters.txt contain 1, they are recorded;
+If the second line of unitex\_logging\_parameters.txt contains 0, these file are not recorded;
+if this line contains 1, they are recorded;
 
+\subsection{Arabic typographic rules: arabic\_typo\_rules.txt}
+\index{Arabic typographic rules}
+\index{File!\verb+arabic_typo_rules.txt+}
+For Arabic, dictionary lookups can be parameterized with a file that describes whether some typographic 
+variations are allowed or not. This file is made of lines like the following:
+
+\bigskip
+\noindent \verb+fatha omission=YES+
+
+\bigskip
+\noindent where \verb+fatha omission+ is the name of the rule. For a complete description of all the
+available rules, you have to consult the \verb+Arabic.h+ file in the program sources.
