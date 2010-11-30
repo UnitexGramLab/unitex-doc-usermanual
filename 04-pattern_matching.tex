@@ -156,30 +156,33 @@ present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
 \texttt{habitu\'e,.A+z1:ms}
 
 \bigskip
-\noindent It is possible to exclude codes by preceding them with the character \verb+-+
+\noindent It is possible to exclude codes by preceding them with the character \verb+~+
 instead of \verb$+$. In order to be recognized, an entry has to contain all the
 codes required by the lexical mask and none of the prohibited ones. The mask
-\verb$<A-z3>$ thus recognizes all the adjectives that do not have the code
+\verb$<A~z3>$ thus recognizes all the adjectives that do not have the code
 \verb+z3+ (cf. table~\ref{tab-semantic-codes}).
-If you want to refer to a code containing the character \verb$-$ you have to
-escape this character by preceding it with a \verb+\+. Thus, the mask
-\verb$<N+faux\-ami>$ could recognize all entries of the dictionaries containing
-the codes \verb$N$ and \verb$faux-ami$.
-\index{Exclusion of grammatical and semantic codes}\index{\verb+-+}
+If you want to refer to a code containing the character \verb$~$ you have to
+escape this character by preceding it with a \verb+\+. 
+
+\bigskip
+\noindent CHANGE NOTE: before version 2.1, the negation operator was the minus. If you want
+                       to preserve backward compatibility without modifying your graphs, you have
+                       to call \verb+Locate+ by hand with the \verb+-g minus+ option.
+\index{Exclusion of grammatical and semantic codes}\index{\verb+~+}
 
 \bigskip
 \noindent The order in which the codes appear in the mask is not important. The
 three following patterns are equivalent:
 
 \begin{verbatim}
-<N-Hum+z1>
-<z1+N-Hum>
-<-Hum+z1+N>
+<N~Hum+z1>
+<z1+N~Hum>
+<~Hum+z1+N>
 \end{verbatim}
 
 \bigskip
 \noindent NOTE: it is not possible to use a lexical mask that only has
-prohibited codes. \verb+<-N>+ and \verb+<-A-z1>+ are thus incorrect masks. 
+prohibited codes. \verb+<~N>+ and \verb+<~A~z1>+ are thus incorrect masks. 
 However, you can express
 such constraints using contexts (see section~\ref{section-contexts}).
 
