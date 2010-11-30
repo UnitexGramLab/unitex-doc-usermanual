@@ -2,7 +2,7 @@
 \label{chap-external-programs}
 This chapter presents the use of the different programs of which Unitex is
 composed. These programs, which can be found in the \verb+Unitex/App+ folder, are
-automatically called by the interface (in fact, \verb+UnitexTool+ is
+automatically called by the interface (in fact, \verb+UnitexToolLogger+ is
 actually called, in order to reduce significantly the size of the downloadable
 zip file). It is possible to see the commands that have been executed by
 clicking on "Info>Console". It is also possible to see the options of the different programs on "Info>Help on commands" (see Figure \ref{fig-help}). Note that that all Unitex
@@ -35,18 +35,25 @@ those programs, this information can be omitted. In that case, a default
 definition of letters is used (see \verb+u_is_letter+ 
 in \verb$Unicode.cpp$ source file).
 
-\section{Creating log with UnitexToolLogger}\index{Creating log with UnitexToolLogger}
-\label{section-creating-log-UnitexToolLogger}
-You can create log of external program launches. These log can be useful for debugging
-or regression test. You just need remove or rename the UnitexTool (UnitexTool.exe under
-Windows), and then rename or copy UnitexToolLogger to UnitexTool (UnitexToolLogger.exe
-to UnitexTool.exe under Windows). Then creates an UTF8 text file
-named unitex\_logging\_parameters.txt. On this text file, put at the first line the path of
-a directory where the log will be written (you must have writting right on this directory),
-and put the number "1" (without quote) on the second line if the log must store the result
-file, "0" (without quote) if you prefer smaller log file. See section \ref{section-log-file} 
-for details about the format of log file. See section \ref{section-UnitexToolLogger} for
-more information about UnitexToolLogger.
+
+\section{Creating log files}\index{Creating log files}
+\label{section-creating-log-files}
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig11-1a.png}
+\caption{Logging configuration\label{fig-logging-config}}
+\end{center}
+\end{figure}
+
+You can create log files of external program launches. These log files can be useful for debugging
+or regression tests. You just need to enable this feature in the Preferences frame. You have
+to choose a log directory where all log files will be stored and to select the "Produce log"
+check box. Clicking on the "Clear all logs" button will remove all log files contained in this directory,
+if any. Then, any further program execution will produce a \verb+unitex_log_XXX.ulp+ file located in the log 
+directory. \verb+XXX+ stands for the log number that can be found in the console (see next section).
+
 
 
 \section{The console}\index{Console}
@@ -56,7 +63,8 @@ the console. To see it, click on ``Info>Console''. When a command emits
 no error message, it is displayed with a green icon. Otherwise, the icon is a red
 triangle that you can click on to see the error messages, as shown on Figure
 \ref{fig-console}. This is useful when an error message occurs so fast that you
-cannot read it. Note that you can export all the commands diplayed in the
+cannot read it. If a command has been logged, its log number appears in the second column.
+Note that you can export all the commands diplayed in the
 console to the clipboard with Ctrl+C.
 
 \bigskip
@@ -104,6 +112,8 @@ of the dictionary that is to be verified.
   \item \verb+-t+/\verb+--tolerate+: tolerates unprotected dot and comma (default);
   \item \verb+-n+/\verb+--no_space_warning+: tolerates spaces in
   grammatical/semantic/inflectional codes;
+  \item \verb+-p+/\verb+--skip_path+: does not display the full path of the dictionary (useful 
+  for consistent log files across several systems);
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: specifies the alphabet file to
         use. 
         
@@ -135,10 +145,14 @@ and lower and does not detect them.
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
+  \item \verb+-o BIN+/\verb+--output=BIN+: sets the output file. By default, a file \verb+xxx.dic+ will
+  produce a file \verb+xxx.bin+;
   \item \verb+-f+/\verb+--flip+: indicates
-that the inflected and canonical forms should be swapped in the compressed
-dictionary. This option is used to construct an inverse dictionary which is
-necessary for the program \verb+Reconstrucao+.
+  that the inflected and canonical forms should be swapped in the compressed
+  dictionary. This option is used to construct an inverse dictionary which is
+  necessary for the program \verb+Reconstrucao+;
+  \item \verb+-s+/\verb+--semitic+: indicates that the semitic compression algorithm should be used. Setting
+  this option with semitic languages like Arabic significantly reduces the size of the output dictionary.
 \end{itemize}
 
 \bigskip
@@ -316,6 +330,14 @@ there were computed.
 \end{itemize}
 
 \bigskip
+\noindent \textbf{Transliteration options (only for Arabic):}
+\begin{itemize}
+  \item \verb+-F+/\verb+--delaf+: the input is a DELAF and we only want to transliterate the inflected form and the lemma;
+  \item \verb+-S+/\verb+--delas+: the input is a DELAS and we only want to transliterate the lemma.
+\end{itemize}
+
+
+\bigskip
 \noindent \textbf{Output options:}
 \begin{itemize}
   \item \verb+-r+/\verb+--replace+: input files are overwritten (default);
@@ -454,7 +476,11 @@ lexical units by the \verb+Tokenize+ program.
   which morphological dictionaries are to be used, if needed by some \verb+.fst2+
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
   paths) separated with semi-colons;
-  \item \verb+-K+/\verb+--korean+: tells \verb$Dico$ that it works on Korean.
+  \item \verb+-K+/\verb+--korean+: tells \verb$Dico$ that it works on Korean;
+  \item \verb+-s+/\verb+--semitic+: tells \verb$Dico$ that it works on a semitic language (needed 
+  if \verb$Dico$ has to compress a morphological dictionary);
+  \item \verb+-u X+/\verb+--arabic_rules=X+: specifies the Arabic typographic rule configuration file.
+
  
 \end{itemize}
 
@@ -476,6 +502,7 @@ them in the directory of the text:
   \item \verb+dlf+: dictionary of simple words in the text;
   \item \verb+dlc+: dictionary of compound words in the text;
   \item \verb+err+: list of unknown words in the text;
+  \item \verb+tags_err+: unrecognized simple words that are not matched by the \verb+tags.ind+ file;
   \item \verb+tags.ind+ : sequences to be inserted in the text automaton
   (see section \ref{section-dictionary-graphs}, page \pageref{section-dictionary-graphs});
   \item \verb+stat_dic.n+: file containing the number of simple words, the number
@@ -483,13 +510,8 @@ them in the directory of the text:
 \end{itemize}
 
 \bigskip
-\noindent NOTE: Files \verb+dlf+, \verb+dlc+ and \verb+err+ are not sorted. Use the
+\noindent NOTE: Files \verb+dlf+, \verb+dlc+, \verb+err+ and \verb+tags_err+ are not sorted. Use the
 program \verb+SortTxt+ to sort them.
-
-
-
-
-
 
 
 
@@ -818,6 +840,8 @@ extension \verb+.grf+.
   an inflection grammar that matches the empty word. 
   \item \verb+-t+/\verb+--tfst_check+: checks wether the given graph can be
   considered as a valid sentence automaton or not.
+  \item \verb+-s+/\verb+--silent_grf_name+: does not print the graph names
+  (needed for consistent log files across several systems).
 \end{itemize}
 
 \bigskip
@@ -888,7 +912,13 @@ occurrences found.
   instead of the text directory. Note that \verb+DIR+ must end with a file separator
   (\verb+\+ or \verb+/+);
   
-  \item \verb+-K+/\verb+--korean+: tells \verb+Locate+ that it works on Korean.
+  \item \verb+-K+/\verb+--korean+: tells \verb+Locate+ that it works on Korean;
+
+  \item \verb+-u X+/\verb+--arabic_rules=X+: Arabic typographic rule configuration file;
+
+  \item \verb+-g X+/\verb+--negation_operator=X+: specifies the negation operator to be used in
+  Locate patterns. The two legal values for \verb+X+ are \verb+minus+ and \verb+tilde+ (default).
+  Using \verb+minus+ provides backward compatibility with previous versions of Unitex.
   
 \end{itemize}
 
@@ -989,7 +1019,11 @@ file named \verb+concord.ind+, just as \verb+Locate+ does.
   file;\index{Alphabet}\index{File!alphabet}
   
   \item \verb+-K+/\verb+--korean+: tells \verb+LocateTfst+ that it works on
-  Korean.
+  Korean;
+
+  \item \verb+-g X+/\verb+--negation_operator=X+: specifies the negation operator to be used in
+  Locate patterns. The two legal values for \verb+X+ are \verb+minus+ and \verb+tilde+ (default).
+  Using \verb+minus+ provides backward compatibility with previous versions of Unitex.
   
 \end{itemize}
 
@@ -1078,7 +1112,9 @@ lemmas (see chapter \ref{chap-multiflex}).
   \item \verb+-s+/\verb+--only-simple-words+: the program will consider
   compound words as errors;
   \item \verb+-c+/\verb+--only-compound-words+: the program will consider
-  simple words as errors.
+  simple words as errors;
+  \item \verb+-p DIR+/\verb+--pkgdir=DIR+: specifies the graph repository.
+
 \end{itemize}\index{Hangul}\index{Hangul}
 
 \bigskip
@@ -1602,7 +1638,7 @@ probabilities. The tagged corpus file must follow the format described in sectio
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
-  \item \verb+-a/--all_dictionaries+: indicates whether the program should produce all data files (default);
+  \item \verb+-a/--all+: indicates whether the program should produce all data files (default);
   \item \verb+-c/--cat+: indicates whether the program should produce only data file with "cat" tags;
   \item \verb+-m/--morph+: indicates whether the program should produce only data file with "morph" tags;
   \item \verb+-n/--no_binaries+: indicates whether the program should not compress data files into
@@ -1611,6 +1647,7 @@ probabilities. The tagged corpus file must follow the format described in sectio
   \verb+.bin+ files (default);
   \item \verb+-o XXX/--output=XXX+: pattern used to name output tagger data files \verb+XXX_data_cat.bin+
   and \verb+XXX_data_morph.bin+ (default=filename of text corpus without extension);
+  \item \verb+-s/--semitic+: indicates that the semitic compression algorithm should be used.
 \end{itemize}
 
 \bigskip
