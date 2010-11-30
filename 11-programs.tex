@@ -94,6 +94,28 @@ For the input format, you can specify several *-bom encoding separated by comma,
 By default, value are \verb+--input_encoding=utf16le-bom,utf16be-bom,utf8-bom --output_encoding=utf16le-bom+.
 
 
+\section{BuildKrMwuDic}\index{External programs!\verb+BuildKrMwuDic+}\index{\verb+BuildKrMwuDic+}
+\index{Generation of Korean MWU dictionary}\index{Korean MWU dictionary}
+\verb+BuildKrMwuDic [OPTIONS] dic+
+
+\bigskip
+\noindent This program generates a MWU dictionary graph from a text table \verb+dic+ describing each component
+of each MWU.  
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+   \item \verb+-o GRF+/\verb+--output=GRF+: .grf file to produce;
+   \item \verb+-d DIR+/\verb+--directory=DIR+: inflection directory containing the inflection graphs required
+   to produce morphological variants of roots;
+   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file to use;
+   \item \verb+-b BIN+/\verb+--binary=BIN+: .bin simple word dictionary to use.
+\end{itemize}
+
+
+
+
+
 \section{CheckDic}\index{External programs!\verb+CheckDic+}\index{\verb+CheckDic+}
 \index{Verification of the dictionary format}\index{Dictionaries!verification}
 \verb+CheckDic [OPTIONS] dic+
