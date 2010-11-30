@@ -513,7 +513,7 @@ POS ADV
 .
 
 POS PRO
-inflex:
+flex:
 pers   = 1 2 3
 genre  = m f
 nombre = s p
@@ -538,7 +538,7 @@ Dnom                                  # rien
 .
 
 POS A ## adjectifs
-inflex:
+flex:
 genre  = m f
 nombre = s p
 cat:
@@ -551,7 +551,7 @@ _  # pour {de bonne humeur,.A}, {au bord des larmes,.A} par exemple
 
 
 POS V
-inflex:
+flex:
 temps  = C F I J K P S T W Y G X
 pers   = 1 2 3
 genre  = m f
@@ -582,10 +582,10 @@ describes the structure of the lexical tags of the lexical entries belonging to
 the part of speech concerned. Each section is composed of 4 parts which are all
 optional:
 \begin{itemize}
-  \item \verb$inflex$\index{\verb$inflex$}: this part enumerates the inflectional
+  \item \verb$flex$\index{\verb$flex$}: this part enumerates the inflectional
   codes belonging to the grammatical category. For example, the codes
   \verb$1,2,3$ which indicate the person of the entry are relevant for pronouns
-  but not for adjectives. Each line describes an inflexional attribute (gender,
+  but not for adjectives. Each line describes an inflectional attribute (gender,
   time, etc.) and is made up of the attribute name, followed by the \verb$=$
   character and the values which it can take. For example, the following line
   declares an attribute $pers$ being able to taking the values $1$, $2$ or $3$:
@@ -625,7 +625,7 @@ line describes a valid combination of inflectional codes by their discriminating
 sub category (if such a category was declared). If an attribute name is specified
 in angle brackets (\verb$<$ and \verb$>$), this signifies that any value of this
 attribute may occur. It is possible as well to declare that an entry does not
-take any inflexional feature by means of a line containing only the \verb$_$
+take any inflectional feature by means of a line containing only the \verb$_$
 character (underscore).\index{\verb$_$} So for example, if we consider that the
 following lines extracted from the section describing the verbs:
 
