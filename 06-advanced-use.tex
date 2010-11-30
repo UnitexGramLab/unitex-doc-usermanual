@@ -818,8 +818,6 @@ tested as explained in section \ref{section-variables}.
 
 
 
-
-
 \section{Exploring grammar paths}
 \index{Exploring the paths of a grammar}
 
@@ -1165,9 +1163,38 @@ figure~\ref{fig-overlapping-variables}.
 
 \clearpage
 
-\bigskip
-\noindent \textbf{Testing variables}\index{Testing
-variables}\index{Variable!test}
+
+
+
+\section{Output variables}
+\index{Output variables}
+Normal variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
+is also possible to capture portions of the outputs produced by your grammar with output variables.
+Such variables are declared with \verb+$|xxx(+ and \verb+$|xxx)+. Those tags appear in blue as shown 
+on Figure \ref{fig-output-variables}. Note that when an output variable is being declared, the outputs
+are not emitted in the output occurrence; they are just stored into the pending output variable(s). For
+instance, this example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
+shown on Figure \ref{fig-output-variables-concord}. Thus you can see that the outputs \verb+ADJ+ and 
+\verb+NOUN+ have not been inserted to the left of the input text, as one may have expected.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=8cm]{resources/img/fig6-17r.png}
+\caption{Output variables\label{fig-output-variables}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig6-17s.png}
+\caption{Concordance obtained with grammar of Figure \ref{fig-output-variables}\label{fig-output-variables-concord}}
+\end{center}
+\end{figure}
+
+
+\section{Operations on variables}
+\subsection{Testing variables}
+\index{Testing variables}\index{Variables!test}
 
 \noindent It is possible to test whether a variable has been defined or not, in
 order to block the current matching operation if the condition is not verified.
@@ -1175,7 +1202,7 @@ This is done by inserting the sequence \verb+$xxx.SET$+ in the output of a
 graph box. Then, if a variable named \verb+xxx+ has been defined, this sequence
 will be ignored in the output and the matching process will go on; otherwise, matching
 will be stopped and the program will backtrack. This operates on
-normal variables as well as on dictionary entry variables defined in
+normal variables as well as on output ones and dictionary entry variables defined in
 morphological mode. You can check out if a variable has not been defined in the
 same way using \verb+$xxx.UNSET$+. Figure \ref{fig-testing-a-variable} shows
 a graph that use a such a variable test. Figure
@@ -1197,6 +1224,27 @@ MERGE mode.
 \end{figure}
 
 
+\subsection{Comparing variables}
+\index{Comparing variables}
+\index{Variables!comparison}
+Another kind of test you can perform consists of variable comparison.
+You can compare a variable (normal one, output one or dictionary one) against a constant string or
+another variable. To do that, you have to use the following syntax:
+
+\bigskip
+\noindent \verb+$abc.EQUAL=xyz$+
+
+\bigskip
+\noindent This acts like a switch that will block the grammar exploration if the value of variable \verb+abc+
+is different from the value of variable \verb+xyz+. Note that for dictionary variables, it is the inflected form
+as found in the dictionary (beware of case variations!) that is used in the test. If you want to compare variable
+\verb+abc+ against the constant string \verb+JKL+, use the following test:
+
+\bigskip
+\noindent \verb+$abc.EQUAL=#JKL$+
+
+\bigskip
+\noindent You can also test if contents differ with \verb+UNEQUAL+.
 \section{Applying graphs to texts}
 \label{section-applying-graphs-to-text}
 This section only applies to syntactic graphs.

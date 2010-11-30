@@ -835,9 +835,7 @@ Semitic languages like Arabic or Hebrew are not inflected in the same way than
 other kinds of languages, since their morphology obey a different logic. In
 fact, in such languages, words are inflected according to \textit{consonant
 skeletons}\index{Consonant skeleton}. A lemma is made of consonants, and the
-inflection process is supposed to enrich this skeleton with vowels. Moreover, as
-some agglutinative phenomena can occur, the content of a semitic inflection
-grammar is interpretated in a special way.
+inflection process is supposed to enrich this skeleton with vowels.
 
 \bigskip
 \noindent First, let us see what a semitic entry is supposed to be:
@@ -854,7 +852,7 @@ that illustrates how the semitic inflection process works.
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=11.5cm]{resources/img/fig3-7a.png}
+\includegraphics[width=5.5cm]{resources/img/fig3-7a.png}
 \caption{A toy semitic inflection grammar\label{semitic-grammar}}
 \end{center}
 \end{figure}
@@ -868,23 +866,12 @@ that illustrates how the semitic inflection process works.
   \verb+3+ will respectively stand for \verb+k+, \verb+t+ and
   \verb+b+. If you want to access to a letter after the ninth one, you must
   protect its index with angles like \verb+<10>+.
-  \item The output of a path must be made of sequences of the form
-  \verb+{,.XXX}+. Each \verb+{+ symbol must appear alone in a box. The current
-  content of the stack will be dumped between \verb+{+ and \verb+,.XXX}+ each
-  time an output containing \verb+}+ will be found. In our example, the output
-  will be \verb+{yakotobu,.V:aP3ms}{da,.SFX}+.
-  \item The DELAF output is of the following form: 
-  
-  \verb+yakotobuda,ktb.V:{yakotobu,.V:aP3ms}{da,.SFX}+
-  
-  The inflected form corresponds to the concatenation of all the inflection
-  productions, the lemma is the consonant skeleton, and the inflected forms is
-  replaced by the output of the grammar.
 \end{enumerate}  
 
-\noindent NOTE: for the moment, such a dictionary
-cannot be exploited by Unitex programs, but further versions will take this
-kind of dictionary into account for the construction of the text automaton.
+\bigskip
+\noindent The DELAF output for this grammar is: 
+  
+\verb+yakotobu,ktb.V:aP3ms+
 
 \section{Compression}
 \index{Dictionaries!compression}
@@ -933,6 +920,10 @@ the compression of a dictionary of simple words. \bigskip
 \noindent The resulting files are compressed to about 95\% for dictionaries containing
 simple words and 50\% for those with compound words.
 
+\bigskip
+\noindent NOTE: for semitic languages, a special compression algorithm is used to reduce the size of
+                the output \verb+.bin+ and \verb+.inf+ files. The fact that a language is considered as
+                a semitic one can be configured in the global preferences.
 \section{Applying dictionaries}
 \label{section-applying-dictionaries}
 \index{Dictionaries!applying}
