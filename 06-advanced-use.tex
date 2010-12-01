@@ -736,6 +736,7 @@ between double quotes).
     contains \verb+enabled+, you can not only match \verb+enable+.
 \end{enumerate}
 
+
 \subsection{Morphological dictionaries}
 \index{Morphological dictionaries}
 In morphological mode, you can perform queries using dictionaries. For
@@ -766,6 +767,7 @@ to lookup in in morphological mode. To do that, go in
 ``Info>Preferences>Morphological dictionaries'', as shown on Figure
 \ref{fig-morpho4}. You can select as many dictionaries as you want, but they
 MUST be \verb+.bin+ ones. Once done, you can apply your grammar and get results.
+
 
 \subsection{Dictionary entry variables}
 \index{Dictionary entry variables}
@@ -1181,8 +1183,13 @@ Normal variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of
 is also possible to capture portions of the outputs produced by your grammar with output variables.
 Such variables are declared with \verb+$|xxx(+ and \verb+$|xxx)+. Those tags appear in blue as shown 
 on Figure \ref{fig-output-variables}. Note that when an output variable is being declared, the outputs
-are not emitted in the output occurrence; they are just stored into the pending output variable(s). For
-instance, this example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
+are not emitted in the output occurrence; they are just stored into the pending output variable(s). Note
+that outputs are processed first, so that if an output string contains something like \verb+$A.LEMMA$+,
+the output variable will not contain this raw string but rather the lemma associated to variable \verb+A+.
+Moreover, output variables only capture explicit outputs produced by your grammar. Thus, even if you work
+in MERGE mode, output variables never capture the input text. 
+
+\noindent For instance, this example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
 shown on Figure \ref{fig-output-variables-concord}. Thus you can see that the outputs \verb+ADJ+ and 
 \verb+NOUN+ have not been inserted to the left of the input text, as one may have expected.
 
