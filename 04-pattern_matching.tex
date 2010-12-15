@@ -230,7 +230,7 @@ It is possible to negate a lexical mask by placing the character~\verb+!+ immedi
 after the character~\verb+<+.
 Negation is possible with the masks \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+,
 \verb+<PRE>+, \verb+<DIC>+ as well as with the masks that carry grammatical,
-semantic of inflectional codes (\textit{i.e.} \verb$<!V-z3:P3>$).
+semantic of inflectional codes (\textit{i.e.} \verb$<!V~z3:P3>$).
 The masks \verb+#+ and \verb+" "+ are the negation of each other.
 \index{Negation}\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
 mask \verb$<!MOT>$ recognizes all tokens that do not consist of
@@ -271,12 +271,12 @@ being,.N+Hum:s
 \noindent Here are some examples of lexical masks with the different types of constraints:
 
 \begin{itemize}
-  \item \verb$<A-Hum:fs>$ : a non-human adjective in the feminine singular;
+  \item \verb$<A~Hum:fs>$ : a non-human adjective in the feminine singular;
   \item \verb+<lire.V:P:F>+ : the verb \textit{lire} in the present or future
   tense;
   \item \verb$<suis,suivre.V>$ : the word \textit{suis} as inflected form of the
   verb \textit{suivre} (as opposed to the form of the verb \textit{\^etre});
-  \item \verb$<facteur.N-Hum>$ : all nominal entries that have \textit{facteur} as
+  \item \verb$<facteur.N~Hum>$ : all nominal entries that have \textit{facteur} as
   canonical form and that do not have the semantic code \verb+Hum+;
   \item \verb$<!ADV>$ : all words that are not adverbs;
   \item \verb$<!MOT>$ : all tokens that are not made of letters (cf.
@@ -603,7 +603,7 @@ contains the occurrence will be shown.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=11cm]{resources/img/fig4-7.png}
+\includegraphics[width=8cm]{resources/img/fig4-7.png}
 \caption{Selection of a web browser for displaying
 concordances\label{fig-browser-selection}}
 \end{center}
