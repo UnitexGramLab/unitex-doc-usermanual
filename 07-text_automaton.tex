@@ -1086,6 +1086,55 @@ pattern \textit{huit}\label{fig7-locatetfst1}}
 \end{itemize}
 
 
+\section{Table display}
+\label{section-table-display}
+Sentence automata can be displayed in a table format. To do that, you just have to select
+the "Table" tab in the text automaton frame. You will then see a table as shown on Figure
+\ref{fig7-table1}.
+
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=14.5cm]{resources/img/fig7-table1.png}
+\caption{Table display\label{fig7-table1}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent This table is not fully equivalent to the sentence automaton, since it only
+displays all possible POS for each simple or multiple word unit. It should be considered
+as an approximate compact view of information contained in the automaton. You can also filter
+grammatical/semantic codes to be displayed. Select "All" and you will see all codes. Select
+"Only POS category" and only first codes (supposed to represent the POS category) will be displayed.
+If you select "Use filter" and set a regular expression $X$, codes that do not contain something 
+matched by $X$ will be discarded. Any POSIX regular expression is accepted as filter. Check 
+"Always show POS category", and as said, the POS category will be kept even if not matched by the filter,
+if any. For instance, Figure \ref{fig7-table2} shows a filtering result, obtained with the filter
+\verb+^[A-Z]+ that matches any code starting with an uppercase letter, thus discarding codes like
+\verb+z1+.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=14.5cm]{resources/img/fig7-table2.png}
+\caption{Filtered table display\label{fig7-table2}}
+\end{center}
+\end{figure}
+      
+\bigskip
+\noindent The "Export all text as POS list" button can be used to export this table display
+of the whole text automaton as a text file following a special format. Currently, it is
+only an experimental feature that may change in the future. Here is an example of output:
+
+\begin{verbatim}
+(Je/N:ms:mp)|(Je/PRO/PpvIL:1fs:1ms) (suis/V:P1s)|(suis/V:Y2s:P2s:P1s) 
+M/N:mp:ms . Mdiba (de/DET/Dind:fp:mp:fs:ms)|(de/PREP)|(de/PREP/z1
++de la/DET/Dind/z1:fs)|(de/PREP/z1+des/DET/Dind/z1:mp:fp)|(de/PREP/z1
++du/DET/Dind/z1:ms)|(de la/DET/Dind/z1:fs)|(des/DET/Dind/z1:mp:fp)|
+(du/DET/Dind/z1:ms) LG - ville/N:fs . {S}
+\end{verbatim}
+
+
+
 \section{The special case of Korean}
 \label{section-korean}
 Korean is an agglutinative language that has a very special morphological
