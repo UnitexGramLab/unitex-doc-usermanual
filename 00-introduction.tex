@@ -59,8 +59,19 @@ Here are the main new features:
   \item new search options (\ref{section-advanced-search-options})
   \item introduction of \verb$Stats$ that can compute statistics from a
         concordance file (\ref{section-statistics})
+  \item introduction of a statistical tagger that can trim text automata to make them
+        linear
+  \item introduction of the transducer cascade system Cassys
+  \item introduction of output variables that can be used to catch outputs emitted
+        by grammars (\ref{section-output-variables})
+  \item introduction of operators to test and compare variables (\ref{section-ops-on-variables})
+  \item supporting semitic inflection (\ref{subsection-semitic-inflection}), with a full support 
+        of Arabic typographical variations (\ref{subsection-arabic-typo-rules})
+  \item new options to apply dictionary graphs (\ref{section-dictionary-graphs}) 
   \item introduction of \verb$Uncompress$ that can rebuild a \verb$.dic$
         dictionary from a \verb$.bin$ compressed one (\ref{section-Uncompress})
+  \item introduction of \verb$Untokenize$ that can rebuild a \verb$.snt$
+        text file from \verb$text.cod$ and \verb$tokens.txt$ (\ref{section-Untokenize})
   \item introduction of ancient Georgian
   \item the console has changed: you can view error messages emitted by
         previous commands (\ref{section-console})
@@ -71,7 +82,7 @@ Here are the main new features:
   \item Unitex is now pure LGPL (\ref{section-licences})
   \item Unitex can be compiled as a dynamic library (\verb$.dll$ or \verb$.so$)
   (\ref{section-unitex-developpers})
-  \item Somes Unitex programs can run without memory leak when compiled with preprocessor
+  \item Some Unitex programs can run without memory leak when compiled with preprocessor
   macro UNITEX\_RELEASE\_MEMORY\_AT\_EXIT or UNITEX\_LIBRARY.
   This include \verb$Concord$, \verb$Convert$, \verb$Dico$, \verb$Elag$, \verb$Evamb$, \verb$Extract$, \verb$Flatten$, \verb$Fst2Txt$, \verb$Grf2Fst2$, \verb$ImplodeTfst$, \verb$LocateTfst$, \verb$MultiFlex$, \verb$Normalize$, \verb$PolyLex$, \verb$Reg2Grf$, \verb$SortTxt$, \verb$TagsetNormTfst$, \verb$TEI2Txt$, \verb$Tfst2Grf$, \verb$Tfst2Unambig$, \verb$Tokenize$, \verb$Txt2Tfst$, \verb$XMLizer$.
   \item Unitex code is thread-safe
@@ -85,7 +96,7 @@ Here are the main new features:
 \end{itemize}
 
 \bigskip
-\noindent IMPORTANT: as some file formats changed, we recommend that you
+\noindent IMPORTANT: as some file formats changed and some new files were introduced, we recommend that you
 repreprocess your existing text files, especially if you work with text
 automata.
 
@@ -171,6 +182,8 @@ sounds like Open Source is good for science:
     aspects of Unitex code (memory, speed, multi-compiler compliance, etc)
     \item Patrick Watrin: author of \verb+XMLizer+, has worked on the
     integration of \verb+XAlign+
+    \item Anthony Sigogne: author of \verb+Tagger+ and \verb+TrainingTagger+
+    \item Nathalie Friburger: author of \verb+Cassys+
 \end{itemize}
 
 \bigskip
