@@ -1544,65 +1544,110 @@ This section presents files produced and used by TrainingTagger and Tagger progr
 \subsection{The corpus.txt file}
 \index{File!\verb+corpus.txt+}
 \label{section-corpus-file}
-This file is used by TrainingTagger program in order to compute statistics for the Tagger program. It contains sentences 
-where each word is representing by a unit and those are one per line. Each unit is composed of a simple word, 
-followed by a slash and morpho-syntactic codes of the word. These codes are composed of 
-grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes. Here is an example of a corpus.txt file :
+This file is used by the TrainingTagger program in order to compute statistics for the Tagger program. It contains sentences 
+where each word is represented in a separate line. Each line representing a word is composed of a word, simple or compound, 
+followed by a slash and the tag of the word. This tag is composed of grammatical codes and sometimes followed 
+by a \verb+':'+ and inflectional codes. If the word is a compound, simple words contained in it must be separated by a \verb+'_'+. 
+Here is an example of a corpus.txt file :
 
 \bigskip
 \verb+The/DET:s+\P
 
-\verb+president/N:s+\P
+\verb+GATT/N:s+\P
+
+\verb+had/V:I3s+\P
+
+\verb+formerly/ADV+\P
+
+\verb+a/DET:s+\P
+
+\verb+political/A+\P
+
+\verb+assessment/N:s+\P
 
 \verb+of/PREP+\P
 
-\verb+France/N+\P
+\verb+the/DET:s+\P
 
-\verb+eats/V:P3s+\P
+\verb+behavior/N:s+\P
 
-\verb+apples/N:p+\P
+\verb+of/PREP+\P
+
+\verb+foreign_countries/N:p+\P
 
 \verb+./PONCT+\P
 
 \P
 
-\verb+He/PRO:3ms+\P
+\verb+She/PRO:3fs+\P
 
-\verb+loves/V:P3s+\P
+\verb+closed/V:I3s+\P
 
-\verb+eating/V:G+\P
+\verb+easily/ADV+\P
+
+\verb+her/DET:p+\P
+
+\verb+eyes/N:p+\P
+
+\verb+when/CONJ+\P
+
+\verb+some/DET:p+\P
+
+\verb+infractions/N:p+\P
+
+\verb+might/V:I3p+\P
+
+\verb+appear/V:W+\P
+
+\verb+justified/V:K+\P
+
+\verb+against/PREP+\P
+
+\verb+higher/A+\P
+
+\verb+interests/N:p+\P
 
 \verb+./PONCT+\P
 
 \P
 
 \bigskip
-\noindent NOTE: Sentences must be separated by an empty line.
+\noindent NOTE: Sentences must be delimited by empty lines.
 
 
 \subsection{The tagger data file}
 \index{File!\verb+train_dict+}
 \label{section-training-dict}
-The TrainingTagger program generates two data files (by default) used by Tagger program in order
+The TrainingTagger program generates two data files (by default) used by the Tagger program in order
 to compute a second-order hidden Markov model. 
-These files contain unigram, bigram and trigram tuples gathered from the tagged corpus.txt file. Tuples are
-composed of either a sequence of tags (to compute transition probability) or a sequence of tags followed by a word (to compute
-emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "cat" or "morph". In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
+These files contain unigram, bigram and trigram tuples extracted from the tagged corpus.txt file. Tuples are
+composed of either a sequence of 2 or 3 tags (to compute transition probability) or a word preceded by
+0 or 1 tag (to compute
+emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "cat" or "morph". 
+In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
 tuples consist in tags formed of grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
-These tuples are followed by the sequence of punctuations ",." and then an integer representing the number of
-times this tuple appears in the corpus file.
+These tuples are followed by the sequence of delimiters ",." and then an integer representing the number of
+occurrences of this tuple in the corpus file.
 Here is an example of a data file with "cat" tags : 
 
 \bigskip
-\verb+the,.50+\P
+\verb+the,.9630+\P
 
-\verb+president,.15+\P
+\verb+those,.236+\P
 
-\verb+DET the,.50+\P
+\verb+eyes,.32+\P
 
-\verb+N president,.10+\P
+\verb+DET	 the,.9630+\P
 
-\verb+DET N,.200+\P
+\verb+DET	 those,.140+\P
+
+\verb+PRO	 those,.96+\P
+
+\verb+N		   eyes,.32+\P
+
+\verb+DET	 N,.62541+\P
+
+\verb+PREP	DET  N,.25837+\P
 
 \P
 
@@ -1611,15 +1656,25 @@ Here is an example of a data file with "cat" tags :
 \noindent Here is an example of a data file with "morph" tags :
 
 \bigskip
-\verb+the,.50+\P
+\verb+the,.9630+\P
 
-\verb+president,.15+\P
+\verb+those,.236+\P
 
-\verb+DET:s the,.30+\P
+\verb+eyes,.32+\P
 
-\verb+N:s president,.10+\P
+\verb+DET:s	 the,.4437+\P
 
-\verb+DET:s N:s,.200+\P
+\verb+DET:p	 the,.5193+\P
+
+\verb+DET:p	 those,.140+\P
+
+\verb+PRO:p	 those,.96+\P
+
+\verb+N:p		   eyes,.32+\P
+
+\verb+DET:s	 N:s,.18489+\P
+
+\verb+PREP	  DET:s  N:s,.6977+\P
 
 \P
 
@@ -1629,7 +1684,7 @@ This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for "c
 "morph" tags.
 
 \bigskip
-\noindent NOTE: At final stage, TrainingTagger compresses these two data files into the ".bin" format.
+\noindent NOTE: At the final stage, TrainingTagger compresses these two data files into the ".bin" format.
 
 
 \section{Configuration files}

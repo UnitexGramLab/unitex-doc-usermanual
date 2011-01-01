@@ -1438,8 +1438,8 @@ and a template graph.
 \label{section-Tagger}
 
 \bigskip
-\noindent This program takes in input the text automaton of the specified \verb+.tfst+ and applies
-the Viterbi-Path algorithm on it. The result is a linear automaton pruned by a probabilistic way based on
+\noindent The input of this program is the text automaton of the specified \verb+.tfst+. The program applies
+the Viterbi-Path algorithm to it and produces a linear automaton. The automaton is pruned in a probabilistic way based on
 a second-order hidden Markov model. If the specified tagger data file contains tuples of "cat" tags,
 the tagger could prune transitions only on grammatical codes (for example, \verb+under.A+ versus \verb+under.ADV+).
 Else if it contains tuples of "morph" tags, so the tagger could prune transitions on grammatical 
