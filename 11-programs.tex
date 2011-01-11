@@ -112,7 +112,50 @@ of each MWU.
    \item \verb+-b BIN+/\verb+--binary=BIN+: .bin simple word dictionary to use.
 \end{itemize}
 
+\section{Cassys}\index{External programs!\verb+Cassys+}\index{\verb+Cassys+}
+\index{Cascade of transducers}
+\verb+Cassys [OPTIONS] <snt>+
 
+\bigskip
+\noindent This program applies an ordered list of grammars to a text and constructs an index of the occurrences found.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: the language alphabet file
+  \item \verb+-r X+/\verb+--transducer_dir=X+: take tranducer on directory X (so you don't specify full path for each transducer; note that X must be (back)slash terminated
+	\item \verb+-l TRANSDUCERS_LIST+/\verb+--transducers_list=TRANSDUCERS_LIST+: the transducers list file with their output policy
+	\item \verb+-s transducer.fst2+/\verb+--transducer_file=transducer.fst2+: a transducer to apply
+	\item \verb+-m output_policy+/\verb+--transducer_policy=output_policy+: the output policy of the transducer specified
+%//// -f FILE/--file=FILE: the snt text file
+  \item \verb+-t TXT+/\verb+--text=TXT+: the text file to be modified, with extension .snt;
+	\item \verb+-i+/\verb+--in_place+: mean uses the same csc/snt directories for each transducer
+	\item \verb+-d+/\verb+--no_create_directory+: mean the all snt/csc directories already exist and don't need to be created
+	\item \verb+-g minus+/\verb+--negation_operator=minus+: uses minus as negation operator for Unitex 2.0 graphs
+	\item \verb+-g tilde+/\verb+--negation_operator=tilde+: uses tilde as negation operator (default)
+	\item \verb+-h+/\verb+--help+: display this help
+\end{itemize} 	
+
+\bigskip
+\noindent Cassys applies a list of grammar to a text and saves the matching sequence index in a file named \"concord.ind\" stored in the text directory.
+      The target text file has to be a preprocessed snt file with its \_snt/ directory. 
+      The transducer list file is a file in which each line contains the path to a transducer followed by the output policy to be applied to this transducer.
+
+\bigskip
+\noindent Instead a list file, you can specify each file and each output policy by a set of couple of -s/--transducer\_file 
+      and -m/--transducer\_policy argument to enumerate the list
+      
+\bigskip
+\noindent The policy may be MERGE or REPLACE.
+      
+\bigskip
+\noindent The file option, the alphabet option and the transducer list file option are mandatory
+     
+\bigskip
+\noindent As the locate pattern program, this program saves the references to the found occurrences in a file called concord.ind stored 
+		in the \_snt directory of the text.
+		The file concord.ind produced is in the same format as described in the chapter \ref{chap-file-formats} , but the cascade may be constituted of graphs 
+applied in merge or replace mode so the \#M or \#R at the first line of the file concord.ind has no sense in this context.
 
 
 
