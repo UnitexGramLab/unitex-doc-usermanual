@@ -1920,6 +1920,21 @@ name \verb+(user login).cfg+ in the \verb+Unitex/Users+ system sub-directory.
 \noindent WARNING (2): THE PATH OF THE PERSONAL
 DIRECTORY IS NOT FOLLOWED BY A NEWLINE.
 
+\section{Cassys files}
+
+\subsection{Cassys configuration files csc}
+
+To memorize the list of transducer of a CasSys cascade, we use a text file (csc file) in which each line contains the path to a transducer followed by the output policy (merge/replace) to be applied to this transducer.
+The generic format of a line of csc file is : Name\_and\_path\_of\_transducer  Merge
+Here is an example of cascade file csc:
+
+\ttfamily
+{
+"C:\backslash apps\backslash my\_unitex\backslash French\backslash Graphs\backslash grf1.fst2" Merge
+
+"C:\backslash apps\backslash my\_unitex\backslash French\backslash Graphs\backslash grf2.fst2" Replace
+}
+
 \section{Various other files}
 For each text, Unitex creates multiple files that contain information that are
 designed to be displayed in the graphical interface. This section describes these
@@ -2069,7 +2084,7 @@ command line used to run the tool;
 If the second line of unitex\_logging\_parameters.txt contains 0, these file are not recorded;
 if this line contains 1, they are recorded;
 
-\subsection{Arabic typographic rules: arabic\_typo\_rules.txt}
+\subsection{Arabic typographic rules: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
 \index{Arabic typographic rules}
 \index{File!\verb+arabic_typo_rules.txt+}
