@@ -1546,12 +1546,13 @@ This section presents files produced and used by TrainingTagger and Tagger progr
 \label{section-corpus-file}
 This file is used by the TrainingTagger program in order to compute statistics for the Tagger program. It contains sentences 
 where each word is represented in a separate line. Each line representing a word is composed of a word, simple or compound, 
-followed by a slash and the tag of the word. This tag is composed of grammatical codes and sometimes followed 
-by a \verb+':'+ and inflectional codes. If the word is a compound, simple words contained in it must be separated by a \verb+'_'+. 
+followed by a slash and the tag of the word. This tag is composed of a grammatical code, sometimes followed by a \verb$'+'$ and 
+syntactic or semantic codes. Inflectional codes are specified after a \verb+':'+. If the word is a compound, simple words contained 
+in it must be separated by a \verb+'_'+. 
 Here is an example of a corpus.txt file :
 
 \bigskip
-\verb+The/DET:s+\P
+\verb$The/DET+Ddef:s$\P
 
 \verb+GATT/N:s+\P
 
@@ -1559,7 +1560,7 @@ Here is an example of a corpus.txt file :
 
 \verb+formerly/ADV+\P
 
-\verb+a/DET:s+\P
+\verb$a/DET+Dind:s$\P
 
 \verb+political/A+\P
 
@@ -1567,7 +1568,7 @@ Here is an example of a corpus.txt file :
 
 \verb+of/PREP+\P
 
-\verb+the/DET:s+\P
+\verb$the/DET+Ddef:s$\P
 
 \verb+behavior/N:s+\P
 
@@ -1579,19 +1580,19 @@ Here is an example of a corpus.txt file :
 
 \P
 
-\verb+She/PRO:3fs+\P
+\verb$She/PRO+Nomin:3fs$\P
 
 \verb+closed/V:I3s+\P
 
 \verb+easily/ADV+\P
 
-\verb+her/DET:p+\P
+\verb$her/DET+Poss3fs:p$\P
 
 \verb+eyes/N:p+\P
 
 \verb+when/CONJ+\P
 
-\verb+some/DET:p+\P
+\verb$some/DET+Dadj:p$\P
 
 \verb+infractions/N:p+\P
 
@@ -1622,12 +1623,14 @@ The TrainingTagger program generates two data files (by default) used by the Tag
 to compute a second-order hidden Markov model. 
 These files contain unigram, bigram and trigram tuples extracted from the tagged corpus.txt file. Tuples are
 composed of either a sequence of 2 or 3 tags (to compute transition probability) or a word preceded by
-0 or 1 tag (to compute
-emit probability). Units of tuples must be separated by a tabulation. Filenames are suffixed by "cat" or "morph". 
-In the first one, tuples are composed of tags formed of grammatical codes only. In the second one,
-tuples consist in tags formed of grammatical codes and sometimes followed by a \verb+':'+ and inflectional codes.
+0 or 1 tag (to compute emit probability). Units in a tuple must be separated by a tabulation.
 These tuples are followed by the sequence of delimiters ",." and then an integer representing the number of
-occurrences of this tuple in the corpus file.
+occurrences of this tuple in the corpus file. 
+
+\bigskip
+\noindent Filenames are suffixed by "cat" or "morph". In the first one, tuples are composed of tags formed of grammatical, 
+syntactic and semantic codes. In the second one, tuples consist in tags formed of grammatical, syntactic and semantic 
+codes and sometimes followed by a \verb+':'+ and inflectional codes.
 Here is an example of a data file with "cat" tags : 
 
 \bigskip
@@ -1637,11 +1640,11 @@ Here is an example of a data file with "cat" tags :
 
 \verb+eyes,.32+\P
 
-\verb+DET	 the,.9630+\P
+\verb$DET+Ddef	 the,.9630$\P
 
-\verb+DET	 those,.140+\P
+\verb$DET+Ddem	 those,.140$\P
 
-\verb+PRO	 those,.96+\P
+\verb$PRO+Pdem	 those,.96$\P
 
 \verb+N		   eyes,.32+\P
 
@@ -1662,13 +1665,13 @@ Here is an example of a data file with "cat" tags :
 
 \verb+eyes,.32+\P
 
-\verb+DET:s	 the,.4437+\P
+\verb$DET+Ddef:s	 the,.4437$\P
 
-\verb+DET:p	 the,.5193+\P
+\verb$DET+Ddef:p	 the,.5193$\P
 
-\verb+DET:p	 those,.140+\P
+\verb$DET+Ddem:p	 those,.140$\P
 
-\verb+PRO:p	 those,.96+\P
+\verb$PRO+Pdem:p	 those,.96$\P
 
 \verb+N:p		   eyes,.32+\P
 
@@ -1680,7 +1683,7 @@ Here is an example of a data file with "cat" tags :
 
 \bigskip
 \noindent A special line is added to data files in order to identify whether the file contains "cat" or "morph" tags. 
-This line is \verb+CODE FEATURES+ and is followed by either the integer 0 for "cat" tags or 1 for
+This line contains \verb+CODE FEATURES+ followed by either the integer 0 for "cat" tags or 1 for
 "morph" tags.
 
 \bigskip

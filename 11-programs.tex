@@ -1481,13 +1481,13 @@ and a template graph.
 \label{section-Tagger}
 
 \bigskip
-\noindent The input of this program is the text automaton of the specified \verb+.tfst+. The program applies
+\noindent The input of this program is the text automaton in the specified \verb+.tfst+. The program applies
 the Viterbi-Path algorithm to it and produces a linear automaton. The automaton is pruned in a probabilistic way based on
 a second-order hidden Markov model. If the specified tagger data file contains tuples of "cat" tags,
-the tagger could prune transitions only on grammatical codes (for example, \verb+under.A+ versus \verb+under.ADV+).
-Else if it contains tuples of "morph" tags, so the tagger could prune transitions on grammatical 
-and inflectional codes (for example, \verb+the.DET:s+ versus \verb+the.DET:p+). That's why the automaton needs to be 
-exploded before applying the tagging process. In this case, a tagset file must be specified.
+the tagger prunes transitions on the basis of grammatical, syntactic and semantic codes (for example, \verb$that.DET+Ddem$ versus 
+\verb$that.PRO+Pdem$). Else if it contains tuples of "morph" tags, so the tagger prunes transitions on grammatical, semantic,
+syntactic and inflectional codes (\verb$the.DET+Ddef:s$ versus \verb$the.DET+Ddef:p$). In that case, the automaton needs to be 
+exploded before applying the tagging process and a tagset file must be specified by the \verb+-t+ option below.
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -1495,7 +1495,7 @@ exploded before applying the tagging process. In this case, a tagset file must b
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: alphabet file.
   \item \verb+-o OUT+/\verb+--output=OUT+: output text automaton.
   \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: name of the tagset description file.
-  \item \verb+-d DATA+/\verb+--data=DATA+: a .bin tagger data file that contains frequencies 
+  \item \verb+-d DATA+/\verb+--data=DATA+: a .bin tagger data file that contains occurrence counts 
   for unigrams, bigrams and trigrams in order to compute probabilities. This file is obtained with 
   the \verb+TrainingTagger+ program (see section \ref{section-training-dict}).
 \end{itemize}
@@ -1695,10 +1695,11 @@ the coding of the text. This sequence is saved in a binary file named
 
 \bigskip
 \noindent \index{Lexicon-grammar!tables}\index{Graph!main}This 
-program automatically generates two tagger data files from a tagged corpus text file. Those files contain tuples (unigrams, bigrams and trigrams), 
-formed by tags and words. In the first data file, tags are "cat" tags (i.e. only grammatical codes). In the second data file,
-tags are "morph" tags (i.e. grammatical and inflectional codes). They are used by \verb+Tagger+ program in order to compute
-probabilities. The tagged corpus file must follow the format described in section \ref{section-corpus-file}.
+program automatically generates two tagger data files from a tagged corpus text file. They are used by the \verb+Tagger+ program 
+in order to compute probabilities and linearize the text automaton. The tagged corpus file must follow the format described 
+in section \ref{section-corpus-file}. Those files contain tuples (unigrams, bigrams and trigrams), 
+formed by tags and words. In the first data file, tags are "cat" tags (i.e. grammatical, syntactic and semantic codes). 
+In the second data file, tags are "morph" tags (i.e. grammatical, syntactic, semantic and inflectional codes). 
 
 \bigskip
 \noindent \textbf{OPTIONS:}
