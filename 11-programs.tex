@@ -1905,6 +1905,21 @@ debugging.
 \end{itemize}
 
 
+Another usage of UnitexToolLogger is using the MzRepairUlp option to repair a corrupted ulp file (often, a crashing log):
+
+\bigskip
+\verb+UnitexToolLogger MzRepairUlp [OPTIONS] <ulpfile>+
+
+\bigskip
+\noindent \textbf{OPTIONS after MzRepairUlp:}
+\begin{itemize}
+  \item \verb+-t X+/\verb+--temp=X+: uses X as filename for temporary file (<ulpfile>.build by default);
+  \item \verb+-o X+/\verb+--output=X+: uses X as filename for fixed .ulp file (<ulpfile>.repair by default);
+  \item \verb+-m+/\verb+--quiet+: do not emit message when running;
+  \item \verb+-v+/\verb+--verbose+: emit message when running;
+\end{itemize}
+
+
 Another usage of UnitexToolLogger is using the CreateLog option (with round bracket) to create logfile of running Unitex program, like:
 
 \bigskip
