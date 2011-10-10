@@ -1367,6 +1367,30 @@ same directory as \verb+<txt>+.
 
 
 
+\section{Seq2Grf}\index{External programs!\verb+Seq2Grf+}\index{\verb+Seq2Grf+}
+
+\verb+Seq2Grf [OPTIONS] <snt>+
+
+\index{Sorting}
+\bigskip
+\noindent This program constructs a \verb+.grf+ file 
+corresponding to the sequences contained in file \verb+<snt>+. 
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: the alphabet file to use;
+  \item \verb+-o GRF+/\verb+--output=XXX+: output GRF file;
+  \item \verb+-h+/\verb+--help+: this help;
+\end{itemize}
+
+\bigskip
+\noindent Constructs the sequences automaton : one single automaton that recognizes
+	all the sequences from the SNT.
+	The sequences must be delimited with the special tag \{S\}.
+	The result files, named \verb+text.tfst+, \verb+text.tind+ and \verb+XXX+, the GRF file
+	are stored is the text directory.
 
 
 \section{SortTxt}\index{External programs!\verb+SortTxt+}\index{\verb+SortTxt+}
