@@ -547,6 +547,7 @@ This section presents the different files used to represent texts.
 \subsection{.txt files}
 \index{File!\verb+.txt+}\index{\verb+{S}+}\index{Lexical!labels}
 \index{Sentence separator}
+\label{section-texts}
 \verb+.txt+ files are text files encoded in Unicode Little-Endian. These files
 should not contain any opening or closing braces, except for those used to mark a
 sentence separator (\verb+{S}+) or a valid lexical tag
@@ -1615,6 +1616,20 @@ Here is an example of a corpus.txt file :
 \bigskip
 \noindent NOTE: Sentences must be delimited by empty lines.
 
+\bigskip
+The \verb+.txt+ file format can also be used (see section \ref{section-texts}). Each word of the text 
+must be represented by a valid lexical label (\verb+{aujourd'hui,.ADV}+)\index{Lexical!labels} and sentences
+are delimited by  \verb+{S}+\index{\verb+{S}+}\index{Sentenceseparator}.
+Here is the previous example in the \verb+.txt+ file format :
+
+\bigskip
+\verb${The,.DET+Ddef:s}$ \verb${GATT,.N:s}$ \verb${had,.V:I3s}$ \verb${formerly,.ADV}$\\ 
+\verb${a,.DET+Dind:s}$ \verb${political,.A}$ \verb${assessment,.N:s}$ \verb${of,.PREP}$\\ 
+\verb${the,.DET+Ddef:s}$ \verb${behavior,.N:s}$ \verb${of,.PREP}$ \verb${foreign countries,.N:p}$\\ 
+\verb${.,.PONCT}$ \verb${S}$ \verb${She,.PRO+Nomin:3fs}$ \verb${closed,.V:I3s}$ \verb${easily,.ADV}$\\
+\verb${her,.DET+Poss3fs:p}$ \verb${eyes,.N:p}$ \verb${when,.CONJ}$ \verb${some,.DET+Dadj:p}$\\
+\verb${infraction,.N:p}$ \verb${might,.V:I3p}$ \verb${appear,.V:W}$ \verb${justified,.V:K}$\\
+\verb${against,.PREP}$ \verb${higher,.A}$ \verb${interests,.N:p}$ \verb${.,.PONCT}$ \verb${S}$
 
 \subsection{The tagger data file}
 \index{File!\verb+train_dict+}
