@@ -1,0 +1,139 @@
+\label{Sequence Automaton}
+\index{Sequence Automaton}
+\chapter{Sequence Automaton}
+%The construction of local grammars can be a long process in which Unitex users may have to make several additions or modifications.
+%\bigskip
+
+In order to produce quickly and automatically local grammars, the program Seq2Grf can be used in command line mode or by clicking on "Construct Sequences Automaton" in the Text Menu.
+\bigskip
+
+For a given document (TEILite or txt format files or SNT when preprocessed for this task with {STOP} tags) this programs builds a single automaton that recognizes all the sequences contained in the document.
+\bigskip
+
+Special attention should be paid to the establishment of the list of sequences that are recognized by the graph.
+\bigskip
+
+The use of the command Seq2Grf is described in section~\ref{Seq2Grf}
+
+\section{Sequences Corpus}
+We call sequences corpus or qualified corpus a list of sequences of one or several words that we want to be recognized by only one local grammar graph. 
+\bigskip
+
+This sequences Corpus is stored in one single file wich must be from one of the following formats :
+\begin{itemize}
+	\item raw text files in which sequences are delimited by end of line 
+	\item SNT files already processed with this menu : sequences will be delimited by the {STOP} tag.
+	\item TEILite files in which sequences are delimited by the following xml tag :	
+		\begin{verbatim}<seg type="sequence">example</seg>
+		\end{verbatim}
+\end{itemize}
+\pagebreak 
+\indent Since the corpus contains specific sequences, it must be done by hand. This means that you have to either write all the sequences in a raw text file and separate them by an end  of line, or insert the specific xml tag in an existing TEILite Document. The produced graph will only recognize the sequences that are correctly delimited. Production of local grammars is automatic only from a corpus of well-defined sequences. If you have such a corpus, then the time saved is considerable.
+
+\begin{figure}[h!]
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{resources/img/fig8-1tomorrow.png}	
+		\caption{SNT\label{fig8-1CorpusTxt}}
+		\label{fig7-TXT}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{resources/img/fig8-2tomorrowSNT.png}
+		\caption{SNT\label{fig8-2CorpusSNT}}
+	\end{minipage}
+	\hspace{0.1cm}
+\end{figure}
+\begin{figure}[h!]
+	\begin{minipage}[h!]{\linewidth}
+		\centering
+			\includegraphics[width=14cm]{resources/img/fig8-3tomorrowTEI.png}
+			\caption{TEILite\label{fig8-3CorpusTEI}}
+	\end{minipage}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Usage}
+In order to create a sequence automaton, click on "Construct Sequence Automaton" in the "Text" menu. You will then see the window coming up as in figure~\ref{fig8-4SequenceGRF}.
+\begin{figure}[h!]
+	\begin{minipage}[h!]{0.5\linewidth}	
+		\centering
+			\includegraphics[width=8cm]{resources/img/fig7-seq2grf1.png}
+			\caption{The sequence automaton menu\label{fig8-4SequenceGRF}}
+	\end{minipage}
+\end{figure}
+
+\pagebreak
+In this windows you can choose the file containing the sequence corpus. 
+The file format is automatically detected according to the file extension.
+The resulting grf file will be automatically named after the original file. This file is by default put in the graphs folder of the currently selected language, in the Unitex user Folder.
+\medskip
+
+In the right side of this window 4 values can be adjusted for the use of jokers.
+The first one, "jokers" is the maximum number of all operations you will apply to each sequence of the sequence corpus. 
+Be careful : if this value is let to zero, no operation will be applied to the original sequences, even if the three other values are above zero. The three following values determine the use of the three operations authorized to generate the graph. The use of wildcards is detailed in Section~\ref{approximation}.
+\medskip
+
+If you use the option "Apply Beautify", boxes and transitions of the produced graph will be optimized so that the graph is as easily readable as possible. You can see in figure~\ref{fig8-5GRFnoBeautify} the graphes produced without jokers nor beautify.
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=10cm]{resources/img/fig8-5GRFnoBeautify.png}
+		\caption{Automaton without beautify option\label{fig8-5GRFnoBeautify}}
+	\end{center}
+\end{figure}
+\medskip
+\newline
+The graph in figure ~\ref{fig8-6GRFBeautify} was produced without jokers but with the beautify option activated.
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=10cm]{resources/img/fig8-6GRFBeautify.png}
+		\caption{Automaton without beautify option\label{fig8-6GRFBeautify}}
+	\end{center}
+\end{figure}
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Search by approximation} 
+\label{approximation}
+
+When you perform a locate operation on a text using a graph produced with the Seq2Grf program, you will find in the match occurences only sequences present in the original sequence corpus.
+Some sequences close to those of the sequence corpus might appear in the text and be ignored because they are not in the sequence corpus. 
+These sequences should be included in the sequence automaton.
+In order to find these sequences,you can produce a graph that recognize all the sequences from the sequence corpus, plus derived sequences that are the result of the application of three kind of jokers.
+Each joker makes it possible to apply an operation to generate new sequences.
+
+\begin{itemize}
+	\item insertion : for each sequence, add to the automaton all the sequences where <TOKEN> was inserted between two words of the original sequence.
+	\item replacement : for each sequence, add to the automaton all the sequences where i tokens have been replace by <TOKEN>
+	\item deletion : for each sequence, add to the automaton all the sequences where a token has been deleted
+\end{itemize}
+Each of these operations can be applied several times to the original sequences.
+Applying this grammar to a text will introduce approximations in the search of the sequences in the text.
+
+When jokers are used, the produced graphs follow these rules :
+\begin{itemize}
+	\item both original and derived sequences are included in the automaton
+	\item no empty sequence nor sequence made only with jokers will be added to this graph (such sequences could be produced by deletions or replacements on short sequences)
+	\item no insertion of a joker at the head or tail of a sequence
+	\item every token of a sequence including the first and last can be replaced by a joker
+\end{itemize}
+The graphs produced using joker contain many erroneous sequences and must be confronted with corpora by a locate to keep only the relevant sequences. These sequences might be used to produce a new graph you might want to keep.
+
+\bigskip
+
+The graph in figure ~\ref{fig8-7GRF1replace} was produced with replacement of 1 token and with the beautify option activated.
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=8cm]{resources/img/fig8-7GRF1replace.png}
+		\caption{Automaton with one replacement allowed\label{fig8-7GRF1replace}}
+	\end{center}
+\end{figure}
+\bigskip
+%\bigskip
+%\noindent 
+%You can see here an example with one insertion allowed : 
+%\begin{figure}[!ht]
+%\begin{center}
+%\includegraphics[width=10cm]{resources/img/fig7-seq2grf4.png}
+%\caption{Automaton with one insertion allowed\label{fig7-seq2grf4}}
+%\end{center}
+%\end{figure}&

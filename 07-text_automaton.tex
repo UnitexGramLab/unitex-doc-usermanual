@@ -10,7 +10,9 @@ interpretations.
 \noindent This chapter presents the concept of text automaton, the details of
 their construction and the operations that can be applied, in particular ambiguity
 removal and linearization. Since version 2.1, it is possible 
-to search the text automaton for patterns (see section\ref{section-locate-tfst}).
+to search the text automaton for patterns (see section
+\ref{section-locate-tfst}).
+
 
 \section{Displaying text automaton} \index{Dictionaries!of the text}
 The text automaton explicit all possible lexical interpretations of the
@@ -67,7 +69,8 @@ sentences and  apply dictionaries. If sentence boundary detection
 is not applied, the construction program will arbitrarily split the text in
 sequences of 2000 lexical units instead of constructing one automaton per
 sentence. If no dictionaries are applied, the text automaton that you
-obtain will consist of only one path made up of unknown words per sentence.
+obtain will consist of only one path made up of unknown words per sentence.
+
 
 \subsection{Construction rules for text automata}
 \index{Granularity of dictionaries}\index{Dictionaries!granularity}\index{Degree of ambiguity}
@@ -93,7 +96,8 @@ determiner\label{fig-ambiguity-of-which}}
 dictionary of the simple words of the text for all possible interpretations. Afterwards,
 all combination of lexical units that have an interpretation in the dictionary
 of the compound words of the text are taken into account. All the combinations
-of these information constitute the sentence automaton.
+of these information constitute the sentence automaton.
+
 \bigskip
 \noindent NOTE: If the text contains lexical labels (\textit{e.g.}
 \verb${out of date,.A+z1}$), these labels are reproduced identically in the
@@ -127,7 +131,8 @@ ambiguous forms by applying a normalization grammar. This grammar has to be
 called \verb+Norm.fst2+ and must be placed in your personal folder, in the
 subfolder \verb+/Graphs/Normalization+ of the desired language. The normalization
 grammars for ambiguous forms are described in
-section~\ref{section-normalizing-text-automataon}.
+section~\ref{section-normalizing-text-automataon}.
+
 \bigskip
 \noindent If a sequence of the text is recognized by the normalization grammar, all the
 interpretations that are described by the grammar are inserted into the text
@@ -145,7 +150,8 @@ the part of the grammar used for the ambiguity of the sequence \verb+l'+ in Fren
 \bigskip
 \noindent If this grammar is applied to a French sentence containing the sequence
 \verb+l'+, a sentence automaton that is similar to the one in
-figure~\ref{fig-tfst-normalization-results} is obtained.
+figure~\ref{fig-tfst-normalization-results} is obtained.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.2cm]{resources/img/fig7-5.png}
@@ -162,7 +168,9 @@ because of the "keep best paths" heuristic (see section
 \ref{section-keeping-best-paths}). The
 normalization at the time of the construction of the automaton allows you to 
 add paths to the automaton but not to remove ones. Removing paths will be
-partially done by the "keep best paths" heuristic, if enabled. To go further,you will need to use the ELAG disambiguation functionality.
+partially done by the "keep best paths" heuristic, if enabled. To go further,
+you will need to use the ELAG disambiguation functionality.
+
 
 \subsection{Normalization of clitical pronouns in Portuguese}
 \label{section-portuguese-clitics}
@@ -176,7 +184,8 @@ with the pronoun \textit{me}. In order to be able to manipulate this rewritten f
 it is necessary to introduce it into the text automaton in parallel to the
 original form. Thus, the user can search one or the other form. The 
 figures~\ref{fig-1285-not-normalized} and~\ref{fig-1285-normalized}  show the
-automaton of a sentence after normalization of the clitics.
+automaton of a sentence after normalization of the clitics.
+
 
 \begin{figure}[!ht]
 \begin{center}
@@ -201,7 +210,8 @@ automaton construction suggests an option "Build clitic normalization grammar"
 (cf. figure~\ref{fig-Txt2Tfst-configuration}). This option
 automatically starts the construction of the normalization grammar, which is then
 used to construct the text automaton, if you have selected the option "Apply the
-Normalization grammar".
+Normalization grammar".
+
 
 
 \subsection{Keeping the best paths}
@@ -214,7 +224,8 @@ adverb
 
 % do not remove this line jump
 \noindent \verb+aujourd'hui+ overlaps with the unknown word \verb+aujourd+,
-followed by an apostrophe and the past participle of the verb \verb+huir+.
+followed by an apostrophe and the past participle of the verb \verb+huir+.
+
 
 \begin{figure}[!ht]
 \begin{center}
@@ -238,7 +249,8 @@ like Thai. When words are not delimited, there is no other solution than to
 consider all possible combinations, which causes the creation of numerous paths
 carrying unknown words that are mixed with the labeled paths.
 Figure~\ref{fig-thai-sentence-automaton} shows an example of such an automaton of a
-Thai sentence.
+Thai sentence.
+
 \bigskip
 \noindent It is possible to suppress parasite paths. You have to select the option "Clean
 Text FST" in the configuration window for the construction of the text automaton
@@ -262,13 +274,15 @@ preferred to the sequence made of \verb+aujourd+ followed by a quote and \verb+h
 \verb+aujourd+ and the quote are both unlabeled tokens, while
 the compound adverb path does not contain any unknown word.
 Figure~\ref{fig-clean-thai-sentence-automaton} shows the automaton of
-figure~\ref{fig-thai-sentence-automaton} after cleaning.
+figure~\ref{fig-thai-sentence-automaton} after cleaning.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig7-11.png}
 \caption{Automaton of
 figure~\ref{fig-thai-sentence-automaton} after cleaning\label{fig-clean-thai-sentence-automaton}}
-\end{center}\end{figure}
+\end{center}
+\end{figure}
 
 \clearpage
 
@@ -278,7 +292,8 @@ The ELAG program allows for applying grammars for ambiguity removal to the
 text automaton. This powerful mechanism makes it possible to write rules on
 independently from already existing rules. This chapter briefly presents the
 grammar formalism used by ELAG and describes how the program works. For more
-details, the reader may refer to \cite{elag-blanc-dister} and \cite{ELAG}.
+details, the reader may refer to \cite{elag-blanc-dister} and \cite{ELAG}.
+
 
 \subsection{Grammars For Resolving Ambiguities}
 \label{section-elag-grammars}
@@ -290,7 +305,8 @@ The \textit{then}
 part is divided the same way using the \verb+<=>+ symbol. The meaning of a
 grammar is the following: In the text automaton, if a path of the \textit{if}
 part is recognized, then it must also be recognized by the \textit{then} part
-of the grammar, or it will be withdrawn from the text automaton.
+of the grammar, or it will be withdrawn from the text automaton.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.1cm]{resources/img/fig7-12.png}
@@ -306,7 +322,8 @@ of the grammar, or it will be withdrawn from the text automaton.
 a pronoun. Figure~\ref{fig-applying-tu-grammar} shows the result of the
 application of this grammar on the sentence "\textit{Feras-tu cela
 bient\^ot$~$?}". One can see in the automaton at the bottom that the path
-corresponding to \verb+tu+ past participle was eliminated.
+corresponding to \verb+tu+ past participle was eliminated.
+
 
 \begin{figure}[!ht]
 \begin{center}
@@ -335,7 +352,8 @@ interpreted in the following way: if a dash is found followed by \verb+il+,
 \verb+elle+ or \verb+on+, then this dash must be preceded by a verb, possibly
 followed by \verb+-t+. So, if one considers the sentence of the
 figure~\ref{fig-est-il} beginning with \textit{Est-il}, one can see 
-that all non-verb interpretations of \verb+Est+ were removed.
+that all non-verb interpretations of \verb+Est+ were removed.
+
 
 \begin{figure}[!ht]
 \begin{center}
@@ -350,7 +368,8 @@ figure~\ref{fig-synchronization-point}\label{fig-est-il}}
 Before an ELAG grammar can be applied to a text automaton, the grammar must be
 compiled in a  \verb+.rul+ file. \index{File!\verb+.rul+} This operation is
 carried out via the "Elag Rules" command in the "Text" menu, which opens the
-windows shown in figure~\ref{fig-elag-rules}.
+windows shown in figure~\ref{fig-elag-rules}.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-16.png}
@@ -365,7 +384,8 @@ grammar(s) in the file explorer located in the left frame, and click on the
 ">>" button to add them to the list in the right frame. Then click on the
 "Compile" button. This will launch the \verb+ElagComp+ program
 \index{External programs!\verb+ElagComp+} which will compile the selected grammars and create a file named
-\verb+elag.rul+ by default.\index{File!\verb+.rul+}
+\verb+elag.rul+ by default.\index{File!\verb+.rul+}
+
 \bigskip
 \noindent If you have selected grammars in the right frame, you can search patterns whith
 them by clicking on the "Locate" button. This opens the window "Locate
@@ -378,7 +398,8 @@ text to which the grammar will apply.
 \noindent NOTE: The \verb+-conc.fst2+ file used to locate the \textit{if} part
 of a grammar is automatically generated when ELAG grammars are compiled by means
 of the "Compile" button. It is thus necessary to have your grammar
-compiled before searching using the "Locate" button.
+compiled before searching using the "Locate" button.
+
 
 \subsection{Resolving Ambiguities}
 \index{Resolving ambiguity}
@@ -387,7 +408,8 @@ it to a text automaton. In the text automaton window, click on the "Apply Elag
 Rule" button. A dialog box will appear which asks for the \verb+.rul+ file
 to be used (see figure~\ref{fig-text-auto1}). The default file is
 \verb+elag.rul+. This will launch the \verb+Elag+ program \index{External programs!\verb+Elag+} which
-will try to resolve the ambiguity.
+will try to resolve the ambiguity.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-17.png}
@@ -399,7 +421,8 @@ will try to resolve the ambiguity.
 \noindent Once the program has finished you can view the resulting automaton by clicking on
 the "Open Elag Frame" button. As you can see in figure~\ref{fig-text-auto2},
 the windows is separated into two parts: The original text automaton can be seen
-on the top, and the result at the bottom.
+on the top, and the result at the bottom.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-18.png}
@@ -423,7 +446,8 @@ refactorize these entries, click on the "Implode" button. Clicking on the
 \noindent If you click on the "Replace" button, the resulting automaton will
 become the new text automaton. Thus, if you use other grammars, they will apply to the
 already partially disambiguated automaton, which makes it possible to accumulate
-the effects of several grammars.
+the effects of several grammars.
+
 
 \subsection{Grammar collections}
 \index{Grammars!collection}
@@ -436,7 +460,8 @@ The contents of this collection are displayed in the right part of the window.
 
 \bigskip
 \noindent To modify the name of the collection, click on the "Browse" button.
-In the dialog box that appears, enter the \verb+.lst+ file name for the collection.
+In the dialog box that appears, enter the \verb+.lst+ file name for the collection.
+
 \bigskip
 \noindent To add a grammar to the collection, select it in the file explorer in the left
 frame, and click on the ">>" button. Once you have selected all your grammars,
@@ -452,7 +477,8 @@ collection. The resulting automaton is identical to that which would have been
 obtained by applying each grammar successively.
 
 \subsection{Window For ELAG Processing}
-\index{Window for ELAG Processing}At the time of disambiguation, the \verb+Elag+ program
+\index{Window for ELAG Processing}
+At the time of disambiguation, the \verb+Elag+ program
 \index{External programs!\verb+Elag+} is launched in a processing window which displays the
 messages printed by the program during its execution.
 
@@ -461,7 +487,8 @@ messages printed by the program during its execution.
 the set of ELAG labels (see the following section), a message indicates the
 nature of the error. In the same way, when a sentence is rejected (all possible
 analyses were eliminated by grammars), a message indicates the number of the
-sentence. That makes it possible to locate the source of the problems quickly.
+sentence. That makes it possible to locate the source of the problems quickly.
+
 
 \subsubsection{Evaluation of ambiguity removal}
 \index{Evaluation of the ambiguity rate}
@@ -475,7 +502,8 @@ corresponds to the number of possible paths through the automaton). On the basis
 of this value, the program computes the average ambiguity by sentence and word.
 It is this last measure which is used to represent the ambiguity rate of the 
 text, because it does not vary with the size of the corpus, nor with the number of
-sentences within. The formula applied is:
+sentences within. The formula applied is:
+
 
 \bigskip
 \begin{center}
@@ -484,7 +512,8 @@ sentences within. The formula applied is:
 
 \bigskip \noindent The relationship between the ambiguity rate before and
 after applying the grammars gives a measure of their efficiency. All this
-information is displayed in the ELAG processing window.
+information is displayed in the ELAG processing window.
+
 
 \subsection{Description of the tag sets}
 \label{section-elag-tagset}
@@ -499,7 +528,8 @@ dictionaries, with, for each of them, the list of syntactic and inflectional
 codes compatible with it, and a description of their possible combinations. 
 This description must be contained in a file called \verb$tagset.def$
 and placed in your personal folder, in the \verb+Elag+ subfolder of
-the desired language.
+the desired language.
+
 
 \subsubsection{\texttt{tagset.def} file}
 \index{File!\verb$tagset.def$}
@@ -581,7 +611,8 @@ comment. A comment can appear at any place in the file. The file always starts w
 This is followed by the \verb$POS$ sections for each part of speech. Each section
 describes the structure of the lexical tags of the lexical entries belonging to
 the part of speech concerned. Each section is composed of 4 parts which are all
-optional:
+optional:
+
 \begin{itemize}
   \item \verb$flex$\index{\verb$flex$}: this part enumerates the inflectional
   codes belonging to the grammatical category. For example, the codes
@@ -589,7 +620,8 @@ optional:
   but not for adjectives. Each line describes an inflectional attribute (gender,
   time, etc.) and is made up of the attribute name, followed by the \verb$=$
   character and the values which it can take. For example, the following line
-  declares an attribute $pers$ being able to taking the values $1$, $2$ or $3$:
+  declares an attribute $pers$ being able to taking the values $1$, $2$ or $3$:
+
 \begin{verbatim}
 pers = 1 2 3
 \end{verbatim}
@@ -603,7 +635,8 @@ cannot take more than one value for the same attribute.
 On the other hand, all the tags in a given part of speech don't necessarily take
 values for all the attribute of the part of speech. For example, to define the
 attribute \verb$niveau_de_langue$ which can take the values \verb$z1$, \verb$z2$
-and \verb$z3$, the following line can be written:
+and \verb$z3$, the following line can be written:
+
 
 \begin{verbatim}
 niveau_de_langue = z1 z2 z3
@@ -628,7 +661,8 @@ in angle brackets (\verb$<$ and \verb$>$), this signifies that any value of this
 attribute may occur. It is possible as well to declare that an entry does not
 take any inflectional feature by means of a line containing only the \verb$_$
 character (underscore).\index{\verb$_$} So for example, if we consider that the
-following lines extracted from the section describing the verbs:
+following lines extracted from the section describing the verbs:
+
 
 \begin{verbatim}
 W
@@ -667,22 +701,27 @@ PpvPr
   grammatically in person, gender and number;
   \item the prepositional pronouns (\textit{en}, \textit{y}) do not have any
   inflectional feature.
-\end{itemize}
+\end{itemize}
+
 \bigskip
 \noindent All combinations of inflectional features and discriminant subcategories which
 appear in the dictionaries must be described in the \verb$tagset.def$
 file\index{File!\verb$tagset.def$}; otherwise, the information in the
-corresponding entries will be discarded by ELAG.
+corresponding entries will be discarded by ELAG.
+
 \bigskip
 \noindent If words of the same subcategory differ by their inflectional profile, it is
 necessary to write several lines into the \verb$complete$ part. The disadvantage
 of this method of description is that it becomes difficult to make the
-distinction between such words in an ELAG grammar.\bigskip
+distinction between such words in an ELAG grammar.
+
+\bigskip
 \noindent If one considers the description given by the previous example of a
 \verb$tagset.def$ file, certain adjectives of French take a gender and a number,
 whereas others to not have any inflectional feature. This allows for coding fixed
 sequences like \textit{de bonne humeur} as adjective, on the basis of their
-syntactic behavior.
+syntactic behavior.
+
 \bigskip
 \noindent Consider a French dictionary with such sequences as invariable adjectives without
 inflectional features. The problem is that if one wants to refer exclusively to
@@ -703,7 +742,8 @@ personnes de bonne humeur m'insupportent}.
 \noindent Is is however recommended to limit the use of the \verb$@$ operator, because it
 harms the legibility of the grammars. It is preferable to distinguish the labels
 which accept various inflectional combinations by means of discriminating
-subcategories defined in the \verb$discr$ part.
+subcategories defined in the \verb$discr$ part.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig7-19.png}
@@ -715,7 +755,8 @@ subcategories defined in the \verb$discr$ part.
 The optional syntactic and semantic codes are declared in the \verb$cat$ part.
 They can be used in ELAG grammars like other codes. The difference is that these
 codes do not intervene to decide if a label must be rejected as an invalid one
-while loading of the text autmaton.
+while loading of the text autmaton.
+
 \bigskip
 \noindent In fact optional codes are independent of other codes, such as for example the
 attribute of the language level (\verb$z1$, \verb$z2$ or \verb$z3$). In the same
@@ -724,7 +765,8 @@ attribute by writing the \verb$!$ character right before the name of the
 attribute. Thus, with our example file, the \verb$<A!gauche:f>$ symbol recognizes
 all adjectives in the feminine which do not have the \verb$gauche$
 code\,\footnote{This code indicates that the adjective must appear on the left of
-the nound to which it refers to, as is the case for \textit{bel}.}.
+the nound to which it refers to, as is the case for \textit{bel}.}.
+
 \bigskip
 \noindent All codes which are not declared in the
 \verb$tagset.def$\index{File!\verb$tagset.def$} file are discarded by ELAG. If a
@@ -734,7 +776,8 @@ withdraw the code from the entry.
 \bigskip
 \noindent Consequently, if two concurrent entries differ in the original text automaton
 only by undeclared codes, these entries will become indistinguishable by the
-programs and will thus be unified into only one entry in the resulting automaton.
+programs and will thus be unified into only one entry in the resulting automaton.
+
 \bigskip
 \noindent Thus, the set of labels described in the file \verb$tagset.def$ file is
 compatible with the dictionaries distributed with Unitex, by factorizing words
@@ -748,14 +791,17 @@ table which contains it. We have considered until now that this information is
 more relevant to syntax than to lexical analysis and we thus don't have
 integrated them into the description of the tagset. They are thus automatically
 eliminated at the time when the text automaton is loaded, which reduces the rate
-of ambiguity.
+of ambiguity.
+
 \bigskip
 \noindent In order to distinguish the effects bound to the tagset from those of the ELAG
 grammars, it is advised to proceed to a preliminary stage of normalization of the
 text automaton before applying disambiguation grammars to it. This normalization
 is carried out by applying to the text automaton a grammar not imposing any
 constraint, like that of figure~\ref{fig-elag-norm}. Note that this grammar is
-normally present in the Unitex distribution and precompiled in the file\verb+norm.rul+.\index{\verb+norm.rul+}\index{File!\verb+norm.rul+}
+normally present in the Unitex distribution and precompiled in the file
+\verb+norm.rul+.\index{\verb+norm.rul+}\index{File!\verb+norm.rul+}
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig7-20.png}
@@ -770,7 +816,8 @@ file\index{File!\verb$tagset.def$}, or do not conform to this description
 (because of unknown grammatical categories or invalid combinations of
 inflectional features). By then replacing the text automaton by this normalized
 automaton, one can be sure that later modifications of the automaton will only be
-effects of ELAG grammars.
+effects of ELAG grammars.
+
 
 \subsection{Grammar Optimization}
 \index{Optimizing ELAG Grammars}
@@ -781,12 +828,14 @@ are not accepted by the grammars. This task is complex and can take a lot of
 time. It is however possible to appreciably speed it up by observing certain
 principles at the time of writing gramars.
 
-\subsubsection{Limiting the number of branches in the \textit{then} part}It is recommended to limit the number of \textit{then} parts of a grammar to a
+\subsubsection{Limiting the number of branches in the \textit{then} part}
+It is recommended to limit the number of \textit{then} parts of a grammar to a
 minimum. This can reduce considerably the compile time of a grammar. Generally, a grammar
 having many \textit{then} parts can be rewritten with one or two \textit{then} parts, without a
 loss of legibility. It is for example the case of the grammar in
 figure~\ref{fig-NA-bad}, which imposes a constraint between a verb and the
-pronoun which follows it.
+pronoun which follows it.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-21.png}
@@ -798,7 +847,8 @@ pronoun which follows it.
 \noindent As one can see in figure~\ref{fig-NA-good}, one can write an
 equivalent grammar by factorizing all the \textit{then} parts into only one. The two grammars will have
 exactly the same effect on the text automaton, but the second one will be
-compiled much more quickly.
+compiled much more quickly.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-22.png}
@@ -824,7 +874,8 @@ information automatically, if all these features are not specified, the program
 will consider nonexisting labels such as \verb$<je.PRO:3p>$, 
 
 % do not remove this line jump
-\noindent \verb$<je.PRO+PronQ>$ etc. in vain.
+\noindent \verb$<je.PRO+PronQ>$ etc. in vain.
+
 
 \section{Linearizing text automaton with the tagger}
 \label{section-linearization}
@@ -928,7 +979,8 @@ directly display the sentence automata. Instead, the system uses the
 programs!\verb+Fst2Grf+} to convert the sentence automaton into a graph that can
 be displayed. This program is called automatically when you select a sentence  in
 order to generate the corresponding \verb+.grf+ file.
-\index{File!\verb+.grf+}
+\index{File!\verb+.grf+}
+
 \bigskip
 \noindent The generated \verb+.grf+ files are not interpreted in the same manner
 as the \verb+.grf+ files that represent graphs constructed by the user. In fact,
@@ -938,7 +990,8 @@ or a dictionary entry enclosed by curly brackets. If the box only represents an
 unlabeled lexical unit, this unit appears alone in the box. If the box represents
 a dictionary entry, the inflected form is displayed, followed in another line by
 the canonical form if it is different. The grammatical and inflectional
-information is  displayed below the box as a transducer output.
+information is  displayed below the box as a transducer output.
+
 
 \bigskip
 \noindent Figure~\ref{fig-first-sentence-Ivanhoe} shows
@@ -965,7 +1018,8 @@ boxes or transitions. When a graph is modified, it is saved to the text file
 \noindent When you select a sentence, if a modified graph exists for this sentence, this
 one is displayed. You can then reset the automaton of that sentence by clicking
 on the botton "Reset Sentence Graph" (cf. 
-figure~\ref{fig-modified-sentence-automaton}).
+figure~\ref{fig-modified-sentence-automaton}).
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig7-24.png}
@@ -1004,7 +1058,9 @@ configure this parameter, click on "Page Setup" in the
 If the text automaton does not contain any lexical ambiguity, it is possible to
 build a text file corresponding to the unique path of the automaton. Go into the
 "Text" menu and click on "Convert FST-Text to Text...". You can set the output
-text file in the window as shown on Figure\ref{fig-linearization-configuration}.
+text file in the window as shown on Figure
+\ref{fig-linearization-configuration}.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig7-25.png}
@@ -1015,7 +1071,8 @@ text file in the window as shown on Figure\ref{fig-linearization-configuration}
 \bigskip
 \noindent If the automaton is not linear, an error message will give you the number of
 the first sentence that contain ambiguity. Otherwise, the \verb+Tfst2Unambig+ program
-will build the output file according to the following rules:
+will build the output file according to the following rules:
+
 \index{External programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
 \begin{itemize}
   \item the output file contains one line per sentence;
