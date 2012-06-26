@@ -202,8 +202,7 @@ figure~\ref{fig-subgraph-call}:
 
 \noindent You can indicate the full name of the graph
 (\verb$E:\greek\delta.grf$) or simply the base name without the path (\verb$beta$); 
-in this case, the the
-sub-graph is expected to be in the same directory as the graph that references
+in this case, the sub-graph is expected to be in the same directory as the graph that references
 it. References to absolute path names should as a rule be avoided, since such
 calls are not portable. If you use such an absolute path name, the graph compiler
 will emit a warning (see figure~\ref{fig-warning-absolute-graph-name}).
@@ -223,6 +222,10 @@ in graph path names. Use instead \verb+:+ which is understood as a
 system-independent separator. In figure~\ref{fig-warning-absolute-graph-name}
 \verb+\+ and \verb+/+ are internally converted by the graph compiler to \verb+:+
 (\verb+E::greek:delta.grf+).
+
+
+\clearpage
+%\bigskip
 
 \bigskip
 \noindent \textbf{Graph repository}
@@ -250,12 +253,12 @@ directory for all the languages you work with.
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=8cm]{resources/img/fig5-9.png}
+\includegraphics[width=8cm]{resources/img/fig5-10.png}
 \caption{Setting the path to the graph repository\label{directories}}
 \end{center}
 \end{figure}
 
-\clearpage
+%\clearpage
 
 \bigskip
 \noindent Let us assume that we have a repository tree as on Figure
@@ -271,18 +274,20 @@ that refer to the repository are displayed in brown instead of grey.}).
 \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=3.9cm]{resources/img/fig5-10.png}
+\includegraphics[width=3.9cm]{resources/img/fig5-11.png}
 \caption{Graph repository example\label{repository}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=6.7cm]{resources/img/fig5-11.png}
+\includegraphics[width=6.7cm]{resources/img/fig5-12.png}
 \caption{Call to a graph located in the
 repository\label{repository-graph-call}}
 \end{center}
 \end{figure}
+
+%\clearpage
 
 \bigskip
 \noindent TRICK: If you want to avoid long path names like
@@ -294,16 +299,32 @@ can modify the graphs in your repository with no constrainst on your own graphs,
 because the only graph that will have to be modified is the one located at the
 repository root.
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig5-9.png}
+\caption{Missing called sub-graphs appear in red}
+\end{center}
+\end{figure}
+
 
 \bigskip
 \noindent Calls to sub-graphs are represented in the boxes by grey lines, or brown
-lines in the case of graphs located in the repository. On Windows, you can open
+lines in the case of graphs located in the repository. If the sub-graph is not found at the path you indicated its call will be represented by red line. On Windows, you can open
 a sub-graph by clicking on the grey line while pressing the Alt key. On Linux, the
 combination <Alt+Click> is intercepted by the system.\footnote{If you are working
 on KDE, you can deactivate <Alt+Click> in kcontrol.} In order to open a
 sub-graph, click on its name by pressing the left and the right mouse button
 simultaneously.
 
+\bigskip
+\noindent The list of subgraphs called from the current graph and the graphs in witch the current graph is called can be displayed bay clicking on the second an third button of the fourth set of buttons in the toolbar command (see
+figure~\ref{fig-toolbar}).
+In these Lists of subgraphs : 
+\begin{itemize}
+\item sub-graphs directly called from the current graph appear with their simple filename
+\item sub-graphs indirectly called from one of the graphs called by the current graph appear with an arrow before their filename.
+\item sub-graphs
+\end{itemize}
 
 \subsection{Manipulating boxes}
 \index{Multiple selection}\index{Boxes!selection}
@@ -313,9 +334,11 @@ mouse without releasing the button. When you release the button, all boxes
 touched by the selection rectangle will be selected and are displayed in
 white on blue ground, as shown on Figure \ref{multi-selection}.
 
+You can select several boxes by keeping simultaneously the <CTRL> and <SHIFT> key pressed and by clicking on every box you want to add to your current selection. This way you can select several boxes without selecting all the boxes located in their area.
+
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=10cm]{resources/img/fig5-12.png}
+\includegraphics[width=10cm]{resources/img/fig5-13.png}
 \caption{Selecting several boxes\label{multi-selection}}
 \end{center}
 \end{figure}
@@ -337,7 +360,7 @@ clipboard. You can then paste this selection by pressing <Ctrl+V> or by selectin
 \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=13cm]{resources/img/fig5-13.png}
+\includegraphics[width=13cm]{resources/img/fig5-14.png}
 \caption{Copy-Paste of a multiple selection}
 \end{center}
 \end{figure}
@@ -361,7 +384,7 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=4.5cm]{resources/img/fig5-14.png}
+\includegraphics[width=4.5cm]{resources/img/fig5-15.png}
 \caption{Example of a transducer\label{fig-exemple-transduction}}
 \end{center}
 \end{figure}
@@ -387,7 +410,7 @@ figure~\ref{fig-using-variable} you see a sequence of digits before
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=13.5cm]{resources/img/fig5-15.png}
+\includegraphics[width=13.5cm]{resources/img/fig5-16.png}
 \caption{Using the variable
 \texttt{var1}\label{fig-using-variable}}
 \end{center}
@@ -407,7 +430,7 @@ year, and produces the same date as an output, but in the order year-month.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=14.5cm]{resources/img/fig5-16.png}
+\includegraphics[width=14.5cm]{resources/img/fig5-17.png}
 \caption{Inverting month and year in a date\label{fig-date-grammar}}
 \end{center}
 \end{figure}
@@ -438,7 +461,7 @@ opens:
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=7cm]{resources/img/fig5-17.png}
+\includegraphics[width=7cm]{resources/img/fig5-18.png}
 \caption{Selecting a context for copying a list\label{fig-setting-contexts-for-multiple-copy}}
 \end{center}
 \end{figure}
@@ -465,7 +488,7 @@ empty. If you use the contexts  \verb+<+ and \verb+.V>+ with the following list:
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=6.7cm]{resources/img/fig5-18.png}
+\includegraphics[width=6.7cm]{resources/img/fig5-19.png}
 \caption{Box resulting from copying a list and applying contexts\label{fig-multiple-copy}}
 \end{center}
 \end{figure}
@@ -522,6 +545,7 @@ editor\label{tab-special-symbols}}
 
 \subsection{Toolbar Commands}
 \index{Toolbar}
+\label{toolbar-commands}
 
 The toolbar on the left of a graph contains shortcuts for certain commands
 and allows you to manipulate boxes of a graph by using some "tools". This
@@ -532,21 +556,20 @@ the toolbar back at its initial position. Each graph has its own toolbar.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=15cm]{resources/img/fig5-19.png}
+\includegraphics[width=15.6cm]{resources/img/fig5-20.png}
 \caption{Toolbar\label{fig-toolbar}}
 \end{center}
 \end{figure}
 
-\bigskip
+%\bigskip
+\medskip
 \index{Copy}\index{Cut}\index{Paste}
 \noindent The first two icons are shortcuts for saving and compiling the graph.
-The following five correspond to the Copy, Cut, Paste, Redo and Undo operations. The
-last icon showing a  key  is a shortcut to open the window with the graph display
-options.
+The following five correspond to the Copy, Cut, Paste, Redo and Undo operations. 
 
 \bigskip
-\noindent The other six icons  correspond to edit commands for boxes. The first
-one, a white arrow, corresponds to the boxes' normal edit mode. The 5 others
+\noindent The following six icons correspond to edit commands for boxes. The first
+one, a white arrow, corresponds to the boxes' normal edit mode. The next 5 icons
 correspond to specific tools. In order to use a tool, click on the
 corresponding icon: The mouse cursor changes its form and mouse clicks are then
 interpreted in a particular fashion. What follows is a description of these
@@ -564,8 +587,34 @@ tools, from left to right:
   to the one clicked on in opposite direction;
   \item open a sub-graph: opens a sub-graph when you click on a grey line within a box.
 \end{itemize}
+The next icon showing a key is a shortcut to open the window with the graph display
+options.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The following two icons allow you to view lists of graphs that are related to the current graph by a  "graph / subgraph" relation :
+\begin{itemize}
+\item The first displays a list of graphs called by the current graph
+\item The second button shows the list of all the graphs calling the current graph as a subgraph.
+\end{itemize}
+The two green arrows button will refresh the current graph to load the latest version of the current graph. If this file is changed by any operation, a window will pop up to warn you.
 
+\bigskip
+\noindent The balance button allows you to compare the current graph to another graph or another version of the same graph. This will display each graphs with colours pointing out the different types of changes between the two graphs : insertion, removal, moves of each state of the graph and change of the content of a state (respectively in green, red, purple and yellow).
 
+\bigskip
+\noindent 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15.6cm]{resources/img/DIFF.png}
+\caption{DIFF}
+\end{center}
+\end{figure}
+\bigskip
+\noindent 
+
+\pagebreak
+The last six buttons are shortcuts to insert contexts around one or several selected states. These buttons will be clickable only when one or several states are currently selected.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Display options}
 \index{Graph!display}
 
@@ -578,24 +627,19 @@ the lines of the box according to the order of the characters in the Unicode
 encoding.
 \index{Unicode}
 
-
-\subsection{Zoom}
-\index{Zoom}\index{Graph!zoom}
-The "Zoom" submenu allows you to choose the zoom scale that is applied to display
-the graph.
-
-\bigskip
-\begin{figure}[h]
+\begin{figure}[!h]
 \begin{center}
-\includegraphics[width=6.4cm]{resources/img/fig5-20.png}
+\includegraphics[width=6cm]{resources/img/fig5-21.png}
 \caption{Zoom sub-menu}
 \end{center}
 \end{figure}
+\subsection{Zoom}
+\index{Zoom}\index{Graph!zoom}
+The "Zoom" submenu allows you to choose the zoom scale that is applied to display the graph.
+%\bigskip
+\noindent The "Fit in screen" option stretches or shrinks the graph in order to fit it into the screen. The "Fit in window" option adjusts the graph so that it is displayed entirely in the window.
 
-\noindent The "Fit in screen" option stretches or shrinks the graph in order to
-fit it into the screen. The "Fit in window" option adjusts the graph so that it
-is displayed entirely in the window.
-
+\clearpage
 \subsection{Antialiasing}
 \index{Antialiasing}\index{Graph!antialiasing}
 Antialiasing is a shading effect that avoids pixelization
@@ -607,7 +651,7 @@ graph at the bottom).
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=13.5cm]{resources/img/fig5-21.png}
+\includegraphics[width=13.5cm]{resources/img/fig5-22.png}
 \caption{Antialiasing example\label{fig-antialiasing}}
 \end{center}
 \end{figure}
@@ -634,7 +678,7 @@ You will then see the window in Figure~\ref{fig-alignment-frame}.
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=6.6cm]{resources/img/fig5-22.png}
+\includegraphics[width=6.6cm]{resources/img/fig5-23.png}
 \caption{Alignment window\label{fig-alignment-frame}}
 \end{center}
 \end{figure}
@@ -654,7 +698,7 @@ left that was aligned.
 \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=11.5cm]{resources/img/fig5-23.png}
+\includegraphics[width=11.5cm]{resources/img/fig5-24.png}
 \caption{Example of box alignment\label{fig-vertical-left-alignment}}
 \end{center}
 \end{figure}
@@ -667,7 +711,7 @@ boxes.\index{Grid}
 \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=15cm]{resources/img/fig5-24.png}
+\includegraphics[width=15cm]{resources/img/fig5-25.png}
 \caption{Example of using the grid}
 \end{center}
 \end{figure}
@@ -683,7 +727,7 @@ figure~\ref{fig-graph-display-configuration}.
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=9cm]{resources/img/fig5-25.png}
+\includegraphics[width=9cm]{resources/img/fig5-26.png}
 \caption{Configuring the display options of a graph\label{fig-graph-display-configuration}}
 \end{center}
 \end{figure}
@@ -723,7 +767,7 @@ figure~\ref{fig-graph-display-configuration}.
 \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=14.5cm]{resources/img/fig5-26.png}
+\includegraphics[width=14.5cm]{resources/img/fig5-27.png}
 \caption{Graph with reading direction set to right to left\label{fig-right-to-left-graph}}
 \end{center}
 \end{figure}

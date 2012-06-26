@@ -93,6 +93,10 @@ Here are the main new features:
   \item introduction of \verb$UnitexToolLogger$ that can be used to create and
   run again log of Unitex programs execution.
   (\ref{section-UnitexToolLogger})
+  \item introduction of \verb$Seq2Grf$ that automatically produce local grammar from raw text,
+  or XML-TEILite document(\ref{chap-sequence-automaton})
+  \item You can look up for a word in an opened Dictionnary or in several dictionnaries from the User or System ressources (\ref{section-dictionary-lookup})
+  \item You can acces to sub-graphs called in the current graph or graphs in which the current graph is a subgraph, automatically or manually reload latest version on disk of the current graph, compare two verisions of the same graph and insert context delimiters in the new extended ToolBar(\ref{toolbar-commands})
 \end{itemize}
 
 \bigskip
@@ -124,6 +128,8 @@ presented.
 concept of text automaton and describes the properties of this notion. This chapter also describes 
 operations on this object, in particular, how to disambiguate lexical items with
 the ELAG program.
+
+\bigskip \noindent Chapter \ref{chap-sequence-automaton} describes the sequence automaton module, the file formats that are accepted as input, the user interface and introduces the search by approximation.
 
 \bigskip \noindent Chapter \ref{chap-lexicon-grammar} contains an
 introduction to lexicon-grammar tables, followed by a description of the method of constructing grammars based on these
@@ -169,6 +175,7 @@ sounds like Open Source is good for science:
     has also designed the undo functionality in the graph editor
     \item Claude Devis: introduction of morphological filters, 
     based on the TRE library
+    \item Nathalie Friburger: author of \verb+Cassys+
     \item Hyun-Gue Huh: author of the tools used to
     generate Korean dictionaries
     \item Claude Martineau: had worked on the simple word inflection part of
@@ -180,12 +187,11 @@ sounds like Open Source is good for science:
     \item Aljosa Obuljen: author of \verb+Stats+
     \item S\'ebastien Paumier: main developper
     \item Agata Savary: author of \verb+MultiFlex+
+    \item Anthony Sigogne: author of \verb+Tagger+ and \verb+TrainingTagger+
     \item Gilles Vollant: author of \verb+UnitexTool+, has optimized many
     aspects of Unitex code (memory, speed, multi-compiler compliance, etc)
     \item Patrick Watrin: author of \verb+XMLizer+, has worked on the
     integration of \verb+XAlign+
-    \item Anthony Sigogne: author of \verb+Tagger+ and \verb+TrainingTagger+
-    \item Nathalie Friburger: author of \verb+Cassys+
 \end{itemize}
 
 \bigskip

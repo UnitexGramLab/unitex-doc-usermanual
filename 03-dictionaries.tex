@@ -422,6 +422,46 @@ LADL,Laboratoire d'Automatique Documentaire et Linguistique.ACRONYM
 UN,United Nations.ACRONYM
 \end{verbatim}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Looking up a word in a dictionary}
+\index{Dictionaries!lookup} \index{Looking up a word in a dictionary}
+\label{section-dictionary-lookup}
+You can look up a word in one or several dictionaries by two means : 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig3-1.png}
+\caption{"DELA" Menu}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+If you have opend a dictionary, the displayed window contains a field where you can enter a word to search. If the word appears in the dictionary, the Find Button will highlight the first entry that matches it. If there is several entries for this word, you can browse all matches by clicking on the two arrow buttons.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig3-2.png}
+\caption{Looking up for a word in a dictionnary}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+You can also look up a word in several dictionnaries by clicking on the Lookup button of the DELA menu. You can then select the dictionaries in which you want to look up the word you have entered.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig3-3.png}
+\caption{Looking up for a word in several dictionnaries}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+
+%%%%%%%%%%%%%%%%%%
 \section{Checking dictionary format}
 \index{Dictionaries!checking} \index{Checking dictionary format}
 When dictionaries become large, it becomes tiresome to check them by hand.
@@ -455,14 +495,7 @@ dictionary, you first open it by choosing "Open..." in the "DELA" menu.
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=13cm]{resources/img/fig3-1.png}
-\caption{"DELA" Menu}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=10cm]{resources/img/fig3-2.png}
+\includegraphics[width=10cm]{resources/img/fig3-4.png}
 \caption{Dictionary example\label{fig-dictionary-example}}
 \end{center}
 \end{figure}
@@ -483,14 +516,14 @@ that the program didn't find any grammatical or semantic codes.
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=7cm]{resources/img/fig3-3.png}
+\includegraphics[width=7cm]{resources/img/fig3-5.png}
 \caption{Checking a dictionary\label{fig-dictionary-checking}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!p]
 \begin{center}
-\includegraphics[height=19.4cm]{resources/img/fig3-4.png}
+\includegraphics[height=19.4cm]{resources/img/fig3-6.png}
 \caption{Results of checking\label{fig-dictionary-checking-results}}
 \end{center}
 \end{figure}
@@ -607,7 +640,7 @@ displayed.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=8cm]{resources/img/fig3-5.png}
+\includegraphics[width=8cm]{resources/img/fig3-7.png}
 \caption{Configuration of automatic inflection\label{fig-inflection-configuration}}
 \end{center}
 \end{figure}
@@ -615,7 +648,7 @@ displayed.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=4.5cm]{resources/img/fig3-6.png}
+\includegraphics[width=4.5cm]{resources/img/fig3-8.png}
 \caption{Inflectional grammar
 \texttt{N4}\label{fig-example-inflectional-grammar}}
 \end{center}
@@ -821,7 +854,7 @@ our DELAS example.
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=9.5cm]{resources/img/fig3-7.png}
+\includegraphics[width=9.5cm]{resources/img/fig3-9.png}
 \caption{Result of automatic inflection\label{fig-inflection-result}}
 \end{center}
 \end{figure}
@@ -838,7 +871,7 @@ contain the semantic code preceeded by a plus, as shown on Figure \ref{fig-infle
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=6cm]{resources/img/fig3-7sem.png}
+\includegraphics[width=6cm]{resources/img/fig3-9sem.png}
 \caption{An inflection grammar with a semantic code\label{fig-inflection-sem}}
 \end{center}
 \end{figure}
@@ -870,7 +903,7 @@ that illustrates how the semitic inflection process works.
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=5.5cm]{resources/img/fig3-7a.png}
+\includegraphics[width=5.5cm]{resources/img/fig3-9a.png}
 \caption{A toy semitic inflection grammar\label{semitic-grammar}}
 \end{center}
 \end{figure}
@@ -914,7 +947,7 @@ example, the minimal automaton of the words \verb+me+, \verb+te+, \verb+se+,
 \verb+ma+, \verb+ta+ et \verb+sa+ can be represented by the graph shown in
 Figure~\ref{fig-example-minimal-automaton}. \bigskip \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=5cm]{resources/img/fig3-8.png}
+\includegraphics[width=5cm]{resources/img/fig3-10.png}
 \caption{Representation of a minimal
 automaton\label{fig-example-minimal-automaton}}
 \end{center}
@@ -929,7 +962,7 @@ created. Figure~\ref{fig-compression-result} shows the result of
 the compression of a dictionary of simple words. \bigskip
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=14cm]{resources/img/fig3-9.png}
+\includegraphics[width=14cm]{resources/img/fig3-11.png}
 \caption{Results of a compression\label{fig-compression-result}}
 \end{center}
 \end{figure}
@@ -1039,7 +1072,7 @@ they must produce output sequences that are valid DELAF lines.\index{DELAF}\inde
 
 \begin{figure}[!p]
 \begin{center}
-\includegraphics[height=24cm]{resources/img/fig3-10.png}
+\includegraphics[height=24cm]{resources/img/fig3-12.png}
 \caption{Dictionary graph of chemical elements\label{elements}}
 \end{center}
 \end{figure}
@@ -1064,7 +1097,7 @@ For more information about contexts,\index{Context} see section
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=10.5cm]{resources/img/fig3-11.png}
+\includegraphics[width=10.5cm]{resources/img/fig3-13.png}
 \caption{Dictionary graph that tags unknown words beginning with an uppercase letter as proper names\label{graph-NPr}}
 \end{center}
 \end{figure}
@@ -1082,7 +1115,7 @@ uppercase letters in some contexts.
 \bigskip
 \begin{figure}[!p]
 \begin{center}
-\includegraphics[height=24cm]{resources/img/fig3-12.png}
+\includegraphics[height=24cm]{resources/img/fig3-14.png}
 \caption{Dictionary graph of roman numerals\label{graph-CR}}
 \end{center}
 \end{figure}
@@ -1142,14 +1175,14 @@ token, the link between them is displayed with a dashed line.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=14cm]{resources/img/fig3-12a.png}
+\includegraphics[width=14cm]{resources/img/fig3-14a.png}
 \caption{Example of morphological dictionary graph\label{morphoA}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=15cm]{resources/img/fig3-12b.png}
+\includegraphics[width=15cm]{resources/img/fig3-14b.png}
 \caption{Path added by a morphological dictionary
 graph\label{morphoB}}
 \end{center}
