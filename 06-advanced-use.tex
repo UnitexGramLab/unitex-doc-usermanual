@@ -383,7 +383,25 @@ read the pattern described by that label in the text before calling
 only if they  recognized the pattern an infinite number of times in the text,
 which is impossible.
 
+\pagebreak
+\index{Intervals}
+\noindent In order to recognize tokens sequences in which one word or one token of a specific grammatical category appears once, several times or never, you can set to a box an interval.
+This means if you set the interval [m,M] to a box containing <ADJ> that this path will match sequences with at least m consecutive adjectives and no more than M.
+Intervals can be defined according to the following rules : 
+\begin{itemize}
+\item \verb+[m,M]+ at least m consecutive terms and no more than M
+\item \verb+[,M]+ 0 to M  
+\item \verb+[m,]+ at least m
+\end{itemize}
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=13.5cm]{resources/img/fig6-10a.png}
+\caption{use of interval to match several consecutive tokens\label{intervals}}
+\end{center}
+\end{figure}
+
+\pagebreak
 \subsection{Error detection}
 \index{Error detection in graphs}\index{Graph!detection of
 errors}\index{Errors in graphs}

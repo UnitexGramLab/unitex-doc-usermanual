@@ -110,10 +110,13 @@ described along the paths between initial and final states.
 
 \bigskip
 \noindent In order to create a box, click inside the window while pressing the Ctrl
-key.\index{Graph!creating a box} \index{Creating a Box}\index{Boxes!creating}
+key.\index{Graph!creating a box}\index{Creating a Box}\index{Boxes!creating}
 A blue rectangle will appear that symbolizes the empty box that was created (see
-figure~\ref{fig-box-creation}). After creating the box, it is
-automatically selected.
+figure~\ref{fig-box-creation}). After creating the box, it is automatically selected. 
+
+
+\noindent If you use Unitex on a Macintosh device, you must press the "Command key" 
+instead of Ctrl in every action involving the Ctrl key.
 
 \bigskip
 \noindent You see the contents of that box in the text field at the top of the
@@ -126,14 +129,20 @@ not connected to another one at the moment.
 We often use this type of boxes to insert comments into a
 graph. \index{Graph!comments in}\index{Comments!in a graph}
 
-\begin{figure}[!h]
+\bigskip
+\noindent If you intend to insert comments into a graph, you can create a box starting with \verb$\$.
+The text in this box will be displayed in green, and may contain empty lines.
+This box can't have any incoming nor outgoing transitions (see
+figure~\ref{comment-box}).
+
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-3.png}
 \caption{Creating a box\label{fig-box-creation}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!hb]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-4.png}
 \caption{Box containing
@@ -141,7 +150,15 @@ graph. \index{Graph!comments in}\index{Comments!in a graph}
 \end{center}
 \end{figure}
 
-\clearpage
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12.5cm]{resources/img/fig5-4b.png}
+\caption{Box containing comments\label{comment-box}}
+\end{center}
+\end{figure}
+%\clearpage
+
+\bigskip
 \noindent To connect a box to another one, first click on the source box, then
 click on the target box.\index{Graph!connecting boxes}\index{Boxes!connecting} If there
 already exists a transition between two boxes, it is deleted. It is also possible
@@ -309,22 +326,30 @@ repository root.
 
 \bigskip
 \noindent Calls to sub-graphs are represented in the boxes by grey lines, or brown
-lines in the case of graphs located in the repository. If the sub-graph is not found at the path you indicated its call will be represented by red line. On Windows, you can open
-a sub-graph by clicking on the grey line while pressing the Alt key. On Linux, the
-combination <Alt+Click> is intercepted by the system.\footnote{If you are working
-on KDE, you can deactivate <Alt+Click> in kcontrol.} In order to open a
+lines in the case of graphs located in the repository. If the .GRF File of the sub-graph is not found at the path you indicated, Unitex will try to find a fst2 file of the same name. If Unitex can't find any of the .grf or .fst2 file, the call to the missing subgraph will be represented by red line. 
+On Windows, you can open a sub-graph by clicking on the grey line while pressing the Alt key.
+On Linux, the  combination <Alt+Click> is intercepted by the system.\footnote{If you are 
+working on KDE, you can deactivate <Alt+Click> in kcontrol.} In order to open a
 sub-graph, click on its name by pressing the left and the right mouse button
 simultaneously.
 
 \bigskip
-\noindent The list of subgraphs called from the current graph and the graphs in witch the current graph is called can be displayed bay clicking on the second an third button of the fourth set of buttons in the toolbar command (see
-figure~\ref{fig-toolbar}).
+\noindent The list of subgraphs called from the current graph and the graphs in witch the current graph is called can be displayed bay clicking on the second an third button of the fourth set of buttons in the toolbar command (see Figure~\ref{list-called-graphs} and
+Figure~\ref{fig-toolbar} in section~\ref{toolbar-commands}).
 In these Lists of subgraphs : 
 \begin{itemize}
 \item sub-graphs directly called from the current graph appear with their simple filename
 \item sub-graphs indirectly called from one of the graphs called by the current graph appear with an arrow before their filename.
-\item sub-graphs
+\item sub-graphs that appear in one of the graphs that are called from the current one but that are unplugged and never processed appear in orange
+\item sub-graphs that are not found (neither .grf nor .fst2) appear in red
 \end{itemize}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15.2cm]{resources/img/fig5-12b.png}
+\caption{Display the list of all called graphs\label{list-called-graphs}}
+\end{center}
+\end{figure}
 
 \subsection{Manipulating boxes}
 \index{Multiple selection}\index{Boxes!selection}
@@ -334,15 +359,21 @@ mouse without releasing the button. When you release the button, all boxes
 touched by the selection rectangle will be selected and are displayed in
 white on blue ground, as shown on Figure \ref{multi-selection}.
 
-You can select several boxes by keeping simultaneously the <CTRL> and <SHIFT> key pressed and by clicking on every box you want to add to your current selection. This way you can select several boxes without selecting all the boxes located in their area.
-
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig5-13.png}
 \caption{Selecting several boxes\label{multi-selection}}
 \end{center}
 \end{figure}
+%\bigskip
+\noindent You can select several boxes by keeping simultaneously the <CTRL> and <SHIFT> key pressed and by clicking on every box you want to add to your current selection. This way you can select several boxes without selecting all the boxes located in their area.
 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig5-13b.png}
+\caption{Selecting distant boxes\label{multi-selection}}
+\end{center}
+\end{figure}
 \bigskip
 \noindent When boxes are selected, you can move them by clicking and
 dragging the cursor without releasing the button. In order to cancel the selection, click on

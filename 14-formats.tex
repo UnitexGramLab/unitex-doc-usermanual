@@ -14,13 +14,14 @@ in Unicode Little-Endian.
 \label{unicode-encoding}
 \index{File!text}\index{Unicode}\index{File!\verb+.txt+}\index{File!\verb+.snt+}
 By default, text files processed by Unitex have to be encoded in Unicode Little-Endian.
-Unitex accepts also Unicode Big-Endian, UTF-8 or UTF-16 files.
+Unitex accepts also Unicode Big-Endian or UTF-8 files.
 This encoding allows the representation of 65536 characters by coding each of
 them in 2 bytes. In Little-Endian, the bytes are in lo-byte hi-byte order. If
 this order is reversed, we speak of Big-Endian. A text file encoded in Unicode
-Little-Endian, Big-Endian UTF-8 or UTF-16 starts with the special character (Unicode Byte Order Mark - BOM) with the hexadecimal value
-\verb+FF+\,\verb+FE+ (Little-Endian), \verb+FE+\,\verb+FF+ (Big-Endian) or \verb+EF+\,\verb+BB+\,\verb+BF+ (UTF-8). The
-newline symbols have to be encoded by the two characters \verb+0D+\,\verb+00+ and \verb+0A+\,\verb+00+ (Little-Endian), 
+Little-Endian, Big-Endian or UTF-8 starts with the special character (Unicode Byte Order Mark - BOM) with the hexadecimal value
+\verb+FF+\,\verb+FE+ (Little-Endian), \verb+FE+\,\verb+FF+ (Big-Endian) or \verb+EF+\,\verb+BB+\,\verb+BF+ (UTF-8). 
+Because UTF-8 has no byte order, adding a UTF-8 BOM is optional; for UTF-16 it is required.
+The newline symbols have to be encoded by the two characters \verb+0D+\,\verb+00+ and \verb+0A+\,\verb+00+ (Little-Endian), 
 \verb+00+\,\verb+0D+ and \verb+00+\,\verb+0A+ (Big-Endian), or \verb+0D+ and \verb+0A+ (UTF-8).
 
 \bigskip
