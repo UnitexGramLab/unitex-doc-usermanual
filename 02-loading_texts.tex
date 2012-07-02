@@ -158,12 +158,21 @@ occurrences of the letter \verb$t$.
 
 
 \section{Opening a text}
-Unitex deals with two types of text files. \index{File!text}
-The files with the extension \verb+.snt+ are text files preprocessed by Unitex
-which are ready to be manipulated by the different system functions. The files
-ending with \verb+.txt+ are raw files.
-To use a text, open the \verb+.txt+ file by clicking on "Open..." in the "Text"
-menu. Choose the file type "Raw Unicode Texts" and select your text.
+%Unitex deals with two types of text files. \index{File!text}
+%The files with the extension \verb+.snt+ are text files preprocessed by Unitex
+%which are ready to be manipulated by the different system functions. The files
+%ending with \verb+.txt+ are raw files.
+%To use a text, open the \verb+.txt+ file by clicking on "Open..." in the "Text"
+%menu. Choose the file type "Raw Unicode Texts" and select your text.
+
+Unitex deals with several types of documents. \index{File!text}
+The files with the extension \verb+.snt+ are text files preprocessed by Unitex 
+which are ready to be manipulated by the different system functions. 
+You can also load raw files ending with \verb+.txt+, or XML and HTML files. 
+To open any of these files, click on "Open..." in the
+"Text" menu. You can there choose the file type ("Raw Unicode Texts", "XML files", "HTML files", "Unitex Texts").
+If you open XML or HTML files, foo.xml for example, it will be preprocessed in order to remove non textual content. This will produce a foo.xml.txt file containing only the textual content of the original file. The resulting \verb+.txt+ file will be processed to produce a \verb+.snt+ file
+
 
 \begin{figure}[!h]
 \begin{center}
