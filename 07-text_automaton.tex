@@ -1038,6 +1038,28 @@ FST-Text". All sentences that have been modified are then replaced in the text
 automaton by their modified versions. The new text automaton is then
 automatically reloaded.
 
+\subsubsection{Manually resolve Ambiguities}
+The text automaton may contains many paths of tags because of lexical ambiguity. You can resolve ambiguities with ELAG Grammars or manually select the right paths for one or each graph of the sentence automaton.
+To do so you can perform a right click on the box you want to keep when several boxes with different tags are proposed. The edges of the selected box will become more bold when the other boxes will appear grayed (see Figure~\ref{fig-manually-resolve-ambiguities}).
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig7-24b.png}
+\caption{Manually resolve ambiguities in sentence automaton\label{fig-manually-resolve-ambiguities}}
+\end{center}
+\end{figure} 
+
+\bigskip
+\noindent You can then click on the "Remove greyed states" button to keep only the selected boxes as in Figure~\ref{fig-removed-ambiguities}.
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig7-24c.png}
+\caption{Ambiguous boxes removed in sentence automaton\label{fig-removed-ambiguities}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 
 \subsection{Display configuration}
 Sentence automata are subject to the same presentation options as the
 graphs. They use the same colors and fonts as well as the antialiasing effect. In
@@ -1142,7 +1164,7 @@ pattern \textit{huit}\label{fig7-locatetfst1}}
     has been applied. For instance, if you look for the pattern \verb+<le.DET>+
     in \textit{80jours}'s text automaton, you will obtain 7703 matches, while
     \verb+Locate+ only finds 5763 matches. This is because some words have been normalized,
-    like \verb+au+ $\rightarrow$ \verb+� le+ or \verb+du+ $\rightarrow$
+    like \verb+au+ $\rightarrow$ \texttt{\`a le} or \verb+du+ $\rightarrow$
     \verb+de le+. So, when you look for \verb+<le.DET>+, \verb+LocateTfst+
     matches those tags that were added to the text automaton by the
     normalization grammar, and \verb+Concord+ uses the original sequence in the
@@ -1163,6 +1185,11 @@ pattern \textit{huit}\label{fig7-locatetfst1}}
     are compound word tags, or even shorter, if the text automaton contains 
     morphological analysis like \verb+un+ as shown on 
     Figure \ref{morphoB}, page \pageref{morphoB}.
+	
+%	\item as explained in \ref{dictionary-variables} you can use information
+%	extracted from a lexical tag contained in the text-automaton, 
+%	without being in morphologicalmode.
+	\item if the text automaton contains morphological analysis, you can get inflected form, lemma and codes of the entry with variables defined as in section~\ref{dictionary-variables}.
 
 \end{itemize}
 

@@ -790,6 +790,7 @@ MUST be \verb+.bin+ ones. Once done, you can apply your grammar and get results.
 \subsection{Dictionary entry variables}
 \index{Dictionary entry variables}
 \index{Variables!Dictionary entry}
+\label{dictionary-variables}
 You can associate variables to patterns that refer to the morphological dictionaries,
 except \verb+<DIC>+. To do that, you must set the output of the box with
 \verb+$xxx$+ where \verb+xxx+ is a valid variable name. That defines a
@@ -840,11 +841,12 @@ tested as explained in section \ref{section-variables}.
 \noindent \textbf{Dictionary variables in LocateTfst}
 
 \noindent In grammars to be applied with \verb+LocateTfst+, you have an extra feature. 
-Even if you are not in morphological mode, you can capture the information associated to a tag
-contained in a box of the text automaton in a dictionary variable. To do that, you have to associate 
-to your box an output of the form \verb+$:abc$+ where \verb+abc+ will be the name of your variable.
-You can then use it as dictionary variable capture in morphological mode.
-
+Even if you are not in morphological mode, you can extract information from a lexical tag contained in the text
+automaton, and capture it into a dictionary-entry variable in a grammar.
+In your grammar, you have to set the output of a box with \verb+$:xxx$+, where
+\verb+xxx+ is a valid variable name. In the rest of the paths that contain the
+box, you can use \verb+xxx+ as a dictionary-entry variable, in the same way as
+described above for the morphological mode.
 
 
 \section{Exploring grammar paths}
@@ -1330,6 +1332,12 @@ The "Replace recognized sequences" mode allows you to replace the
 recognized sequences with the produced sequences. The third mode ignores all
 outputs. This latter mode is used by default.
 
+\bigskip
+\noindent
+In the "Search algorithm" frame, you can specify wether you want to perform the locate 
+operation on the text using the Locate program or on the text automaton with LocateTfst.
+By default, search is done with the Locate program, as Unitex always did until now. If you
+want to use LocateTfst, please read dedicated section 7.7.
 \bigskip
 \noindent
 After you have selected the parameters, click on "SEARCH" to start the search.
