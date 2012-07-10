@@ -17,13 +17,15 @@ the many works that discuss regular expression patterns.
 \begin{itemize}
   \item a token (\verb+book+) or a lexical mask
   (\verb+<smoke.V>+);
+  \item a particular position in the text : the beginning \verb+{^}+ or the end \verb+{$}+
   \item the concatenation of two regular
   expressions (\verb+he smokes+);\index{Concatenation of regular expressions}
   \item the union of two regular expressions (\verb$Pierre+Paul$);\index{Union of
   regular expressions} 
   \item the Kleene star of a regular expression
   (\verb+bye*+).\index{Kleene star}
-\end{itemize}
+\end{itemize}
+
 
 
 
@@ -137,7 +139,8 @@ The references to dictionary information (\verb+be+, \verb+V+) in these examples
 are basic. It is possible to express more complex lexical masks by using
 several grammatical or semantic codes separated by the character \verb$+$. An
 entry of the dictionary is then only found if it has all the codes that are
-present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
+present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
+
 \bigskip
 \noindent
 \texttt{broderies,broderie.N+z1:fp}
@@ -250,7 +253,8 @@ These unknown forms are mostly proper names, neologisms and spelling errors.
 \noindent The negation of a dictionary mask like \verb+<V:G>+ will match any
 word, except for those that are matched by this mask. For instance, \verb+<!V:G>+ will not
 match the word \verb+being+, even if there are homonymic non-verbal entries in
-the dictionaries:
+the dictionaries:
+
 
 \begin{verbatim}
 being,.A
@@ -362,7 +366,8 @@ this is very* cold
 \noindent recognizes \textit{this is cold}, \textit{this is very cold},
 \textit{this is very very cold}, etc. The star has a higher priority than the
 other operators. You have to use brackets in order to apply the star to a complex
-expression. The expression:
+expression. The expression:
+
 
 \begin{verbatim}
 0,(0+1+2+3+4+5+6+7+8+9)*
@@ -375,7 +380,8 @@ digits.
 \noindent WARNING: It is prohibited to search for the empty word with a regular
 expression. If you try to search for \verb$(0+1+2+3+4+5+6+7+8+9)*$, the program
 will raise an error as shown in
-figure~\ref{fig-epsilon-error}.
+figure~\ref{fig-epsilon-error}.
+
 
 \bigskip
 \begin{figure}[h]
@@ -402,7 +408,8 @@ immediately follow the lexeme found by a filter in double angle brackets:
 \bigskip\index{Regular expressions}\index{POSIX}
 \noindent The morphological filters are expressed as regular expressions in POSIX
 format (see \cite{TRE} for the detailed syntax). Here are some examples of
-elementary filters:
+elementary filters:
+
 
 
 \begin{itemize}
@@ -454,7 +461,8 @@ subject to the same variations of case as lexical masks. Thus, the filter
 \verb$<<^b>>$ will recognize all the words starting with
 \texttt{b}, but also those which start with \texttt{B}. 
 To force the matcher to respect case, add \verb+_f_+ immediately
-after the filter, \textit{e.g.}: \verb+<<^b>>_f_+.
+after the filter, \textit{e.g.}: \verb+<<^b>>_f_+.
+
 
 
 \section{Search}
@@ -535,7 +543,8 @@ number and the total number of tokens in the text.
 window~\ref{fig-configuration-concordance} appear, which allows you to configure
 the presentation of the matched occurrences. You can also open this window by
 clicking on "Located Sequences..." in the "Text" menu. The list of
-occurrences is called a \textit{concordance}.\index{Concordance}
+occurrences is called a \textit{concordance}.\index{Concordance}
+
 
 \bigskip
 \begin{figure}[h]
@@ -555,7 +564,8 @@ chapter~\ref{chap-advanced-grammars}.
 the sentences that do or do not contain matched units. With the button "Set File",
 you can select the output file. Then click on "Extract matching units" or
 "Extract unmatching units" depending on whether you are interested in sentences
-with or without matching units.
+with or without matching units.
+
 \bigskip
 \noindent In the "Show matching sequences in context" box, you can select the
 length in characters of the left and right contexts of the occurrences that will be

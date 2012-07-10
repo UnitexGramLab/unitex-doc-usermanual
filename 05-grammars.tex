@@ -130,7 +130,7 @@ We often use this type of boxes to insert comments into a
 graph. \index{Graph!comments in}\index{Comments!in a graph}
 
 \bigskip
-\noindent If you intend to insert comments into a graph, you can create a box starting with \verb$\$.
+\noindent If you intend to insert comments into a graph, you can create a box starting with \verb$/$.
 The text in this box will be displayed in green, and may contain empty lines.
 This box can't have any incoming nor outgoing transitions (see
 figure~\ref{comment-box}).
@@ -368,7 +368,7 @@ In these Lists of subgraphs :
 
 \begin{figure}[!h]
 \begin{center}
-\includegraphics[width=15.2cm]{resources/img/fig5-12b.png}
+\includegraphics[width=15.2cm]{resources/img/fig5-12b.png}é
 \caption{Display the list of all called graphs\label{list-called-graphs}}
 \end{center}
 \end{figure}
@@ -443,7 +443,22 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \end{figure}
 
 \noindent The output associated with a box is represented in bold text below it.
+\subsubsection{Wheights}
 
+
+You can assign wheights to the boxes of a transducer.
+Thus, when a sequence of tokens is matched by several paths, 
+only the one with the highest wheight will produce an output. 
+After a locate, this will affect the concordance, in which 
+the matched sequences of words will appear only once with the apropriate output
+(Figure~\ref{fig-weights-in-graphs}).
+\bigskip
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=14.5cm]{resources/img/fig5-15b.png}
+\caption{weights in graphs \label{fig-weights-in-graphs}}
+\end{center}
+\end{figure}
 \subsection{Using Variables}
 \label{section-using-variables}
 \index{Graph!variables in a}\index{Variables!within graphs}\index{\verb+$+}

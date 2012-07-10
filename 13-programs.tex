@@ -255,6 +255,8 @@ the occurrences. Here is the description of the parameters:
   output is an HTML file;
   \item \verb+-s N+/\verb+--fontsize=N+: the font size to use if the output is
   an HTML file. The font parameters are required if the output is an HTML file;
+  \item \verb+--only_ambiguous+: Only displays identical occurrences with 
+  ambiguous outputs, in text order.
   \item \verb+-l X+/\verb+--left=X+: number of characters on the left of the 
   occurrences (default=0). In Thai mode, this means the number of non-diacritic
   characters.\index{Contexts!concordance}
@@ -984,7 +986,6 @@ occurrences found.
   \item \verb+-g X+/\verb+--negation_operator=X+: specifies the negation operator to be used in
   Locate patterns. The two legal values for \verb+X+ are \verb+minus+ and \verb+tilde+ (default).
   Using \verb+minus+ provides backward compatibility with previous versions of Unitex.
-  
 \end{itemize}
 
 \bigskip
@@ -1024,6 +1025,8 @@ occurrences found.
   
   %do not remove this line jump
   \verb+3,14,.PI.NUM+
+  \item \verb+-v X=Y+/\verb+--variable=X=Y+: sets an output variable named X with content Y. 
+  Note that Y must be ASCII.
 \end{itemize}
 
 \bigskip
@@ -1115,6 +1118,8 @@ file named \verb+concord.ind+, just as \verb+Locate+ does.
   \item \verb+-M+/\verb+--merge+: merge transducer outputs with text inputs;
   \item \verb+-R+/\verb+--replace+: replace texts inputs with corresponding
   transducer outputs.
+  \item \verb+-v X=Y+/\verb+--variable=X=Y+: sets an output variable named X with content Y. 
+  Note that Y must be ASCII.
 \end{itemize}
 
 \bigskip
@@ -1220,12 +1225,12 @@ creates a modified version of the text that is saved in a file with extension
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
   \item \verb+-n+/\verb+--no_carriage_return+: every separator sequence will be turned into a single space;
-  
   \item \verb+-r XXX+/\verb+--replacement_rules=XXX+: specifies the
   normalization rule file to be used. See section \ref{section-normalization-file} 
   for details about the format of
   this file. By default, the program only replaces \verb+{+ and \verb+}+ by
   \verb+[+ and \verb+]+.
+  \item \verb+--no_separator_normalization+: only applies replacement rules specified with -r
 \end{itemize}
 
 \bigskip
@@ -1424,6 +1429,8 @@ corresponding to the sequences contained in file \verb+<snt>+.
   file \verb+XXX+;
   
   \item \verb+-t+/\verb+--thai+: option for sorting Thai text.
+  \item \verb+-f+/\verb+--factorize_inflectional_codes+: makes two entries XXX,YYY.ZZZ:A and XXX,YYY.ZZZ:B
+                                   become a single entry XXX,YYY.ZZZ:A:B
 \end{itemize}
 
 \bigskip
