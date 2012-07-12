@@ -1297,7 +1297,10 @@ search in the window shown in figure~\ref{fig-regexp-frame}.
 select your graph by clicking on the "Set" button. You can choose a graph in \verb+.grf+
 format (Unicode Graphs) or a compiled graph in \verb+.fst2+ format (Unicode
 Compiled Graphs). If your graph is a \verb+.grf+ one, Unitex will compile it
-automatically before starting the search.
+automatically before starting the search. If you click on "Activate debug mode", the 
+concordance will be displayed in a window in which you will also find the automaton and, 
+for each match, the list of states of the path that matches it. This window is described
+with more details in section~\ref{section-debug-mode}.
 
 \bigskip
 \noindent The "Index" field allows to select the recognition mode.
@@ -1337,7 +1340,7 @@ outputs. This latter mode is used by default.
 In the "Search algorithm" frame, you can specify wether you want to perform the locate 
 operation on the text using the Locate program or on the text automaton with LocateTfst.
 By default, search is done with the Locate program, as Unitex always did until now. If you
-want to use LocateTfst, please read dedicated section 7.7.
+want to use LocateTfst, please read dedicated section~\ref{section-locate-tfst}.
 \bigskip
 \noindent
 After you have selected the parameters, click on "SEARCH" to start the search.
@@ -1476,8 +1479,7 @@ You can also choose the sorting mode that will be applied to the lines of the
 concordance in the "Sort According to" menu. For further details on the
 parameters of concordance construction, refer to
 section~\ref{section-display-occurrences}.
-
-\bigskip
+%\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig6-31.png}
@@ -1485,7 +1487,6 @@ section~\ref{section-display-occurrences}.
 \label{fig-configuration-display-occurrences}}
 \end{center}
 \end{figure}
-
 \noindent The concordance is produced in the form of an HTML file.
 \index{File!HTML} You can parameterize Unitex  so that concordance files 
 can be read using a web browser
@@ -1498,7 +1499,7 @@ the text window is not iconified and the text is not too long to be displayed,
 you see the selected sequence appear (cf.
 Figure~\ref{fig-back-to-text}).
 
-\bigskip
+%\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig6-32.png}
@@ -1578,4 +1579,35 @@ example.
 \end{center}
 \end{figure}
 
+\clearpage
+\subsection{Debug mode}
+\label{section-debug-mode}
+When  you apply a graph to a text with the Locate menu 
+in the window shown in figure~\ref{fig-regexp-frame}, 
+%you can display a concordance in which the located sequences 
+if you activate the debug mode in the "Locate pattern in the forme of" field,
+the concordance will be displayed in a special window such as in figure~\ref{fig-debug-mode}, divided into three parts :
 
+\medskip 
+\indent In the top right part of the window is the concordance. It is identical to the classical concordance in which the sequences matched by the graph appear in blue.
+
+\medskip
+\indent In the bottom right you will find the graph used for the locate.
+
+\medskip
+\indent In the left side of the window is a table of 3 columns : "Tag", "output" and "matched".
+Each token of the matched sequence appear in the "matched" column, the Tag column contains what is in the box of the automaton that matched it, and if this box has any output, it will appear in the "output" column.
+
+\bigskip
+\noindent For each matched sequence in the concordance, if you click on its line in the concordance, the table on the left will be actualized and clicking on a row of the table will colour the corresponding box in the graph.
+\bigskip
+\noindent This will help you to see, for each occurence of a matched sequence in the text, which path in the automaton recognized it. A red number above each box indicates the number of sequences in the text in which that box matched a token. 
+
+
+%\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=9cm]{resources/img/fig6-34.png}
+\caption{The Concordance window in debug mode\label{fig-debug-mode}}
+\end{center}
+\end{figure}
