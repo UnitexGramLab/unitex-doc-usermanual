@@ -1555,18 +1555,21 @@ sentences that do not contain any match will be extracted.
 \label{section-comparing-concordances}
 \index{Comparing concordances}\index{Concordance!comparison}\index{External programs!\verb+ConcorDiff+}
 \index{\verb+ConcorDiff+}
-With the "Show differences with previous concordance" option, you can compare the
-current concordance with the previous one. The \verb+ConcorDiff+ program builds
-both concordances according to text order and compares them line by line. The
-result is an HTML page that presents results in two columns. A blue line
-indicates that an utterance is common to the two concordances. A red line
-indicates that a match is common to both concordances but with different range,
-\textit{i.e.} the two matches only overlap partially. A green line indicates an
-utterance that appears in only one concordance. Figure~\ref{fig-concordiff} gives an
-example.
+With the "Show differences with previous concordance" option, you can compare the current
+concordance with the previous one. The  \verb+ConcorDiff+ program builds both concordances
+according to text order and compares them line by line. The result is an HTML page that
+presents alternatively lines from the two concordance, lefting an empty line when a match
+ appears in only one concordance. 
+Lines are greyed for the previous concodrance and left with a white background for the current one.
+In each line, only matched tokens are coloured. You can click on each match to open the text at its position : 
+
+Blue indicates that an utterance is common to the
+two concordances. Red indicates that a match is common to both concordances but
+with different range, i.e. the two matches only overlap partially. Green indicates an
+utterance that appears in only one concordance.
 
 \bigskip
-\noindent NOTE: you cannot click on utterances in a concordance comparison.
+\noindent Figure 6.62 gives an example. 
 
 \bigskip
 \noindent If you have no previous concordance the button is deactivated.
@@ -1574,12 +1577,12 @@ example.
 \bigskip
 \begin{figure}[h]
 \begin{center}
-\includegraphics[height=22cm]{resources/img/fig6-33.png}
+\includegraphics[width=10cm]{resources/img/fig6-33.png}
 \caption{Example of a concordance comparison\label{fig-concordiff}}
 \end{center}
 \end{figure}
 
-\clearpage
+%\clearpage
 \subsection{Debug mode}
 \label{section-debug-mode}
 When  you apply a graph to a text with the Locate menu 
