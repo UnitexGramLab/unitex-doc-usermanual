@@ -260,6 +260,8 @@ the occurrences. Here is the description of the parameters:
   an HTML file. The font parameters are required if the output is an HTML file;
   \item \verb+--only_ambiguous+: Only displays identical occurrences with 
   ambiguous outputs, in text order.
+  \item \verb+--only_matches+: this option will force empty right and left contexts.
+  Moreover, if used with -t/--text, Concord will not surround matches with tabulations
   \item \verb+-l X+/\verb+--left=X+: number of characters on the left of the 
   occurrences (default=0). In Thai mode, this means the number of non-diacritic
   characters.\index{Contexts!concordance}
@@ -311,8 +313,15 @@ the occurrences. Here is the description of the parameters:
   \item \verb+-i+/\verb+--index+: produces an index of the concordance, made of the
     content of the occurrences (with the grammar outputs, if any), preceded by
     the positions of the occurrences in the text file given in characters;
-  \item \verb+-u+/\verb+--uima+: the same as \verb+--index+, but the ending
-  position of each occurrence is also given;
+  \item \verb+-u+ \verb+offsets+/\verb+--uima=offsets+: produces an index of the 
+  concordance relative to the original text file, before any Unitex operation. Offsets 
+  is supposed to be the file produced by Tokenize's \verb+--output_offsets+ option
+%  the same as \verb+--index+, but the ending position of each occurrence is also given;
+  \item \verb+--PRLG=X,Y+: produces a concordance for PRLG corpora where each line
+  is prefixed by information extracted with Unxmlize's \verb+--PRLG+ option. X is the 
+  file produced by Unxmlize's \verb+--PRLG+ option and Y is the file produced by Tokenize's
+  \verb+--output_offsets+ option. Note that if this option is used in addition with \verb+-u+, 
+  the Y argument oferrides the argument of \verb+-u+;
   \item \verb+-e+/\verb+--xml+: produces xml index of the concordance;
   \item \verb+-w+/\verb+--xml-with-header+: produces xml index of the concordance with full xml header;
   \item \verb+-A+/\verb+--axis+: quite the same as \verb+--index+, but the numbers
@@ -376,6 +385,7 @@ there were computed.
   \item \verb+-f FONT+/\verb+--font=FONT+: name of the font to use in output
   HTML page;
   \item \verb+-s N+/\verb+--size=N+: font size to use in output HTML page.
+  \item \verb+-d/--diff_only+: don't show identical sequences;
 \end{itemize}
 
 
@@ -550,6 +560,9 @@ lexical units by the \verb+Tokenize+ program.
   \item \verb+-s+/\verb+--semitic+: tells \verb$Dico$ that it works on a semitic language (needed 
   if \verb$Dico$ has to compress a morphological dictionary);
   \item \verb+-u X+/\verb+--arabic_rules=X+: specifies the Arabic typographic rule configuration file.
+  \item \verb+r X+/\verb+--raw=X+: indicates that Dico should just produce one
+  output file X containing both simple and compound words, without requireing a
+  text directory. If X is omitted, results are displayed on the standard output.
 
  
 \end{itemize}
@@ -758,9 +771,9 @@ transform it into a final state transducer.
 
 
 \section{Fst2List}\index{External programs!\verb+Fst2List+}\index{\verb+Fst2List+}
-\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-f s/a][-s "L,[R]"]@
+\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
 
-\verb@         [-s0 "Str"][-v][-rx "L,[R]"] [-l line#] [-i subname]*@
+\verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
 
 \verb@         [-c SS=0xxxx]* fname@
 
@@ -801,9 +814,13 @@ recognized by this grammar. The parameters are:
   parameter specifies the format of the lines that will be generated:
   \verb$in0 in1 out0 out1$ (\verb$s$) or \verb$in0 out0 in1 out1$ (\verb$a$). The default
   value is \verb$s$;
+  
+  \item \verb$-ss "stop"$: set "str" as the mark of stop exploitation at "<stop>".
+  The defauld value is \verb$null$
 
   \item \verb$-v$ : prints information during the process (verbose mode);
   
+  \item \verb$-m$ : mode special for description with alphabet
   \item \verb$-rx "L,[R]"$: specifies how cycles must be displayed. \verb$L$ and
   \verb$R$ are delimiters. If we consider the graph shown on Figure \ref{cycle},
   here are the results for \verb$L$="\verb$[$" and \verb$R$="\verb$]*$":
@@ -912,6 +929,12 @@ extension \verb+.grf+.
   considered as a valid sentence automaton or not.
   \item \verb+-s+/\verb+--silent_grf_name+: does not print the graph names
   (needed for consistent log files across several systems).
+  \item \verb+-r XXX+/\verb+--named_repositories=XXX+: declaration of named
+  repositories. XXX is made of one or more X=Y sequences, separated bu ; where
+  Xis the name of the repository denoted by the pathname Y. You can use this 
+  option several times.
+  \item \verb+--debug+: compile graphs in debug mode.
+  \item \verb+-v+/\verb+check_variables+: check output validity to avoid malformed variable expressions.
 \end{itemize}
 
 \bigskip
@@ -920,12 +943,60 @@ program as a parameter, but with extension \verb+.fst2+. This file is saved in
 the same folder as \verb+<grf>+.
 
 
+\section{GrfDiff}
+		GrfDiff <grf1> <grf2>: .grf files to be compared
+
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+  \item \verb+--output X+: saves the result, if any, in X instead of printing it on the output
+\end{itemize}
+         
+         Compares the given grf files and prints their difference on the standard output. 
+         Returns 0 if they are identical modulo box and transition reordering, 1 if there
+		 are differences, 2 in case of error.
+		 
+		 Here are the diff indications that can be emitted:
+\begin{itemize}
+		 
+		 \item \verb+P name+: a presentation property has changed. name=property name (SIZE, FONT, ...)
+		 \item \verb+M a b+:  box moved. a=box number in <grf1>, b=box number in <grf2>
+		 \item \verb+C a b+:  box content changed. a=box number in <grf1>, b=box number in <grf2>
+		 \item \verb+A x+:    box added. x=box number in <grf2>
+		 \item \verb+R x+:    box removed. x=box number in <grf1>
+		 \item \verb+T a b x y+: transition added. a,b=src and dst box numbers in <grf1>. x,y=src and dst box numbers in <grf2>
+		 \item \verb+X a b x y+: transition removed. a,b=src and dst box numbers in <grf1>. x,y=src and dst box numbers in <grf2>
+\end{itemize}
+		 
+		 Note that transition modifications related to boxes that have been added or removed are not reported.
 
 
 
 
-\section{ImplodeTfst}\index{External
-programs!\verb+ImplodeTfst+}\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
+
+\section{GrfDiff3}
+GrfDiff3 <mine> <base> <other>
+
+  <mine>: my .grf file
+  <other>: the other .grf file that may be conflicting
+  <base>: the common ancestor .grf file
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+\item \verb+--output+ \verb+X+: saves the result, if any, in X instead of printing it on the output
+\item \verb+--conflicts+ \verb+X+: saves the description of the conflicts, if any, in X
+\item \verb+--only-cosmetic+: reports a conflict for any change that is not purely cosmetic
+\end{itemize}
+
+Tries to merge <mine> and <other>. In case of success, the result is printed on the
+standard output and 0 is returned. In case of unresolved conflicts, 1 is returned and
+nothing is printed. 2 is returned in case of error.
+
+
+
+\section{ImplodeTfst}
+\index{External programs!\verb+ImplodeTfst+}
+\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
 
 \bigskip
 \noindent This program implodes the specified text automaton by merging
@@ -1056,6 +1127,12 @@ when an output is found that contains a reference to a variable that is not corr
   current path of the grammar.
 \end{itemize}
   
+\bigskip
+\noindent \textbf{Variable injection:}
+\begin{itemize}
+	\item \verb+-v X=Y+/\verb+--variable=X=Y+: sets an output variable named X with content Y. 
+	Note that Y must be ASCII
+\end{itemize}
 
 \bigskip
 \noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord.n+}This 
@@ -1121,8 +1198,6 @@ file named \verb+concord.ind+, just as \verb+Locate+ does.
   \item \verb+-M+/\verb+--merge+: merge transducer outputs with text inputs;
   \item \verb+-R+/\verb+--replace+: replace texts inputs with corresponding
   transducer outputs.
-  \item \verb+-v X=Y+/\verb+--variable=X=Y+: sets an output variable named X with content Y. 
-  Note that Y must be ASCII.
 \end{itemize}
 
 \bigskip
@@ -1148,8 +1223,16 @@ when an output is found that contains a reference to a variable that is not corr
   \item \verb+-Z+/\verb+--backtrack_on_variable_errors+: stop exploring the
   current path of the grammar.
 \end{itemize}
-  
-
+\noindent \textbf{Variable injection}
+\begin{itemize}
+  \item \verb+-v X=Y+/\verb+--variable=X=Y+: sets an output variable named X with content Y. 
+  Note that Y must be ASCII.
+\end{itemize}
+\noindent \textbf{Tagging option}
+\begin{itemize}
+  \item \verb+--tagging+: indicates that the concordance must be a tagging one, containing
+  additional information on the start and end states of each match.
+\end{itemize}
 \bigskip
 \noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord_tfst.n+}This 
 program saves the references to the found occurrences in a file called
@@ -1187,7 +1270,11 @@ lemmas (see chapter \ref{chap-multiflex}).
   \item \verb+-c+/\verb+--only-compound-words+: the program will consider
   simple words as errors;
   \item \verb+-p DIR+/\verb+--pkgdir=DIR+: specifies the graph repository.
-
+  \item \verb+-rXXX+/\verb+--named_repositories=XXX+: declaration of named
+  repositories. XXX is made of one or more X=Y sequences, separated by ; 
+  where X is the name of the repository denoted by the pathname Y. You 
+  can use this option several times.
+  
 \end{itemize}\index{Hangul}\index{Hangul}
 
 \bigskip
@@ -1228,6 +1315,8 @@ creates a modified version of the text that is saved in a file with extension
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
   \item \verb+-n+/\verb+--no_carriage_return+: every separator sequence will be turned into a single space;
+  \item \verb+--input_offsets=XXX+: base offset file to be used.
+  \item \verb+--output_offsets=XXX+: offset file to be produced.
   \item \verb+-r XXX+/\verb+--replacement_rules=XXX+: specifies the
   normalization rule file to be used. See section \ref{section-normalization-file} 
   for details about the format of
@@ -1390,13 +1479,16 @@ corresponding to the sequences contained in file \verb+<snt>+.
 
 \begin{itemize}
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: the alphabet file to use;
-  \item \verb+-o GRF+/\verb+--output=XXX+: output GRF file;
-  \item \verb+--b+: beautify the produced graph;
+  \item \verb+-o XXX+/\verb+--output=XXX+: output GRF file;
+  \item \verb+-s+/\verb+--only-stop+: only consider {STOP}-separated sequences;
+  \item \verb+-b+/\verb+--beautify+: apply the grf beautifying algorithm;
+  \item \verb+-n+/\verb+--no_beautify+: do not apply the grf beautifying algorithm (default);
+  \item \verb+--case-sensitive+: all letter tokens are protected with double-quotes (default);
+  \item \verb+--case-insensitive+: letter tokens are not protected with double-quotes;
   \item \verb+-w x+: number of wildcards;
   \item \verb+-i x+: number of insertions;
   \item \verb+-r x+: number of replations;
   \item \verb+-d x+: number of deletions;
-  \item \verb+-h+/+--help+: this help;
 \end{itemize}
 
 \bigskip
@@ -1689,6 +1781,12 @@ extension.
 
  \item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: specifies a \verb+tokens.txt+
  file to load and modify, instead of creating a new one from scratch.
+\end{itemize}
+\bigskip
+\noindent \textbf{Offsets options:}
+\begin{itemize}
+  \item \verb+input_offsets+: base offset file to be used;
+  \item \verb+output_offsets+: offset file to be produced;
 \end{itemize}
 
 
@@ -2000,6 +2098,44 @@ UnitexToolLogger { CreateLog --directory=c:\logs }
   \item \verb+-f+/\verb+--no_store_list_output_file+: don't store list of output file in log.
 \end{itemize}
 
+
+
+\section{Unxmlize}\index{External
+programs!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Log Unitex programs}
+\label{section-Unxmlize}
+
+This program removes all xml tags from the given .xml or .html file to produce a text file that 
+can be processed by Unitex.
+\bigskip
+\noindent
+\verb+Unxmlize [OPTIONS] <file>+           
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+           \item \verb+-o TXT+/\verb+--output=TXT+: output file. By default, foo.xml => foo.txt
+		   \item \verb+--output_offsets=XXX+: specifies the offset file to be produced
+		   \item \verb+--PRLG=XXX+: extracts to file XXX special information used in the
+		               PRLG project on ancient Greek (requires \verb+--output_offsets+)
+		
+\bigskip 
+		   \item \verb+-t+/\verb+--html+: consider the file as html file (disregard extension)
+           \item \verb+-x+/\verb+--xml+: consider the file as xml file (disregard extension)
+           \item \verb+-l+/\verb+--tolerate+: try tolerate somes markup langage malformation
+	
+\bigskip	 
+		   \item \verb+--comments=IGNORE+: every comment is removed (default)
+		   \item \verb+--comments=SPACE+: every comment is replaced by a single space
+		   \item \verb+--scripts=IGNORE+: every script block is removed
+		   \item \verb+--scripts=SPACE+: every comment is replaced by a single space (default for .html)
+\end{itemize}   
+  Note: by default, script tags are handled as normal tags (default for .xml).
+\begin{itemize}		     
+		   \item \verb+--normal_tags=IGNORE+: every other tag is removed (default for .xml)
+		   \item \verb+--normal_tags=SPACE+: every other tag is replaced by a single space(default for .html)
+
+\end{itemize}         
+         
 
 
 \section{XMLizer}\index{External programs!\verb+XMLizer+}\index{\verb+XMLizer+}
