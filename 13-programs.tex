@@ -1,3 +1,6 @@
+
+
+
 \chapter{Use of external programs}
 \label{chap-external-programs}
 This chapter presents the use of the different programs of which Unitex is
@@ -74,6 +77,26 @@ console to the clipboard with Ctrl+C.
 \caption{Console\label{fig-console}}
 \end{center}
 \end{figure}
+
+\section{Unitex JNI}
+\index{Unitex JNI}
+\label{section-unitex-JNI}
+
+You can use Unitex as a Java Native interface by including the following imports : 
+\begin{verbatim}
+import fr.umlv.unitex.jni.UnitexJni;
+import java.io.*;
+import fr.umlv.unitex.*;
+\end{verbatim}
+This will allow you to load .bin, .fst2 and alphabet files and to keep them in memory persistently.
+
+\begin{verbatim}
+UnitexJni.loadPersistentAlphabet("/.../unitex/French/Alphabet.txt");
+UnitexJni.loadPersistentFst2("/.../unitex/French/Dela/fogg-r.fst2");
+UnitexJni.loadPersistentDictionary(
+		"/.../unitex/French/Dela/communesFR+.bin");
+\end{verbatim}
+
 
 
 \section{Text file encoding parameters}\index{Text file encoding parameters}
