@@ -88,12 +88,12 @@ import fr.umlv.unitex.jni.UnitexJni;
 import java.io.*;
 import fr.umlv.unitex.*;
 \end{verbatim}
-This will allow you to load .bin, .fst2 and alphabet files and to keep them in memory persistently.
+This will allow you to load .bin, .fst2 and alphabet files and to keep them in memory persistently. You use the filename created by loadPersistent* function.
 
 \begin{verbatim}
-UnitexJni.loadPersistentAlphabet("/.../unitex/French/Alphabet.txt");
-UnitexJni.loadPersistentFst2("/.../unitex/French/Dela/fogg-r.fst2");
-UnitexJni.loadPersistentDictionary(
+String persistentAlphabet = UnitexJni.loadPersistentAlphabet("/.../unitex/French/Alphabet.txt");
+String persistentFst2 = UnitexJni.loadPersistentFst2("/.../unitex/French/Dela/fogg-r.fst2");
+String persistentDictionary = UnitexJni.loadPersistentDictionary(
 		"/.../unitex/French/Dela/communesFR+.bin");
 \end{verbatim}
 
