@@ -849,6 +849,13 @@ box, you can use \verb+xxx+ as a dictionary-entry variable, in the same way as
 described above for the morphological mode.
 
 
+\bigskip
+\noindent If a semantic code is of the form xxx = yyy, you can query
+the attribute value xxx. This matches the inflected form, lemma or codes of the entry
+variables when the semantic code come from a dictionary, or any
+other attribute-value pair.
+
+
 \section{Exploring grammar paths}
 \index{Exploring the paths of a grammar}
 
@@ -1285,7 +1292,7 @@ as found in the dictionary (beware of case variations!) that is used in the test
 \noindent You can also test if contents differ with \verb+UNEQUAL+.
 
 \bigskip
-\noindent If you want to compare variables so that case variation are ignored, you can use the following tests:
+\noindent If you want to compare variables so that case variations are ignored, you can use the following tests:
 
 \bigskip
 \noindent \verb+$abc.EQUALcC=xyz$+ \\

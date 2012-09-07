@@ -61,28 +61,41 @@ This sequences corpus is stored in one single file wich must be from one of the 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Usage}
-In order to create a sequence automaton, click on "Construct Sequence Automaton" in the "Text" menu. You will then see the window coming up as in figure~\ref{fig8-0seq2grf1}.
+In order to create a sequence automaton, click on "Construct Sequence Automaton" in the "Text" menu. You will then see the window coming up as in figure~\ref{fig8-4Menu1}.
+
+This window will allow you to set the parameters to produce a sequence automaton.
+You have to follow these three steps :
+\begin{itemize}
+\item choose the sequence corpus : that can be a file which format is one of the three described in the previous section. The file format
+is automatically detected according to the file extension. 
+
+
+\item set the specific options :
+Applying the beautifying algorithm will place each box so that the resulting graph is smaller and as easily readable as possible.
+The exact case matching will put litteral tokens into braces in the graph so that the graph doesn't match tokens with same letters but with case differences.
+
+You can set more options to produce a graph that allow approximate matching :
+you can set the number of jokers to be used to produce new sequences derived from the sequences of the original corpus, and what kind of joker can be used.
+All the details about the use of jokers is detailed in section \ref{approximation}
+
+\item choose the directory where the graph will be saved.
+\end{itemize}
+\medskip
 \begin{figure}[h!]
 	\begin{minipage}[h!]{0.5\linewidth}	
 		\centering
-			\includegraphics[width=8cm]{resources/img/fig8-0seq2grf1.png}
-			\caption{The sequence automaton menu\label{fig8-0seq2grf1}}
+			%\includegraphics[width=8cm]{resources/img/fig8-0seq2grf1.png}
+			\includegraphics[width=8cm]{resources/img/fig8-4Menu1.png}
+			\caption{The sequence automaton menu\label{fig8-4Menu1}}
+	\end{minipage}	
+	\hspace{0.3cm}
+	\begin{minipage}[h!]{0.5\linewidth}	
+		\centering
+			%\includegraphics[width=8cm]{resources/img/fig8-0seq2grf1.png}
+			\includegraphics[width=8cm]{resources/img/fig8-4Menu2.png}
+			\caption{Options of the sequence automaton menu\label{fig8-4Menu2}}
 	\end{minipage}
 \end{figure}
-
-\pagebreak
-In this windows you can choose the file containing the sequence corpus. 
-The file format is automatically detected according to the file extension.
-The resulting grf file will be automatically named after the original file. This file is by default put in the graphs folder of the currently selected language, in the Unitex user Folder.
-\medskip
-
-\noindent In the right side of this window 4 values can be adjusted for the use of wildcards.
-The first one, "wildcards" is the maximum number of all operations you will apply to each sequence of the sequence corpus.
-\bigskip
-\noindent Be careful : if this value is let to zero, no operation will be applied to the original sequences, even if the three other values are above zero. The three following values determine the use of the three operations authorized to generate the graph. The use of wildcards is detailed in Section~\ref{approximation}.
-\medskip
-
-If you use the option "Apply Beautify", boxes and transitions of the produced graph will be optimized so that the graph is as easily readable as possible.
 
 \bigskip
 \noindent You can see in figures~\ref{fig8-5GRFnoBeautify} and~\ref{fig8-6GRFBeautify} the graphes without wildcards produced without or with beautify.
