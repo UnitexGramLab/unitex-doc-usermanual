@@ -9,7 +9,7 @@ text in different ways: syntactic analysis, chunking, information extraction or 
 \noindent The prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
 ( the laboratory of Computer science of the University of Tours) as part of Nathalie Friburger's PhD Thesis (\cite{reco-np-friburger02}). 
 Later on, it was fully dedicated to named entity extraction. CasSys was generalized to allow any sort of work needing a cascade: throughout the years, 
- it was improved but never really integrated in Unitex, until the recent "Feder-Région Centre" project launched by Denis Maurel which resulted in the complete integration of CasSys in Unitex carried out by David Nott and Nathalie Friburger. 
+ it was improved but never really integrated in Unitex, until the recent "Feder-Rï¿½gion Centre" project launched by Denis Maurel which resulted in the complete integration of CasSys in Unitex carried out by David Nott and Nathalie Friburger. 
 
 
 \bigskip
@@ -58,9 +58,16 @@ The Cassys Transducer configuration window (\ref{fig13-03}) comprises three part
 	The file explorer only displays fst2 files (all the graphs you want to place in the list of transducers must be compiled in fst2 format). 
 	To edit the cascade, you must select the graphs in the file explorer in the left frame and drag and drop them into the right frame of the window.
 	\item In the right frame, there is the list of transducers which is empty when creating a new cascade.
-	The list of transducers is ordered: the first graph on the list is applied first, and the last graph on the list is applied last. The list is composed of three columns: the first one contains	the name of each graph, the second one the option "merge" and the third one the option "replace". You must choose between "merge" or "replace" which are the two different manners the outputs of the graphcan be taken into account (like in the locate pattern program). "Merge" indicates that the outputs of a graph will be merged into the text whereas "replace" will replace the recognized text with the outputs of the graph. When using a cascade of transducers, it makes no sense no to take into account the outputs of the graph: that is the reason why this option (no display of the outputs) is not available.
+	The list of transducers is ordered: the first graph on the list is applied
+	first, and the last graph on the list is applied last. The list is composed of
+	four columns: the first one contains	the name of each graph with its rank in
+	the cascade, the second one the option "merge", the third one the option
+	"replace" and the last one the option ``disabled''.
+	You must choose between "merge" or "replace" which are the two different manners the outputs of the graphcan be taken into account (like in the locate pattern program). "Merge" indicates that the outputs of a graph will be merged into the text whereas "replace" will replace the recognized text with the outputs of the graph. When using a cascade of transducers, it makes no sense no to take into account the outputs of the graph: that is the reason why this option (no display of the outputs) is not available.
  	When the CasSys transducer configuration window opens the list of transducers, it verifies whether all the files on the list of transducers exist or not: if a file does not exist, it appears in red on the list (which can mean you have forgotten to compile the graph into fst2 format). 
-	If you leave the mouse cursor for a few seconds on the file name, the complete path of the graph will appear. 
+	If you leave the mouse cursor for a few seconds on the file name, the complete
+	path of the graph will appear. The ``disabled'' option permits to disable a
+	graph from the cascade without removing it.
 	\item In the middle column, you will have buttons which are described below: 
 		\begin{itemize}
 			\item The "up"/"down"/"top"/"bottom" buttons are used to modify the order of the transducers on the list (it moves the selected transducer in the list); 
@@ -71,6 +78,21 @@ The Cassys Transducer configuration window (\ref{fig13-03}) comprises three part
 			\item The "Close" button closes the current window.
 		\end{itemize}
 \end{itemize}
+
+\subsection{Sharing a cascade transducer list file}
+\label{subsec:shareCascade}
+
+In order to ease collaborating work within CasSys, a  simple export/import
+transducers list file feature is provided.
+
+To share a cascade list file, the following steps has to be fullfilled :
+\begin{enumerate}
+  \item \textbf{Export :} Select a cascade file and click the export button. (A
+  ready to share file is created in the \texttt{/Cassys/Share} repository)
+  \item Send the shared file to your colleague
+  \item \textbf{Import :} Select the import file and click the import button.
+  (A ready to use file is created in the \texttt{/Cassys} repository)
+\end{enumerate}
 
 \subsection{Launching a cascade}
 \label{subsec:launchCascade}
@@ -85,6 +107,11 @@ When this list is chosen, you can click on the "Launch" button to apply the casc
   \caption{CasSys Window to launch a cascade of transducers}
   \label{fig13-02}
 \end{figure}
+
+
+Any morphological dictionnaries added in your preferences is applied to your
+graphs. This preferences may be edited from the main unitex frame (info -->
+Preferences --> morphological dictionnaries).
 
 \subsection{Displaying the results of a cascade}
 \label{subsec:resultsCascade}
