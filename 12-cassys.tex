@@ -57,17 +57,23 @@ The Cassys Transducer configuration window (\ref{fig13-03}) comprises three part
 	\item The left frame of the Cassys Transducer configuration window contains a file explorer in which you can select the transducers to add to the cascade. 
 	The file explorer only displays fst2 files (all the graphs you want to place in the list of transducers must be compiled in fst2 format). 
 	To edit the cascade, you must select the graphs in the file explorer in the left frame and drag and drop them into the right frame of the window.
-	\item In the right frame, there is the list of transducers which is empty when creating a new cascade.
-	The list of transducers is ordered: the first graph on the list is applied
-	first, and the last graph on the list is applied last. The list is composed of
-	four columns: the first one contains	the name of each graph with its rank in
-	the cascade, the second one the option "merge", the third one the option
-	"replace" and the last one the option ``disabled''.
-	You must choose between "merge" or "replace" which are the two different manners the outputs of the graphcan be taken into account (like in the locate pattern program). "Merge" indicates that the outputs of a graph will be merged into the text whereas "replace" will replace the recognized text with the outputs of the graph. When using a cascade of transducers, it makes no sense no to take into account the outputs of the graph: that is the reason why this option (no display of the outputs) is not available.
- 	When the CasSys transducer configuration window opens the list of transducers, it verifies whether all the files on the list of transducers exist or not: if a file does not exist, it appears in red on the list (which can mean you have forgotten to compile the graph into fst2 format). 
-	If you leave the mouse cursor for a few seconds on the file name, the complete
-	path of the graph will appear. The ``disabled'' option permits to disable a
-	graph from the cascade without removing it.
+	\item In the right frame, there is the list of transducers which is empty when
+	creating a new cascade. The list of transducers is ordered: the first graph on the list is applied
+	first, and the last graph on the list is applied last. Each transducer has
+	several options :
+		\begin{itemize}
+		  \item \textbf{\# :} Rank of the transducer in the cascade
+		  \item \textbf{Name :} The name of the transducer graph (with extension
+		  \emph{fst2})
+		  \item \textbf{merge :} Whether the transducer should be applied in merge
+		  mode
+		  \item \textbf{replace :} Whether the transducer should be applied in replace
+		  mode
+		  \item \textbf{disabled :} Whether the transducer should be disabled. 
+		  \item \textbf{star :} Whether the transducer should be applied once or until
+		  no change occur (see \ref{sub:AppWhiCon})
+		 \end{itemize}
+	 
 	\item In the middle column, you will have buttons which are described below: 
 		\begin{itemize}
 			\item The "up"/"down"/"top"/"bottom" buttons are used to modify the order of the transducers on the list (it moves the selected transducer in the list); 
@@ -142,6 +148,75 @@ Cassys uses the compiled version of the graphs (the fst2 files).
 Cassys can handle the local grammars (section 6.1) (syntactic graphs) presented in Chapter \ref{chap-advanced-grammars}. These grammars can use subgraphs, 
 morphological filters and mode,and allow to refer to information in dictionaries. 
 The grammars used in the cascade must follow the constraints of the grammars used in Unitex.
+
+
+\subsection{Apply while concordance behaviour}
+\label{sub:AppWhiCon}
+
+Cassys may apply a transducer on a text while concordances are found. 
+
+For
+instance, consider the graph \ref{fig:AB->A} which recognizes \emph{AB} and
+replaces it with \emph{A}. 
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=6cm]{resources/img/AB->A.png}
+  \caption{Transducer which modifies BA in A}
+  \label{fig:AB->A}
+\end{figure}
+
+Consider the text \emph{B B B A A A}. \\
+
+Applying the graph \ref{fig:AB->A} ont this text with emph{apply while
+concordance behaviour} will have the following result :\\
+
+\begin{tabular}{|l|cccccc|r|}
+\hline
+initial text  &B&B&B&A&A&A&\\
+\hline
+iteration 1 & &B&B&A&A&A& 1 concordance\\
+iteration 2 & & &B&A&A&A& 1 concordance\\
+iteration 3 & & & &A&A&A& 1 concordance\\
+iteration 4 & & & &A&A&A& 0 concordance\\
+\hline
+\end{tabular} \\
+
+During the three first iterations, a concordance is found, so the graph
+re-applied on the resulting text. At the fourth iteration, no concordance is
+found, so the graph is not re-applied.
+
+\large{\textbf{Warning :}} Be aware of the risk of livelock when applying this
+option. For example, a transducer which recognizes \emph{A} and replaces it with
+\emph{A} would be caught in a livelock if applied on the example text.
+
+\subsection{An xml-like output text for lexical tags}
+
+As an output, the lexical tag format is transformed into an xml-like format.
+This change is done in order to provide an easier-to-manipulate text to the end
+user.
+From this format, it is easier to apply transducers to get the output anyone
+wants.\\
+
+More precisely, The lexical tag has the following format :\\
+\begin{tabular}{c}
+\texttt{
+\{forme.lemme,code1+code2:flex1:flex2\}}
+\end{tabular}\\
+
+The xml-like output of cassys has the following format :\\
+\begin{tabular}{ll}
+\texttt{<csc>}&\\
+	&\texttt{<form>forme</form>}\\
+	&\texttt{<lem>lemme</lem>}\\
+	&\texttt{<code>code1</code>}\\
+	&\texttt{<code>code2</code>}\\
+	&\texttt{<inflect>flex1</inflect>}\\
+	&\texttt{<inflect>flex2</inflect>}\\
+\texttt{</csc>}&\\
+\end{tabular}
+
+
 
 \subsection{The Unitex rules used for the cascade}
 
