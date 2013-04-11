@@ -1,27 +1,107 @@
 \chapter{Cascade of Transducers}
 \label{chap-cassys}
 
-The general principle of a \textit{cascade of transducers} \index{cascade of transducer} is to apply several transducers, one 
-after the other, onto a text to modify this text. For the system Unitex, a transducer is a graph. Such a system can be used to analyze a 
-text in different ways: syntactic analysis, chunking, information extraction or simply to transform and/or prepare a text further treatments.
+This chapter presents the tool \textit{Cassys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{cascade of transducer} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
 
 \bigskip
-\noindent The prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
-( the laboratory of Computer science of the University of Tours) as part of Nathalie Friburger's PhD Thesis (\cite{reco-np-friburger02}). 
-Later on, it was fully dedicated to named entity extraction. CasSys was generalized to allow any sort of work needing a cascade: throughout the years, 
- it was improved but never really integrated in Unitex, until the recent "Feder-Rï¿½gion Centre" project launched by Denis Maurel which resulted in the complete integration of CasSys in Unitex carried out by David Nott and Nathalie Friburger. 
-
+\noindent The first prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
+(Computer science Laboratory of Université François Rabelais Tours, France) \cite{these-nathalie}. This prototype was totally  dedicated to named entity recognition. Later, CasSys was generalized to allow any sort of work needing a cascade: throughout the years,  it was improved but never really integrated in Unitex, until a recent project which resulted in the complete integration of CasSys in Unitex\footnote{"Feder-Région Centre Entités  nommées et nommables" managed by Denis Maurel, LI, Tours, France, integration carried out by Nathalie Friburger and David Nott}.
 
 \bigskip
-\noindent A priori, the use of CasSys is roughly a succession of locate patterns eventually with special options and behaviors. 
-In this chapter, we will explain how to create cascades of transducers and how to apply them. After that, we deals with details on what is very specific in CasSys.
+\noindent  
+In this chapter, we will explain how to create/modify cascades of transducers and how to apply them. Then, we deals with options and behaviors offered by CasSys.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applying a cascade of transducers with CasSys}
 \label{section:applyCascade}
 
-In the text menu, you can select the submesnu "Apply CasSys cascade..." (\ref{fig13-01}) which will open the CasSys window.
-This submenu "Apply CasSys cascade" is active only if a text has previously been opened.
+
+\begin{figure}[!htb]
+ \centering
+ \includegraphics[width=4cm]{resources/img/fig13-08.png}
+ \caption{"FSGraph" menu of Unitex and submenus "New cascade" and "Edit cascade..."}
+ \label{fig13-08}
+\end{figure}
+
+
+\subsection{Creating the list of transducers}
+\label{subsec:listTrans}
+
+
+\bigskip
+\noindent 
+The menu FSGraph proposes two submenus: "\textit{New cascade}" and "\textit{Edit cascade...}" (Figure \ref{fig13-08}). In order to create the list of transducers, choose  "new cascade". If you want to modify an existing cascade, you can choose "Edit cascade" ; then a file explorer permits to choose the cascade to open. 
+
+The list of transducers of a cascade is saved in a text file with the extension .csc (ex: mycascade.csc).
+
+\subsection{Editing the list of transducers}
+\label{subsec:editlistTrans}
+
+The Cassys configuration window (Figure \ref{fig13-03}) is divided into three parts :
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=16cm]{resources/img/fig13-03.png}
+  \caption{Cassys configuration window with a list of transducers on the right hand side}
+  \label{fig13-03}
+\end{figure}
+
+\begin{itemize}
+	\item a \textit{file explorer} at the left of the frame permits to select the transducers to place in the cascade. 
+	The file explorer only displays fst2 files (all the graphs you want to place in the list of transducers must be compiled in fst2 format). 
+	
+	To edit the cascade, select the graphs in the file explorer at the left and drag and drop them into the right frame of the window.
+	\item The table at the right displays the list of transducers in the current cascade.
+	This table is obviously empty for a new cascade. 
+	
+	The list of transducers is \textit{ordered}: the graphs are applied in the order of the list. 
+	The different columns in the table give information on each graph to apply and/or permit to choose its behavior:
+	\begin{itemize}
+		  \item \textbf{\#} : Rank of the transducer in the cascade / the resulting files of each graph have the number.
+		  \item \textbf{Disabled} : checkbox to disable the current graph. \textit{Disabled} meaning: "\textit{not applied in the cascade}". The disabled graphs appears not numbered, in light grey and striked out.
+			\item \textbf{Name} : The name of the transducer graph (with extension \emph{fst2})
+		  \item The other columns for different behavior explained later.
+	\end{itemize}
+
+Graphs which source file are not found appear in italic red font style.
+\BlankLine 
+	
+	Different options for each graph (Figure \ref{fig13-09}):
+		\begin{itemize}
+		  \item \textbf{merge}: Whether the transducer should be applied in merge mode at the sense of unitex locate pattern.
+			\item \textbf{replace}: Whether the transducer should be applied in replace mode at the sense of unitex locate pattern.
+		  \item \textbf{iter}: Whether the transducer should be applied once or re-applied several times until no change occur in the text (see \ref{sub:AppWhiCon}).
+		 \end{itemize}
+
+	
+	\item Several buttons in the middle for different needs: 
+		\begin{itemize}
+			\item \textit{"Up"/"Down"/"Top"/"Bottom"} buttons are used to modify the order of the transducers on the list (it moves the selected transducer in the list); 
+			\textit{"Up"} and \textit{"Down"} to move the selected transducer one line up or down, and "Top" and "Bottom" to move the selection to the top or to the end of the list.
+			\item  \textit{"Delete"} permits to remove a selected transducer from the list of transducers. 
+			\item		\textit{"Add"} adds a transducer (previously selected in the explorer) onto the list. It replaces the drag and drop actions described above. 
+			\item \textit{"View"} opens the selected graph either in the file explorer or in the list of transducers of the window. It is very useful to get a quick access to any transducer either to take a quick look at its content or to modify it.
+			\item \textit{"Save"} and \textit{"Save as"} permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys folder of the current language (e.g. English/Cassys).
+			\item \textit{"Compile"} recompile all the graphs of the cascade. 
+			\item \textit{"Disable all"} to disable all the graphs of the cascade. 
+			\item \textit{"Enable all"} to enable all the graphs of the cascade. 
+			\item \textit{"Close"} to close the current window.
+		\end{itemize}
+\end{itemize}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7cm]{resources/img/fig13-09.png}
+  \caption{The table/list of transducers}
+  \label{fig13-09}
+\end{figure}
+
+	
+\subsection{Applying a cascade}
+\label{subsec:launchCascade}
+
+In the text menu, you can select the submenu "\textit{Apply CasSys cascade...}" (Figure \ref{fig13-01}) which will open the CasSys window.
+This submenu "\textit{Apply CasSys cascade...}" is active only if a text has previously been opened.
 
 \begin{figure}[!htb]
  \centering
@@ -31,79 +111,7 @@ This submenu "Apply CasSys cascade" is active only if a text has previously been
 \end{figure}
 
 
-\subsection{Creating the list of transducers}
-\label{subsec:listTrans}
-
-The list of transducers of a cascade is saved in a text file with the extension .csc (ex: mycascade.csc).
-
-\bigskip
-\noindent In order to create the list of transducers, click on the "new" button in the CasSys window. 
-If you wish to modify an existing cascade, you can choose the file name of the cascade, then click on the "edit" button. 
-These two buttons (edit or new) will open the "CasSys transducer configuration" window.
-
-\subsection{Editing the list of transducers}
-\label{subsec:editlistTrans}
-
-The Cassys Transducer configuration window (\ref{fig13-03}) comprises three parts :
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=14cm]{resources/img/fig13-03.png}
-  \caption{Cassys Transducer configuration window with a list of transducers on the right hand side}
-  \label{fig13-03}
-\end{figure}
-
-\begin{itemize}
-	\item The left frame of the Cassys Transducer configuration window contains a file explorer in which you can select the transducers to add to the cascade. 
-	The file explorer only displays fst2 files (all the graphs you want to place in the list of transducers must be compiled in fst2 format). 
-	To edit the cascade, you must select the graphs in the file explorer in the left frame and drag and drop them into the right frame of the window.
-	\item In the right frame, there is the list of transducers which is empty when
-	creating a new cascade. The list of transducers is ordered: the first graph on the list is applied
-	first, and the last graph on the list is applied last. Each transducer has
-	several options :
-		\begin{itemize}
-		  \item \textbf{\# :} Rank of the transducer in the cascade
-		  \item \textbf{Name :} The name of the transducer graph (with extension
-		  \emph{fst2})
-		  \item \textbf{merge :} Whether the transducer should be applied in merge
-		  mode
-		  \item \textbf{replace :} Whether the transducer should be applied in replace
-		  mode
-		  \item \textbf{disabled :} Whether the transducer should be disabled. 
-		  \item \textbf{star :} Whether the transducer should be applied once or until
-		  no change occur (see \ref{sub:AppWhiCon})
-		 \end{itemize}
-	 
-	\item In the middle column, you will have buttons which are described below: 
-		\begin{itemize}
-			\item The "up"/"down"/"top"/"bottom" buttons are used to modify the order of the transducers on the list (it moves the selected transducer in the list); 
-			"up" and "down" to move the selected transducer one line up or down, and "Top" and "Bottom" to move the selection to the top or to the end of the list.
-			\item  The "delete" button permits to remove a selected transducer from the list of transducers. The "Add" button adds a transducer (previously selected in the explorer) onto the list. The "Add" button replaces the drag and drop actions described above. 
-			\item The "View" button opens the selected graph either in the file explorer or in the list of transducers of the window. It is very useful to get a quick access to any transducer either to take a quick look at its content or to modify it.
-			\item The "Save" button and "Save as" button permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys folder of the current language (e.g. English/Cassys).
-			\item The "Close" button closes the current window.
-		\end{itemize}
-\end{itemize}
-
-\subsection{Sharing a cascade transducer list file}
-\label{subsec:shareCascade}
-
-In order to ease collaborating work within CasSys, a  simple export/import
-transducers list file feature is provided.
-
-To share a cascade list file, the following steps has to be fullfilled :
-\begin{enumerate}
-  \item \textbf{Export :} Select a cascade file and click the export button. (A
-  ready to share file is created in the \texttt{/Cassys/Share} repository)
-  \item Send the shared file to your colleague
-  \item \textbf{Import :} Select the import file and click the import button.
-  (A ready to use file is created in the \texttt{/Cassys} repository)
-\end{enumerate}
-
-\subsection{Launching a cascade}
-\label{subsec:launchCascade}
-
-The CasSys window (\ref{fig13-02}) displays the contain of the CasSys folder of the current language. It permits to choose 
+The CasSys window (Figure \ref{fig13-02}) displays the contain of the CasSys folder of the current language. It permits to choose 
 the file containing the list of transducers to apply on the text. The displayed files are in a special file type "CaSCade configuration file" (.csc). 
 When this list is chosen, you can click on the "Launch" button to apply the cascade.
 
@@ -122,14 +130,14 @@ Preferences --> morphological dictionnaries).
 \subsection{Displaying the results of a cascade}
 \label{subsec:resultsCascade}
 
-The result of a cascade is an index file (concord.ind), just as for the locate pattern operation. This index file contains all the sequences recognized using the restrictions imposed by the rules of unitex.
+The result of a cascade is an index file (concord.ind), just as for the \textit{"Locate pattern"} operation. This index file contains all the sequences recognized using the restrictions imposed by the rules of unitex.
 
 \bigskip
-\noindent In order to display a concordance, you have to click on the "`Build concordance"' button (as described in Chapter \ref{chap-advanced-grammars}) 
-in the menu "Text / Located sequences" (\ref{fig13-04} presents a sample of concordance of the results of a cascade recognizing named entities).
-To create the file containing all the modifications of the cascade on the text, you have to click on "Modify text" in the "Located Sequences" window.
+\noindent In order to display a concordance, you have to click on the "\textit{Build concordance}" button (as described in Chapter \ref{chap-advanced-grammars}) 
+in the menu "\textit{Text / Located sequences}", (\ref{fig13-04} presents a sample of concordance resulting of a cascade recognizing named entities. To create the file containing all the modifications of the cascade on the text, you have to click on "Modify text" in the "Located Sequences" window.
  The resulting file is a copy of the text in which the transducer outputs appear.
 
+In fact such a file is allways created by CasSys, 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/fig13-04.png}
@@ -137,10 +145,28 @@ To create the file containing all the modifications of the cascade on the text, 
   \label{fig13-04}
 \end{figure}
 
+\subsection{Sharing a cascade transducer list file}
+\label{subsec:shareCascade}
+
+In order to ease collaborating work within CasSys, a  simple export/import
+system for transducers list file feature is provided. This possibility is offered in the "\textit{Text/Apply cascade}" menu.
+
+To share a cascade list file, the following steps has to be fullfilled :
+\begin{enumerate}
+  \item \textbf{Export :} Select a cascade file and click the export button. (A
+  ready to share file is created in the \texttt{/Cassys/Share} repository)
+  \item Send the shared file to your colleague
+  \item \textbf{Import :} Select the import file and click the import button.
+  (A ready to use file is created in the \texttt{/Cassys} repository)
+\end{enumerate}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Details on Cassys}
 
 In this section , we present details concerning the functioning of Cassys.
+
+expliquer l'iteration !!!
+
 
 \subsection{Type of graphs used}
 
