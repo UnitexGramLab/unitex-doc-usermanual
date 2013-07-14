@@ -240,7 +240,7 @@ A lexical tag can contain complex lexical information. For example, the codes \e
   \centering
   \includegraphics[width=6cm]{resources/img/fig13-05.png}
   \caption{The graph grfAB}
-  \label{fig:fig13-05}
+  \label{fig13-05}
 \end{figure}
 
 \bigskip
@@ -311,7 +311,7 @@ Cassys keeps all the text created by each graph of the cascade. This can be usef
 \bigskip
 
 If you apply a cascade on the text named \texttt{example.txt}, two folders are created: \texttt{example\_snt} and \texttt{example\_csc}.
-The files produced in \texttt{example\_csc} are the results obtained by each graphs. These files are named according to the number of the graph which produced them. For example, if the third graph of a cascade finds at least a pattern, the results of this graph will be stored in the folder \texttt{example\_3\_0\_snt} and the file named \texttt{example\_3\_\0.snt} will contain the modified text.
+The files produced in \texttt{example\_csc} are the results obtained by each graphs. These files are named according to the number of the graph which produced them. For example, if the third graph of a cascade finds at least a pattern, the results of this graph will be stored in the folder  \texttt{example\_3\_0\_snt} and the file named \texttt{example\_3\_0.snt} will contain the modified text.
 
 %%%%%%%%%%%
 \subsection{An xml-like output text for lexical tags}
@@ -345,12 +345,12 @@ The DTD corresponding to our xml format is:
 
 \begin{tabular}{l}
 \texttt{<?xml version="1.0" encoding="ISO-8859-1"?>}\\
-\texttt{<!ELEMENT text (#PCDATA|csc)* >}\\
+\texttt{<!ELEMENT text (\#PCDATA|csc)*>}\\
 \texttt{<!ELEMENT csc (form,lem?,code*,inflect*) >}\\
-\texttt{<!ELEMENT form (#PCDATA|csc)*>}\\
-\texttt{<!ELEMENT lem (#PCDATA)>}\\
-\texttt{<!ELEMENT code (#PCDATA)>}\\
-\texttt{<!ELEMENT inflect (#PCDATA)>}\\
+\texttt{<!ELEMENT form (\#PCDATA|csc)*>}\\
+\texttt{<!ELEMENT lem (\#PCDATA)>}\\
+\texttt{<!ELEMENT code (\#PCDATA)>}\\
+\texttt{<!ELEMENT inflect (\#PCDATA)>}\\
 \end{tabular}
 
 
