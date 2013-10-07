@@ -1,0 +1,248 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+Unitex est un ensemble de logiciels permettant de traiter des textes en langues naturelles en
+utilisant des ressources linguistiques. Ces ressources se présentent sous la forme de dictionnaires
+électroniques, de grammaires et de tables de lexique-grammaire. Elles sont issues de travaux initiés
+sur le français par Maurice Gross au Laboratoire d’Automatique Documentaire et Linguistique (LADL)
+. \index{LADL} Ces travaux ont été étendus à d’autres langues au travers du réseau de laboratoires
+RELEX.
+
+\bigskip
+\noindent Les dictionnaires électroniques décrivent les mots simples et composés d’une langue en
+leur associant un lemme ainsi qu’une série de codes grammaticaux, sémantiques et flexionnels. La présence de ces dictionnaires constitue une différence majeure par rapport aux outils
+usuels de recherche de motifs, car on peut faire référence aux informations qu’ils contiennent
+et ainsi décrire de larges classes de mots avec des motifs très simples. Ces dictionnaires sont
+représentés selon le formalisme DELA et ont été élaborés par des équipes de linguistes pour
+plusieurs langues (français, anglais, grec, italien, espagnol, allemand, thaï, coréen, polonais,
+norvégien, portugais, etc...).
+
+
+\bigskip
+\noindent Les grammaires sont des représentations de phénomènes linguistiques par réseaux de
+transitions récursifs (RTN), un formalisme proche de celui des automates à états finis. De
+nombreuses études ont mis en évidence l’adéquation des automates aux problèmes linguistiques et ce,
+aussi bien en morphologie qu’en syntaxe ou en phonétique. Les grammaires manipulées par Unitex
+reprennent ce principe, tout en reposant sur un formalisme encore plus puissant que les automates.
+Ces grammaires sont représentées au moyen de graphes que l’utilisateur peut aisément créer et
+mettre à jour.
+
+\bigskip
+\noindent Les tables de lexique-grammaire sont des matrices décrivant les propriétés de certains
+mots. De telles tables ont été élaborées pour tous les verbes simples du français dont elles
+décrivent les propriétés syntaxiques. L’expérience ayant montré que chaque mot a un comportement
+quasi unique, ces tables permettent de donner la grammaire de chaque élément de lexique, d’où le nom
+de lexique-grammaire. Unitex permet de construire des grammaires à partir de telles tables.
+
+\bigskip
+\noindent Unitex est un moteur permettant d’exploiter ces ressources linguistiques. Ses
+caractéristiques techniques sont la portabilité, la modularité, la possibilité de gérer des langues
+possédant des systèmes d’écritures particuliers comme certaines langues asiatiques et l’ouverture,
+grâce à une distribution en logiciel libre. Ses caractéristiques linguistiques sont celles
+qui ont motivé l’élaboration des ressources : la précision, l’exhaustivité et la prise en compte
+des phénomènes de figement, notamment en ce qui concerne le recensement des mots com-
+posés.
+
+
+
+
+\section*{Quoi de neuf depuis la version 2.0 ?}
+\addcontentsline{toc}{section}{Quoi de neuf depuis la version 2.0 ?}
+Voici les principales nouvelles fonctionnalités:
+\begin{itemize}
+  \item Ajout de  \verb$LocateTfst$ qui effectue des recherches sur l'automate du texte
+ (\ref{section-locate-tfst}, \ref{section-LocateTfst})
+ 
+  \item \verb$LocateTfst$ support complet du coréen (\ref{section-korean})
+  	  
+  \item Nouvelles options de recherche (\ref{section-advanced-search-options})
+  	  
+  \item Ajout de \verb$Stats$ qui calcule des statistiques à partir d'un fichier de concordances
+ (\ref{section-statistics})
+ 
+  \item Ajout d'un tagger statistique qui peut élaguer des automates du texte pour les rendre
+  	  linéaires (\ref{section-linearization})
+  	  
+  \item Ajout du système de cascade de transducteurs CasSys (chapitre \ref{chap-cassys})
+  	  
+  \item Ajout des variables de sorties qui peuvent mémoriser les transductions émises par les
+  	  grammaires (\ref{section-output-variables})
+  	  
+  \item Ajout de tests de comparaison de variables (\ref{section-ops-on-variables})
+  	  
+  \item Support des langues sémitiques pour la flexion (\ref{subsection-semitic-inflection}),
+  	  support complet des variations typographiques de l'arabe
+  	  (\ref{subsection-arabic-typo-rules})
+  	  
+  \item Ajout d'opérateurs de flexion avancés (\ref{advanced-inflection-operators})
+
+  \item Nouvelles options pour l'application des graphes dictionnaires
+  	  (\ref{section-dictionary-graphs})
+  	  
+  \item Ajout de \verb$Uncompress$ qui regénère un dictionnaire \verb$.dic$ à partir de sa forme
+  	  compressée \verb$.bin$ (\ref{section-Uncompress})
+
+  \item Ajout de \verb$Untokenize$ qui peut reconstruire un fichier texte \verb$.snt$
+	à partir de  \verb$text.cod$ et \verb$tokens.txt$ (\ref{section-Untokenize})
+
+\item Ajout du géorgien ancien
+  	  
+  \item La console a été modifiée: il est possible de voir les messages d'erreur émis par les
+  	  commandes
+        (\ref{section-console})
+  \item Ajout d'un tutoriel d'installation d'Unitex sous MacOS X 
+       (\ref{section-macos-install})
+       
+  \item Nouveau format de l'automate du texte\verb+.tfst+ (\ref{section-tfst-format})
+  	  
+  \item Les programmes d'Unitex ont des options de type Unix
+  	  
+  \item Unitex est maintenant entièrement LGPL (\ref{section-licences})
+  	  
+  \item Unitex peut être compilé en une librairie dynamique (\verb$.dll$ ou \verb$.so$)
+  (\ref{section-unitex-developpers})
+  
+\item Certains programmes Unitex peuvent fonctionner sans fuite de mémoire lorsqu'ils sont compilés
+  	  avec la macro UNITEX\_RELEASE\_MEMORY\_AT\_EXIT ou UNITEX\_LIBRARY.
+  Sont concernés \verb$Concord$, \verb$Convert$, \verb$Dico$, \verb$Elag$, \verb$Evamb$,
+  \verb$Extract$, \verb$Flatten$, \verb$Fst2Txt$, \verb$Grf2Fst2$, \verb$ImplodeTfst$,
+  \verb$LocateTfst$, \verb$MultiFlex$, \verb$Normalize$, \verb$PolyLex$, \verb$Reg2Grf$,
+  \verb$SortTxt$, \verb$TagsetNormTfst$, \verb$TEI2Txt$, \verb$Tfst2Grf$, \verb$Tfst2Unambig$,
+  \verb$Tokenize$, \verb$Txt2Tfst$, \verb$XMLizer$.
+  
+  \item Le code Unitex est "thread-safe"
+  	  
+  \item L'encodage d'un fichier Unicode peut être choisi
+  	  (\ref{section-text-file-encoding-parameters})
+  	  
+  \item Ajout de \verb$UnitexTool$ qui permet de lancer plusieurs
+   programmes Unitex en une seule commande pour faciliter l'écriture de script
+   (\ref{section-UnitexTool})
+  
+  \item Ajout de \verb$UnitexToolLogger$ qui permet de créer et de rejouer des fichiers log
+  d'exécution de programmes Unitex. (\ref{section-UnitexToolLogger})
+  
+  \item Ajout de \verb$Seq2Grf$ qui produit automatiquement une grammaire locale à partir d'un texte
+	brut, ou d'un document XML-TEILite (\ref{chap-sequence-automaton})
+	
+  \item Vous pouvez rechercher un mot dans un dictionnaire ouvert ou dans plusieurs dictionnaires
+  	  dans les ressources de l'utilisateur ou du système (\ref{section-dictionary-lookup})
+	
+  \item Vous pouvez accéder à des sous-graphes appelés dans le graphe courant ou à des graphes dont
+  le graphe courant est un sous-graphe (\ref{section-subgraphs}), automatiquement ou manuellement
+  recharger la dernière version sur le disque du graphe courant, comparer deux versions du même
+  graphe et insérer des délimiteurs de contexte grâce à la nouvelle barre d'outils
+  élargie (\ref{toolbar-commands})
+	
+  \item Si vous utilisez un macintosh, vous pouvez utiliser tous les raccourcis impliquant la touche
+	Ctrl enfoncée en appuyant sur la touche Commande à la place.
+	
+  \item Ajout d'un menu contextuel pour l'édition de graphe accessible par un clic droit dans la
+	fenêtre graphique (\ref{section-editing-graphs}).
+	
+  \item Nouvelle fenêtre pour la concordance en mode Debug avec le graphe utilisé par Locate et la liste des boîtes qui reconaissent chaque token des séquences trouvées.
+\end{itemize}
+
+\bigskip
+\noindent IMPORTANT: certains formats de fichiers ayant été changés et de nouveaux ayant été
+ajoutés, nous vous recommandons d'effectuer un nouveau prétraitement de vos textes en particulier si
+vous utilisez l'automate du texte.
+
+\clearpage
+
+\section*{Contenu}
+\addcontentsline{toc}{section}{Content}
+\noindent Le chapitre \ref{chap-install} décrit comment installer et lancer Unitex.
+
+\bigskip \noindent Le chapitre \ref{chap-text} présente les différentes étapes de l'analyse d'un
+texte.
+
+\bigskip \noindent Le chapitre \ref{chap-dictionaries} décrit le formalisme 
+des dictionnaires électroniques DELA et les différentes opérations qui peuvent leur être appliqués.
+
+\bigskip \noindent Les chapitres \ref{chap-regexp} et \ref{chap-grammars}
+présentent les différents moyens d’effectuer des recherches de motifs dans des textes.
+Le chapitre \ref{chap-grammars} décrit en détail l'utilisation de l'éditeur de graphe.
+
+\bigskip \noindent Le chapitre \ref{chap-advanced-grammars} est consacré aux différentes
+utilisations possibles des grammaires. Les particularités de chaque type de grammaires y sont
+présentées.
+
+\bigskip \noindent Le chapitre \ref{chap-text-automaton} présente le concept d'automate du texte 
+et décrit les propriétés de cette notion. Ce chapitre  décrit également les opérations sur cet
+objet, en particulier, comment désambiguiser les items lexicaux avec le programme ELAG.
+
+\bigskip \noindent Le chapitre \ref{chap-lexicon-grammar} contient une présentation des tables du
+lexique-grammaire, et la description d'une méthode de construction de  grammaires fondées sur ces
+tables.
+
+\bigskip \noindent Le chapitre \ref{chap-alignment} décrit le module d'alignement de texte basé sur
+l'outil XAlign.
+
+\bigskip \noindent Le chapitre \ref{chap-multiflex} décrit le module de flexion des mots composés,
+en tant que complément du système de flexion des mots simples, présenté au chapitre
+\ref{chap-dictionaries}.
+
+\bigskip \noindent Le chapitre \ref{chap-cassys} décrit le système de cascade de transducteur
+CasSys.
+
+\bigskip \noindent Le chapitre \ref{chap-external-programs} contient une description détaillée des
+programmes externes qui composent le système Unitex.
+
+\bigskip \noindent Le chapitre \ref{chap-file-formats} contient une description de tous les formats
+de fichiers utilisés par Unitex.
+
+
+\bigskip \noindent Le lecteur trouvera en annexe la licence LGPL sous  laquelle le code source
+Unitex est diffusé, ainsi que la licence LGPLLR qui s'applique pour les données linguistiques
+distribuées avec Unitex. Il y trouvera aussi la licence 2-clause BSD qui s'applique à la
+bibliothèque TRE, utilisée par Unitex pour les filtres morphologiques.
+
+\clearpage
+
+\section*{Contributions à Unitex}
+\addcontentsline{toc}{section}{Unitex contributeurs}
+Unitex est né comme un pari sur la puissance de la philosophie Open Source dans le monde
+universitaire (voir \url{http://igm.univ-mlv.fr/~unitex/why_unitex.html}), en s'appuyant sur l'hypothèse que les gens seraient intéressés à partager leurs connaissances et leurs compétences dans un tel projet ouvert.
+%The following list sounds like Open Source is good for science:
+
+\begin{itemize}                   
+    \item Olivier Blanc: a intégré le système ELAG à Unitex, originellement conçu par Eric Laporte,
+    Anne Monceaux et certains de leurs étudiants, a également écrit \verb+RebuildTfst+ (anciennement
+     appelé \verb+MergeTextAutomaton+)
+    \item Matthieu Constant: auteur de \verb+Grf2Fst2+
+    \item Julien Decreton: auteur de l'éditeur de texte intégré à Unitex,
+    	    a aussi réalisé la fonctionnalité \verb+undo+ de l'éditeur de graphe
+    \item Claude Devis: ajout des filtres morphologiques, fondé sur la librairie TRE
+    \item Hyun-Gue Huh: auteur de l'outil de génération de dictionnaires coréens
+    \item Claude Martineau: a travaillé sur la flexion des mots simples dans \verb+MultiFlex+
+    \item Sebastian Nagel: a optimisé de nombreuses parties du code, il a également adapté
+    	    \verb+PolyLex+ pour l'allemand et le russe
+    \item Alexis Neme: a optimisé \verb+Dico+ et \verb+Tokenize+, a aussi intégré \verb+Locate+ dans \verb+Dico+ pour accepter des graphes dictionnaires
+     \item Aljosa Obuljen: auteur de \verb+Stats+
+     \item Sébastien Paumier: développeur principal
+     \item Agata Savary: auteure de \verb+MultiFlex+
+    \item Gilles Vollant: auteur de \verb+UnitexTool+, a optimisé beaucoup
+    	    d'aspects du code d'Unitex (mémoire, vitesse, compatibilité multi-compilateur, etc)
+    \item Patrick Watrin: auteur de \verb+XMLizer+, a travaillé sur l'intégration de \verb+XAlign+ à Unitex
+    \item Anthony Sigogne: auteur de \verb+Tagger+ et de \verb+TrainingTagger+
+    \item Nathalie Friburger: auteure de \verb+CaSsys+
+\end{itemize}
+
+\bigskip
+\noindent Il faut ajouter que Unitex serait inutile sans les précieuses ressources linguistiques
+qu'il renferme. Toutes ces ressources sont le fruit d'un énorme et difficile travail effectué par
+des personnes qui ne doivent pas être oubliées. Certaines sont citées dans les avertissements qui
+sont fournis avec les dictionnaires, une information complète est disponible sur:
+
+\bigskip
+\noindent \url{http://igm.univ-mlv.fr/~unitex/linguistic_data_bib.html}
+
+
+\section*{Si vous utilisez Unitex dans des projets de recherche...}
+\addcontentsline{toc}{section}{Si vous utilisez Unitex dans des projets de recherche...}
+Unitex a été utlisé dans plusieurs projets de recherche. Certains sont listés dans la section 
+``Related works'' de la page d'accueil d'Unitex. Si vous avez effectuer des travaux de recherche
+avec Unitex (ressources, projet, article, thèse, ...) et si vous désirez qu'ils soient référencés
+sur le site envoyez un mail à \url{unitex@univ-mlv.fr}.
+
