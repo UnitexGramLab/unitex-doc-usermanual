@@ -6,7 +6,7 @@ UnitexManual: UnitexManual_FR_utf8.tex 00-introduction_FR_utf8.tex 01-installati
                   08-sequence-automaton_FR_utf8.tex 09-lexicon-grammar_FR_utf8.tex\
                   10-alignment_FR_utf8.tex 11-multiflex_FR_utf8.tex 12-cassys_FR_utf8.tex\
                   13-programs_FR_utf8.tex 14-formats_FR_utf8.tex\
-                  LGPL_FR_utf8.tex LGPLLR_FR_utf8.tex title_FR_utf8.tex bibliographie.bib
+                  LGPL_FR_utf8.tex LGPLLR_FR_utf8.tex title_FR_utf8.tex bibliographie_FR_utf8.bib
 	pdflatex UnitexManual_FR_utf8.tex
 	bibtex UnitexManual_FR_utf8
 	makeindex UnitexManual_FR_utf8.idx
