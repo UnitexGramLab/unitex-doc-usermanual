@@ -75,15 +75,15 @@ The Cassys configuration window (Figure \ref{fig13-03}) is divided into three pa
 		  \item \textbf{\#}: Rank of the graph/transducer in the cascade. The resulting file of a graph is numbered with this rank.
 		  \item \textbf{Disabled}: checkbox to disable the current graph. \textit{Disabled} meaning "\textit{not applied in the cascade}". The disabled graphs appear not numbered, in light grey and striked out.
 			\item \textbf{Name}: The name of the graph (with extension \emph{fst2}). If you let the mouse over the name of the graph, a tooltip appears with the whole path ot the graph. Graphs which source file are not found appear in italic red font style.
-		  \item \textbf{merge}: Whether the transducer should be applied in merge mode at the sense of unitex locate pattern.
-			\item \textbf{replace}: Whether the transducer should be applied in replace mode at the sense of unitex locate pattern.
-		  \item \textbf{iter}: Whether the transducer should be applied once or re-applied several times until no change occur in the text (See \ref{sub:AppWhiCon}).
+		  \item \textbf{Merge}: Whether the transducer should be applied in merge mode at the sense of unitex locate pattern.
+			\item \textbf{Replace}: Whether the transducer should be applied in replace mode at the sense of unitex locate pattern.
+		  \item \textbf{Until fix point}: Whether the transducer should be applied once or re-applied several times until no change occur in the text i.e. until a fix point is reached (See \ref{sub:AppWhiCon}).
 	\end{itemize}
 
 	\item \textit{Several buttons} in the middle for different needs: 
 		\begin{itemize}
 			\item \textit{"Up/Down/Top/Bottom"} buttons are used to modify the order of the transducers on the list (it moves the selected transducer in the list); 
-			\textit{"Up"} and \textit{"Down"} to move the selected transducer one line up or down, and "Top" and "Bottom" to move the selection to the top or to the end of the list.
+			\textit{"Up"} and \textit{"Down"} to move the selected transducer one line up or down, and "\textit{Top}" and "\textit{Bottom}" to move the selection to the top or to the end of the list.
 			\item  \textit{"Delete"} permits to remove a selected transducer from the list of transducers. 
 			\item		\textit{"Add"} adds a transducer (previously selected in the explorer) onto the list. It replaces the drag and drop actions described above. 
 			\item \textit{"View"} opens the selected graph either in the file explorer or in the list of transducers of the window. It is very useful to get a quick access to any transducer either to take a quick look at its content or to modify it.
@@ -129,14 +129,14 @@ the cascade file you want to apply on the text. When this list is chosen, you ca
 \end{figure}
 
 
-Note that any morphological dictionnaries added in your preferences is applied to your
-graphs. This preferences may be edited from the main unitex frame (\textit{info / Preferences / morphological dictionnaries}).
+Note that any morphological dictionaries added in your preferences is applied to your
+graphs. This preferences may be edited from the main unitex frame (\textit{info / Preferences / morphological dictionaries}).
 
 \subsection{Sharing a cascade transducer list file}
 \label{subsec:shareCascade}
 
 In order to ease collaborating work within CasSys, a  simple export/import
-system for the cascades is provided. This possibility is offered in the "\textit{Text / Apply CasSys cascade...}" menu.
+system for the cascades is provided. This possibility is offered in the "\textit{Text / Apply CasSys cascade...}" menu (Figure \ref{fig13-02}).
 
 To share a cascade list file, the following steps has to be fullfilled :
 \begin{enumerate}
@@ -160,10 +160,11 @@ Cassys uses the compiled version of the graphs (the fst2 files).
 Cassys can handle the local grammars (section 6.1) (syntactic graphs) presented in Chapter \ref{chap-advanced-grammars}. These grammars can use subgraphs, morphological filters and mode, and allow to refer to information in dictionaries. 
 The grammars used in the cascade must follow the constraints of the grammars used in Unitex.
 
-\subsection{Apply while concordance behaviour}
+\subsection{\textit{Repeat until fix point} behaviour}
 \label{sub:AppWhiCon}
 
-Cassys may apply a transducer on a text while concordances are found. This behavior is selected if the checkbox \textbf{iter} is checked or not for each graph of a cascade.
+Cassys may apply a transducer on a text while concordances are found. This behavior is selected if the checkbox \textbf{Until fix point} is checked or not for each graph of a cascade.
+This section presents the behaviour of this option.
 \bigskip
 For instance, consider the very simple graph \ref{fig:AB->A} which recognizes \emph{AB} and
 replaces it with \emph{A}. 
@@ -175,7 +176,7 @@ replaces it with \emph{A}.
   \label{fig:AB->A}
 \end{figure}
 
-Consider the text \emph{B B B A A A}. Applying the graph \ref{fig:AB->A} onto this text with \emph{iter} will have the following result :\\
+Consider the text \emph{B B B A A A}. Applying the graph \ref{fig:AB->A} onto this text with the option \emph{Until fix point} will have the following result :\\
 
 \begin{tabular}{|l|cccccc|r|}
 \hline
@@ -190,7 +191,7 @@ iteration 4 & & & &A&A&A& 0 match\\
 
 During the three first iterations, a match is found, so the graph
 re-applied on the resulting text. At the fourth iteration, no match is
-found, so the graph is not re-applied.
+found, the graph is not re-applied.
 
 \large{\textbf{Warning:}} Be aware of the risk of livelock when applying this
 option. For example, a transducer which recognizes \emph{A} and replaces it with
@@ -292,7 +293,7 @@ Note that for programming reasons (ambiguities between characters in the curly b
 \subsection{Displaying the concordance of a cascade}
 \label{subsec:resultsCascade}
 
-The results of a cascade are stored in an index file (concord.ind), just as for the \textit{"Locate pattern"} operation. This index file contains all the sequences recognized using the restrictions imposed by the rules of unitex.
+The results of a cascade are stored in an index file (\textit{concord.ind}), just as for the \textit{"Locate pattern"} operation. This index file contains all the sequences recognized using the restrictions imposed by the rules of unitex.
 
 \bigskip
 \noindent In order to display a concordance, you have to access the frame "\textit{Text / Located sequences...}" and click on the "\textit{Build concordance}" button (as described in Chapter \ref{chap-advanced-grammars}).
