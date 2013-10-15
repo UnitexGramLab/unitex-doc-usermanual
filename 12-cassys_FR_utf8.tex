@@ -96,10 +96,10 @@ La fenêtre de configuration de CasSys (\ref{fig13-03}) comporte trois parties :
 		une info-bulle apparaît avec le chemin complet du graphe.
 		Les graphes dont le fichier source n'est pas trouvé apparaissent en italique et en rouge.
 
-	\item \textbf{merge}: Si le transducer doit être appliqué en mode merge.
-	\item \textbf{replace}: Si le transducer doit être appliqué en mode replace.
-	\item \textbf{iter}: Si le transducteur doit être appliqué une fois ou plusieurs fois
-			jusqu'à ce que le texte soit inchangé (voir \ref{sub:AppWhiCon}).
+	\item \textbf{Merge}: Si le transducer doit être appliqué en mode merge.
+	\item \textbf{Replace}: Si le transducer doit être appliqué en mode replace.
+	\item \textbf{Until fix point}: Si le transducteur doit être appliqué une fois ou plusieurs fois
+		jusqu'à ce que le texte soit inchangé c'est à dire qu'un point fixe est atteint (voir \ref{sub:AppWhiCon}).
 	\end{itemize}
 	
 	 \item Au centre se trouvent les boutons décrits ci-dessous:
@@ -163,14 +163,15 @@ est choisie, vous pouvez cliquer sur le bouton "Launch" pour appliquer la cascad
 N'importe quel dictionnaire morphologique présent dans vos préférences est utlisable dans vos
 graphes.
 Ces  préférences peuvent être modifiées à partif du menu "Info" (Info -->
-Preferences --> morphological dictionnaries).
+Preferences --> morphological dictionaries).
 
 
 \subsection{Partage d'un fichier liste de transducteurs en cascade}
 \label{subsec:shareCascade}
 
 Afin de faciliter le travail collaboratif avec CasSys, une fonctionnalité d'export/import est
-fournie à l'aide d'un fichier liste de transducteurs.
+fournie à l'aide d'un fichier liste de transducteurs. Cette possibilité est offerte par le menu
+"\textit{Text / Apply CasSys cascade...}" (Figure \ref{fig13-02}).
 
 Pour partager un fichier liste de cascade, les points suivants doivent être remplis:
 \begin{enumerate}
@@ -199,7 +200,7 @@ utilisées dans Unitex.
 \label{sub:AppWhiCon}
 
 Cassys peut appliquer un graphe sur un texte de manière itérative tant que de nouvelles concordances sont obtenues.
-Ce comportement est sélectionné ou non pour chaque graphe selon que la case \verb+iter+ est cochée ou non.\\
+Ce comportement est sélectionné ou non pour chaque graphe selon que la case \verb+Until fix point+ est cochée ou non. Cette section présente le comportement de cette option\\
 
 Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le remplace par \emph{A}.\\
 
@@ -210,7 +211,7 @@ Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le
   \label{fig:AB->A}
 \end{figure}
 
-Considérons le texte \emph{B B B A A A}. L'application du graphe \ref{fig:AB->A} sur ce texte avec {\it iter}  donne :\\
+Considérons le texte \emph{B B B A A A}. L'application du graphe \ref{fig:AB->A} sur ce texte avec \emph{Until fix point}  donne :\\
 
 \begin{tabular}{|l|cccccc|r|}
 \hline
@@ -376,8 +377,8 @@ $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
 \subsection{Affichage des résultats de la cascade}
 \label{subsec:resultsCascade}
 
-Le résultat de l'application d'une cascade est un fichier d'index (concord.ind), comme c'est le cas
-lors d'une recherche de motif avec "Locate". Ce fichier d'index contient toutes les séquences
+Le résultat de l'application d'une cascade est un fichier d'index (\textit{concord.ind}), comme c'est le cas
+lors d'une recherche de motif avec \textit{"Locate pattern"}. Ce fichier d'index contient toutes les séquences
 reconnues conformément aux règles fixées dans Unitex.
 
 \bigskip
