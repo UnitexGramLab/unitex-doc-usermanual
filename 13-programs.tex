@@ -1991,7 +1991,12 @@ within a same system process, in order to speed up processing. This can done by
 invoking commands nested in round brackets as this:
 
 \bigskip
-\noindent \verb$UnitexTool { cmd #1+args } { cmd #2+args } etc.$
+\begin{verbatim}
+UnitexTool { SelectOutput [OPTIONS] } 
+             { cmd #1+args } 
+             { cmd #2+args }
+             etc.
+\end{verbatim}
 
 \bigskip
 \noindent For instance, if you want to join a locate operation and the
@@ -2008,8 +2013,19 @@ UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt"
 "-aD:\My Unitex\English\Alphabet_sort.txt" }
 \end{verbatim}
 
+\bigskip
+\noindent \textbf{OPTIONS}:
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: enable (on) or disable (off) standard output
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: enable (on) or disable (off) error output
+\end{itemize} 
 
 
+\noindent By example:
+\begin{verbatim}
+UnitexTool { SelectOutput -o off -e off } { Normalize
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
 
 
 
@@ -2121,6 +2137,27 @@ UnitexToolLogger { CreateLog --directory=c:\logs }
   \item \verb+-f+/\verb+--no_store_list_output_file+: don't store list of output file in log.
 \end{itemize}
 
+\bigskip
+\begin{verbatim}
+UnitexToolLogger { SelectOutput [OPTIONS] } 
+             { cmd #1+args } 
+             { cmd #2+args }
+             etc.
+\end{verbatim}
+
+\bigskip
+\noindent \textbf{OPTIONS after SelectOutput}:
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: enable (on) or disable (off) standard output
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: enable (on) or disable (off) error output
+\end{itemize}
+
+
+\noindent By example:
+\begin{verbatim}
+UnitexToolLogger { SelectOutput -o off -e off } { Normalize
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
 
 
 \section{Unxmlize}\index{External

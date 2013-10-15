@@ -1990,8 +1990,15 @@ Avec lui, vous pouvez enchaîner les commandes afin qu'elles soit exécutées da
 afin d'accélérer le traitement. Cela se fait en invoquant des commandes imbriquées entre parenthèses
 comme ceci:
 
+
+
 \bigskip
-\noindent \verb$UnitexTool { cmd #1+args } { cmd #2+args } etc.$
+\begin{verbatim}
+UnitexTool { SelectOutput [OPTIONS] } 
+                { cmd #1+args } 
+                { cmd #2+args }
+                etc.
+\end{verbatim}
 
 \bigskip
 \noindent Par exemple, si vous souhaitez faire un locate et construire la  concordance, vous pouvez
@@ -2007,9 +2014,19 @@ UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt"
 "-fCourier new" -s12 -l40 -r55 --CL --html 
 "-aD:\My Unitex\English\Alphabet_sort.txt" }
 \end{verbatim}
-
-
-
+ 
+\bigskip
+\noindent \textbf{OPTIONS}:
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: activer (on) ou désactiver (off) la sortie standard
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: activer (on) ou désactiver (off) la sortie erreur standard
+\end{itemize} 
+ 
+\noindent Par exemple:
+\begin{verbatim}
+UnitexTool { SelectOutput -o off -e off } { Normalize
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
 
 
 
@@ -2089,8 +2106,7 @@ Une autre utilisation de UnitexToolLogger est d'utiliser l'option CreateLog opti
 \bigskip
 \noindent \verb$UnitexToolLogger { CreateLog [OPTIONS] } { cmd #1+args } { cmd #2+args } etc.$
 
-By example,
-\bigskip
+\noindent Par exemple,
 \begin{verbatim}
 UnitexToolLogger { CreateLog --log_file=my_run_normalize.ulp }
              Normalize "C:\My Unitex\French\Corpus\80jours.txt"
@@ -2122,6 +2138,27 @@ UnitexToolLogger { CreateLog --directory=c:\logs }
 \item \verb+-f+/\verb+--no_store_list_output_file+: n'enregistre pas la liste de fichiers de sortie dans log.
 \end{itemize}
 
+ 
+\bigskip
+\begin{verbatim}
+UnitexToolLogger { SelectOutput [OPTIONS] } 
+                { cmd #1+args } 
+                { cmd #2+args }
+                etc.
+\end{verbatim}
+
+\bigskip
+\noindent \textbf{OPTIONS après SelectOutput :}
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: activer (on) ou désactiver (off) la sortie standard
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: activer (on) ou désactiver (off) la sortie erreur standard
+\end{itemize} 
+
+\noindent Par exemple:
+\begin{verbatim}
+UnitexToolLogger { SelectOutput -o off -e off } { Normalize 
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
 
 
 \section{Unxmlize}\index{Programmes externes!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Fichier
@@ -2158,10 +2195,10 @@ texte traitable par Unitex.
 Note: par défaut, balises de script sont traitées comme des balises normales (par défaut pour .xml).
 \begin{itemize}		     
 \item \verb+--normal_tags=IGNORE+: chaque tag différent est supprimé (par défaut pour .xml)
-		   \item \verb+--normal_tags=SPACE+: chaque tag différent est remplacé est remplacé par un unique espace (par défaut pour .html)
-
+\item \verb+--normal_tags=SPACE+: chaque tag différent est remplacé est remplacé par un unique espace (par défaut pour .html)
 \end{itemize}
-         
+
+
 
 
 \section{XMLizer}\index{Programmes externes!\verb+XMLizer+}\index{\verb+XMLizer+}
