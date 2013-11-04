@@ -89,9 +89,9 @@ quelles catégories flexionnelles (nombre, genre, cas, etc.) sont-elles pertinen
 \cite{PrzepWol03} se prononce pour une définiton fondée sur la morphosyntaxe des catégories
 grammaticales : une catégorie grammaticale devrait pleinement déterminer les catégories
 flexionnelles dans lesquelles le mot se fléchit ainsi que celles qui sont lexicalement fixées pour le
-mot. Par exemple, en Polonais, un nom a un genre et se fléchit en nombre et en cas.
+mot. Par exemple, en polonais, un nom a un genre et se fléchit en nombre et en cas.
 \item Quelles sont les exceptions aux catégories flexionnelles déterminées ci-dessus ? Par exemple,
-en Polonais 
+en polonais 
 
 \begin{itemize}
 \item \emph{wybory powszechne}\\
@@ -155,7 +155,7 @@ la flexion automatique soit fiable.
 
 \bigskip
 \noindent MULTIFLEX met en {\oe}uvre un formalisme fondé sur l'unification qui permet de décrire la
-flexion des mots comoposés \cite{Savary05}. Ses caractéristiques sont décrites dans la
+flexion des mots composés \cite{Savary05}. Ses caractéristiques sont décrites dans la
 section~\ref{section:formalism}. Ce formalisme nécessite que la description soit \emph{pleinement}
 lexicalisée: chaque mot composé figurant dans un dictionnaire est muni d'un code (ex: \emph{NC\_NN,
 NC\_NN2}, etc.) représentant son paradigme flexionnel, par exemple, dans un format de type DELA:
@@ -170,7 +170,7 @@ NC\_NN2}, etc.) représentant son paradigme flexionnel, par exemple, dans un for
 \]
 
 \bigskip
-\noindent Cependant,la grande majorité des mots composés peut être traitée avec un petit nombre de codes. Ainsi, la lexicalisation de la
+\noindent Cependant, la grande majorité des mots composés peut être traitée avec un petit nombre de codes. Ainsi, la lexicalisation de la
 description consiste principalement à définir les mots composés, qui respectent ou ne respectent pas
 la  ``grammaire''.
 
@@ -179,7 +179,7 @@ la  ``grammaire''.
 \label{section:formalism}
 Un formalisme de description de la morphologie des mots composés a été décrit par Agata Savary en
 1985 \cite{Savary05}. Il est fondé sur des études sur l'anglais, le polonais et le français, et
-en outre a été testé pour le serbe \cite{Krstevetal06} et le grec%\cite{}.
+en outre a été testé pour le serbe \cite{Krstevetal06} et le grec \cite{Foufi13}.
 Il repose sur une représentation indépendante de la langue qui doit être complétée par l'ensemble des éléments caractéristiques 
 d'une langue donnée. Dans cette section, nous donnons une description détaillée de ce formalisme.
 
@@ -273,12 +273,12 @@ lettre qui peuvent être utilisées dans les dictionnaires DELA pour ces langues
 La notion de constituant élémentaire est controversée et varie selon les langues et les systèmes de
 TAL. Par exemple, dans Unitex, un alphabet, c'est à dire un ensemble de caractères, est d'abord
 défini pour chaque langue.  Tout caractère n'appartenant pas à l'alphabet est appelé séparateur. Un
-constituant élémentaire est aussi bien un simple séparateur (habituellement un signe de ponctution,
+constituant élémentaire est aussi bien un simple séparateur (habituellement un signe de ponctuation,
 un chiffre, etc.) une séquence de caractères contigus appartenant à l'alphabet (ex
 \emph{aujourd'hui} comporte selon cette définition, 3 constituants). Dans d'autres systèmes, un
 constituant peut contenir un signe de ponctuation (e.g. \emph{c'est-\`a-dire}), ou une limite entre
 deux constituants peut se produire dans une séquence de caractères alphabétiques (\emph{widzia\l
-$\mid$bym}, cf.
+$\mid$bym} 'je verrais' , cf.
 \cite{PrzepWol03}). 
 
 \bigskip
@@ -298,7 +298,7 @@ Par exemple avec Unitex, la séquence
 \end{itemize} 
 
 \bigskip
-\noindent comprend cinq constituants envoyé à MULTIFLEX de cette façon:
+\noindent comprend cinq constituants envoyés à MULTIFLEX de cette façon:
 \[
 \begin{array}[c]{l}
 $\$1 = \emph{Athens}$ \\
@@ -311,7 +311,7 @@ $\$5 = \emph{4}$ \\
 
 \bigskip
 \noindent Chaque constituant d'un mots composé suceptible d'être fléchi doit être morphologiquement 
-identifié. Cette indentification doit permettre de fournir les informations nécessaires afin que
+identifié. Cette identification doit permettre de fournir les informations nécessaires afin que
 n'importe quelle forme fléchie de ce mot puisse être générée à la demande. Par exemple dans:
 \begin{itemize}
 \item \emph{mémoire vive}
@@ -350,7 +350,7 @@ celui du mot d'origine \emph{vive}, donc féminin.
 
 \subsection{Paradigme de flexion des mots composés}
 \label{subsec:paradigm}
-Dans notre formalisme, la description morphologique des mots-composés repose sur le sytème DELA dans
+Dans notre formalisme, la description morphologique des mots-composés repose sur le système DELA dans
 la mesure où :
 
 \begin{itemize}
@@ -361,7 +361,7 @@ la mesure où :
 
 \bigskip
 \noindent Dans sa version Unitex, MULTIFLEX utilise des codes flexionnels qui renvoient à des graphes
-Unitex compilés au format\verb+.fst2+. Par exemple, figure~\ref{fig:BattleRoyal} le graphe de flexion pour \emph{battle royal}.
+Unitex compilés au format\verb+.fst2+. Par exemple, figure~\ref{fig:BattleRoyal} présente le graphe de flexion pour \emph{battle royal}.
 
 \begin{figure}[!htb]
   \centering
@@ -478,7 +478,7 @@ tout au long du chemin.
 
 \bigskip
 \noindent Le graphe de flexion de la figure~\ref{fig:BateauMouche2} s'applique à la plupart des
-types de composés français de types \emph{Nom Nom} et \emph{Nom Adjectif} (\emph{bateau-mouche, ange
+composés français de types \emph{Nom Nom} et \emph{Nom Adjectif} (\emph{bateau-mouche, ange
 gardien, circuit séquentiel}, etc.) qui sont de genre masculin: c'est parce que la sortie de la 
 boîte finale contient \emph{Gen=m}. Pour tous les composés des mêmes types, mais de genre féminin,
 comme \emph{main courante, moissoneuse-batteuse}, etc., un nouveau graphe doit être créé, identique
@@ -528,8 +528,8 @@ plupart des cas).
 
 \bigskip
 \noindent Par exemple, le graphe de la figure~\ref{fig:PranieMozgu} permet de fléchir les mots
-composés polonais qui se fléchissent comme \emph{pranie m\'ozgu} (\emph{brainwashing}) ou
-\emph{powo\.zenie koniem} (\emph{horse coaching}). Leur troisième constituant a son cas défini
+composés polonais qui se fléchissent comme \emph{pranie m\'ozgu} (\emph{lavage du cerveau}) ou
+\emph{powo\.zenie koniem} (ang. \emph{horse coaching}). Leur troisième constituant a son cas défini
 (le plus souvent au génitif ou à l'instrumental). Le premier et le troisième constituant se
 fléchissent en nombre indépendamment l'un de l'autre  (\emph{pranie m\'ozg\underline{\'ow}},
 \emph{prani\underline{a} m\'ozgu}, \emph{prani\underline{a} m\'ozg\underline{\'ow}}, etc.).
@@ -606,7 +606,7 @@ Unitex, la séquence \emph{Athens '04} est divisée en 5 tokens:
 Pour une forme fléchie simple donnée, il retourne toutes ses caractéristiques flexionnelles. Ces
 caractéristiques doivent permettre la génération à la demande de toute autre forme fléchie de même
 lemme par le même module de flexion.
-Par exemple, dans le cas d'Unitex, la forme \emph{porte} à  la reconnaissance de 7 formes 
+Par exemple, dans le cas d'Unitex, la forme \emph{porte} mène à  la reconnaissance de 7 formes 
 (dont 6 sont factorisées selon leur code flexionnel):
 
 \[
@@ -659,8 +659,7 @@ d'Unitex
 \item MULTIFLEX utilise les mêmes codages qu'Unitex, i.e. Unicode 3.0.
 \item MULTIFLEX utilise l'éditeur de graphe d'Unitex pour représenter la flexion des mots composés.
 \item MULTIFLEX admet des principes de description morphologique similaires à ceux 
-du système DELA mis en {\oe}uvre dans Unitex. Ainsi, un paradigme est un ensemble de flexions
-d'actions à effectuer sur le lemme afin de générer ses formes fléchies, et de leurs associer
+du système DELA mis en {\oe}uvre dans Unitex. Ainsi, un paradigme est un ensemble d'actions à effectuer sur le lemme afin de générer ses formes fléchies, et de leurs associer 
 les informations flexionnelles correspondantes.
 \item MULTIFLEX permet d'étendre la flexion des mots simples à celle des mots composés en produisant
 à partir d'un DELAC (DELA électronique des mots composés) un DELACF (DELA électronique des formes
@@ -675,7 +674,7 @@ flexion d'un DELAC en DELACF à travers l'interface MULTIFLEX/Unitex.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Exemple complet en anglais}
-Supposons que la description des caractéristiques morphologiques du français est définie par le
+Supposons que la description des caractéristiques morphologiques de l'anglais est définie par le
 fichier \verb+Morphology.txt+ suivant:
 \[
 \begin{array}[l]{l}
@@ -716,7 +715,7 @@ student(student.N1:s) union(union.N1:s),NC_Ns'N
 \end{verbatim}
 
 \bigskip
-\noindent Les graphes de flexions correspondants \emph{N1} et \emph{N3} pour les mots simples
+\noindent Les graphes de flexion correspondants \emph{N1} et \emph{N3} pour les mots simples
 se trouvent dans les figures~\ref{fig:N1'EN} et figures~\ref{fig:N3'EN} tandis que ceux pour les mots
 composés s'échelonnent de la figure~\ref{fig:NC'NXXXX'EN} à la figure~\ref{fig:NC'Ns'N'EN}. 
 
@@ -882,7 +881,7 @@ porte-serviette(serviette.N21:fs),NC_VNm
 
 
 \bigskip
-\noindent Les graphes des flexions correspondants se trouvent de la figure ~\ref{fig:NC'XXN'FR} à la
+\noindent Les graphes des flexion correspondants se trouvent de la figure ~\ref{fig:NC'XXN'FR} à la
 figure ~\ref{fig:NC'VNm'FR}. 
 
 \bigskip
@@ -1048,7 +1047,7 @@ gladan(gladan.A18:akms1g) kao vuk(vuk.N128:ms1v),AC_A3XN2/hungry as a wolf
 \normalsize
 
 \bigskip
-\noindent Les graphes de flexions correspondants se trouvent de la figure~\ref{fig:NC'2XN1'SRB} à la
+\noindent Les graphes de flexion correspondants se trouvent de la figure~\ref{fig:NC'2XN1'SRB} à la
 figure~\ref{fig:AC'A3XN2'SRB}. 
 
 \bigskip
