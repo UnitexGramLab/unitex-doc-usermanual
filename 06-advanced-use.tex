@@ -685,7 +685,7 @@ filters (see section \ref{section-filters}), as shown on Figure
 
 \bigskip
 \noindent However, even morphological filters cannot allow any query, since they
-cannot refer to dictionaries. Thus, it is impossible to formulate this way a
+cannot refer to information stored in dictionaries. Thus, it is impossible to formulate this way a
 query like ``\textit{a word made of the prefix} \verb$un$ \textit{followed by an
 adjective suffixed with} \verb+able+''.
 
@@ -715,11 +715,11 @@ between double quotes).
    must occur in the same graph as its beginning.
 
    \item You can use morphological filters on \verb+<DIC>+ and patterns
-   referring to dictionaries, like \verb+<be>+, \verb+<N:ms>+, etc. 
+   referring to information stored in dictionaries, like \verb+<be>+, \verb+<N:ms>+, etc. 
    
    \item You can use morphological filters alone or on \verb+<TOKEN>+,
    but note that your filters will only apply to the current character. As a
-   consequence, filters like \verb+<<[1-9][0-9]>>+ that try to match more than
+   consequence, filters like \verb+<<[1-9][0-9]>>+ that are meant to match more than
    one character will never match anything. In fact, in morphological mode, 
    morphological filters should only be used to express negations like 
    \verb+<<[^aeiouy]>>+ (any character that is not a vowel). 
@@ -741,17 +741,17 @@ between double quotes).
     \item \verb+<DIC>+ will match any word present in the morphological
     dictionaries (see below).\index{\verb+<DIC>+}
 
-    \item You can use patterns that refer to the morphological dictionaries,
+    \item You can use patterns that refer to information stored in the morphological dictionaries,
     like \verb+<have>+, \verb+<V:K>+, etc. 
 
-    \item The meta \verb+#+, \verb+<PRE>+, \verb+<NB>+, 
+    \item The meta-symbols \verb+#+, \verb+<PRE>+, \verb+<NB>+, 
     \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verb+#+}
     \index{\verb+<PRE>+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+} 
     \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
     
     \item If you reach the end of the morphological zone and if you are not
     at the end of a token, the match will fail. For instance, if the text
-    contains \verb+enabled+, you can not only match \verb+enable+.
+    contains \verb+enabled+, you cannot match \verb+enable+ only.
 \end{enumerate}
 
 
@@ -778,20 +778,20 @@ adjective with the grammar shown on Figure \ref{fig-morpho3}.
 
 \bigskip
 \noindent However, if we want to match with this grammar the word 
-\verb+unaware+, we must know that \verb+aware+ is an adjective. But,
+\verb+unaware+, we must know that \verb+aware+ is an adjective. But
 \verb+aware+ may not be present in the text, so that we cannot rely on the text
 dictionaries. This is the reason why we must define a list of dictionaries
 to lookup in in morphological mode. To do that, go in
 ``Info>Preferences>Morphological dictionaries'', as shown on Figure
 \ref{fig-morpho4}. You can select as many dictionaries as you want, but they
-MUST be \verb+.bin+ ones. Once done, you can apply your grammar and get results.
+MUST be \verb+.bin+ ones. Once this is done, you can apply your grammar and get results.
 
 
-\subsection{Dictionary entry variables}
-\index{Dictionary entry variables}
+\subsection{Dictionary-entry variables}
+\index{Dictionary-entry variables}
 \index{Variables!Dictionary entry}
 \label{dictionary-variables}
-You can associate variables to patterns that refer to the morphological dictionaries,
+You can associate variables to patterns that refer to information stored in the morphological dictionaries,
 except \verb+<DIC>+. To do that, you must set the output of the box with
 \verb+$xxx$+ where \verb+xxx+ is a valid variable name. That defines a
 special variable named \verb+xxx+ that represents the dictionary entry that has
@@ -841,8 +841,8 @@ tested as explained in section \ref{section-variables}.
 \noindent \textbf{Dictionary variables in LocateTfst}
 
 \noindent In grammars to be applied with \verb+LocateTfst+, you have an extra feature. 
-Even if you are not in morphological mode, you can extract information from a lexical tag contained in the text
-automaton, and capture it into a dictionary-entry variable in a grammar.
+Even if you are not in morphological mode, your grammar can extract information from a lexical tag contained in the text
+automaton, and capture it into a dictionary-entry variable.
 In your grammar, you have to set the output of a box with \verb+$:xxx$+, where
 \verb+xxx+ is a valid variable name. In the rest of the paths that contain the
 box, you can use \verb+xxx+ as a dictionary-entry variable, in the same way as
@@ -852,7 +852,7 @@ described above for the morphological mode.
 \bigskip
 \noindent If a semantic code is of the form xxx = yyy, you can query
 the attribute value xxx. This matches the inflected form, lemma or codes of the entry
-variables when the semantic code come from a dictionary, or any
+variables when the semantic code comes from a dictionary, or any
 other attribute-value pair.
 
 
