@@ -473,10 +473,16 @@ sous celle-ci.\\
 \noindent \textbf{Poids}\\
 
 
-Vous pouvez attribuer des poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
-reconnue par plusieurs chemins, seul celui de poids le plus élévé sera conservé.
-Après un "Locate", la concordance, ne comportera qu'une seule fois la séquence reconnue avec la
-sortie appropiée (figure~\ref{fig-weights-in-graphs}).
+On peut attribuer des poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
+reconnue par plusieurs chemins, seul un chemin de poids maximal sera conservé.
+Après un "Locate", la concordance ne comportera qu'une seule fois la séquence reconnue, et avec la
+sortie appropiée (figure~\ref{fig-weights-in-graphs}). Les poids sont des valeurs entières,
+et le poids d'un chemin est la somme des poids rencontrés sur le chemin.
+
+\noindent Avec des poids, on peut définir une priorité entre des chemins qui reconnaissent
+la même séquence. On ne peut pas définir une priorité entre deux séquences dont une est incluse
+dans une autre (cf. section~\ref{section-configuration-recherche}) ni entre des séquences qui
+se chevauchent  (cf. section~\ref{section-priorite-gauche}).
 
 \bigskip
 \begin{figure}[h!]
