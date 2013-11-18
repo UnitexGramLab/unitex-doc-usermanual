@@ -615,7 +615,7 @@ obtenus avec la grammaire de la figure \ref{fig-left-context5}.
 \end{figure}
 
 \bigskip
-\noindent Toutefois, vous pouvez mémoriser des choses avec des variables (voir section
+\noindent Toutefois, vous pouvez mémoriser des informations avec des variables (voir section
 \ref{section-variables}) et les utiliser en dehors du contexte gauche, comme le montre la
 grammaire de la figure \ref{fig-left-context7}.
 
@@ -778,11 +778,11 @@ compilés (au format \verb+.bin+). Ceci fait, vous pouvez appliquer votre gramma
 \index{Variables morphologiques}
 \index{Variables!morphologiques}
 \label{dictionary-variables}
-Vous pouvez associer des variables aux motifs qui font références aux  dictionnaires morphologiques,
+Vous pouvez associer des variables aux motifs qui font référence aux dictionnaires morphologiques,
 sauf \verb+<DIC>+. Il suffit de mettre en sortie de la boîte \verb+$xxx$+ où \verb+xxx+ est un nom
 correct de variable. Ceci définit une  variable dénommée \verb+xxx+ qui représente l'entrée de
 dictionaire reconnue avec votre motif.
-Maintenant il est possible d'obtenir, la forme canonique et les informations sur l'entrée avec
+Une fois cela fait, il est possible d'obtenir la forme canonique et les informations sur l'entrée avec
 \verb+$xxx.INFLECTED$+, \verb+$xxx.LEMMA$+ et \verb+$xxx.CODE$+, comme le montre la figure
 \ref{fig-morpho5}.
 Vous pouvez également utiliser les motifs suivants:
@@ -797,7 +797,7 @@ Vous pouvez également utiliser les motifs suivants:
 \item \verb+$xxx.CODE.FLEX$+: fournit tous les codes flexionnels
   séparés par des \verb$:$, s'il en existe
 
-\item \verb+$xxx.CODE.ATTR=yyy$+ renvoi la valeur \verb+zzz+ de l'attribut \verb+yyy+ si un  code sémantique de la forme \verb+yyy=zzz+ existe.
+\item \verb+$xxx.CODE.ATTR=yyy$+ renvoie la valeur \verb+zzz+ de l'attribut \verb+yyy+ si un  code sémantique de la forme \verb+yyy=zzz+ existe.
 
 \end{itemize}
 	
@@ -834,7 +834,7 @@ dans la section \ref{section-variables}.
 \noindent Pour les grammaires appliquées avec \verb+LocateTfst+, vous disposez d'une possibilité
 supplémentaire. 
 Même sans être en mode morphologique, vous pouvez mémoriser dans une variable morphologique
-l'information associée à une  étiquette lexicale contenue dans l'automate du texte.
+les informations associées à une  étiquette lexicale contenue dans l'automate du texte.
 Il vous suffit pour cela d'associer à la boîte une sortie de la forme \verb+$:abc$+ où \verb+abc+
 est le nom de votre variable.
 Vous pouvez ensuite l'utiliser comme variable morphologique habituelle.
@@ -845,7 +845,7 @@ Vous pouvez ensuite l'utiliser comme variable morphologique habituelle.
 
 Il est possible de générer les chemins reconnus par une grammaire, par exemple pour
 vérifier qu’elle engendre correctement les formes attendues. Pour cela, ouvrez le graphe
-principal de votre grammaire et assurez vous que la fenêtre du graphe est bien la fenêtre active
+principal de votre grammaire et assurez-vous que la fenêtre du graphe est bien la fenêtre active
 (la fenêtre active possède une barre de titre bleu, tandis que les fenêtres inactives ont une
 barre de titre grise). Allez ensuite dans le menu "FSGraph", puis dans le sous-menu "Tools",
 et cliquez sur "Explore graph paths". La fenêtre de la figure 
@@ -1171,13 +1171,13 @@ donne la concordance de la figure~\ref{fig-no-space-problem}.
 \end{figure}
 
 \bigskip
-\noindent Si le début ou la fin d’une variable sont mal définis (fin d’une variable avant son début,
+\noindent Si le début ou la fin d’une variable est mal défini (fin d’une variable avant son début,
 absence du début ou de la fin d’une variable), celle-ci sera ignorée lors des sorties.
 Consultez la section \ref{section-advanced-search-options} pour d'autres traitements d'erreur concernant les variables.
 %for other variable error policies.
 
 \bigskip
-\noindent Il n’y a aucune limitation du nombre de variables utilisables
+\noindent Il n’y a aucune limitation du nombre de variables utilisables.
 
 \bigskip
 \noindent    Les variables peuvent être imbriquées, voire même se chevaucher comme le montre la
@@ -1195,23 +1195,23 @@ figure~\ref{fig-overlapping-variables}.
 
 \newpage
 
-\section{Variables de sorties}
+\section{Variables de sortie}
 \label{section-output-variables}
-\index{Variables de sorties}
+\index{Variables de sortie}
 Les variables normales sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ mémorisent des portions du
 texte d'entrée. 
 Il est aussi possible de mémoriser des parties des sorties produites par une grammaire avec des
-variables de sorties.
+variables de sortie.
 Ces variables sont déclarées avec \verb+$|xxx(+ et \verb+$|xxx)+.
 Celles-ci apparaissent en bleu (voir figure \ref{fig-output-variables}).
-Remarquons que lorsque une variable de sortie est déclarée, les sorties ne sont pas émises, elles
-sont seulement mémorisées dans les variables de sorties.
+Remarquons que lorsqu'une variable de sortie est déclarée, les sorties ne sont pas émises, elles
+sont seulement mémorisées dans les variables de sortie.
 %are not emitted in the output occurrence; they are just stored into the pending output variable(s)
 Remarquons que les sorties sont calculées en premier, si une sortie contient une chaine comme 
 \verb+$A.LEMMA$+, la variable de sortie ne contiendra pas cette chaîne mais le lemme associé à
-la variable \verb+A+. En outre, les variables de sorties mémorisent seulement des sorties
+la variable \verb+A+. En outre, les variables de sortie mémorisent seulement des sorties
 effectivement produites par votre grammaire. Ainsi, même si vous travaillez en mode MERGE, les
-variables de sorties ne mémorisent jamais le texte d'entrée.
+variables de sortie ne mémorisent jamais le texte d'entrée.
 
 \noindent Cet exemple de grammaire appliquée en mode MERGE au texte \textit{Ivanhoe} produit la
 concordance visible sur la figure \ref{fig-output-variables-concord}. 
@@ -1238,11 +1238,11 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 \index{Tests sur les variables}\index{Variables!test}
 
 \noindent Il est possible de tester si une variable est définie ou non, afin d'interrompre la
-reconnaisance courante si la condition n'est pas vérifiée. Ceci se fait en insérant la  séquence
+reconnaissance courante si la condition n'est pas vérifiée. Ceci se fait en insérant la  séquence
 \verb+$xxx.SET$+ à la sortie d'une boîte. Ainsi, si une variable dénommée \verb+xxx+ a été définie,
 cette séquence est ignorée et la reconaissance continue, sinon, la reconnaissance s'arrête
-et le programme repart en arrière. Ceci fonctionne sur des variables normales, des variables de
-sorties ou des variables morphologiques. De façon similaire, on peut vérifier qu'une variable n'est
+et le programme repart en arrière. Ceci fonctionne sur les variables normales, les variables de
+sortie et les variables morphologiques. De façon similaire, on peut vérifier qu'une variable n'est
 pas définie en utilisant \verb+$xxx.UNSET$+. La figure \ref{fig-testing-a-variable} montre un graphe
 qui utilise ce type de test. La figure \ref{fig-testing-a-variable-results} montre les résultats obtenus par ce graphe en mode MERGE.
 
@@ -1408,7 +1408,7 @@ avec seulement une sortie choisie arbitrairement pour la séquence \textit{the n
 \end{figure}
 
 
-\index{Traitement des erreurs sur les variable}
+\index{Traitement des erreurs sur les variables}
 \bigskip
 \noindent L'option "Variable error policy" permet de définir le comportement de
 \verb+Locate+/\verb+LocateTfst+ lorsqu'ils rencontrent une sortie contenant une variable mal
