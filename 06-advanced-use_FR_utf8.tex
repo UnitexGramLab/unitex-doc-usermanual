@@ -778,26 +778,28 @@ compilés (au format \verb+.bin+). Ceci fait, vous pouvez appliquer votre gramma
 \index{Variables morphologiques}
 \index{Variables!morphologiques}
 \label{dictionary-variables}
-Vous pouvez associer des variables aux motifs qui font référence aux dictionnaires morphologiques,
-sauf \verb+<DIC>+. Il suffit de mettre en sortie de la boîte \verb+$xxx$+ où \verb+xxx+ est un nom
-correct de variable. Ceci définit une  variable dénommée \verb+xxx+ qui représente l'entrée de
-dictionaire reconnue avec votre motif.
-Une fois cela fait, il est possible d'obtenir la forme canonique et les informations sur l'entrée avec
+On peut affecter à des variables des informations issues des dictionnaires morphologiques.
+L'initialisation d'une variable de ce type doit être associée à une boite contenant un motif
+qui fait référence à des informations contenues dans un dictionnaire morphologique,
+sauf le motif \verb+<DIC>+. On met \verb+$xxx$+ en sortie de la boîte, où \verb+xxx+ est un nom
+correct de variable (cf. section~\ref{section-using-variables}). Ceci affecte à une  variable dénommée \verb+xxx+
+l'entrée de dictionaire reconnue par le motif.
+Dans la suite des chemins qui passent par la boite, on peut obtenir la forme fléchie, la forme canonique et les codes fournis par l'entrée avec
 \verb+$xxx.INFLECTED$+, \verb+$xxx.LEMMA$+ et \verb+$xxx.CODE$+, comme le montre la figure
 \ref{fig-morpho5}.
-Vous pouvez également utiliser les motifs suivants:
+On peut également utiliser les motifs suivants:
 
 \begin{itemize}
 \item \verb+$xxx.CODE.GRAM$+: fournit seulement le premier code grammatical,
-	supposé être la catégorie grammaticale
+	censé être la catégorie grammaticale
   
-\item \verb+$xxx.CODE.SEM$+: fournit tous les autre codes,
+\item \verb+$xxx.CODE.SEM$+: fournit tous les autres codes,
 	séparés par des \verb$+$, s'il en existe
   
 \item \verb+$xxx.CODE.FLEX$+: fournit tous les codes flexionnels
   séparés par des \verb$:$, s'il en existe
 
-\item \verb+$xxx.CODE.ATTR=yyy$+ renvoie la valeur \verb+zzz+ de l'attribut \verb+yyy+ si un  code sémantique de la forme \verb+yyy=zzz+ existe.
+\item \verb+$xxx.CODE.ATTR=yyy$+ renvoie la valeur d'une paire attribut-valeur contenue dans les codes sémantiques, c'est-à-dire la valeur \verb+zzz+ de l'attribut \verb+yyy+ s'il y figure un  code sémantique de la forme \verb+yyy=zzz+.
 
 \end{itemize}
 	
@@ -831,13 +833,16 @@ dans la section \ref{section-variables}.
 \bigskip
 \noindent \textbf{Variables morphologiques dans LocateTfst}
 
-\noindent Pour les grammaires appliquées avec \verb+LocateTfst+, vous disposez d'une possibilité
+\noindent Pour les grammaires appliquées avec \verb+LocateTfst+ (cf. section~\ref{section-locate-tfst}), on dispose d'une possibilité
 supplémentaire. 
-Même sans être en mode morphologique, vous pouvez mémoriser dans une variable morphologique
-les informations associées à une  étiquette lexicale contenue dans l'automate du texte.
-Il vous suffit pour cela d'associer à la boîte une sortie de la forme \verb+$:abc$+ où \verb+abc+
-est le nom de votre variable.
-Vous pouvez ensuite l'utiliser comme variable morphologique habituelle.
+Même sans être en mode morphologique, on peut mémoriser dans une variable morphologique
+une  étiquette lexicale contenue dans l'automate du texte.
+Il suffit pour cela d'associer à la boîte une sortie de la forme \verb+$:abc$+ où \verb+abc+
+est le nom de la variable.
+On peut ensuite l'utiliser comme variable morphologique habituelle, de la façon décrite ci-dessus~:
+on peut obtenir la forme fléchie, la forme canonique et les codes donnés dans l'entrée, sa
+catégorie grammaticale, ses codes sémantiques, ses codes flexionnels et la valeur
+ \verb+zzz+ de l'attribut \verb+yyy+ s'il y figure un  code sémantique de la forme \verb+yyy=zzz+.
 
 
 \section{Exploration des chemins d’une grammaire}

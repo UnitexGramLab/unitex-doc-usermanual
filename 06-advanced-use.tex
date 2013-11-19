@@ -791,11 +791,14 @@ MUST be \verb+.bin+ ones. Once this is done, you can apply your grammar and get 
 \index{Dictionary-entry variables}
 \index{Variables!Dictionary entry}
 \label{dictionary-variables}
-You can associate variables to patterns that refer to information stored in the morphological dictionaries,
-except \verb+<DIC>+. To do that, you must set the output of the box with
-\verb+$xxx$+ where \verb+xxx+ is a valid variable name. That defines a
-special variable named \verb+xxx+ that represents the dictionary entry that has
-matched with your pattern. Now you can get the inflected form, lemma and codes
+You can set variables to information stored in morphological dictionaries.
+The initialization of such a variable must be associated to a box that contains
+a pattern referring to information stored in morphological dictionaries,
+except the pattern \verb+<DIC>+. Set the output of the box with
+\verb+$xxx$+ where \verb+xxx+ is a valid variable name (cf. section~\ref{section-using-variables}). That sets a
+special variable named \verb+xxx+ to the dictionary entry that 
+matches with your pattern. In the rest of the paths that contain the
+box, you can get the inflected form, lemma and codes
 of the entry with \verb+$xxx.INFLECTED$+, \verb+$xxx.LEMMA$+ and
 \verb+$xxx.CODE$+, as shown on Figure \ref{fig-morpho5}. You can also use the
 following patterns:
@@ -808,6 +811,10 @@ following patterns:
   
   \item \verb+$xxx.CODE.FLEX$+: provides all inflectional codes, if
   any, separated with \verb$:$
+
+  \item \verb+$xxx.CODE.ATTR=yyy$+: provides the value of an attribute-value pair contained in the semantic codes,
+i.e. the value \verb+zzz+ of the \verb+yyy+ attribute if there is a code of the form \verb+yyy=zzz+.
+
 \end{itemize}
 
 \noindent Moreover, such variables can be used even after the end of the
@@ -840,21 +847,15 @@ tested as explained in section \ref{section-variables}.
 \bigskip
 \noindent \textbf{Dictionary variables in LocateTfst}
 
-\noindent In grammars to be applied with \verb+LocateTfst+, you have an extra feature. 
+\noindent In grammars to be applied with \verb+LocateTfst+ (cf. section~\ref{section-locate-tfst}), you have an extra feature. 
 Even if you are not in morphological mode, your grammar can extract information from a lexical tag contained in the text
 automaton, and capture it into a dictionary-entry variable.
 In your grammar, you have to set the output of a box with \verb+$:xxx$+, where
 \verb+xxx+ is a valid variable name. In the rest of the paths that contain the
 box, you can use \verb+xxx+ as a dictionary-entry variable, in the same way as
-described above for the morphological mode.
-
-
-\bigskip
-\noindent If a semantic code is of the form xxx = yyy, you can query
-the attribute value xxx. This matches the inflected form, lemma or codes of the entry
-variables when the semantic code comes from a dictionary, or any
-other attribute-value pair.
-
+described above for the morphological mode: you can get from this variable the inflected form, lemma and codes
+of the entry, its POS code, semantic codes,  inflectional codes and the value
+ \verb+zzz+ of the \verb+yyy+ attribute if there is a code of the form \verb+yyy=zzz+.
 
 \section{Exploring grammar paths}
 \index{Exploring the paths of a grammar}
