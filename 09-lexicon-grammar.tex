@@ -4,11 +4,13 @@
 The tables of lexicon-grammar are a compact way for representing syntactical
 properties of the elements of a language. It is possible to automatically
 construct local grammars from such tables, due to a mechanism of parameterized
-graphs. 
+graphs. 
+
 \bigskip
 \noindent In the first part of the chapter the formalism of tables is presented.
 The second part describes parameterized graphs and a mechanism of automatically
-lexicalizing them with lexicon-grammar tables.
+lexicalizing them with lexicon-grammar tables.
+
 
 \section{Lexicon-grammar tables}
 \index{Lexicon-grammar!tables}\index{Matrices}
@@ -27,7 +29,9 @@ the different transformations the verb can undergo (passivization,
 nominalisation, extraposition, etc.). The matrices, or tables, are mostly binary:
 a \verb$+$ sign occurs at the intersection of a row and a column of a property if
 the verb has that property, a \verb+-+ sign if not. \index{Syntactical
-properties} More information in \url{http://infolingu.univ-mlv.fr}, includingsome lexicon-grammar tables that you can freely download.
+properties} More information in \url{http://infolingu.univ-mlv.fr}, including
+some lexicon-grammar tables that you can freely download.
+
 \bigskip
 \noindent This type of description has also been applied to adjectives
 (\cite{these-annie}), predicative nouns (\cite{les-nominalisations},
@@ -45,7 +49,8 @@ adverbs (\cite{syntaxe-de-ladverbe},
 \bigskip
 \noindent Figure \ref{fig-table-32NM} shows an example of a lexicon-grammar table.
 The table contains verbs that, among other definitional properties, do not admit
-passivization.
+passivization.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig8-1.png}
@@ -66,11 +71,12 @@ corresponds to the variable. If a cell of the table contains the \verb$+$ sign,
 the corresponding variable is replaced by \verb+<E>+. If the cell contains the
 \verb+-+ sign,  the box containing the corresponding variable is removed,
 interrupting the paths through that box. In all other cases the variable is
-replaced by the contents of the cell.
+replaced by the contents of the cell.
+
 
 \subsection{Format of the table}
 The lexicon-grammar tables are usually encoded with the aid of a spreadsheet like
-OpenOffice.org Calc (\cite{OpenOffice}). To make them usable with Unitex, the
+OpenOffice.org Calc (\cite{OpenOffice}). To be usable with Unitex, the
 tables have to be encoded in Unicode text format in accordance with the following
 convention: the columns need to be separated by a tab and the lines by a newline.
 
@@ -78,7 +84,8 @@ convention: the columns need to be separated by a tab and the lines by a newline
 \noindent In order to convert a table with OpenOffice.org Calc, save it in text
 format (\verb$.csv$ extension). You can then parameterize the output format with a
 window as shown on Figure \ref{fig-csv-export}. Choose "Unicode", select
-tabulation as column separator and do not set any text delimiter.
+tabulation as column separator and do not set any text delimiter.
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig8-2.png}
@@ -93,13 +100,15 @@ contains the headings of the columns. It is therefore necessary to ensure that
 the headings of the columns occupy exactly one line. If there is no line for the
 heading, the first line of a table will be ignored anyway, and if there are
 multiple heading lines, from the second line on they will be interpreted as lines
-of the table.
+of the table.
+
 
 \subsection{Parameterized graphs}
 Parameterized graphs are graphs with variables referring to the columns of a
-lexicon-grammar table. This mechanism is usually used with syntactical
+lexicon-grammar table. This mechanism is usually used with syntactic
 graphs, but nothing prevents the construction of parameterized graphs for
-inflection, preprocessing, or for normalization.
+inflection, preprocessing, or for normalization.
+
 \index{Variables!in parameterized graphs}
 \bigskip
 \noindent Variables that refer to columns are formed with the \verb+@+ symbol
@@ -107,14 +116,16 @@ inflection, preprocessing, or for normalization.
 columns are named starting with \verb+A+).
 
 \bigskip
-\noindent Example: \verb+@C+ refers to the third column of the table.
+\noindent Example: \verb+@C+ refers to the third column of the table.
+
 \bigskip
 \noindent Whenever a variable takes the value of a \verb$+$ or \verb+-+ sign, the
 \verb+-+ sign corresponds to the removal of a path through that variable. It is
 possible to swap the meaning of these signs by typing an exclamation mark in
 front of the \verb+@+ symbol. In that case, the path is removed when there is a
-\verb$+$ sign and keeped where there is a \verb+-+ one. In all other cases, the
-variable is replaced by the content of the table cell.
+\verb$+$ sign and kept where there is a \verb+-+ one. In all other cases, the
+variable is replaced by the content of the table cell.
+
 \bigskip
 \noindent The special variable \verb+@%+ \index{\verb+"@%+} is replaced by the
 number of the line in the table. The fact that its value is different for each
@@ -124,7 +135,8 @@ not affected by an exclamation point to the left of it.
 \bigskip
 \noindent Figure \ref{fig-reference-graph} shows an example of a parameterized
 graph designed to be applied to the lexicon-grammar table 31H presented in figure
-\ref{fig-table-31H}.
+\ref{fig-table-31H}.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig8-3.png}
@@ -144,7 +156,8 @@ graph designed to be applied to the lexicon-grammar table 31H presented in figur
 In order to be able to generate graphs from a parameterized graph and a table,
 first of all the table must be opened by clicking on "Open..." in the 
 "Lexicon-Grammar" menu (see figure \ref{fig-lexicon-grammar-menu}). The table
-must be in Unicode text format.
+must be in Unicode text format.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig8-5.png}
@@ -155,7 +168,8 @@ must be in Unicode text format.
 \bigskip
 \noindent The selected table is then displayed in a window (see figure figure
 \ref{fig-table-display}). If it does not appear on your screen, it may be
-hidden by other Unitex windows.
+hidden by other Unitex windows.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig8-6.png}
@@ -166,7 +180,8 @@ hidden by other Unitex windows.
 \bigskip
 \noindent To automatically generate graphs from a parameterized graph, click on "Compile to
 GRF..." in the "Lexicon-Grammar" menu. The window in figure
-\ref{fig-configuration-graph-generation} shows this.
+\ref{fig-configuration-graph-generation} shows this.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig8-7.png}
@@ -189,14 +204,16 @@ the table, \verb+@%+ will be replaced the line number, which guarantees that eac
 graph name will be unique. For example, if the main graph is called
 "\verb+TestGraph.grf+" and if subgraphs are called "\verb+TestGraph_@%.grf+", the
 graph generated from the 16th line of the line will be named
-"\verb+TestGraph_0016.grf+".
+"\verb+TestGraph_0016.grf+".
+
 \bigskip
 \noindent Figures \ref{fig-archaiser} and \ref{fig-badauder} show
 two graphs generated by applying the parameterized graph of figure
 \ref{fig-reference-graph} at table 31H.
 
 \bigskip
-\noindent Figure \ref{fig-main-graph} shows the resulting main graph.
+\noindent Figure \ref{fig-main-graph} shows the resulting main graph.
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig8-8.png}
