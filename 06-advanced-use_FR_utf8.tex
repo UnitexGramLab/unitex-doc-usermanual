@@ -602,7 +602,7 @@ obtenus avec la grammaire de la figure \ref{fig-left-context5}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-17e.png}
-\caption{Sorties ingnorées dans un contexte gauche\label{fig-left-context5}}
+\caption{Sorties ignorées dans un contexte gauche\label{fig-left-context5}}
 \end{center}
 \end{figure}
 
@@ -635,10 +635,10 @@ grammaire de la figure \ref{fig-left-context7}.
 \end{figure}
 
 \bigskip
-\noindent Ainsi, avec des contextes gauche et droit, vous pouvez faire la distinction entre le motif
-utilisé pour reconnaître quelque chose, la chose que vous voulez extraire dans vos 
+\noindent Ainsi, avec des contextes gauche et droit, on peut faire une distinction entre les motifs
+utilisés pour reconnaître des points du texte, et la délimitation des séquences à extraire dans les 
 résultats. Par exemple, la grammaire de la figure \ref{fig-left-context9} cherche des
-expressions comme \verb$the animal's$, mais extrait seulement les noms, comme vous pouvez le voir
+expressions comme \verb$the animal's$, mais extrait seulement les noms, comme on peut le voir
 figure \ref{fig-left-context10}.
 
 \begin{figure}[!ht]
@@ -774,11 +774,14 @@ Vous pouvez définir autant de dictionnaires morphologiques que vous voulez, mai
 compilés (au format \verb+.bin+). Ceci fait, vous pouvez appliquer votre grammaire.
 
 
-\subsection{Variables morphologiques}
+\subsection{Variables de dictionnaire}
+\index{Variables de dictionnaire}
+\index{Variables!de dictionnaire}
 \index{Variables morphologiques}
 \index{Variables!morphologiques}
 \label{dictionary-variables}
 On peut affecter à des variables des informations issues des dictionnaires morphologiques.
+Ces variables sont appelées variables de dictionnaire ou variables morphologiques.
 L'initialisation d'une variable de ce type doit être associée à une boite contenant un motif
 qui fait référence à des informations contenues dans un dictionnaire morphologique,
 sauf le motif \verb+<DIC>+. On met \verb+$xxx$+ en sortie de la boîte, où \verb+xxx+ est un nom
@@ -803,14 +806,14 @@ On peut également utiliser les motifs suivants:
 
 \end{itemize}
 	
-\noindent En outre, ces variables peuvent être utilisées en dehors du mode morphologique,
+\noindent En outre, les variables de dictionnaire peuvent être utilisées en dehors du mode morphologique,
 comme sur la figure \ref{fig-morpho7}. On peut effectuer des tests sur ces variables comme expliqué
 dans la section \ref{section-variables}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=16cm]{resources/img/fig6-17o.png}
-\caption{Utilisation d'une variable morphologique\label{fig-morpho5}}
+\caption{Utilisation d'une variable de dictionnaire\label{fig-morpho5}}
 \end{center}
 \end{figure}
 
@@ -825,21 +828,21 @@ dans la section \ref{section-variables}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.5cm]{resources/img/fig6-17q.png}
-\caption{Utilisation d'une variable morphologique en mode normal\label{fig-morpho7}}
+\caption{Utilisation d'une variable de dictionnaire en mode normal\label{fig-morpho7}}
 \end{center}
 \end{figure}
 
 
 \bigskip
-\noindent \textbf{Variables morphologiques dans LocateTfst}
+\noindent \textbf{Variables de dictionnaire dans LocateTfst}
 
 \noindent Pour les grammaires appliquées avec \verb+LocateTfst+ (cf. section~\ref{section-locate-tfst}), on dispose d'une possibilité
 supplémentaire. 
-Même sans être en mode morphologique, on peut mémoriser dans une variable morphologique
+Même sans être en mode morphologique, on peut mémoriser dans une variable de dictionnaire
 une  étiquette lexicale contenue dans l'automate du texte.
 Il suffit pour cela d'associer à la boîte une sortie de la forme \verb+$:abc$+ où \verb+abc+
 est le nom de la variable.
-On peut ensuite l'utiliser comme variable morphologique habituelle, de la façon décrite ci-dessus~:
+On peut ensuite l'utiliser comme variable de dictionnaire habituelle, de la façon décrite ci-dessus~:
 on peut obtenir la forme fléchie, la forme canonique et les codes donnés dans l'entrée, sa
 catégorie grammaticale, ses codes sémantiques, ses codes flexionnels et la valeur
  \verb+zzz+ de l'attribut \verb+yyy+ s'il y figure un  code sémantique de la forme \verb+yyy=zzz+.
@@ -1113,7 +1116,7 @@ aux séquences les plus longues.
 \label{section-variables}
 \index{Variables!dans les graphes}\index{Sortie de transducteur!avec variables}
 Comme nous l’avons vu à la section~\ref{section-using-variables}, il est possible d’utiliser
-des variables pour stocker le texte qui a été analysé par une grammaire. Ces variables
+des variables d'entrée pour mémoriser le texte qui a été analysé par une grammaire. Ces variables
 peuvent être utilisées dans les graphes de prétraitement et dans les graphes syntaxiques.
 
 
@@ -1123,10 +1126,10 @@ les lettres comprises entre \verb+A+ et \verb+Z+, non accentuées minuscules ou 
 des chiffres et le caractère \verb+_+ (underscore).\index{Underscore}
 
 \bigskip
-\noindent Pour définir le début (ou la fin) de la zone stockée dans une variable, vous devez créer
+\noindent Pour définir le début (ou la fin) de la zone à stocker dans une variable d'entrée, vous devez créer
 une boîte contenant le nom de la variable encadré par les caractères
 \verb-$- et \verb-(- (\verb-$- et \verb-)- pour la fin d’une variable). Pour utiliser une variable
-dans une sortie, vous devez faire précéder son nom du caractère \verb-$- (voir figure~\ref{fig-variable-definition}).
+dans une sortie, vous devez faire précéder et suivre son nom du caractère \verb-$- (voir figure~\ref{fig-variable-definition}).
 
 \bigskip
 \noindent Les variables sont globales. Cela signifie que vous pouvez définir une variable dans un
@@ -1136,7 +1139,7 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig6-25.png}
-\caption{Définition d’une variable dans un sous-graphe\label{fig-variable-definition}}
+\caption{Définition d’une variable d'entrée dans un sous-graphe\label{fig-variable-definition}}
 \end{center}
 \end{figure}
 
@@ -1155,7 +1158,7 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 \bigskip
 \noindent Les sorties à variables peuvent être utilisées pour déplacer des groupes de mots. En effet,
 l’application d’un transducteur en mode REPLACE n’écrit dans le texte que les séquences
-produites par des sorties. Pour inverser deux groupes de mots, il suffit donc de les stocker
+produites par des sorties. Pour intervertir deux groupes de mots, il suffit donc de les stocker
 dans des variables et de produire une sortie avec ces variables dans l’ordre souhaité. Ainsi,
 le transducteur de la figure
 ~\ref{fig-swapping-words} appliqué en mode REPLACE au texte \textit{Ivanhoe}
@@ -1164,7 +1167,7 @@ donne la concordance de la figure~\ref{fig-no-space-problem}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11.3cm]{resources/img/fig6-27.png}
-\caption{Inversion de mots grâce à l’utilisation de deux variables\label{fig-swapping-words}}
+\caption{Interversion de mots grâce à deux variables d'entrée\label{fig-swapping-words}}
 \end{center}
 \end{figure}
 
@@ -1178,20 +1181,20 @@ donne la concordance de la figure~\ref{fig-no-space-problem}.
 \bigskip
 \noindent Si le début ou la fin d’une variable est mal défini (fin d’une variable avant son début,
 absence du début ou de la fin d’une variable), celle-ci sera ignorée lors des sorties.
-Consultez la section \ref{section-advanced-search-options} pour d'autres traitements d'erreur concernant les variables.
-%for other variable error policies.
+Consultez la section \ref{section-advanced-search-options} pour d'autres options affectant
+le traitement d'erreurs concernant les variables.
 
 \bigskip
-\noindent Il n’y a aucune limitation du nombre de variables utilisables.
+\noindent Il n’y a aucune limite au nombre de variables utilisables.
 
 \bigskip
-\noindent    Les variables peuvent être imbriquées, voire même se chevaucher comme le montre la
+\noindent    Les variables d'entrées peuvent être imbriquées, et même se chevaucher comme le montre la
 figure~\ref{fig-overlapping-variables}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig6-29.png}
-\caption{Chevauchement de variables\label{fig-overlapping-variables}}
+\caption{Chevauchement de variables d'entrée\label{fig-overlapping-variables}}
 \end{center}
 \end{figure}
 
@@ -1203,16 +1206,16 @@ figure~\ref{fig-overlapping-variables}.
 \section{Variables de sortie}
 \label{section-output-variables}
 \index{Variables de sortie}
-Les variables normales sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ mémorisent des portions du
+Les variables d'entrée sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ mémorisent des portions du
 texte d'entrée. 
-Il est aussi possible de mémoriser des parties des sorties produites par une grammaire avec des
-variables de sortie.
+Il est aussi possible de mémoriser des parties des sorties produites par une grammaire.
+Cela met en jeu des variables de sortie.
 Ces variables sont déclarées avec \verb+$|xxx(+ et \verb+$|xxx)+.
-Celles-ci apparaissent en bleu (voir figure \ref{fig-output-variables}).
-Remarquons que lorsqu'une variable de sortie est déclarée, les sorties ne sont pas émises, elles
-sont seulement mémorisées dans les variables de sortie.
-%are not emitted in the output occurrence; they are just stored into the pending output variable(s)
-Remarquons que les sorties sont calculées en premier, si une sortie contient une chaine comme 
+Elles apparaissent en bleu (voir figure \ref{fig-output-variables}).
+Remarquons qu'au moment où une variable de sortie est initialisée,
+les séquences de sortie du transducteur ne sont pas émises dans la sortie correspondant à l'occurrence courante,
+elles sont seulement mémorisées dans la variable de sortie créée par cette opération.
+Par ailleurs, les sorties sont calculées en premier~: si une sortie contient une chaine comme 
 \verb+$A.LEMMA$+, la variable de sortie ne contiendra pas cette chaîne mais le lemme associé à
 la variable \verb+A+. En outre, les variables de sortie mémorisent seulement des sorties
 effectivement produites par votre grammaire. Ainsi, même si vous travaillez en mode MERGE, les
@@ -1225,7 +1228,7 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig6-17r.png}
-\caption{Variables de sorties\label{fig-output-variables}}
+\caption{Variables de sortie\label{fig-output-variables}}
 \end{center}
 \end{figure}
 
@@ -1246,8 +1249,8 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 reconnaissance courante si la condition n'est pas vérifiée. Ceci se fait en insérant la  séquence
 \verb+$xxx.SET$+ à la sortie d'une boîte. Ainsi, si une variable dénommée \verb+xxx+ a été définie,
 cette séquence est ignorée et la reconaissance continue, sinon, la reconnaissance s'arrête
-et le programme repart en arrière. Ceci fonctionne sur les variables normales, les variables de
-sortie et les variables morphologiques. De façon similaire, on peut vérifier qu'une variable n'est
+et le programme repart en arrière. Ceci fonctionne sur les variables d'entrée, les variables de
+sortie et les variables de dictionnaire. De façon similaire, on peut vérifier qu'une variable n'est
 pas définie en utilisant \verb+$xxx.UNSET$+. La figure \ref{fig-testing-a-variable} montre un graphe
 qui utilise ce type de test. La figure \ref{fig-testing-a-variable-results} montre les résultats obtenus par ce graphe en mode MERGE.
 
@@ -1269,14 +1272,14 @@ qui utilise ce type de test. La figure \ref{fig-testing-a-variable-results} mont
 \subsection{Comparaison de variables}
 \index{Comparaison de variables}
 \index{Comparaison!de variables}
-Il est également possible de comparer tout type de variable (normale, de sortie, ou morphologique) avec une constante ou une autre variable en utilisant la syntaxe suivante:
+Il est également possible de comparer tout type de variable (d'entrée, de sortie, ou de dictionnaire) avec une constante ou une autre variable en utilisant la syntaxe suivante:
 
 
 \bigskip
 \noindent \verb+$abc.EQUAL=xyz$+
 
 \bigskip
-\noindent Cela agit comme un interrupteur qui permet de bloquer l'exploration de grammaire si la valeur de la variable \verb+abc+ est différente de la valeur de la variable \verb+xyz+. Remarquons que pour les variables morphologiques, c'est la forme fléchie telle qu'elle existe dans le dictionnaire (attention aux variantes de casse!) qui est utilisée pour le test. Si vous désirez comparer la variable \verb+abc+ à la constante \verb+JKL+, utilisez le test suivant:
+\noindent Cela agit comme un interrupteur qui permet de bloquer l'exploration de grammaire si la valeur de la variable \verb+abc+ est différente de la valeur de la variable \verb+xyz+. Remarquons que pour les variables de dictionnaire, c'est la forme fléchie telle qu'elle existe dans le dictionnaire (attention aux variantes de casse~!) qui est utilisée pour le test. Si vous désirez comparer la variable \verb+abc+ à la constante \verb+JKL+, utilisez le test suivant:
 
 \bigskip
 \noindent \verb+$abc.EQUAL=#JKL$+

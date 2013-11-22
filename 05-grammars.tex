@@ -465,19 +465,19 @@ You cannot define a priority among embedded matching sequences (cf. section~\ref
 \end{center}
 \end{figure}
 
-\subsection{Using Variables}
+\subsection{Input Variables}
 \label{section-using-variables}
-\index{Graph!variables in a}\index{Variables!within graphs}\index{\verb+$+}
+\index{Graph!variables in a}\index{Variables!input}\index{\verb+$+}
 \index{Transducer!with variables}
 
-It is possible to select parts of a text sequence recognized by a grammar using
-variables. To associate a variable \verb+var1+ with parts of a grammar, use the special
+It is possible to select parts of a text sequence recognized by a grammar using input
+variables. To associate an input variable \verb+var1+ with parts of a grammar, use the special
 symbols \verb+$var1(+ and \verb+$var1)+ to define the beginning and the end of
-the part to store. Create two boxes containing one \verb+$var1(+ and the second
+the part to be stored. Create two boxes containing one \verb+$var1(+ and the second
 \verb+$var1)+. These boxes must not contain anything but the variable name
 preceded by \verb+$+ and followed by a parenthesis. Then link these boxes to the
-zone of the grammar to store. In the graph in
-figure~\ref{fig-using-variable} you see a sequence of digits before
+zone of the grammar to be stored. The graph in
+figure~\ref{fig-using-variable} recognises a sequence of digits before
 \verb+dollar+ or \verb+dollars+. This sequence will be stored in a variable named
 \verb+var1+.
 
@@ -485,7 +485,7 @@ figure~\ref{fig-using-variable} you see a sequence of digits before
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-16.png}
-\caption{Using the variable
+\caption{Using the input variable
 \texttt{var1}\label{fig-using-variable}}
 \end{center}
 \end{figure}
@@ -496,7 +496,7 @@ names} Unitex distinguishes between uppercase and lowercase characters.
 \index{Underscore}
 
 \bigskip
-\noindent When a variable is defined, you can use it in transducer outputs by
+\noindent Once a variable is defined, you can use it in transducer outputs by
 surrounding its name with \verb+$+.\index{\verb+$+} The grammar in
 figure~\ref{fig-date-grammar} recognizes a date formed by a month and a
 year, and produces the same date as an output, but in the order year-month.

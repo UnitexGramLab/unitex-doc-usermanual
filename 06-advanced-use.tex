@@ -625,7 +625,7 @@ obtained with the grammar of Figure \ref{fig-left-context5}.
 
 \bigskip
 \noindent However, you can catch things with variables (see section
-\ref{section-variables}) and use them outside the left context, as shown on
+\ref{section-variables}) and use them outside the left context, as shown on the
 grammar of Figure \ref{fig-left-context7}.
 
 \begin{figure}[!ht]
@@ -644,10 +644,10 @@ grammar of Figure \ref{fig-left-context7}.
 \end{figure}
 
 \bigskip
-\noindent So, with left and right contexts, you can make a distinction between
-the pattern used to match something, and the thing you want to extract in your
+\noindent Thus, with left and right contexts, you can make a distinction between
+patterns used to match spots in texts, and the delimitation of the sequences to be extracted into your
 results. For instance, the grammar shown on Figure \ref{fig-left-context9} looks
-for expressions like \verb$the animal's$, but only extract nouns, as you can
+for expressions like \verb$the animal's$, but only extracts nouns, as you can
 see on Figure \ref{fig-left-context10}.
 
 \begin{figure}[!ht]
@@ -789,7 +789,7 @@ MUST be \verb+.bin+ ones. Once this is done, you can apply your grammar and get 
 
 \subsection{Dictionary-entry variables}
 \index{Dictionary-entry variables}
-\index{Variables!Dictionary entry}
+\index{Variables!dictionary entry}
 \label{dictionary-variables}
 You can set variables to information stored in morphological dictionaries.
 The initialization of such a variable must be associated to a box that contains
@@ -817,14 +817,14 @@ i.e. the value \verb+zzz+ of the \verb+yyy+ attribute if there is a code of the 
 
 \end{itemize}
 
-\noindent Moreover, such variables can be used even after the end of the
+\noindent Moreover, dictionary-entry variables can be used even after the end of the
 morphological mode, as shown on Figure \ref{fig-morpho7}. They can also be
 tested as explained in section \ref{section-variables}.
  
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=16cm]{resources/img/fig6-17o.png}
-\caption{Using a morphological variable\label{fig-morpho5}}
+\caption{Using a dictionary-entry variable\label{fig-morpho5}}
 \end{center}
 \end{figure}
 
@@ -839,13 +839,13 @@ tested as explained in section \ref{section-variables}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.5cm]{resources/img/fig6-17q.png}
-\caption{Using a morphological variable in normal mode\label{fig-morpho7}}
+\caption{Using a dictionary-entry variable in normal mode\label{fig-morpho7}}
 \end{center}
 \end{figure}
 
 
 \bigskip
-\noindent \textbf{Dictionary variables in LocateTfst}
+\noindent \textbf{Dictionary-entry variables in LocateTfst}
 
 \noindent In grammars to be applied with \verb+LocateTfst+ (cf. section~\ref{section-locate-tfst}), you have an extra feature. 
 Even if you are not in morphological mode, your grammar can extract information from a lexical tag contained in the text
@@ -1116,8 +1116,8 @@ to the longest sequences.
 \label{section-variables}
 \index{Variables!in graphs}\index{Transducer output!with variables}
 As we have seen in section~\ref{section-using-variables}, it is
-possible to use variables to store some text that has been analyzed by a
-grammar. These variables can be used in preprocessing graphs and in syntactic
+possible to use input variables to store some text that has been analyzed by a
+grammar. Such variables can be used in preprocessing graphs and in syntactic
 graphs.
 
 \bigskip
@@ -1126,7 +1126,7 @@ contain non-accentuated lower-case and upper-case letters between \verb+A+ and \
 digits and the character \verb+_+ (underscore).\index{Underscore}
 
 \bigskip
-\noindent In order to define the boundings of the zone to be stored in a
+\noindent In order to delimit the zone to be stored in an input
 variable, you have to create two boxes that contain the name of the variable 
 enclosed in the characters \verb-$- and \verb-(- (\verb-$- and \verb-)- for the end of a
 variable). In order to use a variable in a transducer output, its name must be
@@ -1140,7 +1140,7 @@ Figure~\ref{fig-variable-definition}.
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig6-25.png}
-\caption{Definition of a variable in a subgraph\label{fig-variable-definition}}
+\caption{Definition of an input variable in a subgraph\label{fig-variable-definition}}
 \end{center}
 \end{figure}
 
@@ -1155,11 +1155,11 @@ Figure~\ref{fig-variable-definition}.
 \end{center}
 \end{figure}
 
-\index{Moving word groups}
+\index{Moving phrases}
 \bigskip
-\noindent Outputs with variables can be used to move word groups. In
+\noindent Outputs with variables can be used to move phrases. In
 fact, the application of a transducer in REPLACE mode inserts only the produced sequences
-into the text. In order to invert two word groups, you just have to
+into the text. In order to swap two phrases, you just have to
 store them into variables and produce an output with these variables in the
 desired order. Thus, the application of the transducer in
 Figure~\ref{fig-swapping-words} in REPLACE mode to the text \textit{Ivanhoe}
@@ -1169,7 +1169,7 @@ Figure~\ref{fig-no-space-problem}.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11.3cm]{resources/img/fig6-27.png}
-\caption{Inversion of words using two variables\label{fig-swapping-words}}
+\caption{Swapping words using two input variables\label{fig-swapping-words}}
 \end{center}
 \end{figure}
 
@@ -1182,8 +1182,8 @@ figure~\ref{fig-swapping-words}\label{fig-no-space-problem}}
 \end{figure}
 
 \bigskip
-\noindent If the beginning or the end of variable is malformed (end of a variable before
-its beginning or absence of the beginning or end of a variable), by default, it
+\noindent If the beginning or the end of variable does not conform to the syntax above (end of a variable before
+its beginning, or absence of the beginning or end of a variable), by default, it
 will be ignored during the emission of outputs. See section
 \ref{section-advanced-search-options} for other variable error policies.
 
@@ -1191,13 +1191,13 @@ will be ignored during the emission of outputs. See section
 \noindent There is no limit to the number of possible variables.
 
 \bigskip
-\noindent The variables can be nested and even overlap as is shown in
+\noindent Input variables can be nested and even overlap as is shown in
 figure~\ref{fig-overlapping-variables}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig6-29.png}
-\caption{Overlapping variables\label{fig-overlapping-variables}}
+\caption{Overlapping input variables\label{fig-overlapping-variables}}
 \end{center}
 \end{figure}
 
@@ -1209,12 +1209,14 @@ figure~\ref{fig-overlapping-variables}.
 \section{Output variables}
 \label{section-output-variables}
 \index{Output variables}
-Normal variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
-is also possible to capture portions of the outputs produced by your grammar with output variables.
+\index{Variables!output}
+Input variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
+is also possible to capture portions of the outputs produced by your grammar. This is done with output variables.
 Such variables are declared with \verb+$|xxx(+ and \verb+$|xxx)+. Those tags appear in blue as shown 
-on Figure \ref{fig-output-variables}. Note that when an output variable is being declared, the outputs
-are not emitted in the output occurrence; they are just stored into the pending output variable(s). Note
-that outputs are processed first, so that if an output string contains something like \verb+$A.LEMMA$+,
+on Figure \ref{fig-output-variables}. Note that when an output variable is being initialized, the output sequences
+of the transducer
+are not emitted into the output for the current occurrence; they are just stored into the pending output variable(s).
+Note that outputs are processed first, so that if an output string contains something like \verb+$A.LEMMA$+,
 the output variable will not contain this raw string but rather the lemma associated to variable \verb+A+.
 Moreover, output variables only capture explicit outputs produced by your grammar. Thus, even if you work
 in MERGE mode, output variables never capture the input text. 
@@ -1249,7 +1251,7 @@ This is done by inserting the sequence \verb+$xxx.SET$+ in the output of a
 graph box. Then, if a variable named \verb+xxx+ has been defined, this sequence
 will be ignored in the output and the matching process will go on; otherwise, matching
 will be stopped and the program will backtrack. This operates on
-normal variables as well as on output ones and dictionary entry variables defined in
+input variables as well as on output variables and dictionary-entry variables defined in
 morphological mode. You can check out if a variable has not been defined in the
 same way using \verb+$xxx.UNSET$+. Figure \ref{fig-testing-a-variable} shows
 a graph that use a such a variable test. Figure
@@ -1275,16 +1277,17 @@ MERGE mode.
 \index{Comparing variables}
 \index{Variables!comparison}
 Another kind of test you can perform consists of variable comparison.
-You can compare a variable (normal one, output one or dictionary one) against a constant string or
-another variable. To do that, you have to use the following syntax:
+You can compare a variable of any kind (whether an input variable, an output variable or a dictionary-entry variable)
+against a constant string or another variable. To do that, you have to use the following syntax:
 
 \bigskip
 \noindent \verb+$abc.EQUAL=xyz$+
 
 \bigskip
 \noindent This acts like a switch that will block the grammar exploration if the value of variable \verb+abc+
-is different from the value of variable \verb+xyz+. Note that for dictionary variables, it is the inflected form
-as found in the dictionary (beware of case variations!) that is used in the test. If you want to compare variable
+is different from the value of variable \verb+xyz+. Note that for dictionary-entry variables,
+what is used in the test is the inflected form
+as found in the dictionary (beware of case variations!). If you want to compare variable
 \verb+abc+ against the constant string \verb+JKL+, use the following test:
 
 \bigskip

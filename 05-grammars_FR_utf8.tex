@@ -494,15 +494,15 @@ se chevauchent  (cf. section~\ref{section-priorite-gauche}).
 
 %%%%%%%%%%%%%
 
-\subsection{Utilisation des variables}
+\subsection{Variables d'entrée}
 \label{section-using-variables}
-\index{Graphe!variables}\index{Variables!dans les graphes}\index{\verb+$+}
+\index{Graphe!variables}\index{Variables!d'entrée}\index{\verb+$+}
 \index{Transducteur!avec variables}
 
 Il est possible de sélectionner des parties du texte reconnu par une grammaire au moyen
-de variables. Pour associer une variable \verb+var1+ à une partie d’une grammaire, utilisez
+de variables d'entrée. Pour associer une variable d'entrée \verb+var1+ à une partie d’une grammaire, utilisez
 les symboles spéciaux \verb+$var1(+ et \verb+$var1)+ pour définir respectivement le début et
-la fin de la zone à stocker. Créez deux boîtes contenant l’une \verb+$var1(+ et l’autre
+la fin de la zone à mémoriser. Créez deux boîtes contenant l’une \verb+$var1(+ et l’autre
 \verb+$var1)+. Ces boîtes ne doivent rien contenir d’autre que le nom de la variable précédé de
  \verb+$+ et suivi d’une parenthèse. Reliez ensuite ces boîtes à la zone de la grammaire voulue.
  Dans le graphe de la figure ~\ref{fig-using-variable} on reconnaît une séquence commençant par
@@ -513,7 +513,7 @@ la fin de la zone à stocker. Créez deux boîtes contenant l’une \verb+$var1(
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-16.png}
-\caption{Utilisation d’une variable
+\caption{Utilisation d’une variable d'entrée
 \texttt{var1}\label{fig-using-variable}}
 \end{center}
 \end{figure}
@@ -529,9 +529,7 @@ son nom avec le caractère \verb+$+.\index{\verb+$+} La grammaire de la figure
 ~\ref{fig-date-grammar} reconnaît une date formée d’un mois et d’une année,
  et produit en sortie la même date, mais dans l’ordre année-mois.
 
-%Si l’on souhaite écrire en sortie le caractère \verb+$+.
-%il faut le doubler, comme c’est le cas dans la figure ~\ref{fig-using-variable}.
-\noindent Si vous voulez utiliser le caractère \verb+$+ en sortie d'une boîte, vous devez le
+\noindent Si on veut utiliser le caractère \verb+$+ en sortie d'une boîte, on doit le
 redoubler, comme le montre la figure~\ref{fig-using-variable}.
 
 \bigskip
@@ -542,12 +540,10 @@ redoubler, comme le montre la figure~\ref{fig-using-variable}.
 \end{center}
 \end{figure}
 
-%\noindent Si vous voulez utiliser le caractère \verb+$+ en sortie d'une boîte, vous devez le
-%redoubler, comme le montre la figure~\ref{fig-using-variable}.
 
 \bigskip
 \noindent Par défaut \verb+Locate+ et \verb+LocateTfst+ considèrent que les variables non définies
-sont vides. Vous pouvez modifier ce comportement (voir section \ref{section-advanced-search-options}).
+sont vides. On peut modifier ce comportement (voir section \ref{section-advanced-search-options}).
 De plus, il est  possible de savoir si une variable est initialisée ou non (voir section
 \ref{section-variables}).
 
@@ -729,7 +725,7 @@ rouge, mauve et jaune.
 Les six derniers boutons sont des raccourcis pour l'utilisation des variables, du mode morphologique
 ou l'ajout de contextes autour d'une ou plusieurs boîtes sélectionnées. Ces boutons ne sont activés que si une  ou plusieurs boîtes sont sélectionnées:
 \begin{itemize}
-\item \textcolor{red}{()}  : variable normale	(voir section~\ref{section-using-variables})
+\item \textcolor{red}{()}  : variable d'entrée	(voir section~\ref{section-using-variables})
 \item \textcolor{blue}{()} : variable de sortie (voir section~\ref{section-output-variables})
 \item \textcolor{magenta}{<>} : mode morphologique (voir section~\ref{section-morphological-mode})
 \item \textcolor{green}{\$*} : contexte gauche (voir section~\ref{section-contexts})
