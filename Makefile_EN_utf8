@@ -1,0 +1,18 @@
+all: UnitexManual
+
+UnitexManual: UnitexManual_EN_utf8.tex 00-introduction_EN_utf8.tex 01-installation_EN_utf8.tex\
+                  02-loading_texts_EN_utf8.tex 03-dictionaries_EN_utf8.tex 04-pattern_matching_EN_utf8.tex\
+                  05-grammars_EN_utf8.tex 06-advanced-use_EN_utf8.tex 07-text_automaton_EN_utf8.tex\
+                  08-sequence-automaton_EN_utf8.tex 09-lexicon-grammar_EN_utf8.tex\
+                  10-alignment_EN_utf8.tex 11-multiflex_EN_utf8.tex 12-cassys_EN_utf8.tex\
+                  13-programs_EN_utf8.tex 14-formats_EN_utf8.tex\
+                  LGPL_EN_utf8.tex LGPLLR_EN_utf8.tex title_EN_utf8.tex bibliographie_utf8.bib
+	pdflatex UnitexManual_EN_utf8.tex
+	bibtex UnitexManual_EN_utf8
+	makeindex UnitexManual_EN_utf8.idx
+	pdflatex UnitexManual_EN_utf8.tex
+
+clean:
+	rm -f *.aux *.bbl *.blg *.brf *.dvi *.idx *.log *.out *.toc *.ind
+
+

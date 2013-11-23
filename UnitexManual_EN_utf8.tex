@@ -1,0 +1,99 @@
+\documentclass[11pt,twoside,a4paper]{book}
+%
+% Unitex manual
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\selectlanguage{english}
+\usepackage{palatino}
+%\usepackage[T1]{fontenc}
+\usepackage{epsfig}
+\usepackage{makeidx,color}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Unitex 2.0 User Manual}
+\author{Sébastien Paumier - Université Paris-Est Marne-la-Vallé}
+\date{2008}
+
+
+\usepackage[%
+%%              ps2pdf,
+%%              dvips,
+             pdfauthor={Sébastien Paumier},
+             pdftitle={Unitex User Manual},
+             pdfcreator={LaTeX, hyperref},
+             pdfkeywords={corpus linguistics, computational linguistics,
+             finite state automata / transducer, local grammar, lexicon grammar}, pdfsubject={Manual of Unitex, a corpus processing system, based on automata-oriented technology},
+             %final, % use hyperlinks ever
+             bookmarks,
+             backref,
+%%              breaklinks=true,
+             colorlinks=true,
+             urlcolor=blue,
+%%              linkcolor=black,
+%%              citecolor=black,
+%%              anchorcolor=black,
+             pdfpagemode=None,
+           % pdfpagemode=FullScreen,
+             pdfstartview=FitBH,
+             unicode,
+             ]{hyperref}
+
+
+
+%
+% définitions de commandes
+%
+%\newcommand{\httplink}[1]{\textcolor{blue}{\underline{\texttt{http://#1}}}}
+\newcommand{\E}{$\varepsilon$}
+\newcommand{\exemplemauvais}[1]{\textit{* #1}}
+\newcommand{\exemplebon}[1]{\textit{#1}}
+\newcommand{\exemplebizarre}[1]{\textit{? #1}}
+\newcommand{\exempletresbizarre}[1]{\textit{*? #1}}
+\pagenumbering{arabic}
+\global\setlength{\topmargin}{-1.5cm}
+\global\setlength{\footskip}{2cm}
+\global\setlength{\headheight}{1.5cm}
+\global\setlength{\headsep}{0.3cm}
+\global\setlength{\textheight}{21.5cm}
+\global\setlength{\oddsidemargin}{0.5cm}
+\global\setlength{\evensidemargin}{0.5cm}
+\global\setlength{\marginparwidth}{1.5cm}
+\global\setlength{\textwidth}{15.5cm}
+\makeindex
+
+\begin{document}
+
+\input{title}
+
+\tableofcontents
+
+\input{00-introduction_EN_utf8}
+\input{01-installation_EN_utf8}
+\input{02-loading_texts_EN_utf8}
+\input{03-dictionaries_EN_utf8}
+\input{04-pattern_matching_EN_utf8}
+\input{05-grammars_EN_utf8}
+\input{06-advanced-use_EN_utf8}
+\input{07-text_automaton_EN_utf8}
+\input{08-sequence-automaton_EN_utf8}
+\input{09-lexicon-grammar_EN_utf8}
+\input{10-alignment_EN_utf8}
+\input{11-multiflex_EN_utf8}
+\input{12-cassys_EN_utf8}
+\input{13-programs_EN_utf8}
+\input{14-formats_EN_utf8}
+
+\input{LGPL_EN_utf8}
+\input{2-clause_BSD_EN_utf8}
+\input{LGPLLR_EN_utf8}
+
+\bibliographystyle{plain}
+\bibliography{bibliographie_utf8.bib}
+
+\printindex
+
+
+\end{document}
