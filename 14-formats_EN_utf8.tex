@@ -1919,18 +1919,28 @@ directory of the current language and has the same format as the
 \verb+system_dic.def+ file. 
 The dictionaries need to be in the \verb+(current language)/Dela+ sub-directory of the personal directory of the user.
 
-\subsection{The user.cfg and .unitex.cfg files}
+\subsection{The (user login).cfg and .unitex.cfg files}
 \index{File!\verb+.cfg+}
-Under Linux, Unitex expects the personal directory of the user to be called
-\verb+unitex+ and expects it to be in his root directory (\verb+$HOME+). If you want
+Under Linux, Unitex expects your personal directory to be called
+\verb+unitex+ and expects it to be in your root directory (\verb+$HOME+). If you want
 to change this default location, a \verb+.unitex.cfg+ file is created in your home directory, and
-it contains the path to your private Unitex directory. This file is a UTF8 one.
+it contains the path to your private Unitex directory. This file is a UTF8 one. If \verb+.unitex.cfg+
+does not contain a valid Linux path to an existing directory, it is ignored.\,\footnote{This allows you
+to launch Unitex sometimes under Linux, sometimes under Windows: the Windows path to your
+personal Unitex directory is contained in .unitex.cfg, and Unitex ignores it when launched
+under Linux.}
 
 \bigskip
-\noindent Under Windows, it is not always possible to associate a directory to a user per
-default. To compensate for that, Unitex creates a \verb+.cfg+ file for each user
-that contains the path to his personal directory. This file is saved under the
-name \verb+(user login).cfg+ in the \verb+Unitex/Users+ system sub-directory.
+\noindent Under Windows, it is not always possible to associate a directory to a user by
+default. To compensate for that, Unitex creates for each user a \verb+.cfg+ file
+that contains the path to his/her personal directory. This file is saved under the
+name \verb+(user login).cfg+ in the \verb+Users+ sub-directory of the Unitex system directory.
+If the user does not have permission to write into this directory, a file named \verb+.unitex.cfg+
+is saved in the Windows user profile directory:
+\begin{itemize}
+\item in \verb+Documents and Settings\(user login)+ if under Windows XP
+\item in \verb+Users\(user login)+ if under WindowsVista or later.
+\end{itemize}
 
 \bigskip
 \noindent WARNING:  THIS FILE IS NOT IN UNICODE
