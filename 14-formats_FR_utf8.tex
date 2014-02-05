@@ -1874,15 +1874,15 @@ et a le même format que le fichier \verb+system_dic.def+.
 Les dictionnaires de l’utilisateur doivent se trouver dans le sous-répertoire \verb+(langue courante)/Dela+ du répertoire personnel de l’utilisateur.
 
 
-\subsection{Fichier (user login).cfg et .unitex.cfg}
+\subsection{Fichiers (nom d’utilisateur).cfg et .unitex.cfg}
 \index{Fichier!\verb+.cfg+}
-Sous Linux, Unitex considère que le répertoire personnel de l’utilisateur se nomme \verb+unitex+ et
+Sous Linux et Mac OS, Unitex considère que le répertoire personnel de l’utilisateur se nomme \verb+unitex+ et
 qu’il se trouve dans son répertoire racine (\verb+$HOME+). Si vous voulez changer cet emplacement
 par défaut, un fichier \verb+.unitex.cfg+ est créé dans votre répertoire personnel, et il contient
 le chemin vers votre répertoire Unitex privé. Ce fichier est un fichier UTF8. Si \verb+.unitex.cfg+
 ne contient pas un chemin Linux valide vers un répertoire existant, il est ignoré\,\footnote{Cela
-permet de lancer Unitex tantôt sous Linux, tantôt sous Windows~: le chemin Windows vers le
-répertoire Unitex personnel est indiqué dans .unitex.cfg, et Unitex l’ignore quand on le lance
+permet de lancer Unitex tantôt sous Linux, tantôt sous Windows, sur des fichiers partagés~: le chemin Windows vers le
+répertoire Unitex personnel est indiqué dans \texttt{.unitex.cfg}, et Unitex l’ignore quand on le lance
 sous Linux.}.
 
 
@@ -1890,7 +1890,7 @@ sous Linux.}.
 Sous Windows, il n’est pas toujours possible d’associer un répertoire par défaut à un
 utilisateur. Pour remédier à cela, Unitex crée pour chaque utilisateur un fichier \verb+.cfg+
 contenant le chemin de son répertoire Unitex personnel. Ce fichier est sauvegardé sous le nom
-\verb+(user login).cfg+ dans le sous-répertoire \verb+Users+ du répertoire Unitex système. Si l’utilisateur
+\verb+(nom d’utilisateur).cfg+ dans le sous-répertoire \verb+Users+ du répertoire Unitex système. Si l’utilisateur
 n’a pas les droits pour écrire dans ce répertoire, un fichier \verb+.unitex.cfg+ est sauvegardé
 dans le répertoire du profil utilisateur~:
 \begin{itemize}
