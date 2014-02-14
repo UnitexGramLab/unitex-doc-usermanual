@@ -34,7 +34,7 @@ linguistic and pragmatic definitions (\cite{Benven74}, \cite{Downing77}, \cite{L
 
 \bigskip
 \noindent However, the basic notions (a word, a reference, the
-non-compositionality) and measures (degree of non-compositionality), used 
+non-compositionality) and measures (degree of non-compositionality) used 
 in those definitions are themselves controversial.
 
 \bigskip
@@ -453,19 +453,23 @@ is masculine while \emph{mouche} is feminine.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Unification Variables}
 An important feature of our formalism are \textit{unification variables}.
-\index{Unification variables}They are introduced by the dollar sign followed by
+\index{Unification variables}They are invoked by a dollar sign followed by
 an identifier which may contain any number of characters, e.g. \emph{\$g1}, \emph{\$num\_10}, \emph{\$c}, etc.
 For example, Figure~\ref{fig:BateauMouche2} shows a graph roughly 
 equivalent\footnote{Up to the case when single constituents appearing in the lemma 
-of a MWU are already in plural, as in \emph{cross-road\underline{s}}.} to the one 
+of a MWU are already in the plural, as in \emph{cross-road\underline{s}}.} to the one 
 on Figure~\ref{fig:BateauMouche1} in the sense that it allows to generate the same 
-inflected forms for the same MWUs. However, this time a single path represents both 
-the singular and the plural form. That is possible due to the unification variable 
-\emph{\$n} which may be instantiated to any value of the domain of its category (\emph{Nb}), 
-here \emph{\$n=s} or \emph{\$n=p}. The instantiation is unique for all elements on a path: 
-if we fix the singular value for the first constituent the same value has to be set for the 
-third one, as well as for the whole MWU. Similarly, if we fix \emph{\$n} to \emph{p} while 
-processing the first node it has to remain \emph{p} until the end of the path.
+inflected forms for the same MWUs. However, this time, a single path represents both 
+the singular and the plural form. This is possible due to the unification variable 
+\emph{\$n} which is instantiated in turn to all values of the domain of its category (\emph{Nb}), 
+here \emph{\$n=s} then \emph{\$n=p}.
+When a unification variable occurs in a formula such as \emph{Nb=\$n}, with a single equal sign
+(=), the system reviews all the values declared in the configuration files for the category
+ (cf. Section~\ref{subsec:langfeat}). For each value, it makes a new assignment of the variable.
+ The assignment is unique for all occurrences of the variable on a path: 
+if we instantiate the singular value for the first constituent, the same value is set for the 
+third one, as well as for the whole MWU. Similarly, if we instantiate \emph{\$n} to \emph{p} while 
+processing the first node, it remains \emph{p} until the end of the path.
 
 \begin{figure}[!htb]
   \centering
@@ -483,21 +487,21 @@ types but of feminine gender, e.g. \emph{main courante, moissoneuse-batteuse}, e
 graph has to be created which is identical to Figure~\ref{fig:BateauMouche2} up to the final 
 output containing \emph{$<$Gen=f;Nb=\$n$>$}. That is not very intuitive since 
 \emph{circuit s\'equentiel} and \emph{main courante} inflect in the same way, in the sense 
-that in both cases we need to put the first and the last constituent to plural in order to 
+that in both cases we need to put the first and the last constituent in the plural in order to 
 obtain the plural form of the whole MWU. 
 
 \bigskip
 \noindent That's why another type of instantiation for unification variables has been introduced. 
-It is accompanied by a double equal sign (\emph{==}) (as opposed to the 
-single equal sign \emph{=} as for \emph{\$n} on Figure~\ref{fig:BateauMouche2}). 
-If a unification variable is assigned to a category by this symbol then it
+It is invoked by a double equal sign (\emph{==}), as opposed to the 
+single equal sign \emph{=} as for \emph{\$n} on Figure~\ref{fig:BateauMouche2}. 
+If a unification variable is assigned to a category by this symbol, then the variable is assigned once: it
 inherits the value of this category from the corresponding constituent, as it appears in the lemma of 
 the MWU. For instance, Figure~\ref{fig:BateauMouche3} contains a graph describing the inflected 
 forms for both masculine and feminine French compounds of types \emph{Noun Noun} and 
-\emph{Noun Adjective}. Its first box contains the double assignment of the gender to variable 
-\emph{\$g} which means that this variable has its value fixed to the gender value of the first 
-constituent. For \emph{bateau-mouche} it is fixed to masculine because \emph{bateau} is 
-masculine while for \emph{main courante} it is fixed to feminine. 
+\emph{Noun Adjective}. Its first box contains the double-= assignment of the gender to variable 
+\emph{\$g}, which means that this variable has its value set to the gender value of the first 
+constituent. For \emph{bateau-mouche} it is set to masculine because \emph{bateau} is 
+masculine, while for \emph{main courante} it is set to feminine. 
 
 \begin{figure}[!htb]
   \centering
@@ -507,12 +511,11 @@ masculine while for \emph{main courante} it is fixed to feminine.
 \end{figure}
 
 \bigskip
-\noindent Note that the double assignment, contrary to the single assignment, no longer means 
-that the variable is to be instantiated to all values of the corresponding category domain. It 
-has a unique value all through the path on which it appears, even if it is concerned by another, 
-single, assignment somewhere else on the same path. For example, on Figure~\ref{fig:BateauMouche3} 
-the final output contains \emph{Gen=\$g} but \emph{\$g} may only take one value determined by the 
-first constituent.
+\noindent When a double-= assignment and a single-= assignment occur on the same path for the same variable,
+the double-= assignment prevails: the variable is instantiated once.
+For example, on Figure~\ref{fig:BateauMouche3}, 
+the final output contains \emph{Gen=\$g} but \emph{\$g} takes the value determined by the 
+first constituent only.
 
 \bigskip
 \noindent Unification variables are particularly useful in highly inflected languages. For 

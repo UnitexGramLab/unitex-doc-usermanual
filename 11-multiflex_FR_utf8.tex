@@ -29,15 +29,15 @@ linguistiques ou pragmatiques (\cite{Benven74}, \cite{Downing77}, \cite{Levi78},
 
 \begin{itemize}
 \item ils se composent de deux ou plusieurs mots
-\item ils montrent un certain degré de non compositionnalité sur le plan morphologique,
+\item ils montrent un certain degré de non-compositionnalité sur le plan morphologique,
 	distributionnel ou sémantique
 \item ils possèdent un référent constant et unique
 \end{itemize}
 
 \bigskip
-\noindent Cependant, les notions de bases (un mot, un référent, la non compositionnalité) et de
-mesure (degré de non compositionnalité), utilisées dans ces  définitions sont elles-mêmes
-contreversées.
+\noindent Cependant, les notions de base (un mot, un référent, la non-compositionnalité) et les
+mesures (degré de non-compositionnalité) utilisées dans ces  définitions sont elles-mêmes
+controversées.
 
 \bigskip
 \noindent De façon pragmatique, nous considérons comme mot composé une séquence d'\textit{unités
@@ -186,7 +186,7 @@ d'une langue donnée. Dans cette section, nous donnons une description détaill�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Caractéristiques morphologiques de la langue}
 \label{subsec:langfeat}
-Lorsque l'on traite les mots composés d'une langue, il faut définir les caractérisques générales
+Lorsque l'on traite les mots composés d'une langue, il faut définir les caractéristiques générales
 de cette langue. Ces données se trouvent dans deux fichiers textes.
 
 \index{\verb+Morphology.txt+}\index{Fichier!\verb+Morphology.txt+}\bigskip
@@ -452,20 +452,24 @@ deux  constituants peuvent avoir ou non le même genre, ici \emph{bateau} est ma
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Variables d'unifications}
-Une caractéristique importante de notre formalisme sont les \textit{variables d'unification}.
-\index{Variables d'unifications}Elles sont représentées par un dollar suivi d'un identifiant pouvant
+\subsubsection{Variables d'unification}
+Une caractéristique importante de notre formalisme est celle des \textit{variables d'unification}.
+\index{Variables d'unifications}Elles sont représentées par un symbole dollar (\emph{\$}) suivi d'un identifiant pouvant
 contenir n'importe quel nombre de caractères, comme \emph{\$g1}, \emph{\$num\_10}, \emph{\$c}, etc.
 La figure~\ref{fig:BateauMouche2} montre un graphe approximativement équivalent\footnote{Même dans
 le cas où les constituants simples apparaissant dans le lemme d'un mot composé sont déjà au
 pluriel, comme dans \emph{cross-road\underline{s}}.} à celui de la figure~\ref{fig:BateauMouche1}
-dans la mesure ou il permet de genérer les mêmes formes fléchies pour le même mot composé.
+dans la mesure où il permet d'engendrer les mêmes formes fléchies pour le même mot composé.
 Cependant, ici, un chemin unique représente à la fois le singulier et le pluriel. Ceci est rendu
-possible grâce à la variable \emph{\$n} qui peut être instanciée par n'importe quelle valeur du
-domaine de sa catégorie (\emph{Nb}), ici \emph{\$n=s} ou \emph{\$n=p}. L'instanciation est la même
+possible grâce à la variable \emph{\$n} qui est instanciée tour à tour par toutes les valeurs du
+domaine de sa catégorie (\emph{Nb}), ici \emph{\$n=s} puis \emph{\$n=p}.
+Quand une variable d'unification apparait dans une formule du type \emph{Nb=\$n}, avec un seul signe égale
+(=), le système parcourt toutes les valeurs déclarées dans les fichiers de configuration pour cette
+catégorie (cf. section~\ref{subsec:langfeat}). Pour chaque valeur, il effectue une nouvelle instanciation
+de la variable. L'instanciation est la même
 pour tous les éléments du chemin: si une valeur est attribuée au premier constituant, la même valeur
 doit être attribuée au troisième, ainsi que pour l'ensemble du mot composé. De même, si nous
-attribuons à \emph{\$n} la valeur \emph{p} dans la première boîte elle garde cette valeur \emph{p}
+attribuons à \emph{\$n} la valeur \emph{p} dans la première boîte, elle garde cette valeur \emph{p}
 tout au long du chemin.
 
 \begin{figure}[!htb]
@@ -479,7 +483,7 @@ tout au long du chemin.
 \bigskip
 \noindent Le graphe de flexion de la figure~\ref{fig:BateauMouche2} s'applique à la plupart des
 composés français de types \emph{Nom Nom} et \emph{Nom Adjectif} (\emph{bateau-mouche, ange
-gardien, circuit séquentiel}, etc.) qui sont de genre masculin: c'est parce que la sortie de la 
+gardien, circuit séquentiel}, etc.) qui sont de genre masculin~: c'est parce que la sortie de la 
 boîte finale contient \emph{Gen=m}. Pour tous les composés des mêmes types, mais de genre féminin,
 comme \emph{main courante, moissoneuse-batteuse}, etc., un nouveau graphe doit être créé, identique
 à celui de figure~\ref{fig:BateauMouche2} jusqu'à la sortie finale contenant
@@ -490,13 +494,14 @@ le dernier constituant pour obtenir le pluriel du mot composé.
 
 \bigskip
 \noindent C'est pourquoi un autre type d'instanciation utilisant l'unification a été introduit. 
-Il s'exprime au moyen de (\emph{==}) (par opposition au signe égal simple \emph{=} comme pour
-\emph{\$n} figure~\ref{fig:BateauMouche2}).
-Si une valeur est attribuée à une variable en utilisant ce symbole, elle hérite de la catégorie de
-ce constituant, telle qu'elle apparaît dans la forme canonique du mot composé. Par exemple, la
+Il s'exprime au moyen de \emph{==} (par opposition au signe égale simple \emph{=} comme pour
+\emph{\$n} dans la figure~\ref{fig:BateauMouche2}).
+Quand une valeur est attribuée à une variable en utilisant ce symbole, la variable est instanciée une seule fois~:
+elle hérite de la catégorie du
+constituant, telle qu'elle apparaît dans la forme canonique du mot composé. Par exemple, la
 figure~\ref{fig:BateauMouche3} contient un graphe décrivant la flexion pour le masculin comme pour
 le féminin des mots composés de type \emph{Nom Nom} et \emph{Nom Adjectif}. La première boîte
-contient l'assignation double en genre pour la variable \emph{\$g} ce qui signifie que cette
+contient l'affectation du genre par double signe égale pour la variable \emph{\$g}, ce qui signifie que cette
 variable a pour genre celui du premier constituant. Pour \emph{bateau-mouche} c'est le masculin
 parce que \emph{bateau} est masculin tandis que pour \emph{main courante} c'est le féminin. 
 
@@ -508,16 +513,15 @@ parce que \emph{bateau} est masculin tandis que pour \emph{main courante} c'est 
 \end{figure}
 
 \bigskip
-\noindent Remarquons que pour l'assignation double, contrairement à l'assignation simple, la
-variable n'est plus instanciée à toutes les valeurs du domaine associé à sa catégorie. Elle garde la
-même valeur tout au long du chemin où elle apparaît, même si elle rencontre une assignation simple,
-quelque part sur ce chemin. Par exemple, sur la figure~\ref{fig:BateauMouche3} la sortie finale
-contient \emph{Gen=\$g}, mais \emph{\$g} peut seulement prendre une seule valeur
+\noindent Quand une affectation par double symbole égale coexiste avec une affectation par simple symbole égale,
+sur le même chemin et pour la même variable, l'affectation par double symbole égale prévaut sur l'autre~: la
+variable est instanciée une seule fois. Par exemple, sur la figure~\ref{fig:BateauMouche3} la sortie finale
+contient \emph{Gen=\$g}, mais \emph{\$g} prend une seule valeur
 déterminée par le premier constituant.
 
 \bigskip
 \noindent Le système d'unification est particulièrement utile pour des langues à la flexion riche.
-Par exemple, en polonais la plupart des noms se fléchissent en nombres (2 valeurs) et cas (7
+Par exemple, en polonais la plupart des noms se fléchissent en nombre (2 valeurs) et en cas (7
 valeurs), ce qui implique au moins 14 formes différentes (si des variantes et des formes
 syncrétiques diffèrent).
 Ce score est encore plus élevé pour les adjectifs qui se fléchissent en nombre, en cas et en genre
@@ -881,7 +885,7 @@ porte-serviette(serviette.N21:fs),NC_VNm
 
 
 \bigskip
-\noindent Les graphes des flexion correspondants se trouvent de la figure ~\ref{fig:NC'XXN'FR} à la
+\noindent Les graphes de flexion correspondants se trouvent de la figure ~\ref{fig:NC'XXN'FR} à la
 figure ~\ref{fig:NC'VNm'FR}. 
 
 \bigskip
