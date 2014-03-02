@@ -317,20 +317,16 @@ The files produced in \texttt{example\_csc} are the results obtained by each gra
 %%%%%%%%%%%
 \subsection{An xml-like output text for lexical tags}
 
-As an output, the lexical tag format is transformed into an xml-like format.
-This change is done in order to provide an easier-to-manipulate text to the end
-user. 
-From this format, it is possible to use one of the numerous tools to process xml or it is easier to apply further transducers to get the output anyone
-wants.\\
-This xml-ized ouput text is copied in the file \texttt{example\_csc.txt} while the raw text is in the file \texttt{example\_raw.txt}.
+The output is provided in two forms: the direct output of the transducers, and an XML-like output with the lexical tags transformed into XML. This change is done in order to provide the end user with more easily manageable text. 
+From this format, it is possible to use one of the numerous tools to process xml and it is easier to apply further transducers to get the desired output.\\
+The direct output of the transducers is in the \texttt{example\_csc.raw} file. The xml-ized ouput text is copied in the \texttt{example\_csc.txt} file.
 
-More precisely, The lexical tag has the following format :\\
+More precisely, lexical tags have the following format :\\
 \begin{tabular}{c}
 \texttt{
 \{forme.lemme,code1+code2:flex1:flex2\}}
 \end{tabular}\\
-
-The xml-like outputs of cassys has the following format :\\
+The corresponding xml-like output of CasSys has the following format :\\
 \begin{tabular}{ll}
 \texttt{<csc>}&\\
 	&\texttt{<form>forme</form>}\\
@@ -342,7 +338,7 @@ The xml-like outputs of cassys has the following format :\\
 \texttt{</csc>}&\\
 \end{tabular}
 
-The DTD corresponding to our xml format is:
+The DTD of our xml format is:
 
 \begin{tabular}{l}
 \texttt{<?xml version="1.0" encoding="ISO-8859-1"?>}\\

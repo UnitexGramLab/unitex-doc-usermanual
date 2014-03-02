@@ -412,20 +412,18 @@ répertoire  \verb+exemple_3+\newline\verb+_0_snt+ le fichier \verb+exemple_3_0.
 
 \subsection{Un texte au format de type XML pour les étiquettes lexicales}
 
-En sortie, le format avec étiquettes lexicales est transformé en un format de type XML.
+En sortie, le résultat est fourni sous deux formes~: le texte résultant directement de l'application des transducteurs, et un format de type XML dans lequel les étiquettes lexicales ont été transformées en XML.
 Ce changement est fait dans le but de proposer un texte plus manipulable  à l'utilisateur final.
 A partir de ce format, il est possible d'utiliser l'un des nombreux outils de traitement du XML.
 Il est également facile d'appliquer des transducteurs supplémentaires afin d'obtenir la sortie souhaitée.
+Le texte résultant directement des transducteurs est sauvegardé dans le fichier  \verb+exemple_csc.raw+, et la version  XML-isée est dans le fichier \verb+exemple_csc.txt+.
 
-La sortie texte XML-isée est copiée dans le fichier \verb+exemple_csc.txt+ et le texte brut dans le fichier  \verb+exemple_raw.txt+
-
-Plus précisement, les étiquettes lexicales :\\
+Plus précisement, les étiquettes lexicales sont dans le format suivant~:\\
 \begin{tabular}{c}
 \texttt{
 \{forme.lemme,code1+code2:flex1:flex2\}}
 \end{tabular}\\
-
-La sortie CaSsys de type XML a le format suivant :\\
+La sortie de type XML correspondante a le format suivant~:\\
 \begin{tabular}{ll}
 \texttt{<csc>}&\\
 	&\texttt{<form>forme</form>}\\
@@ -437,8 +435,7 @@ La sortie CaSsys de type XML a le format suivant :\\
 \texttt{</csc>}&\\
 \end{tabular}
 
-
-La DTD correspondant à notre format est la suivante :
+La DTD de notre format est la suivante~:
 
 \begin{tabular}{l}
 \texttt{<?xml version="1.0" encoding="ISO-8859-1"?>}\\
