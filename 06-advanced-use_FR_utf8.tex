@@ -555,14 +555,14 @@ c’est le cas sur la figure ~\ref{fig-context6}). Si l’on applique ce graphe 
 \subsection{Contextes gauches}
 \index{\verb+$*+}
 Il est également possible de rechercher une expression $X$ si elle se trouve seulement après une 
-expression $Y$. Evidemment, il était déjà possible de le faire avec une grammaire semblable à celle
+expression $Y$. Évidemment, il était déjà possible de le faire avec une grammaire semblable à celle
 de la figure \ref{fig-left-context1}. Cependant, avec ce type de grammaire, le contexte gauche est
 inclus dans la séquence reconnue, comme le montre la figure~\ref{fig-left-context2}.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig6-17a.png}
-\caption{Reconnaissance d'un nom précédé d'un déterminant numérique\label{fig-left-context1}}
+\caption{Reconnaissance d'un nom précédé d'un déterminant numéral\label{fig-left-context1}}
 \end{center}
 \end{figure}
 
@@ -575,10 +575,10 @@ inclus dans la séquence reconnue, comme le montre la figure~\ref{fig-left-conte
 \end{figure}
 
 \bigskip
-\noindent Pour éviter cela, vous pouvez utiliser le symbole \verb+$*+ qui indique la fin du contexte
-gauche de l'expression que vous désirez reconnaître. Ce symbole est représenté par une étoile verte
+\noindent Pour éviter cela, on peut utiliser le symbole \verb+$*+ qui indique la fin du contexte
+gauche de l'expression qu'on désire reconnaître. Ce symbole est représenté par une étoile verte
 dans le graphe, comme le montre la figure~\ref{fig-left-context3}. L'effet d'un tel contexte est
-d'utiliser une partie de la grammaire pour calculer la séquence reconnue, sans que cette partie figure dans le résultat (voir figure \ref{fig-left-context4}).
+d'utiliser une partie de la grammaire pour calculer la séquence reconnue, sans que cette partie ne figure dans le résultat (voir figure \ref{fig-left-context4}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -596,7 +596,7 @@ d'utiliser une partie de la grammaire pour calculer la séquence reconnue, sans 
 \end{figure}
 
 \clearpage
-\noindent Toutes les sorties produites par un contexte gauche sont ignorées, comme vous pouvez le voir dans la concordance de la figure \ref{fig-left-context6}, qui donne les résultats
+\noindent Toutes les sorties produites par un contexte gauche sont ignorées, comme on peut le voir dans la concordance de la figure \ref{fig-left-context6}, qui donne les résultats
 obtenus avec la grammaire de la figure \ref{fig-left-context5}.
 
 \begin{figure}[!ht]
@@ -615,9 +615,9 @@ obtenus avec la grammaire de la figure \ref{fig-left-context5}.
 \end{figure}
 
 \bigskip
-\noindent Toutefois, vous pouvez mémoriser des informations avec des variables (voir section
-\ref{section-variables}) et les utiliser en dehors du contexte gauche, comme le montre la
-grammaire de la figure \ref{fig-left-context7}.
+\noindent Toutefois, on peut mémoriser des informations avec des variables (voir section
+\ref{section-variables}) et les utiliser en dehors du contexte gauche, comme le montrent la
+grammaire de la figure~\ref{fig-left-context7} et son résultat dans la figure~\ref{fig-left-context8}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -633,6 +633,13 @@ grammaire de la figure \ref{fig-left-context7}.
 \ref{fig-left-context7}\label{fig-left-context8}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent On peut invoquer dans une grammaire un graphe qui contient des contextes gauches,
+mais cela nécessite d'être vigilant. Au moment où le contexte gauche est exclu de la séquence reconnue,
+toutes les séquences qui avaient été reconnues par des graphes appelants en sont exclues également,
+car la séquence qui sera finalement reconnue devra être contiguë. Les sorties correspondant aux
+séquences exclues sont ignorées elles aussi.
 
 \bigskip
 \noindent Ainsi, avec des contextes gauche et droit, on peut faire une distinction entre les motifs
@@ -662,7 +669,7 @@ figure \ref{fig-left-context10}.
 \label{section-morphological-mode}
 \index{Mode morphologique}
 \subsection{Pourquoi ?}
-Comme Unitex fonctionne sur une version "tokenisé" du texte, il n'est pas possible de
+Comme Unitex fonctionne sur une version "tokenisée" du texte, il n'est pas possible de
 faire des requêtes qui entrent à l'intérieur des "tokens", sauf avec les filtres morphologiques
 (voir section \ref{section-filters}), comme le montre la figure
 \ref{fig-morpho1}.

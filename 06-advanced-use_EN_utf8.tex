@@ -567,7 +567,7 @@ grammar, the context part on the left will be included in the match, as shown on
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig6-17a.png}
-\caption{Matching a noun that occurs after a numerical
+\caption{Matching a noun that occurs after a numeral
 determiner\label{fig-left-context1}}
 \end{center}
 \end{figure}
@@ -626,7 +626,7 @@ obtained with the grammar of Figure \ref{fig-left-context5}.
 \bigskip
 \noindent However, you can catch things with variables (see section
 \ref{section-variables}) and use them outside the left context, as shown on the
-grammar of Figure \ref{fig-left-context7}.
+grammar of Figure \ref{fig-left-context7} which produces the concordance of Figure \ref{fig-left-context8}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -642,6 +642,12 @@ grammar of Figure \ref{fig-left-context7}.
 \ref{fig-left-context7}\label{fig-left-context8}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent A graph with left contexts may be invoked in a grammar, but this requires caution.
+When the left context part is excluded from the match, any sequences that had been matched before by 
+any of the calling graphs are excluded from the match too, because the eventual matched sequence must be contiguous.
+Any outputs in excluded sequences are ignored too.
 
 \bigskip
 \noindent Thus, with left and right contexts, you can make a distinction between
