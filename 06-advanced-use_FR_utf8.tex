@@ -379,19 +379,19 @@ figure~\ref{fig-recursive-calls-loop}.
 
 \pagebreak
 \index{Intervalles}
-\noindent Pour reconnaître des séquences de tokens dans laquelle une catégorie grammaticale apparaît une fois, plusieurs fois ou jamais, vous pouvez définir dans une boîte un intervalle.
-Ceci signifie que si vous associez un intervalle  [m,M]  à une boîte contenant <ADJ> ce chemin reconnaitra des séquences avec au moins m adjectifs consecutifs et pas plus de M.
-Les intervalles se définissent selon les règles : 
+\noindent Pour reconnaître des séquences de tokens dans laquelle une catégorie grammaticale apparaît une fois, plusieurs fois ou jamais, on peut associer un intervalle d'entiers à une boîte.
+Si on associe un intervalle  [m,M]  à une boîte contenant <ADJ>, le chemin reconnaitra des séquences avec au moins $m$ adjectifs consécutifs et pas plus de $M$.
+On attache un intervalle en insérant \verb+$[m,M]$+ dans la sortie de la boite, juste après le caractère ``/'', et selon les règles : 
 \begin{itemize}
-\item \verb+[m,M]+ au moins m motifs consecutifs et pas de plus de M
-\item \verb+[,M]+ de 0 à M  
-\item \verb+[m,]+ au moins m
+\item \verb+[m,M]+ = au moins $m$ motifs consécutifs et pas de plus de $M$
+\item \verb+[,M]+ = de 0 à $M$  
+\item \verb+[m,]+ = au moins $m$
 \end{itemize}
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig6-10a.png}
-\caption{utilisation d'intervalles pour reconnaître plusieurs tokens consecutifs\label{intervals}}
+\caption{Utilisation d'un intervalle pour reconnaître plusieurs tokens consécutifs\label{intervals}}
 \end{center}
 \end{figure}
 

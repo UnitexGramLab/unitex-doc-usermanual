@@ -615,7 +615,7 @@ radix,N4
 fléchir la forme canonique. Il y a deux formes possibles :
 
 \begin{itemize}
-\item \verb+V32+: nom de la grammaire=\verb+V32.fst2+, codes grammaticaux=\verb+V+
+\item \verb+N4+: nom de la grammaire=\verb+N4.fst2+, codes grammaticaux=\verb+N+
 	(le plus long préfixe uniquement composé de lettres)
   \item \verb+N(NC_XXX)+: nom de la grammaire=\verb+NC_XXX.fst2+, codes grammaticaux=\verb+N+
 \end{itemize}
@@ -627,10 +627,10 @@ besoin est. Dans l’exemple ci-dessus, toutes les entrées seront fléchies ave
 
 \bigskip
 \noindent Pour lancer la flexion, cliquez sur "Inflect..." dans le menu "DELA". La fenêtre de la 
-figure~\ref{fig-inflection-configuration} vous permet d’indiquer au programme de flexion le
-répertoire dans lequel se trouvent vos grammaires de flexion. Par défaut, le sous-répertoire
-\verb+Inflection+ du répertoire de la langue courante est utilisé. Vous pouvez aussi spécifier quels
-types de mots votre dictionnaire est supposé contenir. Si une entrée non conforme à votre choix est
+figure~\ref{fig-inflection-configuration} permet d’indiquer au programme de flexion le
+répertoire dans lequel se trouvent les grammaires de flexion. Par défaut, le sous-répertoire
+\verb+Inflection+ du répertoire de la langue courante est utilisé. On peut aussi spécifier quels
+types de mots le dictionnaire est supposé contenir. Si une entrée non conforme est
 rencontrée, un message d'erreur sera affiché.
 
 \bigskip
@@ -660,7 +660,7 @@ flexionnels à ajouter à l’entrée du dictionnaire.
 \bigskip
 \noindent Dans notre exemple, deux chemins sont possibles. Le premier ne modifie pas la forme
 canonique et ajoute le code flexionnel \verb+:s+. Le second retranche une lettre grâce à l’opérateur 
-\verb+L+, ajoute ensuite le suffixe \verb+ux+ et ajoute le code flexionnel \verb+:mp+.
+\verb+L+, ajoute ensuite le suffixe \verb+ces+ et ajoute le code flexionnel \verb+:mp+.
 
 Voici les opérateurs utilisables:
 

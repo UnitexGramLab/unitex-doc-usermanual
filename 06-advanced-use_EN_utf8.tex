@@ -385,19 +385,19 @@ which is impossible.
 
 \pagebreak
 \index{Intervals}
-\noindent In order to recognize tokens sequences in which one word or one token of a specific grammatical category appears once, several times or never, you can set to a box an interval.
-This means if you set the interval [m,M] to a box containing <ADJ> that this path will match sequences with at least m consecutive adjectives and no more than M.
-Intervals can be defined according to the following rules : 
+\noindent In order to recognize token sequences in which one word or one token of a specific grammatical category appears once, several times or never, you can attach an integer interval to a box.
+If you attach the interval [m,M] to a box containing <ADJ>, the path will match sequences with at least $m$ consecutive adjectives and no more than $M$.
+Intervals are attached by inserting \verb+$[m,M]$+ into the output of the box, just after the character ``/'', and according to the following rules : 
 \begin{itemize}
-\item \verb+[m,M]+ at least m consecutive terms and no more than M
-\item \verb+[,M]+ 0 to M  
-\item \verb+[m,]+ at least m
+\item \verb+[m,M]+ = at least $m$ consecutive terms and no more than $M$
+\item \verb+[,M]+ = 0 to $M$  
+\item \verb+[m,]+ = at least $m$
 \end{itemize}
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig6-10a.png}
-\caption{use of interval to match several consecutive tokens\label{intervals}}
+\caption{Use of an interval to match several consecutive tokens\label{intervals}}
 \end{center}
 \end{figure}
 
