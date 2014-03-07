@@ -1042,45 +1042,63 @@ Voir chapitre \ref{chap-multiflex}.
 \label{subsection-semitic-inflection}
 \index{Langues sémitiques}
 Les langues  sémitiques comme l'arabe ou l'hébreu ne se fléchissent pas de la même manière 
-que d'autres sortes de languages, puisque leur morphologie obéit à une logique différente.
-En fait, dans ces langues, les mots se fléchissent selon un \textit{squelette consonantique}
-\index{Squelette consonantique}. La forme canonique est formée de consonnes, et le processus de
-flexion est supposé enrichir ce squelette avec des voyelles.
+que d'autres types de langues. Leur morphologie obéit à une logique différente.
+Dans ces langues, les mots se fléchissent selon un \textit{squelette consonantique}\index{Squelette consonantique}. Le processus de
+flexion combine ce squelette avec des voyelles.
 
 \bigskip
-\noindent Tout d'abord, regardons, à quoi ressemble une entrée sémitique :
+\noindent Tout d'abord, voyons un cas où on ne code que les consonnes dans le champ lemme de l'entrée DELAS~:
 
 \bigskip
 \noindent \verb+ktb,$V31-123+
 
 \bigskip
-\noindent Le signe \verb+$+ avant le code grammatical indique que l'entrée est de type sémitique, et
-la forme canonique est un squelette consonantique (ici \verb+ktb+). La figure \ref{semitic-grammar}
-montre une grammaire jouet \verb+V31-123.grf+ qui illustre comment le processus de flexion sémitique
-fonctionne.
+\noindent Le signe \verb+$+ avant le code grammatical indique que la grammaire de flexion est en mode sémitique, et
+la forme \verb+ktb+ qui figure dans le champ lemme est le squelette consonantique. La figure \ref{semitic-grammar}
+montre une grammaire jouet \verb+V31-123.grf+ qui illustre comment le mode sémitique fonctionne.
 
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=5.5cm]{resources/img/fig3-9a.png}
-\caption{Une grammaire jouet de flexion sémitique\label{semitic-grammar}}
+\includegraphics[width=10cm]{resources/img/fig3-15.png}
+\caption{Une grammaire de flexion jouet en mode sémitique\label{semitic-grammar}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Une grammaire de ce type obéit aux règles suivantes:
+\noindent Le mode sémitique obéit aux règles suivantes:
 \begin{enumerate}
-\item Tous les opérateurs standards de flexion peuvent être utilisés (\verb+L+, \verb+R+, etc).
-\item Un chiffre représente une consonne du squelette (\verb+1+ pour la première,
+\item Tous les opérateurs standards de flexion peuvent être utilisés (\verb+L+, \verb+R+, etc.).
+\item Un chiffre représente une lettre du champ lemme (\verb+1+ pour la première,
 \verb+2+ pour la seconde, etc). Dans notre exemple, \verb+1+, \verb+2+ et \verb+3+ représentent
-respectivement \verb+k+, \verb+t+ et \verb+b+. Si vous voulez désigner une lettre après la neuvième,
-vous devez protéger son numéro avec des angles comme \verb+<10>+.
+respectivement \verb+k+, \verb+t+ et \verb+b+. Si on veut désigner une lettre après la neuvième,
+on doit protéger son numéro avec des chevrons~: \verb+<10>+.
 \end{enumerate}  
 
 \bigskip
 \noindent Le DELAF produit par cette grammaire est:\\ 
   
-\verb+yakotobu,ktb.V:aP3ms+
+\verb+yakotubu,ktb.V:aI3ms+
+
+\bigskip
+\noindent Si on ne code que les consonnes dans le champ lemme et que deux entrées ont les mêmes consonnes et diffèrent par leurs voyelles, on doit coder les voyelles dans les grammaires de flexion~:\\ 
+
+\verb+Hsb,$V3au	// compter, Hasaba, yaHosubu+
+
+\verb+Hsb,$V3ii	// penser, Hasiba, yaHosibu+
+
+\bigskip
+\noindent Pour copier tout le champ lemme, utilisez l'opérateur <LEMMA> (figure~\ref{LEMMA-operator}). De cette façon, un chemin avec tout le champ lemme ne dépend pas du nombre de lettres.
+Cet opérateur est utile pour les noms et adjectifs arabes pour lesquels les formes du masculin sont obtenues en
+insérant des voyelles dans le squelette consonantique, alors que celles du féminin le sont en ajoutant des
+suffixes. Dans cet exemple, on a codé à la fois les consonnes et les voyelles dans le champ lemme.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig3-LEMMA-operator.png}
+\caption{Une grammaire de flexion en mode sémitique avec l'opérateur <LEMMA>\label{LEMMA-operator}}
+\end{center}
+\end{figure}
 
 \section{Compression}
 \index{Dictionnaires!compression}
