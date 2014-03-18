@@ -1088,7 +1088,7 @@ on doit protéger son numéro avec des chevrons~: \verb+<10>+.
 \verb+Hsb,$V3ii	// penser, Hasiba, yaHosibu+
 
 \bigskip
-\noindent Pour copier tout le champ lemme, utilisez l'opérateur <LEMMA> (figure~\ref{LEMMA-operator}). De cette façon, un chemin avec tout le champ lemme ne dépend pas du nombre de lettres.
+\noindent Pour copier tout le champ lemme, on peut utiliser l'opérateur <LEMMA> (figure~\ref{LEMMA-operator}). De cette façon, un chemin avec tout le champ lemme ne dépend pas du nombre de lettres.
 Cet opérateur est utile pour les noms et adjectifs arabes pour lesquels les formes du masculin sont obtenues en
 insérant des voyelles dans le squelette consonantique, alors que celles du féminin le sont en ajoutant des
 suffixes. Dans cet exemple, on a codé à la fois les consonnes et les voyelles dans le champ lemme.
@@ -1162,10 +1162,9 @@ considérée comme sémitique peut être configuré dans les préférences globa
 \index{Dictionnaires!application}
 
 \bigskip
-\noindent Unitex peut manipuler soit des dictionnaires compressés (\verb+.bin+) soit des graphes
-dictionnaires (\verb+.fst2+). Ces dictionnaires peuvent être appliqués soit lors du prétraitement,
+\noindent Unitex peut manipuler soit des dictionnaires compressés (\verb+.bin+) soit des graphes-dictionnaires (\verb+.fst2+). Ces dictionnaires peuvent être appliqués soit lors du prétraitement,
 soit explicitement en cliquant sur "Apply Lexical Resources..." dans le menu "Text". Nous allons
-maintenant détailler les règles de l’application des dictionnaires. Le cas des graphes dictionnaires
+maintenant détailler les règles de l’application des dictionnaires. Le cas des graphes-dictionnaires
 sera abordé dans la section ~\ref{section-dictionary-graphs}.
 
 \subsection{Priorités}
@@ -1242,17 +1241,17 @@ Par exemple, si le dictionnaire contient \verb+aujourd'hui,.ADV+, la séquence \
 ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 
 
-\subsection{Graphes dictionnaires}
-\label{section-dictionary-graphs}\index{Graphes dictionnaires}
+\subsection{Graphes-dictionnaires}
+\label{section-dictionary-graphs}\index{Graphes-dictionnaires}
 Le programme \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} est capable
-d’appliquer des graphes dictionnaires. Il s’agit de graphes qui respectent la règle suivante :
+d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent la règle suivante :
 si on les applique avec le programme \verb+Locate+\index{\verb+Locate+}\index{Programmes externes!\verb+Locate+} en mode MERGE,\index{MERGE} ils doivent produire des séquences
 correspondant à des lignes de DELAF.\index{DELAF}\index{Dictionnaires!DELAF}
 
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=24cm]{resources/img/fig3-12.png}
-\caption{Graphe dictionnaire des éléments chimiques\label{elements}}
+\caption{Graphe-dictionnaire des éléments chimiques\label{elements}}
 \end{center}
 \end{figure}
 
@@ -1264,7 +1263,7 @@ mais pas \verb+FE+, alors qu’il est impossible de spécifier une telle interdi
 usuel.
 
 \bigskip
-\noindent Le second avantage des graphes dictionnaires est qu’ils peuvent exploiter les résultats
+\noindent Le second avantage des graphes-dictionnaires est qu’ils peuvent exploiter les résultats
 fournis par les dictionnaires appliqués précédemment. Ainsi, on peut appliquer le dictionnaire
 général, puis étiqueter comme noms propres les mots inconnus commençant par une majuscule à l’aide
 du graphe \verb$NPr+$ de la figure~\ref{graph-NPr}. Le \verb$+$ dans le nom du graphe lui donne une
@@ -1276,32 +1275,30 @@ crochets correspondent à une définition de contexte. Pour plus de détails sur
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=10.5cm]{resources/img/fig3-13.png}
-\caption{Graphe dictionnaire étiquetant comme noms propres les mots inconnus commençant par une
+\caption{Graphe-dictionnaire étiquetant comme noms propres les mots inconnus commençant par une
 majuscule
 \label{graph-NPr}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Comme les graphes dictionnaires sont appliqués par le moteur du programme \verb+Locate+,
+\noindent Comme les graphes-dictionnaires sont appliqués par le moteur du programme \verb+Locate+,
 ils peuvent utiliser tout ce que le programme \verb+Locate+ autorise. En particulier, il est
-possible d’utiliser les filtres morphologiques.\index{Filtres morphologiques}\index{Mode
+possible d’utiliser les filtres morphologiques\index{Filtres morphologiques} et le mode morphologique.\index{Mode
 morphologique}
 Ainsi, le graphe de la figure \ref{graph-CR} utilise ces filtres pour reconnaître les nombres en
 chiffres romains. Notons qu’il utilise également des contextes afin d’éviter, par exemple, que
 \verb+C+ ne soit pris comme chiffre romain quand il est suivi par une apostrophe.
 
-
-\bigskip
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=24cm]{resources/img/fig3-14.png}
-\caption{Graphe dictionnaire reconnaissant les nombres en chiffres romains\label{graph-CR}}
+\caption{Graphe-dictionnaire reconnaissant les nombres en chiffres romains\label{graph-CR}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Par défaut, les graphes dictionnaires sont appliqués en mode MERGE. Il est possible 
+\noindent Par défaut, les graphes-dictionnaires sont appliqués en mode MERGE. Il est possible 
 de les appliquer en mode REPLACE, en ajoutant à leur le nom le suffixe \verb+-r+. Celui-ci se
 combine avec les priorités \verb-+- et \verb+-+:
 
@@ -1309,16 +1306,17 @@ combine avec les priorités \verb-+- et \verb+-+:
 \verb?bagpipe-r.fst2  McAdam-r-.fst2  phtirius-r+.fst2?
 
 
-\subsubsection{Exporter les entrées produites comme dictionnaire morphologique}
-Les entrées produites par un graphe dictionnaire sont, bien sûr, prises en compte
+\subsubsection{Exporter les entrées produites comme dictionnaire du mode morphologique}
+\index{Dictionnaires du mode morphologique}
+Les entrées produites par un graphe-dictionnaire sont, bien sûr, prises en compte
 par le programme \verb+Locate+. Cependant, on ne peut les utiliser en mode morphologique
-dans la mesure où elles n'appartiennent pas à un dictionnaire morphologique.
-Il est possible de le faire en ajoutant \verb+b+ à la fin du nom du graphe dictionnaire. 
-Si l'on ajoute \verb+z+ à la place, le dictionnaire morphologique du texte sera immédiatement
-compressé le rendant utilisable par le prochain dictionnaire morphologique appliqué.
+dans la mesure où elles n'appartiennent pas à un dictionnaire déclaré comme dictionnaire du mode morphologique.
+Il est possible de le faire en ajoutant \verb+b+ à la fin du nom du graphe-dictionnaire. 
+Si l'on ajoute \verb+z+ à la place, le dictionnaire produit pour le texte sera immédiatement
+compressé, le rendant utilisable par le prochain graphe-dictionnaire appliqué.
  
 \subsubsection{Conventions de nommage}
-Le processus de nommage d'un graphe dictionnaire s'établit comme suit :\\
+Le processus de nommage d'un graphe-dictionnaire s'établit comme suit :\\
 
 \verb$nom(-XYZ)([-+]).fst2$\\
 
@@ -1326,44 +1324,44 @@ Le processus de nommage d'un graphe dictionnaire s'établit comme suit :\\
 \begin{itemize}
 \item \verb+X+ prend l'une des valeurs \verb+[rRmM]+: \verb+r+ signifie mode REPLACE; \verb+M+
 signifie mode MERGE (mode par défaut);
-\item \verb+Y+ prend l'une des valeurs \verb+[bBzZ]+: option qui régie la construction du
-dictionnaire morphologique (voir section précédente);
+\item \verb+Y+ prend l'une des valeurs \verb+[bBzZ]+: option qui régit la construction d'un
+dictionnaire du mode morphologique (voir ci-dessus);
 \item \verb+Z+ prend l'une des valeurs \verb+[aAlLsS]+: \verb+a+ signifie que le graphe est appliqué
 en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défault); 
 \verb+s+ signifie "Shortest matches".
 \end{itemize}
 
 
-\subsection{Graphe dictionnaire morphologique}
-\index{Graphe dictionnaire morphologique}
-En plus des graphes dictionnaires  qui produisent de nouvelles entrées dans le dictionnaire du
-texte, il est possible de construire des graphes dictionnaires morphologiques.
+\subsection{Graphe-dictionnaire morphologique}
+\index{Graphe-dictionnaire morphologique}
+En plus des graphes-dictionnaires qui produisent de nouvelles entrées dans le dictionnaire du
+texte, il est possible de construire des graphes-dictionnaires morphologiques.
 Les sorties de tels graphes seront utilisées comme entrées pour construire l'automate du texte. Nous
-les appelons ``graphes dictionnaires morphologiques'', parce que leur principale utilité est de
+les appelons ``graphes-dictionnaires morphologiques'' parce que leur principale utilité est de
 fournir de nouvelles analyses morphologiques dans l'automate du texte, grâce au mode morphologique
 (voir \ref{section-morphological-mode}). Cette fonctionnalité est très utile pour des langues
 agglutinantes comme le coréen.
 
 \bigskip
-\noindent La règle est simple: toute sortie du graphe dictionnaire commençant par un  slash 
+\noindent La règle est simple: toute sortie du graphe-dictionnaire commençant par une barre oblique (slash, /) 
 est ajoutée au fichier \verb+tags.ind+, \index{\verb+tags.ind+} situé dans le répertoire du texte.
 Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des interprétations à
 l'automate du texte. Considérons la grammaire de la figure \ref{morphoA} qui reconnaît des mots
-formés par le préfixe \verb+un+ suivi d'un adjectif. Si l'on applique cette grammaire comme graphe
-dictionnaire, on obtient de nouveaux chemins dans l'automate du texte comme le montre la figure
+formés par le préfixe \verb+un+ suivi d'un adjectif. Si l'on applique cette grammaire comme graphe-dictionnaire,
+on obtient de nouveaux chemins dans l'automate du texte comme le montre la figure
 \ref{morphoB}. Remarquons que lorsque deux tags correspondent à des analyses dans la même unité lexicale, le lien entre eux est affiché par une ligne discontinue.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig3-14a.png}
-\caption{Exemple de graphe dictionnaire morphologique\label{morphoA}}
+\caption{Exemple de graphe-dictionnaire morphologique\label{morphoA}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig3-14b.png}
-\caption{Chemin ajouté par un graphe dictionnaire morphologique\label{morphoB}}
+\caption{Chemin ajouté par un graphe-dictionnaire morphologique\label{morphoB}}
 \end{center}
 \end{figure}
 
