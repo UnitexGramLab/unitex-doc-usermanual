@@ -203,9 +203,9 @@ This menu will offer several operations that are frequently used when editing a 
 \item save, print the current graph or set up the page parameters
 \item the usual "Tools", "Format" and "Zoom" menu also accessible in the FSGraph menu 
 \end{itemize}
-If one or several box are currently selected, the following menus will be accessible, allowing you to apply specific operations to these sets of boxes. Otherwise, these menus are useless and therefore non accessible. 
+If one or several boxes are currently selected, the following menus will be accessible, allowing you to apply specific operations to these sets of boxes. Otherwise, these menus are useless and therefore non accessible. 
 \begin{itemize}
-\item surround selected boxes with input or output variable, with contexts, or with Morphological mode delimiters. These operations are also accessible via the Toolbar of the graph edition window (see section~\ref{toolbar-commands}). 
+\item surround selected boxes with an input or output variable definition, with contexts, or with Morphological mode delimiters. These operations are also accessible via the Toolbar of the graph edition window (see section~\ref{toolbar-commands}). 
 \item merge selected boxes
 \item export as a new graph
 \end{itemize}
@@ -280,7 +280,6 @@ graphs of $Y$. This method raises two problems:
   \item two graphs cannot share the same name.
 \end{itemize}
 
-\bigskip
 \noindent To avoid that, you can store the grammar $X$ in a special directory,
 called the \textit{graph repository}.\index{Graph repository} This directory is a
 kind of library where you can store graphs, and then call them using \verb+::+
@@ -328,35 +327,34 @@ repository\label{repository-graph-call}}
 
 %\clearpage
 
-\bigskip
 \noindent TRICK: If you want to avoid long path names like
 \verb+::Det:Johnson:DET+, you can create a graph named \verb+DET+ and put it the
 repository root (here \verb+D:\repository\DET.grf+). In this graph, just put a
 call to \verb+::Det:Johnson:DET+. Then, you can just call \verb+::DET+ in your
 own graphs. This has two advantages: 1) you do not have long path names; 2) you
-can modify the graphs in your repository with no constrainst on your own graphs,
+can modify the graphs in your repository with no constraint on your own graphs,
 because the only graph that will have to be modified is the one located at the
 repository root.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-9.png}
-\caption{Missing called sub-graphs appear in red}
+\caption{Missing called sub-graphs appear in red\label{call-colours}}
 \end{center}
 \end{figure}
 
 
 \bigskip
-\noindent Calls to sub-graphs are represented in the boxes by grey lines, or brown
-lines in the case of graphs located in the repository. If the .GRF File of the sub-graph is not found at the path you indicated, Unitex will try to find a fst2 file of the same name. If Unitex can't find any of the .grf or .fst2 file, the call to the missing subgraph will be represented by red line. 
+\noindent Calls to sub-graphs are represented in the boxes by grey lines, as in Fig.~\ref{call-colours}, or brown
+lines in the case of graphs located in the repository, as in Fig.~\ref{repository-graph-call}. If the .GRF File of the sub-graph is not found at the path you indicated, Unitex will try to find a fst2 file of the same name. If Unitex can't find any of the .grf and .fst2 files, the call to the missing subgraph will be displayed on a red line. 
 On Windows, you can open a sub-graph by clicking on the grey line while pressing the Alt key.
-On Linux, the  combination <Alt+Click> is intercepted by the system:\footnote{If you are 
+On Linux, the <Alt+Click>  combination is intercepted by the system:\footnote{If you are 
 working on KDE, you can deactivate <Alt+Click> in kcontrol.} in order to open a
 sub-graph, middle-click on its name, or click on its name by pressing the left and the right mouse buttons
 simultaneously.
 
 \bigskip
-\noindent The list of subgraphs called from the current graph and the graphs in which the current graph is called can be displayed bay clicking on the second an third button of the fourth set of buttons in the toolbar command (see Figure~\ref{list-called-graphs} and
+\noindent The list of subgraphs called from the current graph and the graphs in which the current graph is called can be displayed by clicking on the second and third button of the fourth set of buttons in the toolbar command (see Figure~\ref{list-called-graphs} and
 Figure~\ref{fig-toolbar} in section~\ref{toolbar-commands}).
 In these Lists of subgraphs : 
 \begin{itemize}
@@ -379,7 +377,7 @@ In these Lists of subgraphs :
 You can select several boxes using the mouse. In order to do so, click and drag the
 mouse without releasing the button. When you release the button, all boxes
 touched by the selection rectangle will be selected and are displayed in
-white on blue ground, as shown on Figure \ref{multi-selection}.
+white on a blue background, as shown on Figure \ref{multi-selection}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -388,7 +386,7 @@ white on blue ground, as shown on Figure \ref{multi-selection}.
 \end{center}
 \end{figure}
 %\bigskip
-\noindent You can select several boxes by keeping simultaneously the <CTRL> and <SHIFT> key pressed and by clicking on every box you want to add to your current selection. This way you can select several boxes without selecting all the boxes located in their area.
+\noindent You can select several boxes by keeping simultaneously the <CTRL> and <SHIFT> keys pressed and by clicking on every box you want to add to your current selection. This way you can select several boxes without selecting all the boxes located in their area.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -399,7 +397,7 @@ white on blue ground, as shown on Figure \ref{multi-selection}.
 \bigskip
 \noindent When boxes are selected, you can move them by clicking and
 dragging the cursor without releasing the button. In order to cancel the selection, click on
-an empty area of the graph. If you click on a box, all boxes of the selection
+an empty area of the graph. If you click on a box, all the boxes of the selection
 will be connected to it.
 
 \bigskip
@@ -418,14 +416,17 @@ clipboard. You can then paste this selection by pressing <Ctrl+V> or by selectin
 \end{center}
 \end{figure}
 
-\noindent NOTE: You can paste a multiple selection into a different graph than
+\noindent NOTE: You can paste a multiple selection into a different graph from
 the one where you copied it from.
 
 \bigskip
 \index{Graph!deleting boxes}\index{Boxes!deleting}
 \noindent In order to delete boxes, select them, delete the text that they
 contain (\textit{i.e.} the text presented in the text field above the window)
-and press the Enter key. The initial and final states cannot be deleted.
+and press the Enter key.
+
+\bigskip
+\noindent The initial and final states cannot be deleted.
 
 \subsection{Transducers}
 \index{Transducers}\index{\verb+/+}
@@ -434,7 +435,6 @@ an output, use the special character \verb+/+. All characters to the right of
 it will be part of the output. Thus, the text \verb$one+two+three/number$ results in
 a box like in figure~\ref{fig-exemple-transduction}.
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-15.png}
@@ -442,17 +442,19 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \end{center}
 \end{figure}
 
-\noindent The output associated with a box is represented in bold text below it.
-\subsubsection{Weights}
+\noindent To create an empty box with an output consisting of \verb+number+, type \verb+<E>/number+ (example: the rightmost box in Fig.~\ref{fig-using-variable} is empty and has an output). The output associated with a box is represented in bold text below it.
 
+\subsubsection{Weights}
 
 You can assign integer weights to the boxes of a transducer.
 Thus, when a sequence of tokens is matched by several paths, 
 only the one with the highest weight will produce an output. 
 After a locate, this will affect the concordance, in which 
 the matched sequences of words will appear only once with the appropriate output
-(Figure~\ref{fig-weights-in-graphs}). The weight of a path is the sum of the weights found in the path.
+(Figure~\ref{fig-weights-in-graphs}). In order to assign weight 1 to a box, insert \verb+${1}$+
+in the output of the box, e.g. as in \verb+<E>/${1}$+. The weight of a path is the sum of the weights found in the path.
 
+\bigskip
 \noindent With weights, you can define a priority among paths that match the same sequence.
 You cannot define a priority among embedded matching sequences (cf. section~\ref{section-search-configuration})
  or among overlapping matching sequences (cf. section~\ref{section-priority-leftmost-match}).
@@ -673,10 +675,10 @@ The following two icons allow you to view lists of graphs that are related to th
 \item The first displays a list of graphs called by the current graph
 \item The second button shows the list of all the graphs calling the current graph as a subgraph.
 \end{itemize}
-The two green arrows button will refresh the current graph to load the latest version of the current graph. If any graph has its .grf file changed by any operation while displayed in an Unitex window, a window will pop up to warn you and invite you to refresh its window.
+The two green arrows button will refresh the current graph to load the latest version of the current graph. If any graph has its .grf file changed by any operation while displayed in a Unitex window, a window will pop up to warn you and invite you to refresh its window.
 
 \bigskip
-\noindent The balance button allows you to compare the current graph to another graph or another version of the same graph. This will display a new window (as in Figure~\ref{Graph-DIFF}) containing both graphs with colours pointing out the different types of changes between the two graphs : insertion, removal, moves of each state of the graph and change of the content of a state (respectively in green, red, purple and yellow).
+\noindent The balance button allows you to compare the current graph to another graph or another version of the same graph. This will display a new window (as in Figure~\ref{Graph-DIFF}) containing both graphs with colours pointing out the different types of changes between the two graphs: insertion, removal, moves of each state of the graph and change of the content of a state (respectively in green, red, purple and yellow).
 
 \bigskip
 \noindent 
