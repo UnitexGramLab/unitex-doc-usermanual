@@ -195,20 +195,20 @@ modifié après le dernièr enregistrement  en vérifiant si le titre du graphe 
 %%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
 \noindent Lorsque vous modifiez un graphe, vous pouvez faire apparaître, par un clic droit, un menu
-contextuel vous permettant d'effectuer les opérations les plus usuelles.
+contextuel vous permettant d'effectuer les opérations les plus usuelles~:
 
 \begin{itemize}
-\item création d'une boîte
-\item enregistrement, impression du graphe courant ou modifier les paramètres de la page
+\item créer une boîte
+\item enregistrer ou imprimer le graphe courant ou modifier les paramètres de la page
 \item les menus habituels "Tools", "Format" et "Zoom" également accessibles dans le menu "FSGraph"
 \end{itemize}
 Si une ou plusieurs boîtes sont sélectionnées, les menus suivants deviennent accessibles, et
 permettent d'effectuer plusieurs types d'opérations sur cet ensemble de boîtes. Sinon, ils sont
 inutiles et donc désactivés. 
 \begin{itemize}
-\item entourer les boîtes sélectionnées avec des variables d'entrée \index{Variables!d'entrée}
-ou de sortie, \index{Variables de sortie} des
-contextes, ou des délimiteurs du mode morphologique. Ces opérations sont également réalisables avec
+\item entourer les boîtes sélectionnées avec la définition d'une variable d'entrée \index{Variables!d'entrée}
+ou de sortie, \index{Variables de sortie} d'un
+contexte au sens de la section~\ref{section-contexts}, ou des délimiteurs du mode morphologique. Ces opérations sont également réalisables avec
 la barre d'outils de la fenêtre d'édition du graphe (voir section~\ref{toolbar-commands}). 
 \item fusionner les boîtes sélectionnées
 \item exporter les boîtes sélectionnées en tant que nouveau graphe
@@ -230,13 +230,12 @@ la barre d'outils de la fenêtre d'édition du graphe (voir section~\ref{toolbar
 Pour faire appel à un sous-graphe, il faut indiquer son nom dans une boîte en le faisant
 précéder du caractère \verb+:+. Si vous entrez dans une boîte le texte suivant:
 
-\bigskip
+\medskip
 \verb$alpha+:beta+gamma+:E:\greek\delta.grf$
 
-\bigskip
-\noindent vous obtiendrez une boîte similaire à celle de la figure~\ref{fig-subgraph-call}:
-
 \medskip
+\noindent vous obtiendrez une boîte similaire à celle de la figure~\ref{fig-subgraph-call}.
+
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6cm]{resources/img/fig5-7.png}
@@ -261,7 +260,6 @@ figure~\ref{fig-warning-absolute-graph-name}).
 \end{center}
 \end{figure}
 
-
 \bigskip
 \noindent Pour les mêmes raisons de portabilité, il est déconseillé d’utiliser \verb+\+
 ou \verb+/+ comme séparateur dans les noms de graphes. À la place, il vaut mieux utiliser
@@ -276,8 +274,8 @@ que c’est ce séparateur qui est utilisé en interne par le compilateur de gra
 \label{section-repository}
 
 \bigskip
-\noindent Lorsqu’on souhaite réutiliser une grammaire $X$ dans une grammaire $Y$, la méthode
-usuelle est de recopier tous les graphes de $X$ dans le répertoire où se trouvent les graphes
+\noindent Lorsqu’on souhaite réutiliser une grammaire $X$ dans une grammaire $Y$, une pratique
+répandue est de recopier tous les graphes de $X$ dans le répertoire où se trouvent les graphes
 de $Y$, ce qui pose deux problèmes :
 
 \begin{itemize}
@@ -285,7 +283,6 @@ de $Y$, ce qui pose deux problèmes :
   \item deux graphes ne peuvent pas avoir le même nom.
 \end{itemize}
 
-\bigskip
 \noindent Afin d’éviter cela, il est possible de stocker la grammaire $X$ dans un répertoire
 particulier, appelé \textit{répertoire de dépôt}.\index{Répertoire de dépôt} Ce répertoire est
 une sorte de bibliothèque dans laquelle on peut ranger des graphes, et faire ensuite appel
@@ -295,7 +292,6 @@ d’abord définir le répertoire de dépôt dans le menu "Info>Preferences...>D
 Choisissez votre répertoire dans le cadre "Graph repository". Le répertoire de dépôt est propre
 à la langue de travail, vous n’êtes donc pas obligé d’utiliser le même répertoire pour plusieurs
 langues.
-
 
 \begin{figure}[!h]
 \begin{center}
@@ -312,10 +308,8 @@ utilisera l’appel
 % do not remove this line jump
 \noindent \verb+::Det:Johnson:DET+
 (voir figure \ref{repository-graph-call}\,\footnote{Dans un souci de clarté, les appels
-à des graphes du répertoire de dépôt sont en marron au lieu de gris.}).
+à des graphes du répertoire de dépôt sont affichés sur fond kaki au lieu de gris.}).
 
-
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=3.9cm]{resources/img/fig5-11.png}
@@ -339,6 +333,13 @@ appel à \verb+::DET+. Cela permet 1) de ne pas avoir de noms compliqués et 2) 
 les graphes du répertoire de dépôt sans avoir à modifier tous vos graphes. En effet, il vous suffira
 de mettre à jour le graphe situé à la racine du répertoire de dépôt.
 
+\bigskip
+\noindent Les appels à des sous-graphes sont représentés dans les boîtes par des lignes
+sur fond gris (figure~\ref{fig-subgraph-call}), ou kaki dans le cas de sous-graphes à rechercher dans le 
+répertoire de dépôt (figure~\ref{repository-graph-call}). Si le fichier \verb+.grf+ du sous-graphe n'est pas trouvé au chemin indiqué,
+Unitex cherchera le fichier \verb+.fst2+ de même nom. Si Unitex ne trouve ni le fichier \verb+.grf+
+ni le fichier \verb+.fst2+, l'appel au graphe manquant apparaît dans une ligne sur fond rouge.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[h!]
@@ -351,11 +352,7 @@ de mettre à jour le graphe situé à la racine du répertoire de dépôt.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bigskip
-\noindent Les appels à des sous-graphes sont représentés dans les boîtes par des lignes dont
-l’arrière-plan est soit gris, soit marron dans le cas de sous-graphes à rechercher dans le 
-répertoire de dépôt. Si le fichier \verb+.grf+ du sous-graphe n'est pas trouvé au chemin indiqué,
-Unitex cherchera le fichier \verb+.fst2+ de même nom. Si Unitex ne trouve ni le fichier \verb+.grf+
-ni le fichier \verb+.fst2+, l'appel au graphe manquant apparaît sur fond rouge. Sous Windows, vous
+\noindent Sous Windows, vous
 pouvez ouvrir un sous-graphe en cliquant sur la ligne grisée tout en appuyant sur la touche Alt.
 Sous Linux, la combinaison <Alt+Click> est interceptée par le système\footnote{Si vous travaillez
 sous KDE, désactivez <Alt+Click> dans kcontrol.} :
@@ -367,8 +364,8 @@ et droit).
 \bigskip
 \noindent La liste des graphes appelés par le graphe courant et celle des graphes qui appellent le
 graphe courant peuvent être affichées en cliquant sur le second et troisième bouton du quatrième
-groupe de boutons de la barre d'outils (voir figure~\ref{list-called-graphs} et
-figure~\ref{fig-toolbar} à la section~\ref{toolbar-commands}).
+groupe de boutons de la barre d'outils (figure~\ref{list-called-graphs}~; voir aussi
+figure~\ref{fig-toolbar}, section~\ref{toolbar-commands}).
 Dans ces listes de sous-graphes:
 \begin{itemize}
 \item les sous-graphes directement appelés par le graphe courant apparaissent avec leur simple nom
@@ -396,7 +393,7 @@ Dans ces listes de sous-graphes:
 Vous pouvez sélectionner plusieurs boîtes au moyen de la souris. Pour cela, cliquez et
 déplacez la souris sans relâcher le bouton. Lorsque vous relâcherez le bouton, toutes les
 boîtes touchées par le rectangle de sélection seront sélectionnées et s’afficheront alors en
-blanc sur fond bleu, figure \ref{multi-selection}.
+blanc sur fond bleu (figure \ref{multi-selection}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -404,12 +401,13 @@ blanc sur fond bleu, figure \ref{multi-selection}.
 \caption{Sélection de plusieurs boîtes\label{multi-selection}}
 \end{center}
 \end{figure}
-\vspace{-0.3cm}
+%\vspace{-0.3cm}
 %%%%%%%%%%%%%%%
-%\bigskip
+
+\bigskip
 \noindent Vous pouvez sélectionner plusieurs boîtes en maintenant les touches <CTRL> et <SHIFT> et
 en cliquant sur chaque boîte à ajouter à la sélection. De cette manière, vous pouvez sélectionner
-plusieurs boîtes sans avoir à sélectionner une zone complète.
+plusieurs boîtes sans avoir à sélectionner une zone complète (figure \ref{multi-selection2}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -417,8 +415,7 @@ plusieurs boîtes sans avoir à sélectionner une zone complète.
 \caption{Sélection de boîtes éloignées\label{multi-selection2}}
 \end{center}
 \end{figure}
-\vspace{-0.3cm}
-
+%\vspace{-0.3cm}
 
 %%%%%%%%%%%%%%
 \bigskip
@@ -434,8 +431,6 @@ et appuyez sur <Ctrl+C> ou cliquez sur "Copy" dans le menu "Edit". Votre sélect
 est maintenant dans le presse-papiers d’Unitex. Vous pouvez alors coller cette sélection en
 pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
 
-
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-14.png}
@@ -443,25 +438,26 @@ pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
 \end{center}
 \end{figure}
 
+\bigskip
 \noindent NOTE: Vous pouvez coller une sélection multiple dans des graphes différents de celui dont
 elle est issue.
 
 \bigskip
 \index{Graphes!suppression de boîtes}\index{Boîtes!suppression}
 \noindent Pour supprimer des boîtes, sélectionnez-les, effacez le texte qu'elles contiennent
-(\textit{i.e.} le texte affiché dans le champ situé en haut de la fenêtre)
- et appuyez sur Enter. L'état initial et l'état final ne peuvent être supprimés.
+(c'est-à-dire le texte affiché dans le champ situé en haut de la fenêtre)
+ et appuyez sur Enter.
+
+\bigskip
+\noindent On ne peut pas supprimer l'état initial ni l'état final.
 
 \subsection{Sortie}
 \index{Transducteurs}\index{\verb+/+}
-Il est possible d’associer une sortie à une boîte. Pour cela, utilisez le caractère spécial
+Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le caractère spécial
 \verb+/+. Tous les caractères situés à droite de celui-ci seront considérés comme faisant partie de
 la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
-~\ref{fig-exemple-transduction}. La sortie associée à une boîte est représentée en texte gras
-sous celle-ci.\\
+~\ref{fig-exemple-transduction}.
 
-
-%\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-15.png}
@@ -469,23 +465,27 @@ sous celle-ci.\\
 \end{center}
 \end{figure}
 
+\bigskip
+\noindent Pour créer une boite vide avec une sortie contenant \verb+number+, on écrit \verb+<E>/number+ (exemple~: la boite la plus à droite dans la figure~\ref{fig-using-variable} est vide et a une sortie). La sortie associée à une boîte est représentée en gras
+sous celle-ci.
 
 %%%%%%%%%%%%%%
-\noindent \textbf{Poids}\\
+\bigskip
+\noindent \textbf{Poids}
 
-
-On peut attribuer des poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
+On peut attribuer un poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
 reconnue par plusieurs chemins, seul un chemin de poids maximal sera conservé.
 Après un "Locate", la concordance ne comportera qu'une seule fois la séquence reconnue, et avec la
 sortie appropiée (figure~\ref{fig-weights-in-graphs}). Les poids sont des valeurs entières,
-et le poids d'un chemin est la somme des poids rencontrés sur le chemin.
-
-\noindent Avec des poids, on peut définir une priorité entre des chemins qui reconnaissent
-la même séquence. On ne peut pas définir une priorité entre deux séquences dont une est incluse
-dans une autre (cf. section~\ref{section-configuration-recherche}) ni entre des séquences qui
-se chevauchent  (cf. section~\ref{section-priorite-gauche}).
+et le poids d'un chemin est la somme des poids rencontrés sur le chemin. Pour donner à une boite
+le poids 1, on insère \verb+${1}$+ dans la sortie de la boite, comme dans \verb+<E>/${1}$+.
 
 \bigskip
+\noindent Avec des poids, on peut définir une priorité entre des chemins qui reconnaissent
+la même séquence. On ne peut pas définir une priorité entre deux séquences dont une est incluse
+dans une autre (cf. section~\ref{section-configuration-recherche}), ni entre des séquences qui
+se chevauchent  (cf. section~\ref{section-priorite-gauche}).
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-15b.png}
@@ -506,11 +506,10 @@ les symboles spéciaux \verb+$var1(+ et \verb+$var1)+ pour définir respectiveme
 la fin de la zone à mémoriser. Créez deux boîtes contenant l’une \verb+$var1(+ et l’autre
 \verb+$var1)+. Ces boîtes ne doivent rien contenir d’autre que le nom de la variable précédé de
  \verb+$+ et suivi d’une parenthèse. Reliez ensuite ces boîtes à la zone de la grammaire voulue.
- Dans le graphe de la figure ~\ref{fig-using-variable} on reconnaît une séquence commençant par
+ Dans le graphe de la figure~\ref{fig-using-variable} on reconnaît une séquence commençant par
  un nombre que l’on stocke dans une variable nommée \verb+var1+, suivi de \verb+dollar+ ou
  \verb+dollars+.
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-16.png}
@@ -519,6 +518,7 @@ la fin de la zone à mémoriser. Créez deux boîtes contenant l’une \verb+$va
 \end{center}
 \end{figure}
 
+\bigskip
 \noindent Les noms de variables peuvent contenir des lettres latines non accentuées, minuscules
 ou majuscules, ainsi que des chiffres et le caractère \verb+_+ (underscore).
 \index{\verb+_+}\index{Noms de variables} Unitex fait la différence entre les lettres minuscules
@@ -526,27 +526,25 @@ et majuscules.\index{Underscore}
 
 \bigskip
 \noindent Quand une variable a ainsi été définie, on peut l’utiliser dans les sorties en encadrant
-son nom avec le caractère \verb+$+.\index{\verb+$+} La grammaire de la figure
-~\ref{fig-date-grammar} reconnaît une date formée d’un mois et d’une année,
+son nom avec le caractère \verb+$+.\index{\verb+$+} La grammaire de la
+figure~\ref{fig-date-grammar} reconnaît une date formée d’un mois et d’une année,
  et produit en sortie la même date, mais dans l’ordre année-mois.
 
+\bigskip
 \noindent Si on veut utiliser le caractère \verb+$+ en sortie d'une boîte, on doit le
 redoubler, comme le montre la figure~\ref{fig-using-variable}.
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-17.png}
-\caption{Inversion du mois et de l’année dans une date\label{fig-date-grammar}}
+\caption{Interversion du mois et de l’année dans une date\label{fig-date-grammar}}
 \end{center}
 \end{figure}
-
 
 \bigskip
 \noindent Par défaut \verb+Locate+ et \verb+LocateTfst+ considèrent que les variables non définies
 sont vides. On peut modifier ce comportement (voir section \ref{section-advanced-search-options}).
-De plus, il est  possible de savoir si une variable est initialisée ou non (voir section
-\ref{section-variables}).
+De plus, il est  possible dans un graphe d'interroger une variable pour savoir si elle a été initialisée ou non (section~\ref{section-variables}).
 
 \subsection{Copie de listes}
 \index{Copie de listes}
@@ -558,9 +556,8 @@ manuellement chaque terme, Unitex propose un mécanisme de copie de listes. Pour
 ser, sélectionnez votre liste dans votre éditeur de texte et copiez-la au moyen de <Ctrl+C> ou
 de la fonction de copie intégrée à votre éditeur. Créez ensuite une boîte dans votre graphe,
 et utilisez <Ctrl+V> ou la commande "Paste" du menu "Edit" pour la coller dans la boîte.
-Vous verrez alors apparaître la fenêtre de la figure~\ref{fig-setting-contexts-for-multiple-copy}:
+Vous verrez alors apparaître la fenêtre de la figure~\ref{fig-setting-contexts-for-multiple-copy}.
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-18.png}
@@ -570,11 +567,12 @@ liste\label{fig-setting-contexts-for-multiple-copy}}
 \end{figure}
 \index{Contextes!copie de liste}
 
+\bigskip
 \noindent Cette fenêtre vous permet de définir les contextes gauche et droit qui seront ajoutés
 automatiquement à chaque terme de la liste. Par défaut, ces contextes sont vides. Si l’on applique
 les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 
-\bigskip
+\medskip
 \textit{eat}
 
 \textit{sleep}
@@ -585,10 +583,9 @@ les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 
 \textit{read}
 
-\bigskip
-\noindent on obtient la boîte de la figure~\ref{fig-multiple-copy}:
+\medskip
+\noindent on obtient la boîte de la figure~\ref{fig-multiple-copy}.
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-19.png}
@@ -600,15 +597,13 @@ les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 \index{Symboles!spéciaux}
 \noindent L’éditeur de graphes d’Unitex interprète de façon particulière les symboles suivants:
 
-\bigskip
+\medskip
 \verb," + : / < > # \,
 
-\bigskip
+\medskip
 \noindent Le tableau ~\ref{tab-special-symbols} résume la signification pour Unitex de ces symboles,
 ainsi que la ou les façons de reconnaître ces caractères dans des textes.
 
-
-\bigskip
 \index{Meta-caractères}
 \begin{table}[h]
 \begin{center}
@@ -657,7 +652,7 @@ barre d’icônes peut être déplacée en cliquant sur la zone "rugueuse". Elle
 dissociée du graphe et apparaître alors comme une fenêtre séparée (voir figure~\ref{fig-toolbar}).
 Dans ce cas, le fait de fermer cette fenêtre replace la barre d’icônes à sa position initiale.
 Chaque graphe possède sa propre barre d’icônes.
-\vspace{-0.1cm}
+
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig5-20.png}
@@ -665,14 +660,14 @@ Chaque graphe possède sa propre barre d’icônes.
 \end{center}
 \end{figure}
 \index{Copy}\index{Cut}\index{Paste}
-\vspace{-0.3cm}
 
-%\bigskip
+\bigskip
 \noindent Les deux premières icônes sont des raccourcis permettant de sauver et de compiler le
 graphe. Les cinq suivantes correspondent aux opérations "Copier", "Couper", "Coller", "Redo" et
-"Undo".\\
+"Undo".
 
-Les 6 icônes suivantes correspondent à des commandes d’édition des boîtes. La première,
+\bigskip
+\noindent Les 6 icônes suivantes correspondent à des commandes d’édition des boîtes. La première,
 en forme de flèche blanche, correspond au mode d’édition normal des boîtes. Les 5 autres
 correspondent à des outils. Pour utiliser un outil, cliquez sur l’icône correspondante : le
 curseur de la souris changera alors de forme et les clics de la souris seront alors interprétés
@@ -694,40 +689,38 @@ correspondante dans une boîte.
 \noindent Pour que le curseur retrouve sa forme initiale de flèche blanche, faites un clic droit sur le fond du graphe~:
 les clics seront à nouveau interprétés normalement.
 
-L'icône en forme de clé anglaise est un raccourci pour ouvrir la fenêtre des options d'affichage
+\bigskip
+\noindent L'icône en forme de clé anglaise est un raccourci pour ouvrir la fenêtre des options d'affichage
 du graphe. Les deux suivantes permettent de voir les listes de graphes en relation avec le
 graphe courant:
 
 \begin{itemize}
 \item Le premier bouton affiche la liste des graphes appelés par le graphe courant
-\item Le seconde bouton affiche la liste des graphes qui appellent le graphe courant
+\item Le deuxième bouton affiche la liste des graphes qui appellent le graphe courant
 \end{itemize}
 
-Le bouton muni de deux flèches vertes rafraîchit le graphe courant en chargeant sa dernière version.
+\noindent Le bouton muni de deux flèches vertes rafraîchit le graphe courant en chargeant sa dernière version.
 Si un fichier \verb+.grf+ est modifié alors que le graphe qu'il contient est affiché dans
 une fenêtre Unitex, une fenêtre pop up vous invitera à le recharger.
 
 \bigskip
-\noindent Le bouton portant l'icone d'une balance permet de comparer le graphe courant à un autre
+\noindent Le bouton portant l'icône d'une balance permet de comparer le graphe courant à un autre
 graphe ou à une autre version du même graphe. Une nouvelle fenêtre est alors affichée (voir
-	figure~\ref{Graph-DIFF}) qui contient les deux graphes avec des couleurs qui mettent en
-relief les types de différences qui existent entre les deux graphes : insertion, suppression,
+	figure~\ref{Graph-DIFF}) qui contient les deux graphes avec des couleurs qui indiquent les types de différences entre les deux graphes : insertion, suppression,
 déplacement de boîtes et changement de contenu d'une boîte apparaissent respectivement en vert,
 rouge, mauve et jaune.
 
-\bigskip
-\noindent 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=15.6cm]{resources/img/DIFF.png}
 \caption{DIFF\label{Graph-DIFF}}
 \end{center}
 \end{figure}
+
 \bigskip
 \noindent
-
-Les six derniers boutons sont des raccourcis pour l'utilisation des variables, du mode morphologique
-ou l'ajout de contextes autour d'une ou plusieurs boîtes sélectionnées. Ces boutons ne sont activés que si une  ou plusieurs boîtes sont sélectionnées:
+Les six derniers boutons sont des raccourcis pour la définition d'une variable, du mode morphologique
+ou d'un contexte sur une ou plusieurs boîtes sélectionnées. Ces boutons ne sont activés que si une  ou plusieurs boîtes sont sélectionnées:
 \begin{itemize}
 \item \textcolor{red}{()}  : variable d'entrée	(voir section~\ref{section-using-variables})
 \item \textcolor{blue}{()} : variable de sortie (voir section~\ref{section-output-variables})
@@ -737,7 +730,6 @@ ou l'ajout de contextes autour d'une ou plusieurs boîtes sélectionnées. Ces b
 \item \textcolor{green}{\$![} : contexte droit négatif (voir section~\ref{section-contexts})
 \end{itemize}
 
-\bigskip
 %\pagebreak
 
 

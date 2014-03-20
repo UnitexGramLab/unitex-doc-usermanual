@@ -603,13 +603,13 @@ unités lexicales par le programme \verb+Tokenize+.
 \begin{itemize}
 \item \verb+-t TXT+/\verb+--text=TXT+: nom complet du fichier texte \verb+.snt+;
 \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: le fichier alphabet à utiliser;
-\item \verb+-m DICS+/\verb+--morpho=DICS+: ce paramètre optionnel indique
-	quels dictionnaires morphologiques doivent être utilisés, si exigés par des dictionnaires
-	\verb+.fst2+. \verb+DICS+ représente une liste de fichiers \verb+.bin+ (avec leur nom
+\item \verb+-m DICS+/\verb+--morpho=DICS+: ce paramètre optionnel liste
+	les dictionnaires du mode morphologique, si la présence de dictionnaires
+	\verb+.fst2+ rend cette information nécessaire. \verb+DICS+ représente une liste de fichiers \verb+.bin+ (avec leur nom
 		complet) séparés par des points-virgules;
 \item \verb+-K+/\verb+--korean+: indique à \verb$Dico$ qu'il travaille sur du coréen;
 \item \verb+-s+/\verb+--semitic+: indique à \verb$Dico$ qu'il travaille sur une langue sémitique
-	(exigé  si \verb$Dico$ doit compresser un dictionnaire morphologique);
+	(nécessaire  si \verb$Dico$ doit compresser un dictionnaire);
 \item \verb+-u X+/\verb+--arabic_rules=X+: désigne le fichier de configuration des règles
 	typographiques de l'arabe;.
 \item \verb+r X+/\verb+--raw=X+: indique que \verb$Dico$ devrait simplement produire un fichier de

@@ -576,15 +576,15 @@ lexical units by the \verb+Tokenize+ program.
   \item \verb+-t TXT+/\verb+--text=TXT+: complete \verb+.snt+ text file name;
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: the alphabet file to use;
   \item \verb+-m DICS+/\verb+--morpho=DICS+: this optional parameter indicates
-  which morphological dictionaries are to be used, if needed by some \verb+.fst2+
+  which morphological-mode dictionaries are to be used, if needed by some \verb+.fst2+
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
   paths) separated with semi-colons;
   \item \verb+-K+/\verb+--korean+: tells \verb$Dico$ that it works on Korean;
   \item \verb+-s+/\verb+--semitic+: tells \verb$Dico$ that it works on a semitic language (needed 
-  if \verb$Dico$ has to compress a morphological dictionary);
+  if \verb$Dico$ has to compress a dictionary);
   \item \verb+-u X+/\verb+--arabic_rules=X+: specifies the Arabic typographic rule configuration file.
   \item \verb+r X+/\verb+--raw=X+: indicates that Dico should just produce one
-  output file X containing both simple and compound words, without requireing a
+  output file X containing both simple and compound words, without requiring a
   text directory. If X is omitted, results are displayed on the standard output.
 
  
@@ -1055,7 +1055,7 @@ occurrences found.
   file;\index{Alphabet}\index{File!alphabet}
   
   \item \verb+-m DICS+/\verb+--morpho=DICS+: this optional parameter indicates
-  which morphological dictionaries are to be used, if needed by some \verb+.fst2+
+  which morphological-mode dictionaries are to be used, if needed by some \verb+.fst2+
   dictionaries. \verb+DICS+ represents a list of \verb+.bin+ files (with full
   paths) separated with semi-colons;
   

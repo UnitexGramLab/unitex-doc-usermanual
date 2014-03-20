@@ -677,14 +677,14 @@ faire des requêtes qui entrent à l'intérieur des "tokens", sauf avec les filt
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig6-17k.png}
-\caption{Reconnaissance de données morphologiques\label{fig-morpho1}}
+\caption{Reconnaissance d'éléments morphologiques\label{fig-morpho1}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Cependant, même les filtres morphologiques ne permettent aucune requête, puisqu'ils ne
-peuvent pas faire référence aux dictionnaires. Ainsi, il est impossible de formuler de cette 
-manière une requête comme ``\textit{un mot constitué du préfixe} \verb$un$ \textit{suivi d'un adjectif ayant pour suffixe} \verb+able+''.
+\noindent Cependant, les filtres morphologiques ne permettent pas n'importe quelle requête, puisqu'ils ne
+peuvent pas faire référence aux informations contenues dans les dictionnaires. Ainsi, il est impossible de formuler de cette 
+manière une requête comme ``\textit{un mot constitué du préfixe} \verb$un$ \textit{suivi d'un adjectif en} \verb+able+''.
 
 \bigskip
 \noindent Pour surmonter cette difficulté, nous introduisons un mode morphologique dans le programme
@@ -710,76 +710,67 @@ Dans ce mode, le contenu du graphe n'est pas interprété de manière habituelle
 	doit se trouver dans le même graphe que son début.
 
 \item Vous pouvez utiliser des filtres morphologiques sur \verb+<DIC>+ et des motifs
-	faisant référence aux dictionnaires, comme \verb+<be>+, \verb+<N:ms>+, etc. 
+faisant référence aux informations contenues dans un dictionnaire, comme \verb+<be>+, \verb+<N:ms>+, etc., du moment qu'il a été préalablement déclaré comme dictionnaire
+du mode morphologique (voir section~\ref{dic-mode-morpho}). 
    
 \item Vous pouvez utilisez les filtres morphologiques seuls ou sur \verb+<TOKEN>+,
 	mais vos filtres ne s'appliqueront seulement qu'au caractère courant. Par 
 	conséquent, les filtres comme \verb+<<[1-9][0-9]>>+ qui essayent de reconnaître plus d'un
 	caractère ne reconnaîtront jamais rien. En fait, dans le mode morphologique, 
-	les filtres morphologiques ne devraient être utilisés que pour exprimer des négations
+	les filtres morphologiques ne sont utiles que pour exprimer des négations
 	comme \verb+<<[^aeiouy]>>+ (n'importe quel caractère qui n'est pas une voyelle). 
    
-   
-\item Les contextes gauche et droit sont interdits.
+\item Les contextes gauches et droits au sens de la section~\ref{section-contexts} sont interdits.
 
 \item Vous pouvez utiliser des sorties.
    
-\item \verb+<MOT>+ reconnaît n'importe quelle lettre, définie dans le fichier alphabet
-	.\index{\verb+<MOT>+}
+\item \verb+<MOT>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet.
+	\index{\verb+<MOT>+}
 
-\item \verb+<MIN>+ reconnaît n'importe quelle minuscule, définie dans le fichier alphabet.\index{\verb+<MIN>+}
+\item \verb+<MIN>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verb+<MIN>+}
 
-\item \verb+<MAJ>+ reconnaît n'importe quelle majuscule, définie dans le fichier alphabet.\index{\verb+<MAJ>+}
+\item \verb+<MAJ>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verb+<MAJ>+}
 
-\item \verb+<DIC>+ reconnaît n'importe quel mot présent dans les dictionnaires
-	 (voir au-dessus).\index{\verb+<DIC>+}
+\item \verb+<DIC>+ reconnaît n'importe quel mot présent dans un dictionnaire du mode
+	 morphologique\index{\verb+<DIC>+}, mais les méta-symboles \verb+#+, \verb+<PRE>+, \verb+<NB>+,
+ 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verb+#+}\index{\verb+<PRE>+}\index{\verb+<NB>+} \index{\verb+<TOKEN>+}\index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
 
- \item Vous pouvez utilisez des motifs qui font référence aux dictionnaires morphologiques,
- 	 comme \verb+<have>+, \verb+<V:K>+, etc. 
-
- \item Les meta \verb+#+, \verb+<PRE>+, \verb+<NB>+, 
- 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verb+#+}
-    \index{\verb+<PRE>+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+} 
-    \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
-    
 \item Si vous atteignez la fin de la zone sans être à la fin du token, la reconnaissance échoue.
 	Par exemple, si le texte contient \verb+enabled+, vous ne pouvez pas reconnaître seulement
 	\verb+enable+.
 \end{enumerate}
 
-
-\subsection{Dictionnaires morphologiques}
-\index{Dictionnaires morphologiques}
-Dans le mode morphologique, vous pouvez faire des requêtes qui utilisent les dictionnaires.
-Par exemple, vous pouvez chercher tous les mots constitués du préfixe \verb+un+ suivi d'un adjectif
-avec la grammaire de la figure \ref{fig-morpho3}.
+\subsection{Dictionnaires du mode morphologique}
+\index{Dictionnaires du mode morphologique}
+\label{dic-mode-morpho}
+Dans le mode morphologique, on peut faire des requêtes qui utilisent les dictionnaires.
+Par exemple,  la grammaire de la figure \ref{fig-morpho3} cherche les mots constitués du préfixe \verb+un+ suivi d'un adjectif.
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig6-17m.png}
-\caption{Reconnaissance des mots constitués de 'un'+adjectif finissant par 
-'able'\label{fig-morpho3}}
+\caption{Reconnaissance des mots constitués de \textit{un} et d'un adjectif en 
+\textit{able}\label{fig-morpho3}}
 \end{center}
 \end{figure}
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig6-17n.png}
-\caption{Configuration des dictionnaires morphologiques\label{fig-morpho4}}
+\caption{Déclaration des dictionnaires du mode morphologique\label{fig-morpho4}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Toutefois, si vous désirez reconnaître le mots 
-\verb+unaware+ avec cette grammaire, nous devons savoir que \verb+aware+ est un adjectif. Mais,
-\verb+aware+ pourrait ne pas être présent dans le texte, de sorte que nous ne pouvons pas compter
+\noindent Pour pouvoir reconnaître le mot 
+\verb+unaware+ avec cette grammaire, le système doit savoir que \verb+aware+ est un adjectif. Mais
+\verb+aware+ peut ne pas être présent dans le texte, de sorte que nous ne pouvons pas compter
 sur les dictionnaires du texte. C'est la raison pour laquelle nous devons définir une liste de
-dictionnaires à utiliser en mode morphologique.
-Pour faire cela, allez dans ``Info>Preferences>Morphological dictionaries'', voir figure
-\ref{fig-morpho4}.
-Vous pouvez définir autant de dictionnaires morphologiques que vous voulez, mais ils doivent être
-compilés (au format \verb+.bin+). Ceci fait, vous pouvez appliquer votre grammaire.
-
+dictionnaires à consulter en mode morphologique.
+Pour faire cela, allez dans ``Info>Preferences>Morphological-mode dictionaries''
+(figure~\ref{fig-morpho4}).
+Vous pouvez définir autant de dictionnaires du mode morphologique que vous voulez, mais ils doivent
+être au format \verb+.bin+. Ceci fait, vous pouvez appliquer votre grammaire.
 
 \subsection{Variables de dictionnaire}
 \index{Variables de dictionnaire}
@@ -787,11 +778,11 @@ compilés (au format \verb+.bin+). Ceci fait, vous pouvez appliquer votre gramma
 \index{Variables morphologiques}
 \index{Variables!morphologiques}
 \label{dictionary-variables}
-On peut affecter à des variables des informations issues des dictionnaires morphologiques.
+On peut affecter à des variables des informations issues des dictionnaires du mode morphologique.
 Ces variables sont appelées variables de dictionnaire ou variables morphologiques.
 L'initialisation d'une variable de ce type doit être associée à une boite contenant un motif
-qui fait référence à des informations contenues dans un dictionnaire morphologique,
-sauf le motif \verb+<DIC>+. On met \verb+$xxx$+ en sortie de la boîte, où \verb+xxx+ est un nom
+qui fait référence à des informations contenues dans un dictionnaire du mode morphologique,
+à l'exception du motif \verb+<DIC>+. On met \verb+$xxx$+ en sortie de la boîte, où \verb+xxx+ est un nom
 correct de variable (cf. section~\ref{section-using-variables}). Ceci affecte à une  variable dénommée \verb+xxx+
 l'entrée de dictionaire reconnue par le motif.
 Dans la suite des chemins qui passent par la boite, on peut obtenir la forme fléchie, la forme canonique et les codes fournis par l'entrée avec
@@ -813,7 +804,7 @@ On peut également utiliser les motifs suivants:
 
 \end{itemize}
 	
-\noindent En outre, les variables de dictionnaire peuvent être utilisées en dehors du mode morphologique,
+\noindent Les variables de dictionnaire peuvent être utilisées en dehors du mode morphologique,
 comme sur la figure \ref{fig-morpho7}. On peut effectuer des tests sur ces variables comme expliqué
 dans la section \ref{section-variables}.
 
@@ -845,8 +836,8 @@ dans la section \ref{section-variables}.
 
 \noindent Pour les grammaires appliquées avec \verb+LocateTfst+ (cf. section~\ref{section-locate-tfst}), on dispose d'une possibilité
 supplémentaire. 
-Même sans être en mode morphologique, on peut mémoriser dans une variable de dictionnaire
-une  étiquette lexicale contenue dans l'automate du texte.
+En dehors du mode morphologique, on peut mémoriser dans une variable de dictionnaire
+une étiquette lexicale contenue dans l'automate du texte.
 Il suffit pour cela d'associer à la boîte une sortie de la forme \verb+$:abc$+ où \verb+abc+
 est le nom de la variable.
 On peut ensuite l'utiliser comme variable de dictionnaire habituelle, de la façon décrite ci-dessus~:
@@ -1581,27 +1572,29 @@ L’option "Show differences with previous concordance" permet de comparer la co
 qui vient d’être calculée avec la concordance précédente, si elle existe. Pour cela, le programme
 \verb+ConcorDiff+ construit les deux concordances dans l’ordre du texte, puis compare leurs lignes.
 Le résultat est une page HTML qui montre alternativement les lignes des deux concordances, laissant
-une ligne vide lorsque un match n'apparaît que dans une seule  concordance. Les lignes de la
-concordance précédente sont grisées et celles de la concordance courante restent sur fond blanc.
-Dans chaque ligne, seules les séquences reconnues sont colorées. Vous pouvez cliquer dessus pour
-ouvrir le texte à cette position:
+une ligne vide quand un match n'apparaît que dans une seule des deux concordances (figure~\ref{fig-concordiff}).
 
-Le bleu indique qu'une séquence est commune au deux concordances. Le rouge indique qu'une séquence
-reconnue est commune au deux concordances, mais en des positions différentes, c'est-à-dire que les
-deux séquences reconnues se chevauchent partiellement. Le vert indique une séquence n'apparaissant
-que dans une seule concordance.
-
-
-\bigskip
-\noindent S'il n'existe pas de concordance antérieure, le bouton est désactivé.
-
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[height=10cm]{resources/img/fig6-33.png}
 \caption{Exemple de comparaison de concordances\label{fig-concordiff}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Les lignes de la
+concordance antérieure sont grisées et celles de la concordance courante restent sur fond blanc.
+Dans chaque ligne, seules les séquences reconnues sont colorées. On peut cliquer dessus pour
+ouvrir le texte à cette position.
+
+\bigskip
+\noindent Le bleu indique qu'une séquence est commune aux deux concordances. Le rouge indique qu'une séquence
+reconnue est commune aux deux concordances, mais avec des extensions différentes, c'est-à-dire que les
+deux séquences reconnues se chevauchent partiellement. Le vert signale qu'une séquence n'apparait
+que dans une seule concordance.
+
+\bigskip
+\noindent S'il n'existe pas de concordance antérieure, le bouton est désactivé.
 
 %\clearpage
 \subsection{Mode Debug}
