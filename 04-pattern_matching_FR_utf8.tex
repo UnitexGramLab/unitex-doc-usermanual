@@ -5,7 +5,7 @@ Nous allons voir dans ce chapitre comment rechercher des motifs simples dans un 
 au moyen des expressions rationnelles.
 
 \section{Définition}
-\index{Expressions rationnelles}
+\index{Expression rationnelle}
 
 Le but de ce chapitre n’est pas de faire une introduction aux langages formels, mais
 de montrer comment utiliser les expressions rationnelles dans Unitex pour rechercher des
@@ -54,12 +54,12 @@ guillemets.
 
 
 \section{Motifs}
-\index{Masque!lexical}
+\index{Masque lexical}
 Un masque lexical est une requête qui reconnaît une unité lexicale ou une suite d'unités lexicales
 
 \subsection{Symboles spéciaux}
 \label{section-special-symbols}
-\index{Meta-symbols}
+\index{Méta-symboles}
 
 Il y a deux sortes de motifs. La première catégorie regroupe tous les symboles présentés à la
 section ~\ref{section-sentence-splitting} à l’exception de \verb$<PNC>$, qui reconnaît des signes de
@@ -100,7 +100,7 @@ majuscule;
 \noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verb+{STOP}+}, pas même \verb+<TOKEN>+.
 
 \subsection{Masques lexicaux}
-\index{Masques lexicaux}\index{Dictionnaires!référence aux}
+\index{Masque lexical}\index{Dictionnaire!référence aux informations du}
 \index{Dictionnaire!du texte}
 
 La seconde sorte de masques lexicaux regroupe ceux qui font appel aux informations contenues
@@ -119,7 +119,7 @@ dans les dictionnaires du texte. Les quatre formes possibles sont :
   \item \verb+<V>+: reconnaît toutes les entrées qui ont le code grammatical \verb+V+.
   	  Ce masque lexical est ambigu comme le premier. Pour lever l'ambuguité, on peut utiliser
   	  \verb+<.V>+ ou \verb$<+V>$;
-   \index{Etiquettes!lexicales}
+   \index{Etiquette lexicale}
 \item \verb+{lirons,lire.V}+ ou \verb+<lirons,lire.V>+: reconnaît toutes les entrées qui ont
 	\verb+lir-+\newline\verb+ons+ comme forme fléchie, \verb+lire+ comme forme canonique et qui
 	ont le code grammatical
@@ -228,7 +228,7 @@ après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<
 \verb+<MAJ>+, \verb+<PRE>+, \verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
 codes grammaticaux, sémantiques ou flexionnels (\textit{i.e.} \verb$<!V~z3:P3>$). Les motifs
 \verb+#+ et \verb+" "+  sont la négation l’un de l’autre.
-\index{Negation}\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+}
+\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+}
 Le méta \verb$<!MOT>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
 lettres, sauf le séparateur de phrases \verb+{S}+ et, bien sûr, le marqueur \verb+{STOP}+.
 La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ et
@@ -284,7 +284,7 @@ being,.N+Hum:s
   	  (voir figure~\ref{fig-search-<!MOT>}). Ce masque ne reconnait pas le séparateur de phrase
   	  \verb+{S}+
   	  ni le tag \verb+{STOP}+.
-  	  \index{\verb+{S}+}\index{Séparateur de phrase}\index{\verb+{STOP}+}
+  	  \index{\verb+{S}+}\index{Séparateur!de phrases}\index{\verb+{STOP}+}
 \end{itemize}
 
 \bigskip
@@ -351,8 +351,8 @@ et \textit{le petit chat}
 \noindent \verb$(<E>+franco-)(anglais+belge)$ reconnaît \textit{anglais}, \textit{belge},
 \textit{franco-anglais} et \textit{franco-belge}
 
-\section{Kleene star}
-\index{Kleene star}\index{\verb+*+}\index{Opérateur!Kleene star}
+\section{Étoile de Kleene}
+\index{Etoile de Kleene}\index{\verb+*+}\index{Opérateur!étoile de Kleene}
 L’étoile de Kleene, représentée par le caractère \verb+*+,permet de reconnaître zéro, une ou
 plusieurs occurrences d’une expression. L’étoile doit être placée à droite de l’élément concerné.
 L’expression :
@@ -391,7 +391,7 @@ comme le montre la figure~\ref{fig-epsilon-error}.
 
 \section{Filtres morphologiques}
 \label{section-filters}
-\index{Filtres morphologiques}
+\index{Filtre morphologique}
 
 Il est possible d’appliquer des filtres morphologiques aux unités lexicales recherchées.
 Pour cela, il faut faire suivre immédiatement l’unité lexicale considérée par un filtre entre
@@ -403,7 +403,7 @@ doubles angles:
 \textit{motif}\verb$<<$\textit{motif morphologique}\verb$>>$ \\
 
 
-\bigskip\index{Expressions régulières}\index{POSIX}
+\bigskip\index{Expression régulière}\index{Expression rationnelle}\index{POSIX}
 \noindent Les filtres morphologiques s’expriment sous la forme d’expressions régulières au format
 POSIX (voir \cite{TRE} pour une syntaxe détaillée). Voici quelques exemples de filtres élémentaires:
 
@@ -576,8 +576,8 @@ présence de caractères diacritiques qui se combinent à d’autres lettres au 
 comme des caractères normaux.
 
 
-\index{Tri!des concordances}
-\index{Contextes!concordance}
+\index{Tri!de concordance}
+\index{Contexte!concordance}
 \bigskip
 \noindent Vous pouvez sélectionner le mode de tri à appliquer dans la liste "Sort According to". Le
 mode "Text Order" affiche les occurrences dans l’ordre où elles apparaissent dans le texte.
@@ -590,7 +590,7 @@ fichier HTML.\index{Fichier!HTML}
 \bigskip
 \noindent Lorsque les concordances atteignent plusieurs milliers d’occurrences, il est préférable
 de les afficher avec un navigateur web (Firefox \cite{Firefox}, Netscape \cite{Netscape}, 
-Internet Explorer, etc.).\index{Web browser}
+Internet Explorer, etc.).\index{Navigateur web}
 \newline
 Pour cela, cochez la case "Use a web browser to view the concordance" (voir figure
 	~\ref{fig-configuration-concordance}). 
@@ -600,7 +600,7 @@ Cliquez sur l’onglet "Text Presentation" et sélectionnez le programme à util
 "Html Viewer" (voir figure~\ref{fig-browser-selection}).
 
 \bigskip
-\noindent \index{Cadre des concordance} Si vous choisissez d’ouvrir la concordance à l’intérieur
+\noindent \index{Cadre des concordances} Si vous choisissez d’ouvrir la concordance à l’intérieur
 d’Unitex, vous verrez une fenêtre
 comme celle de la figure \ref{fig-example-concordance}. 
 L’option "Enable links" activée par défaut permet de considérer les occurrences comme des liens
@@ -613,8 +613,6 @@ concordance edition", on ne peut pas cliquer ainsi sur les occurrences, mais on 
 la concordance comme du texte. Cela permet entre autres de s’y déplacer avec un curseur,
 ce qui peut être pratique si l’on travaille sur une concordance avec de grands contextes.
 
-
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig4-7.png}
@@ -622,7 +620,6 @@ ce qui peut être pratique si l’on travaille sur une concordance avec de grand
 \end{center}
 \end{figure}
 
-\bigskip
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=18cm]{resources/img/fig4-8.png}

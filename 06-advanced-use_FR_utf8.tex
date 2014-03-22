@@ -13,7 +13,7 @@ détaillant leurs particularités.
 
 
 \subsection{Graphes de flexion}
-\index{Transducteur!de flexion}\index{Flexion automatique}
+\index{Transducteur!de flexion}\index{Flexion automatique}\index{Graphe!de flexion}
 Un graphe de flexion décrit les variations morphologiques associées à une classe de
 mots, en associant à chaque variante des codes flexionnels. Les chemins d’un tel graphe décrivent
 les modifications à appliquer aux formes canoniques tandis que les sorties contiennent
@@ -112,7 +112,7 @@ de graphes de prétraitement.
 
 \subsection{Graphes de normalisation de l’automate du texte}
 \label{section-normalizing-text-automataon}
-\index{Automate!texte}\index{Texte!normalisation de l’automate}
+\index{Automate!du texte}\index{Texte!automate du!normalisation}
 \index{Grammaires!normalisation!de l'automate du texte}
 \index{Normalisation!de l'automate du texte}
 \index{Normalisation!de formes ambiguës}
@@ -153,12 +153,12 @@ utilisés.
 
 
 \subsection{Graphes syntaxiques}
-\index{Graphes!syntaxiques}\index{Grammaires!locales}
+\index{Graphe!syntaxique}\index{Grammaires!locales}
 Les graphes syntaxiques, également appelés grammaires locales, permettent de décrire
 des motifs syntaxiques qui pourront ensuite être recherchés dans des textes. De tous les
 types de graphe, ceux-ci possèdent la plus grande puissance d’expressions, car ils permettent
 de faire référence aux dictionnaires.\index{Référence aux informations dans les dictionnaires}
-\index{Dictionnaires!réference aux informations du}
+\index{Dictionnaire!référence aux informations du}
 
 \bigskip
 \noindent Les variantes minuscules/majuscules sont autorisées selon le principe décrit plus haut.
@@ -218,7 +218,7 @@ paramétrés seront développées dans le chapitre
 \section{Compilation d'une grammaire}
 \label{section-graph-compilation}
 \subsection{Compilation d'un graphe}
-\index{Graphe!compilation}\index{Compilation d'un graphe}
+\index{Graphe!compilation}\index{Compilation!d'un graphe}
 La compilation est l’opération qui permet de passer du format \verb+.grf+ à un format plus
 facile à manipuler par les programmes d’Unitex. Pour compiler un graphe, vous devez
 l’ouvrir, puis cliquer sur "Compile FST2" dans le sous-menu "Tools" du menu "FSGraph".
@@ -239,9 +239,9 @@ graphes qui composent la grammaire. La grammaire est alors prête à être utili
 différents programmes d’Unitex.
 
 
-\subsection{Approximation par un transducteur à états finis}
-\index{Graphe!approximation avec un transducteur à états finis}
-\index{Approximation d'une grammaire avec un transducteur à états finis}
+\subsection{Approximation par un transducteur fini}
+\index{Graphe!approximation par transducteur fini}
+\index{Approximation d'une grammaire par un transducteur fini}
 \index{\verb+Flatten+}\index{Programmes externes!\verb+Flatten+}
 Le format FST2 conserve l’architecture en sous-graphes des grammaires, ce qui les différencie
 des stricts transducteurs à états finis. Le programme \verb+Flatten+ permet de transformer
@@ -308,7 +308,7 @@ epsilon.
 \noindent Il n’est pas possible d’associer une sortie à un appel à un sous-graphe. De telles sorties
 sont ignorées par Unitex. Il faut donc utiliser une boîte vide située immédiatement à gauche
 de l’appel au sous-graphe pour porter la sortie (voir figure~\ref{fig-subgraph-output}).
-\index{Sortie associée à l'appel de sous-graphe}
+\index{Sortie d'un transducteur!associée à un appel de sous-graphe}
 
 \bigskip
 \begin{figure}[!h]
@@ -397,7 +397,7 @@ On attache un intervalle en insérant \verb+$[m,M]$+ dans la sortie de la boite,
 
 \
 \subsection{Détection d’erreurs}
-\index{Détection d'erreurs dans les graphes}\index{Graphe!détection d'erreurs}
+\index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}
 \index{Erreurs dans les graphes}
 Pour éviter aux programmes de se bloquer ou de planter, Unitex effectue automatique-
 ment une détection d’erreurs lors de la compilation des graphes. Le compilateur de graphes
@@ -420,7 +420,7 @@ de recherche sera automatiquement interrompue.
 
 
 \section{Contextes}
-\index{Contextes}\label{section-contexts}
+\index{Contexte!zone dans un graphe}\label{section-contexts}
 
 Les graphes d’Unitex sont des grammaires algébriques. Elles sont également appelées
 grammaires hors-contexte, car lorsque l’on souhaite reconnaître une séquence
@@ -741,7 +741,7 @@ du mode morphologique (voir section~\ref{dic-mode-morpho}).
 \end{enumerate}
 
 \subsection{Dictionnaires du mode morphologique}
-\index{Dictionnaires du mode morphologique}
+\index{Dictionnaire!du mode morphologique}
 \label{dic-mode-morpho}
 Dans le mode morphologique, on peut faire des requêtes qui utilisent les dictionnaires.
 Par exemple,  la grammaire de la figure \ref{fig-morpho3} cherche les mots constitués du préfixe \verb+un+ suivi d'un adjectif.
@@ -773,10 +773,8 @@ Vous pouvez définir autant de dictionnaires du mode morphologique que vous voul
 être au format \verb+.bin+. Ceci fait, vous pouvez appliquer votre grammaire.
 
 \subsection{Variables de dictionnaire}
-\index{Variables de dictionnaire}
-\index{Variables!de dictionnaire}
-\index{Variables morphologiques}
-\index{Variables!morphologiques}
+\index{Variable!de dictionnaire}
+\index{Variable!morphologique}
 \label{dictionary-variables}
 On peut affecter à des variables des informations issues des dictionnaires du mode morphologique.
 Ces variables sont appelées variables de dictionnaire ou variables morphologiques.
@@ -1019,7 +1017,7 @@ dans le répertoire (ici le graphe \texttt{truc.grf}).
 
 \section{Règles d’application des transducteurs}
 \label{section-applying-transducers-rules}
-\index{Transducteurs!règles d'application}\index{Règles!pour l'application des transducteurs}
+\index{Transducteur!règles d'application}\index{Règles!pour l'application des transducteurs}
 Cette section décrit les règles d’application des transducteurs lors des opérations de pré-
 traitement et de recherche de motifs. Les graphes de flexion et de normalisation de formes
 ambiguës ne sont pas concernés par ce qui suit.
@@ -1068,7 +1066,7 @@ concordances distinct du texte.
 
 \subsection{Priorité à gauche}
 \label{section-priorite-gauche}
-\index{Priorité!au match le plus à gauche} \index{Chevauchement d'occurrences}
+\index{Priorité!à la séquence de gauche} \index{Chevauchement d'occurrences}
 Lors de l’application d’une grammaire locale, les occurrences qui se chevauchent sont
 toutes indexées.
 Nous considérons, ici, de vrai chevauchements d'occurrence comme \verb+abc+ et \verb+bcd+, et
@@ -1112,7 +1110,7 @@ aux séquences les plus longues.
 
 \subsection{Sorties à variables}
 \label{section-variables}
-\index{Variables!dans les graphes}\index{Sortie de transducteur!avec variables}
+\index{Variable!dans un graphe}\index{Sortie d'un transducteur!avec variable}
 Comme nous l’avons vu à la section~\ref{section-using-variables}, il est possible d’utiliser
 des variables d'entrée pour mémoriser le texte qui a été analysé par une grammaire. Ces variables
 peuvent être utilisées dans les graphes de prétraitement et dans les graphes syntaxiques.
@@ -1203,7 +1201,7 @@ figure~\ref{fig-overlapping-variables}.
 
 \section{Variables de sortie}
 \label{section-output-variables}
-\index{Variables de sortie}
+\index{Variable!de sortie}
 Les variables d'entrée sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ mémorisent des portions du
 texte d'entrée. 
 Il est aussi possible de mémoriser des parties des sorties produites par une grammaire.
@@ -1241,7 +1239,7 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 \section{Opérations sur les variables}
 \label{section-ops-on-variables}
 \subsection{Tests sur les variables}
-\index{Tests sur les variables}\index{Variables!test}
+\index{Tests sur les variables}\index{Variable!interrogation}
 
 \noindent Il est possible de tester si une variable est définie ou non, afin d'interrompre la
 reconnaissance courante si la condition n'est pas vérifiée. Ceci se fait en insérant la  séquence
@@ -1268,7 +1266,6 @@ qui utilise ce type de test. La figure \ref{fig-testing-a-variable-results} mont
 
 
 \subsection{Comparaison de variables}
-\index{Comparaison de variables}
 \index{Comparaison!de variables}
 Il est également possible de comparer tout type de variable (d'entrée, de sortie, ou de dictionnaire) avec une constante ou une autre variable en utilisant la syntaxe suivante:
 
@@ -1331,7 +1328,7 @@ utilisé par défaut;
 \noindent 
 Le cadre "Search limitation" permet de limiter ou non la recherche à un certain nombre
 d’occurrences. Par défaut, la recherche est limitée aux 200 premières occurrences.
-\index{Occurrences!nombre de}
+\index{Occurrences!nombre}
 
 \bigskip
 \begin{figure}[!h]
@@ -1375,7 +1372,7 @@ figure \ref{fig6-advanced-options1}.
 \end{center}
 \end{figure}
 
-\index{Sorties ambiguës}
+\index{Sortie d'un transducteur!ambiguïté}
 \noindent L'option "Ambiguous output policy" est illustrée par le graphe de la 
 figure \ref{fig6-advanced-options2}. Lorsqu'un déterminant est suivi par un mot pouvant être un
 nom ou un adjectif, il peut produire deux sorties distinctes pour la même séquence d'entrée.
@@ -1483,7 +1480,7 @@ le même texte.
 
 
 \bigskip
-\index{Contextes!concordance}\index{Tri!de concordances}
+\index{Contexte!concordance}\index{Tri!de concordance}
 \noindent Pour afficher une concordance, vous devez cliquer sur le bouton "Build concordance".
 Vous pouvez paramétrer la taille des contextes gauche et droit en caractères. Vous pouvez
 également choisir le mode de tri qui sera appliqué aux lignes de la concordance grâce au
@@ -1501,7 +1498,7 @@ concordance, reportez-vous à la section~\ref{section-display-occurrences}.
 
 \noindent La concordance est produite sous la forme d’un fichier HTML
 \index{Fichier!HTML} Vous pouvez paramétrer Unitex pour que les concordances soient lues
-à l’aide d’un navigateur Web (voir section~\ref{section-display-occurrences}).\index{Web browser}
+à l’aide d’un navigateur Web (voir section~\ref{section-display-occurrences}).\index{Navigateur web}
 
 \bigskip
 \noindent Si vous affichez les concordances avec la fenêtre proposée par Unitex, vous pouvez accéder
@@ -1565,7 +1562,7 @@ phrases contenant les occurrences ou non.
 
 \subsection{Comparaison de concordances}
 \label{section-comparing-concordances}
-\index{Comparaison de concordances}\index{Concordance!comparaison}\index{Programmes
+\index{Comparaison!de concordances}\index{Concordance!comparaison}\index{Programmes
 externes!\verb+ConcorDiff+}
 \index{\verb+ConcorDiff+}
 L’option "Show differences with previous concordance" permet de comparer la concordance

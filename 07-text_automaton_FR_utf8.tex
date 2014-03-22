@@ -13,7 +13,7 @@ du programme ELAG. Depuis la version 2.1, il est possible d’effectuer des rech
 motifs sur l’automate du texte (voir section \ref{section-locate-tfst}).
 
 
-\section{Présentation} \index{Dictionnaires!du texte}
+\section{Présentation} \index{Dictionnaire!du texte}
 L’automate du texte permet d’exprimer toutes les interprétations lexicales possibles des
 mots. Ces différentes interprétations sont les différentes entrées présentes dans les
 dictionnaires du texte. La figure~\ref{fig-sentence-automaton} montre l’automate de la
@@ -50,7 +50,6 @@ où le mot composé \texttt{courts of law} est concurrent avec une combinaison d
 \bigskip
 \noindent Par construction, l’automate du texte ne contient pas de boucle. On dit que l’automate
 du texte est \textit{acyclique}.\index{Automate!acyclique}
-\index{Automate acyclique}
 
 \bigskip
 \noindent NOTE: le terme ``automate du texte'' est un abus de langage. En effet, il y a en
@@ -70,7 +69,7 @@ chemin ne comportant que des mots inconnus.
 
 
 \subsection{Règles de construction de l’automate du texte}
-\index{Granularité des dictionnaires}\index{Dictionnaires!granularité}\index{Degré d'ambiguity}
+\index{Granularité des dictionnaires}\index{Dictionnaire!granularité}\index{Degré d'ambiguïté}
 Les automates de phrase sont construits à partir des dictionnaires du texte. Le degré
 d’ambiguïté obtenu est donc directement lié à la finesse de description des dictionnaires utilisés.
 Sur l’automate de phrase de la figure~\ref{fig-ambiguity-of-which}, on peut voir que le mot
@@ -99,7 +98,7 @@ texte. Toutes les combinaisons de ces interprétations forment l’automate de l
  \verb${aujourd’hui,.ADV}$), ces étiquettes sont reproduites à l’identique dans l’automate, 
 sans que le programme essaye de décomposer les séquences qu’elles représentent.
 
-\index{Etiquettes!lexicales}
+\index{Etiquette lexicale}
 
 \bigskip
 \noindent Dans chaque boîte, la $1\iere$  ligne contient la forme fléchie trouvée dans le texte, et
@@ -120,7 +119,7 @@ pour des applications où la casse est importante, telle que la reconnaissance d
 
 \subsection{Normalisation de formes ambiguës}
 \index{Normalisation!de l'automate du texte}\index{Normalisation!de formes ambiguës}
-\index{Texte!normalisation de l'automate}
+\index{Texte!automate du!normalisation}
 Lors de la construction de l’automate, il est possible d’effectuer une normalisation de
 formes ambiguës en appliquant une grammaire de normalisation. Cette grammaire doit
 se nommer \verb+Norm.fst2+ et doit être placée dans votre répertoire personnel, dans le sous-répertoire
@@ -283,7 +282,7 @@ Pour plus de détails, le lecteur pourra se reporter à \cite{elag-blanc-dister}
 
 \subsection{Grammaires de levée d’ambiguïtés}
 \label{section-elag-grammars}
-\index{Grammaire!levée d’ambiguïtés}
+\index{Grammaires!levée d’ambiguïtés}
 Les grammaires manipulées par ELAG ont une syntaxe particulière. Elles comportent deux parties, que
 nous appelerons partie \textit{si} et \textit{alors}. La partie \textit{si} d’une grammaire
 ELAG se divise en deux zones délimitées par des boîtes contenant le symbole \verb+<!>+. 
@@ -461,10 +460,10 @@ le bouton "Compile". Cela créera un fichier \verb+.rul+ portant le nom indiqué
 \noindent Vous pouvez maintenant appliquer votre ensemble de grammaires. Comme expliqué
 plus haut, cliquez sur le bouton "Apply Elag Rule" dans la fenêtre de l’automate du texte. Quand la boîte de dialogue vous demande le nom du fichier \verb+.rul+ à utiliser, cliquez sur le bouton "Browse" et séletionnez votre ensemble. L’automate résultat est identique à celui qui aurait été obtenu en appliquant successivement chacune des grammaires.
 
-\subsection{Fenêtre de processing d’ELAG}
-\index{Fenêtre de processing d’ELAG}
+\subsection{Fenêtre de traitement d’ELAG}
+\index{Fenêtre de traitement d’ELAG}\index{ELAG!fenêtre de traitement}
 Lors de la désambiguïsation, le programme \verb+Elag+ 
-\index{Programmes externes!\verb+Elag+} est lancé dans une fenêtre de processing qui permet
+\index{Programmes externes!\verb+Elag+} est lancé dans une fenêtre de traitement qui permet
 de voir les messages émis par le programme pendant son exécution.
 
 
@@ -1084,7 +1083,7 @@ Pour régler ce paramètre, cliquez sur "Page Setup" dans le menu "FSGraph".
 
 \section{Convertir l’automate du texte en texte linéaire}
 \label{section-linear-text}
-\index{Automate du texte!conversion en texte linéaire}
+\index{Automate!du texte!conversion en texte linéaire}
     Si l’automate du texte ne contient plus la moindre ambiguïté, il est possible de construire
 un fichier texte correspondant à l’unique chemin représenté par cet automate. Pour cela,
 allez dans le menu "Text" et cliquez sur "Convert FST-Text to Text...". La fenêtre de la figure

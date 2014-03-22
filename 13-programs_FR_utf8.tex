@@ -22,7 +22,7 @@ Ce répertoire est créé par l’interface graphique après la normalisation du
 \noindent IMPORTANT (2): lorsqu’un paramètre contient des espaces, vous devez l’entourer de
 guillemets pour qu’il ne soit pas considéré comme plusieurs paramètres.
 
-\index{Texte!répertoire d}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
+\index{Texte!répertoire}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
 
 \bigskip
 \noindent ATTENTION (3): beaucoup de programmes utilisent un fichier \verb+Alphabet.txt+. Cette
@@ -113,8 +113,8 @@ plusieurs valeurs séparées par des virgules;
 
 
 \section{BuildKrMwuDic}\index{Programmes externes!\verb+BuildKrMwuDic+}\index{\verb+BuildKrMwuDic+}
-\index{Genération du dictionnaire des mots composés Coréen}\index{Dictionnaire des mots composés
-Coréen}
+\index{Génération du dictionnaire des mots composés coréens}\index{Dictionnaire!mots composés
+coréens}
 \verb+BuildKrMwuDic [OPTIONS] dic+
 
 \bigskip
@@ -201,7 +201,7 @@ replace, de ce fait \#M ou \#R à la première ligne du fichier \verb+concord.in
 
 
 \section{CheckDic}\index{Programmes externes!\verb+CheckDic+}\index{\verb+CheckDic+}
-\index{Vérification du format du dictionnaire}\index{Dictionnaire!vérification}
+\index{Vérification du format d'un dictionnaire}\index{Dictionnaire!vérification}
 \verb+CheckDic [OPTIONS] dic+
 
 \bigskip
@@ -243,7 +243,7 @@ pas.
 \index{Compression des dictionnaires}
 \label{section-compress}
 \verb+Compress [OPTIONS] dictionary+
-\index{Dictionnaires!DELAF}\index{Dictionnaires!compression}
+\index{Dictionnaire!DELAF}\index{Dictionnaire!compression}
 \index{Fichier!\verb+.dic+}\index{Fichier!\verb+.bin+}\index{Fichier!\verb+.inf+}
 
 \bigskip
@@ -307,7 +307,7 @@ description des paramètres:
 	reconnues de tabulations
   \item \verb+-l X+/\verb+--left=X+: nombre de caractères à gauche des occurrences (par défaut=0).
   	  Dans le mode Thai, ceci correspond au nombre de caractères non
-  	  diacritiques.\index{Contextes!concordance}
+  	  diacritiques.\index{Contexte!concordance}
   \item \verb+-r X+/\verb+--right=X+: nombre de caractères (non diacritiques dans le mode Thai)
 	à droite des occurrences (par défaut=0). Si l'occurrence est plus petite que cette valeur,
 	la ligne de concordance est complétée jusqu'à \verb+right+. Si l'occurrence est plus longue
@@ -320,7 +320,7 @@ description des paramètres:
 \end{itemize}
 
 \bigskip
-\noindent \textbf{Options de tri:}\index{Tri!concordances}
+\noindent \textbf{Options de tri:}\index{Tri!de concordance}
 \begin{itemize}
   \item \verb+--TO+: ordre dans lequel les occurrences apparaissent dans le texte (par défaut);
   \item \verb+--LC+: contexte gauche comme premier tri, occurrence comme second tri;
@@ -591,7 +591,7 @@ absolus, car Unitex en déduit le texte sur lequel elles ont été calculées;
 
 
 \section{Dico}\index{Programmes externes!\verb+Dico+}\index{\verb+Dico+}
-\index{Dictionaries!application of}
+\index{Dictionnaire!application}
 \verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
 
 \bigskip
@@ -745,8 +745,8 @@ d’une phrase par ligne.
 
 
 \section{Flatten}\index{Programmes externes!\verb+Flatten+}\index{\verb+Flatten+}
-\index{Graphe!approximation par transducteur à états finis}
-\index{Approximation d'une grammaire par un transducteur à états finis}
+\index{Graphe!approximation par transducteur fini}
+\index{Approximation d'une grammaire par un transducteur fini}
 \verb+Flatten [OPTIONS] <fst2>+
 
 \bigskip
@@ -789,7 +789,7 @@ en un transducteur à états finis.
 \item \verb+-y+/\verb+--loop_check+: active la vérification d'erreurs (
 		détection de boucles);
 \item \verb+-n+/\verb+--no_loop_check+: désactive la vérification d'erreurs (par défaut);
-	\index{Détection d'erreur dans les graphes}\index{Graphes!détection d'erreur }\index{Erreurs
+	\index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}\index{Erreurs
 	dans les graphes}
 \item \verb+-t+/\verb+--tfst_check+: vérifie si le  graphe donné peut être considéré comme un
 	automate de phrases ou non;
@@ -936,7 +936,7 @@ texte n’est pas encore découpé en unités lexicales
 
 
 \section{Grf2Fst2}\index{Programmes externes!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
-\index{Graphes!compilation}\index{Compilation de graphes}
+\index{Graphe!compilation}\index{Compilation!d'un graphe}
 \verb+Grf2Fst2 [OPTIONS] <grf>+
 
 \bigskip
@@ -951,8 +951,7 @@ complet au graphe principal de la grammaire, sans omettre l’extension \verb+.g
   \item \verb+-y+/\verb+--loop_check+: active la vérification d'erreurs (
 		détection de boucles);
   \item \verb+-n+/\verb+--no_loop_check+: désactive la vérification d'erreurs (par défaut);
-  	  \index{Détection d'erreurs dans les graphes}\index{Graphe!détection d'erreurs}\index{Erreurs dans les
-  	  graphes}
+  	  \index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}\index{Erreurs dans les graphes}
   \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: spécifie le fichier d’alphabet à utiliser pour faire
   	  le découpage en unités lexicales du contenu des boîtes de la grammaire.
 
@@ -1302,7 +1301,7 @@ le répertoire du texte.
 \verb+MultiFlex [OPTIONS] <dela>+
 
 \bigskip
-\noindent \index{Dictionnaires!flexion automatique}\index{Flexion automatique}Ce programme effectue
+\noindent \index{Dictionnaire!flexion automatique}\index{Flexion automatique}Ce programme effectue
 la flexion automatique d'un dictionnaire DELA contenant des formes canoniques 
 \ref{section-DELAS-format}) de mots simples ou composés (see chapter \ref{chap-multiflex}).
 
@@ -1355,7 +1354,7 @@ le marqueur \verb+{STOP}+, soit une ligne de DELAF valide (\verb+{aujourd'hui,.A
 \index{\verb+{S}+}\index{Délimiteur de phrase}
 
 \bigskip
-\noindent \index{Etiquette!lexicale} Le paramètre \verb+<text>+ doit représenter le chemin d’accès complet au fichier du texte. Le programme produit une version modifiée du texte qui est sauvé dans
+\noindent \index{Etiquette lexicale} Le paramètre \verb+<text>+ doit représenter le chemin d’accès complet au fichier du texte. Le programme produit une version modifiée du texte qui est sauvé dans
 un fichier portant l’extension \verb+.snt+.\index{Fichier!\verb+.snt+}
 
 \bigskip
@@ -1386,14 +1385,14 @@ séparateurs dans ces règles.
 \section{PolyLex}\index{Programmes externes!\verb+PolyLex+}\index{\verb+PolyLex+}
 \verb+PolyLex [OPTIONS] <list>+
 
-\index{Mots!composés!libres en norvégien}
-\index{Mots!composés!libres en allemand}
-\index{Mots!composés!libres en russe}
-\index{Mots!composés!libres en néerlandais}
-\index{Analyse des mots composés libres en nor-végien}
-\index{Analyse des mots composés libres en allemand}
-\index{Analyse des mots composés libres en russe}
-\index{Analyse des mots composés libres en néerlandais}
+\index{Mots!composés!libres!norvégien}
+\index{Mots!composés!libres!allemand}
+\index{Mots!composés!libres!russe}
+\index{Mots!composés!libres!néerlandais}
+\index{Analyse des mots composés libres!norvégien}
+\index{Analyse des mots composés libres!allemand}
+\index{Analyse des mots composés libres!russe}
+\index{Analyse des mots composés libres!néerlandais}
 
 \bigskip
 \noindent Ce programme prend en paramètre un fichier de mots inconnus \verb+<list>+ et essaye d’analyser chacun d’eux comme un mot composé obtenu par soudure de mots simples. Les mots
@@ -1437,7 +1436,7 @@ dans le même répertoire que \verb+BIN+.
 \verb+RebuildTfst <tfst>+
 
 \bigskip
-\noindent \index{Texte!automate}\index{Reconstruction de l'automate du texte}Ce programme reconstruit l'automate du texte \verb+<tfst>+ en tenant compte des modifications manuelles. Si le programme trouve un fichier \verb+sentenceN.grf+ dans le même répertoire que \verb+<tfst>+, il remplace l'automate de la phrase \verb+N+ par celle représentée par \verb+sentenceN.grf+. L'automate du texte donné entrée est modifié.
+\noindent \index{Texte!automate du}\index{Reconstruction de l'automate du texte}Ce programme reconstruit l'automate du texte \verb+<tfst>+ en tenant compte des modifications manuelles. Si le programme trouve un fichier \verb+sentenceN.grf+ dans le même répertoire que \verb+<tfst>+, il remplace l'automate de la phrase \verb+N+ par celle représentée par \verb+sentenceN.grf+. L'automate du texte donné entrée est modifié.
 
 
 
@@ -1445,9 +1444,9 @@ dans le même répertoire que \verb+BIN+.
 
 
 \section{Reconstrucao}\index{Programmes externes!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
-\index{Compression des dictionnaires}\index{Dictionnaires!compression}
-\index{Clitiques!normalisation}\index{Normalisation!clitiques en Portuguais}
-\index{Portuguais!normalisation des clitiques}
+\index{Compression des dictionnaires}\index{Dictionnaire!compression}
+\index{Clitiques!normalisation}\index{Normalisation!des clitiques en portugais}
+\index{Portugais!normalisation des clitiques}
 \verb+Reconstrucao [OPTIONS] <index>+
 
 \bigskip
@@ -1487,7 +1486,7 @@ grammaire est nommée \verb+V-Pro-Suf+, et est stockée dans le répertoire
 \verb+Reg2Grf <txt>+
 
 \bigskip
-\noindent \index{Expressions régulières}
+\noindent \index{Expression régulière} \index{Expression rationnelle}
 \index{Fichier!\verb+.grf+}\index{Fichier!\verb+regexp.grf+}Ce programme construit un fichier
 \verb+.grf+ correspondant à l’expression rationnelle contenue dans le fichier \verb+<txt>+.
 Le paramètre \verb+<txt>+ doit représenter le chemin d’accès complet au fichier contenant
@@ -1612,7 +1611,7 @@ des caractères en Unicode, en supprimant les doublons.
 \verb+Table2Grf [OPTIONS] <table>+
 
 \bigskip
-\noindent \index{Lexique-grammare!tables}\index{Graphe!principal}
+\noindent \index{Lexique-grammaire!table}\index{Graphe!principal}
 Ce programme génère automatiquemient des graphes à partir de la table de lexique-
 grammaire \verb+<table>+ et d'un graphe patron
 
@@ -1712,7 +1711,7 @@ et \verb+{rouge,.A:ms}+.
 
 \section{Tfst2Grf}
 \index{Programmes externes!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
-\index{Automate!texte}\index{Texte!automate}
+\index{Automate!du texte}\index{Texte!automate du}
 \verb+Tfst2Grf [OPTIONS] <tfst>+
 
 \bigskip
@@ -1754,7 +1753,7 @@ répertoire du texte:
 
 
 \section{Tfst2Unambig}\index{Programmes externes!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
-\index{Texte automate!conversion en texte linéaire}
+\index{Texte!automate du!conversion en texte linéaire}
 \verb+Tfst2Unambig [OPTIONS] <tfst>+
 
 \bigskip
@@ -1776,7 +1775,7 @@ répertoire du texte:
 \index{Texte!découpage en unités lexicales}
 \verb+Tokenize [OPTIONS] <txt>+
 
-\index{Lexical units}
+\index{Unité lexicale}
 \index{Fichier!\verb+.snt+}\index{Alphabet}\index{Fichier!alphabet} 
 \bigskip
 \noindent Ce programme découpe le texte en unités lexicales.
@@ -1794,8 +1793,8 @@ extension.
 
  \item \verb+-w+/\verb+--word_by_word+: Avec cette option, le programme 
  	 considère qu'une unité est soit une séquence de lettres (ces lettres sont définies dans le fichier \verb+alphabet+), ou un caractère qui n'est pas une lettre, ou le délimiteur de phrase \verb+{S}+\index{\verb+{S}+}, ou une étiquette lexicale comme
- 	 \verb+{aujourd'hui,.ADV}+. \index{Délimiteur de phrase }
-   \index{Etiquette!lexicale} C'est le mode par défaut.
+ 	 \verb+{aujourd'hui,.ADV}+. \index{Délimiteur de phrase}
+   \index{Etiquette lexicale} C'est le mode par défaut.
 
 \item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: désigne un fichier a \verb+tokens.txt+
  à charger et à modifier, au lieu d'en créer un nouveau à partir de zéro.
@@ -1851,7 +1850,7 @@ phrases, le nombre d’unités, le nombre de mots simples et le nombre de chiffr
 \label{section-TrainingTagger}
 
 \bigskip
-\noindent \index{Lexicon-grammar!tables}\index{Graphe!principal}Ce programme génère automatiquement deux
+\noindent \index{Lexique-grammaire!table}\index{Graphe!principal}Ce programme génère automatiquement deux
 fichiers de données Tagger à partir d'un corpus étiqueté. Ils sont utilisés par le programme
 \verb+Tagger+ afin de calculer les probabilités et linéariser l'automate texte. Le fichier corpus
 étiqueté doit suivre le format décrit à la section \ref{section-corpus-file}. Ces fichiers
@@ -1911,7 +1910,7 @@ chemin d’accès complet au fichier texte, sans omettre l’extension \verb+.sn
 \noindent Si le texte a été découpé en phrases, le programme construit un automate pour chaque
 phrase. Si ce n’est pas le cas, le programme découpe arbitrairement le texte en séquences de
 2000 unités lexicales et construit un automate pour chacune de ces séquences.
-\index{Unités!lexicales}
+\index{Unité lexicale}
 
 \index{Fichier!\verb+text.tfst+}\index{Fichier!\verb+text.tind+}
 \bigskip
@@ -1978,8 +1977,7 @@ Ces fichiers se trouvent dans le répertoire XXX\_snt où XXX est sans son exten
 
 
 \section{UnitexTool}
-\index{Programmes externes!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Scripting Unitex
-programs}
+\index{Programmes externes!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Script de programmes Unitex}
 \label{section-UnitexTool}
 \verb+UnitexTool <utilities>+
 
@@ -1989,8 +1987,6 @@ d'Unitex
 Avec lui, vous pouvez enchaîner les commandes afin qu'elles soit exécutées dans un même processus,
 afin d'accélérer le traitement. Cela se fait en invoquant des commandes imbriquées entre parenthèses
 comme ceci:
-
-
 
 \bigskip
 \begin{verbatim}

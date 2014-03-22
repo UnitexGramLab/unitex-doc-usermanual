@@ -185,7 +185,7 @@ correspondant en cliquant sur "Open..." dans le menu "Text".
 
 
 \section{Prétraitement du texte}
-\index{Texte!preprocessing}
+\index{Texte!prétraitement}
 \noindent Une fois le texte sélectionné, Unitex vous propose de le prétraiter. Le prétraitement du
 texte consiste à lui appliquer les opérations suivantes : normalisation des séparateurs, 
 découpage en unités lexicales, normalisation de formes non ambiguës, découpage en phrases
@@ -223,7 +223,7 @@ and close text" pour annuler complètement l’opération.
 
 
 \subsection{Normalisation des séparateurs}
-\index{Normalisation!des séparateurs}\index{séparateurs}\index{Texte!normalisation}
+\index{Normalisation!des séparateurs}\index{Séparateur}\index{Texte!normalisation}
 Les séparateurs usuels sont l’espace, la tabulation et le retour à la ligne. On peut rencontrer
 plusieurs séparateurs consécutifs dans des textes, mais comme cela n’est d’aucune utilité
 pour une analyse linguistique, on normalise ces séparateurs selon les règles suivantes:
@@ -273,7 +273,7 @@ phrases.
 
 \bigskip
 \noindent  Lorsqu’un chemin de la grammaire reconnaît une séquence dans le texte et que ce chemin
-produit le symbole séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur de phrases},
+produit le symbole séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur!de phrases},
 on insère ce symbole dans le texte.
 
 \bigskip
@@ -297,7 +297,7 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
 
 \index{\verb+<E>+}\index{Epsilon|see{<E>}}
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Meta-symbols}
+\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Méta-symboles}
 \begin{itemize}
   \item <E> : mot vide, ou epsilon. Reconnaît la séquence vide;
   \item <MOT> : reconnaît n’importe quelle suite de lettres;
@@ -340,8 +340,8 @@ sont insérées dans le texte. Ce programme prend en entrée un fichier \verb+.s
 
 
 \subsection{Normalisation de formes non ambiguës}
-\index{Normalisation de formes non ambiguës}
-\index{Grammaires!Normalisation de formes non ambiguës}
+\index{Normalisation!de formes non ambiguës}
+\index{Grammaires!normalisation!de formes non ambiguës}
 
 Certaines formes présentes dans les textes peuvent être normalisées (par exemple, la séquence
 française "\textit{l'on}" est équivalente à la forme "\textit{on}"). Chaque utilisateur peut donc
@@ -506,8 +506,8 @@ Unité lexicale correspondante & \textit{UN} &   & \textit{sou} &   & \textit{es
 
 \subsection{Application de dictionnaires}
 \label{text-applying-dictionaries}
-\index{Dictionnaires!application}
-\index{Ressources!lexicales|see{Dictionnaires}}
+\index{Dictionnaire!application}
+\index{Ressources!lexicales|see{Dictionnaire}}
 L’application de dictionnaires consiste à construire le sous-ensemble des dictionnaires
 ne contenant que les formes présentes dans le texte. Ainsi, le résultat de l’application des
 dictionnaires du français au texte \textit{Igor mange une pomme de terre} produit le dictionnaire de
@@ -545,7 +545,7 @@ s’effectue avec le programme \verb+Dico+.\index{\verb+Dico+}\index{Programmes 
 Les trois fichiers produits (\verb+dlf+ pour les mots simples, \verb+dlc+ pour les mots composés et
 \verb+err+ pour les mots inconnus) sont placés dans le répertoire du texte. On appelle dictionnaires
 du texte les fichiers \verb+dlf+ et \verb+dlc+
-\index{Dictionnaires!texte}
+\index{Dictionnaire!du texte}
 \index{Fichier!\verb+dlf+}
 \index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}
 
@@ -584,7 +584,7 @@ Vous pouvez choisir l'ordre des dictionnaires des listes utililisateur et systè
 flèches haut et bas (voir figure \ref{fig-Dico-configuration}). Le bouton "Set Default" vous permet
 de définir la sélection courante de dictionnaires comme sélection par défaut. Cette sélection par
 défaut sera utilisée lors du prétraitement si vous choisissez l’option "Apply All default
-Dictionaries".\index{Dictionnaires!sélection par défaut}
+Dictionaries".\index{Dictionnaire!sélection par défaut}
 Si vous effectuez un clic droit au-dessus d’un nom de dictionnaire, la documentation du
 dictionnaire, si elle existe, s’affichera dans le cadre inférieur.
 
@@ -592,20 +592,20 @@ dictionnaire, si elle existe, s’affichera dans le cadre inférieur.
 \subsection{Analyse des mots composés libres en néerlandais, allemand, nor-végien et russe}
 
 \index{Norvégien!mots composés}
-\index{Analyse des mots composés libres en nor-végien}
-\index{Mots!composés!en norvégien}
+\index{Analyse des mots composés libres!norvégien}
+\index{Mots!composés!libres!norvégien}
 
 \index{Allemand!mots composés}
-\index{Analyse des mots composés libres en allemand}
-\index{Mots!composés!en allemand}
+\index{Analyse des mots composés libres!allemand}
+\index{Mots!composés!libres!allemand}
 
 \index{Russe!mots composés}
-\index{Analyse des mots composés libres en russe}
-\index{Mots!composés!en russe}
+\index{Analyse des mots composés libres!russe}
+\index{Mots!composés!libres!russe}
 
 \index{Néerlandais!mots composés}
-\index{Analyse des mots composés libres en néerlandais}
-\index{Mots!composés!en néerlandais}
+\index{Analyse des mots composés libres!néerlandais}
+\index{Mots!composés!libres!néerlandais}
 
 \label{section-Norwegian-compound-words}
 Dans certaines langues comme le norvégien, il est possible de former des mots composés

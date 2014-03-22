@@ -21,7 +21,7 @@ $S \rightarrow$ \E
 
 \bigskip
 \noindent Les symboles figurant à gauche des règles sont appelés \textit{symboles
- non-terminaux}\index{Symboles!non-terminaux}\index{Symboles non-terminaux}                                                                                       car ils peuvent être réécrits. Les symboles qui ne peuvent pas être réécrits par des règles sont
+ non-terminaux}\index{Symboles!non-terminaux}                                                                                       car ils peuvent être réécrits. Les symboles qui ne peuvent pas être réécrits par des règles sont
  appelés \textit{symboles terminaux}\index{Symboles!terminaux}. Les membres droits des règles
 sont des suites de symboles non-terminaux et terminaux. Le symbole epsilon noté \E ~
 désigne le mot vide. Dans la grammaire ci-dessus, $S$ est un symbole non-terminal et
@@ -60,7 +60,7 @@ Les langages reconnus par les grammaires algébriques sont appelés \textit{Lang
 
    Les grammaires algébriques étendues sont des grammaires algébriques où les membres
 droits des règles ne sont plus des suites de symboles mais des expressions rationnelles.
-\index{Expressions rationnelles} Ainsi, la grammaire reconnaissant une suite quelconque de $a$
+\index{Expression rationnelle} Ainsi, la grammaire reconnaissant une suite quelconque de $a$
 peut se réécrire en une grammaire étendue d’une seule règle:
 
 
@@ -68,7 +68,7 @@ peut se réécrire en une grammaire étendue d’une seule règle:
 
 \bigskip
 \noindent Ces grammaires, également appelées \textit{réseaux de transitions récursifs}
-(\textit{RTN en Anglais})\index{Recursive Transition Networks}\index{RTN} ou
+(\textit{RTN en Anglais})\index{Réseau de transitions récursif}\index{Recursive Transition Network}\index{RTN} ou
 \textit{diagrammes de syntaxe}\index{Diagrammes de syntaxe}, se prêtent à une représentation graphique
 conviviale. En effet, le membre droit d’une règle peut être représenté par un graphe dont le nom
 est le membre gauche de la règle.
@@ -81,7 +81,7 @@ empruntée aux automates à états finis, signifie qu’une grammaire peut produ
 Dans un souci de clarté, nous utiliserons malgré tout les termes grammaire ou graphe.
 Quand une grammaire produira des sorties, nous utiliserons le terme \textit{transducteur},
 \index{Transducteur} par extension de la définition d’un transducteur dans le domaine des automates
-à états finis.\index{Automates!à états finis}
+à états finis.\index{Automate!fini}
 
 
 \section{Édition de graphes}
@@ -125,7 +125,7 @@ appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept l
 En effet, le caractère \verb$+$ sert de séparateur.\index{\verb$+$} La boîte apparaît sous la
 forme de lignes de texte rouge car elle n’est pour l’instant reliée à aucune autre.
 On utilise souvent ce type de boîtes pour insérer des commentaires dans un graphe.
-\index{Graphe!commentaires}\index{Commentaires!dans un graphe}
+\index{Graphe!commentaires}\index{Commentaire!dans un graphe}
 
 \bigskip
 \noindent Si vous souhaitez ajouter un commentaire dans un graphe, vous devez créer une boîte qui
@@ -206,8 +206,8 @@ Si une ou plusieurs boîtes sont sélectionnées, les menus suivants deviennent 
 permettent d'effectuer plusieurs types d'opérations sur cet ensemble de boîtes. Sinon, ils sont
 inutiles et donc désactivés. 
 \begin{itemize}
-\item entourer les boîtes sélectionnées avec la définition d'une variable d'entrée \index{Variables!d'entrée}
-ou de sortie, \index{Variables de sortie} d'un
+\item entourer les boîtes sélectionnées avec la définition d'une variable d'entrée \index{Variable!d'entrée}
+ou de sortie, \index{Variable!de sortie} d'un
 contexte au sens de la section~\ref{section-contexts}, ou des délimiteurs du mode morphologique. Ces opérations sont également réalisables avec
 la barre d'outils de la fenêtre d'édition du graphe (voir section~\ref{toolbar-commands}). 
 \item fusionner les boîtes sélectionnées
@@ -284,7 +284,7 @@ de $Y$, ce qui pose deux problèmes :
 \end{itemize}
 
 \noindent Afin d’éviter cela, il est possible de stocker la grammaire $X$ dans un répertoire
-particulier, appelé \textit{répertoire de dépôt}.\index{Répertoire de dépôt} Ce répertoire est
+particulier, appelé \textit{répertoire de dépôt}.\index{Répertoire!dépôt de graphes}\index{Graphe!répertoire de dépôt} Ce répertoire est
 une sorte de bibliothèque dans laquelle on peut ranger des graphes, et faire ensuite appel
 à ces graphes au moyen de \verb+::+  au lieu de \verb+:+. Pour utiliser ce mécanisme, il faut tout
 d’abord définir le répertoire de dépôt dans le menu "Info>Preferences...>Directories" (voir figure
@@ -425,7 +425,7 @@ celle-ci.
 
 \bigskip
 \index{Sélection multiple!copier-coller}
-\index{Copier}\index{Coller}
+\index{Copie}\index{Coller}
 \noindent Vous pouvez effectuer un copier-coller sur plusieurs boîtes. Pour cela, sélectionnez-les
 et appuyez sur <Ctrl+C> ou cliquez sur "Copy" dans le menu "Edit". Votre sélection multiple
 est maintenant dans le presse-papiers d’Unitex. Vous pouvez alors coller cette sélection en
@@ -443,7 +443,7 @@ pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
 elle est issue.
 
 \bigskip
-\index{Graphes!suppression de boîtes}\index{Boîtes!suppression}
+\index{Graphe!suppression de boîtes}\index{Boîtes!suppression}
 \noindent Pour supprimer des boîtes, sélectionnez-les, effacez le texte qu'elles contiennent
 (c'est-à-dire le texte affiché dans le champ situé en haut de la fenêtre)
  et appuyez sur Enter.
@@ -452,7 +452,7 @@ elle est issue.
 \noindent On ne peut pas supprimer l'état initial ni l'état final.
 
 \subsection{Sortie}
-\index{Transducteurs}\index{\verb+/+}
+\index{Transducteur}\index{\verb+/+}
 Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le caractère spécial
 \verb+/+. Tous les caractères situés à droite de celui-ci seront considérés comme faisant partie de
 la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
@@ -497,7 +497,7 @@ se chevauchent  (cf. section~\ref{section-priorite-gauche}).
 
 \subsection{Variables d'entrée}
 \label{section-using-variables}
-\index{Graphe!variables}\index{Variables!d'entrée}\index{\verb+$+}
+\index{Graphe!variables}\index{Variable!d'entrée}\index{\verb+$+}
 \index{Transducteur!avec variables}
 
 Il est possible de sélectionner des parties du texte reconnu par une grammaire au moyen
@@ -547,7 +547,7 @@ sont vides. On peut modifier ce comportement (voir section \ref{section-advanced
 De plus, il est  possible dans un graphe d'interroger une variable pour savoir si elle a été initialisée ou non (section~\ref{section-variables}).
 
 \subsection{Copie de listes}
-\index{Copie de listes}
+\index{Copie!d'une liste}
 \index{Copie}\index{Coller}
 
 Il peut être pratique d’effectuer un copier-coller d’une liste de mots ou d’expressions
@@ -565,7 +565,7 @@ Vous verrez alors apparaître la fenêtre de la figure~\ref{fig-setting-contexts
 liste\label{fig-setting-contexts-for-multiple-copy}}
 \end{center}
 \end{figure}
-\index{Contextes!copie de liste}
+\index{Contexte!copie de liste}
 
 \bigskip
 \noindent Cette fenêtre vous permet de définir les contextes gauche et droit qui seront ajoutés
@@ -604,7 +604,7 @@ les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 \noindent Le tableau ~\ref{tab-special-symbols} résume la signification pour Unitex de ces symboles,
 ainsi que la ou les façons de reconnaître ces caractères dans des textes.
 
-\index{Meta-caractères}
+\index{Caractères spéciaux}
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{|c|p{9cm}|c|}
@@ -659,7 +659,7 @@ Chaque graphe possède sa propre barre d’icônes.
 \caption{Barre d'outils\label{fig-toolbar}}
 \end{center}
 \end{figure}
-\index{Copy}\index{Cut}\index{Paste}
+\index{Copie}\index{Couper}\index{Coller}
 
 \bigskip
 \noindent Les deux premières icônes sont des raccourcis permettant de sauver et de compiler le
@@ -739,7 +739,7 @@ ou d'un contexte sur une ou plusieurs boîtes sélectionnées. Ces boutons ne so
 \index{Graphe!présentation}
 
 \subsection{Tri des lignes d’une boîte}
-\index{Tri!des lignes d'une boîtes}\index{Boîtes!tri des lignes}
+\index{Tri!des lignes d'une boîte}\index{Boîtes!tri des lignes}
 Vous pouvez trier le contenu d’une boîte en la sélectionnant et en cliquant sur "Sort Node
 Label" dans le sous-menu "Tools" du menu "FSGraph". Ce tri ne fait pas appel au programme
 \verb+SortTxt+. Il s’agit d’un tri basique qui trie les lignes de la boîte selon l’ordre des
@@ -860,7 +860,7 @@ fichage de la fenêtre de la figure~\ref{fig-graph-display-configuration}.
 \begin{itemize}
   \item Input: police utilisée dans les boîtes, ainsi que dans la zone de texte où l’on édite le
 contenu des boîtes;
-\item Output: police utilisée pour afficher les sorties des boîtes.\index{Sorties d'un transducteur}
+\item Output: police utilisée pour afficher les sorties des boîtes.\index{Sortie d'un transducteur}
 \end{itemize}
 
 \bigskip
@@ -895,7 +895,7 @@ gauche du graphe. Cette option n’a d’effet que si l’option "File Name" est
 
 \bigskip
 \noindent Vous pouvez rétablir les paramètres par défaut en cliquant sur le bouton "Default".
-Si vous cliquez sur le bouton "OK", seul le graphe courant sera modifié.\index{Preferences}
+Si vous cliquez sur le bouton "OK", seul le graphe courant sera modifié.\index{Préférences}
 Pour modifier les préférences par défaut d’une langue, cliquez sur "Preferences..." dans le
 menu "Info" et choisissez l’onglet "Graph Presentation".
 
@@ -950,7 +950,7 @@ votre document de la même façon que sous Windows.
 \bigskip
 \noindent\textbf{Vector graphics}
 \index{SVG export de graphe}
-\index{Graphe!export SVG}
+\index{Graphe!export en SVG}
 
 \bigskip
 \noindent Si vous préférez vector graphics, vous pouvez enregistrer votre graphe en format
@@ -958,7 +958,7 @@ SVG, qui est utilisable avec des logiciels comme  Inkscape (\cite{Inkscape}).
 Il permet d'obtenir des sorties PostScript utilisables dans des documents \LaTeX.
 
 \subsection{Impression d’un graphe}
-\index{Impression d’un graphe}\index{Impression!d’un graphe}
+\index{Impression!d’un graphe}
 
 Vous pouvez imprimer un graphe en cliquant sur "Print..." dans le menu "FSGraph" ou
 en appuyant sur <Ctrl+P>.

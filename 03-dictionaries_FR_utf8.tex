@@ -2,19 +2,19 @@
 \label{chap-dictionaries}
 
 \section{Les dictionnaires DELA}
-\index{DELA}\index{Dictionnaires!format}\index{LADL}
+\index{DELA}\index{Dictionnaire!format}\index{LADL}
 
 Les dictionnaires électroniques utilisés par Unitex utilisent le formalisme DELA (Dictionnaires
 Electroniques du LADL). Ce formalisme permet de décrire les entrées lexicales simples et composées
-\index{Entrées!lexicales} d’une langue en leur associant de façon optionnelle des
+\index{Entrée lexicale} d’une langue en leur associant de façon optionnelle des
 informations grammaticales, sémantiques et flexionnelles. On distingue deux sortes de dictionnaires
 électroniques. Le type que l’on utilise le plus couramment est le dictionnaire de formes fléchies,
 appelé DELAF (DELA de formes Fléchies) ou encore DELACF (DELA de formes Composées
 Fléchies) lorsqu’il s’agit d’un dictionnaire de mots composés.\index{DELAF|(}
-\index{DELACF}\index{Dictionnaires!DELAF|(}\index{Dictionnaires!DELACF}
+\index{DELACF}\index{Dictionnaire!DELAF|(}\index{Dictionnaire!DELACF}
 Le second type est le dictionnaire de formes non fléchies appelé DELAS (DELA de formes Simples)
 ou DELAC (DELA de formes Composées).
-\index{DELAS}\index{DELAC}\index{Dictionnaires!DELAS}\index{Dictionnaires!DELAC}
+\index{DELAS}\index{DELAC}\index{Dictionnaire!DELAS}\index{Dictionnaire!DELAC}
 Les programmes d’Unitex ne font pas de distinction entre les dictionnaires de formes
 simples et composées. Nous utiliserons donc les termes DELAF et DELAS pour désigner les deux sortes
 de dictionnaires que leurs entrées soient simples, composées ou mixtes.
@@ -69,7 +69,7 @@ flexionnels doivent être séparés par le caractère :. Dans notre exemple, \ve
   
 \bigskip \item \verb+/ceci est un exemple+ est un commentaire. Les commentaires sont facultatifs et
 doivent être introduits par le caractère \verb+/+. Les commentaires sont supprimés lorsque
-l’on comprime les dictionnaires. \index{Commentaire!dans un dictionnaire} \index{Dictionnaires!commentaire}\index{\verb+/+}
+l’on comprime les dictionnaires. \index{Commentaire!dans un dictionnaire} \index{Dictionnaire!commentaire}\index{\verb+/+}
 \end{itemize}
 
 \bigskip
@@ -216,11 +216,11 @@ donneront exactement les mêmes résultats si l’on fusionne ces entrées en :
 construisent des dictionnaires.
 
 
-\index{DELAF|)}\index{Dictionnaires!DELAF|)}
+\index{DELAF|)}\index{Dictionnaire!DELAF|)}
 
 \subsection{Format des DELAS}
 \label{section-DELAS-format}
-\index{DELAS}\index{Dictionnaires!DELAS}
+\index{DELAS}\index{Dictionnaire!DELAS}
 
 Le format des DELAS est très similaire à celui des DELAF. La différence est qu’on ne
 mentionne qu’une forme canonique suivie de codes grammaticaux et/ou sémantiques. La
@@ -240,7 +240,7 @@ la section ~\ref{section-automatic-inflection}.
 
 
 \subsection{Contenu des dictionnaires}
-\index{Dictionnaires!contenus}\index{Dictionnaires!codes utilisés}
+\index{Dictionnaire!contenu}\index{Dictionnaire!codes utilisés}
 
 Les dictionnaires fournis avec Unitex contiennent des descriptions des mots simples et
 composés. Ces descriptions indiquent la catégorie grammaticale de chaque entrée, ses 
@@ -462,8 +462,8 @@ Vous pouvez aussi rechercher un mots dans plusieurs dictionnaires en cliquant su
 
 
 
-\section{Vérification du format d’un dictionnaire}
-\index{Dictionnaire!vérification} \index{Vérification du format d’un dictionnaire}
+\section{Vérification du format du dictionnaire}
+\index{Dictionnaire!vérification} \index{Vérification du format d'un dictionnaire}
 Lorsque les dictionnaires sont de taille importante, il devient fastidieux de les vérifier à
 la main. Unitex contient le programme \verb+CheckDic+\index{Programmes externes!\verb+CheckDic+}
 \index{\verb+CheckDic+} qui vérifie automatiquement les dictionnaires DELAF et DELAS.
@@ -528,7 +528,7 @@ La troisième erreur indique que le programme n’a trouvé aucun code grammatic
 
 
 \section{Tri}
-\index{Dictionnaires!tri}\index{Trier!un dictionnaire}
+\index{Dictionnaire!tri}\index{Tri!d'un dictionnaire}
 
 Unitex manipule les dictionnaires sans se soucier de l’ordre des entrées. Toutefois, pour
 des raisons de présentation, il est souvent préférable de trier les dictionnaires. L’opération
@@ -597,7 +597,7 @@ En modifiant ce fichier, vous pouvez définir vos propres préférences de tri.
 
 \section{Flexion automatique}
 \label{section-automatic-inflection}
-\index{Flexion automatique}\index{Conjugaison}\index{Déclinaison}\index{Dictionnaires!flexion automatique}
+\index{Flexion automatique}\index{Conjugaison}\index{Déclinaison}\index{Dictionnaire!flexion automatique}
 \subsection{Flexion des mots simples}
 
 Comme décrit dans la section~\ref{section-DELAS-format}, une ligne de DELAS se compose généralement
@@ -1101,7 +1101,7 @@ suffixes. Dans cet exemple, on a codé à la fois les consonnes et les voyelles 
 \end{figure}
 
 \section{Compression}
-\index{Dictionnaires!compression}
+\index{Dictionnaire!compression}
 
 Unitex applique aux textes des dictionnaires comprimés. La compression permet de réduire
 la taille des dictionnaires et d’en accélérer la consultation. Cette opération s’effectue
@@ -1159,7 +1159,7 @@ considérée comme sémitique peut être configuré dans les préférences globa
 
 \section{Application de dictionnaires}
 \label{section-applying-dictionaries}
-\index{Dictionnaires!application}
+\index{Dictionnaire!application}
 
 \bigskip
 \noindent Unitex peut manipuler soit des dictionnaires compressés (\verb+.bin+) soit des graphes-dictionnaires (\verb+.fst2+). Ces dictionnaires peuvent être appliqués soit lors du prétraitement,
@@ -1169,7 +1169,7 @@ sera abordé dans la section ~\ref{section-dictionary-graphs}.
 
 \subsection{Priorités}
 \label{section-dictionary-priorities}
-\index{Dictionnaires!priorité}\index{Priorité!des dictionnaires}
+\index{Dictionnaire!priorité}\index{Priorité!entre dictionnaires}
 La règle de priorité est la suivante : si un mot du texte a été trouvé dans un dictionnaire,
 ce mot ne sera plus pris en compte lors de l’application de dictionnaires ayant une priorité
 inférieure.
@@ -1183,7 +1183,7 @@ veut pas envisager cet emploi, il suffit de créer un dictionnnaire filtre ne co
 si le dictionnaire des mots simples contient l’autre entrée, celle-ci sera ignorée grâce au jeu
 des priorités.
 
-\index{Dictionnaires!filtres}
+\index{Dictionnaire!filtre}
 
 \bigskip
 \noindent Il y a trois niveaux de priorités. Les dictionnaires dont les noms sans extension se
@@ -1242,11 +1242,11 @@ ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 
 
 \subsection{Graphes-dictionnaires}
-\label{section-dictionary-graphs}\index{Graphes-dictionnaires}
+\label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
 Le programme \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} est capable
 d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent la règle suivante :
 si on les applique avec le programme \verb+Locate+\index{\verb+Locate+}\index{Programmes externes!\verb+Locate+} en mode MERGE,\index{MERGE} ils doivent produire des séquences
-correspondant à des lignes de DELAF.\index{DELAF}\index{Dictionnaires!DELAF}
+correspondant à des lignes de DELAF.\index{DELAF}\index{Dictionnaire!DELAF}
 
 \begin{figure}[!p]
 \begin{center}
@@ -1269,8 +1269,7 @@ général, puis étiqueter comme noms propres les mots inconnus commençant par 
 du graphe \verb$NPr+$ de la figure~\ref{graph-NPr}. Le \verb$+$ dans le nom du graphe lui donne une
 priorité basse afin qu’il soit appliqué après le dictionnaire général. Pour fonctionner, ce graphe
 se base sur les mots qui sont toujours inconnus après le passage du dictionnaire général. Les
-crochets correspondent à une définition de contexte. Pour plus de détails sur les contextes,
-\index{Contexte} voir la section \ref{section-contexts}.
+crochets correspondent à une définition de contexte (voir la section \ref{section-contexts}).
 
 \begin{figure}[!h]
 \begin{center}
@@ -1284,7 +1283,7 @@ majuscule
 \bigskip
 \noindent Comme les graphes-dictionnaires sont appliqués par le moteur du programme \verb+Locate+,
 ils peuvent utiliser tout ce que le programme \verb+Locate+ autorise. En particulier, il est
-possible d’utiliser les filtres morphologiques\index{Filtres morphologiques} et le mode morphologique.\index{Mode
+possible d’utiliser les filtres morphologiques\index{Filtre morphologique} (section~ref{section-filters}) et le mode morphologique (section~ref{section-morphological-mode}).\index{Mode
 morphologique}
 Ainsi, le graphe de la figure \ref{graph-CR} utilise ces filtres pour reconnaître les nombres en
 chiffres romains. Notons qu’il utilise également des contextes afin d’éviter, par exemple, que
@@ -1307,10 +1306,10 @@ combine avec les priorités \verb-+- et \verb+-+:
 
 
 \subsubsection{Exporter les entrées produites comme dictionnaire du mode morphologique}
-\index{Dictionnaires du mode morphologique}
+\index{Dictionnaire!du mode morphologique}
 Les entrées produites par un graphe-dictionnaire sont, bien sûr, prises en compte
 par le programme \verb+Locate+. Cependant, on ne peut les utiliser en mode morphologique
-dans la mesure où elles n'appartiennent pas à un dictionnaire déclaré comme dictionnaire du mode morphologique.
+dans la mesure où elles n'appartiennent pas à un dictionnaire déclaré comme dictionnaire du mode morphologique (cf.~section~\ref{dic-mode-morpho}).
 Il est possible de le faire en ajoutant \verb+b+ à la fin du nom du graphe-dictionnaire. 
 Si l'on ajoute \verb+z+ à la place, le dictionnaire produit pour le texte sera immédiatement
 compressé, le rendant utilisable par le prochain graphe-dictionnaire appliqué.
@@ -1333,7 +1332,7 @@ en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défau
 
 
 \subsection{Graphe-dictionnaire morphologique}
-\index{Graphe-dictionnaire morphologique}
+\index{Graphe-dictionnaire!morphologique}
 En plus des graphes-dictionnaires qui produisent de nouvelles entrées dans le dictionnaire du
 texte, il est possible de construire des graphes-dictionnaires morphologiques.
 Les sorties de tels graphes seront utilisées comme entrées pour construire l'automate du texte. Nous
