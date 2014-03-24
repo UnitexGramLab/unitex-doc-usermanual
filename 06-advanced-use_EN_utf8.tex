@@ -338,7 +338,6 @@ output. Thus, the transition with the empty word of
 Figure~\ref{fig-epsilon-output-loop} will not be suppressed
 and will cause a void loop.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=6.2cm]{resources/img/fig6-8.png}
@@ -347,13 +346,12 @@ transduction\label{fig-epsilon-output-loop}}
 \end{center}
 \end{figure}
 
-\bigskip
+%\medskip
 \noindent The second category of loop by epsilon concerns the call to subgraphs
 that can recognize the empty word. This case is illustrated in
 Figure~\ref{fig-epsilon-subgraph-loop}: if the subgraph
 \verb+Adj+ recognizes epsilon, there is a void loop that Unitex cannot detect.
 
-\bigskip
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.9cm]{resources/img/fig6-9.png}
@@ -361,6 +359,11 @@ Figure~\ref{fig-epsilon-subgraph-loop}: if the subgraph
 \label{fig-epsilon-subgraph-loop}}
 \end{center}
 \end{figure}
+
+%\medskip
+\noindent The third possibility of void loops is related to recursive calls to
+subgraphs. Look at the graphs \verb+Det+ and \verb+DetCompose+ in
+figure~\ref{fig-recursive-calls-loop}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -370,9 +373,8 @@ other\label{fig-recursive-calls-loop}}
 \end{center}
 \end{figure}
 
-\noindent The third possibility of void loops is related to recursive calls to
-subgraphs. Look at the graphs \verb+Det+ and \verb+DetCompose+ in
-figure~\ref{fig-recursive-calls-loop}. Each of these graphs can call
+%\medskip
+\noindent Each of these graphs can call
 the other \textit{without reading any text}. The fact that none of these two
 graphs has labels between the initial state and the call to the subgraph is
 crucial. In fact, if there were at least one label different from epsilon between
@@ -383,7 +385,7 @@ read the pattern described by that label in the text before calling
 only if they  recognized the pattern an infinite number of times in the text,
 which is impossible.
 
-\pagebreak
+\bigskip
 \index{Intervals}
 \noindent In order to recognize token sequences in which one word or one token of a specific grammatical category appears once, several times or never, you can attach an integer interval to a box.
 If you attach the interval [m,M] to a box containing <ADJ>, the path will match sequences with at least $m$ consecutive adjectives and no more than $M$.
@@ -401,7 +403,6 @@ Intervals are attached by inserting \verb+$[m,M]$+ into the output of the box, j
 \end{center}
 \end{figure}
 
-\pagebreak
 \subsection{Error detection}
 \index{Error detection in graphs}\index{Graph!detection of
 errors}\index{Errors in graphs}
@@ -434,7 +435,6 @@ grammars. These are also known as context-free grammars, because if you want to
 match a sequence $A$, the context of $A$ is irrelevant. Thus, you cannot use a
 contex-free graph for matching occurences of \verb+president+ not followed by
 \verb+of the republic+.
-
 
 \bigskip
 \noindent However, you can draw graphs with positive or negative contexts. In
