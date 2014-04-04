@@ -425,7 +425,7 @@ UN,United Nations.ACRONYM
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Looking up a word in a dictionary}
-\index{Dictionaries!lookup} \index{Looking up a word in a dictionary}
+\index{Dictionaries!lookup}\index{Dictionaries!search}\index{Looking up a word in a dictionary}
 \label{section-dictionary-lookup}
 You can look up a word in one or several dictionaries by two means : 
 
@@ -625,7 +625,8 @@ two possible forms:
 \end{itemize}
 
 \bigskip
-\noindent These inflectional grammars \index{Grammars!inflectional} will automatically be
+\noindent These inflectional grammars \index{Grammars!inflectional}\index{Transducer!inflection}\index{Graph!inflection}
+will automatically be
 compiled if needed. In the example above, all entries will be inflected by a grammar named \verb+N4+.
 
 \bigskip
@@ -864,30 +865,35 @@ our DELAS example.
 
 In some languages the inflection process can modify the root of the word.
 Several operators have been developped in order to facilitate this type of treatment. 
-They allow to search and remove a suffix of the word \verb+W+ to be inflected.
+They allow to find and remove a suffix of the word \verb+W+ to be inflected.
 It is also possible to store a factor of this suffix by using a special variable (\$ or ${\pounds}$).
-These operators can take the following forms :
+These operators can take the following forms:
 
-\bigskip
 \begin{itemize}
-\item \verb+<X$Y>+~: Starting from the end of the word \verb+W+  we are looking for the first occurrence of \verb+Y+.
-	Then, we search the {\bf first} occurrence of \verb+X+ which strictly precedes that 
+\item \verb+<X$Y>+: Starting from the end of the word \verb+W+  we are looking for the suffix \verb+Y+.
+	Then, we search for the {\bf rightmost} occurrence of \verb+X+ which strictly precedes that 
 	of  \verb+Y+ . The \$ variable then contains the {\bf shortest factor}
 	({\bf\$}hortest) of \verb+W+ strictly between \verb+X+ and \verb+Y+ (\verb+W = U.X.$.Y+)\footnote{The point
 	represents here the concatenation operation.}.
-\item \verb+<X+${\pounds}$\verb+Y>+~:  Starting from the end of the word \verb+W+  we are looking for the first occurrence of \verb+Y+.
-	Then, we search the {\bf last} occurrence of \verb+X+ which strictly precedes that of \verb+Y+. The {\pounds}  variable then contains the  {\bf longest factor}
-	({\bf${\pounds}$}ongest) of \verb+W+ strictly between \verb+X+ and \verb+Y+ (\verb+W = U.X.+${\pounds}$\verb+.Y+).
-\item \verb+<X>+~: If there is no variable, we search \verb+X+ as a suffix of \verb+W+
+	The \verb+<X$Y>+ operator strips \verb+X.$.Y+ from \verb+W+ and sets \$. After it has been applied, the string
+	left in the stack is \verb+U+, and the \$ variable can be used in the rest of the path.
+\item \verb+<X+${\pounds}$\verb+Y>+:  Starting from the end of the word \verb+W+
+	we are looking for the suffix \verb+Y+.
+	Then, we search for the {\bf leftmost} occurrence of \verb+X+ which strictly precedes that of \verb+Y+.
+	The {\pounds}  variable then contains the  {\bf longest factor}
+	({\bf${\pounds}$}ongest) of \verb+W+ strictly between
+	\verb+X+ and \verb+Y+ (\verb+W = U.X.+${\pounds}$\verb+.Y+).
+\item \verb+<X>+: If there is no variable, we search for \verb+X+ as a suffix of \verb+W+
 	(\verb+W = U.X+).
-\item \verb+<$Y>+: If the \verb+X+ factor is absent, the {\bf shortest factor \verb+$+} is the first letter which strictly precedes \verb+Y+ .
-\item \verb+<+${\pounds}$\verb+Y>+~: If the \verb+X+ factor is absent, the {\bf longest factor ${\pounds}$} is the prefix of
+\item \verb+<$Y>+: If the \verb+X+ factor is absent,
+	the {\bf shortest factor \verb+$+} is the first letter which strictly precedes \verb+Y+ .
+\item \verb+<+${\pounds}$\verb+Y>+: If the \verb+X+ factor is absent,
+	the {\bf longest factor ${\pounds}$} is the prefix of
 	\verb+W+ so that  \verb+W = +${\pounds}$ \verb+.Y+.
 \end{itemize}
 
-\bigskip
 \noindent
-To illustrate the use of these operators, let us consider the french verb {\it reprendre}~:
+To illustrate the use of these operators, let us consider the French verb {\it reprendre}:
 
 \bigskip
 \begin{center}
@@ -1195,7 +1201,7 @@ different entries, they will be ignored given the priority rule.
 \bigskip
 \noindent There are three priority levels. The dictionaries whose names without
 extension end with~\verb+-+
-\index{\verb+-+}\index{\verb-+-}
+\index{\verb+-+}\index{\verb$+$}
 have the highest priority; those that end with~\verb-+- have the lowest one.
 All other dictionaries are applied with medium priority. The order in which
 dictionaries with the same priority are applied does not matter.
@@ -1240,7 +1246,8 @@ letters and spaces. The upper case rule is as follows:
 \noindent \verb$Peter,.N+firstName$ only 
 recognizes \verb+Peter+ and \verb+PETER+. Lower and upper case
 letters are defined in the alphabet file passed to the \verb+Dico+ program\index{\verb+Dico+}
-\index{External programs!\verb+Dico+}\index{File!\verb+alphabet+} as a parameter.
+\index{External programs!\verb+Dico+}\index{File!\verb+Alphabet.txt+}\index{File!alphabet}\index{Alphabet}
+as a parameter.
 
 \index{Rules!white space}
 \bigskip
@@ -1281,7 +1288,7 @@ graph \verb$NPr+$ shown in figure~\ref{graph-NPr}. The \verb$+$ in the graph
 name gives to it a low priority, so that it will be applied after the standard
 dictionary. This graph works with words that are still unknown after the
 application of the standard dictionary. Square brackets stand for a context definition.
-For more information about contexts,\index{Context} see section
+For more information about contexts,\index{Contexts!zone in a graph} see section
 \ref{section-contexts}.
 
 \begin{figure}[!h]

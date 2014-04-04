@@ -418,7 +418,7 @@ SAV,Service Après-Vente.SIGLE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recherche d'un mot dans un dictionnaire}
-\index{Dictionnaire!recherche} \index{Recherche dans un dictionnaire}
+\index{Dictionnaire!recherche}\index{Dictionnaire!consultation}\index{Consultation d'un dictionnaire}\index{Recherche dans un dictionnaire}
 \label{section-dictionary-lookup}
 Vous pouvez rechercher un mot dans plusieurs dictionnaires de deux manières : 
 
@@ -550,7 +550,7 @@ compare \texttt{pêche} et \texttt{pèche}.
 \noindent
 Afin de prendre en compte ce phénomène, le programme de tri \verb+SortTxt+  
 \index{\verb+SortTxt+}\index{Programmes externes!\verb+SortTxt+} utilise un fichier qui définit des
-équivalences de caractères. \index{Equivalence de caractères}  Ce fichier s’appelle
+équivalences de caractères. \index{Équivalence de caractères}  Ce fichier s’appelle
 \verb+Alphabet_sort.txt+ \index{Fichier!\verb+Alphabet_sort.txt+} et se trouve dans le répertoire
 de la langue courante de l’utilisateur. Voici les premières lignes du fichier utilisé par défaut
 pour le français :
@@ -621,7 +621,8 @@ fléchir la forme canonique. Il y a deux formes possibles :
 \end{itemize}
 
 \bigskip
-\noindent Ces grammaires de flexion\index{Grammaires!de flexion} seront automatiquement compilées si
+\noindent Ces grammaires de flexion\index{Grammaires!de flexion}\index{Graphe!de flexion}\index{Transducteur!de flexion}
+seront automatiquement compilées si
 besoin est. Dans l’exemple ci-dessus, toutes les entrées seront fléchies avec une grammaire nommée
 \verb+N4+.
 
@@ -857,23 +858,25 @@ engendrer directement un dictionnaire prêt à l’emploi.
 
 \subsection{Opérateurs de flexion avancés}
 \label{advanced-inflection-operators}
-Dans certaines langues le processus de flexion entraine une modification de la racine du mot.
-Plusieurs opérateurs ont été développés pour faciliter ce type de traitements. Ils permettent de rechercher
+Dans certaines langues, le processus de flexion entraine une modification de la racine du mot.
+Plusieurs opérateurs ont été développés pour faciliter ce type de traitement. Ils permettent de rechercher
 et d'enlever un suffixe du mot \verb+W+ \`a fléchir. Cette opération peut
 \^etre accompagnée de la mémorisation dans une variable (\$ ou \pounds) d'un facteur de ce suffixe.
-Ces opérateurs peuvent prendre les formes suivantes:
+Ces opérateurs peuvent prendre les formes suivantes~:
 
-\bigskip
+%\bigskip
 \begin{itemize}
-\item \verb+<X$Y>+~: On recherche depuis la fin du mot \verb+W+ la première occurrence de \verb+Y+.
-Puis, on recherche \`a partir de la position atteinte la {\bf première} occurrence de \verb+X+ qui
-précède strictement celle de \verb+Y+ . La variable \$ contient alors le {\bf plus court facteur}
-({\bf\$}hortest) de \verb+W+ strictement compris entre \verb+X+ et \verb+Y+ (\verb+W = U.X.$.Y+) \footnote{Le point
-représente ici l'opération de concaténation.}.
-\item \verb+<X£Y>+~: On recherche depuis la fin du mot \verb+W+ la première occurrence de \verb+Y+.
-Puis, on recherche \`a partir de la position atteinte la {\bf dernière} occurrence de \verb+X+ qui
-précède strictement celle de \verb+Y+. La variable {\pounds} contient alors le {\bf plus long facteur}
-({\bf£}ongest) de \verb+W+ strictement compris entre \verb+X+ et \verb+Y+ (\verb+W = U.X.£.Y+).
+\item \verb+<X$Y>+~: On recherche à la fin du mot \verb+W+ le suffixe \verb+Y+.
+	Puis, on recherche \`a partir de la position atteinte la {\bf plus proche} occurrence de \verb+X+
+	qui précède strictement celle de \verb+Y+ . La variable \$ contient alors le {\bf plus court facteur}
+	({\bf\$}hortest) de \verb+W+ strictement compris entre
+	\verb+X+ et \verb+Y+ (\verb+W = U.X.$.Y+) \footnote{Le point représente ici l'opération de concaténation.}.
+	L'opérateur \verb+<X$Y>+ retire \verb+X.$.Y+ de \verb+W+ et donne une valeur à \$. Une fois qu'il a été appliqué,
+	la séquence qui reste dans la pile est \verb+U+, et la variable \$ peut être utilisée dans le reste du chemin.
+\item \verb+<X£Y>+~: On recherche à la fin du mot \verb+W+ le suffixe \verb+Y+.
+	Puis, on recherche \`a partir de la position atteinte l'occurrence de \verb+X+ la {\bf plus à gauche} qui
+	précède strictement celle de \verb+Y+. La variable {\pounds} contient alors le {\bf plus long facteur}
+	({\bf£}ongest) de \verb+W+ strictement compris entre \verb+X+ et \verb+Y+ (\verb+W = U.X.£.Y+).
 \item \verb+<X>+~: Si aucune variable n'est présente, on recherche \verb+X+ comme suffixe de \verb+W+
 	(\verb+W =U.X+).
 \item \verb+<$Y>+: Si le facteur \verb+X+ est absent, le {\bf plus court facteur \verb+$+} est la première lettre
@@ -882,7 +885,7 @@ précède strictement celle de \verb+Y+. La variable {\pounds} contient alors le
 	\verb+W+ tel que  \verb+W = £.Y+.
 \end{itemize}
 
-\bigskip
+%\bigskip
 \noindent
 Pour illustrer l'utilisation des ces opérateurs, considérons le verbe {\it reprendre}~:
 
@@ -908,10 +911,10 @@ reprendre & <re{\pounds}> & {\pounds} = prendre & re\\
 
 \bigskip
 \noindent
-Le programme MultiFlex permet d'utiliser dix variables de type \$ dont les noms sont \$,\$1,...,\$9
-et dix variables de type {\pounds} dont les noms sont {\pounds},{\pounds}1,...,{\pounds}9. De plus,
+Le programme MultiFlex permet d'utiliser dix variables de type \$ dont les noms sont \$, \$1..., \$9
+et dix variables de type {\pounds} dont les noms sont {\pounds}, {\pounds}1..., {\pounds}9. De plus,
 plusieurs variables de types différents peuvent \^etre utilisées au sein d'une m\^eme opération.
-Ainsi l'opérateur <{\pounds}3re\$7re> appliqué au verbe {\it reprendre} donne~: {\pounds}3 = 
+Ainsi l'opérateur <{\pounds}3re\$7re> appliqué au verbe {\it reprendre} donne {\pounds}3 = 
  rep et \$7 = \verb+nd+.
 
 \bigskip
@@ -1187,7 +1190,7 @@ des priorités.
 
 \bigskip
 \noindent Il y a trois niveaux de priorités. Les dictionnaires dont les noms sans extension se
-terminent par \verb+-+\index{\verb+-+}\index{\verb-+-} ont la priorité la plus grande ; ceux dont
+terminent par \verb+-+\index{\verb+-+}\index{\verb$+$} ont la priorité la plus grande ; ceux dont
 le nom se termine par \verb-+- ont la priorité la plus faible ; les autres dictionnaires sont
 appliqués avec une priorité moyenne. L’ordre d’application de plusieurs dictionnaires ayant la même
 priorité est sans importance. En ligne de commande, l’instruction :
@@ -1232,7 +1235,7 @@ majuscule dans le texte.
 \noindent \verb$Pierre,.N+Prénom$ ne reconnaîtra que \verb+Pierre+ et \verb+PIERRE+. Les lettres
 minuscules et majuscules sont définies par le fichier alphabet passé en paramètre au programme
 \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+}
-\index{Fichier!\verb+alphabet+}.\index{Règles!espace}
+\index{Fichier!\verb+Alphabet.txt+}\index{Fichier!alphabet}\index{Alphabet}.\index{Règles!espace}
 
 \bigskip
 \noindent Le respect des espacements est une règle très simple : pour qu’une séquence du texte
