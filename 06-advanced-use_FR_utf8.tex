@@ -242,7 +242,7 @@ différents programmes d’Unitex.
 \subsection{Approximation par un transducteur fini}
 \index{Graphe!approximation par transducteur fini}
 \index{Approximation d'une grammaire par un transducteur fini}
-\index{\verb+Flatten+}\index{Programmes externes!\verb+Flatten+}
+\index{\verb+Flatten+}\index{Programmes externes!\verb+Flatten+}\label{flatten-section}
 Le format FST2 conserve l’architecture en sous-graphes des grammaires, ce qui les différencie
 des stricts transducteurs à états finis. Le programme \verb+Flatten+ permet de transformer
 une grammaire FST2 en un transducteur à états finis quand cela est possible, et d’en
@@ -1243,8 +1243,8 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 
 \noindent Il est possible de tester si une variable est définie ou non, afin d'interrompre la
 reconnaissance courante si la condition n'est pas vérifiée. Ceci se fait en insérant la  séquence
-\verb+$xxx.SET$+ à la sortie d'une boîte. Ainsi, si une variable dénommée \verb+xxx+ a été définie,
-cette séquence est ignorée et la reconaissance continue, sinon, la reconnaissance s'arrête
+\verb+$xxx.SET$+ dans la sortie d'une boîte. Ainsi, si une variable dénommée \verb+xxx+ a été définie,
+cette séquence est ignorée et la reconnaissance continue, sinon, la reconnaissance s'arrête
 et le programme repart en arrière. Ceci fonctionne sur les variables d'entrée, les variables de
 sortie et les variables de dictionnaire. De façon similaire, on peut vérifier qu'une variable n'est
 pas définie en utilisant \verb+$xxx.UNSET$+. La figure \ref{fig-testing-a-variable} montre un graphe
@@ -1267,7 +1267,7 @@ qui utilise ce type de test. La figure \ref{fig-testing-a-variable-results} mont
 
 \subsection{Comparaison de variables}
 \index{Comparaison!de variables}
-Il est également possible de comparer tout type de variable (d'entrée, de sortie, ou de dictionnaire) avec une constante ou une autre variable en utilisant la syntaxe suivante:
+Il est également possible de comparer tout type de variable (d'entrée, de sortie, ou de dictionnaire) avec une constante ou une autre variable. Ceci se fait en insérant dans la sortie d'une boîte une séquence respectant la syntaxe suivante~:
 
 
 \bigskip
@@ -1291,6 +1291,35 @@ utiliser les tests suivants:
 ou \\
 \verb+$abc.UNEQUALcC=xyz$+
 
+\subsection{Recherche d'un code sémantique dans une variable de dictionnaire}
+\index{Variables!code sémantique}
+On peut chercher dans une variable de dictionnaire \index{Variables!dictionary entry}
+(section~\ref{dictionary-variables}) un ``code sémantique'' au sens de la section~\ref{section-DELAF-entry-syntax}.
+Pour cela, on insère dans la sortie d'une boite une séquence respectant la syntaxe suivante~:
+
+\bigskip
+\noindent \verb+$abc.EQ=Conc$+
+
+\bigskip
+\noindent Ce test agit comme un interrupteur qui permet de bloquer l'exploration de la grammaire si \verb+Conc+
+ne figure pas parmi les ``codes sémantiques'' de la variable de dictionnaire \verb+abc+. On peut chercher
+un seul code à la fois dans une variable. Pour vérifier plusieurs codes, on met plusieurs boites en série.
+
+\bigskip
+\noindent Cette fonctionnalité est utilisée pour de grandes grammaires de graphes-dictionnaires morphologiques, en vue de
+dissocier dans des boites distinctes la vérification d'un code grammatical et de ``codes sémantiques'' qui viennent ensuite,
+comme dans \cite{paumier:nam:2014}, page~486.
+On teste le code grammatical avec un masque lexical, puis on fait de même pour les codes sémantiques
+en les cherchant dans la variable de dictionnaire correspondante.
+Cette dissociation peut accélérer l'application des graphes si~:
+\begin{itemize}
+\item tous les graphes sont invoqués directement ou indirectement depuis un même graphe principal, 
+\item le graphe principal est compilé et transformé en transducteur fini (voir section~\ref{flatten-section}),
+\item la boite qui contient le masque lexical est commune à plus de chemins que celles qui cherchent les codes sémantiques
+dans la variable de dictionnaire\footnote{De cette façon, le masque lexical provoque une consultation des dictionnaires du mode morphologique qui n'est effectuée qu'une fois avant plusieurs recherches de codes sémantiques.
+Si on vérifie le code grammatical et un code sémantique par un même masque lexical, ces masques deviennent plus
+nombreux dans l'ensemble de la grammaire et ils provoquent plus de consultations des dictionnaires.}.
+\end{itemize}
 
 \section{Application des graphes aux textes}
 \label{section-applying-graphs-to-text}

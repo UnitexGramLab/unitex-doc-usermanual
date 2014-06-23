@@ -244,6 +244,7 @@ that make up a grammar. The grammar is then ready to be used by Unitex programs.
 \index{Graph!approximation with a finite state transducer}
 \index{Approximation of a grammar with a finite state transducer}
 \index{\verb+Flatten+}\index{External programs!\verb+Flatten+}
+\label{flatten-section}
 The FST2 format conserves the architecture in subgraphs of the grammars, which
 is what makes them different from strict finite state transducers. The 
 \verb+Flatten+ program allows you to turn a FST2 grammar into a finite
@@ -1278,13 +1279,13 @@ MERGE mode.
 \index{Variables!comparison}
 Another kind of test you can perform consists of variable comparison.
 You can compare a variable of any kind (whether an input variable, an output variable or a dictionary-entry variable)
-against a constant string or another variable. To do that, you have to use the following syntax:
+against a constant string or another variable. To do that, insert in the output of a graph box a sequence with the following syntax:
 
 \bigskip
 \noindent \verb+$abc.EQUAL=xyz$+
 
 \bigskip
-\noindent This acts like a switch that will block the grammar exploration if the value of variable \verb+abc+
+\noindent This test acts like a switch that will block the grammar exploration if the value of variable \verb+abc+
 is different from the value of variable \verb+xyz+. Note that for dictionary-entry variables,
 what is used in the test is the inflected form
 as found in the dictionary (beware of case variations!). If you want to compare variable
@@ -1303,6 +1304,34 @@ as found in the dictionary (beware of case variations!). If you want to compare 
 \noindent \verb+$abc.EQUALcC=xyz$+ \\
 or \\
 \verb+$abc.UNEQUALcC=xyz$+
+
+\subsection{Querying variables}
+\index{Querying variables}
+\index{Variables!query}
+You can search a dictionary-entry variable \index{Variables!dictionary entry}
+(section~\ref{dictionary-variables}) for a `semantic code' (in the sense of section~\ref{section-DELAF-entry-syntax}). To do that, insert in the output of a graph box a sequence with the following syntax:
+
+\bigskip
+\noindent \verb+$abc.EQ=Conc$+
+
+\bigskip
+\noindent This test acts like a switch that will block the grammar exploration if \verb+Conc+ is not found among the `semantic codes' of the dictionary-entry variable \verb+abc+. You can search a variable for one code at a time. To check several codes, chain several boxes.
+
+\bigskip
+\noindent This feature is used in large sets of morphological dictionary-graphs in order to dissociate in distinct boxes
+a check for a grammatical code and subsequent checks for semantic codes, as in \cite{paumier:nam:2014}, page~486.
+The grammatical code is checked with the aid of a lexical mask, and the semantic codes are checked by searching the corresponding
+dictionary-entry variable. 
+Such dissociation may speed up the application of the graphs if:
+\begin{itemize}
+\item all the graphs are directly or indirectly invoked from a single main graph,
+\item the main graph is compiled and flattened (see section~\ref{flatten-section}),
+\item the box with the lexical mask is common to more paths than the boxes searching for the semantic codes
+in the dictionary-entry variable.\footnote{Thus, the lexical mask provokes a search in morphological-mode dictionaries
+which is performed once before several searches for semantic codes.
+If you check the grammatical code and a semantic code by the same lexical mask, these masks are more numerous
+in the complete grammar and they provoke more searches in morphological-mode dictionaries.}
+\end{itemize}
 
 \section{Applying graphs to texts}
 \label{section-applying-graphs-to-text}
