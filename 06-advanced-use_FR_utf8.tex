@@ -764,13 +764,16 @@ Par exemple,  la grammaire de la figure \ref{fig-morpho3} cherche les mots const
 \bigskip
 \noindent Pour pouvoir reconnaître le mot 
 \verb+unaware+ avec cette grammaire, le système doit savoir que \verb+aware+ est un adjectif. Mais
-\verb+aware+ peut ne pas être présent dans le texte, de sorte que nous ne pouvons pas compter
-sur les dictionnaires du texte. C'est la raison pour laquelle nous devons définir une liste de
+\verb+aware+ peut ne pas être présent dans le texte, de sorte qu'on ne peut pas compter
+sur les dictionnaires du texte. C'est la raison pour laquelle on doit définir une liste de
 dictionnaires à consulter en mode morphologique.
-Pour faire cela, allez dans ``Info>Preferences>Morphological-mode dictionaries''
+Pour ce faire, on va dans ``Info>Preferences>Morphological-mode dictionaries''
 (figure~\ref{fig-morpho4}).
-Vous pouvez définir autant de dictionnaires du mode morphologique que vous voulez, mais ils doivent
-être au format \verb+.bin+. Ceci fait, vous pouvez appliquer votre grammaire.
+On peut définir autant de dictionnaires du mode morphologique qu'on veut, mais ils doivent
+être au format \verb+.bin+. Ceci fait, on peut appliquer la grammaire.
+Pour spécifier qu'un graphe-dictionnaire doit être consulté lorsqu'on est en mode morphologique,
+on utilise l'option \verb+b+ ou \verb+z+ (section~\ref{section-dictionary-graphs}, Exporter les entrées produites
+comme dictionnaire du mode morphologique).
 
 \subsection{Variables de dictionnaire}
 \index{Variable!de dictionnaire}
@@ -1330,7 +1333,13 @@ Pattern..." dans le menu "Text" ou appuyer sur <Ctrl+L>. Vous pouvez alors confi
 recherche grâce à la fenêtre de la figure
 ~\ref{fig-regexp-frame}.
 
-\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig6-30.png}
+\caption{Fenêtre de recherche d’expressions\label{fig-regexp-frame}}
+\end{center}
+\end{figure}
+
 \index{Recherche de motifs}
 \noindent Dans le cadre intitulé "Locate pattern in the form of", choisissez "Graph" et sélectionnez
 votre graphe en cliquant sur le bouton "Set". Vous pouvez choisir un graphe au format
@@ -1340,11 +1349,9 @@ Compiled Graphs). Si votre graphe est au format \verb+.grf+, Unitex le compilera
  concordance sera affichée dans une fenêtre dans laquelle vous trouverez l'automate et, 
  pour chaque séquence reconnue, la liste des états du chemin qui la reconnaît. Cette fenêtre est décrite en détails à la section~\ref{section-debug-mode}.
 
-
 \bigskip
 \noindent Le cadre "Index" permet de sélectionner le mode de reconnaissance:
 
-\bigskip
 \index{Shortest matches}\index{Longest matches}\index{All matches}
 \begin{itemize}
   \item "Shortest matches" : donne la priorité aux séquences les plus courtes;
@@ -1353,26 +1360,17 @@ utilisé par défaut;
   \item "All matches" : donne toutes les séquences reconnues.
 \end{itemize}
 
-\bigskip
 \noindent 
 Le cadre "Search limitation" permet de limiter ou non la recherche à un certain nombre
 d’occurrences. Par défaut, la recherche est limitée aux 200 premières occurrences.
 \index{Occurrences!nombre}
 
 \bigskip
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[width=9cm]{resources/img/fig6-30.png}
-\caption{Fenêtre de recherche d’expressions\label{fig-regexp-frame}}
-\end{center}
-\end{figure}
-
 \index{MERGE}\index{REPLACE}
 \noindent Le cadre "Grammar outputs" concerne le mode d’utilisation des sorties. Le mode "Merge
 with input text" permet d’insérer les séquences produites par les sorties. Le mode "Replace
 recognized sequences" permet de remplacer les séquences reconnues par les séquences produites.
 Le troisième mode ignore les sorties. Ce dernier mode est utilisé par défaut.
-
 
 \bigskip
 \noindent
@@ -1393,7 +1391,6 @@ Une fois vos paramètres fixés, cliquez sur "SEARCH" pour lancer la recherche.
 Si vous sélectionnez l'onglet "Advanced options", vous voyez le cadre de la
 figure \ref{fig6-advanced-options1}.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options1.png}
@@ -1401,11 +1398,12 @@ figure \ref{fig6-advanced-options1}.
 \end{center}
 \end{figure}
 
-\index{Sortie d'un transducteur!ambiguïté}
+\bigskip
+\index{Sortie d'un transducteur!ambiguïté}\index{Ambigu!transducteur}
 \noindent L'option "Ambiguous output policy" est illustrée par le graphe de la 
 figure \ref{fig6-advanced-options2}. Lorsqu'un déterminant est suivi par un mot pouvant être un
-nom ou un adjectif, il peut produire deux sorties distinctes pour la même séquence d'entrée.
-
+nom ou un adjectif, il peut produire deux sorties distinctes pour la même séquence d'entrée
+(le transducteur est dit ambigu).
 
 \bigskip
 \begin{figure}[!h]
@@ -1415,8 +1413,8 @@ nom ou un adjectif, il peut produire deux sorties distinctes pour la même séqu
 \end{center}
 \end{figure}
 
-\noindent Si nous appliquons ce graphe sur le texte \textit{Ivanhoe} avec l'option "Allow ambiguous
-(celle par défaut), nous obtenons la concordance de la figure \ref{fig6-advanced-options3}. Comme vous pouvez le constater, deux sorties sont produites pour la séquence \textit{the noble}.
+\noindent Si nous appliquons ce graphe sur le texte \textit{Ivanhoe} avec l'option "Allow ambiguous outputs''
+(celle par défaut), nous obtenons la concordance de la figure~\ref{fig6-advanced-options3}. Comme vous pouvez le constater, deux sorties sont produites pour la séquence \textit{the noble}.
 
 \bigskip
 \begin{figure}[!h]
@@ -1426,8 +1424,7 @@ nom ou un adjectif, il peut produire deux sorties distinctes pour la même séqu
 \end{center}
 \end{figure}
 
-
-\noindent A l'opposée, avec l'option "Forbid ambiguous
+\noindent A l'opposé, avec l'option "Forbid ambiguous
 outputs", nous obtenons la concordance de la figure \ref{fig6-advanced-options4},
 avec seulement une sortie choisie arbitrairement pour la séquence \textit{the noble}.
 
@@ -1438,7 +1435,6 @@ avec seulement une sortie choisie arbitrairement pour la séquence \textit{the n
 \caption{Sortie unique \textit{the noble}\label{fig6-advanced-options4}}
 \end{center}
 \end{figure}
-
 
 \index{Traitement des erreurs sur les variables}
 \bigskip

@@ -680,8 +680,7 @@ see on Figure \ref{fig-left-context10}.
 \subsection{Why ?}
 As Unitex works on a tokenized version of the text, it is not possible to
 perform queries that need to enter inside tokens, except with morphological
-filters (see section \ref{section-filters}), as shown on Figure
-\ref{fig-morpho1}.
+filters (see section \ref{section-filters}), as shown on Figure~\ref{fig-morpho1}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -787,6 +786,9 @@ to be looked up in the morphological mode. To do that, go in
 ``Info>Preferences>Morphological-mode dictionaries'', as shown on Figure
 \ref{fig-morpho4}. You can select as many dictionaries as you want, but they
 MUST be \verb+.bin+ ones. Once this is done, you can apply your grammar and get results.
+In order to specify that a dictionary-graph should be looked up in the morphological mode,
+use option \verb+b+ or \verb+z+ (section~\ref{section-dictionary-graphs}, Exporting produced entries
+as a morphological-mode dictionary).
 
 \subsection{Dictionary-entry variables}
 \index{Dictionary-entry variables}
@@ -1410,13 +1412,10 @@ Figure \ref{fig6-advanced-options1}.
 \end{center}
 \end{figure}
 
-\index{Ambiguous outputs}
+\index{Ambiguous!transducer}\index{Transducer output!ambiguity}
 \noindent The "Ambiguous output policy" option can be illustrated with the
-graph shown on Figure \ref{fig6-advanced-options2}. When a determiner is
-followed by a word that can be either adjective or noun, it can produce two
-distinct outputs for the same text input sequence.
+graph shown on Figure \ref{fig6-advanced-options2}.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options2.png}
@@ -1424,12 +1423,14 @@ distinct outputs for the same text input sequence.
 \end{center}
 \end{figure}
 
-\noindent If we apply this graph on \textit{Ivanhoe} with the "Allow ambiguous
+\bigskip
+\noindent When a determiner is followed by a word that can be either adjective or noun,
+it can produce two distinct outputs for the same text input sequence (the transducer is
+said to be ambiguous).  If we apply this graph on \textit{Ivanhoe} with the "Allow ambiguous
 outputs" option (the default one), we will obtain the text order
 concordance shown of Figure \ref{fig6-advanced-options3}. As you can see, two
 outputs have been produced for the input sequence \textit{the noble}.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=8.8cm]{resources/img/fig6-advanced-options3.png}
@@ -1437,13 +1438,12 @@ outputs have been produced for the input sequence \textit{the noble}.
 \end{center}
 \end{figure}
 
-
+\bigskip
 \noindent At the opposite, with the "Forbid ambiguous
 outputs" option, we will obtain the text order
 concordance shown of Figure \ref{fig6-advanced-options4}, with only one
 arbitrarily chosen output for the input sequence \textit{the noble}.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options4.png}
@@ -1451,9 +1451,8 @@ arbitrarily chosen output for the input sequence \textit{the noble}.
 \end{center}
 \end{figure}
 
-
-\index{Variable error policy}
 \bigskip
+\index{Variable error policy}
 \noindent The "Variable error policy" option allows you to specify what
 \verb+Locate+/\verb+LocateTfst+ is supposed to do when an output is found that
 contains a reference to a variable that has not been correctly defined. Note

@@ -403,19 +403,20 @@ will be connected to it.
 \bigskip
 \index{Multiple selection!copy-paste}
 \index{Copy}\index{Paste}
-\noindent You can perform a copy-paste with several boxes. Select them and
+\noindent You can perform a copy-paste with several boxes, as in
+Figure~\ref{copy-paste-multi-selection}. Select them and
 press <Ctrl+C> or click on "Copy" in the "Edit" menu. The selection is now in the Unitex
 clipboard. You can then paste this selection by pressing <Ctrl+V> or by selecting
 "Paste" in the "Edit" menu.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-14.png}
-\caption{Copy-Paste of a multiple selection}
+\caption{Copy-Paste of a multiple selection\label{copy-paste-multi-selection}}
 \end{center}
 \end{figure}
 
+\bigskip
 \noindent NOTE: You can paste a multiple selection into a different graph from
 the one where you copied it from.
 
@@ -445,10 +446,10 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \noindent To create an empty box with an output consisting of \verb+number+, type \verb+<E>/number+ (example: the rightmost box in Fig.~\ref{fig-using-variable} is empty and has an output). The output associated with a box is represented in bold text below it.
 
 \subsubsection{Weights}
-
+\index{Weight}
 You can assign integer weights to the boxes of a transducer.
-Thus, when a sequence of tokens is matched by several paths, 
-only the one with the highest weight will produce an output. 
+Thus, when a sequence of tokens is matched by several paths with different outputs 
+(ambiguous transducer\index{Ambiguous!transducer}\index{!Transducer output!ambiguity}), only a path with the highest weight will produce an output. 
 After a locate, this will affect the concordance, in which 
 the matched sequences of words will appear only once with the appropriate output
 (Figure~\ref{fig-weights-in-graphs}). In order to assign weight 1 to a box, insert \verb+${1}$+

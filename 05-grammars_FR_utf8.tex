@@ -426,7 +426,8 @@ celle-ci.
 \bigskip
 \index{Sélection multiple!copier-coller}
 \index{Copie}\index{Coller}
-\noindent Vous pouvez effectuer un copier-coller sur plusieurs boîtes. Pour cela, sélectionnez-les
+\noindent Vous pouvez effectuer un copier-coller sur plusieurs boîtes, comme dans la
+figure~\ref{copy-paste-multi-selection}. Pour cela, sélectionnez-les
 et appuyez sur <Ctrl+C> ou cliquez sur "Copy" dans le menu "Edit". Votre sélection multiple
 est maintenant dans le presse-papiers d’Unitex. Vous pouvez alors coller cette sélection en
 pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
@@ -434,7 +435,7 @@ pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-14.png}
-\caption{Copier-coller d’une sélection multiple}
+\caption{Copier-coller d’une sélection multiple\label{copy-paste-multi-selection}}
 \end{center}
 \end{figure}
 
@@ -472,9 +473,12 @@ sous celle-ci.
 %%%%%%%%%%%%%%
 \bigskip
 \noindent \textbf{Poids}
+\index{Poids}
 
-On peut attribuer un poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
-reconnue par plusieurs chemins, seul un chemin de poids maximal sera conservé.
+\noindent On peut attribuer un poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
+reconnue par plusieurs chemins avec des sorties différentes
+(transducteur ambigu\index{Ambigu!transducteur}\index{Sortie d'un transducteur!ambiguïté}),
+seul un chemin de poids maximal sera conservé.
 Après un "Locate", la concordance ne comportera qu'une seule fois la séquence reconnue, et avec la
 sortie appropiée (figure~\ref{fig-weights-in-graphs}). Les poids sont des valeurs entières,
 et le poids d'un chemin est la somme des poids rencontrés sur le chemin. Pour donner à une boite
