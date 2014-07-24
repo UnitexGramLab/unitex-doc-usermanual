@@ -20,8 +20,8 @@ the many works that discuss regular expression patterns.
   \item a particular position in the text : the beginning \verb+{^}+ or the end \verb+{$}+
   \item the concatenation of two regular
   expressions (\verb+he smokes+);\index{Concatenation of regular expressions}
-  \item the union of two regular expressions (\verb$Pierre+Paul$);\index{Union of
-  regular expressions} 
+  \item the union of two regular expressions
+  (\verb$Pierre+Paul$);\index{Union of regular expressions} 
   \item the Kleene star of a regular expression
   (\verb+bye*+).\index{Kleene star}
 \end{itemize}
@@ -104,7 +104,7 @@ the following:
 to match the \verb+{STOP}+\index{\verb+{STOP}+} marker, not even \verb+<TOKEN>+.
 
 \subsection{References to information in the dictionaries}
-\index{Reference to information in the dictionaries}\index{Dictionaries!refer to}
+\index{Reference to information in the dictionaries}\index{Dictionaries!reference to information in the}
 
 
 The second kind of lexical masks refers to the information in the
@@ -137,8 +137,9 @@ text dictionaries.
 
 The references to dictionary information (\verb+be+, \verb+V+) in these examples
 are basic. It is possible to express more complex lexical masks by using
-several grammatical or semantic codes separated by the character \verb$+$. An
-entry of the dictionary is then only found if it has all the codes that are
+several grammatical or semantic codes separated by the character \verb$+$.
+If several codes are present, the character \verb$+$ means `'and'':
+ an entry of the dictionary is only found if it has all the codes that are
 present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
 
 \bigskip
@@ -160,10 +161,14 @@ present in the mask. The mask \verb$<N+z1>$ thus recognizes the entries:
 
 \bigskip
 \noindent It is possible to exclude codes by preceding them with the character \verb+~+
-instead of \verb$+$. In order to be recognized, an entry has to contain all the
-codes required by the lexical mask and none of the prohibited ones. The mask
-\verb$<A~z3>$ thus recognizes all the adjectives that do not have the code
-\verb+z3+ (cf. table~\ref{tab-semantic-codes}).
+instead of \verb$+$.\index{Negation!of a feature}
+In order to be recognized, an entry has to contain all the
+codes required by the lexical mask and none of the prohibited ones. For instance,
+\verb+<A~z3>+ matches the entries that have the code \verb+A+ without the code
+\verb+z3+ (cf. table~\ref{tab-semantic-codes}).\footnote{If a word is described in the
+dictionaries by an entry with \texttt{A+z3} and another with only \texttt{A}, the word
+is matched by \texttt{<A+z3>} because of the former entry and by
+\texttt{<A{\textasciitilde}z3>} because of the latter.}
 If you want to refer to a code containing the character \verb$~$ you have to
 escape this character by preceding it with a \verb+\+. 
 
@@ -174,7 +179,11 @@ escape this character by preceding it with a \verb+\+.
 \index{Exclusion of grammatical and semantic codes}\index{\verb+~+}
 
 \bigskip
-\noindent The order in which the codes appear in the mask is not important. The
+\noindent The syntax of lexical masks does not make any difference between grammatical codes
+(table~\ref{tab-grammatical-codes}) and semantic codes (table~\ref{tab-semantic-codes}).
+In the DELAF dictionary format, grammatical codes are those that appear first and
+encode the part of speech, but in Unitex lexical masks,
+the order in which grammatical and semantic codes appear does not matter. The
 three following patterns are equivalent:
 
 \begin{verbatim}
@@ -183,6 +192,8 @@ three following patterns are equivalent:
 <~Hum+z1+N>
 \end{verbatim}
 
+\noindent A lexical mask can contain a semantic code without a part-of-speech code.
+
 \bigskip
 \noindent NOTE: it is not possible to use a lexical mask that only has
 prohibited codes. \verb+<~N>+ and \verb+<~A~z1>+ are thus incorrect masks. 
@@ -190,29 +201,58 @@ However, you can express
 such constraints using contexts (see section~\ref{section-contexts}).
 
 
-
 \subsection{Inflectional constraints}
 \index{Inflectional constraints}
-It is also possible to specify constraints about the inflectional codes. These
+It is also possible to specify constraints about inflectional codes. These
 constraints have to be preceded by at least one grammatical or semantic code.
-They are represented as inflectional codes present in the dictionaries.
-Here are some examples of lexical masks using inflectional
+They are represented in the same format as the inflectional codes in the dictionaries.
+Here are some French examples of lexical masks using inflectional
 constraints:
 
-\bigskip
 \begin{itemize}
-  \item \verb+<A:m>+ recognizes a masculine adjective;
-  \item \verb+<A:mp:f>+ recognizes a masculine plural or a feminine adjective;
+  \item \verb+<A:m>+ recognizes a adjective in the masculine;
+  \item \verb+<A:mp>+ recognizes an adjective in the masculine plural.
+\end{itemize}
+
+\noindent An inflectional code is introduced by the \verb+:+ character and
+is made up of one or more characters, each of which represents one piece of
+information. Let us consider first the simple case of dictionary entries and masks
+which have exactly one inflectional code.
+In order to let a dictionary entry $E$ be recognized by a mask $M$, it
+is necessary that the inflectional code of $E$ contains all the characters
+of the inflectional code of $M$:
+
+\bigskip
+$E$=\verb$pretext,.V:P3p$
+
+$M$=\verb$<V:P3>$
+
+\bigskip
+\noindent The inflectional code \verb+P3p+ of $E$
+contains both characters \verb+P+ and \verb+3+. The code \verb+P3+ is
+included in the code of $E$. Therefore, mask $M$ recognizes entry $E$.
+
+\bigskip
+\noindent The order of the
+characters inside an inflectional code is without importance. All the grammatical
+and semantic codes must precede the inflectional codes.
+ 
+ \bigskip
+ \noindent If several inflectional codes are present in a lexical mask, the \verb+:+
+ character means `'or'':
+ 
+\begin{itemize}
+  \item \verb+<A:mp:f>+ matches both \verb+<A:mp>+ and \verb+<A:f>+; it
+  recognizes adjectives in the masculine plural or in the feminine;
   \item \verb+<V:2:3>+ recognizes a verb in the 2nd or 3rd person; that excludes
   all tenses that have neither a 2nd or 3rd person (infinitive, past participle
   and present participle) as well as the tenses that are conjugated in the first
   person.
 \end{itemize}
 
-\bigskip
-\noindent In order to let a dictionary entry $E$ be recognized by mask $M$, it
+\noindent In order to let a dictionary entry $E$ be recognized by a mask $M$, it
 is necessary that at least one inflectional code of $E$ contains all the characters
-of an inflectional code of $M$. Consider the following example:
+of at least one inflectional code of $M$. Consider the following example:
 
 \bigskip
 $E$=\verb$pretext,.V:W:P1s:P2s:P1p:P2p:P3p$
@@ -223,11 +263,10 @@ $M$=\verb$<V:P3s:P3>$
 \noindent No inflectional code of $E$ contains the characters \verb+P+,
 \verb+3+ and \verb+s+ at the same time. However, the code \verb+P3p+ of $E$
 does contain both characters \verb+P+ and \verb+3+. The code \verb+P3+ is
-included in at least one code of $E$, mask $M$ thus recognizes entry $E$. The order of the
-characters inside an inflectional code is without importance.
+included in at least one code of $E$. Therefore, mask $M$ recognizes entry $E$.
 
 \subsection{Negation of a lexical mask}
-\index{Negation of a lexical mask}
+\index{Negation!of a lexical mask}
 \index{\verb+"!+}
 It is possible to negate a lexical mask by placing the character~\verb+!+ immediately
 after the character~\verb+<+.
@@ -235,9 +274,9 @@ Negation is possible with the masks \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+,
 \verb+<PRE>+, \verb+<DIC>+ as well as with the masks that carry grammatical,
 semantic of inflectional codes (\textit{i.e.} \verb$<!V~z3:P3>$).
 The masks \verb+#+ and \verb+" "+ are the negation of each other.
-\index{Negation}\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
+\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
 mask \verb$<!MOT>$ recognizes all tokens that do not consist of
-letters except for the sentence separator \verb+{S}+ and the \verb+{STOP}+ marker.
+letters except for the sentence delimiter \verb+{S}+ and the \verb+{STOP}+ marker.
 Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ and \verb+<TOKEN>+.
 
 \bigskip
@@ -263,7 +302,6 @@ being,.N+Hum:s
 \end{verbatim}
 \index{Words!unknown}
 
-\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig4-1.png}
@@ -271,7 +309,6 @@ being,.N+Hum:s
 \end{center}
 \end{figure}
 
-\bigskip
 \noindent Here are some examples of lexical masks with the different types of constraints:
 
 \begin{itemize}
@@ -285,8 +322,8 @@ being,.N+Hum:s
   \item \verb$<!ADV>$ : all words that are not adverbs;
   \item \verb$<!MOT>$ : all tokens that are not made of letters (cf.
   figure~\ref{fig-search-<!MOT>}). This mask does not recognize the sentence
-  separator \verb+{S}+ and the special tag \verb+{STOP}+.
-  \index{\verb+{S}+}\index{Sentence separator}\index{\verb+{STOP}+}
+  delimiter \verb+{S}+ and the special tag \verb+{STOP}+.
+  \index{\verb+{S}+}\index{Sentence delimiter}\index{\verb+{STOP}+}
 \end{itemize}
 
 \bigskip
@@ -331,7 +368,7 @@ the.<A>cat
 \end{verbatim}
 
 \section{Union}
-\index{Union of regular expression}\index{\verb$+$}
+\index{Union of regular expressions}\index{\verb$+$}
 \index{Operator!disjunction}
 The union of regular expressions is expressed by typing the character \verb$+$
 between them. The expression
@@ -354,7 +391,7 @@ and \textit{the little cat}
 \textit{Anglo-French} and \textit{Anglo-Indian}
 
 \section{Kleene star}
-\index{Kleene star}\index{\verb+*+}\index{Operator!Kleene star}
+\index{Kleene star}\index{\verb+*+}\index{Operator!Kleene star}\index{Operator!iteration}
 The Kleene star, represented by the character \verb+*+,  allows you to recognize
 zero, one or several occurrences of an expression. The star must be placed on
 the right hand side of the element in question. The expression:
@@ -581,7 +618,7 @@ characters and not in real characters. This makes it possible to keep the line a
 the concordance despite the presence of diacritics that combine with other
 letters instead of being displayed as normal characters.
 
-\index{Sorting!of concordances}
+\index{Sorting!concordances}
 \index{Contexts!concordance}
 \bigskip
 \noindent You can choose the sort order in the list "Sort According to". The
@@ -604,7 +641,7 @@ select the program to use in the field "Html Viewer"
 (cf. figure~\ref{fig-browser-selection}).
 
 \bigskip
-\noindent \index{Concordance frame} If you choose to open the concordance in
+\noindent \index{Concordance!frame} If you choose to open the concordance in
 Unitex, you will see a window as shown on Figure \ref{fig-example-concordance}. 
 Occurrences react as hyperlinks. If you click on an occurrence, the text frame is
 opened and the corresponding sequence is highlighted. Moreover, if the text automaton is
