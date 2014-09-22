@@ -9,7 +9,7 @@ UnitexManual: UnitexManual_FR_utf8.tex 00-introduction_FR_utf8.tex 01-installati
                   LGPL_FR_utf8.tex LGPLLR_FR_utf8.tex title_FR_utf8.tex bibliographie_utf8.bib
 	pdflatex UnitexManual_FR_utf8.tex
 	bibtex UnitexManual_FR_utf8
-	makeindex UnitexManual_FR_utf8.idx
+	texindy UnitexManual_FR_utf8.idx
 	pdflatex UnitexManual_FR_utf8.tex
 
 clean:
