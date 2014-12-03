@@ -60,8 +60,8 @@ the same for uppercase letters. Besides,
 the connection of two boxes is exactly equivalent to the concatenation of their
 contents together with the concatenation of their outputs.
 (cf.
-figure~\ref{fig-equivalent-inflection-paths}).\index{Respect!of
-lowercase/uppercase}
+figure~\ref{fig-equivalent-inflection-paths}).\index{Respect!of lowercase/uppercase}\index{Case!respect of
+lowercase/uppercase}\index{Lowercase!case respect}\index{Uppercase!case respect}
 
 \bigskip
 \begin{figure}[!h]
@@ -109,7 +109,7 @@ and~\ref{fig-normalization-grammar} (page
 
 \subsection{Graphs for normalizing the text automaton}
 \label{section-normalizing-text-automataon}
-\index{Automaton!text}\index{Text!normalisation of the automaton}
+\index{Automaton!of the text}\index{Text!normalisation of the automaton}
 \index{Grammars!normalisation!of the text automaton}
 \index{Normalization!of the text automaton}
 \index{Normalization!of ambiguous forms}
@@ -131,7 +131,7 @@ extract of the normalization graph used by default for French.
 and upper case variants are taken into account according to the following principle:
 uppercase letters in the graph only recognize uppercase letters in the
 text automaton;  lowercase letters can recognize both lowercase and uppercase
-letters. \index{Case respect}
+letters. \index{Case!respect of lowercase/uppercase}
 
 \bigskip
 \noindent The transducer outputs represent the sequences of labels that will be
@@ -166,10 +166,8 @@ the respect of spaces. In fact, Unitex by default assumes that a space is possib
 boxes. In order to enforce the presence of a space you have to enclose it in
 double quotes. For prohibiting the presence of a space you have to use the
 special symbol \verb+#+.\index{\verb+#+}
-\index{Respect!of lowercase/uppercase}\index{Case!see {Respect!of
-lowercase/uppercase}}
-\index{Lowercase!see {Respect!of lowercase/uppercase}}
-\index{Uppercase!see {Respect!of lowercase/uppercase}}
+\index{Respect!of lowercase/uppercase}\index{Case!respect of
+lowercase/uppercase}\index{Lowercase!case respect}\index{Uppercase!case respect}
 \index{Respect!of spaces}
 
 \bigskip
@@ -386,16 +384,10 @@ read the pattern described by that label in the text before calling
 only if they  recognized the pattern an infinite number of times in the text,
 which is impossible.
 
-\bigskip
-\index{Intervals}
-\noindent In order to recognize token sequences in which one word or one token of a specific grammatical category appears once, several times or never, you can attach an integer interval to a box.
-If you attach the interval [m,M] to a box containing <ADJ>, the path will match sequences with at least $m$ consecutive adjectives and no more than $M$.
-Intervals are attached by inserting \verb+$[m,M]$+ into the output of the box, just after the character ``/'', and according to the following rules : 
-\begin{itemize}
-\item \verb+[m,M]+ = at least $m$ consecutive terms and no more than $M$
-\item \verb+[,M]+ = 0 to $M$  
-\item \verb+[m,]+ = at least $m$
-\end{itemize}
+\subsection{Interval for number of repetitions}
+\label{nb-repetitions}\index{Interval}\index{Loop!number of repetitions}\index{Number of repetitions}\index{Repetition!number of}
+\noindent In order to recognize token sequences in which one pattern appears once, several times in sequence or never, you can attach an integer interval to a box. This sets limits to the number of times the pattern occurs. The pattern must be described in a single box.
+If you attach the interval [m,M] to a box containing <A> (figure~\ref{intervals}), the path will match sequences with at least $m$ consecutive adjectives and no more than $M$.
 
 \begin{figure}[h!]
 \begin{center}
@@ -403,6 +395,15 @@ Intervals are attached by inserting \verb+$[m,M]$+ into the output of the box, j
 \caption{Use of an interval to match several consecutive tokens\label{intervals}}
 \end{center}
 \end{figure}
+
+\noindent Intervals are attached by inserting \verb+$[m,M]$+ into the output of the box, just after the character ``/'', and according to the following rules : 
+\begin{itemize}
+\item \verb+[m,M]+ = at least $m$ consecutive terms and no more than $M$
+\item \verb+[,M]+ = 0 to $M$  
+\item \verb+[m,]+ = at least $m$
+\end{itemize}
+
+\noindent  The box must not be connected to itself with a direct loop. An interval is compatible with an output in the usual sense. For example, to insert \verb+<ADJ position='anteposed'>+  as an output under the box of figure~\ref{intervals}, type \verb+<A>/$[1,4]$/<ADJ position='anteposed'>+ in the text field. 
 
 \subsection{Error detection}
 \index{Error detection in graphs}\index{Graph!detection of

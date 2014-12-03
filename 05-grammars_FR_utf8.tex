@@ -88,19 +88,17 @@ Quand une grammaire produira des sorties, nous utiliserons le terme \textit{tran
 \label{section-editing-graphs}
 
 \subsection{Création d'un graphe}
-Pour pouvoir utiliser des graphes Intex dans Unitex, il faut les convertir en Unicode. Le
-procédé de conversion est le même que pour les textes (voir section~\ref{fig-new-graph}).
-Le symbole en forme de flèche est \textit{l'état initial} du graphe.\index{Etat!initial} Le symbole
-composé d'un rond contenant un carré est  \textit{l'état final} du graphe.\index{Etat!final} La
-grammaire reconnaît les séquences décrites par les chemins allant de l'état initial à l'état final
-
+Pour créer un graphe, cliquez sur "New" dans le menu "FSGraph" (\ref{fig-fsgraph-menu}).
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-1.png}
-\caption{Menu FSGraph}
+\caption{Menu FSGraph\label{fig-fsgraph-menu}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent On voit alors apparaitre une fenêtre comme celle de la figure~\ref{fig-new-graph}.
 
 \begin{figure}[!h]
 \begin{center}
@@ -110,28 +108,20 @@ grammaire reconnaît les séquences décrites par les chemins allant de l'état 
 \end{figure}
 
 \bigskip
+\noindent Pour pouvoir importer des graphes Intex dans Unitex, il faut les convertir en Unicode. Le
+procédé de conversion est le même que pour les textes
+(voir section~\ref{section-conversion-texte-unicode}).
+
+\bigskip
+\noindent Le symbole en forme de flèche est \textit{l'état initial} du graphe.\index{État!initial} Le symbole
+composé d'un rond contenant un carré est  \textit{l'état final} du graphe.\index{État!final} La
+grammaire reconnaît les séquences décrites par les chemins allant de l'état initial à l'état final
+
+\bigskip
 \noindent Pour créer une boîte, cliquez sur la fenêtre tout en appuyant sur la touche Ctrl. 
 \index{Graphe!création d'une boîte} \index{Création d'une boîte}\index{Boîtes!création}
 Vous verrez alors apparaître un carré bleu symbolisant la boîte vide créée (voir figure
 ~\ref{fig-box-creation}). Lors de la création d’une boîte, celle-ci est automatiquement sélectionnée.
-
-
-\bigskip
-\noindent Vous voyez donc le contenu de la boîte s’afficher dans la zone de texte située en
-haut de la fenêtre. La boîte créée contient le symbole \verb+<E>+\index{\verb+<E>+} qui représente
-le mot vide epsilon. Remplacez ce symbole par le texte \verb$I+you+he+she+it+we+they$ et validez en
-appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept lignes (voir
-	figure~\ref{fig-pronoun-box}).
-En effet, le caractère \verb$+$ sert de séparateur.\index{\verb$+$} La boîte apparaît sous la
-forme de lignes de texte rouge car elle n’est pour l’instant reliée à aucune autre.
-On utilise souvent ce type de boîtes pour insérer des commentaires dans un graphe.
-\index{Graphe!commentaires}\index{Commentaire!dans un graphe}
-
-\bigskip
-\noindent Si vous souhaitez ajouter un commentaire dans un graphe, vous devez créer une boîte qui
-commence par \verb$/$. Le texte de la boîte est affiché en vert, et peut contenir des lignes vides.
-La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (voir
-	figure~\ref{comment-box}).
 
 \begin{figure}[!h]
 \begin{center}
@@ -139,6 +129,14 @@ La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (v
 \caption{Création d’une boîte\label{fig-box-creation}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Le contenu de la boîte s’affiche dans la zone de texte située en
+haut de la fenêtre (figure~\ref{fig-box-creation}).
+La boîte créée contient le symbole \verb+<E>+\index{\verb+<E>+} qui représente
+le mot vide epsilon. Remplacez ce symbole par le texte \verb$I+you+he+she+it+we+they$ et validez en
+appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept lignes (voir
+	figure~\ref{fig-pronoun-box}).
 
 \begin{figure}[!h]
 \begin{center}
@@ -148,6 +146,18 @@ La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (v
 \end{center}
 \end{figure}
 
+\bigskip
+\noindent En effet, le caractère \verb$+$ sert de séparateur.\index{\verb$+$} La boîte apparaît sous la
+forme de lignes de texte rouge car elle n’est pour l’instant reliée à aucune autre.
+On utilise souvent ce type de boîtes pour insérer des commentaires dans un graphe.
+\index{Graphe!commentaires}\index{Commentaire!dans un graphe}
+
+\bigskip
+\noindent Si vous souhaitez ajouter un commentaire dans un graphe, vous devez créer une boîte qui
+commence par \verb$/$. Le texte de la boîte est affiché en vert, et peut contenir des lignes vides.
+La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (voir
+figure~\ref{comment-box}).
+
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12.5cm]{resources/img/fig5-4b.png}
@@ -156,8 +166,7 @@ La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (v
 \end{figure}
 %\clearpage
 
-
-%\clearpage
+\bigskip
 \noindent Pour relier une boîte à une autre, il faut cliquer sur la boîte de départ, puis sur la
 boîte de destination.\index{Graphe!connexion des boîtes}\index{Boîtes!connexion}
 S’il y a déjà une transition entre les deux boîtes, celle-ci est enlevée. Il est possible
@@ -174,7 +183,7 @@ on obtient le graphe de la figure~\ref{fig-pronoun-graph}:
 \end{figure}
 
 \bigskip
-\noindent REMAQUE: si vous double-cliquez sur une boîte, vous relierez cette boîte à elle-même (voir
+\noindent REMARQUE: si vous double-cliquez sur une boîte, vous relierez cette boîte à elle-même (voir
 figure~\ref{fig-loop-box}). Pour annuler, double-cliquez une nouvelle fois sur la boîte.
 
 \bigskip
@@ -185,17 +194,31 @@ figure~\ref{fig-loop-box}). Pour annuler, double-cliquez une nouvelle fois sur l
 \end{center}
 \end{figure}
 
-\noindent Cliquez sur "Save as..." dans le menu "FSGraph" pour enregistrer le graphe
-\index{Graphe!enregistrement}. Par défaut, Unitex propose d'enregistrer le graphe dans le 
+\noindent Cliquez sur "Save as..." dans le menu "FSGraph" pour enregistrer le
+graphe\index{Graphe!enregistrement}. Par défaut, Unitex propose d'enregistrer le graphe dans le 
 sous-répertpoire \verb+Graphs+ de votre répertoire personnel. Vous pouvez voir si le graphe a été
-modifié après le dernièr enregistrement  en vérifiant si le titre du graphe contient le texte
+modifié après le dernier enregistrement  en vérifiant si le titre du graphe contient le texte
 \verb+(Unsaved)+.
 
+\bigskip
+\noindent  Un graphe peut contenir des boucles. Une boucle peut entourer une
+seule boite, comme dans la fig.~\ref{fig-loop-box}, ou plusieurs, comme dans la
+ fig.~\ref{multi-selection}. Le contenu de la boucle sera reconnu n'importe quel nombre
+de fois en séquence. On peut fixer des limites au nombre de fois, mais uniquement pour
+une boucle autour d'une seule boite: voir la section~\ref{nb-repetitions}.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
-\noindent Lorsque vous modifiez un graphe, vous pouvez faire apparaître, par un clic droit, un menu
-contextuel vous permettant d'effectuer les opérations les plus usuelles~:
+\noindent Lorsqu'on modifie un graphe, on peut faire apparaître, par un clic droit, un menu
+contextuel (fig.~\ref{contextual-menu}) qui permet d'effectuer les opérations les plus usuelles~:
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
+\caption{Menu contextuel\label{contextual-menu}}
+\end{center}
+\end{figure}
 
 \begin{itemize}
 \item créer une boîte
@@ -213,13 +236,7 @@ la barre d'outils de la fenêtre d'édition du graphe (voir section~\ref{toolbar
 \item fusionner les boîtes sélectionnées
 \item exporter les boîtes sélectionnées en tant que nouveau graphe
 \end{itemize}
-\bigskip
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
-\caption{Menu contextuel\label{contextual-menu}}
-\end{center}
-\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -480,15 +497,7 @@ reconnue par plusieurs chemins avec des sorties différentes
 (transducteur ambigu\index{Ambigu!transducteur}\index{Sortie d'un transducteur!ambiguïté}),
 seul un chemin de poids maximal sera conservé.
 Après un "Locate", la concordance ne comportera qu'une seule fois la séquence reconnue, et avec la
-sortie appropiée (figure~\ref{fig-weights-in-graphs}). Les poids sont des valeurs entières,
-et le poids d'un chemin est la somme des poids rencontrés sur le chemin. Pour donner à une boite
-le poids 1, on insère \verb+${1}$+ dans la sortie de la boite, comme dans \verb+<E>/${1}$+.
-
-\bigskip
-\noindent Avec des poids, on peut définir une priorité entre des chemins qui reconnaissent
-la même séquence. On ne peut pas définir une priorité entre deux séquences dont une est incluse
-dans une autre (cf. section~\ref{section-configuration-recherche}), ni entre des séquences qui
-se chevauchent  (cf. section~\ref{section-priorite-gauche}).
+sortie appropiée (figure~\ref{fig-weights-in-graphs}).
 
 \begin{figure}[h!]
 \begin{center}
@@ -496,6 +505,24 @@ se chevauchent  (cf. section~\ref{section-priorite-gauche}).
 \caption{Poids dans les graphes \label{fig-weights-in-graphs}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Les poids sont des valeurs entières. Pour donner à une boite
+le poids 1, on insère \verb+${1}$+ dans la sortie de la boite, comme dans \verb+<E>/${1}$+.
+
+\bigskip
+\noindent Le poids d'un chemin est le dernier poids trouvé en parcourant le chemin.
+Un poids peut être nul, mais pas strictement négatif. Un chemin qui a un poids, même nul, a la priorité sur un chemin
+sans poids.
+
+\bigskip
+\noindent Avec des poids, on peut définir une priorité entre des chemins qui reconnaissent
+la même séquence. On ne peut pas définir une priorité entre deux séquences dont une est incluse
+dans l'autre (cf. section~\ref{section-configuration-recherche}), ni entre des séquences qui
+se chevauchent  (cf. section~\ref{section-priorite-gauche}).
+
+\bigskip
+\noindent Les poids ne sont valides qu'à l'intérieur du graphe, et non dans les sous-graphes ni les graphes appelants. 
 
 %%%%%%%%%%%%%
 

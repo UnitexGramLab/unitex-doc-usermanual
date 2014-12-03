@@ -20,17 +20,17 @@ programs support the \verb$-h$/\verb$--help$ option.
 \end{figure}
 
 \bigskip
-\noindent WARNING: many programs use the text directory
+\noindent WARNING: many programs use the text directory\index{Directory!text}\index{Text!directory}
 (\verb+my_text_snt+). This directory is created by the graphical interface after
 the normalization of the text. If you work with the command line, you have to
 create the directory manually before the execution of the program
-\verb+Normalize+.\index{Directory!text}
+\verb+Normalize+.
 
 \bigskip
 \noindent WARNING (2): whenever a parameter contains spaces, it needs to
 be enclosed in quotation marks so it will not be considered as multiple
 parameters.
-\index{Text!directory of}\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
+\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
 
 \bigskip
 \noindent WARNING (3): many programs need an \verb+Alphabet.txt+ file. For all
@@ -99,7 +99,7 @@ String persistentDictionary = UnitexJni.loadPersistentDictionary(
 
 
 
-\section{Text file encoding parameters}\index{Text file encoding parameters}
+\section{Text file encoding parameters}\index{Text!file!encoding parameters}
 \label{section-text-file-encoding-parameters}
 Unitex uses Unicode for text file\ref{unicode-encoding}. All program which read or write
 text file share same encoding parameters. Possible format are 
@@ -726,13 +726,13 @@ sentence per line.
 
 
 \section{Flatten}\index{External programs!\verb+Flatten+}\index{\verb+Flatten+}
-\index{Graph!approximation through a final state transducer}
-\index{Approximation of a grammar through a final state transducer}
+\index{Graph!approximation with a finite state transducer}
+\index{Approximation of a grammar with a finite state transducer}
 \verb+Flatten [OPTIONS] <fst2>+
 
 \bigskip
 \noindent This program takes a \verb+.fst2+ grammar as its parameter, and tries to
-transform it into a final state transducer. 
+transform it into a finite-state transducer. 
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -740,11 +740,11 @@ transform it into a final state transducer.
   \item \verb+-f+/\verb+--fst+: the grammar is "unfolded" to the maximum depth 
   and is truncated if there are calls to
   sub-graphs. Truncated calls are replaced by void transitions. The result is a
-  \verb+.fst2+ grammar that only contains a single finite state transducer;
+  \verb+.fst2+ grammar that only contains a single finite-state transducer;
 
   \item \verb+-r+/\verb+--rtn+: calls to sub-graphs that remain
   after the transformation are left as they are. The result is therefore a
-  finite state transducer in the favorable case, and an optimized grammar
+  finite-state transducer in the favorable case, and an optimized grammar
   strictly equivalent to the original grammar if not (default);
 
   \item \verb+-d N+/\verb+--depth=N+: maximum depth to which graph calls should 
@@ -953,8 +953,8 @@ extension \verb+.grf+.
   \item \verb+-s+/\verb+--silent_grf_name+: does not print the graph names
   (needed for consistent log files across several systems).
   \item \verb+-r XXX+/\verb+--named_repositories=XXX+: declaration of named
-  repositories. XXX is made of one or more X=Y sequences, separated bu ; where
-  Xis the name of the repository denoted by the pathname Y. You can use this 
+  repositories. XXX is made of one or more X=Y sequences, separated by `;', where
+  X is the name of the repository denoted by pathname Y. You can use this 
   option several times.
   \item \verb+--debug+: compile graphs in debug mode.
   \item \verb+-v+/\verb+check_variables+: check output validity to avoid malformed variable expressions.
@@ -1702,7 +1702,7 @@ and \verb+{rouge,.A:ms}+.
 
 \section{Tfst2Grf}\index{External
 programs!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
-\index{Automata!text}\index{Text!automata}
+\index{Automaton!of the text}\index{Text!automaton}
 \verb+Tfst2Grf [OPTIONS] <tfst>+
 
 \bigskip
@@ -1750,7 +1750,7 @@ directory of the text:
 
 \section{Tfst2Unambig}\index{External
 programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
-\index{Text automaton!conversion into linear text}
+\index{Text!automaton!conversion into linear text}
 \verb+Tfst2Unambig [OPTIONS] <tfst>+
 
 \bigskip
@@ -1877,7 +1877,7 @@ In the second data file, tags are "morph" tags (i.e. grammatical, syntactic, sem
 \section{Txt2Tfst}\index{External
 programs!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
 
-\index{Automaton!of the text}\index{Text!automaton of the}\index{File!\verb+.snt+}
+\index{Automaton!of the text}\index{Text!automaton}\index{File!\verb+.snt+}
 \index{File!alphabet}\index{Alphabet}
 \bigskip
 \noindent This program constructs an automaton of a text. \verb+<txt>+
@@ -2034,15 +2034,13 @@ programs!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log Unite
 \verb+UnitexToolLogger <utilities>+
 
 \bigskip
-\noindent This program is a superset of UnitexTool that allows execute again an
-.ulp logfile.
-It can also record a running session of an UnitexTool and create an ulp logfile.
-If UnitexToolLogger is used like UnitexTool (with just parameter with command line for 
-Unitex external program), and
-a file named unitex\_logging\_parameters\_count.txt (in current directory) contain a path, 
-an .ulp logfile will be created for the running session.
-The .ulp file in an uncompressed zipfile (compatible with unzip), and can be useful for
-debugging.
+\noindent This program is a superset of UnitexTool. It can rerun a .ulp logfile.
+It can also record a running session of an UnitexTool and create a .ulp logfile.
+If UnitexToolLogger is used like UnitexTool (with just parameters with command lines for 
+Unitex external programs), and if
+a file named unitex\_logging\_parameters\_count.txt (in the current directory) contains a path, 
+a .ulp logfile for the running session will be created.
+The .ulp file is a compressed zipfile (compatible with unzip), which can be useful for debugging.
 
 \bigskip
 \verb+UnitexToolLogger RunLog [OPTIONS] <ulp>+

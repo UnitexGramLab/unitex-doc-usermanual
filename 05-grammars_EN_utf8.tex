@@ -81,25 +81,23 @@ which is derived from the field of finite state automata, enables a grammar to
 produce some output. With an eye towards clarity, we will use the terms grammar
 or graph. When a grammar produces outputs, we will use the term
 \textit{transducer},\index{Transducer} as an extension of the definition of a
-transducer in the area of finite state automata.\index{Automata!finite state}
+transducer in the area of finite state automata.\index{Automaton!finite state}
 
 
 \section{Editing graphs}
 \label{section-editing-graphs}
 \subsection{Creating a graph}
-In order to create a graph, click on "New" in the "FSGraph" menu. You will then
-see the window coming up as in figure~\ref{fig-new-graph}. The symbol in
-arrow form is the \textit{initial state} of the graph.\index{State!initial} The
-round symbol with a square is the \textit{final state} of the
-graph.\index{State!final} The grammar only recognizes expressions that are
-described along the paths between initial and final states.
+In order to create a graph, click on "New" in the "FSGraph" menu (\ref{fig-fsgraph-menu}).
 
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-1.png}
-\caption{FSGraph menu}
+\caption{FSGraph menu\label{fig-fsgraph-menu}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent You will then see the window coming up as in figure~\ref{fig-new-graph}.
 
 \begin{figure}[!h]
 \begin{center}
@@ -109,46 +107,63 @@ described along the paths between initial and final states.
 \end{figure}
 
 \bigskip
+\noindent In order to import Intex graphs into Unitex, you have to convert them into Unicode.
+The process is the same as for texts (see section~\ref{section-conversion-texte-unicode}).
+
+\bigskip
+\noindent The symbol in
+arrow form is the \textit{initial state} of the graph.\index{State!initial} The
+round symbol with a square is the \textit{final state} of the
+graph.\index{State!final} The grammar only recognizes expressions that are
+described along the paths between initial and final states.
+
+\bigskip
 \noindent In order to create a box, click inside the window while pressing the Ctrl
 key.\index{Graph!creating a box}\index{Creating a Box}\index{Boxes!creating}
 A blue rectangle will appear that symbolizes the empty box that was created (see
-figure~\ref{fig-box-creation}). After creating the box, it is automatically selected. 
-
-
-\noindent If you use Unitex on a Macintosh device, you must press the "Command key" 
-instead of Ctrl in every action involving the Ctrl key.
+figure~\ref{fig-box-creation}).
 
 \bigskip
-\noindent You see the contents of that box in the text field at the top of the
-window. The newly created box contains the \verb+<E>+ symbol that represents the empty word
-epsilon.\index{\verb+<E>+} Replace this symbol by the text \verb$I+you+he+she+it+we+they$ and
-press the Enter key. You see that the box now contains seven lines (see
-figure~\ref{fig-pronoun-box}). The \verb$+$ character serves as a
-separator.\index{\verb$+$} The box is displayed in the form of red text lines since it is 
-not connected to another one at the moment.
-We often use this type of boxes to insert comments into a
-graph. \index{Graph!comments in}\index{Comments!in a graph}
+\noindent When the box is created, it is automatically selected. 
 
-\bigskip
-\noindent If you intend to insert comments into a graph, you can create a box starting with \verb$/$.
-The text in this box will be displayed in green, and may contain empty lines.
-This box can't have any incoming nor outgoing transitions (see
-figure~\ref{comment-box}).
-
-\begin{figure}[!hb]
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-3.png}
 \caption{Creating a box\label{fig-box-creation}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!hb]
+\bigskip
+\noindent If you use Unitex on a Macintosh device, you must press the "Command key" 
+instead of Ctrl in every action involving the Ctrl key.
+
+\bigskip
+\noindent You see the contents of the box in the text field at the top of the
+window (figure~\ref{fig-box-creation}). The newly created box contains the \verb+<E>+ symbol that represents the empty word
+epsilon.\index{\verb+<E>+} Replace this symbol by the text \verb$I+you+he+she+it+we+they$ and
+press the Enter key. You see that the box now contains seven lines (see
+figure~\ref{fig-pronoun-box}).
+
+\begin{figure}[!h]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-4.png}
 \caption{Box containing
 \texttt{I+you+he+she+it+we+they}\label{fig-pronoun-box}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent The \verb$+$ character serves as a
+separator.\index{\verb$+$} The box is displayed in the form of red text lines since it is 
+not connected to another one at the moment.
+We often use this type of boxes to insert comments into a
+graph. \index{Graph!comments in}\index{Comment!in a graph}
+
+\bigskip
+\noindent If you intend to insert comments into a graph, you can create a box starting with \verb$/$.
+The text in this box will be displayed in green, and may contain empty lines.
+This box can't have any incoming nor outgoing transitions (see
+figure~\ref{comment-box}).
 
 \begin{figure}[!h]
 \begin{center}
@@ -174,13 +189,12 @@ figure~\ref{fig-pronoun-graph}:
 pronouns\label{fig-pronoun-graph}}
 \end{center}
 \end{figure}
-\pagebreak
+%\pagebreak
 \bigskip
 \noindent NOTE: If you double-click a box, you connect this box to itself (see
 figure~\ref{fig-loop-box}). To undo this double-click on the
 same box a second time, or use the "Undo" button.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-6.png}
@@ -188,6 +202,7 @@ same box a second time, or use the "Undo" button.
 \end{center}
 \end{figure}
 
+\bigskip
 \noindent Click on "Save as..." in the "FSGraph" menu to save the graph.
 \index{Graph!saving} By default, Unitex proposes to save the graph in the
 sub-directory \verb+Graphs+ in your personal folder. You can see if the 
@@ -195,9 +210,25 @@ graph was modified after the last
 saving by checking if the title contains the text \verb+(Unsaved)+.
 
 \bigskip
-\noindent When editing a graph you can bring up a specific contextual menu to 
+\noindent Loops are allowed in graphs. They can be around a single box, as in fig.~\ref{fig-loop-box},
+or around several boxes, as in fig.~\ref{multi-selection}.
+The content of the loop will be recognized any number of times in sequence.
+You can set limits to the number of times, but only for a loop around a single box:
+see section~\ref{nb-repetitions}.
+
+\bigskip
+\noindent When editing a graph you can bring up a specific contextual menu ( fig.~\ref{contextual-menu}) to 
 perform standard graph edition operations by right clicking in the background of the graph window.
-This menu will offer several operations that are frequently used when editing a graph.
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
+\caption{contextual menu\label{contextual-menu}}
+\end{center}
+\end{figure}
+
+\noindent This menu will offer several operations that are frequently used when editing a graph.
 \begin{itemize}
 \item create a new box
 \item save, print the current graph or set up the page parameters
@@ -210,12 +241,7 @@ If one or several boxes are currently selected, the following menus will be acce
 \item export as a new graph
 \end{itemize}
 \bigskip
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
-\caption{contextual menu\label{contextual-menu}}
-\end{center}
-\end{figure}
+
 
 \subsection{Sub-Graphs}
 \label{section-subgraphs}
@@ -452,21 +478,29 @@ Thus, when a sequence of tokens is matched by several paths with different outpu
 (ambiguous transducer\index{Ambiguous!transducer}\index{Transducer output!ambiguity}), only a path with the highest weight will produce an output. 
 After a locate, this will affect the concordance, in which 
 the matched sequences of words will appear only once with the appropriate output
-(Figure~\ref{fig-weights-in-graphs}). In order to assign weight 1 to a box, insert \verb+${1}$+
-in the output of the box, e.g. as in \verb+<E>/${1}$+. The weight of a path is the sum of the weights found in the path.
+(Figure~\ref{fig-weights-in-graphs}).
 
-\bigskip
-\noindent With weights, you can define a priority among paths that match the same sequence.
-You cannot define a priority among embedded matching sequences (cf. section~\ref{section-search-configuration})
- or among overlapping matching sequences (cf. section~\ref{section-priority-leftmost-match}).
-
-\bigskip
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-15b.png}
 \caption{weights in graphs \label{fig-weights-in-graphs}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent In order to assign weight 1 to a box, insert \verb+${1}$+
+in the output of the box, e.g. as in \verb+<E>/${1}$+.
+
+\bigskip
+\noindent The weight of a path is the latest weight found while traversing the path. A weight can be zero, but cannot be less than zero. A path with a weight (even zero) has higher precedence than a path without weight.
+
+\bigskip
+\noindent With weights, you can define a priority among paths that match the same sequence.
+You cannot define a priority among embedded matching sequences (cf. section~\ref{section-search-configuration})
+ or among overlapping matching sequences (cf. section~\ref{section-priority-leftmost-match}).
+ 
+\bigskip
+\noindent Weights are valid only within a graph, not in subgraphs or in calling graphs.
 
 \subsection{Input Variables}
 \label{section-using-variables}

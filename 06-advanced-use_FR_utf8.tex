@@ -378,15 +378,12 @@ figure~\ref{fig-recursive-calls-loop}.
  pas arriver.
 
 \pagebreak
-\index{Intervalles}
-\noindent Pour reconnaître des séquences de tokens dans laquelle une catégorie grammaticale apparaît une fois, plusieurs fois ou jamais, on peut associer un intervalle d'entiers à une boîte.
-Si on associe un intervalle  [m,M]  à une boîte contenant <ADJ>, le chemin reconnaitra des séquences avec au moins $m$ adjectifs consécutifs et pas plus de $M$.
-On attache un intervalle en insérant \verb+$[m,M]$+ dans la sortie de la boite, juste après le caractère ``/'', et selon les règles : 
-\begin{itemize}
-\item \verb+[m,M]+ = au moins $m$ motifs consécutifs et pas de plus de $M$
-\item \verb+[,M]+ = de 0 à $M$  
-\item \verb+[m,]+ = au moins $m$
-\end{itemize}
+\subsection{Intervalle pour le nombre de répétitions}
+\label{nb-repetitions}\index{Intervalle}\index{Boucle!nombre de répétitions}\index{Nombre de répétitions}\index{Répétition!nombre de}
+\noindent Pour reconnaître des séquences de tokens dans laquelle un motif apparaît une fois, plusieurs fois
+ou jamais, on peut associer un intervalle d'entiers à une boîte. Cela fixe les limites du nombre de fois
+que le motif apparait. Le motif doit être décrit dans une boite unique.
+Si on associe un intervalle  [m,M]  à une boîte contenant <A> (figure~\ref{intervals}), le chemin reconnaitra des séquences avec au moins $m$ adjectifs consécutifs et pas plus de $M$.
 
 \begin{figure}[h!]
 \begin{center}
@@ -395,7 +392,19 @@ On attache un intervalle en insérant \verb+$[m,M]$+ dans la sortie de la boite,
 \end{center}
 \end{figure}
 
-\
+\noindent  On attache un intervalle en insérant \verb+$[m,M]$+ dans la sortie de la boite,
+juste après le caractère ``/'', et selon les règles : 
+\begin{itemize}
+\item \verb+[m,M]+ = au moins $m$ motifs consécutifs et pas de plus de $M$
+\item \verb+[,M]+ = de 0 à $M$  
+\item \verb+[m,]+ = au moins $m$
+\end{itemize}
+
+\noindent La boite ne doit pas être connectée à elle-même par une boucle directe. Un intervalle est compatible avec 
+une sortie au sens habituel. Par exemple, pour insérer sous la boite de la figure~\ref{intervals}
+la sortie \verb+<ADJ position='antéposé'>+, saisissez  dans le champ
+texte~: \verb+<A>/$[1,4]$/<ADJ position='antéposé'>+. 
+
 \subsection{Détection d’erreurs}
 \index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}
 \index{Erreurs dans les graphes}

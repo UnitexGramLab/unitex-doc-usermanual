@@ -91,7 +91,7 @@ String persistentDictionary = UnitexJni.loadPersistentDictionary(
 \end{verbatim}
 
 
-\section{Paramètres de codage des fichiers textes}\index{Paramètres de codage des fichiers textes}
+\section{Paramètres de codage des fichiers textes}\index{Paramètres de codage des fichiers textes}\index{Fichier!texte!paramètres de codage}
 \label{section-text-file-encoding-parameters}
 Unitex utilise Unicode pour les fichiers textes \ref{unicode-encoding}. Tous les programmes qui
 lisent ou écrivent des fichiers textes partagent les mêmes paramètres d'encodage. Les formats
@@ -757,7 +757,7 @@ en un transducteur à états finis.
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
-\item \verb+-f+/\verb+--fst+: la grammaire est"dépliée" à la profondeur maximum et tronquée si des
+\item \verb+-f+/\verb+--fst+: la grammaire est "dépliée" à la profondeur maximum et tronquée si des
 	appels à des sous-graphes existent. Les appels tronqués sont remplacés par des transitions
 	vides. Le résultat est une grammaire \verb+.fst2+ qui contient un unique transducteur à
 	états finis;
@@ -968,8 +968,8 @@ complet au graphe principal de la grammaire, sans omettre l’extension \verb+.g
 	automate de phrases ou non;
 \item \verb+-s+/\verb+--silent_grf_name+: n'affiche pas le nom des graphes
 	(nécessaire pour l'utilisation de fichiers log sur plusieurs systèmes);
-\item \verb+-r XXX+/\verb+--named_repositories=XXX+: déclaration des dépôts nommés. XXX est formée d'une séquence ou plus X=Y , séparés par ; où
-	X est le nom de dépôt désigné par le chemin Y. Vous pouvez utiliser cette option à plusieurs reprises;
+\item \verb+-r XXX+/\verb+--named_repositories=XXX+: déclaration de noms de répertoires de dépôt. XXX est formé d'une séquence d'un ou plusieurs X=Y, séparés par `;', où
+	X est le nom du répertoire de dépôt désigné par le chemin Y. Vous pouvez utiliser cette option à plusieurs reprises~;
 \item \verb+--debug+: compile les graphes en mode  debug;
 \item \verb+-v+/\verb+check_variables+: vérifier la validité de sortie afin d'éviter des expressions avec variables malformées.
 \end{itemize}
@@ -1354,7 +1354,7 @@ le marqueur \verb+{STOP}+, soit une ligne de DELAF valide (\verb+{aujourd'hui,.A
 \index{\verb+{S}+}\index{Délimiteur de phrase}
 
 \bigskip
-\noindent \index{Etiquette lexicale} Le paramètre \verb+<text>+ doit représenter le chemin d’accès complet au fichier du texte. Le programme produit une version modifiée du texte qui est sauvé dans
+\noindent \index{Étiquette lexicale} Le paramètre \verb+<text>+ doit représenter le chemin d’accès complet au fichier du texte. Le programme produit une version modifiée du texte qui est sauvé dans
 un fichier portant l’extension \verb+.snt+.\index{Fichier!\verb+.snt+}
 
 \bigskip
@@ -1793,7 +1793,7 @@ extension.
  \item \verb+-w+/\verb+--word_by_word+: Avec cette option, le programme 
  	 considère qu'une unité est soit une séquence de lettres (ces lettres sont définies dans le fichier \verb+alphabet+), ou un caractère qui n'est pas une lettre, ou le délimiteur de phrase \verb+{S}+\index{\verb+{S}+}, ou une étiquette lexicale comme
  	 \verb+{aujourd'hui,.ADV}+. \index{Délimiteur de phrase}
-   \index{Etiquette lexicale} C'est le mode par défaut.
+   \index{Étiquette lexicale} C'est le mode par défaut.
 
 \item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: désigne un fichier a \verb+tokens.txt+
  à charger et à modifier, au lieu d'en créer un nouveau à partir de zéro.
@@ -2033,15 +2033,15 @@ Unitex\English\Corpus\ivanhoe.txt }
 \verb+UnitexToolLogger <utilities>+
 
 \bigskip
-\noindent Ce programme est un surensemble de UnitexTool qui permet d'exécuter à nouveau un
-fichier .ulp log.
-Il peut également enregistrer une session en cours d'exécution d'UnitexTool et créer un fichier de
-log.
-Si UnitexToolLogger est utilisé comme UnitexTool (seulement avec le paramètre de ligne de
-	commande pour le programme externe Unitex), et un fichier nommé
-unitex\_logging\_parameters\_count.txt (dans le répertoire courant) contient un chemin, 
-un fichier de log .ulp sera créer pour la session en cours.
-Le fichier .ulp un fichier zip  (compatible avec unzip), qui peut être utile pour le débogage.
+\noindent Ce programme est un surensemble de UnitexTool. Il permet d'exécuter à nouveau un
+fichier de log .ulp.
+Il peut également enregistrer une session d'UnitexTool en cours d'exécution et créer un fichier de
+log .ulp.
+Si UnitexToolLogger est utilisé comme UnitexTool (avec uniquement les paramètres contenant des lignes de
+	commande pour des programmes Unitex externes), et qu'un fichier contenant un chemin et nommé
+unitex\_logging\_parameters\_count.txt est présent dans le répertoire courant, alors
+un fichier de log .ulp pour la session en cours sera créé.
+Le fichier .ulp est un fichier zip comprimé (compatible avec unzip), qui peut être utile pour le débogage.
 
 \bigskip
 \verb+UnitexToolLogger RunLog [OPTIONS] <ulp>+
