@@ -58,8 +58,8 @@ correspondrait à l’automate de tout le texte. On utilise donc le terme ``auto
 même si l’on ne manipule pas réellement cet objet pour des raisons pratiques.
 
 \section{Construction}
-    Pour construire l’automate d’un texte, vous devez ouvrir ce texte, puis cliquer sur "Construct
-FST-Text..." dans le menu "Text". Il est recommandé d’avoir découpé le texte en phrases et
+Pour construire l’automate d’un texte, vous devez ouvrir ce texte, puis cliquer dans le menu "Text"
+sur "Construct FST-Text...". Il est recommandé d’avoir découpé le texte en phrases et
 de lui avoir appliqué les dictionnaires. Si vous n’avez pas découpé le texte en phrases, le
 programme de construction découpera arbitrairement le texte en séquences de 2000 unités
 lexicales au lieu de construire un automate par phrase. Si vous n’avez pas appliqué les 
@@ -96,9 +96,7 @@ texte. Toutes les combinaisons de ces interprétations forment l’automate de l
 \bigskip
 \noindent NOTE : quand le texte contient des étiquettes lexicales (\textit{e.g.}
  \verb${aujourd’hui,.ADV}$), ces étiquettes sont reproduites à l’identique dans l’automate, 
-sans que le programme essaye de décomposer les séquences qu’elles représentent.
-
-\index{Etiquette lexicale}
+sans que le programme essaye de décomposer les séquences qu’elles représentent.\index{Étiquette lexicale}
 
 \bigskip
 \noindent Dans chaque boîte, la $1\iere$  ligne contient la forme fléchie trouvée dans le texte, et
@@ -475,9 +473,8 @@ ont été éliminées par les grammaires), un message indique le numéro de la p
 permet de localiser rapidement la source des problèmes.
 
 
-\subsubsection{Evaluation du taux d’ambiguïté}
-\index{Evaluation du taux d’ambiguïté}
-\index{Taux d'ambiguité}
+\subsubsection{Évaluation du taux d’ambiguïté}
+\index{Évaluation du taux d’ambiguïté}\index{Taux d'ambiguité}
 L’évaluation du taux d’ambiguïté ne se base pas uniquement sur le nombre moyen d’interprétations
 par mot. Afin d’avoir une mesure plus représentative, le système prend égale-
 ment en compte les différentes combinaisons de mots. Durant la levée d’ambiguïtés, le programme 

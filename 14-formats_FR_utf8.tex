@@ -1,6 +1,6 @@
 \chapter{Formats de fichiers}
 \label{chap-file-formats}
-\index{Fichier!formats}\index{Formats de fichiers}
+\index{Fichier!formats}\index{Format!de fichier}
 Ce chapitre présente les formats des différents fichiers lus ou générés par Unitex. Les
 formats des dictionnaires DELAS et DELAF sont déjà présentés aux sections
 \ref{section-DELAF-format} et \ref{section-DELAS-format}.
@@ -524,8 +524,7 @@ les séquences d’entrée et de sortie sont séparées par le caractère
 \section{Textes}
 Cette section présente les différents fichiers utilisés pour représenter des textes.
 \subsection{Fichiers .txt}
-\index{Fichier!\verb+.txt+}\index{\verb+{S}+}\index{Etiquettes!lexicales}
-\index{Séparateur de phrase}
+\index{Fichier!\verb+.txt+}\index{\verb+{S}+}\index{Étiquette lexicale}\index{Séparateur!de phrases}
 \label{section-texts}
 Les fichiers \verb+.txt+ doivent être des fichiers texte codés en Unicode Little-Endian. Ces
 fichiers ne doivent pas contenir d’accolade ouvrante ou fermante, à moins qu’elles soient utilisées
@@ -539,8 +538,8 @@ spéciaux de valeurs hexadécimales \verb+000D+ and \verb+000A+.
 \verb+.snt+ sont des fichiers \verb+.txt+ qui ont été prétraités par Unitex. Ces fichiers ne doivent
 pas contenir de tabulation. Ils ne doivent pas non plus contenir plusieurs espaces ou retours à la
 ligne consécutifs. Les seules accolades autorisées dans des fichiers \verb+.snt+ sont celles du
-séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur de phrases} et celles des
-étiquettes lexicales (\verb+{aujourd'hui,.ADV}+)\index{Etiquetteslexicales}.
+séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur!de phrases} et celles des
+étiquettes lexicales (\verb+{aujourd'hui,.ADV}+)\index{Étiquette lexicale}.
 
 
 \subsection{Fichier text.cod}
@@ -1136,7 +1135,7 @@ la vérification d’un dictionnaire.
 
 \index{\verb+Compress+}\index{Programmes externes!\verb+Compress+}
 
-\index{DELAF}\index{Dictionnaires!DELAF}
+\index{DELAF}\index{Dictionnaire!DELAF}
 
 \subsection{Fichier .bin}
 \index{Fichier!\verb+.bin+}
@@ -1275,7 +1274,7 @@ supprimer aucun caractère.
 
 
 \subsection{Fichier information sur un dictionnaire}
-\index{Fichier information dictionnaire}
+\index{Fichier!information dictionnaire}
 Dans le cadre "Apply lexical resources", il est possible d'obtenir quelques informations sur
 un dictionnaire par click droit. Ces informations sont associées aux dictionnaires \verb+biniou.bin+
 ou \verb+biniou.fst2+ à l'aide d'un texte brut nommé \verb+biniou.txt+, situé dans le même
@@ -1581,9 +1580,9 @@ Voici un exemple d'un fichier corpus.txt:
 \noindent REMARQUE: Les phrases doivent être délimitées par des lignes vides.
 
 \bigskip
-Le format \verb+.txt+peut également être utilisé (voir section \ref{section-texts}). Chaque mot du
+Le format \verb+.txt+ peut également être utilisé (voir section \ref{section-texts}). Chaque mot du
 texte doit être représenté par une étiquette lexicale valide
-(\verb+{aujourd'hui,.ADV}+)\index{Etiquette!lexicales} et les phrases sont délimitées par
+(\verb+{aujourd'hui,.ADV}+)\index{Étiquette lexicale} et les phrases sont délimitées par
 \verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrase}.
 Voici l'exemple précédent dans le format \verb+.txt+ :
 
@@ -1912,7 +1911,7 @@ SUIVI PAR UN RETOUR À LA LIGNE.
 
 \subsection{Fichiers de  configuration CasSys csc}
 
-Pour mémoriser la liste des transducteurs d'une cascade CASSYs, nous utilisons un fichier texte
+Pour mémoriser la liste des transducteurs d'une cascade CasSys, nous utilisons un fichier texte
 (csc) dans lequel chaque ligne contient le chemin vers un transducteur suivi du mode de sortie
 (fusionner / remplacer) à appliquer à ce transducteur.
 Le format d'une ligne du fichier csc est : Name\_and\_path\_of\_transducer  Merge
@@ -1961,7 +1960,7 @@ suivante :
 \begin{itemize}
   \item \verb+sentence delimiters+: nombre de séparateurs de phrases
   (\verb+{S}+);\index{\verb+{S}+}
-  \index{Séparateur}
+  \index{Séparateur!de phrases}
 
   \item \verb+tokens+: nombre total d’unités lexicales du texte. Le nombre précédant \verb+diff+
   indique le nombre d’unités différentes;
@@ -2009,7 +2008,7 @@ suit:
 
 
 \subsection{Fichier règles de normalisation}
-\index{Fichier règles de normalisation}
+\index{Fichier!règles de normalisation}
 \label{section-normalization-file}
 Ce fichier est utilisé par les programmes \verb+Normalization+ et \verb+XMLizer+. Il représente
 règles de normalisation. Chaque ligne représente une règle, selon le format suivant ($\longmapsto$
@@ -2032,7 +2031,7 @@ $\longmapsto$ \verb+ONE_TWO_THREE_NEW_LINE+
 
 
 \subsection{Fichier de mots interdits}
-\index{Fichier de mots interdits} \label{section-forbidden-words}
+\index{Fichier!de mots interdits} \label{section-forbidden-words}
 Le programme \verb+PolyLex+ requiert un de mots interdits pour le hollandais et le norvégien. Ce fichier texte brut est censé s'appeler \verb+ForbiddenWords.txt+
 \index{Fichier!\verb+ForbiddenWords.txt+}. Il doit se trouver dans le répertoire \verb+Dela+
 correspondant à la langue courante. Chaque ligne est censée contenir un mot interdit.
@@ -2041,7 +2040,7 @@ correspondant à la langue courante. Chaque ligne est censée contenir un mot in
 
 
 \subsection{Fichier de log}
-\index{Fichier de log} \label{section-log-file}
+\index{Fichier!de log programmes Unitex} \label{section-log-file}
 Le programme \verb+UnitexToolLogger+, si le fichier \verb+unitex_logging_parameters.txt+ 
 est trouvé avec un chemin (pour enregistrer les fichiers log) crée un fichier .ulp de log de l'outil 
 Unitex en cours d'exécution choisi.
@@ -2081,7 +2080,7 @@ enregistrés; si cette ligne contient 1, ils sont enregistrés;
 
 \subsection{Règles typographiques de l'arabe: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
-\index{Fichier des règles typographiques de l'arabe}
+\index{Fichier!des règles typographiques de l'arabe}
 \index{Fichier!\verb+arabic_typo_rules.txt+}
 Pour l'arabe, la recherche dans le dictionnaire peut être paramétrée avec un fichier qui décrit si
 certaines variations typographiques sont autorisées ou non. Ce fichier est constitué de lignes comme
