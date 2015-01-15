@@ -49,7 +49,7 @@ la barre de titre de l’interface graphique.
 
 \section{Format des textes}
 \label{section-conversion-texte-unicode}
-\index{Format des textes}
+\index{Format!des textes}
 \index{Corpus|see{Texte}}
 \index{Unicode}
 Unitex manipule des textes Unicode. Unicode est un standard qui décrit un codage universel 
@@ -133,7 +133,7 @@ courante.
 \end{figure}
 
 % For small files...
-\section{Edition de textes}
+\section{Édition de textes}
 Vous avez également la possibilité d’utiliser l’éditeur de texte intégré à Unitex, accessible
 via la commande "Open..." du menu "File Edition". Cet éditeur vous propose des fonctionnalités
 de recherche et remplacement propres aux textes et dictionnaires manipulés par Unitex. Pour y
@@ -145,7 +145,7 @@ figure~\ref{dictionary-search}, vous permet d’effectuer des opérations propre
 électroniques. En particulier, vous pouvez effectuer une recherche en spécifiant si elle doit porter
 sur la forme fléchie, le lemme, les codes grammaticaux et sémantiques et/ou les codes flexionnels.
 Ainsi, si vous voulez rechercher tous les verbes qui ont le trait sémantique
-\verb$t$\index{\verb$t$}, marquant la transitivité, il vous suffit de chercher \verb$t$ en cochant
+\verb$t$, marquant la transitivité, il vous suffit de chercher \verb$t$ en cochant
 "Grammatical code". Vous obtiendrez ainsi les entrées voulues, sans ambiguïtés avec toutes les
 autres occurrences de la lettre \verb$t$.
 
@@ -223,7 +223,7 @@ and close text" pour annuler complètement l’opération.
 
 
 \subsection{Normalisation des séparateurs}
-\index{Normalisation!des séparateurs}\index{Séparateur}\index{Texte!normalisation}
+\index{Normalisation!des séparateurs}\index{Séparateurs de mots}\index{Texte!normalisation}
 Les séparateurs usuels sont l’espace, la tabulation et le retour à la ligne. On peut rencontrer
 plusieurs séparateurs consécutifs dans des textes, mais comme cela n’est d’aucune utilité
 pour une analyse linguistique, on normalise ces séparateurs selon les règles suivantes:
@@ -253,7 +253,7 @@ répertoire du texte, \index{Répertoire!du texte}
 
 \subsection{Découpage en phrases}
 \label{section-sentence-splitting}
-\index{Découpage en phrases}\index{Texte!découpage en phrases}
+\index{Découpage!en phrases}\index{Texte!découpage en phrases}
 \index{Grammaires!découpage en phrases}
 Le découpage en phrases est une étape importante du prétraitement car elle va permettre
 de définir des unités de traitement linguistique. Ce découpage sera utilisé par le programme
@@ -273,7 +273,7 @@ phrases.
 
 \bigskip
 \noindent  Lorsqu’un chemin de la grammaire reconnaît une séquence dans le texte et que ce chemin
-produit le symbole séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur!de phrases},
+produit le symbole délimiteur de phrases \verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrases},
 on insère ce symbole dans le texte.
 
 \bigskip
@@ -406,10 +406,9 @@ grammaire qui normalise des contractions verbales en anglais.
 
 
 \subsection{Découpage du texte en unités lexicales}
-\index{Texte!découpage}
-\index{Découpage du texte en unités lexicales}
-\index{Token}
-\index{Découpage}
+\index{Texte!découpage en unités lexicales}
+\index{Découpage!en unités lexicales}
+\index{Token}\index{Tokenisation}
 \label{tokenization}
 Certaines langues, en particulier les langues asiatiques, utilisent les séparateurs de façon
 différente des langues occidentales ; les espaces peuvent être interdits, facultatifs ou
@@ -420,8 +419,8 @@ principe suivant :
 \bigskip
 \noindent Une unité lexicale peut être :
 \begin{itemize}
-  \item soit le séparateur de phrases \verb+{S}+;
-  \item le marqueur \verb+{STOP}+.\index{\verb${STOP}$} Contrairement au séparateur de phrases
+  \item soit le délimiteur de phrases \verb+{S}+;
+  \item le marqueur \verb+{STOP}+.\index{\verb${STOP}$} Contrairement au délimiteur de phrases
   \verb+{S}+, le marqueur \verb+{STOP}+ ne peut JAMAIS être reconnu par une grammaire, de quelque
   façon que ce soit. Il peut être utilisé dans un corpus pour délimiter des élements. Par exemple,
   si un corpus est formé de nouvelles séparées par \verb+{STOP}+, il est impossible pour une
@@ -438,7 +437,7 @@ principe suivant :
 
 \bigskip
 \noindent Pour les autres langues, le découpage est effectué caractère par caractère, à l’exception
-du séparateur de phrases \verb+{S}+ le marqueur \verb+{STOP}+ et des étiquettes lexicales. Ce
+du délimiteur de phrases \verb+{S}+ le marqueur \verb+{STOP}+ et des étiquettes lexicales. Ce
 découpage basique garantit le fonctionnement d’Unitex, mais limite l’optimisation des opérations de
 recherche de motifs.
 

@@ -1299,7 +1299,6 @@ For more information about contexts,\index{Contexts!zone in a graph} see section
 \end{center}
 \end{figure}
 
-\bigskip
 \noindent Since dictionary graphs are applied using the engine of \verb+Locate+,
 they have exactly the same properties than syntactic graphs. So,
 you can use morphological filters (section~\ref{section-filters})
@@ -1326,13 +1325,26 @@ be combined with the \verb-+- and \verb+-+ priority marks:
 
 \subsubsection{Exporting produced entries as a morphological-mode dictionary}
 \index{Morphological-mode dictionaries}
-Dictionary entries produced by dictionary graphs are, of course, taken
-into account by the \verb+Locate+ program. However, you can not refer to 
-their content while in the morphological mode, since they do not belong to a morphological-mode 
-dictionary. If you want to do so, you just have to add \verb+b+ at the end of
-the graph name. If you add \verb+z+ instead, then the dictionary generated for the text
-will be compressed immediately, thus being usable by the next dictionary graph 
-to be applied.
+Dictionary entries produced by dictionary graphs are looked up 
+by the \verb+Locate+ program when it comes across lexical masks involving dictionary lookup.
+
+\bigskip
+\noindent However, this functionality is restricted when in morphological mode (section~\ref{section-morphological-mode}).
+Dictionary graphs cannot be declared as being morphological-mode 
+dictionaries in the usual way (section~\ref{morph-mode-dic}), because they are not \verb+.bin+ files.
+When in morphological mode, lexical masks involving dictionary lookup do not trigger lookup of dictionary graphs.
+To compensate for this, there are several solutions.
+\begin{itemize}
+\item Consider invoking the dictionary graph from the part of the graph which is in morphological mode.
+\item Unitex internally generates a dictionary of the forms recognized in the text by a dictionary graph.
+If the name of the dictionary graph contains the \verb+b+ switch (see Naming conventions below),
+Unitex includes this internal dictionary among morphological-mode dictionaries, so that it is looked up
+when the \verb+Locate+ program comes across lexical masks in morphological mode. But this
+solution works only for forms recognised in the text by the dictionary graph during initial application
+ of dictionaries (section~\ref{section-applying-dictionaries}), and not for forms that appear in the text only as token parts.
+\end{itemize}
+If you add \verb+z+ instead of \verb+b+, then the dictionary internally generated for the text
+is compressed immediately, and  can be looked up when other dictionary graphs are applied later.
  
 \subsubsection{Naming conventions}
 The whole naming scheme for dictionary graphs is as follows:
@@ -1342,7 +1354,7 @@ The whole naming scheme for dictionary graphs is as follows:
 \noindent where:
 \begin{itemize}
 \item \verb+X+ is in \verb+[rRmM]+: \verb+r+ means REPLACE mode; \verb+M+ means MERGE mode (default);
-\item \verb+Y+ is in \verb+[bBzZ]+: option that rules the production of a morphological-mode dictionary (see above);
+\item \verb+Y+ is in \verb+[bBzZ]+: option that rules the production of a morphological-mode dictionary (see above Exporting produced entries as a morphological-mode dictionary);
 \item \verb+Z+ is in \verb+[aAlLsS]+: \verb+a+ means that the graph will be applied in "All matches" mode; \verb+l+ means 
       "Longest matches" mode (default); \verb+s+ means "Shortest matches" mode.
 \end{itemize}
@@ -1351,13 +1363,15 @@ The whole naming scheme for dictionary graphs is as follows:
 
 \subsection{Morphological dictionary-graphs}
 \index{Morphological dictionary-graphs}
-In addition to dictionary graphs that produce new entries in the text
-dictionaries, you can design morphological dictionary-graphs. The output
+In a dictionary graph, each path must output a lexical entry to be added in the text
+dictionaries. In a morphological dictionary-graph, each path must output
+a sequence of one or more tags enclosed in braces and conforming to the syntax
+of a DELAF line (section~\ref{section-DELAF-entry-syntax}). The output
 of such graphs will be used as special input for the construction of the text
 automaton. We call them `morphological dictionary-graphs' because their
 main utility is to introduce new morphological analyses in the text automaton,
 using the morphological mode (see section \ref{section-morphological-mode}).
-This functionality will be helpful for agglutinative languages like Korean.
+This functionality is helpful for agglutinative languages like Korean.
 
 \bigskip
 \noindent The rule is simple: any output of a dictionary graph that begins

@@ -721,13 +721,19 @@ between double quotes).
    \item You can still use subgraphs, but the end of the morphological zone
    must occur in the same graph as its beginning.
 
-   \item You can use morphological filters on \verb+<DIC>+ and patterns
-   referring to information stored in a dictionary, like \verb+<be>+, \verb+<N:ms>+, etc., provided
+   \item You can use lexical masks involving dictionary lookup---such as \verb+<DIC>+,
+   \verb+<be>+ or \verb+<N:ms>+, which refer to information stored in a dictionary---, provided
    that the dictionary has been previously declared as a morphological-mode dictionary
    (section~\ref{morph-mode-dic}).
+
+   \item You can use lexical masks involving a lookup in a dictionary graph (section~\ref{section-dictionary-graphs}),
+   provided that the name of the dictionary graph contains the \verb+b+ switch. However,
+   this feature works only for forms recognized by the dictionary graph in the text during
+   initial application of dictionaries (section~\ref{section-applying-dictionaries}), and not for
+   forms that occur in the text only as token parts.
    
-   \item You can use morphological filters alone or on \verb+<TOKEN>+,
-   but note that your filters will only apply to the current character. As a
+   \item You can use morphological filters (section~\ref{section-filters}). However, morphological filters
+   used alone or on \verb+<TOKEN>+ will only apply to the current character. As a
    consequence, filters like \verb+<<[1-9][0-9]>>+ that are meant to match more than
    one character will never match anything. In fact, in morphological mode, 
    morphological filters should only be used to express negations like 
@@ -780,9 +786,12 @@ by an adjective.
 
 \bigskip
 \noindent To be able to match with this grammar the word 
-\verb+unaware+, the system must know that \verb+aware+ is an adjective. But
+\verb+unaware+, the system must know that \verb+aware+ is an adjective.
+The lexical mask \verb+<A>+ involves a dictionary lookup. But
 \verb+aware+ may not be present in the text, so that we cannot rely on the text
-dictionaries. This is the reason why we must define a list of dictionaries
+dictionaries.\footnote{The text dictionaries are compiled during initial application of
+dictionaries (section~\ref{section-applying-dictionaries}), not during search for patterns.}
+ This is the reason why we must define a list of dictionaries
 to be looked up in the morphological mode. To do that, go in
 ``Info>Preferences>Morphological-mode dictionaries'', as shown on Figure
 \ref{fig-morpho4}. You can select as many dictionaries as you want, but they

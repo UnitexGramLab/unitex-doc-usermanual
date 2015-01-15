@@ -143,7 +143,7 @@ visible in figure~\ref{dictionary-search}, enables you to carry out operations
 concerning the electronic dictionaries. In particular, you can   search by
 specifying if it concerns  inflected forms, lemmas, grammatical and semantic
 and/or inflectional codes. Thus, if you want to search for all the verbs which
-have the  semantic feature \verb$t$\index{\verb$t$}, which indicates
+have the  semantic feature \verb$t$, which indicates
 transitivity, you just have to search for  \verb$t$ by clicking on "Grammatical
 code". You will get the matching entries without confusion  with all the other
 occurrences of the letter \verb$t$.
@@ -230,7 +230,7 @@ carry out the normalization of separators and split the text into tokens. Click
 on "Cancel and close text" to cancel the operation.
 
 \subsection{Normalization of separators}
-\index{Normalization!of separators}\index{Separators}\index{Text!normalization}
+\index{Normalization!of separators}\index{Separators!word}\index{Word separators}\index{Text!normalization}
 The standard separators are the space, the tab and the newline characters. There
 can be several separators following each other, but since this isn't useful for
 linguistic analyses, separators are normalized according to the following rules:
@@ -262,7 +262,7 @@ This directory, called text directory,  \index{Directory!text}
 
 \subsection{Splitting into sentences}
 \label{section-sentence-splitting}
-\index{Splitting into sentences}\index{Text!splitting into sentences}
+\index{Splitting!into sentences}\index{Text!splitting into sentences}
 \index{Grammars!splitting into sentences}
 Splitting texts into sentences is an important preprocessing step since  this
 helps in determining the units for linguistic processing. The splitting is used
@@ -284,7 +284,7 @@ sentence splitting (for French sentences).
 \bigskip
 \noindent When a path of the grammar recognizes a sequence in the text and when
 this path produces the sentence delimiter symbol \verb+{S}+
-\index{\verb+{S}+}\index{Sentence separator}, this symbol is inserted into the
+\index{\verb+{S}+}\index{Sentence delimiter}, this symbol is inserted into the
 text.
 
 \bigskip
@@ -424,6 +424,7 @@ contractions\label{fig-normalization-grammar}}
 \subsection{Splitting a text into tokens}
 \index{Text!tokenization}
 \index{Text!splitting into tokens}
+\index{Splitting!into tokens}
 \index{Token}
 \index{Tokenization}
 \label{tokenization}
@@ -630,7 +631,7 @@ simple word text dictionary.
 
 
 \section{Opening a tagged text}
-A tagged text is a text containing words with lexical tags enclosed in round brackets:
+A tagged text is a text containing words with lexical tags enclosed in braces:
 
 \bigskip
 \textit{I do not like the \{square bracket,.N\} sign! \{S\}}

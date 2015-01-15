@@ -1311,12 +1311,30 @@ combine avec les priorités \verb-+- et \verb+-+:
 
 \subsubsection{Exporter les entrées produites comme dictionnaire du mode morphologique}
 \index{Dictionnaire!du mode morphologique}
-Les entrées produites par un graphe-dictionnaire sont, bien sûr, prises en compte
-par le programme \verb+Locate+. Cependant, on ne peut les utiliser en mode morphologique
-dans la mesure où elles n'appartiennent pas à un dictionnaire déclaré comme dictionnaire du mode morphologique (cf.~section~\ref{dic-mode-morpho}).
-Il est possible de le faire en ajoutant \verb+b+ à la fin du nom du graphe-dictionnaire. 
-Si l'on ajoute \verb+z+ à la place, le dictionnaire produit pour le texte sera immédiatement
-compressé, le rendant utilisable par le prochain graphe-dictionnaire appliqué.
+Les entrées produites par un graphe-dictionnaire sont consultées
+par le programme \verb+Locate+ quand il rencontre des masques lexicaux qui nécessitent la consultation
+d'un dictionnaire.
+
+\bigskip
+\noindent Cependant, cette fonctionnalité est restreinte en mode morphologique
+(cf.~section~\ref{section-morphological-mode}). On ne peut pas déclarer un graphe-dictionnaire
+comme dictionnaire du mode morphologique de la manière habituelle (cf.~section~\ref{dic-mode-morpho}),
+car ce n'est pas un fichier \verb+.bin+. Quand on est en mode morphologique, les masques
+lexicaux qui nécessitent la consultation d'un dictionnaire ne déclenchent pas la consultation
+de graphes-dictionnaires. En compensation, on dispose de plusieurs solutions.
+\begin{itemize}
+\item On peut envisager d'invoquer le graphe-dictionnaire depuis la partie du graphe qui est en mode morphologique.
+\item Unitex produit de façon interne un dictionnaire des formes reconnues dans le texte par un
+graphe-dictionnaire. Si le nom du graphe-dictionnaire contient l'option \verb+b+ (voir ci-dessous
+Conventions de nommage), ce dictionnaire produit automatiquement est inclus implicitement parmi
+les dictionnaires du mode morphologique, de telle sorte qu'il est consulté quand le programme
+ \verb+Locate+ rencontre des masques lexicaux en mode morphologique. Mais cette solution 
+ ne fonctionne que pour les formes reconnues par le graphe-dictionnaire pendant l'application initiale
+ des dictionnaires (cf.~section~\ref{section-applying-dictionaries}), et non pour celles qui n'apparaissent
+ dans le texte que comme parties de tokens.
+\end{itemize}
+Si on ajoute \verb+z+ à la place de  \verb+b+, le dictionnaire produit de façon interne pour le texte est immédiatement
+compressé, et il peut être consulté quand d'autres graphes-dictionnaires sont appliqués  par la suite.
  
 \subsubsection{Conventions de nommage}
 Le processus de nommage d'un graphe-dictionnaire s'établit comme suit :\\
@@ -1337,12 +1355,14 @@ en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défau
 
 \subsection{Graphe-dictionnaire morphologique}
 \index{Graphe-dictionnaire!morphologique}
-En plus des graphes-dictionnaires qui produisent de nouvelles entrées dans le dictionnaire du
-texte, il est possible de construire des graphes-dictionnaires morphologiques.
+Dans un graphe-dictionnaire, chaque chemin doit produire une entrée lexicale à inclure dans le dictionnaire du
+texte. Dans un graphe-dictionnaire morphologique, chaque chemin doit produire une séquence d'une ou plusieurs
+étiquettes délimitées par des accolades et conformes à la syntaxe des lignes du DELAF
+ (section~\ref{section-DELAF-entry-syntax}).
 Les sorties de tels graphes seront utilisées comme entrées pour construire l'automate du texte. Nous
 les appelons ``graphes-dictionnaires morphologiques'' parce que leur principale utilité est de
 fournir de nouvelles analyses morphologiques dans l'automate du texte, grâce au mode morphologique
-(voir \ref{section-morphological-mode}). Cette fonctionnalité est très utile pour des langues
+(voir \ref{section-morphological-mode}). Cette fonctionnalité est utile pour des langues
 agglutinantes comme le coréen.
 
 \bigskip
