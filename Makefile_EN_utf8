@@ -7,10 +7,10 @@ UnitexManual: UnitexManual_EN_utf8.tex 00-introduction_EN_utf8.tex 01-installati
                   10-alignment_EN_utf8.tex 11-multiflex_EN_utf8.tex 12-cassys_EN_utf8.tex\
                   13-programs_EN_utf8.tex 14-formats_EN_utf8.tex\
                   LGPL_EN_utf8.tex LGPLLR_EN_utf8.tex title_EN_utf8.tex bibliographie_utf8.bib
-	pdflatex UnitexManual_EN_utf8.tex
+	pdflatex -halt-on-error -interaction=batchmode UnitexManual_EN_utf8.tex
 	bibtex UnitexManual_EN_utf8
 	texindy UnitexManual_EN_utf8.idx
-	pdflatex UnitexManual_EN_utf8.tex
+	pdflatex -halt-on-error -interaction=batchmode UnitexManual_EN_utf8.tex
 
 clean:
 	rm -f *.aux *.bbl *.blg *.brf *.dvi *.idx *.log *.out *.toc *.ind
