@@ -13,6 +13,6 @@ things that you can do to contribute:
 
 --
 
-Copyright (C) 2014-2015 Université Paris-Est Marne-la-Vallée. 
+Copyright (C) 2014-2015 Université Paris-Est Marne-la-Vallée
 
 [unitex]: http://unitexgramlab.org
