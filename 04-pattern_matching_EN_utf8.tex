@@ -67,11 +67,12 @@ A lexical mask is a search query that matches tokens or sequences of tokens.
 \label{section-special-symbols}
 \index{Meta-symbols}
 
-There are two kinds of lexical masks. The first category contains all symbols that have
-been introduced in section~\ref{section-sentence-splitting} except for the
-symbol \verb$<PNC>$, which matches punctuation signs, and \verb+<^>+, which matches a line feed.
-Since all line feeds have been replaced by spaces this symbol cannot longer be
-useful when searching for lexical masks. These symbols, also called \textit{meta-symbols}, are
+There are two kinds of lexical masks. The first category contains the meta-symbols 
+introduced in section~\ref{section-sentence-splitting} except for \verb$<PNC>$ and \verb+<^>+.
+(The symbol \verb$<PNC>$, which matches punctuation signs, is valid only
+during preprocessing; \verb+<^>+ matches a line feed, but
+since all line feeds have been replaced by spaces, this symbol cannot be
+useful anymore when searching for lexical masks.) The meta-symbols that can be used to search a text for patterns are
 the following:
 
 \bigskip

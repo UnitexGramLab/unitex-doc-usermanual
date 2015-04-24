@@ -1204,7 +1204,6 @@ priorité est sans importance. En ligne de commande, l’instruction :
 \bigskip \noindent appliquerait donc les dictionnaires dans l’ordre suivant (\verb+ex.snt+ est le
 texte auquel sont appliqués les dictionnaires, \verb+alph.txt+ est le fichier alphabet utilisé):
 
-\bigskip
 \begin{enumerate}
   \item \verb$cities-.bin$
   \item \verb$regions-.bin$
@@ -1229,7 +1228,6 @@ majuscule dans le texte.
 
 \end{itemize}
 
-\bigskip
 \noindent Ainsi, l’entrée \verb$pierre,.N:fs$ reconnaîtra les mots \verb+pierre+,
 \verb+Pierre+ et \verb+PIERRE+, alors que
 
@@ -1247,10 +1245,14 @@ ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 
 \subsection{Graphes-dictionnaires}
 \label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
-Le programme \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} est capable
-d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent la règle suivante :
+Le programme \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} est également capable
+d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent,
+par défaut\footnote{Les graphes-dictionnaires morphologiques sont une exception
+(section~\ref{section-morphological-dictionary-graphs}) .}, la règle suivante :
 si on les applique avec le programme \verb+Locate+\index{\verb+Locate+}\index{Programmes externes!\verb+Locate+} en mode MERGE,\index{MERGE} ils doivent produire des séquences
 correspondant à des lignes de DELAF.\index{DELAF}\index{Dictionnaire!DELAF}
+Quand on les applique à un texte, ils attachent les étiquettes lexicales DELAF à ces séquences.
+
 
 \begin{figure}[!p]
 \begin{center}
@@ -1287,7 +1289,7 @@ majuscule
 \bigskip
 \noindent Comme les graphes-dictionnaires sont appliqués par le moteur du programme \verb+Locate+,
 ils peuvent utiliser tout ce que le programme \verb+Locate+ autorise. En particulier, il est
-possible d’utiliser les filtres morphologiques\index{Filtre morphologique} (section~ref{section-filters}) et le mode morphologique (section~ref{section-morphological-mode}).\index{Mode
+possible d’utiliser les filtres morphologiques\index{Filtre morphologique} (section~\ref{section-filters}) et le mode morphologique (section~\ref{section-morphological-mode}).\index{Mode
 morphologique}
 Ainsi, le graphe de la figure \ref{graph-CR} utilise ces filtres pour reconnaître les nombres en
 chiffres romains. Notons qu’il utilise également des contextes afin d’éviter, par exemple, que
@@ -1316,7 +1318,7 @@ par le programme \verb+Locate+ quand il rencontre des masques lexicaux qui néce
 d'un dictionnaire.
 
 \bigskip
-\noindent Cependant, cette fonctionnalité est restreinte en mode morphologique
+\noindent Cependant, cette fonctionnalité est restreinte quand le masque lexical est en mode morphologique
 (cf.~section~\ref{section-morphological-mode}). On ne peut pas déclarer un graphe-dictionnaire
 comme dictionnaire du mode morphologique de la manière habituelle (cf.~section~\ref{dic-mode-morpho}),
 car ce n'est pas un fichier \verb+.bin+. Quand on est en mode morphologique, les masques
@@ -1354,8 +1356,8 @@ en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défau
 
 
 \subsection{Graphe-dictionnaire morphologique}
-\index{Graphe-dictionnaire!morphologique}
-Dans un graphe-dictionnaire, chaque chemin doit produire une entrée lexicale à inclure dans le dictionnaire du
+\label{section-morphological-dictionary-graphs}\index{Graphe-dictionnaire!morphologique}
+Dans un graphe-dictionnaire, chaque chemin doit, par défaut, produire une entrée lexicale à inclure dans le dictionnaire du
 texte. Dans un graphe-dictionnaire morphologique, chaque chemin doit produire une séquence d'une ou plusieurs
 étiquettes délimitées par des accolades et conformes à la syntaxe des lignes du DELAF
  (section~\ref{section-DELAF-entry-syntax}).
@@ -1364,15 +1366,8 @@ les appelons ``graphes-dictionnaires morphologiques'' parce que leur principale 
 fournir de nouvelles analyses morphologiques dans l'automate du texte, grâce au mode morphologique
 (voir \ref{section-morphological-mode}). Cette fonctionnalité est utile pour des langues
 agglutinantes comme le coréen.
-
-\bigskip
-\noindent La règle est simple: toute sortie du graphe-dictionnaire commençant par une barre oblique (slash, /) 
-est ajoutée au fichier \verb+tags.ind+, \index{\verb+tags.ind+} situé dans le répertoire du texte.
-Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des interprétations à
-l'automate du texte. Considérons la grammaire de la figure \ref{morphoA} qui reconnaît des mots
-formés par le préfixe \verb+un+ suivi d'un adjectif. Si l'on applique cette grammaire comme graphe-dictionnaire,
-on obtient de nouveaux chemins dans l'automate du texte comme le montre la figure
-\ref{morphoB}. Remarquons que lorsque deux tags correspondent à des analyses dans la même unité lexicale, le lien entre eux est affiché par une ligne discontinue.
+Pour pouvoir utiliser un graphe comme graphe-dictionnaire morphologique, on le déclare
+par une barre oblique (slash, /) comme premier caractère de sa sortie, comme dans la figure \ref{morphoA}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1380,6 +1375,14 @@ on obtient de nouveaux chemins dans l'automate du texte comme le montre la figur
 \caption{Exemple de graphe-dictionnaire morphologique\label{morphoA}}
 \end{center}
 \end{figure}
+
+\noindent La règle est simple: toute sortie du graphe-dictionnaire commençant par une barre oblique (slash, /) 
+est ajoutée au fichier \verb+tags.ind+, \index{\verb+tags.ind+} situé dans le répertoire du texte.
+Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des interprétations à
+l'automate du texte. La grammaire de la figure \ref{morphoA} reconnaît des mots
+formés par le préfixe \verb+un+ suivi d'un adjectif. Si on l'applique comme graphe-dictionnaire,
+on obtient de nouveaux chemins dans l'automate du texte comme le montre la figure
+\ref{morphoB}. Remarquons que lorsque deux tags correspondent à des analyses dans la même unité lexicale, le lien entre eux est affiché par une ligne discontinue.
 
 \begin{figure}[!ht]
 \begin{center}

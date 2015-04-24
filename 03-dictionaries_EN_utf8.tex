@@ -1262,10 +1262,13 @@ follows the apostrophe.
 \subsection{Dictionary graphs}
 \label{section-dictionary-graphs}\index{Dictionary graphs}
 The \verb+Dico+\index{\verb+Dico+}\index{External programs!\verb+Dico+} program
-can also apply dictionary graphs. Dictionary graphs conform to the following
-rule: if applied by \verb+Locate+\index{\verb+Locate+}\index{External
+can also apply dictionary graphs. Dictionary graphs,
+by default,\footnote{Morphological dictionary-graphs are an exception (section
+\ref{section-morphological-dictionary-graphs}) .}
+conform to the following rule: if applied by \verb+Locate+\index{\verb+Locate+}\index{External
 programs!\verb+Locate+} in MERGE\index{MERGE} mode,
 they must produce output sequences that are valid DELAF lines.\index{DELAF}\index{Dictionaries!DELAF}
+When they are applied to a text, they attach the DELAF lexical labels to the sequences.
 
 \begin{figure}[!p]
 \begin{center}
@@ -1329,7 +1332,8 @@ Dictionary entries produced by dictionary graphs are looked up
 by the \verb+Locate+ program when it comes across lexical masks involving dictionary lookup.
 
 \bigskip
-\noindent However, this functionality is restricted when in morphological mode (section~\ref{section-morphological-mode}).
+\noindent However, this functionality is restricted when the lexical mask is
+in morphological mode (section~\ref{section-morphological-mode}).
 Dictionary graphs cannot be declared as being morphological-mode 
 dictionaries in the usual way (section~\ref{morph-mode-dic}), because they are not \verb+.bin+ files.
 When in morphological mode, lexical masks involving dictionary lookup do not trigger lookup of dictionary graphs.
@@ -1362,8 +1366,8 @@ The whole naming scheme for dictionary graphs is as follows:
 
 
 \subsection{Morphological dictionary-graphs}
-\index{Morphological dictionary-graphs}
-In a dictionary graph, each path must output a lexical entry to be added in the text
+\label{section-morphological-dictionary-graphs}\index{Morphological dictionary-graphs}
+In a dictionary graph, by default, each path must output a lexical entry to be added in the text
 dictionaries. In a morphological dictionary-graph, each path must output
 a sequence of one or more tags enclosed in braces and conforming to the syntax
 of a DELAF line (section~\ref{section-DELAF-entry-syntax}). The output
@@ -1371,18 +1375,10 @@ of such graphs will be used as special input for the construction of the text
 automaton. We call them `morphological dictionary-graphs' because their
 main utility is to introduce new morphological analyses in the text automaton,
 using the morphological mode (see section \ref{section-morphological-mode}).
-This functionality is helpful for agglutinative languages like Korean.
+This functionality is helpful for agglutinative languages like Korean. To allow the use of a
+graph as a morphological dictionary-graph, declare it with a slash (/) as the first
+character of its output, as in Figure \ref{morphoA}.
 
-\bigskip
-\noindent The rule is simple: any output of a dictionary graph that begins
-with a slash will be added to the file \verb+tags.ind+, \index{\verb+tags.ind+}
-located in the text directory. This file is used by the \verb+Txt2Fst2+ program
-in order to add interpretations into the text automaton. Let us consider the
-grammar shown on Figure \ref{morphoA} that matches words made of the prefix
-\verb+un+ followed by an adjective. If we apply this grammar as a dictionary
-graph, we obtain new paths in the text automaton, as shown on Figure
-\ref{morphoB}. Note that when two tags correspond to analyses within the same
-token, the link between them is displayed with a dashed line.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1390,6 +1386,16 @@ token, the link between them is displayed with a dashed line.
 \caption{Example of a morphological dictionary-graph\label{morphoA}}
 \end{center}
 \end{figure}
+
+\noindent The rule is simple: any output of a dictionary graph that begins
+with a slash will be added to the file \verb+tags.ind+, \index{\verb+tags.ind+}
+located in the text directory. This file is used by the \verb+Txt2Fst2+ program
+in order to add interpretations into the text automaton. The
+grammar of Figure \ref{morphoA} matches words made of the prefix
+\verb+un+ followed by an adjective. If we apply it as a dictionary
+graph, we obtain new paths in the text automaton, as shown on Figure
+\ref{morphoB}. Note that when two tags correspond to analyses within the same
+token, the link between them is displayed with a dashed line.
 
 \begin{figure}[!ht]
 \begin{center}

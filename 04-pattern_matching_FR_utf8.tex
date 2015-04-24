@@ -53,19 +53,20 @@ guillemets.
 \index{Espace!obligatoire}
 
 
-\section{Motifs}
+\section{Masques lexicaux}
 \index{Masque lexical}
-Un masque lexical est une requête qui reconnaît une unité lexicale ou une suite d'unités lexicales
+Un masque lexical est une requête qui reconnaît une unité lexicale ou une suite d'unités lexicales.
 
 \subsection{Symboles spéciaux}
 \label{section-special-symbols}
 \index{Méta-symboles}
 
-Il y a deux sortes de motifs. La première catégorie regroupe tous les symboles présentés à la
-section ~\ref{section-sentence-splitting} à l’exception de \verb$<PNC>$, qui reconnaît des signes de
-ponctuation, et du symbole \verb+<^>+, qui reconnaît un retour à ligne. Tous les retours à la ligne
+Il y a deux sortes de masques lexicaux. La première catégorie regroupe les méta-symboles présentés dans la
+section ~\ref{section-sentence-splitting}, sauf \verb$<PNC>$ et  \verb+<^>+. (Le symbole \verb$<PNC>$,
+qui reconnaît des signes de ponctuation, n'est valide que pendant le prétraitement~; \verb+<^>+ reconnaît
+un retour à ligne, mais tous les retours à la ligne
 ayant été remplacés par des espaces, ce symbole n’a plus aucune utilité lors de la recherche de
-motifs. Ces symboles, également appelés \textit{métas}, sont les suivants:
+motifs.) Les symboles utilisables pour rechercher des motifs dans un texte sont les suivants~:
 
 
 \bigskip
@@ -84,8 +85,7 @@ motifs. Ces symboles, également appelés \textit{métas}, sont les suivants:
 majuscule;
   \item \verb+<DIC>+ : reconnaît n’importe quel mot figurant dans les dictionnaires du texte;
   \item \verb+<SDIC>+ : reconnaît n’importe quel mot simple figurant dans les dictionnaires du
-  	  texte;
-  	  \index{Mots!simples}
+  	  texte;\index{Mots!simples}
   \item \verb+<CDIC>+ : reconnaît n’importe quel mot composé figurant dans les dictionnaires du
   	  texte;
   	  \index{Mots!composés}
@@ -99,7 +99,7 @@ majuscule;
 \bigskip
 \noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verb+{STOP}+}, pas même \verb+<TOKEN>+.
 
-\subsection{Masques lexicaux}
+\subsection{Référence aux informations fournies par les dictionnaires}
 \index{Masque lexical}\index{Dictionnaire!référence aux informations du}
 \index{Référence aux informations dans les dictionnaires}\index{Dictionnaire!du texte}
 
