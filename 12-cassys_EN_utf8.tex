@@ -1,7 +1,7 @@
 \chapter{Cascade of Transducers}
 \label{chap-cassys}
 
-This chapter presents the tool \textit{Cassys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{cascade of transducer} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
+This chapter presents the tool \textit{Cassys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{Cascade of transducers} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
 
 \bigskip
 \noindent The first prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
@@ -154,15 +154,19 @@ In this section , we present details concerning the functioning of Cassys.
 
 %%%%%%%%%%%%%
 \subsection{Type of graphs used}
+\label{graphs-for-cassys}
 
-Cassys uses the compiled version of the graphs (the fst2 files).
-Cassys can handle the local grammars (section 6.1) (syntactic graphs) presented in Chapter \ref{chap-advanced-grammars}. These grammars can use subgraphs, morphological filters and mode, and allow to refer to information in dictionaries. 
+CasSys uses the compiled version of the graphs (the \verb+fst2+ files). CasSys can handle the local grammars (section~\ref{syntactic-graphs}) presented in Chapter \ref{chap-advanced-grammars}. 
 The grammars used in the cascade must follow the constraints of the grammars used in Unitex.
+They may use subgraphs, morphological filters, the morphological mode, and references to information in dictionaries.
+ 
+\bigskip
+\noindent CasSys does not support debug-mode \verb+fst2+ files (\ref{section-debug-mode}). When you apply a graph in debug mode through the \verb+Text > Locate Pattern+ menu, the system compiles the graph into a special debug-mode format. To obtain a regular \verb+fst2+ file, compile the graph again, either with the \verb+FSGraph+ menu, or with a command line, or by unchecking the debug mode before applying the graph with \verb+Text > Locate Pattern+ menu.
 
 \subsection{\textit{Repeat until fix point} behaviour}
 \label{sub:AppWhiCon}
 
-Cassys may apply a transducer on a text while concordances are found. This behavior is selected if the checkbox \textbf{Until fix point} is checked or not for each graph of a cascade.
+CasSys may apply a transducer on a text while concordances are found. This behavior is selected if the checkbox \textbf{Until fix point} is checked or not for each graph of a cascade.
 This section presents the behaviour of this option.
 \bigskip
 For instance, consider the very simple graph \ref{fig:AB->A} which recognizes \emph{AB} and

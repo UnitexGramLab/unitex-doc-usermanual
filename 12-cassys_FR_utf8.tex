@@ -187,13 +187,20 @@ Pour partager un fichier liste de cascade, les points suivants doivent être rem
 Dans cette section nous présentons une description détaillée du fonctionnement de CasSys.
 
 \subsection{Type de graphe utilisé}
+\label{graphs-for-cassys}
 
-CasSys utilise la version compilée des graphes (format .fst2). CasSys gère des grammaires locales
-(section 6.1) (des graphes syntaxiques) présentées dans le chapitre \ref{chap-advanced-grammars}. Ces
-grammaires peuvent comporter des sous-graphes, utiliser le mode et les filtres morphologi-ques, et
-faire référence aux informations présentes dans les dictionnaires. Les grammaires utilisées dans une
-cascade suivent les mêmes règles que les grammaires habituellement
-utilisées dans Unitex.
+CasSys utilise la version compilée des graphes (format \verb+.fst2+). CasSys gère les grammaires locales
+(section~\ref{syntactic-graphs}) présentées dans le chapitre \ref{chap-advanced-grammars}.
+Les grammaires utilisées dans une cascade suivent les mêmes règles que les grammaires habituellement
+utilisées dans Unitex. Elles peuvent comporter des sous-graphes, utiliser le mode morphologique et les filtres
+morphologiques, et faire référence aux informations présentes dans les dictionnaires. 
+
+\bigskip
+\noindent CasSys n'est pas compatible avec les fichiers \verb+fst2+ en mode debug (\ref{section-debug-mode}).
+Quand on applique un graphe en mode debug avec le menu \verb+Text>Locate Pattern+, le système
+compile le graphe dans un format spécial de mode debug. Pour obtenir un fichier au format \verb+fst2+ normal,
+recompilez le graphe, soit avec le menu \verb+FSGraph+, soit en ligne de commande, soit en décochant le mode
+debug avant d'appliquer le graphe avec \verb+Locate Pattern+.
 
 \subsection{Application itérative}
 \label{sub:AppWhiCon}

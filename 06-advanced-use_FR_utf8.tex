@@ -153,7 +153,7 @@ utilisés.
 
 
 \subsection{Graphes syntaxiques}
-\index{Graphe!syntaxique}\index{Grammaires!locales}
+\label{syntactic-graphs}\index{Graphe!syntaxique}\index{Grammaires!locales}
 Les graphes syntaxiques, également appelés grammaires locales, permettent de décrire
 des motifs syntaxiques qui pourront ensuite être recherchés dans des textes. De tous les
 types de graphe, ceux-ci possèdent la plus grande puissance d’expressions, car ils permettent
@@ -180,8 +180,7 @@ dans les concordances ou dans le texte si vous voulez modifier celui-ci (voir se
 ~\ref{section-modifying-text}).
 
 \bigskip
-\noindent Les graphes syntaxiques peuvent utiliser des contextes (voir section
-\ref{section-contexts}).
+\noindent Les graphes syntaxiques peuvent utiliser des contextes (voir section~\ref{section-contexts}).
 
 \bigskip
 \noindent Les graphes syntaxiques peuvent utiliser des filtres morphologiques (voir section
@@ -464,16 +463,19 @@ apparaître dans le même graphe.
 \bigskip
 \noindent La figure~\ref{fig-context1} montre un exemple simple de contexte. Ce graphe
 reconnaît tous les nombres qui sont suivis par l’euro, la livre ou le dollar, mais sans
-que le symbole d’unité n’apparaisse dans les occurrences trouvées.
+que le symbole d’unité n’apparaisse dans les occurrences trouvées, c'est-à-dire dans
+la concordance.
 
 \bigskip
 \noindent Les contextes s’interprètent de la façon suivante. Supposons que l’on rencontre un début
 de contexte lors de l’application d’une grammaire à un texte, et notons $pos$ la position courante
 dans le texte à cet instant. Le programme \verb$Locate$ va ensuite chercher à reconnaître
 l’expression décrite dans le contexte. S’il échoue, il n’y aura pas de match. S’il réussit, c’est-
-à-dire s’il peut atteindre la fin du contexte, le programme reviendra à la position \verb$pos$ dans
+à-dire s’il peut atteindre la fin du contexte, le programme reviendra à la position $pos$ dans
 le texte et continuera l’exploration de la grammaire à partir de la fin du contexte.
 
+\bigskip
+\noindent Les poids (section~\ref{Transducers}) dans les contextes droits sont ignorés.
 
 \bigskip
 \noindent On peut également définir des contextes droits négatifs, en utilisant
@@ -486,7 +488,6 @@ montre un graphe reconnaissant des nombres qui ne sont pas suivis par \verb+th+.
  la position $pos$ dans le texte et continuera l’exploration de la grammaire à partir de la fin du
  contexte.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=7.3cm]{resources/img/fig6-13.png}
@@ -501,8 +502,6 @@ quelque
 chose qui n’est pas un participe passé. Autrement dit, ce graphe reconnaît tous les adjectifs
 qui ne sont pas ambigus avec des participes passés.
 
-
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig6-14.png}
@@ -511,14 +510,26 @@ qui ne sont pas ambigus avec des participes passés.
 \end{figure}
 
 \bigskip
-\noindent Grâce à ce mécanisme, on peut formuler des requêtes complexes. Ainsi, la figure
+\noindent Dans les graphes tels que celui de la figure~\ref{fig-context3}, le contexte droit négatif
+ne vérifie pas nécessairement le même nombre de tokens que la boite qui le suit. Par exemple, avant
+que le graphe de la figure~\ref{too-also} ne reconnaisse \verb+too+, le contexte droit négatif
+vérifie s'il apparait dans une expression telle que \verb+too early+ ou \verb+too many+.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7.5cm]{resources/img/fig-too-also.png}
+\caption{Un contexte qui ne vérifie pas le même nombre de mots que la boite qui le suit\label{too-also}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent On peut formuler des requêtes complexes avec les contextes droits négatifs. Ainsi, la figure
 ~\ref{fig-context4} montre un graphe qui reconnaît toutes les séquences de deux noms simples qui ne
 sont pas ambiguës avec des mots composés. En effet, le motif \verb?<CDIC><<^([^ ]+ [^ ]+)$>>? 
 reconnaît un mot composé contenant exactement un espace, et le motif \verb?<N><<^([^ ]+)$>>?
 reconnaît un nom sans espace, c’est-à-dire un nom simple. Ainsi,
  dans la phrase \textit{Black cats should like the town hall}, ce graphe reconnaîtra
  \textit{Black cats}, mais pas \textit{town hall}, qui est un mot composé.
-
 
 \bigskip
 \begin{figure}[!h]
@@ -587,7 +598,7 @@ inclus dans la séquence reconnue, comme le montre la figure~\ref{fig-left-conte
 \noindent Pour éviter cela, on peut utiliser le symbole \verb+$*+ qui indique la fin du contexte
 gauche de l'expression qu'on désire reconnaître. Ce symbole est représenté par une étoile verte
 dans le graphe, comme le montre la figure~\ref{fig-left-context3}. L'effet d'un tel contexte est
-d'utiliser une partie de la grammaire pour calculer la séquence reconnue, sans que cette partie ne figure dans le résultat (voir figure \ref{fig-left-context4}).
+d'utiliser une partie de la grammaire pour calculer la séquence reconnue, sans que cette partie ne figure dans le résultat (voir figure~\ref{fig-left-context4}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -671,6 +682,9 @@ figure \ref{fig-left-context10}.
 \ref{fig-left-context9}\label{fig-left-context10}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Les poids (section~\ref{Transducers}) fonctionnent normalement dans les contextes gauches.
 
 \clearpage
 
@@ -1643,14 +1657,21 @@ que dans une seule concordance.
 \label{section-debug-mode}
 Lorsqu'on applique un graphe à un texte avec le menu \verb+Locate+ dans la fenêtre de la
 figure~\ref{fig-regexp-frame}, si le mode debug est activé dans le champ "Locate pattern in the
-forme of", la concordance est affichée dans une fenêtre spéciale (voir figure~\ref{fig-debug-mode}),
-divisée en trois parties :
+form of", la concordance est affichée dans une fenêtre spéciale (voir figure~\ref{fig-debug-mode}),
+divisée en trois parties~:
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[height=9.5cm]{resources/img/fig6-34.png}
+\caption{La fenêtre de concordance en mode debug\label{fig-debug-mode}}
+\end{center}
+\end{figure}
 
 \medskip 
-\indent En haut, à droite, se trouve la fenêtre de concordance. Elle est identique à la fenêtre habituelle dans laquelle les séquences reconnues apparaissent en bleu.
+\indent En haut à droite, se trouve la fenêtre de concordance. Elle est identique à la fenêtre habituelle dans laquelle les séquences reconnues apparaissent en bleu.
 
 \medskip
-\indent En bas, à droite se trouve le graphe utilisé par \verb+Locate+.
+\indent En bas à droite se trouve le graphe utilisé par \verb+Locate+.
 
 \medskip
 \indent A gauche, il y a un tableau divisé en trois colonnes: "Tag", "Output" et "Matched".
@@ -1659,17 +1680,13 @@ contenu de la boîte de l'automate qui l'a reconnue, et si elle possède une sor
 dans la colonne "Output".
 
 \bigskip
-\noindent Pour chaque séquence reconnue de la concordance, si vous cliquez dessus, le tableau est
-mis à jour et en cliquant sur une ligne du tableau la boîte correspondante dans le graphe est
-colorée.
-Vous pouvez ainsi voir pour chaque occurrence reconnue dans le texte, quel chemin de l'automate la
-reconnait. Le nombre écrit en rouge au-dessus d'une boîte indique le nombre de  séquences du texte
-pour lesquelles cette boîte a reconnue un token.
+\noindent Pour chaque séquence reconnue de la concordance, si on clique dessus, le tableau est
+mis à jour. Si on clique sur une ligne du tableau, le système colore la boîte correspondante dans le graphe.
+On peut ainsi voir pour chaque occurrence reconnue dans le texte quel chemin de l'automate la
+reconnait. Le nombre en rouge au-dessus d'une boîte indique le nombre de  séquences du texte
+pour lesquelles cette boîte a reconnu un token.
 
 \bigskip
-\begin{figure}[h]
-\begin{center}
-\includegraphics[height=9.5cm]{resources/img/fig6-34.png}
-\caption{La fenêtre de concordance en mode debug\label{fig-debug-mode}}
-\end{center}
-\end{figure}
+\noindent Quand on applique un graphe en mode debug avec le menu \verb+Text>Locate Pattern+,
+le système le compile en un fichier \verb+fst2+ dans un formal spécial de mode debug, qui n'est
+pas compatible avec CasSys. Voir la section~\ref{graphs-for-cassys} pour résoudre ce problème.

@@ -151,7 +151,7 @@ be compiled before using them.
 
 
 \subsection{Syntactic graphs}
-\index{Graph!syntactic}\index{Grammars!local}
+\label{syntactic-graphs}\index{Graph!syntactic}\index{Grammars!local}
 Syntactic graphs, often called local grammars, allow you to describe syntactic
 patterns that can then be searched in the texts. Of all kinds of graphs these
 have the greatest expressive power because they allow you to refer to information
@@ -178,8 +178,7 @@ that will be inserted in the concordances or in the text if you want to modify i
 (cf. section~\ref{section-modifying-text}).
 
 \bigskip
-\noindent Syntactic graphs can use contexts (see section
-\ref{section-contexts}).
+\noindent Syntactic graphs can use contexts (see section~\ref{section-contexts}).
 
 \bigskip
 \noindent Syntactic graphs can use morphological filters (see section
@@ -432,7 +431,7 @@ compilation, the locate operation is automatically interrupted.
 \section{Contexts}
 \index{Contexts}\label{section-contexts}
 
-Unitex graphs as we described them up to there are equivalent to algebraic
+Unitex graphs as we described them up to here are equivalent to algebraic
 grammars. These are also known as context-free grammars, because if you want to
 match a sequence $A$, the context of $A$ is irrelevant. Thus, you cannot use a
 contex-free graph for matching occurences of \verb+president+ not followed by
@@ -471,8 +470,11 @@ current position in the text at this time. Now, the \verb$Locate$ program tries 
 the expression described inside the right context. If it fails, then there will
 be no match. If it matches the whole right context (that is to say if
 \verb$Locate$ reaches the right context end), then the program will rewind at
-the position \verb$pos$ and go on exploring the grammar after the right context
+position $pos$ and go on exploring the grammar after the right context
 end.
+
+\bigskip
+\noindent Weights (section~\ref{Transducers}) are ignored in right contexts.
 
 \bigskip
 \noindent You can also define negative right contexts,
@@ -484,7 +486,6 @@ considered as a failure, because it would have matched a forbidden sequence. At 
 the context stop cannot be reached, then \verb$Locate$ will rewind at the
 position $pos$ and go on exploring the grammar after the context end.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=7.3cm]{resources/img/fig6-13.png}
@@ -498,7 +499,6 @@ beginning of the graph. Figure~\ref{fig-context3} shows a graph that matches an
 adjective in the right context of something that is not a past participle. In other words, this
 graph matches adjectives that are not ambiguous with past participles.
 
-\bigskip
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig6-14.png}
@@ -508,7 +508,20 @@ participle\label{fig-context3}}
 \end{figure}
 
 \bigskip
-\noindent This mechanism allows you to formulate complex patterns. For
+\noindent In graphs like that of Figure~\ref{fig-context3}, the negative right context does not
+need to match the same number of tokens as the box after it. For example, before
+the graph of Figure~\ref{too-also} recognizes \verb+too+, the negative right context checks if
+it occurs in a phrase like \verb+too early+ or \verb+too many+.
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7.5cm]{resources/img/fig-too-also.png}
+\caption{A context that does not check the same number of words as the box after it\label{too-also}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent Negative right contexts allow you to formulate complex patterns. For
 instance, the graph of figure~\ref{fig-context4} matches a sequence of two 
 simple nouns that is not ambiguous with a compound word. In fact, the 
 pattern \verb?<CDIC><<^([^ ]+ [^ ]+)$>>? 
@@ -626,8 +639,8 @@ obtained with the grammar of Figure \ref{fig-left-context5}.
 \end{figure}
 
 \bigskip
-\noindent However, you can catch things with variables (see section
-\ref{section-variables}) and use them outside the left context, as shown on the
+\noindent However, you can store information in variables (see section
+\ref{section-variables}) and use it outside the left context, as shown on the
 grammar of Figure \ref{fig-left-context7} which produces the concordance of Figure \ref{fig-left-context8}.
 
 \begin{figure}[!ht]
@@ -672,6 +685,9 @@ see on Figure \ref{fig-left-context10}.
 \ref{fig-left-context9}\label{fig-left-context10}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Weights (section~\ref{Transducers}) work normally in left contexts.
 
 \clearpage
 
@@ -1642,30 +1658,28 @@ occurrence that appears in only one concordance.
 \label{section-debug-mode}
 When  you apply a graph to a text with the Locate menu 
 in the window shown in figure~\ref{fig-regexp-frame}, 
-%you can display a concordance in which the located sequences 
-if you activate the debug mode in the "Locate pattern in the forme of" field,
+if you activate the debug mode in the "Locate pattern in the form of" field,
 the concordance will be displayed in a special window such as in figure~\ref{fig-debug-mode}, divided into three parts :
 
-\medskip 
-\indent In the top right part of the window is the concordance. It is identical to the classical concordance in which the sequences matched by the graph appear in blue.
-
-\medskip
-\indent In the bottom right you will find the graph used for the locate.
-
-\medskip
-\indent In the left side of the window is a table of 3 columns : "Tag", "output" and "matched".
-Each token of the matched sequence appear in the "matched" column, the Tag column contains what is in the box of the automaton that matched it, and if this box has any output, it will appear in the "output" column.
-
-\bigskip
-\noindent For each matched sequence in the concordance, if you click on its line in the concordance, the table on the left will be actualized and clicking on a row of the table will colour the corresponding box in the graph.
-\bigskip
-\noindent This will help you to see, for each occurence of a matched sequence in the text, which path in the automaton recognized it. A red number above each box indicates the number of sequences in the text in which that box matched a token. 
-
-
-%\bigskip
 \begin{figure}[h]
 \begin{center}
 \includegraphics[height=9cm]{resources/img/fig6-34.png}
 \caption{The Concordance window in debug mode\label{fig-debug-mode}}
 \end{center}
 \end{figure}
+
+\medskip 
+\indent In the top right part of the window is the concordance. It is identical to the classical concordance in which the sequences matched by the graph appear in blue.
+
+\medskip
+\indent In the bottom right you will find the graph used for the search.
+
+\medskip
+\indent In the left side of the window is a table of 3 columns : "Tag", "output" and "matched".
+Each token of the matched sequence appear in the "matched" column, the Tag column contains what is in the box of the automaton that matched it, and if this box has any output, it will appear in the "output" column.
+
+\bigskip
+\noindent For each matched sequence in the concordance, if you click on its line in the concordance, the table on the left will be actualized and clicking on a row of the table will colour the corresponding box in the graph. This will help you to see, for each occurrence of a matched sequence in the text, which path in the automaton recognized it. A red number above each box indicates the number of sequences in the text in which that box matched a token. 
+
+\bigskip
+\noindent When you apply a graph in debug mode through the \verb+Text > Locate Pattern+ menu, the system compiles it into a \verb+fst2+ file in a special debug-mode format, which is not supported by CasSys. See section~\ref{graphs-for-cassys} to solve this problem.
