@@ -2044,7 +2044,7 @@ correspondant à la langue courante. Chaque ligne est censée contenir un mot in
 Le programme \verb+UnitexToolLogger+, si le fichier \verb+unitex_logging_parameters.txt+ 
 est trouvé avec un chemin (pour enregistrer les fichiers log) crée un fichier .ulp de log de l'outil 
 Unitex en cours d'exécution choisi.
-il crée un fichier \verb+unitex_logging_parameters_count.txt+ qui contient seulement le numéro du
+Il crée un fichier \verb+unitex_logging_parameters_count.txt+ qui contient seulement le numéro du
 dernier fichier log créé.
 
 un fichier log (avec l'extension .ulp) sont des fichiers zip non comprimés, compatibles avec unzip
@@ -2093,4 +2093,53 @@ celles-ci:
 \noindent où \verb+fatha omission+ est le nom de la règle. Pour une description complète de toutes
 les règles disponibles, il faut consulter le fichier \verb+Arabic.h+ dans les sources du programme.
 
+\subsection{fichier d'offsets de différence}
+\label{subsection-offsets-diff}
 
+Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize, lu par Tokenize, lu et écrit par DumpOffsets, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
+\bigskip
+Ces fichiers textes sont constituées de lignes contenant 4 entiers A B C D. Chaque ligne correspond à une modification du texte, exprimée de la façon suivante:
+\bigskip
+l'intervalle \[A;B\[ du texte *** avant tout traitement *** est remplacé par l'intervalle \[C;D\[ après traitement, A, B, C et D étant des positions en caractères dans les fichiers textes.
+\bigskip
+
+Par exemple, si on applique le programme Normalize sur le texte "Hello  world" (avec deux espaces entre les deux mots), on aura une ligne comme ceci:
+\bigskip
+\noindent \verb+5 7 5 6+
+\bigskip
+signifiant qu'une séquence de deux caractères (les 2 espaces) a été remplacée par une séquence d'un seul caractère.
+
+\bigskip
+
+Le principe est donc de produire un nouveau fichier d'offsets pour chaque application de programme modifiant le texte, en prenant en entrée le fichier d'offsets produit par le programme précédent. Ainsi, en regardant le dernier fichier d'offsets produit, on sait que pour chaque ligne A B C D, l'intervalle [C;D[ dans le fichier .snt correspond à l'intervalle [A;B[ dans le fichier .txt de départ
+
+
+\subsection{fichier d'offsets de zone commune}
+\label{subsection-offsets-common}
+
+Les fichiers d'offsets de zone commune sont lu et écrit par DumpOffsets.
+\bigskip
+Ces fichiers textes sont constituées de lignes contenant 4 entiers A B C D. Chaque ligne correspond à une modification du texte, exprimée de la façon suivante:
+\bigskip
+l'intervalle [A;B[ du texte original correspond à l'intervalle [C;D[ après traitement, A, B, C et D étant des positions en caractères dans les fichiers textes. Sur chaque ligne, B-A=D-C.
+\bigskip
+
+Par exemple, si on applique le programme Normalize sur le texte "Hello world" (avec deux espaces entre les deux mots), on aura une ligne comme ceci:
+\bigskip
+\noindent \verb+0 5 0 5+
+\noindent \verb+7 12 6 11+
+\bigskip
+signifiant que les caractère de 0 (inclus) à 5 (non inclus) des deux fichiers contiennent exactement le même texte, et que ceux de 7 (inclus) à 12 (non inclus) du premier texte
+contiennent exactement le même texte que ceux de 6 (inclus) à 11 (non inclus) du second.
+
+
+
+\subsection{fichier d'offsets uima}
+\label{subsection-offsets-uima}
+Les fichiers d'offsets de zone commune sont écrit par Tokenize et lu par Concord.
+\bigskip
+Ces fichiers textes sont constituées de lignes contenant 3 entiers A B C et de texte entre < et >. Chaque ligne correspond à un token, exprimée de la façon suivante:
+Le token numéro A correspond au texte de la position B (inclue) à la position C (non inclus) du fichier d'origine, et le texte de ce token est mentionné entre < et >.
+Le numéro de token A correspond au numéro de ligne de tokens.txt où figure ce token (après avoir ajouté 1 pour la ligne d'en-tête de token.txt)
+
+\bigskip

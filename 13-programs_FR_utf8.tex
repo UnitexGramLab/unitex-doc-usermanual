@@ -647,6 +647,66 @@ texte
 
 
 
+
+
+\section{DumpOffsets}\index{Programmes externes!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\label{section-DumpOffsets}
+
+\noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
+certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
+
+\bigskip
+\verb+DumpOffsets --merge -o <fichier_offsets1> <fichier_offsets2> -p <fichier_offset12>+
+En entrée, le fichier offsets1 (\ref{subsection-offsets-diff}) contient la correspondant des offsets entre un fichier en version A
+et un fichier en version B, et offset2 contient la correspondant des offsets entre ce fichier en version B
+et en version C, le fichier fichier_offset12 résultant aura la correspondance entre les versions A et B.
+
+\bigskip
+\verb+DumpOffsets [OPTIONS] -o <fichier_version1> -n <fichier_Version2> <fichier_offset> -p <fichier_dump>+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+\item \verb+-f/--full+: Inclus des informations plus complètes
+\end{itemize}
+
+En entrée, le fichier fichier_offset contient la correspondant des offsets entre le fichier_version1 et le
+fichier_version2. En sortie, le fichier texte <fichier_dump> contiendra la comparaison des séquences entre les
+2 fichiers et vérifiera leur cohérence. Ce fichier est destinée à une lecture manuelle, afin d'étudier le contenu
+du fichier d'offset
+
+
+\bigskip
+\verb+DumpOffsets [OPTIONS] --convert_modified_to_common <fichier_offset_différence> -p <fichier_offset_zone_commune>+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+\item \verb+-s N/--old_size=N+: Contient la taille en caractère de la version d'origine du fichiet texte
+\item \verb+-S N/--new_size=N+: Contient la taille en caractère de la version d'arrivée du fichiet texte
+\end{itemize}
+Il faut obligatoirement spécifier une des deux tailles. Pour un fichier encodé en UTF16BE_BOM, c’est la taille en
+octets, auquel on retranche 2 pour les 2 octets de signature BOM et que l’on divise ensuite par 2 car chaque
+caractère unicode prend 2 octets. En UTF8, la correspondance n’est pas immédiate.
+
+Converti un fichier d'offset indiquant les caractères supprimés (tel que fournis par les autres outils Unitex) en fichier
+indiquant les plages de caractères identiques (\ref{subsection-offsets-diff}).
+
+\bigskip
+\verb+DumpOffsets [OPTIONS] --convert_common_to_modified <fichier_offset_zone_commune> -p <fichier_offset_différence>+
+\bigskip
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+\item \verb+-s N/--old_size=N+: Contient la taille en caractère de la version d'origine du fichiet texte
+\item \verb+-S N/--new_size=N+: Contient la taille en caractère de la version d'arrivée du fichiet texte
+\end{itemize}
+Il faut obligatoirement spécifier les deux tailles.
+
+Converti un fichier d'offset indiquant les plages de caractères identiques en fichier indiquant les caractères supprimés.
+
+
+
+
+
+
 \section{Elag}\index{Programmes externes!\verb+Elag+}\index{\verb+Elag+}
 \verb+Elag [OPTIONS] <tfst>+
 
@@ -915,6 +975,7 @@ texte n’est pas encore découpé en unités lexicales
   asiatiques comme le Thaï;
 
   \item \verb+-w+/\verb+--word_by_word+: fonctionne en mode mot par mot (par défaut);
+  \item \verb+--input_offsets=XXX+: fichier offset à utiliser.  
 \end{itemize}
 
 \bigskip
@@ -924,6 +985,7 @@ texte n’est pas encore découpé en unités lexicales
 	d'entrée (par défaut);
 \item \verb+-R+/\verb+--replace+: remplace les séquences reconnues avec les sorties correspondantes
 	du transducteur.
+\item \verb+--output_offsets=XXX+: fichier offset à produire	
 \end{itemize}
 
 \bigskip
