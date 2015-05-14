@@ -2044,11 +2044,15 @@ correspondant à la langue courante. Chaque ligne est censée contenir un mot in
 Le programme \verb+UnitexToolLogger+, si le fichier \verb+unitex_logging_parameters.txt+ 
 est trouvé avec un chemin (pour enregistrer les fichiers log) crée un fichier .ulp de log de l'outil 
 Unitex en cours d'exécution choisi.
+
+\bigskip
+
 Il crée un fichier \verb+unitex_logging_parameters_count.txt+ qui contient seulement le numéro du
 dernier fichier log créé.
 
-un fichier log (avec l'extension .ulp) sont des fichiers zip non comprimés, compatibles avec unzip
-et tous les outils unzip standards. Il contient ces fichiers:
+Un fichier log (avec l'extension .ulp) est un fichiers zip non comprimés, compatibles avec unzip
+et tous les outils unzip standards. On peut le recréer avec zip
+d'Infozip (avec les options -0 -X). Il contient ces fichiers:
 \begin{itemize}
 \item \verb+test_info/command_line.txt+: une liste de paramètres de la ligne de commande utilisée
 	pour exécuter l'outil. Il y a un paramètre sur chaque ligne. La première ligne contient la
@@ -2100,13 +2104,15 @@ Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize, lu par 
 \bigskip
 Ces fichiers textes sont constituées de lignes contenant 4 entiers A B C D. Chaque ligne correspond à une modification du texte, exprimée de la façon suivante:
 \bigskip
-l'intervalle \[A;B\[ du texte *** avant tout traitement *** est remplacé par l'intervalle \[C;D\[ après traitement, A, B, C et D étant des positions en caractères dans les fichiers textes.
+l'intervalle [A;B[ du texte *** avant tout traitement *** est remplacé par l'intervalle [C;D[ après traitement, A, B, C et D étant des positions en caractères dans les fichiers textes.
 \bigskip
 
 Par exemple, si on applique le programme Normalize sur le texte "Hello  world" (avec deux espaces entre les deux mots), on aura une ligne comme ceci:
+
 \bigskip
 \noindent \verb+5 7 5 6+
 \bigskip
+
 signifiant qu'une séquence de deux caractères (les 2 espaces) a été remplacée par une séquence d'un seul caractère.
 
 \bigskip
@@ -2125,10 +2131,12 @@ l'intervalle [A;B[ du texte original correspond à l'intervalle [C;D[ après tra
 \bigskip
 
 Par exemple, si on applique le programme Normalize sur le texte "Hello world" (avec deux espaces entre les deux mots), on aura une ligne comme ceci:
+
 \bigskip
 \noindent \verb+0 5 0 5+
 \noindent \verb+7 12 6 11+
 \bigskip
+
 signifiant que les caractère de 0 (inclus) à 5 (non inclus) des deux fichiers contiennent exactement le même texte, et que ceux de 7 (inclus) à 12 (non inclus) du premier texte
 contiennent exactement le même texte que ceux de 6 (inclus) à 11 (non inclus) du second.
 
@@ -2136,9 +2144,11 @@ contiennent exactement le même texte que ceux de 6 (inclus) à 11 (non inclus) 
 
 \subsection{fichier d'offsets uima}
 \label{subsection-offsets-uima}
-Les fichiers d'offsets de zone commune sont écrit par Tokenize et lu par Concord.
+Les fichiers d'offsets uima sont écrit par Tokenize et lu par Concord.
 \bigskip
-Ces fichiers textes sont constituées de lignes contenant 3 entiers A B C et de texte entre < et >. Chaque ligne correspond à un token, exprimée de la façon suivante:
+Ces fichiers textes sont constituées de lignes contenant 3 entiers A B C et de texte entre < et >.
+\bigskip
+Chaque ligne correspond à un token, exprimée de la façon suivante:
 Le token numéro A correspond au texte de la position B (inclue) à la position C (non inclus) du fichier d'origine, et le texte de ce token est mentionné entre < et >.
 Le numéro de token A correspond au numéro de ligne de tokens.txt où figure ce token (après avoir ajouté 1 pour la ligne d'en-tête de token.txt)
 
