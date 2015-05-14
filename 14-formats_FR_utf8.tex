@@ -2100,7 +2100,8 @@ les règles disponibles, il faut consulter le fichier \verb+Arabic.h+ dans les s
 \subsection{fichier d'offsets de différence}
 \label{subsection-offsets-diff}
 
-Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize, lu par Tokenize, lu et écrit par DumpOffsets, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
+Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize, lu par Tokenize, lu et écrit par
+DumpOffsets(\ref{section-DumpOffsets}), Normalize(\ref{section-Normalize}), Fst2Txt(\ref{section-Fst2Txt}), Tokenize(\ref{section-Tokenize}), Concord(\ref{section-Concord}) et GrfTest(\ref{section-GrfTest}).
 \bigskip
 Ces fichiers textes sont constituées de lignes contenant 4 entiers A B C D. Chaque ligne correspond à une modification du texte, exprimée de la façon suivante:
 \bigskip
@@ -2134,6 +2135,7 @@ Par exemple, si on applique le programme Normalize sur le texte "Hello world" (a
 
 \bigskip
 \noindent \verb+0 5 0 5+
+\newline
 \noindent \verb+7 12 6 11+
 \bigskip
 
@@ -2145,8 +2147,10 @@ contiennent exactement le même texte que ceux de 6 (inclus) à 11 (non inclus) 
 \subsection{fichier d'offsets uima}
 \label{subsection-offsets-uima}
 Les fichiers d'offsets uima sont écrit par Tokenize et lu par Concord.
+
 \bigskip
 Ces fichiers textes sont constituées de lignes contenant 3 entiers A B C et de texte entre < et >.
+
 \bigskip
 Chaque ligne correspond à un token, exprimée de la façon suivante:
 Le token numéro A correspond au texte de la position B (inclue) à la position C (non inclus) du fichier d'origine, et le texte de ce token est mentionné entre < et >.

@@ -656,14 +656,20 @@ texte
 certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
 
 \bigskip
-\verb+DumpOffsets --merge -o <fichier\_offsets1> <fichier\_offsets2> -p <fichier\_offset12>+
-En entrée, le fichier offsets1 (\ref{subsection-offsets-diff}) contient la correspondant des offsets entre un fichier en version A
+\begin{verbatim}
+DumpOffsets --merge -o <fichier_offsets1> <fichier_offsets2>
+  -p <fichier_offset12>
+\end{verbatim}
+En entrée, le fichier offsets1 (\ref{subsection-offsets-diff}, page \pageref{subsection-offsets-diff})) contient la correspondant des offsets entre un fichier en version A
 et un fichier en version B, et offset2 contient la correspondant des offsets entre ce fichier en version B
 et en version C, le fichier fichier\_offset12 résultant aura la correspondance entre les versions A et B.
 
+\begin{verbatim}
+DumpOffsets [OPTIONS] -o <fichier_version1> -n <fichier_Version2>
+  <fichier_offset> -p <fichier_dump>
+\end{verbatim}
 \bigskip
-\verb+DumpOffsets [OPTIONS] -o <fichier\_version1> -n <fichier\_Version2> <fichier\_offset> -p <fichier\_dump>+
-\bigskip
+
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
 \item \verb+-f/--full+: Inclus des informations plus complètes
@@ -676,23 +682,31 @@ du fichier d'offset
 
 
 \bigskip
-\verb+DumpOffsets [OPTIONS] --convert\_modified\_to\_common <fichier\_offset\_différence> -p <fichier\_offset\_zone\_commune>+
+\begin{verbatim}
+DumpOffsets [OPTIONS] --convert_modified_to_common 
+  <fichier_offset_différence> -p <fichier_offset_zone_commune>
+\end{verbatim}
 \bigskip
+
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
-\item \verb+-s N/--old\_size=N+: Contient la taille en caractère de la version d'origine du fichiet texte
-\item \verb+-S N/--new\_size=N+: Contient la taille en caractère de la version d'arrivée du fichiet texte
+\item \verb+-s N/--old_size=N+: Contient la taille en caractère de la version d'origine du fichiet texte
+\item \verb+-S N/--new_size=N+: Contient la taille en caractère de la version d'arrivée du fichiet texte
 \end{itemize}
 Il faut obligatoirement spécifier une des deux tailles. Pour un fichier encodé en UTF16BE\_BOM, c’est la taille en
 octets, auquel on retranche 2 pour les 2 octets de signature BOM et que l’on divise ensuite par 2 car chaque
 caractère unicode prend 2 octets. En UTF8, la correspondance n’est pas immédiate.
 
 Converti un fichier d'offset indiquant les caractères supprimés (tel que fournis par les autres outils Unitex) en fichier
-indiquant les plages de caractères identiques (\ref{subsection-offsets-diff}).
+indiquant les plages de caractères identiques (\ref{subsection-offsets-common}).
 
 \bigskip
-\verb+DumpOffsets [OPTIONS] --convert\_common\_to\_modified <fichier\_offset\_zone\_commune> -p <fichier\_offset\_différence>+
+\begin{verbatim}
+DumpOffsets [OPTIONS] --convert_common_to_modified
+  <fichier_offset_zone_commune> -p <fichier_offset_différence>
+\end{verbatim}
 \bigskip
+
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
 \item \verb+-s N/--old\_size=N+: Contient la taille en caractère de la version d'origine du fichiet texte
@@ -701,9 +715,6 @@ indiquant les plages de caractères identiques (\ref{subsection-offsets-diff}).
 Il faut obligatoirement spécifier les deux tailles.
 
 Converti un fichier d'offset indiquant les plages de caractères identiques en fichier indiquant les caractères supprimés.
-
-
-
 
 
 
