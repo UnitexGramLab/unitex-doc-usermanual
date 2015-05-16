@@ -553,6 +553,7 @@ texte. Chaque entier \verb+i+ renvoie au token d’indice \verb+i+ dans le fichi
 
 \subsection{Fichier tokens.txt}
 \index{Fichier!\verb+tokens.txt+}
+\label{fichier-tokens-txt}
 Le fichier \verb+tokens.txt+ est un fichier texte contenant la liste de toutes les unités lexicales
 du texte. La première ligne de ce fichier indique le nombre d’unités contenues dans le fichier.
 Les unités sont séparées par des retours à la ligne. Quand une séquence est trouvée dans le
@@ -2100,7 +2101,7 @@ les règles disponibles, il faut consulter le fichier \verb+Arabic.h+ dans les s
 \subsection{fichier d'offsets de différence}
 \label{subsection-offsets-diff}
 
-Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize, lu par Tokenize, lu et écrit par
+Les fichiers d'offsets de différence sont écrit par l'outils Unxmlize(\ref{section-Unxmlize}), lu par Tokenize(\ref{section-Tokenize}), lu et écrit par
 DumpOffsets(\ref{section-DumpOffsets}), Normalize(\ref{section-Normalize}), Fst2Txt(\ref{section-Fst2Txt}), Tokenize(\ref{section-Tokenize}), Concord(\ref{section-Concord}) et GrfTest.
 \bigskip
 Ces fichiers textes sont constituées de lignes contenant 4 entiers A B C D. Chaque ligne correspond à une modification du texte, exprimée de la façon suivante:
@@ -2154,6 +2155,6 @@ Ces fichiers textes sont constituées de lignes contenant 3 entiers A B C et de 
 \bigskip
 Chaque ligne correspond à un token, exprimée de la façon suivante:
 Le token numéro A correspond au texte de la position B (inclue) à la position C (non inclus) du fichier d'origine, et le texte de ce token est mentionné entre < et >.
-Le numéro de token A correspond au numéro de ligne de tokens.txt où figure ce token (après avoir ajouté 1 pour la ligne d'en-tête de tokens.txt(\ref{Fichier tokens.txt}))
+Le numéro de token A correspond au numéro de ligne de tokens.txt où figure ce token (après avoir ajouté 1 pour la ligne d'en-tête de tokens.txt(\ref{fichier-tokens-txt}))
 
 \bigskip

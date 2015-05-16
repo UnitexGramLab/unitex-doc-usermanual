@@ -265,6 +265,7 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 
 
 \section{Concord}\index{External programs!\verb+Concord+}\index{\verb+Concord+}\index{Concordance}
+\label{section-Concord}
 \index{Text!modification}\index{Modification of the text}
 \verb+Concord [OPTIONS] <index>+
 
@@ -642,6 +643,91 @@ applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
 
 
 
+\section{DumpOffsets}\index{External programs!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\label{section-DumpOffsets}
+\verb+DumpOffsets [OPTIONS]+
+
+Usage: DumpOffsets [OPTIONS] <txt>
+
+\begin{itemize}
+  <txt>: a offset file to read
+
+OPTIONS:
+  -o X/--old=X: name of old file to read
+  -n X/--new=X: name of new file to read
+  -p X/--output=X: name of output dump file to write
+  -f/--full: dump common text additionaly
+  -q/--quiet: display no message
+  -c/--no_escape_sequence: don't escape text sequence
+  -h/--help: this help
+
+Example:  
+UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt
+        --output_offsets .\work\text_file_offset.txt
+UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt
+       -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt
+\end{itemize}
+DumpOffsets dump sequence offset to study them.
+
+\bigskip
+
+\begin{itemize}
+Other Usage: DumpOffsets [-m/--merge] [OPTIONS] <txt>
+
+  <txt>: a offset file to read
+
+OPTIONS:
+  -o X/--old=X: name of old offset file to read
+  -p X/--output=X: name of output merged offset file to write
+\end{itemize}
+Merge two offset file produced by two successive modification of text
+
+\bigskip
+
+\begin{itemize}
+Other Usage: DumpOffsets [-v/--convert_modified_to_common] [OPTIONS] <txt>
+
+  <txt>: a offset file to read
+
+OPTIONS:
+  -s N/--old_size=N: size of original file (in characters)
+  -S N/--new_size=N: size of modified file (in characters)
+  -p X/--output=X: name of output common offset file to write
+  -h/--help: this help
+\end{itemize}
+Create an offset file which list offset of common string between the original and modified file. At least one size must be provided
+
+\bigskip
+
+\begin{itemize}
+Other Usage: DumpOffsets [-V/--convert_common_to_modified] [OPTIONS] <txt>
+
+  <txt>: a offset file to read
+
+OPTIONS:
+  -s N/--old_size=N: size of original file (in characters)
+  -S N/--new_size=N: size of modified file (in characters)
+  -p X/--output=X: name of output common offset file to write
+  -h/--help: this help
+\end{itemize}
+Create a standard modified offset file from offset of common string between the original and modified file. Both size must be provided
+
+\bigskip
+
+\begin{itemize}
+Other Usage: DumpOffsets -o <list_of_position_file_to_read.txt>
+    -p <list_to_create> -T <offset_file_to_read>
+\end{itemize}
+  \verb+<list_of_position_file_to_read.txt>+ is a text file with just one number (a position) at each line.
+
+This will convert a list of position using the offset file
+The created file contain the converted position at each line, with a + en end of line if the character
+at this position is on result file, a - is it was removed.
+Using -t instead -T will do the reverse translation
+
+
+
+
 
 
 \section{ElagComp}\index{External programs!\verb+ElagComp+}\index{\verb+ElagComp+}
@@ -871,6 +957,7 @@ recognized by this grammar. The parameters are:
 
 
 \section{Fst2Txt}\index{External programs!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
+\label{section-Fst2Txt}
 \verb+Fst2Txt [OPTIONS] <fst2>+
 
 \bigskip
@@ -1038,6 +1125,7 @@ together lexical entries which only differ in their inflectional features.
 
 
 \section{Locate}\index{External programs!\verb+Locate+}\index{\verb+Locate+}
+\label{section-Locate}
 \verb+Locate [OPTIONS] <fst2>+
 
 \bigskip
@@ -1312,6 +1400,7 @@ files.
 
 
 \section{Normalize}\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
+\label{section-Normalize}
 \index{Text!normalization}
 \verb+Normalize [OPTIONS] <text>+
 
@@ -1771,6 +1860,7 @@ ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-
 
 
 \section{Tokenize}\index{External programs!\verb+Tokenize+}\index{\verb+Tokenize+}
+\label{section-Tokenize}
 \index{Text!tokenization}
 \verb+Tokenize [OPTIONS] <txt>+
 
@@ -2155,6 +2245,7 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 \section{Unxmlize}\index{External
+\label{section-Unxmlize}
 programs!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Log Unitex programs}
 \label{section-Unxmlize}
 

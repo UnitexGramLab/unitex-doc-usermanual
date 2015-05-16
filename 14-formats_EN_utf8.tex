@@ -2125,3 +2125,27 @@ variations are allowed or not. This file is made of lines like the following:
 \bigskip
 \noindent where \verb+fatha omission+ is the name of the rule. For a complete description of all the
 available rules, you have to consult the \verb+Arabic.h+ file in the program sources.
+
+
+\subsection{Offsets file of difference}
+\label{subsection-offsets-diff}
+
+Offsets file of difference are write by Unxmlize(\ref{section-Unxmlize}), read by Tokenize(\ref{section-Tokenize}), read and write by
+DumpOffsets(\ref{section-DumpOffsets}), Normalize(\ref{section-Normalize}), Fst2Txt(\ref{section-Fst2Txt}), Tokenize(\ref{section-Tokenize}), Concord(\ref{section-Concord}) and GrfTest.
+\bigskip
+These files contain line with 4 integers A B C D. Each line mean there is a text modification:
+\bigskip
+The text at position [A;B[ before applying modiffication is replaced by text at position [C;D[ after computing, A, B, C and D are offsets (in characters) into text files.
+\bigskip
+
+By example, if we run Normalize on text texte "Hello  world" (with two space between the 2 words), the offsets file is:
+
+\bigskip
+\noindent \verb+5 7 5 6+
+\bigskip
+
+This mean we replace two characters (the two spaces) by a new string of one characters.
+
+\bigskip
+
+Each programs which modify text build a new offsets file. If we provide a previous offsets file (build by previous program which made previous modification), offsets file will be combined.
