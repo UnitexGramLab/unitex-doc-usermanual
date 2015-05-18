@@ -622,6 +622,99 @@ program \verb+SortTxt+ to sort them.
 
 
 
+\section{DumpOffsets}\index{External programs!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\label{section-DumpOffsets}
+\verb+Usage: DumpOffsets [OPTIONS] <txt>+
+
+\noindent\verb+ <txt>: an offset file to read+
+
+\bigskip
+\noindent DumpOffsets dump sequence offset to study them.
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+
+\begin{itemize} 	 
+  \item \verb+-o X+/\verb+--old=X+: name of old file to read 	 
+  \item \verb+-n X+/\verb+--new=X+: name of new file to read 	 
+  \item \verb+-p X+/\verb+--output=X+: name of output dump file to write 	 
+  \item \verb+-f+/\verb+--full+: dump common text additionaly 	 
+  \item \verb+-q+/\verb+--quiet+: display no message 	 
+  \item \verb+-c+/\verb+--no_escape_sequence+: don't escape text sequence 	 
+  \item \verb+-h+/\verb+--help+: this help 	 
+\end{itemize}
+
+\noindent Example: 
+\begin{verbatim}
+	 UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt 	 
+	         --output_offsets .\work\text_file_offset.txt 	 
+	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt 	 
+	        -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt 	 
+\end{verbatim}
+
+
+\bigskip
+\bigskip
+\noindent \verb+Other Usage: DumpOffsets [OPTIONS] <txt>+
+
+\noindent \verb+<txt>: an offset file to read+
+
+\bigskip
+\noindent Merge two offset file produced by two successive modification of text 
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+
+\begin{itemize} 	 
+  \item \verb+-o X+/\verb+--old=X+: name of old file to read 	 
+  \item \verb+-n X+/\verb+--output=X+: name of output merged offset file to write
+\end{itemize}
+
+
+\bigskip
+\bigskip
+\noindent \verb+Other Usage: DumpOffsets [-v/--convert_modified_to_common] [OPTIONS] <txt>+
+
+\noindent \verb+<txt>: an offset file to read+
+
+\bigskip
+\noindent Create an offset file which list offset of common string between the original and modified file. At least one size must be provided 	 
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+	  	 
+\begin{itemize} 	 
+  \item \verb+-s N+/\verb+--old_size=N+: size of original file (in characters) 	 
+  \item \verb+-S N+/\verb+--new_size=N+: size of modified file (in characters) 	 
+  \item \verb+-p X+/\verb+--output=X+: name of output common offset file to write 	 
+  \item \verb+-h+/\verb+--help+: this help 	 
+\end{itemize} 	 
+	 
+
+\bigskip
+\bigskip
+\noindent \verb+Other Usage: DumpOffsets -o <list_of_position_file_to_read.txt>+
+
+\bigskip
+\noindent \verb+<list_of_position_file_to_read.txt>+ is a text file with just one number (a position) at each line.
+
+\bigskip
+\noindent This will convert a list of position using the offset file 	 
+	 The created file contain the converted position at each line, with a + en end of line if the character 	 
+	 at this position is on result file, a - is it was removed. 	 
+	
+
+\bigskip
+\noindent \textbf{OPTIONS:}
+	  	 
+\begin{itemize} 	 
+  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
+\end{itemize} 	 
+
+Using \verb+-t+ instead \verb+-T+ will do the reverse translation 	 
+	 
+
+
 \section{Elag}\index{External programs!\verb+Elag+}\index{\verb+Elag+}
 \verb+Elag [OPTIONS] <tfst>+
 
@@ -642,12 +735,6 @@ applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
 
 
 
-
-\section{DumpOffsets}\index{External programs!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
-\label{section-DumpOffsets}
-\verb+DumpOffsets [OPTIONS]+
-
-Usage: DumpOffsets [OPTIONS] <txt>
 
 
 \section{ElagComp}\index{External programs!\verb+ElagComp+}\index{\verb+ElagComp+}
