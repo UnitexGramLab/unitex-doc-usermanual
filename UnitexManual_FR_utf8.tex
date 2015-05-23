@@ -12,6 +12,9 @@
 \usepackage{graphicx}
 \usepackage{float}
 
+\usepackage[nodayofweek]{datetime}
+\newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
+
 \usepackage{comment}
 \title{Unitex 3.0 User Manual}
 \author{Sébastien Paumier - Université Paris-Est Marne-la-Vallée}

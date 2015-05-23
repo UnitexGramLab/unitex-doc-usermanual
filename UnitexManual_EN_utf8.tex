@@ -12,6 +12,8 @@
 \usepackage{makeidx,color}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[nodayofweek]{datetime}
+\newdateformat{mydate}{\twodigit{\THEDAY}{ }\shortmonthname[\THEMONTH], \THEYEAR}
 
 \title{Unitex 2.0 User Manual}
 \author{Sébastien Paumier - Université Paris-Est Marne-la-Vallé}
