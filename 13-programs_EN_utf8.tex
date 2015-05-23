@@ -645,9 +645,11 @@ program \verb+SortTxt+ to sort them.
 
 \noindent Example: 
 \begin{verbatim}
-	 UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt 	 
-	         --output_offsets .\work\text_file_offset.txt 	 
-	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt 	 
+	 UnitexToolLogger Normalize -r .\resource\Norm.txt
+	        .\work\text_file.txt 	 
+	        --output_offsets .\work\text_file_offset.txt 	 
+	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt
+	        -n .\work\text_file_offset.snt 	 
 	        -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt 	 
 \end{verbatim}
 
@@ -658,7 +660,7 @@ program \verb+SortTxt+ to sort them.
 \noindent \verb+<txt>: an offset file to read+
 
 \bigskip
-\noindent Merge two offset file produced by two successive modification of text 
+\noindent Merge two offset file(\ref{subsection-offsets-diff}, page \pageref{subsection-offsets-diff})) produced by two successive modification of text 
 
 \bigskip
 \noindent \textbf{OPTIONS:}
