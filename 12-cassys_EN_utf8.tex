@@ -289,6 +289,74 @@ Note that for programming reasons (ambiguities between characters in the curly b
 \end{figure}
 
 
+\section{Generic Graphs}
+Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the dictionary of the text to be analysed by the future graph.
+
+\subsection{Name of a Generic Graph}
+CasSys recognises a graph as generic graph if its name starts with the character @.
+
+\subsection{Structure of a Generic Graph}
+A path in a generic graph must begin with a box containing a @ and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
+  \caption{Generic Graph}
+  \label{fig12-3-01}
+\end{figure}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-01a.png}
+  \caption{Modified Generic Graph}
+  \label{fig12-3-01a}
+\end{figure}
+
+In the case of a dictionary entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of the figure \ref{fig12-3-01} places in the box \textit{A B} as displayed in the figure \ref{fig12-3-02}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-02.png}
+  \caption{Modified Generic Graph}
+  \label{fig12-3-02}
+\end{figure}
+
+\noindent Some restrictions are possible by putting in the second box a category, such as \textit{y} in the figure \ref{fig12-3-03}; as a result only \textit{A} is placed in the box as in the figure \ref{fig12-3-04}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-03.png}
+  \caption{Generic Graph with a restriction}
+  \label{fig12-3-03}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-04.png}
+  \caption{Modified Generic Graph}
+  \label{fig12-3-04}
+\end{figure}
+
+\noindent On the other hand, the negation of a category, for example \textit{\textasciitilde y} in the figure \ref{fig12-3-05}  will put \textit{B} in this box (figure \ref{fig12-3-06}).
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-05.png}
+  \caption{Generic Graph with a negation}
+  \label{fig12-3-05}
+\end{figure}
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=5cm]{resources/img/fig12-3-06.png}
+  \caption{Modified Generic Graph}
+  \label{fig12-3-06}
+\end{figure}
+
+If the output of the graph needs to be complemented with certain information that need not be searched, a third box can be added as in the figure \ref{fig12-3-07}.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=6cm]{resources/img/fig12-3-07.png}
+  \caption{Generic Graph with Additional Information}
+  \label{fig12-3-07}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The results of a cascade}
 
