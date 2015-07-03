@@ -293,10 +293,10 @@ Note that for programming reasons (ambiguities between characters in the curly b
 Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the dictionary of the text to be analysed by the future graph.
 
 \subsection{Name of a Generic Graph}
-CasSys recognises a graph as generic graph if its name starts with the character @.
+CasSys recognises a graph as generic graph if its name starts with the sequence \$G.
 
 \subsection{Structure of a Generic Graph}
-A path in a generic graph must begin with a box containing a @ and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}.
+A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
