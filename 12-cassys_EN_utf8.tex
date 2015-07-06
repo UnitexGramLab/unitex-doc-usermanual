@@ -292,11 +292,17 @@ Note that for programming reasons (ambiguities between characters in the curly b
 \section{Generic Graphs}
 Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the dictionary of the text to be analysed by the future graph.
 
-\subsection{Name of a Generic Graph}
-CasSys recognises a graph as generic graph if its name starts with the sequence \$G.
+\subsection{Identifying a Generic Graph}
+CasSys recognises a graph as generic graph if the column \emph{Generic} is checked (figure \ref{fig12-3}).
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/fig12-3.png}
+  \caption{Generic Graph}
+  \label{fig12-3}
+\end{figure}
 
 \subsection{Structure of a Generic Graph}
-A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}.
+A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}. Additionally, a negative right context (section~\ref{section-contexts} is added to prevent the element from being annotated twice.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
@@ -305,7 +311,7 @@ A path in a generic graph must begin with a box containing \$G and an opening cu
 \end{figure}
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-01a.png}
+  \includegraphics[width=9cm]{resources/img/fig12-3-01a.png}
   \caption{Modified Generic Graph}
   \label{fig12-3-01a}
 \end{figure}
@@ -313,7 +319,7 @@ A path in a generic graph must begin with a box containing \$G and an opening cu
 In the case of a dictionary entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of the figure \ref{fig12-3-01} places in the box \textit{A B} as displayed in the figure \ref{fig12-3-02}.
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-02.png}
+  \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
   \caption{Modified Generic Graph}
   \label{fig12-3-02}
 \end{figure}
@@ -328,7 +334,7 @@ In the case of a dictionary entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-04.png}
+  \includegraphics[width=8cm]{resources/img/fig12-3-04.png}
   \caption{Modified Generic Graph}
   \label{fig12-3-04}
 \end{figure}
@@ -344,7 +350,7 @@ In the case of a dictionary entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-06.png}
+  \includegraphics[width=7cm]{resources/img/fig12-3-06.png}
   \caption{Modified Generic Graph}
   \label{fig12-3-06}
 \end{figure}

@@ -380,11 +380,17 @@ $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
 
 Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} leur contexte, mais si ces \'{e}l\'{e}ments apparaissent ailleurs hors contexte on ne les reconna\^{i}t pas. Afin de trouver de telles occurences, CasSys propose d'utiliser des graphes g\'{e}n\'{e}riques. Ces graphes contiennent des bo\^{i}tes vides qui sont remplies automatiquement par le programme avant d'\^{e}tre appliqu\'{e}s au texte. Ces graphes g\'{e}n\'{e}riques ne fonctionnent qu'avec l'utilisation d'accolades, car le programme consulte le dictionnaire du texte \`{a} analyser par le futur graphe.
 
-\subsection{Nom d'un graphe g\'{e}n\'{e}rique}
-CasSys reconna\^{i}t un graphe g\'{e}n\'{e}rique par son nom qui doit commencer par la s\'{e}quence \$G.
+\subsection{D\'{e}claration d'un graphe g\'{e}n\'{e}rique}
+Pour que CasSys reconnaisse un graphe g\'{e}n\'{e}rique il faut cocher la colonne \emph{Generic} (figure \ref{fig12-3}).
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/fig12-3.png}
+  \caption{Graphe g\'{e}n\'{e}rique}
+  \label{fig12-3}
+\end{figure}
 
 \subsection{Structure d'un graphe g\'{e}n\'{e}rique}
-Un chemin dans un graphe g\'{e}n\'{e}rique doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure \ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites du dictionnaire du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} du dictionnaire du texte comme dans la figure \ref{fig12-3-01a} .
+Un chemin dans un graphe g\'{e}n\'{e}rique doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure \ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites du dictionnaire du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} du dictionnaire du texte comme dans la figure \ref{fig12-3-01a}. En plus, un contexte droit n\'{e}gatif (section~\ref{section-contexts}) est plac\'{e} pour emp\^{e}cher le  deuxi\`{e}me \'{e}tiquetage de l'occurence.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
@@ -393,7 +399,7 @@ Un chemin dans un graphe g\'{e}n\'{e}rique doit commencer par une bo\^{i}te avec
 \end{figure}
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-01a.png}
+  \includegraphics[width=9cm]{resources/img/fig12-3-01a.png}
   \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
   \label{fig12-3-01a}
 \end{figure}
@@ -402,7 +408,7 @@ Un chemin dans un graphe g\'{e}n\'{e}rique doit commencer par une bo\^{i}te avec
 Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la figure \ref{fig12-3-01} place dans la bo\^{i}te \textit{A B} comme dans la figure \ref{fig12-3-02}.
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-02.png}
+  \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
   \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
   \label{fig12-3-02}
 \end{figure}
@@ -417,7 +423,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-04.png}
+  \includegraphics[width=8cm]{resources/img/fig12-3-04.png}
   \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
   \label{fig12-3-04}
 \end{figure}
@@ -441,7 +447,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=5cm]{resources/img/fig12-3-06.png}
+  \includegraphics[width=7cm]{resources/img/fig12-3-06.png}
   \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
   \label{fig12-3-06}
 \end{figure}
