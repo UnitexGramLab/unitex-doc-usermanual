@@ -938,13 +938,14 @@ menu "Info" et choisissez l’onglet "Graph Presentation".
 
 
 \section{Les graphes en dehors d’Unitex}
+\label{exporting-graphs}
 \subsection{Inclusion d’un graphe dans un document}
 \index{Graphe!inclure dans un document}\index{Inclure un graphe dans un document}
 \index{Graphe!export en PNG}
 Pour inclure un graphe dans un document, il faut en faire une image. Pour cela, une
-première méthode consiste à sauver votre graphe en tant qu’image au format PNG. Pour
-cela, allez dans le menu "FSGraph" et cliquez sur "Save as...". Choisissez ensuite le type de
-fichier PNG. Vous obtiendrez ainsi une image prête à être intégrée dans un document ou
+première méthode consiste à exporter votre graphe vers un format d'image~: PNG, JPEG ou SVG. Pour
+cela, allez dans le menu "FSGraph" et cliquez sur "Export as image". Choisissez ensuite le type de
+fichier. Vous obtiendrez ainsi une image prête à être intégrée dans un document ou
 à être éditée avec un logiciel de retouche d’images. Afin de rendre l’image plus lisse, vous
 pouvez activer l’antialiasing pour le graphe qui vous intéresse.
 
@@ -956,9 +957,9 @@ pouvez activer l’antialiasing pour le graphe qui vous intéresse.
 \noindent Sous Windows:
 
 \bigskip
-\noindent Appuyez ensuite sur la touche "Imprime écran" de votre clavier qui doit se trouver près
+\noindent Appuyez sur la touche "Imprime écran" de votre clavier qui doit se trouver près
 de la touche F12. Lancez le programme \verb+Paint+ dans le menu "Accessoires" de Windows. Appuyez sur 
-<Ctrl+V>. \verb+Paint+ devrait vous dire que l’image contenue dans le presse-papiers
+<Ctrl+V>. \verb+Paint+ peut vous dire que l’image contenue dans le presse-papiers
 est trop grande et vous demander si vous voulez agrandir l’image. Cliquez sur "Oui". Vous
 pouvez maintenant éditer l’image de l’écran. Sélectionnez la zone qui vous intéresse. Pour
 cela, passez en mode sélection en cliquant sur le rectangle en pointillé qui se trouve dans
@@ -976,16 +977,14 @@ et à appuyer sur <Ctrl+V> pour coller votre image.
 votre image avec un éditeur graphique (par exemple \verb+TheGimp+), et collez votre image dans
 votre document de la même façon que sous Windows.
 
-
-\newpage
 \bigskip
-\noindent\textbf{Vector graphics}
+\noindent\textbf{Image vectorielle}
 \index{SVG export de graphe}
 \index{Graphe!export en SVG}
 
 \bigskip
-\noindent Si vous préférez vector graphics, vous pouvez enregistrer votre graphe en format
-SVG, qui est utilisable avec des logiciels comme  Inkscape (\cite{Inkscape}).
+\noindent Si vous préférez une image vectorielle, vous pouvez exporter votre graphe vers le format
+SVG, qui est utilisable avec des logiciels comme Inkscape (\cite{Inkscape}).
 Il permet d'obtenir des sorties PostScript utilisables dans des documents \LaTeX.
 
 \subsection{Impression d’un graphe}

@@ -46,101 +46,29 @@ posés.
 
 
 
-\section*{Quoi de neuf depuis la version 2.0 ?}
-\addcontentsline{toc}{section}{Quoi de neuf depuis la version 2.0 ?}
+\section*{Quoi de neuf depuis la version 3.0 ?}
+\addcontentsline{toc}{section}{Quoi de neuf depuis la version 3.0 ?}
 Voici les principales nouvelles fonctionnalités:
 \begin{itemize}
-  \item Ajout de  \verb$LocateTfst$ qui effectue des recherches sur l'automate du texte
- (\ref{section-locate-tfst}, \ref{section-LocateTfst})
- 
-  \item \verb$LocateTfst$ support complet du coréen (\ref{section-korean})
-  	  
-  \item Nouvelles options de recherche (\ref{section-advanced-search-options})
-  	  
-  \item Ajout de \verb$Stats$ qui calcule des statistiques à partir d'un fichier de concordances
- (\ref{section-statistics})
- 
-  \item Ajout d'un tagger statistique qui peut élaguer des automates du texte pour les rendre
-  	  linéaires (\ref{section-linearization})
-  	  
-  \item Ajout du système de cascade de transducteurs CasSys (chapitre \ref{chap-cassys})
-  	  
-  \item Ajout des variables de sortie qui peuvent mémoriser les sorties émises par les
-  	  grammaires (\ref{section-output-variables})
-  	  
-  \item Ajout de tests de comparaison de variables (\ref{section-ops-on-variables})
-  	  
-  \item Support des langues sémitiques pour la flexion (\ref{subsection-semitic-inflection}),
-  	  support complet des variations typographiques de l'arabe
-  	  (\ref{subsection-arabic-typo-rules})
-  	  
-  \item Ajout d'opérateurs de flexion avancés (\ref{advanced-inflection-operators})
 
-  \item Nouvelles options pour l'application des graphes dictionnaires
-  	  (\ref{section-dictionary-graphs})
-  	  
-  \item Ajout de \verb$Uncompress$ qui regénère un dictionnaire \verb$.dic$ à partir de sa forme
-  	  compressée \verb$.bin$ (\ref{section-Uncompress})
+  \item Moteur plus rapide qui utilise moins de pile.
+  \item Version améliorée de \verb$CasSys$~: nouveaux fichiers \verb$csc$, suppression du répertoire \verb$Share$, ouverture de cascade possible aussi avec le menu \verb$FSGraph$, application de graphe jusqu'au point fixe, graphes génériques, redénormalisation du dernier fichier
+  (chapitre \ref{chap-cassys}).
+  \item Introduction du malgache.
+  \item Publication de \verb$main_UnitexTool_C$ comme API publique.
+  \item Version améliorée de l'éditeur de graphes~: sélection et édition des boites, ouverture, sauvegarde, exportation comme image (\ref{section-editing-graphs}, \ref{exporting-graphs}).
+  \item Les commandes non applicables des menus sont maintenant grisées.
+  \item Introduction de l'opérateur \verb$<n.LEMMA>$ pour la flexion en mode sémitique (non encore documenté).
+  \item Introduction d'une liste de graphes et corpus récemment ouverts.
+  \item Introduction d'une liste de fenêtres ouvertes.
+  \item Compatibilité améliorée avec Ruby.
+  \item Introduction de \verb$InstallLingResourcePackage$, un outil qui installe un paquetage de ressources et de scripts dans un environnement cible (non encore documenté).
+  \item Introduction de \verb$RunScript$, un outil qui exécute des scripts installés par \verb$InstallLingResourcePackage$ (non encore documenté). Avec ces deux outils, on peut mettre au point des opérations Unitex dans un environnement et les déployer dans un autre.
+  \item Introduction de l'option "match word boundaries" dans l'algorithme de recherche par intersection d'automates (\ref{section-locate-tfst}), de sorte que, par exemple, \textit{enlever} and \textit{en lever} ne matchent pas (ou matchent, si on le désire). Non encore documenté.
+  \item Suivi amélioré des offsets, c'est-à-dire de la différence entre les adresses d'une même position dans un corpus suivant différentes versions du corpus (\ref{section-DumpOffsets}).
+  \item Compilation quotidienne d'exécutables pour Windows (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+).
+  \item Installateurs automatiques pour toutes ces plates-formes.
 
-  \item Ajout de \verb$Untokenize$ qui peut reconstruire un fichier texte \verb$.snt$
-	à partir de  \verb$text.cod$ et \verb$tokens.txt$ (\ref{section-Untokenize})
-
-\item Ajout du géorgien ancien
-  	  
-  \item La console a été modifiée: il est possible de voir les messages d'erreur émis par les
-  	  commandes
-        (\ref{section-console})
-  \item Ajout d'un tutoriel d'installation d'Unitex sous MacOS X 
-       (\ref{section-macos-install})
-       
-  \item Nouveau format de l'automate du texte\verb+.tfst+ (\ref{section-tfst-format})
-  	  
-  \item Les programmes d'Unitex ont des options de type Unix
-  	  
-  \item Unitex est maintenant entièrement LGPL (\ref{section-licences})
-  	  
-  \item Unitex peut être compilé en une librairie dynamique (\verb$.dll$ ou \verb$.so$)
-  (\ref{section-unitex-developpers})
-  
-\item Certains programmes Unitex peuvent fonctionner sans fuite de mémoire lorsqu'ils sont compilés
-  	  avec la macro UNITEX\_RELEASE\_MEMORY\_AT\_EXIT ou UNITEX\_LIBRARY.
-  Sont concernés \verb$Concord$, \verb$Convert$, \verb$Dico$, \verb$Elag$, \verb$Evamb$,
-  \verb$Extract$, \verb$Flatten$, \verb$Fst2Txt$, \verb$Grf2Fst2$, \verb$ImplodeTfst$,
-  \verb$LocateTfst$, \verb$MultiFlex$, \verb$Normalize$, \verb$PolyLex$, \verb$Reg2Grf$,
-  \verb$SortTxt$, \verb$TagsetNormTfst$, \verb$TEI2Txt$, \verb$Tfst2Grf$, \verb$Tfst2Unambig$,
-  \verb$Tokenize$, \verb$Txt2Tfst$, \verb$XMLizer$.
-  
-  \item Le code Unitex est "thread-safe"
-  	  
-  \item L'encodage d'un fichier Unicode peut être choisi
-  	  (\ref{section-text-file-encoding-parameters})
-  	  
-  \item Ajout de \verb$UnitexTool$ qui permet de lancer plusieurs
-   programmes Unitex en une seule commande pour faciliter l'écriture de script
-   (\ref{section-UnitexTool})
-  
-  \item Ajout de \verb$UnitexToolLogger$ qui permet de créer et de rejouer des fichiers log
-  d'exécution de programmes Unitex. (\ref{section-UnitexToolLogger})
-  
-  \item Ajout de \verb$Seq2Grf$ qui produit automatiquement une grammaire locale à partir d'un texte
-	brut, ou d'un document XML-TEILite (\ref{chap-sequence-automaton})
-	
-  \item Vous pouvez rechercher un mot dans un dictionnaire ouvert ou dans plusieurs dictionnaires
-  	  dans les ressources de l'utilisateur ou du système (\ref{section-dictionary-lookup})
-	
-  \item Vous pouvez accéder à des sous-graphes appelés dans le graphe courant ou à des graphes dont
-  le graphe courant est un sous-graphe (\ref{section-subgraphs}), automatiquement ou manuellement
-  recharger la dernière version sur le disque du graphe courant, comparer deux versions du même
-  graphe et insérer des délimiteurs de contexte grâce à la nouvelle barre d'outils
-  élargie (\ref{toolbar-commands})
-	
-  \item Si vous utilisez un macintosh, vous pouvez utiliser tous les raccourcis impliquant la touche
-	Ctrl enfoncée en appuyant sur la touche Commande à la place.
-	
-  \item Ajout d'un menu contextuel pour l'édition de graphe accessible par un clic droit dans la
-	fenêtre graphique (\ref{section-editing-graphs}).
-	
-  \item Nouvelle fenêtre pour la concordance en mode Debug avec le graphe utilisé par Locate et la liste des boîtes qui reconaissent chaque token des séquences trouvées.
 \end{itemize}
 
 \bigskip
