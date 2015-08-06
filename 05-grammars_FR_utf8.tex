@@ -947,8 +947,15 @@ première méthode consiste à exporter votre graphe vers un format d'image~: PN
 cela, allez dans le menu "FSGraph" et cliquez sur "Export as image". Choisissez ensuite le type de
 fichier. Vous obtiendrez ainsi une image prête à être intégrée dans un document ou
 à être éditée avec un logiciel de retouche d’images. Afin de rendre l’image plus lisse, vous
-pouvez activer l’antialiasing pour le graphe qui vous intéresse.
-
+pouvez activer l’antialiasing pour le graphe qui vous intéresse. Contrairement au PNG et au JPEG, le
+format SVG est un format vectoriel, ce qui permet souvent un meilleur résultat. A l'aide du logiciel Inkscape, il
+est également possible de convertir le fichier SVG en EPS ou en PDF, avec des lignes de commandes de ce type:
+\begin{verbatim}
+Inkscape -z -E graph.eps graph.svg
+\end{verbatim}
+\begin{verbatim}
+Inkscape -z -A graph.pdf graph.svg
+\end{verbatim}
 
 \bigskip
 \noindent La seconde méthode consiste à faire une capture d’écran:

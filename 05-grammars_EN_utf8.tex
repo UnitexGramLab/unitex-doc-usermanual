@@ -915,7 +915,14 @@ To do this, export your graph to an image format: PNG, JPEG or SVG. Click on "Ex
 "FSGraph" menu, and select a file format. You will get an image ready to be
 inserted into a document, or to be edited with an image editor. You should
 activate antialiasing for the graph that interests you (this is not obligatory
-but results in a better image quality).
+but results in a better image quality). Unlike PNG and JPEG, SVG format is not a bitmap format and
+often look better. Using Inkscape, SVG file can be converted to EPS or PDF with command like:
+\begin{verbatim}
+Inkscape -z -E graph.eps graph.svg
+\end{verbatim}
+\begin{verbatim}
+Inkscape -z -A graph.pdf graph.svg
+\end{verbatim}
 
 \bigskip
 \noindent Another solution consists of making a screenshot:
