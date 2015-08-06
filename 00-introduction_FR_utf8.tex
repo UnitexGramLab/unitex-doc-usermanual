@@ -52,7 +52,12 @@ Voici les principales nouvelles fonctionnalités:
 \begin{itemize}
 
   \item Moteur plus rapide qui utilise moins de pile.
-  \item Version améliorée de \verb$CasSys$~: nouveaux fichiers \verb$csc$, suppression du répertoire \verb$Share$, ouverture de cascade possible aussi avec le menu \verb$FSGraph$, application de graphe jusqu'au point fixe, graphes génériques, redénormalisation du dernier fichier
+  \item Version améliorée de \verb$CasSys$~:
+  nouveaux fichiers \verb$csc$,
+  ouverture de cascade possible aussi avec le menu \verb$FSGraph$,
+  suppression du répertoire \verb$Share$,
+  application de graphe jusqu'au point fixe, graphes génériques,
+  redénormalisation du dernier fichier
   (chapitre \ref{chap-cassys}).
   \item Introduction du malgache.
   \item Publication de \verb$main_UnitexTool_C$ comme API publique.
@@ -63,8 +68,8 @@ Voici les principales nouvelles fonctionnalités:
   \item Introduction d'une liste de fenêtres ouvertes.
   \item Compatibilité améliorée avec Ruby.
   \item Introduction de \verb$InstallLingResourcePackage$, un outil qui installe un paquetage de ressources et de scripts dans un environnement cible (non encore documenté).
-  \item Introduction de \verb$RunScript$, un outil qui exécute des scripts installés par \verb$InstallLingResourcePackage$ (non encore documenté). Avec ces deux outils, on peut mettre au point des opérations Unitex dans un environnement et les déployer dans un autre.
-  \item Introduction de l'option "match word boundaries" dans l'algorithme de recherche par intersection d'automates (\ref{section-locate-tfst}), de sorte que, par exemple, \textit{enlever} and \textit{en lever} ne matchent pas (ou matchent, si on le désire). Non encore documenté.
+  \item Introduction de \verb$RunScript$, qui exécute dans l'environnement cible des scripts installés par \verb$InstallLingResourcePackage$ (non encore documenté). Avec ces deux outils, on peut mettre au point des opérations Unitex dans un environnement et les déployer dans un autre.
+  \item Introduction de l'option "match word boundaries" dans l'algorithme de recherche par intersection d'automates (\ref{section-locate-tfst})~: avec cette option, active par défaut pour la plupart des langues, \textit{enlever} and \textit{en lever} ne matchent pas (non encore documenté).
   \item Suivi amélioré des offsets, c'est-à-dire de la différence entre les adresses d'une même position dans un corpus suivant différentes versions du corpus (\ref{section-DumpOffsets}).
   \item Compilation quotidienne d'exécutables pour Windows (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+).
   \item Installateurs automatiques pour toutes ces plates-formes.
