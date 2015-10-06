@@ -754,16 +754,16 @@ et non pour les formes qui n'apparaissent dans le texte que comme des parties de
 
 \item On peut utiliser des sorties.
    
-\item \verb+<MOT>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet.
-	\index{\verb+<MOT>+}
+\item \verb+<LETTER>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet  (l'ancien masque <MOT> reste toujours valable).
+	\index{\verb+<MOT>+}\index{\verb+<LETTER>+}
 
-\item \verb+<MIN>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verb+<MIN>+}
+\item \verb+<LOWER>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet (l'ancien masque <MIN> reste toujours valable).\index{\verb+<MIN>+}\index{\verb+<LOWER>+}
 
-\item \verb+<MAJ>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verb+<MAJ>+}
+\item \verb+<UPPER>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet (l'ancien masque <MAJ> reste toujours valable).\index{\verb+<MAJ>+}\index{\verb+<UPPER>+}
 
 \item \verb+<DIC>+ reconnaît n'importe quel mot présent dans un dictionnaire du mode
-	 morphologique\index{\verb+<DIC>+}, mais les méta-symboles \verb+#+, \verb+<PRE>+, \verb+<NB>+,
- 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verb+#+}\index{\verb+<PRE>+}\index{\verb+<NB>+} \index{\verb+<TOKEN>+}\index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
+	 morphologique\index{\verb+<DIC>+}, mais les méta-symboles \verb+#+, \verb+<FIRST>+, \verb+<PRE>+, \verb+<NB>+,
+ 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verb+#+}\index{\verb+<FIRST>+}\index{\verb+<PRE>+}\index{\verb+<NB>+} \index{\verb+<TOKEN>+}\index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
 
 \item Si on atteint la fin de la zone sans être à la fin du token, la reconnaissance échoue.
 	Par exemple, si le texte contient \verb+enabled+, on ne peut pas reconnaître seulement

@@ -310,12 +310,13 @@ special symbols, or meta-symbols:
 \index{\verb+<E>+}\index{Epsilon|see{<E>}}
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Meta-symbols}
+\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
   \item <E> : empty word, or epsilon. Recognizes the empty sequence;
-  \item <MOT> : recognizes any sequence of letters;
-  \item <MIN> : recognizes any sequence of letters in lower case;
-  \item <MAJ> : recognizes any sequence of letters in upper case;
-  \item <PRE> : recognizes any sequence of letters that begins with an upper case letter;
+  \item <WORD> : recognizes any sequence of letters (<MOT> is deprecated);
+  \item <LOWER> : recognizes any sequence of letters in lower case (<MIN> is deprecated);
+  \item <UPPER> : recognizes any sequence of letters in upper case (<MAJ> is deprecated);
+  \item <FIRST> : recognizes any sequence of letters that begins with an upper case letter (<PRE> is deprecated);
   \item <NB> : recognizes any sequence of digits (1234 is recognized but not 1
   234); \item <PNC> : recognizes the punctuation symbols \verb+ ; , ! ? :+ and the
   inverted exclamation points and question marks in Spanish and some Asian

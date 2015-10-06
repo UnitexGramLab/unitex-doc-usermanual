@@ -78,16 +78,16 @@ the following:
 \bigskip
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
-\index{\verb+<TDIC>+}
+\index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
   \item \verb+<E>+ : the empty word or epsilon. Matches the empty string;
   \item \verb+<TOKEN>+ : matches any token, except the space; used by default
   for morphological filters
-  \item \verb+<MOT>+ : matches any token that consists of letters;
-  \item \verb+<MIN>+ : matches any lower-case token;
-  \item \verb+<MAJ>+ : matches any upper-case token;
-  \item \verb+<PRE>+ : matches any token that consists of letters and starts
-  with a capital letter;
+  \item \verb+<WORD>+ : matches any token that consists of letters (<MOT> is deprecated);
+  \item \verb+<LOWER>+ : matches any lower-case token (<MIN> is deprecated);
+  \item \verb+<UPPER>+ : matches any upper-case token (<MAJ> is deprecated);
+  \item \verb+<FIRST>+ : matches any token that consists of letters and starts
+  with a capital letter (<PRE> is deprecated);
   \item \verb+<DIC>+ : matches any word that is present in the dictionaries of
   the text;
   \item \verb+<SDIC>+ : matches any simple word in the text

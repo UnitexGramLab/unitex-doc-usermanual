@@ -72,17 +72,17 @@ motifs.) Les symboles utilisables pour rechercher des motifs dans un texte sont 
 \bigskip
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
-\index{\verb+<TDIC>+}
+\index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
   \item \verb+<E>+ : mot vide, ou epsilon. Reconnaît la séquence vide;
   \item \verb+<TOKEN>+ : reconnaît n’importe quelle unité lexicale sauf l'espace
   	  utilisé par défaut pour les filtres morphologiques;
-  \item \verb+<MOT>+ : reconnaît n’importe quelle unité lexicale formée de lettres;
-  \item \verb+<MIN>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules;
-  \item \verb+<MAJ>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules;
-  \item \verb+<PRE>+ : reconnaît n’importe quelle unité lexicale formée de lettres et commençant par
+  \item \verb+<WORD>+ : reconnaît n’importe quelle unité lexicale formée de lettres (l'ancien masque <MOT> reste toujours valable);
+  \item \verb+<LOWER>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules (l'ancien masque <MIN> reste toujours valable);
+  \item \verb+<UPPER>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules (l'ancien masque <MAJ> reste toujours valable);
+  \item \verb+<FIRST>+ : reconnaît n’importe quelle unité lexicale formée de lettres et commençant par
   	  une
-majuscule;
+majuscule (l'ancien masque <PRE> reste toujours valable);
   \item \verb+<DIC>+ : reconnaît n’importe quel mot figurant dans les dictionnaires du texte;
   \item \verb+<SDIC>+ : reconnaît n’importe quel mot simple figurant dans les dictionnaires du
   	  texte;\index{Mots!simples}

@@ -297,13 +297,14 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
 
 \index{\verb+<E>+}\index{Epsilon|see{<E>}}
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Méta-symboles}
+\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{Méta-symboles}
+\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
   \item <E> : mot vide, ou epsilon. Reconnaît la séquence vide;
-  \item <MOT> : reconnaît n’importe quelle suite de lettres;
-  \item <MIN> : reconnaît n’importe quelle suite de lettres minuscules;
-  \item <MAJ> : reconnaît n’importe quelle suite de lettres majuscules;
-  \item <PRE> : reconnaît n’importe quelle suite de lettres commençant par une majuscule;
+  \item <WORD> : reconnaît n’importe quelle suite de lettres (l'ancien masque <MOT> reste toujours valable);
+  \item <LOWER> : reconnaît n’importe quelle suite de lettres minuscules  (l'ancien masque <MIN> reste toujours valable);
+  \item <UPPER> : reconnaît n’importe quelle suite de lettres majuscules  (l'ancien masque <MAJ> reste toujours valable);
+  \item <FIRST> : reconnaît n’importe quelle suite de lettres commençant par une majuscule (l'ancien masque <PRE> reste toujours valable);
   \item <NB> : reconnaît n’importe quelle suite de chiffres contigus (1234 est reconnu mais pas 1 234); 
   \item <PNC> : reconnaît les symboles de ponctuation ; , ! ? : ainsi que les points d’exclamation
   	  et d’interrogation inversés de l’espagnol et quelques signes de ponctuation asiatiques;
