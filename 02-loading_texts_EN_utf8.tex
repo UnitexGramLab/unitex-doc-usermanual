@@ -241,7 +241,6 @@ linguistic analyses, separators are normalized according to the following rules:
   \item all other sequences of separators are replaced by a single space.
 \end{itemize}
 
-\bigskip
 \noindent 
 The distinction between space and newline is maintained at this point because the
 presence of newlines may have an effect on the process of splitting the text into
@@ -281,14 +280,19 @@ contexts for the end of a sentence.
 Figure~\ref{fig-example-sentence-splitting} shows an example grammar for
 sentence splitting (for French sentences).
 
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig2-10.png}
+\caption{Sentence splitting grammar for
+French\label{fig-example-sentence-splitting}}
+\end{center}
+\end{figure}
+
 \bigskip
 \noindent When a path of the grammar recognizes a sequence in the text and when
 this path produces the sentence delimiter symbol \verb+{S}+
 \index{\verb+{S}+}\index{Sentence delimiter}, this symbol is inserted into the
-text.
-
-\bigskip
-\noindent The path shown at the top of
+text. For example, one of the paths shown in
 figure~\ref{fig-example-sentence-splitting} recognizes the sequence consisting
 of a question mark and a word beginning with a capital letter and inserts the 
 symbol \verb+{S}+ between the question mark and
@@ -312,25 +316,27 @@ special symbols, or meta-symbols:
 \index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Meta-symbols}
 \index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
-  \item <E> : empty word, or epsilon. Recognizes the empty sequence;
-  \item <WORD> : recognizes any sequence of letters (<MOT> is deprecated);
-  \item <LOWER> : recognizes any sequence of letters in lower case (<MIN> is deprecated);
-  \item <UPPER> : recognizes any sequence of letters in upper case (<MAJ> is deprecated);
-  \item <FIRST> : recognizes any sequence of letters that begins with an upper case letter (<PRE> is deprecated);
-  \item <NB> : recognizes any sequence of digits (1234 is recognized but not 1
-  234); \item <PNC> : recognizes the punctuation symbols \verb+ ; , ! ? :+ and the
+  \item \verb+<E>+: empty word, or epsilon. Recognizes the empty sequence;
+  \item \verb+<WORD>+: recognizes any sequence of letters;
+  \item \verb+<LOWER>+: recognizes any sequence of letters in lower case;
+  \item \verb+<UPPER>+: recognizes any sequence of letters in upper case;
+  \item \verb+<FIRST>+: recognizes any sequence of letters that begins with an upper case letter;
+  \item \verb+<NB>+: recognizes any sequence of digits (1234 is recognized but not 1
+  234);
+  \item \verb+<PNC>+: recognizes the punctuation symbols \verb+ ; , ! ? :+ and the
   inverted exclamation points and question marks in Spanish and some Asian
-  punctuation letters; \item <\verb+^+> : recognizes a newline; \item \verb+#+ :
+  punctuation letters;
+  \item <\verb+^+>: recognizes a newline;
+  \item \verb+#+:
   prohibits the presence of a space.
 \end{itemize}
 
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[width=15cm]{resources/img/fig2-10.pdf}
-\caption{Sentence splitting grammar for
-French\label{fig-example-sentence-splitting}}
-\end{center}
-\end{figure}
+\noindent Earlier codes for \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ and \verb+<FIRST>+
+were respectively \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ and \verb+<PRE>+.
+They can still be used for backward compatibility of the system with existing graphs,
+but they are now deprecated, i.e.\ it is recommended to avoid them in graphs designed to be used with
+more recent versions,\footnote{From version 3.1beta, revision 4072, October 2, 2015.}
+so that the number of lexical masks in use does not increase uselessly.
 
 \bigskip
 \noindent By default, the space is optional between two boxes. If you want to prohibit the

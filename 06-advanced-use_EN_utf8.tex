@@ -760,23 +760,29 @@ between double quotes).
    \item You can use outputs.
    
     \item \verb+<LETTER>+ will match any letter, as defined in the alphabet
-    file (<MOT> is deprecated).\index{\verb+<MOT>+}
+    file.\index{\verb+<LETTER>+}\index{\verb+<MOT>+}
 
     \item \verb+<LOWER>+ will match any lowercase letter, as defined in the
-    alphabet file (<MIN> is deprecated).\index{\verb+<MIN>+}\index{\verb+<LOWER>+}
+    alphabet file.\index{\verb+<MIN>+}\index{\verb+<LOWER>+}
 
     \item \verb+<UPPER>+ will match any uppercase letter, as defined in the
-    alphabet file  (<MAJ> is deprecated).\index{\verb+<MAJ>+}\index{\verb+<UPPER>+}
+    alphabet file.\index{\verb+<MAJ>+}\index{\verb+<UPPER>+}
 
     \item \verb+<DIC>+ will match any word present in a morphological-mode
-    dictionary\index{\verb+<DIC>+}, but the meta-symbols \verb+#+, \verb+<PRE>+, \verb+<FIRST>+, \verb+<NB>+, 
-    \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verb+#+} \index{\verb+<PRE>+}\index{\verb+<NB>+} \index{\verb+<TOKEN>+}  \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}\index{\verb+<FIRST>+}
+    dictionary\index{\verb+<DIC>+}, but the meta-symbols \verb+#+, \verb+<FIRST>+, \verb+<NB>+, 
+    \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verb+#+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+}  \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}\index{\verb+<FIRST>+}
 
     \item If you reach the end of the morphological zone and if you are not
     at the end of a token, the match will fail. For instance, if the text
     contains \verb+enabled+, you cannot match \verb+enable+ only.
 \end{enumerate}
 
+\noindent Earlier codes for \verb+<LETTER>+, \verb+<LOWER>+ and \verb+<UPPER>+
+were respectively \verb+<MOT>+, \verb+<MIN>+ and \verb+<MAJ>+ .
+They can still be used for backward compatibility of the system with existing graphs,
+but they are now deprecated, i.e.\ it is recommended to avoid them in graphs designed to be used with
+more recent versions,\footnote{From version 3.1beta, revision 4072, October 2, 2015.}
+so that the number of lexical masks in use does not increase uselessly.
 
 \subsection{Morphological-mode dictionaries}
 \index{Morphological-mode dictionaries}

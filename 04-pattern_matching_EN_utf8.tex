@@ -67,7 +67,7 @@ A lexical mask is a search query that matches tokens or sequences of tokens.
 \label{section-special-symbols}
 \index{Meta-symbols}
 
-There are two kinds of lexical masks. The first category contains the meta-symbols 
+There are two kinds of lexical masks. The first category contains the special symbols or meta-symbols 
 introduced in section~\ref{section-sentence-splitting} except for \verb$<PNC>$ and \verb+<^>+.
 (The symbol \verb$<PNC>$, which matches punctuation signs, is valid only
 during preprocessing; \verb+<^>+ matches a line feed, but
@@ -75,30 +75,36 @@ since all line feeds have been replaced by spaces, this symbol cannot be
 useful anymore when searching for lexical masks.) The meta-symbols that can be used to search a text for patterns are
 the following:
 
-\bigskip
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
 \index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
-  \item \verb+<E>+ : the empty word or epsilon. Matches the empty string;
-  \item \verb+<TOKEN>+ : matches any token, except the space; used by default
+  \item \verb+<E>+: the empty word or epsilon. Matches the empty string;
+  \item \verb+<TOKEN>+: matches any token, except the space; used by default
   for morphological filters
-  \item \verb+<WORD>+ : matches any token that consists of letters (<MOT> is deprecated);
-  \item \verb+<LOWER>+ : matches any lower-case token (<MIN> is deprecated);
-  \item \verb+<UPPER>+ : matches any upper-case token (<MAJ> is deprecated);
-  \item \verb+<FIRST>+ : matches any token that consists of letters and starts
-  with a capital letter (<PRE> is deprecated);
-  \item \verb+<DIC>+ : matches any word that is present in the dictionaries of
+  \item \verb+<WORD>+: matches any token that consists of letters;
+  \item \verb+<LOWER>+: matches any lower-case token;
+  \item \verb+<UPPER>+: matches any upper-case token;
+  \item \verb+<FIRST>+: matches any token that consists of letters and starts
+  with a capital lette;
+  \item \verb+<DIC>+: matches any word that is present in the dictionaries of
   the text;
-  \item \verb+<SDIC>+ : matches any simple word in the text
+  \item \verb+<SDIC>+: matches any simple word in the text
   dictionaries;\index{Words!simple}
-  \item \verb+<CDIC>+ : matches any composed word in the dictionaries of the
+  \item \verb+<CDIC>+: matches any composed word in the dictionaries of the
   text;\index{Words!compound}
-  \item \verb+<TDIC>+ : matches any tagged token like \verb+{XXX,XXX.XXX}+;
-  \item \verb+<NB>+ : matches any contiguous sequence of digit (1234 is matched
+  \item \verb+<TDIC>+: matches any tagged token like \verb+{XXX,XXX.XXX}+;
+  \item \verb+<NB>+: matches any contiguous sequence of digit (1234 is matched
   but not 1 234);
-  \item \verb+#+ : prohibits the presence of space.\index{Space!prohibited}
+  \item \verb+#+: prohibits the presence of space.\index{Space!prohibited}
 \end{itemize}
+
+\noindent Earlier codes for \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ and \verb+<FIRST>+
+were respectively \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ and \verb+<PRE>+.
+They can still be used for backward compatibility of the system with existing graphs,
+but they are now deprecated, i.e.\ it is recommended to avoid them in graphs designed to be used with
+more recent versions,\footnote{From version 3.1beta, revision 4072, October 2, 2015.}
+so that the number of lexical masks in use does not increase uselessly.
 
 \bigskip
 \noindent NOTE: as described in section \ref{tokenization}, NO meta can be used
@@ -271,30 +277,41 @@ included in at least one code of $E$. Therefore, mask $M$ recognizes entry $E$.
 \index{\verb+"!+}
 It is possible to negate a lexical mask by placing the character~\verb+!+ immediately
 after the character~\verb+<+.
-Negation is possible with the masks \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+,
-\verb+<PRE>+, \verb+<DIC>+ as well as with the masks that carry grammatical,
+Negation is possible with the masks \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+,
+\verb+<FIRST>+,\footnote{And with their deprecated counterparts  <MOT>,<MIN>, <MAJ>,
+<PRE>. See Section~\ref{section-special-symbols}.} \verb+<DIC>+ as well as with the masks that carry grammatical,
 semantic of inflectional codes (\textit{i.e.} \verb$<!V~z3:P3>$).
 The masks \verb+#+ and \verb+" "+ are the negation of each other.
 \index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
-mask \verb$<!MOT>$ recognizes all tokens that do not consist of
+mask \verb$<!WORD>$ recognizes all tokens that do not consist of
 letters except for the sentence delimiter \verb+{S}+ and the \verb+{STOP}+ marker.
 Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ and \verb+<TOKEN>+.
 
 \bigskip
-\noindent The negation is interpreted in a special way in the lexical masks
-\verb+<!DIC>+, \verb+<!MIN>+, \verb+<!MAJ>+ and \verb+<!PRE>+.
+\noindent The negation is interpreted in a special way in the masks
+\verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ and
+\verb+<!FIRST>+.\footnote{And with their deprecated counterparts <!MIN>, <!MAJ>,
+<!PRE>. See Section~\ref{section-special-symbols}.}
 \index{\verb+<DIC>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
+\index{\verb+<LOWER>+}\index{\verb+<UPPER>+}\index{\verb+<FIRST>+}
 Instead of recognizing all forms that are not recognized by the mask without
 negation, these masks find only forms that are sequences of letters.
 Thus, the mask \verb+<!DIC>+ allows you to find all unknown words in a text.
-These unknown forms are mostly proper names, neologisms and spelling errors.
+These unknown forms are mostly proper names, neologisms and spelling errors (cf.
+  Figure~\ref{fig-search-<!DIC>}).
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig4-1.png}
+\caption{Result of the search for \texttt{<!DIC>}\label{fig-search-<!DIC>}}
+\end{center}
+\end{figure}
 
 \bigskip
 \noindent The negation of a dictionary mask like \verb+<V:G>+ will match any
 word, except for those that are matched by this mask. For instance, \verb+<!V:G>+ will not
 match the word \verb+being+, even if there are homonymic non-verbal entries in
 the dictionaries:
-
 
 \begin{verbatim}
 being,.A
@@ -303,26 +320,19 @@ being,.N+Hum:s
 \end{verbatim}
 \index{Words!unknown}
 
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=15cm]{resources/img/fig4-1.png}
-\caption{Result of the search for \texttt{<!DIC>}}
-\end{center}
-\end{figure}
-
 \noindent Here are some examples of lexical masks with the different types of constraints:
 
 \begin{itemize}
-  \item \verb$<A~Hum:fs>$ : a non-human adjective in the feminine singular;
-  \item \verb+<lire.V:P:F>+ : the verb \textit{lire} in the present or future
+  \item \verb$<A~Hum:fs>$: a non-human adjective in the feminine singular;
+  \item \verb+<lire.V:P:F>+: the verb \textit{lire} in the present or future
   tense;
-  \item \verb$<suis,suivre.V>$ : the word \textit{suis} as inflected form of the
+  \item \verb$<suis,suivre.V>$: the word \textit{suis} as inflected form of the
   verb \textit{suivre} (as opposed to the form of the verb \textit{\^etre});
-  \item \verb$<facteur.N~Hum>$ : all nominal entries that have \textit{facteur} as
+  \item \verb$<facteur.N~Hum>$: all nominal entries that have \textit{facteur} as
   canonical form and that do not have the semantic code \verb+Hum+;
-  \item \verb$<!ADV>$ : all words that are not adverbs;
-  \item \verb$<!MOT>$ : all tokens that are not made of letters (cf.
-  figure~\ref{fig-search-<!MOT>}). This mask does not recognize the sentence
+  \item \verb$<!ADV>$: all words that are not adverbs;
+  \item \verb$<!WORD>$: all tokens that are not made of letters (cf.
+  figure~\ref{fig-search-<!WORD>}). This mask does not recognize the sentence
   delimiter \verb+{S}+ and the special tag \verb+{STOP}+.
   \index{\verb+{S}+}\index{Sentence delimiter}\index{\verb+{STOP}+}
 \end{itemize}
@@ -332,7 +342,7 @@ being,.N+Hum:s
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig4-2.png}
 \caption{Result of a search for the pattern
-\texttt{<!MOT>}\label{fig-search-<!MOT>}}
+\texttt{<!WORD>}\label{fig-search-<!WORD>}}
 \end{center}
 \end{figure}
 

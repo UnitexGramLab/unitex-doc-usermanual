@@ -271,13 +271,17 @@ grammaires qui décrivent les différents contextes où peuvent apparaître les 
 La figure~\ref{fig-example-sentence-splitting} montre un exemple de grammaire de découpage en
 phrases.
 
-\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig2-10.png}
+\caption{Grammaire de découpage en phrases pour le français
+\label{fig-example-sentence-splitting}}
+\end{center}
+\end{figure}
+
 \noindent  Lorsqu’un chemin de la grammaire reconnaît une séquence dans le texte et que ce chemin
 produit le symbole délimiteur de phrases \verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrases},
-on insère ce symbole dans le texte.
-
-\bigskip
-\noindent Ainsi,
+on insère ce symbole dans le texte. Ainsi,
 un chemin de la grammaire de la figure~\ref{fig-example-sentence-splitting} reconnaît la séquence
 composée d’un point d’interrogation et d’un mot commençant par une majuscule et insère le symbole 
 \verb+{S}+ entre le point d’interrogation et le mot suivant. Le texte suivant :
@@ -300,25 +304,24 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
 \index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{Méta-symboles}
 \index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
 \begin{itemize}
-  \item <E> : mot vide, ou epsilon. Reconnaît la séquence vide;
-  \item <WORD> : reconnaît n’importe quelle suite de lettres (l'ancien masque <MOT> reste toujours valable);
-  \item <LOWER> : reconnaît n’importe quelle suite de lettres minuscules  (l'ancien masque <MIN> reste toujours valable);
-  \item <UPPER> : reconnaît n’importe quelle suite de lettres majuscules  (l'ancien masque <MAJ> reste toujours valable);
-  \item <FIRST> : reconnaît n’importe quelle suite de lettres commençant par une majuscule (l'ancien masque <PRE> reste toujours valable);
-  \item <NB> : reconnaît n’importe quelle suite de chiffres contigus (1234 est reconnu mais pas 1 234); 
-  \item <PNC> : reconnaît les symboles de ponctuation ; , ! ? : ainsi que les points d’exclamation
-  	  et d’interrogation inversés de l’espagnol et quelques signes de ponctuation asiatiques;
-  \item <\verb+^+> : reconnaît un retour à la ligne;
-  \item \verb+#+ : interdit la présence de l’espace.
+  \item \verb+<E>+~: mot vide, ou epsilon. Reconnaît la séquence vide~;
+  \item \verb+<WORD>+~: reconnaît n’importe quelle suite de lettres~;
+  \item \verb+<LOWER>+~: reconnaît n’importe quelle suite de lettres minuscules~;
+  \item \verb+<UPPER>+~: reconnaît n’importe quelle suite de lettres majuscules~;
+  \item \verb+<FIRST>+~: reconnaît n’importe quelle suite de lettres commençant par une majuscule~;
+  \item \verb+<NB>+~: reconnaît n’importe quelle suite de chiffres contigus (1234 est reconnu mais pas 1 234)~; 
+  \item \verb+<PNC>+~: reconnaît les symboles de ponctuation ; , ! ? : ainsi que les points d’exclamation
+  	  et d’interrogation inversés de l’espagnol et quelques signes de ponctuation asiatiques~;
+  \item <\verb+^+>~: reconnaît un retour à la ligne~;
+  \item \verb+#+~: interdit la présence de l’espace.
 \end{itemize}
 
-\begin{figure}[!h]
-\begin{center}
-\includegraphics[width=15cm]{resources/img/fig2-10.pdf}
-\caption{Grammaire de découpage en phrases pour le français
-\label{fig-example-sentence-splitting}}
-\end{center}
-\end{figure}
+\noindent  Les anciens codes correspondant à \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
+ étaient respectivement \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+.
+ Ils restent opérationnels afin de conserver la compatibilité descendante
+ du système avec les graphes existants, mais ils sont maintenant dépréciés,
+ c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \bigskip
 \noindent Par défaut, l’espace est facultatif entre deux boîtes. Si l’on veut interdire la présence

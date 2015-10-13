@@ -61,15 +61,14 @@ Un masque lexical est une requête qui reconnaît une unité lexicale ou une sui
 \label{section-special-symbols}
 \index{Méta-symboles}
 
-Il y a deux sortes de masques lexicaux. La première catégorie regroupe les méta-symboles présentés dans la
+Il y a deux sortes de masques lexicaux. La première catégorie regroupe les symboles spéciaux ou méta-symboles
+présentés dans la
 section~\ref{section-sentence-splitting}, sauf \verb$<PNC>$ et  \verb+<^>+. (Le symbole \verb$<PNC>$,
 qui reconnaît des signes de ponctuation, n'est valide que pendant le prétraitement~; \verb+<^>+ reconnaît
 un retour à ligne, mais tous les retours à la ligne
 ayant été remplacés par des espaces, ce symbole n’a plus aucune utilité lors de la recherche de
-motifs.) Les symboles utilisables pour rechercher des motifs dans un texte sont les suivants~:
+motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte sont les suivants~:
 
-
-\bigskip
 \index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
 \index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
 \index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
@@ -77,12 +76,11 @@ motifs.) Les symboles utilisables pour rechercher des motifs dans un texte sont 
   \item \verb+<E>+ : mot vide, ou epsilon. Reconnaît la séquence vide;
   \item \verb+<TOKEN>+ : reconnaît n’importe quelle unité lexicale sauf l'espace
   	  utilisé par défaut pour les filtres morphologiques;
-  \item \verb+<WORD>+ : reconnaît n’importe quelle unité lexicale formée de lettres (l'ancien masque <MOT> reste toujours valable);
-  \item \verb+<LOWER>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules (l'ancien masque <MIN> reste toujours valable);
-  \item \verb+<UPPER>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules (l'ancien masque <MAJ> reste toujours valable);
+  \item \verb+<WORD>+ : reconnaît n’importe quelle unité lexicale formée de lettres;
+  \item \verb+<LOWER>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules;
+  \item \verb+<UPPER>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules;
   \item \verb+<FIRST>+ : reconnaît n’importe quelle unité lexicale formée de lettres et commençant par
-  	  une
-majuscule (l'ancien masque <PRE> reste toujours valable);
+  	  une majuscule;
   \item \verb+<DIC>+ : reconnaît n’importe quel mot figurant dans les dictionnaires du texte;
   \item \verb+<SDIC>+ : reconnaît n’importe quel mot simple figurant dans les dictionnaires du
   	  texte;\index{Mots!simples}
@@ -95,6 +93,13 @@ majuscule (l'ancien masque <PRE> reste toujours valable);
   	  (1234 est reconnue mais pas 1 234) ;
   \item \verb+#+ : interdit la présence de l'espace.\index{Espace!interdit}
 \end{itemize}
+
+\noindent  Les anciens codes correspondant à \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
+ étaient respectivement \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+.
+ Ils restent opérationnels afin de conserver la compatibilité descendante
+ du système avec les graphes existants, mais ils sont maintenant dépréciés,
+ c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \bigskip
 \noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verb+{STOP}+}, pas même \verb+<TOKEN>+.
@@ -171,7 +176,7 @@ contenant le caractère \verb$~$, on doit le déspécialiser en le faisant préc
 
 \bigskip
 \noindent REMARQUE: Avant la version 2.1, l'opérateur de négation était le signe moins. Si l'on veut
-utiliser d'anciens graphes, sans les modifier, il faut appeler \verb+Locate+ en ligne de commande
+utiliser d'anciens graphes sans les modifier, il faut appeler \verb+Locate+ en ligne de commande
 avec l'option \verb+-g minus+.
 
 \bigskip
@@ -258,33 +263,45 @@ code \verb+Y2+ est inclus dans au moins un code de $E$, le masque lexical $M$ re
 \index{Négation!d’un masque lexical}
 \index{\verb+"!+}
 Il est possible de faire la négation d’un motif au moyen du caractère~\verb+!+ placé immédiatement
-après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<MOT>+, \verb+<MIN>+,
-\verb+<MAJ>+, \verb+<PRE>+, \verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
+après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<WORD>+, \verb+<LOWER>+,
+\verb+<UPPER>+,
+\verb+<FIRST>+\footnote{Et sur leurs équivalents dépréciés  <MOT>,<MIN>, <MAJ>,
+<PRE>. Voir section~\ref{section-special-symbols}.},
+\verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
 codes grammaticaux, sémantiques ou flexionnels (\textit{i.e.} \verb$<!V~z3:P3>$). Les motifs
 \verb+#+ et \verb+" "+  sont la négation l’un de l’autre.
 \index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+}
-Le méta \verb$<!MOT>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
+Le méta \verb$<!WORD>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
 lettres, sauf le séparateur de phrases \verb+{S}+ et, bien sûr, le marqueur \verb+{STOP}+.
 La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ et
 \verb+<TOKEN>+.
 
 \bigskip
 \noindent La négation est interprétée d’une façon particulière dans les métas 
-\verb+<!DIC>+, \verb+<!MIN>+, \verb+<!MAJ>+ et \verb+<!PRE>+.
-\index{\verb+<DIC>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
+\verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ et
+\verb+<!FIRST>+\footnote{Et dans leurs équivalents dépréciés <MIN>, <MAJ> et
+<PRE>. Voir section~\ref{section-special-symbols}.}.
+\index{\verb+<DIC>+}\index{\verb+<LOWER>+}\index{\verb+<UPPER>+}\index{\verb+<FIRST>+}
+\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
 Au lieu de reconnaître toutes les formes qui ne sont pas reconnues
 par le méta sans la négation, ces motifs ne donnent que des formes qui sont des séquences
-de lettres. Ainsi, le méta \verb+<!DIC>+ permet d’obtenir les mots inconnus du texte. Ces formes
+de lettres. Ainsi, le méta \verb+<!DIC>+ permet d’obtenir les mots inconnus du texte (cf.
+  figure~\ref{fig-search-<!DIC>}). Ces formes
 inconnues sont le plus souvent des noms propres, des néologismes et des fautes d’orthographe.
 
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig4-1.png}
+\caption{Résultat de la recherche du méta \texttt{<!DIC>}\label{fig-search-<!DIC>}}
+\end{center}
+\end{figure}
 
 \bigskip
 \noindent La négation d’un masque lexical comme  \verb+<V:G>+ reconnaît tous les mots sauf ceux qui
 peuvent être reconnus par ce masque. Ainsi, le masque \verb+<!V:G>+ ne reconnaîtra pas la forme
 anglaise \emph{being}, même s’il existe dans les dictionnaires du texte des entrées non verbales pour ce
 mot:
-
-
 
 \begin{verbatim}
 being,.A
@@ -293,15 +310,6 @@ being,.N+Hum:s
 \end{verbatim}
 \index{Mots!inconnus}
 
-\bigskip
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=15cm]{resources/img/fig4-1.png}
-\caption{Résultat de la recherche du méta \texttt{<!DIC>}}
-\end{center}
-\end{figure}
-
-\bigskip
 \noindent Voici plusieurs exemples de motifs mélangeant les différentes sortes de contraintes:
 
 \begin{itemize}
@@ -313,9 +321,9 @@ being,.N+Hum:s
   \item \verb$<facteur.N~Hum>$ : toutes les entrées nominales ayant \textit{facteur} comme forme
   	  canonique et ne possédant pas le code sémantique \verb+Hum+;
   \item \verb$<!ADV>$ : tous les mots qui ne sont pas des adverbes;
-  \item \verb$<!MOT>$ : tous les caractères, qui ne sont pas des lettres, sauf le séparateur de
+  \item \verb$<!WORD>$ : tous les caractères qui ne sont pas des lettres, sauf le séparateur de
   	  phrases
-  	  (voir figure~\ref{fig-search-<!MOT>}). Ce masque ne reconnait pas le séparateur de phrase
+  	  (voir figure~\ref{fig-search-<!WORD>}). Ce masque ne reconnait pas le séparateur de phrase
   	  \verb+{S}+
   	  ni le tag \verb+{STOP}+.
   	  \index{\verb+{S}+}\index{Séparateur!de phrases}\index{\verb+{STOP}+}
@@ -326,7 +334,7 @@ being,.N+Hum:s
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig4-2.png}
 \caption{Résultat de la recherche du méta
-\texttt{<!MOT>}\label{fig-search-<!MOT>}}
+\texttt{<!WORD>}\label{fig-search-<!WORD>}}
 \end{center}
 \end{figure}
 
