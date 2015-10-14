@@ -573,8 +573,15 @@ redoubler, comme le montre la figure~\ref{fig-using-variable}.
 \end{figure}
 
 \bigskip
+\noindent Quand une boite redéfinit une variable qui avait déjà été définie,
+\index{Variable!redéfinition} la nouvelle valeur écrase l'ancienne.
+Ainsi, si la variable est définie dans une boucle, la valeur de la variable juste après
+la boucle dépend du dernier passage dans la boucle.
+
+\bigskip
 \noindent Par défaut \verb+Locate+ et \verb+LocateTfst+ considèrent que les variables non définies
-sont vides. On peut modifier ce comportement (voir section \ref{section-advanced-search-options}).
+sont vides.\index{Variable!non définie}
+On peut modifier ce comportement (voir section \ref{section-advanced-search-options}).
 De plus, il est  possible dans un graphe d'interroger une variable pour savoir si elle a été initialisée ou non (section~\ref{section-variables}).
 
 \subsection{Copie de listes}

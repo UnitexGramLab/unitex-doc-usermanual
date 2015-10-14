@@ -824,7 +824,7 @@ as a morphological-mode dictionary).
 
 \subsection{Dictionary-entry variables}
 \index{Dictionary-entry variables}
-\index{Variables!dictionary entry}
+\index{Variable!dictionary-entry}
 \label{dictionary-variables}
 You can set variables to information stored in morphological-mode dictionaries.
 The initialization of such a variable must be associated to a box that contains
@@ -1149,15 +1149,15 @@ to the longest sequences.
 
 \subsection{Transducer outputs with variables}
 \label{section-variables}
-\index{Variables!in graphs}\index{Transducer output!with variables}
-As we have seen in section~\ref{section-using-variables}, it is
+\index{Variable!in graphs}\index{Transducer output!with variables}
+As we have seen in Section~\ref{section-using-variables}, it is
 possible to use input variables to store some text that has been analyzed by a
 grammar. Such variables can be used in preprocessing graphs and in syntactic
 graphs.
 
 \bigskip
 \noindent You have to give names to the variables you use. These names can
-contain non-accentuated lower-case and upper-case letters between \verb+A+ and \verb+Z+,
+contain non-accented lower-case and upper-case letters between \verb+A+ and \verb+Z+,
 digits and the character \verb+_+ (underscore).\index{Underscore}
 
 \bigskip
@@ -1167,11 +1167,6 @@ enclosed in the characters \verb-$- and \verb-(- (\verb-$- and \verb-)- for the 
 variable). In order to use a variable in a transducer output, its name must be
 surrounded by the character \verb-$- (cf. Figure~\ref{fig-variable-definition}).
 
-\bigskip
-\noindent Variables are global. This means that you can define a variable in a graph and
-reference it in another as is illustrated in the graphs of
-Figure~\ref{fig-variable-definition}.
-
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig6-25.png}
@@ -1180,7 +1175,9 @@ Figure~\ref{fig-variable-definition}.
 \end{figure}
 
 \bigskip
-\noindent If the graph \verb+TitleName+ is applied in MERGE mode to the text
+\noindent Variables are global. This means that you can define a variable in a graph and
+reference it in another as is illustrated in the graphs of
+Figure~\ref{fig-variable-definition}. If the graph \verb+TitleName+ is applied in MERGE mode to the text
 \textit{Ivanhoe}, the concordance in Figure~\ref{fig6-14} is obtained.
 
 \begin{figure}[!p]
@@ -1244,21 +1241,13 @@ figure~\ref{fig-overlapping-variables}.
 \section{Output variables}
 \label{section-output-variables}
 \index{Output variables}
-\index{Variables!output}
+\index{Variable!output}
 Input variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
 is also possible to capture portions of the outputs produced by your grammar. This is done with output variables.
 Such variables are declared with \verb+$|xxx(+ and \verb+$|xxx)+. Those tags appear in blue as shown 
-on Figure \ref{fig-output-variables}. Note that when an output variable is being initialized, the output sequences
-of the transducer
-are not emitted into the output for the current occurrence; they are just stored into the pending output variable(s).
-Note that outputs are processed first, so that if an output string contains something like \verb+$A.LEMMA$+,
-the output variable will not contain this raw string but rather the lemma associated to variable \verb+A+.
-Moreover, output variables only capture explicit outputs produced by your grammar. Thus, even if you work
-in MERGE mode, output variables never capture the input text. 
-
-\noindent For instance, this example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
-shown on Figure \ref{fig-output-variables-concord}. Thus you can see that the outputs \verb+ADJ+ and 
-\verb+NOUN+ have not been inserted to the left of the input text, as one may have expected.
+on Figure \ref{fig-output-variables}.
+This example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
+shown on Figure \ref{fig-output-variables-concord}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1274,11 +1263,33 @@ shown on Figure \ref{fig-output-variables-concord}. Thus you can see that the ou
 \end{center}
 \end{figure}
 
+\bigskip
+\noindent When an output variable is being initialized, the output sequences
+of the transducer
+are not emitted into the output for the current occurrence; they are just stored into the pending output variable(s).
+For instance, the outputs \verb+ADJ+ and \verb+NOUN+  of  Figure~\ref{fig-output-variables}
+have not been inserted to the left of the input text
+on Figure~\ref{fig-output-variables-concord}.
+Outputs are processed before being stored, so that if an output string contains something like \verb+$A.LEMMA$+,
+the output variable will actually not contain this raw string but the lemma associated to variable \verb+A+.
+
+\bigskip
+\noindent Output variables only capture explicit outputs produced by your grammar. Thus, even 
+in MERGE mode, output variables never capture the input text
+(Figures \ref{fig-output-variables} and \ref{fig-output-variables-concord}).
+
+\bigskip
+\noindent When a box redefines a variable that had already been defined,
+\index{Variable!redefine} the new value overrides the previous one.
+Thus, if the variable is defined in a loop,
+the value of the variable just after the loop depends on the last iteration of the loop.
+
+
 
 \section{Operations on variables}
 \label{section-ops-on-variables}
 \subsection{Testing variables}
-\index{Testing variables}\index{Variables!test}
+\index{Testing variables}\index{Variable!test}
 
 \noindent It is possible to test whether a variable has been defined or not, in
 order to block the current matching operation if the condition is not verified.
@@ -1310,7 +1321,7 @@ MERGE mode.
 
 \subsection{Comparing variables}
 \index{Comparing variables}
-\index{Variables!comparison}
+\index{Variable!comparison}
 Another kind of test you can perform consists of variable comparison.
 You can compare a variable of any kind (whether an input variable, an output variable or a dictionary-entry variable)
 against a constant string or another variable. To do that, insert in the output of a graph box a sequence with the following syntax:
@@ -1341,8 +1352,8 @@ or \\
 
 \subsection{Querying variables}
 \index{Querying variables}
-\index{Variables!query}
-You can search a dictionary-entry variable \index{Variables!dictionary entry}
+\index{Variable!query}
+You can search a dictionary-entry variable \index{Variable!dictionary-entry}
 (section~\ref{dictionary-variables}) for a `semantic code' (in the sense of section~\ref{section-DELAF-entry-syntax}). To do that, insert in the output of a graph box a sequence with the following syntax:
 
 \bigskip
@@ -1484,7 +1495,7 @@ arbitrarily chosen output for the input sequence \textit{the noble}.
 \end{figure}
 
 \bigskip
-\index{Variable error policy}
+\index{Variable!error policy}
 \noindent The "Variable error policy" option allows you to specify what
 \verb+Locate+/\verb+LocateTfst+ is supposed to do when an output is found that
 contains a reference to a variable that has not been correctly defined. Note

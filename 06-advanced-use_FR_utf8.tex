@@ -1173,7 +1173,8 @@ dans une sortie, vous devez faire précéder et suivre son nom du caractère \ve
 \bigskip
 \noindent Les variables sont globales. Cela signifie que vous pouvez définir une variable dans un
 graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figure
-~\ref{fig-variable-definition}.
+~\ref{fig-variable-definition}. Si on applique le graphe \verb+TitleName+ en mode MERGE au texte
+\textit{Ivanhoe}, on obtient la concordance de la figure ~\ref{fig6-14}.
 
 \begin{figure}[!p]
 \begin{center}
@@ -1181,10 +1182,6 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 \caption{Définition d’une variable d'entrée dans un sous-graphe\label{fig-variable-definition}}
 \end{center}
 \end{figure}
-
-\bigskip
-\noindent Si on applique le graphe \verb+TitleName+ en mode MERGE au texte
-\textit{Ivanhoe}, on obtient la concordance de la figure ~\ref{fig6-14}.
 
 \begin{figure}[!p]
 \begin{center}
@@ -1199,8 +1196,8 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 l’application d’un transducteur en mode REPLACE n’écrit dans le texte que les séquences
 produites par des sorties. Pour intervertir deux groupes de mots, il suffit donc de les stocker
 dans des variables et de produire une sortie avec ces variables dans l’ordre souhaité. Ainsi,
-le transducteur de la figure
-~\ref{fig-swapping-words} appliqué en mode REPLACE au texte \textit{Ivanhoe}
+le transducteur de la
+figure~\ref{fig-swapping-words} appliqué en mode REPLACE au texte \textit{Ivanhoe}
 donne la concordance de la figure~\ref{fig-no-space-problem}.
 
 \begin{figure}[!ht]
@@ -1245,24 +1242,14 @@ figure~\ref{fig-overlapping-variables}.
 \section{Variables de sortie}
 \label{section-output-variables}
 \index{Variable!de sortie}
-Les variables d'entrée sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ mémorisent des portions du
+Les variables d'entrée sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ et mémorisent des portions du
 texte d'entrée. 
 Il est aussi possible de mémoriser des parties des sorties produites par une grammaire.
 Cela met en jeu des variables de sortie.
 Ces variables sont déclarées avec \verb+$|xxx(+ et \verb+$|xxx)+.
-Elles apparaissent en bleu (voir figure \ref{fig-output-variables}).
-Remarquons qu'au moment où une variable de sortie est initialisée,
-les séquences de sortie du transducteur ne sont pas émises dans la sortie correspondant à l'occurrence courante,
-elles sont seulement mémorisées dans la variable de sortie créée par cette opération.
-Par ailleurs, les sorties sont calculées en premier~: si une sortie contient une chaine comme 
-\verb+$A.LEMMA$+, la variable de sortie ne contiendra pas cette chaîne mais le lemme associé à
-la variable \verb+A+. En outre, les variables de sortie mémorisent seulement des sorties
-effectivement produites par votre grammaire. Ainsi, même si vous travaillez en mode MERGE, les
-variables de sortie ne mémorisent jamais le texte d'entrée.
-
-\noindent Cet exemple de grammaire appliquée en mode MERGE au texte \textit{Ivanhoe} produit la
-concordance visible sur la figure \ref{fig-output-variables-concord}. 
-Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas été insérées à gauche du texte d'entrée comme on aurait pu s'y attendre.
+Elles apparaissent en bleu (voir figure~\ref{fig-output-variables}).
+Cette grammaire appliquée en mode MERGE au texte \textit{Ivanhoe} produit la
+concordance visible sur la figure~\ref{fig-output-variables-concord}. 
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1277,6 +1264,29 @@ Ainsi, vous pouvez voir que les sorties \verb+ADJ+ et \verb+NOUN+ n'ont pas ét�
 \caption{Concordances obtenues avec la grammaire de la figure ~\ref{fig-output-variables}\label{fig-output-variables-concord}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Au moment où une variable de sortie est initialisée,
+les séquences de sortie du transducteur ne sont pas émises dans la sortie correspondant à l'occurrence courante,
+elles sont seulement mémorisées dans la variable de sortie créée par cette opération.
+Par exemple, les sorties \verb+ADJ+ et \verb+NOUN+ de la figure figure~\ref{fig-output-variables}
+n'ont pas été insérées à gauche du texte d'entrée
+dans la figure~\ref{fig-output-variables-concord}.
+Par ailleurs, les sorties sont traitées avant d'être mémorisées~: si la sortie d'une boite contient une chaine comme 
+\verb+$A.LEMMA$+, la variable de sortie ne contiendra en fait pas cette chaîne mais le lemme associé à
+la variable \verb+A+.
+
+\bigskip
+\noindent Les variables de sortie mémorisent seulement des sorties
+effectivement produites par la grammaire. Ainsi, même en mode MERGE, les
+variables de sortie ne mémorisent jamais le texte d'entrée
+(figures~\ref{fig-output-variables} et \ref{fig-output-variables-concord}).
+
+\bigskip
+\noindent Quand une boite redéfinit une variable qui avait déjà été définie,
+\index{Variable!redéfinition} la nouvelle valeur écrase l'ancienne.
+Ainsi, si la variable est définie dans une boucle, la valeur de la variable juste après
+la boucle dépend du dernier passage dans la boucle.
 
 
 \section{Opérations sur les variables}
@@ -1335,8 +1345,8 @@ ou \\
 \verb+$abc.UNEQUALcC=xyz$+
 
 \subsection{Recherche d'un code sémantique dans une variable de dictionnaire}
-\index{Variables!code sémantique}
-On peut chercher dans une variable de dictionnaire \index{Variables!dictionary entry}
+\index{Variable!code sémantique}
+On peut chercher dans une variable de dictionnaire \index{Variable!dictionary entry}
 (section~\ref{dictionary-variables}) un ``code sémantique'' au sens de la section~\ref{section-DELAF-entry-syntax}.
 Pour cela, on insère dans la sortie d'une boite une séquence respectant la syntaxe suivante~:
 

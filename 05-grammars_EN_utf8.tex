@@ -504,7 +504,7 @@ You cannot define a priority among embedded matching sequences (cf. section~\ref
 
 \subsection{Input Variables}
 \label{section-using-variables}
-\index{Graph!variables in a}\index{Variables!input}\index{\verb+$+}
+\index{Graph!variables in a}\index{Variable!input}\index{\verb+$+}
 \index{Transducer!with variables}
 
 It is possible to select parts of a text sequence recognized by a grammar using input
@@ -528,8 +528,9 @@ figure~\ref{fig-using-variable} recognises a sequence of digits before
 \end{figure}
 
 \noindent Variable names may contain latin letters (without accents), upper or
-lower case, numbers, or the \verb+_+ (underscore) character.\index{\verb+_+}\index{Variable
-names} Unitex distinguishes between uppercase and lowercase characters.
+lower case, numbers, or the \verb+_+ (underscore)
+character.\index{\verb+_+}\index{Variable!names} Unitex distinguishes
+between uppercase and lowercase characters.
 \index{Underscore}
 
 \bigskip
@@ -550,8 +551,15 @@ year, and produces the same date as an output, but in the order year-month.
 have to double it, as shown on figure~\ref{fig-using-variable}.
 
 \bigskip
-\noindent The default behavior of \verb+Locate+ and \verb+LocateTfst+ is to
-consider variables that have not been defined as being empty. You can
+\noindent When a box redefines a variable that had already been defined,
+\index{Variable!redefine} the new value overrides the previous one.
+Thus, if the variable is defined in a loop,
+the value of the variable just after the loop depends on the last iteration of the loop.
+
+\bigskip
+\noindent By default, \verb+Locate+ and \verb+LocateTfst+ 
+consider that variables that have not been defined are empty.
+\index{Variable!undefined}You can
 modify this behavior as shown in section \ref{section-advanced-search-options}.
 Moreover, it is possible to test whether a variable has been defined or not, as
 shown in section \ref{section-variables}.
