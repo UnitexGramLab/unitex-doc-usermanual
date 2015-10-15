@@ -1161,10 +1161,12 @@ contain non-accented lower-case and upper-case letters between \verb+A+ and \ver
 digits and the character \verb+_+ (underscore).\index{Underscore}
 
 \bigskip
-\noindent In order to delimit the zone to be stored in an input
-variable, you have to create two boxes that contain the name of the variable 
-enclosed in the characters \verb-$- and \verb-(- (\verb-$- and \verb-)- for the end of a
-variable). In order to use a variable in a transducer output, its name must be
+\noindent In order to delimit the zone to be stored in an input variable, 
+either use the button with red parentheses in the toolbar above the graph
+(Section~\ref{toolbar-commands}) or create two boxes, one containing the name of the variable 
+enclosed in the characters \verb-$- and \verb-(- for the beginning of the zone
+and the other in \verb-$- and \verb-)- for the end.
+In order to use a variable in a transducer output, its name must be
 surrounded by the character \verb-$- (cf. Figure~\ref{fig-variable-definition}).
 
 \begin{figure}[!p]
@@ -1242,10 +1244,12 @@ figure~\ref{fig-overlapping-variables}.
 \label{section-output-variables}
 \index{Output variables}
 \index{Variable!output}
-Input variables declared with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
+Input variables declared either with the red-parentheses button 
+or with \verb+$xxx(+ and \verb+$xxx)+ capture portions of the input text. It
 is also possible to capture portions of the outputs produced by your grammar. This is done with output variables.
-Such variables are declared with \verb+$|xxx(+ and \verb+$|xxx)+. Those tags appear in blue as shown 
-on Figure \ref{fig-output-variables}.
+Such variables are declared either with the button with blue parentheses in the toolbar above the graph
+(Section~\ref{toolbar-commands}) or with \verb+$|xxx(+ and \verb+$|xxx)+.
+The resulting boxes appear in blue as shown on Figure \ref{fig-output-variables}.
 This example grammar applied to \textit{Ivanhoe} will produce in MERGE mode the concordance 
 shown on Figure \ref{fig-output-variables-concord}.
 

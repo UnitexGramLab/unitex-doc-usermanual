@@ -508,13 +508,15 @@ You cannot define a priority among embedded matching sequences (cf. section~\ref
 \index{Transducer!with variables}
 
 It is possible to select parts of a text sequence recognized by a grammar using input
-variables. To associate an input variable \verb+var1+ with parts of a grammar, use the special
-symbols \verb+$var1(+ and \verb+$var1)+ to define the beginning and the end of
-the part to be stored. Create two boxes containing one \verb+$var1(+ and the second
+variables. To associate an input variable \verb+var1+ with parts of a grammar, use
+either the button with red parentheses in the toolbar above the graph
+(Section~\ref{toolbar-commands}) or the special symbols \verb+$var1(+ and \verb+$var1)+.
+(These symbols define the beginning and the end of the part to be stored.
+Create two boxes, one containing \verb+$var1(+ and the other
 \verb+$var1)+. These boxes must not contain anything but the variable name
 preceded by \verb+$+ and followed by a parenthesis. Then link these boxes to the
-zone of the grammar to be stored. The graph in
-figure~\ref{fig-using-variable} recognises a sequence of digits before
+zone of the grammar to be stored.)
+The graph in figure~\ref{fig-using-variable} recognises a sequence of digits before
 \verb+dollar+ or \verb+dollars+. This sequence will be stored in a variable named
 \verb+var1+.
 

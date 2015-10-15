@@ -1165,13 +1165,16 @@ les lettres comprises entre \verb+A+ et \verb+Z+, non accentuées minuscules ou 
 des chiffres et le caractère \verb+_+ (underscore).\index{Underscore}
 
 \bigskip
-\noindent Pour définir le début (ou la fin) de la zone à stocker dans une variable d'entrée, vous devez créer
-une boîte contenant le nom de la variable encadré par les caractères
-\verb-$- et \verb-(- (\verb-$- et \verb-)- pour la fin d’une variable). Pour utiliser une variable
-dans une sortie, vous devez faire précéder et suivre son nom du caractère \verb-$- (voir figure~\ref{fig-variable-definition}).
+\noindent Pour définir le début et la fin de la zone à stocker dans une variable d'entrée,
+soit on utilise le bouton avec les parenthèses rouges dans la barre d'icônes au-dessus du graphe
+(section ~\ref{toolbar-commands}),
+soit on crée deux boîtes, l'une contenant le nom de la variable encadré par les caractères
+\verb-$- et \verb-(- pour le début de la zone, et l'autre par \verb-$- et \verb-)- pour la fin.
+Pour utiliser une variable dans une sortie, on fait précéder et suivre son nom du caractère \verb-$-
+ (voir figure~\ref{fig-variable-definition}).
 
 \bigskip
-\noindent Les variables sont globales. Cela signifie que vous pouvez définir une variable dans un
+\noindent Les variables sont globales. Cela signifie qu'on peut définir une variable dans un
 graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figure
 ~\ref{fig-variable-definition}. Si on applique le graphe \verb+TitleName+ en mode MERGE au texte
 \textit{Ivanhoe}, on obtient la concordance de la figure ~\ref{fig6-14}.
@@ -1190,7 +1193,7 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 \end{center}
 \end{figure}
 
-\index{Déplacements de groupes de mots}
+\index{Déplacement de groupes de mots}
 \bigskip
 \noindent Les sorties à variables peuvent être utilisées pour déplacer des groupes de mots. En effet,
 l’application d’un transducteur en mode REPLACE n’écrit dans le texte que les séquences
@@ -1242,11 +1245,14 @@ figure~\ref{fig-overlapping-variables}.
 \section{Variables de sortie}
 \label{section-output-variables}
 \index{Variable!de sortie}
-Les variables d'entrée sont déclarées avec \verb+$xxx(+ et \verb+$xxx)+ et mémorisent des portions du
+Les variables d'entrée sont déclarées soit avec les parenthèses rouges de la barre d'icônes,
+soit avec \verb+$xxx(+ et \verb+$xxx)+, et mémorisent des portions du
 texte d'entrée. 
 Il est aussi possible de mémoriser des parties des sorties produites par une grammaire.
 Cela met en jeu des variables de sortie.
-Ces variables sont déclarées avec \verb+$|xxx(+ et \verb+$|xxx)+.
+Ces variables sont déclarées soit avec l'icône des parenthèses bleues
+dans la barre d'icônes au-dessus du graphe (section ~\ref{toolbar-commands}),
+soit avec \verb+$|xxx(+ et \verb+$|xxx)+.
 Elles apparaissent en bleu (voir figure~\ref{fig-output-variables}).
 Cette grammaire appliquée en mode MERGE au texte \textit{Ivanhoe} produit la
 concordance visible sur la figure~\ref{fig-output-variables-concord}. 
