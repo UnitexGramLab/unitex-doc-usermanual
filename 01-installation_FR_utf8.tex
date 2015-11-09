@@ -65,12 +65,16 @@ votre machine, vous pouvez effectuer l’installation vous-même.
 \bigskip
 \noindent Décompressez le fichier \index{Fichier!\verb+Unitex3.1beta.zip+} \verb+Unitex3.1beta.zip+ (ou \verb+Unitex3.0.zip+)
 --- vous pouvez télécharger ces fichiers à l’adresse suivante : \url{http://igm.univ-mlv.fr/~unitex} ---
-dans un répertoire \verb+Unitex3.1beta+ que vous aurez préalablement créé, de préférence dans le répertoire  \verb+Program Files+.
+dans un répertoire (dossier) \verb+Unitex3.1beta+ que vous aurez préalablement créé,
+de préférence dans le répertoire  \verb+Program Files+, et qui sera appelé dans ce manuel
+le répertoire système Unitex.\index{Répertoire!système Unitex}\index{Dossier!voir {Répertoire}}
 
 \bigskip
-\noindent Après la décompression, le répertoire \verb+Unitex3.1beta+ contient plusieurs
+\noindent Après la décompression, le répertoire \verb+Unitex3.1beta+
+(le répertoire système Unitex) contient plusieurs
 sous-répertoires dont un nommé \verb+App+. Ce dernier répertoire contient un fichier nommé
-\verb+Unitex.jar+\index{Fichier!\verb+Unitex.jar+}.                                                            Ce fichier est l’exécutable Java qui lance l’interface graphique. Il vous suffit de double-cliquer
+\verb+Unitex.jar+\index{Fichier!\verb+Unitex.jar+}.
+ Ce fichier est l’exécutable Java qui lance l’interface graphique. Il vous suffit de double-cliquer
 dessus pour lancer le programme.
 Pour faciliter le lancement du programme, il est conseillé de créer un raccourci vers ce fichier sur le bureau.
 
@@ -84,7 +88,8 @@ Pour installer Unitex sous Linux et MacOS, il est recommandé d’être administ
 \bigskip \noindent \verb$unzip Unitex3.1beta.zip -d Unitex$
 
 \bigskip
-\noindent Placez-vous ensuite dans le répertoire \verb|Unitex/Src/C++/build|                                     , et lancez la compilation des
+\noindent Ce répertoire sera appelé dans ce manuel le répertoire système Unitex.\index{Répertoire!système Unitex}
+Placez-vous ensuite dans le répertoire \verb|Unitex/Src/C++/build|   , et lancez la compilation des
 programmes au moyen de la commande :
 
 
@@ -199,20 +204,22 @@ Java.
 
 
 \section{Première utilisation}
-Si vous travaillez sous Windows, le programme vous demandera de choisir un répertoire personnel
-\index{Répertoire!personnel} de travail, que vous pourrez changer ultérieurement dans
+Si vous travaillez sous Windows, le programme vous demandera de choisir un répertoire personnel de travail
+\index{Répertoire!personnel de travail}, que vous pourrez changer ultérieurement dans
 "Info>Preferences...>Di-rectories". Pour créer un répertoire, cliquez sur l’icône représentant un
 dossier (voir figure \ref{fig-creation-personal-directory}).
 
 \bigskip
-\noindent Sous Linux et MacOS, le programme créera automatiquement un répertoire
-\verb+/unitex+ dans votre répertoire \verb+$HOME+. Ce répertoire vous permettra de stocker vos
-données personnelles. 
-Pour chaque langue que vous utiliserez, le programme copiera l’arborescence de la langue dans votre
-répertoire personnel,
-à l’exception des dictionnaires. Vous pourrez ainsi modifier à votre guise votre copie des données
-sans risquer d’endommager les données du système.
+\noindent Sous Linux et MacOS, le programme créera automatiquement un répertoire personnel de travail,
+appelé \verb+/unitex+, dans votre répertoire \verb+$HOME+. 
 
+\bigskip
+\noindent Le répertoire personnel de travail, ou répertoire de l'utilisateur, vous permettra de stocker vos
+données Unitex personnelles. Pour chaque langue que vous utiliserez, le
+programme copiera l’arborescence de la langue dans votre répertoire de travail,
+à l’exception des dictionnaires. Vous pourrez ainsi modifier à votre guise votre copie des données
+sans risquer d’endommager les données du système, stockées dans le
+répertoire système Unitex.\index{Répertoire!système Unitex}
 
 
 \begin{figure}[h]
@@ -232,7 +239,7 @@ sans risquer d’endommager les données du système.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig1-3.png}
-\caption{Création du répertoire de travail personnel
+\caption{Création du répertoire personnel de travail
 \label{fig-creation-personal-directory}}
 \end{center}
 \end{figure}
@@ -245,11 +252,12 @@ sans risquer d’endommager les données du système.
 \bigskip
 \noindent Il y a deux manières d’ajouter des langues. Si vous désirez ajouter une nouvelle langue
 accessible à tous les utilisateurs, il vous faut copier le répertoire correspondant à cette langue
-dans le répertoire Unitex du système, ce qui nécessite d’avoir les droits d’accès à ce répertoire
+dans le répertoire système Unitex,\index{Répertoire!système Unitex}
+ce qui nécessite d’avoir les droits d’accès à ce répertoire
 (il vous faudra peut-être demander à votre administrateur système de le faire).
-En revanche, si la langue ne concerne qu’un seul utilisateur, celui-ci peut copier le répertoire
-en question dans son répertoire personnel. Il pourra ainsi travailler sur cette langue, sans
-qu’elle soit proposée aux autres utilisateurs.
+En revanche, si vous êtes le seul utilisateur concerné par la langue, vous pouvez copier le répertoire
+en question dans votre répertoire de travail.\index{Répertoire!personnel de travail}
+Vous pourrez ainsi travailler sur cette langue sans qu’elle soit proposée aux autres utilisateurs.
 
 
 

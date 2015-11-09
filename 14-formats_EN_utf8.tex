@@ -547,11 +547,11 @@ character followed by a newline.
 This section presents the different files used to represent texts.
 \subsection{.txt files}
 \index{File!\verb+.txt+}\index{\verb+{S}+}\index{Lexical!labels}
-\index{Sentence separator}
+\index{Sentence delimiter}
 \label{section-texts}
 \verb+.txt+ files are text files encoded in Unicode Little-Endian. These files
 should not contain any opening or closing braces, except for those used to mark a
-sentence separator (\verb+{S}+) or a valid lexical tag
+sentence delimiter (\verb+{S}+) or a valid lexical tag
 (\verb+{aujourd'hui,.ADV}+). The newline needs to be encoded with the two special
 characters with hexadecimal values \verb+000D+ and \verb+000A+.
 
@@ -562,7 +562,7 @@ characters with hexadecimal values \verb+000D+ and \verb+000A+.
 files should not contain any tabs. They should also not contain multiple
 consecutive spaces or newlines. The only allowed braces in \verb+.snt+ files are
 those of the sentence delimiter \verb+{S}+\index{\verb+{S}+}\index{Sentence
-separator} and those of lexical labels
+delimiter} and those of lexical labels
 (\verb+{aujourd'hui,.ADV}+)\index{Lexical!labels}.
 
 
@@ -1620,7 +1620,7 @@ Here is an example of a corpus.txt file :
 \bigskip
 The \verb+.txt+ file format can also be used (see section \ref{section-texts}). Each word of the text 
 must be represented by a valid lexical label (\verb+{aujourd'hui,.ADV}+)\index{Lexical!labels} and sentences
-are delimited by  \verb+{S}+\index{\verb+{S}+}\index{Sentenceseparator}.
+are delimited by  \verb+{S}+\index{\verb+{S}+}\index{Sentence delimiter}.
 Here is the previous example in the \verb+.txt+ file format :
 
 \bigskip
@@ -1901,7 +1901,8 @@ to use to render the \verb+$<+ and \verb+$>+ tags.
 The \verb+system_dic.def+ file is a text file that describes the list of system
 dictionaries that are applied by default. This file can be found in the directory
 of the current language. Each line corresponds to a name of a .bin file. The
-system dictionaries are in the system directory, and in that directory in the
+system dictionaries are in the Unitex system directory,\index{Directory!Unitex system}
+and within that directory, in the
 \verb+(current language)/Dela+ sub-directory. \index{File!\verb+.bin+} Here is an
 example of this file:
 
@@ -1917,24 +1918,26 @@ The \verb+user_dic.def+ file is a text file that describes the list of
 dictionaries the user has defined to be applied by default. This file is in the
 directory of the current language and has the same format as the
 \verb+system_dic.def+ file. 
-The dictionaries need to be in the \verb+(current language)/Dela+ sub-directory of the personal directory of the user.
+The dictionaries need to be in the \verb+(current language)/Dela+ sub-directory of the
+user's working directory.\index{Directory!personal working}
 
 \subsection{The (user login).cfg and .unitex.cfg files}
 \index{File!\verb+.cfg+}
-Under Linux and Mac OS, your personal directory is expected to be called
+Under Linux and Mac OS, your working directory is expected to be called
 \verb+unitex+ and to be in your root directory (\verb+$HOME+). If you want
 to change this default location, a \verb+.unitex.cfg+ file is created in your home directory, and
-it contains the path to your private Unitex directory. This file is a UTF8 one. If \verb+.unitex.cfg+
+it contains the path to your working directory. This file is a UTF8 one. If \verb+.unitex.cfg+
 does not contain a valid Linux path to an existing directory, it is ignored.\,\footnote{This allows you
 to launch Unitex sometimes under Linux, sometimes under Windows, on shared files: the Windows path to your
-personal Unitex directory is contained in \texttt{.unitex.cfg}, and Unitex ignores it when launched
+working directory is contained in \texttt{.unitex.cfg}, and Unitex ignores it when launched
 under Linux.}
 
 \bigskip
 \noindent Under Windows, it is not always possible to associate a directory to a user by
 default. To compensate for that, Unitex creates for each user a \verb+.cfg+ file
-that contains the path to his/her personal directory. This file is saved under the
-name \verb+(user login).cfg+ in the \verb+Users+ sub-directory of the Unitex system directory.
+that contains the path to his/her working directory.\index{Directory!personal working}
+This file is saved under the name \verb+(user login).cfg+ in the \verb+Users+ sub-directory
+of the Unitex system directory.\index{Directory!Unitex system}
 If the user does not have permission to write into this directory, Unitex saves a file named \verb+.unitex.cfg+
  in the Windows user profile directory:
 \begin{itemize}
@@ -1946,7 +1949,7 @@ If the user does not have permission to write into this directory, Unitex saves 
 \noindent WARNING:  THIS FILE IS NOT IN UNICODE
 
 \bigskip
-\noindent WARNING (2): THE PATH OF THE PERSONAL
+\noindent WARNING (2): THE PATH OF THE PERSONAL WORKING
 DIRECTORY IS NOT FOLLOWED BY A NEWLINE.
 
 \section{Cassys files}
@@ -1995,9 +1998,9 @@ This file is in the text directory and contains a line with the following form:
 \bigskip
 \noindent The numbers indicated are interpreted in the following way:
 \begin{itemize}
-  \item \verb+sentence delimiters+: number of sentence separators
+  \item \verb+sentence delimiters+: number of sentence delimiters
   (\verb+{S}+);\index{\verb+{S}+}
-  \index{Sentence separator}
+  \index{Sentence delimiter}
 
   \item \verb+tokens+: total number of lexical units in the text. The number
   preceeding \verb+diff+ indicates the number of different units;

@@ -15,17 +15,20 @@ search more effectively in the texts by using  grammars.
 \index{Selecting a language}\index{Language selection}
 When starting Unitex, the program asks you to choose the language in which you
 want to work (see figure~\ref{fig-language-selection}). The languages
-displayed are the ones that are present in the \verb+Unitex+ system directory and those that
-are  installed in your personal working directory. If you use a language for the
-first time, Unitex copies the system directory for this language to your personal
+displayed are the ones that are present in the
+Unitex system directory\index{Directory!Unitex system}
+and those that are  installed in your
+personal working directory.\index{Directory!personal working}
+If you use a language for the
+first time, Unitex copies the system directory for this language to your working
 directory, except for the dictionaries in order to save disk space.
 
 \bigskip
 \noindent WARNING: If
-you already have a personal directory for a given language, Unitex won't try to
+you already have a working directory for a given language, Unitex won't try to
 copy system data into it. So, if an update has modified a resource file other
 than a dictionary, you will have to copy by yourself this file, or to delete your
-personal directory for this language, and let Unitex rebuild it properly.
+working directory for this language, and let Unitex rebuild it properly.
 
 \bigskip
 \noindent 
@@ -351,7 +354,7 @@ For more information about sentence boundary detection, see
 \index{File!\verb+Sentence.fst2+}
 
 \bigskip
-\verb+/(user home directory)/(language)/Graphs/Preprocessing/Sentence+
+\verb+/(working directory)/(language)/Graphs/Preprocessing/Sentence+
 
 \bigskip
 \noindent This grammar is applied to a text with the \verb+Fst2Txt+ program
@@ -408,7 +411,7 @@ For example, if one replaces "'re" by "are", the sentence:
 allowed for the sentence splitting grammar. The normalization grammar is called
 \verb+Replace.fst2+ and can be found in the following directory:
 
-\bigskip \verb+/(home directory)/(active language)/Graphs/Preprocessing/Replace+
+\bigskip \verb+/(working directory)/(language)/Graphs/Preprocessing/Replace+
 
 \bigskip
 \noindent As in the case of sentence splitting, this grammar is applied using the

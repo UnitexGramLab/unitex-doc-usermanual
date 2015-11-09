@@ -136,7 +136,7 @@ répertoire  de la langue concernée. Sa présence est obligatoire pour qu’Uni
 
 
 \bigskip
-\noindent Exemple : le fichier d’alphabet de l’anglais doit se trouver dans le répertoire 
+\noindent Exemple~: le fichier d’alphabet de l’anglais doit se trouver dans le répertoire 
 \verb+.../English/+
 
 \bigskip
@@ -1861,9 +1861,11 @@ dans une fenêtre d’Unitex.
 \index{Fichier!\verb+system_dic.def+}
 Le fichier \verb+system_dic.def+ est un fichier texte décrivant la liste des dictionnaires du
 système à appliquer par défaut. Ce fichier se trouve dans le répertoire de la langue courante.
-Chaque ligne correspond à un nom de fichier \verb+.bin+ file.                                                         Les dictionnaires du système doivent se trouver dans le répertoire du système, à l’intérieur du
-sous-répertoire \verb+(langue courante)/Dela+.\index{Fichier!\verb+.bin+}
-Voici un exemple de fichier :
+Chaque ligne correspond à un nom de fichier \verb+.bin+ file.
+Les dictionnaires du système doivent se trouver dans le
+répertoire système Unitex,\index{Répertoire!système Unitex}
+à l’intérieur du sous-répertoire \verb+(langue courante)/Dela+.\index{Fichier!\verb+.bin+}
+Voici un exemple de fichier~:
 
 
 \bigskip
@@ -1876,26 +1878,28 @@ Voici un exemple de fichier :
 Le fichier \verb+user_dic.def+ est un fichier texte décrivant la liste des dictionnaires de
 l’utilisateur à appliquer par défaut. Ce fichier se trouve dans le répertoire de la langue courante
 et a le même format que le fichier \verb+system_dic.def+. 
-Les dictionnaires de l’utilisateur doivent se trouver dans le sous-répertoire \verb+(langue courante)/Dela+ du répertoire personnel de l’utilisateur.
+Les dictionnaires de l’utilisateur doivent se trouver dans le sous-répertoire \verb+(langue courante)/Dela+
+du répertoire personnel de travail.\index{Répertoire!personnel de travail}
 
 
 \subsection{Fichiers (nom d’utilisateur).cfg et .unitex.cfg}
 \index{Fichier!\verb+.cfg+}
-Sous Linux et Mac OS, Unitex considère que le répertoire personnel de l’utilisateur se nomme \verb+unitex+ et
-qu’il se trouve dans son répertoire racine (\verb+$HOME+). Si vous voulez changer cet emplacement
-par défaut, un fichier \verb+.unitex.cfg+ est créé dans votre répertoire personnel, et il contient
-le chemin vers votre répertoire Unitex privé. Ce fichier est un fichier UTF8. Si \verb+.unitex.cfg+
+Sous Linux et Mac OS, Unitex considère que le répertoire personnel de travail se nomme \verb+unitex+ et
+qu’il se trouve dans le répertoire racine de l'utilisateur (\verb+$HOME+). Si vous voulez changer cet emplacement
+par défaut, un fichier \verb+.unitex.cfg+ est créé dans votre répertoire racine, et il contient
+le chemin vers votre répertoire de travail Unitex. Ce fichier est un fichier UTF8. Si \verb+.unitex.cfg+
 ne contient pas un chemin Linux valide vers un répertoire existant, il est ignoré\,\footnote{Cela
 permet de lancer Unitex tantôt sous Linux, tantôt sous Windows, sur des fichiers partagés~: le chemin Windows vers le
-répertoire Unitex personnel est indiqué dans \texttt{.unitex.cfg}, et Unitex l’ignore quand on le lance
+répertoire personnel de travail Unitex est indiqué dans \texttt{.unitex.cfg}, et Unitex l’ignore quand on le lance
 sous Linux.}.
 
 
 \bigskip
 Sous Windows, il n’est pas toujours possible d’associer un répertoire par défaut à un
 utilisateur. Pour remédier à cela, Unitex crée pour chaque utilisateur un fichier \verb+.cfg+
-contenant le chemin de son répertoire Unitex personnel. Ce fichier est sauvegardé sous le nom
-\verb+(nom d’utilisateur).cfg+ dans le sous-répertoire \verb+Users+ du répertoire Unitex système. Si l’utilisateur
+contenant le chemin de son répertoire de travail. Ce fichier est sauvegardé sous le nom
+\verb+(nom d’utilisateur).cfg+ dans le sous-répertoire \verb+Users+ du
+répertoire système Unitex.\index{Répertoire!système Unitex} Si l’utilisateur
 n’a pas les droits pour écrire dans ce répertoire, un fichier \verb+.unitex.cfg+ est sauvegardé
 dans le répertoire du profil utilisateur~:
 \begin{itemize}
@@ -1904,8 +1908,9 @@ dans le répertoire du profil utilisateur~:
 \end{itemize}
 
 \bigskip
-\noindent ATTENTION : CE FICHIER N’EST PAS EN UNICODE ET LE CHEMIN DU RÉPERTOIRE PERSONNEL N’EST PAS
-SUIVI PAR UN RETOUR À LA LIGNE.
+\noindent ATTENTION~: CE FICHIER N’EST PAS EN UNICODE ET LE CHEMIN DU
+RÉPERTOIRE PERSONNEL DE TRAVAIL\index{Répertoire!personnel de travail}
+N’EST PAS SUIVI PAR UN RETOUR À LA LIGNE.
 
 
 \section{Fichiers CasSys}

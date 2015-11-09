@@ -16,17 +16,18 @@ alors effectuer des recherches sur ces textes en leur appliquant des grammaires.
 \index{Sélection de la langue}
 \noindent Lors du lancement d’Unitex, le programme vous demande de choisir la langue dans laquelle
 vous allez travailler (voir figure~\ref{fig-language-selection}). Les langues proposées sont celles
-qui sont présentes dans le répertoire système \verb+Unitex+ ainsi que celles éventuellement
-installées dans votre répertoire personnel. Si vous utilisez une langue pour la première fois,
-Unitex recopie le répertoire système de cette langue dans votre répertoire personnel, à l’exception
+qui sont présentes dans le répertoire système Unitex\index{Répertoire!système Unitex}
+ainsi que celles éventuellement installées dans votre
+répertoire de travail.\index{Répertoire!personnel de travail} Si vous utilisez une langue pour la première fois,
+Unitex recopie le répertoire système de cette langue dans votre répertoire de travail, à l’exception
 des  dictionnaires, afin d’économiser de l’espace disque.
 
 
 \bigskip
-\noindent Attention, si vous avez déjà un répertoire utilisateur pour une langue donnée, Unitex
+\noindent Attention, si vous avez déjà un répertoire de travail pour une langue donnée, Unitex
 n’essaiera pas de recopier les données système dedans. Ainsi, si une mise à jour a modifié un
 fichier de ressource autre qu’un dictionnaire, il vous faudra soit faire une mise à jour manuelle
-du fichier dans votre répertoire utilisateur, soit supprimer votre répertoire pour la langue
+du fichier dans votre répertoire de travail, soit supprimer votre répertoire pour la langue
 concernée et laisser à Unitex le soin de le recréer.
 
 
@@ -242,7 +243,7 @@ la normalisation d’un fichier appelé \verb+mon_texte.txt+ est un fichier situ
 répertoire que le \verb+.txt+ et dont le nom est \verb+mon_texte.snt+. \index{Fichier!\verb+.snt+}
 
 \bigskip
-\noindent NOTE: lorsque l’on prétraite un texte depuis l’interface graphique, un répertoire nommé
+\noindent NOTE~: lorsque l’on prétraite un texte depuis l’interface graphique, un répertoire nommé
 
 % do not remove this line jump 
 \noindent \verb+mon_texte.snt+ est créé immédiatement après la normalisation. Ce répertoire, appelé
@@ -331,7 +332,7 @@ et majuscules sont définies par un fichier alphabet\index{Fichier!alphabet}\ind
 (voir chapitre~\ref{chap-file-formats}). Pour plus de détails sur les graphes,
 voir le chapitre~\ref{chap-grammars}. Pour plus de détails sur le découpage d’un texte en phrases,
 voir \cite{ameliorer-decoupage-en-phrases}. La grammaire utilisée se nomme \verb+Sentence.fst2+ et
-se trouve dans le répertoire suivant:\index{Fichier!\verb+Sentence.fst2+}
+se trouve dans le répertoire suivant~:\index{Fichier!\verb+Sentence.fst2+}
 
 \bigskip
 \verb+/(répertoire personnel)/(langue)/Graphs/Preprocessing/Sentence+
@@ -389,7 +390,7 @@ En effet, si l’on remplace "\textit{c’}" par "\textit{ce}" non suivi par un 
 \bigskip
 \noindent Les symboles acceptés par les grammaires de normalisation sont les mêmes que ceux
 autorisés dans les grammaires de découpage en phrases. La grammaire utilisée se nomme
-\verb+Replace.fst2+ et se trouve dans le répertoire suivant :
+\verb+Replace.fst2+ et se trouve dans le répertoire suivant~:
 
 \bigskip \verb+/(répertoire personnel)/(langue)/Graphs/Preprocessing/Replace+
 
@@ -450,7 +451,7 @@ recherche de motifs.
 \noindent Quel que soit le mode de découpage, les retours à la ligne présents
 dans un texte sont remplacés par des espaces. Ce découpage est effectué par le programme
 \verb+Tokenize+\index{\verb+Tokenize+} \index{Programmes externes!\verb+Tokenize+}.
-Ce programme produit plusieurs fichiers, stockés dans le répertoire du texte :
+Ce programme produit plusieurs fichiers, stockés dans le répertoire du texte~:
 \begin{itemize}
   \item \verb+tokens.txt+ contient la liste des unités lexicales dans l’ordre où elles ont été
   	  trouvées dans le texte;\index{Fichier!\verb+tokens.txt+}

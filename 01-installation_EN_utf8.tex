@@ -65,14 +65,19 @@ user on your machine, you can perform the installation  yourself.
 \noindent Decompress the file \index{File!\verb+Unitex3.1beta.zip+} \verb+Unitex3.1beta.zip+
 (or \verb+Unitex3.0.zip+) --- you
 can download these files from the following address:
-\url{http://igm.univ-mlv.fr/~unitex} --- into a directory (folder) \verb+Unitex3.1beta+ that
-should preferably be created in the \verb+Program Files+ folder. In fact, if you
-run Unitex under Windows 7, you may experience troubles with your Unitex configuration
+\url{http://igm.univ-mlv.fr/~unitex} --- into a directory (folder) \verb+Unitex3.1beta+, which
+should preferably be created in the \verb+Program Files+ folder,
+and which will be called the Unitex system directory\index{Directory!Unitex system}\index{Folder!see {Directory}}
+in this manual.
+
+\bigskip
+\noindent If you run Unitex under Windows 7, you may experience troubles with your Unitex configuration
 file, because Unitex tries to write it in the \verb+Users+ subdirectory, and Windows 7
 forbids it.
 
 \bigskip
-\noindent After decompressing the file, the \verb+Unitex3.1beta+ directory contains several
+\noindent After decompressing the file, the \verb+Unitex3.1beta+ directory
+(the Unitex system directory) contains several
 subdirectories,  one  of which is called \verb+App+. This directory contains a
 file called \verb+Unitex.jar+. \index{File!\verb+Unitex.jar+} This file is the
 Java executable that launches the graphical interface. You can double click on
@@ -91,7 +96,8 @@ directory named \verb+Unitex+, by using the following command:
 \bigskip \noindent \verb$unzip Unitex3.1beta.zip -d Unitex$
 
 \bigskip
-\noindent Within the directory \verb|Unitex/Src/C++/build|, start the compilation
+\noindent This directory will be called the Unitex system directory in this manual.\index{Directory!Unitex system}
+Within the directory \verb|Unitex/Src/C++/build|, start the compilation
 of Unitex with the command:
 
 \bigskip \verb+make install+
@@ -207,7 +213,7 @@ alias:
 
 
 \section{First use}
-If you are working on Windows, the program will ask you to choose a
+If you work on Windows, the program will ask you to choose a
 \index{Directory!personal working} personal working  directory, which you can
 change later in "Info>Preferences...>Directories". To create a directory, click
 on the icon showing a file (see
@@ -215,11 +221,15 @@ figure~\ref{fig-creation-personal-directory}).
 
 \bigskip
 \noindent If you are using Linux or MacOS, the program will automatically create a
-\verb+/unitex+ directory in your \verb+$HOME+ directory. This directory allows
-you to save your personal data. For each language that you will be using, the
-program will copy the root directory of that language to your personal
+personal working directory called \verb+/unitex+ in your \verb+$HOME+ directory.
+
+\bigskip
+\noindent The personal working directory, or user's directory, allows
+you to save your personal Unitex data. For each language that you will be using, the
+program will copy the root directory of that language to your working
 directory, except the dictionaries. You can then modify your copy of the
-files without risking to damage the system files.
+files without risking to damage the system files stored in the
+Unitex system directory.\index{Directory!Unitex system}
 
 \begin{figure}[h]
 \begin{center}
@@ -238,7 +248,7 @@ files without risking to damage the system files.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig1-3.png}
-\caption{Creating the personal work
+\caption{Creating the personal working
 directory\label{fig-creation-personal-directory}}
 \end{center}
 \end{figure}
@@ -251,16 +261,17 @@ directory\label{fig-creation-personal-directory}}
 \bigskip
 \noindent There are two different ways to add languages. If you want to add 
 a language that is to be accessible by all  users, you have to copy the 
-corresponding directory to the \verb+Unitex+ system directory, for which 
+corresponding directory to the Unitex system directory,\index{Directory!Unitex system} for which 
 you will need to have the access rights  (this might mean that you need to 
-ask your system administrator to do it). On the other hand, if the language 
-is only used by a single user, he can also copy the directory to his working 
-directory. He can work with this language without this language being shown to other users.
+ask your system administrator to do it). On the other hand, if you are the only user working
+with the language, you can also copy the directory to your working 
+directory.\index{Directory!personal working}
+You can work with this language without it being shown to other users.
 
 
 \section{Uninstalling Unitex}
 No matter which operating system you are working with, it is sufficient to delete 
-the \verb+Unitex+ directory to completely delete all the program files. Under
+the Unitex system directory to completely delete all the program files. Under
 Windows you may have to delete the shortcut to \verb+Unitex.jar+ \index{File!\verb+Unitex.jar+} 
 if you have created one on your desktop. The same has to be done on Linux, if you have 
 created an alias.
