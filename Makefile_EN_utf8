@@ -1,6 +1,6 @@
 all: UnitexManual
 
-UnitexManual: UnitexManual_EN_utf8.tex 00-introduction_EN_utf8.tex 01-installation_EN_utf8.tex\
+UnitexManual: Version.tex UnitexManual_EN_utf8.tex 00-introduction_EN_utf8.tex 01-installation_EN_utf8.tex\
                   02-loading_texts_EN_utf8.tex 03-dictionaries_EN_utf8.tex 04-pattern_matching_EN_utf8.tex\
                   05-grammars_EN_utf8.tex 06-advanced-use_EN_utf8.tex 07-text_automaton_EN_utf8.tex\
                   08-sequence-automaton_EN_utf8.tex 09-lexicon-grammar_EN_utf8.tex\

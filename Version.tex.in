@@ -1,0 +1,22 @@
+%----------------------------------------------------------------------------- %
+% THIS FILE MAY BE OVERWRITTEN BY THE BUILDING SERVICE USING VERSION.TEX.IN
+%----------------------------------------------------------------------------- %
+\newcommand{\UnitexAppName}{@UNITEX_PRETTYAPPNAME@}
+\newcommand{\UnitexRelease}{@UNITEX_BUILD_RELEASE@}
+\newcommand{\UnitexFullRelease}{@UNITEX_BUILD_FULL_RELEASE@}
+%----------------------------------------------------------------------------- %
+\newcommand{\UnitexVersion}{@UNITEX_VERSION@}
+\newcommand{\UnitexVersionMajor}{@UNITEX_VERSION_MAJOR_NUMBER@}
+\newcommand{\UnitexVersionMinor}{@UNITEX_VERSION_MINOR_NUMBER@}
+\newcommand{\UnitexVersionRevision}{@UNITEX_VERSION_REVISION_NUMBER@}
+\newcommand{\UnitexVersionSuffix}{@UNITEX_VERSION_SUFFIX@}
+\newcommand{\UnitexSemVer}{@UNITEX_SEMVER_STRING@}
+%----------------------------------------------------------------------------- %
+\newcommand{\UnitexPackageName}{@UNITEX_PACKAGE_NAME@}
+\newcommand{\UnitexPackageWin}{@UNITEX_PACKAGE_WIN32_PREFIX@}
+\newcommand{\UnitexPackageWinSF}{@UNITEX_PACKAGE_WIN64_PREFIX@}
+\newcommand{\UnitexPackageLinux}{@UNITEX_PACKAGE_LINUX_I686_PREFIX@}
+\newcommand{\UnitexPackageLinuxSF}{@UNITEX_PACKAGE_LINUX_X86_64_PREFIX@}
+\newcommand{\UnitexPackageOSX}{@UNITEX_PACKAGE_OSX_PREFIX@}
+\newcommand{\UnitexPackageSource}{@UNITEX_PACKAGE_SRCDIST_PREFIX@}
+%----------------------------------------------------------------------------- %

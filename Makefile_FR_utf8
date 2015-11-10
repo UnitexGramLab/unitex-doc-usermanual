@@ -1,6 +1,6 @@
 all: UnitexManual
 
-UnitexManual: UnitexManual_FR_utf8.tex 00-introduction_FR_utf8.tex 01-installation_FR_utf8.tex\
+UnitexManual: Version.tex UnitexManual_FR_utf8.tex 00-introduction_FR_utf8.tex 01-installation_FR_utf8.tex\
                   02-loading_texts_FR_utf8.tex 03-dictionaries_FR_utf8.tex 04-pattern_matching_FR_utf8.tex\
                   05-grammars_FR_utf8.tex 06-advanced-use_FR_utf8.tex 07-text_automaton_FR_utf8.tex\
                   08-sequence-automaton_FR_utf8.tex 09-lexicon-grammar_FR_utf8.tex\
