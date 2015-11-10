@@ -126,10 +126,10 @@ recognition of proper names.
 \index{Normalization!of the text automaton}\index{Normalization!of ambiguous
 forms}
 \index{Text!normalization of the automaton}
-During construction of the automaton, it is possible to effect a normalization of
+During the construction of the automaton, it is possible to normalize
 ambiguous forms by applying a normalization grammar. This grammar has to be
-called \verb+Norm.fst2+ and must be placed in your personal folder, in the
-subfolder \verb+/Graphs/Normalization+ of the desired language. The normalization
+called \verb+Norm.fst2+ and must be placed in your working directory, in the
+subdirectory \verb+/Graphs/Normalization+ of the language. Normalization
 grammars for ambiguous forms are described in
 section~\ref{section-normalizing-text-automataon}.
 
@@ -364,7 +364,7 @@ figure~\ref{fig-synchronization-point}\label{fig-est-il}}
 \end{figure}
 
 \subsection{Compiling ELAG Grammars}
-\index{Compiling!ELAG grammars}
+\index{Compilation!of an ELAG grammar}
 Before an ELAG grammar can be applied to a text automaton, the grammar must be
 compiled in a  \verb+.rul+ file. \index{File!\verb+.rul+} This operation is
 carried out via the "Elag Rules" command in the "Text" menu, which opens the
@@ -491,9 +491,9 @@ sentence. That makes it possible to locate the source of the problems quickly.
 
 
 \subsubsection{Evaluation of ambiguity removal}
-\index{Evaluation of the ambiguity rate}
+\index{Assessment of ambiguity rate}
 \index{Ambiguity rate}
-The evaluation of the ambiguity rate is not based solely on the average number
+The assessment of the ambiguity rate is not based solely on the average number
 of interpretations per word. In order to get a more representative measure, the
 system also takes into account the various combinations of words. While instances
 of ambiguities are resolved, the \verb+Elag+ program calculates the number of
@@ -526,13 +526,13 @@ description of the tag set to be used in dictionaries. This description
 consists essentially of an enumeration of all the parts of speech present in the
 dictionaries, with, for each of them, the list of syntactic and inflectional
 codes compatible with it, and a description of their possible combinations. 
-This description must be contained in a file called \verb$tagset.def$
-and placed in your personal folder, in the \verb+Elag+ subfolder of
-the desired language.
+This description must be contained in a file called \verb+tagset.def+
+and placed in your working directory, in the \verb+Elag+ subdirectory of
+the language.
 
 
 \subsubsection{\texttt{tagset.def} file}
-\index{File!\verb$tagset.def$}
+\index{File!\verb+tagset.def+}
 Here is an extract of the \verb$tagset.def$ file used for French.
 
 \begin{verbatim}
@@ -706,7 +706,7 @@ PpvPr
 \bigskip
 \noindent All combinations of inflectional features and discriminant subcategories which
 appear in the dictionaries must be described in the \verb$tagset.def$
-file\index{File!\verb$tagset.def$}; otherwise, the information in the
+file\index{File!\verb+tagset.def+}; otherwise, the information in the
 corresponding entries will be discarded by ELAG.
 
 \bigskip
@@ -769,7 +769,7 @@ the nound to which it refers to, as is the case for \textit{bel}.}.
 
 \bigskip
 \noindent All codes which are not declared in the
-\verb$tagset.def$\index{File!\verb$tagset.def$} file are discarded by ELAG. If a
+\verb$tagset.def$\index{File!\verb+tagset.def+} file are discarded by ELAG. If a
 dictionary entry contains such a code, ELAG will produce a warning and will
 withdraw the code from the entry.
 
@@ -812,7 +812,7 @@ normally present in the Unitex distribution and precompiled in the file
 \bigskip
 \noindent The result of applying such a grammar is that the
 original is cleaned of all the codes which either are not described in the \verb$tagset.def$
-file\index{File!\verb$tagset.def$}, or do not conform to this description
+file\index{File!\verb+tagset.def+}, or do not conform to this description
 (because of unknown grammatical categories or invalid combinations of
 inflectional features). By then replacing the text automaton by this normalized
 automaton, one can be sure that later modifications of the automaton will only be
@@ -858,16 +858,16 @@ agreement\label{fig-NA-good}}
 \end{figure}
 
 
-\subsubsection{Using lexical symbols}
-\index{Lexical!symbols}
+\subsubsection{Using lexical masks}
+\index{Lexical!mask}
 
 It is better to use lemmas only when it is necessary. That is particularly true
-for some grammatical words, when their subcategories carry almost as much of
+for some grammatical words, when their subcategories carry almost as much
 information as the lemmas themselves. In any case, it is recommended to specify
 its syntactic, semantic and inflectional features as much as possible. For
 example, with the dictionaries provided for French, it is preferable to replace
-symbols like \verb$<je.PRO:1s>$, \verb$<je.PRO+PpvIL:1s>$ and \verb$<je.PRO>$
-with the symbol \verb$<PRO+PpvI1:1s>$. Indeed, all these symbols are identical
+lexical masks like \verb$<je.PRO:1s>$, \verb$<je.PRO+PpvIL:1s>$ and \verb$<je.PRO>$
+with the mask \verb$<PRO+PpvI1:1s>$. Indeed, all these masks are identical
 insofar as they can recognize only the single entry of the dictionary
 \verb${je,PRO+PpvIL:1ms:1fs}$. However, as the program does not deduce this
 information automatically, if all these features are not specified, the program

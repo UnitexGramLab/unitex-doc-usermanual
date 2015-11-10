@@ -47,7 +47,7 @@ In order to manage the list of transducers, the menu FSGraph proposes two submen
  \label{fig13-08}
 \end{figure}
 
-In the language folder, there is a folder named CasSys where the cascade configuration files are stored. Those files are text files with the extension \textit{.csc} (ex: mycascade.csc).
+In the language directory, there is a directory named CasSys where the cascade configuration files are stored. Those files are text files with the extension \textit{.csc} (ex: mycascade.csc).
 
 %%%%%%%%%%%%
 \subsection{Editing the list of transducers}
@@ -87,7 +87,7 @@ The Cassys configuration window (Figure \ref{fig13-03}) is divided into three pa
 			\item  \textit{"Delete"} permits to remove a selected transducer from the list of transducers. 
 			\item		\textit{"Add"} adds a transducer (previously selected in the explorer) onto the list. It replaces the drag and drop actions described above. 
 			\item \textit{"View"} opens the selected graph either in the file explorer or in the list of transducers of the window. It is very useful to get a quick access to any transducer either to take a quick look at its content or to modify it.
-			\item \textit{"Save"} and \textit{"Save as"} permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys folder of the current language (e.g. English/Cassys).
+			\item \textit{"Save"} and \textit{"Save as"} permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys directory of the current language (e.g. English/Cassys).
 			\item \textit{"Compile"} recompile all the graphs of the cascade. Very useful to avoid to recompile a graph after changes.
 			\item \textit{"Disable all"} to disable all the graphs of the cascade. 
 			\item \textit{"Enable all"} to enable all the graphs of the cascade. 
@@ -118,7 +118,7 @@ This submenu "\textit{Apply CasSys cascade...}" is active only if a text has pre
 \end{figure}
 
 
-The CasSys window (Figure \ref{fig13-02}) displays the content of the CasSys folder of the current language. It allows you to choose 
+The CasSys window (Figure \ref{fig13-02}) displays the content of the CasSys directory of the current language. It allows you to choose 
 the cascade file to be applied on the text. When this list is chosen, you can click on the "Launch" button to apply the cascade.
 
 \begin{figure}[!htb]
@@ -388,8 +388,8 @@ The figure \ref{fig13-04} presents a sample of concordance resulting of a cascad
 Cassys keeps all the text created by each graph of the cascade. This can be useful to test, debug or check the different results of the cascade. It is possible to correct the errors on the order of the graphs or to find the errors in the writing of the graphs. A good idea is to write the name of the graph recognizing a pattern in the output of this graph: thanks to that, you can see in the final results the name of the graph by which a pattern is recognized. 
 \bigskip
 
-If you apply a cascade on the text named \texttt{example.txt}, two folders are created: \texttt{example\_snt} and \texttt{example\_csc}.
-The files produced in \texttt{example\_csc} are the results obtained by each graphs. These files are named according to the number of the graph which produced them. For example, if the third graph of a cascade finds at least a pattern, the results of this graph will be stored in the folder  \texttt{example\_3\_0\_snt} and the file named \texttt{example\_3\_0.snt} will contain the modified text.
+If you apply a cascade on the text named \texttt{example.txt}, two directories are created: \texttt{example\_snt} and \texttt{example\_csc}.
+The files produced in \texttt{example\_csc} are the results obtained by each graphs. These files are named according to the number of the graph which produced them. For example, if the third graph of a cascade finds at least a pattern, the results of this graph will be stored in the directory  \texttt{example\_3\_0\_snt} and the file named \texttt{example\_3\_0.snt} will contain the modified text.
 
 %%%%%%%%%%%
 \subsection{An xml-like output text for lexical tags}

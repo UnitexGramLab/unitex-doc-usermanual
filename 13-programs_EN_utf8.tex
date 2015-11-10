@@ -4,7 +4,7 @@
 \chapter{Use of external programs}
 \label{chap-external-programs}
 This chapter presents the use of the different programs of which Unitex is
-composed. These programs, which can be found in the \verb+Unitex/App+ folder, are
+composed. These programs, which can be found in the \verb+Unitex/App+ directory, are
 automatically called by the interface (in fact, \verb+UnitexToolLogger+ is
 actually called, in order to reduce significantly the size of the downloadable
 zip file). It is possible to see the commands that have been executed by
@@ -224,10 +224,10 @@ and lower and does not detect them.
 
 
 \section{Compress}\index{External programs!\verb+Compress+}\index{\verb+Compress+}
-\index{Compressing dictionaries}
+\index{Compression of a dictionary}
 \label{section-compress}
 \verb+Compress [OPTIONS] dictionary+
-\index{Dictionaries!DELAF}\index{Dictionaries!compressing}
+\index{Dictionaries!DELAF}\index{Dictionaries!compression}
 \index{File!\verb+.dic+}\index{File!\verb+.bin+}\index{File!\verb+.inf+}
 
 \bigskip
@@ -564,7 +564,7 @@ see below):
 
 
 \section{Dico}\index{External programs!\verb+Dico+}\index{\verb+Dico+}
-\index{Dictionaries!application of}
+\index{Dictionaries!applying}
 \verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
 
 \bigskip
@@ -1026,7 +1026,7 @@ preprocessing stage, when the text has not been cut into lexical units yet.
 
 
 \section{Grf2Fst2}\index{External programs!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
-\index{Graph!compilation}\index{Compilation of graphs}
+\index{Graph!compilation}\index{Compilation!of a graph}
 \verb+Grf2Fst2 [OPTIONS] <grf>+
 
 \bigskip
@@ -1070,7 +1070,7 @@ extension \verb+.grf+.
 \bigskip
 \noindent The result is a file with the same name as the graph passed to the
 program as a parameter, but with extension \verb+.fst2+. This file is saved in
-the same folder as \verb+<grf>+.
+the same directory as \verb+<grf>+.
 
 
 \section{GrfDiff}
@@ -1521,7 +1521,7 @@ programs!\verb+RebuildTfst+}\index{\verb+RebuildTfst+}
 \verb+RebuildTfst <tfst>+
 
 \bigskip
-\noindent \index{Text!automaton}\index{Reconstruction of the text automaton}This 
+\noindent \index{Text!automaton of the}\index{Reconstruction of the text automaton}This 
 program reconstructs text automaton \verb+<tfst>+ taking into account the
 manual modifications. If the program finds a file \verb+sentenceN.grf+ in the
 same directory as \verb+<tfst>+, it replaces the automaton of sentence
@@ -1534,8 +1534,8 @@ automaton is modified.
 
 
 \section{Reconstrucao}\index{External programs!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
-\index{Compression of dictionaries}\index{Dictionaries!compression}
-\index{Clitics!normalization}\index{Normalization!clitics in Portuguese}
+\index{Compression of a dictionary}\index{Dictionaries!compression}
+\index{Clitics!normalization}\index{Normalization!of clitics in Portuguese}
 \index{Portuguese!normalization of clitics}
 \verb+Reconstrucao [OPTIONS] <index>+
 
@@ -1811,7 +1811,7 @@ and \verb+{rouge,.A:ms}+.
 
 \section{Tfst2Grf}\index{External
 programs!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
-\index{Automaton!of the text}\index{Text!automaton}
+\index{Automaton!of the text}\index{Text!automaton of the}
 \verb+Tfst2Grf [OPTIONS] <tfst>+
 
 \bigskip
@@ -1859,7 +1859,7 @@ directory of the text:
 
 \section{Tfst2Unambig}\index{External
 programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
-\index{Text!automaton!conversion into linear text}
+\index{Text!automaton of the!conversion into linear text}
 \verb+Tfst2Unambig [OPTIONS] <tfst>+
 
 \bigskip
@@ -1881,11 +1881,10 @@ ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-
 
 \section{Tokenize}\index{External programs!\verb+Tokenize+}\index{\verb+Tokenize+}
 \label{section-Tokenize}
-\index{Text!tokenization}
+\index{Text!tokenization}\index{Tokenization}\index{Token}
 \verb+Tokenize [OPTIONS] <txt>+
 
-\index{Lexical units}
-\index{File!\verb+.snt+}\index{Alphabet}\index{File!alphabet} 
+\index{Lexical!unit}\index{File!\verb+.snt+}\index{Alphabet}\index{File!alphabet} 
 \bigskip
 \noindent This program tokenizes a tet text into lexical units.
 \verb+<txt>+ the complete path of the text file, without omitting the \verb+.snt+ 
@@ -1905,7 +1904,7 @@ extension.
   considers a unit to be either a sequence of letters (the letters are defined
   by file \verb+alphabet+), or a character which is not a letter, or the
   sentence separator \verb+{S}+\index{\verb+{S}+}, or a lexical label 
-  like \verb+{aujourd'hui,.ADV}+. \index{Sentence separator}
+  like \verb+{aujourd'hui,.ADV}+. \index{Sentence delimiter}
   \index{Lexical!labels} This is the default mode.
 
  \item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: specifies a \verb+tokens.txt+
@@ -1987,7 +1986,7 @@ In the second data file, tags are "morph" tags (i.e. grammatical, syntactic, sem
 \section{Txt2Tfst}\index{External
 programs!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
 
-\index{Automaton!of the text}\index{Text!automaton}\index{File!\verb+.snt+}
+\index{Automaton!of the text}\index{Text!automaton of the}\index{File!\verb+.snt+}
 \index{File!alphabet}\index{Alphabet}
 \bigskip
 \noindent This program constructs an automaton of a text. \verb+<txt>+
@@ -2004,8 +2003,7 @@ extension.
   should be applied\index{Conservation of better paths};
   
   \item \verb+-n XXX+/\verb+--normalization_grammar=XXX+: name of a normalization 
-  grammar that is to be applied to the text automaton; \index{Normalization!of
-  ambiguous forms}
+  grammar that is to be applied to the text automaton; \index{Normalization!of ambiguous forms}
   \index{Normalization!of the text automaton}
   \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: Elag tagset file to use to
   normalize dictionary entries;
@@ -2016,8 +2014,8 @@ extension.
 \bigskip
 \noindent If the text is separated into sentences, the program constructs an
 automaton for each sentence. If this is not the case, the program arbitrarily
-cuts the text into sequences of 2000 lexical units and produces an automaton for
-each of these sequences.\index{Lexical!units}
+cuts the text into sequences of 2000 tokens and produces an automaton for
+each of these sequences.\index{Lexical!unit}\index{Token}
 
 \index{File!\verb+text.tfst+}\index{File!\verb+text.tind+}
 \bigskip
@@ -2264,9 +2262,8 @@ Unitex\English\Corpus\ivanhoe.txt }
 \end{verbatim}
 
 
-\section{Unxmlize}\index{External
-\label{section-Unxmlize}
-programs!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Log Unitex programs}
+\section{Unxmlize}
+\index{External programs!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Log Unitex programs}
 \label{section-Unxmlize}
 
 This program removes all xml tags from the given .xml or .html file to produce a text file that 
