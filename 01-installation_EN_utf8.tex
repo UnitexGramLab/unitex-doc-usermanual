@@ -9,23 +9,36 @@ uninstall Unitex.
 \section{Licenses}
 \label{section-licences}
 \index{License!LGPL}
-Unitex is a free software. This means that the sources of the programs are
-distributed with the software, and that anyone can modify and redistribute them.
+Unitex is free software. This means that the source of the programs is
+distributed with the software, and that anyone can modify and redistribute it.
 The code of the Unitex programs is under the LGPL licence (\cite{LGPL}), except
-for the TRE library for dealing with regular expressions from Ville Laurikari
-(\cite{TRE}), which is under 2-clause BSD licence which is more
-permissive than the LGPL, and the LibYAML library, which is under MIT licence, which is 
-also more permissive than LGPL. The LGPL Licence is more permissive than the GPL
-licence, because it makes it possible to use LGPL code in nonfree software. 
-From the point of view of the user, there is no difference,
-because in both cases, the software can freely be used and distributed.
+for:
+
+\begin{enumerate}
+\item the TRE library for dealing with regular expressions by Ville Laurikari
+(\cite{TRE}), which is under a 2-clause BSD-style license;
+
+\item the wingetopt library, by Todd Miller and the NetBSD Foundation,
+ which is under BSD license, more permissive than the LGPL;
+
+\item the Xerces2 Java Parser, by the Apache Software Foundation, which is under Apache license;
+
+\item  the LibYAML library by Kirill Simonov, under MIT license, which is 
+also more permissive than LGPL;
+
+\item the SVNKit library by TMate Software, which is under TMate license.
+\end{enumerate}
+
+\noindent The LGPL license is more permissive than the GPL,
+because it makes it possible to use LGPL code in nonfree software. 
+In both cases, the software can be freely used and distributed.
 
 \bigskip
-\noindent All the data that go with Unitex are distributed under the LGPLLR
+\noindent All the language resources that go with Unitex are distributed under the LGPLLR
 license \index{License!LGPLLR} (\cite{LGPLLR}).
 
 \bigskip
-\noindent Full text versions of LGPL, 2-clause BSD and LGPLLR can be found in
+\noindent Full text versions of LGPL, 2-clause BSD, Apache, MIT, TMate and LGPLLR can be found in
 the appendices of this manual.
 
 \section{Java runtime environment}
@@ -65,7 +78,7 @@ user on your machine, you can perform the installation  yourself.
 \noindent Decompress the file \index{File!\verb+Unitex3.1beta.zip+} \verb+Unitex3.1beta.zip+
 (or \verb+Unitex3.0.zip+) --- you
 can download these files from
-\url{http://igm.univ-mlv.fr/~unitex} --- into a directory (folder) \verb+Unitex3.1beta+, which
+\url{http://igm.univ-mlv.fr/~unitex} --- into a directory (folder) called \verb+Unitex3.1beta+, which
 should preferably be created in the \verb+Program Files+ directory,
 and which will be called the Unitex system directory\index{Directory!Unitex system}\index{Folder|see{Directory}}
 in this manual.

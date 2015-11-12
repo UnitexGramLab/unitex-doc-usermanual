@@ -9,6 +9,8 @@
 \usepackage{palatino}
 \usepackage{epsfig}
 \usepackage{makeidx,color}
+%The following line translates the \see macro of makeidx into French. Not sure it should be here
+\newcommand{\voir}[2]{\emph{voir} #1}
 \usepackage{graphicx}
 \usepackage{float}
 
@@ -91,9 +93,14 @@
 \input{12-cassys_FR_utf8}
 \input{13-programs_FR_utf8}
 \input{14-formats_FR_utf8}
-
+%Appendix A
 \input{LGPL_FR_utf8}
+%Appendix B
 \input{2-clause_BSD_FR_utf8}
+\input{app_C_Apache_FR_utf8}
+\input{app_D_MIT_FR_utf8}
+\input{app_E_TMate_FR_utf8}
+%Appendix F
 \input{LGPLLR_FR_utf8}
 
 \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{Bibliographie}

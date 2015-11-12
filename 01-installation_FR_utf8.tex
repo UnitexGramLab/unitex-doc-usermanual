@@ -9,23 +9,35 @@ langues et de désinstallation.
 \section{Licences}
 \label{section-licences}
 \index{Licence!LGPL}\index{Licence!LGPL}
-Unitex est un logiciel libre. Cela signifie que les sources des programmes sont distribuées avec le
-logiciel, et que chacun peut les modifier et les redistribuer. Le code des programmes d’Unitex est
-sous licence LGPL (\cite{LGPL}), à l’exception de la bibliothèque de manipulation d’expressions
-régulières TRE de Ville Laurikari (\cite{TRE}), qui est sous licence "2 Clause BSD" (plus permissive que la licence LPGL), et
-de la bibliothèque LibYAML, qui est sous licence MIT, également plus permissive que la licence LGPL.
-La licence LGPL est plus permissive que la licence GPL, car elle permet d’utiliser du code LGPL dans
-des logiciels non libres. Du point de vue de l’utilisateur, il n’y a pas de différence, car dans
-les deux cas, le logiciel peut être librement utilisé et distribué.
+Unitex est un logiciel libre. Cela signifie que le code source des programmes est distribué avec le
+logiciel, et que chacun peut le modifier et le redistribuer. Le code des programmes d’Unitex est
+sous licence LGPL (\cite{LGPL}), à l’exception de~:
+
+\begin{enumerate}
+\item la bibliothèque de manipulation d’expressions régulières TRE de Ville Laurikari (\cite{TRE}),
+qui est sous une licence du genre des licences BSD à 2 clauses~;
+
+\item la bibliothèque wingetopt de Todd Miller et de la Fondation NetBSD, sous licence
+BSD license, plus permissive que la licence LPGL~;
+
+\item l'analyseur syntaxique Xerces2 Java Parser, de l'Apache Software Foundation, sous licence Apache~;
+
+\item  la bibliothèque LibYAML de Kirill Simonov, qui est sous licence MIT, également plus permissive que la licence LGPL~;
+
+\item la bibliothèque SVNKit de TMate Software, sous licence TMate.
+\end{enumerate}
+
+\noindent La licence LGPL est plus permissive que la licence GPL, car elle permet d’utiliser du code LGPL dans
+des logiciels non libres. Dans les deux cas, le logiciel peut librement être utilisé et distribué.
 
 
 \bigskip
-\noindent Toutes les données linguistiques distribuées avec Unitex sont soumises à la licence LGPLLR
+\noindent Toutes les resources linguistiques distribuées avec Unitex sont soumises à la licence LGPLLR
 \index{Licence!LGPLLR} (\cite{LGPLLR}).
 
 \bigskip
-\noindent Le texte complet des licences GPL, LGPL et LGPLLR se trouve dans les annexes à la fin de
-ce manuel.
+\noindent Le texte complet des licences LGPL, BSD à 2 clauses, Apache, MIT, TMate et LGPLLR
+se trouve dans les annexes à la fin de ce manuel.
 
 \section{Environnement d’exécution Java}
 Unitex est composé d’une interface graphique écrite en Java et de programmes externes
