@@ -667,21 +667,12 @@ inflectional codes to add to a dictionary entry.
 canonical form and adds the inflectional code \verb+:s+. The second deletes a letter with
 the \verb+L+ operator, then adds the \verb+ces+ suffix and adds the inflectional
 code \verb+:mp+. Here are the operators that can be used:
-\index{\verb+L+}\index{Operator!\verb+L+}\index{\verb+R+}\index{Operator!\verb+R+}
-\index{\verb+C+}\index{Operator!\verb+C+}\index{\verb+D+}\index{Operator!\verb+D+}
-\index{\verb+U+}\index{Operator!\verb+U+}
-\index{\verb+P+}\index{Operator!\verb+P+}
-\index{\verb+W+}\index{Operator!\verb+W+}
-\index{\verb+J+}\index{Operator!\verb+J+}
-\index{\verb+.+}\index{Operator!\verb+.+}
-\index{\verb+<R=?>+}\index{Operator!\verb+<R=?>+}
-\index{\verb+<I=?>+}\index{Operator!\verb+<I=?>+}
-\index{\verb+<X=n>+}\index{Operator!\verb+<X=n>+}
 
 \begin{itemize}
-  \item \verb+L+ (left) removes a letter from the entry
+  \item \verb+L+ (left) removes a letter from the entry.\index{\verb+L+}\index{Operator!\verb+L+}
   
-  \item \verb+R+ (right) restores a letter to the entry. In French, many verbs
+  \item \verb+R+ (right) restores a letter to the entry.\index{\verb+R+}\index{Operator!\verb+R+}
+  In French, many verbs
   of the first group are conjugated in the present singular  of the third person form  by removing the
   \verb+r+ of the infinitive and changing the 4$^{th}$ letter from the end to
   \texttt{\`e}: \verb+peler+ $\rightarrow$ \texttt{p\`ele},
@@ -691,45 +682,54 @@ code \verb+:mp+. Here are the operators that can be used:
   \texttt{LLLL\`ere}), the \verb+R+ operator can be used to
   describe it in one way: \texttt{LLLL\`eRR}.
   
-  \item \verb+C+ (copy) duplicates a letter in the entry and moves everything on
+  \item \verb+C+ (copy)\index{\verb+C+}\index{Operator!\verb+C+}
+  duplicates a letter in the entry and moves everything on
   its right by one position. In cases like \verb+permitted+ or \verb+hopped+, we
   see a duplication of the final consonant of the verb. To avoid writing an
   inflectional graph for every possible final consonant, one can use the \verb+C+
   operator to duplicate any final consonant.
   
-  \item \verb+D+ (delete) deletes a
+  \item \verb+D+ (delete)\index{\verb+D+}\index{Operator!\verb+D+} deletes a
   letter, shifting anything located on the right of this letter. For instance, if
   you want to inflect the Romanian word \verb+european+ into \verb+europeni+, you
   must use the sequence \verb+LDRi+. \verb+L+ will move the cursor on the
   \verb+a+, \verb+D+ will delete the \verb+a+, shifting the \verb+n+ on the left,
   and then \verb+Ri+ will restore the \verb+n+ and add an \verb+i+.
 
-  \item \verb+U+ (unaccent) removes the accent of the current character, if
+  \item \verb+U+ (unaccent)\index{\verb+U+}\index{Operator!\verb+U+}
+  removes the accent of the current character, if
   any. For instance the sequence \verb+LLUx+ applied to the word
   \texttt{mang\'es} produces the inflected form \verb+mangex+, since \verb+U+
   has turn the \texttt{\'e} into a \verb+e+.
 
-  \item \verb+P+ (uppercase) uppercases the initial letter of the stack. For
+  \item \verb+P+ (uppercase)\index{\verb+P+}\index{Operator!\verb+P+}
+  uppercases the initial letter of the stack. For
   instance, the sequence \verb$Px$ will turn \verb$foo$ into \verb$Foox$.
   
-  \item \verb+W+ (lowercase) lowercases the initial letter of the stack.
+  \item \verb+W+ (lowercase)\index{\verb+W+}\index{Operator!\verb+W+}
+  lowercases the initial letter of the stack.
 
-  \item \verb+<R=?>+ replaces the initial letter of the stack by the letter \verb+?+.
+  \item \verb+<R=?>+ \index{\verb+<R=?>+}\index{Operator!\verb+<R=?>+}
+  replaces the initial letter of the stack by the letter \verb+?+.
 
-  \item \verb+<I=?>+ inserts the letter \verb+?+ before the initial letter of the stack. 
+  \item \verb+<I=?>+ \index{\verb+<I=?>+}\index{Operator!\verb+<I=?>+}
+  inserts the letter \verb+?+ before the initial letter of the stack. 
 
-  \item \verb+<X=n>+ removes the first $n$ letters of the stack. 
+  \item \verb+<X=n>+ \index{\verb+<X=n>+}\index{Operator!\verb+<X=n>+}
+  removes the first $n$ letters of the stack. 
    
 \end{itemize}
 
 \noindent There are also two operators dedicated to Korean:
 \begin{itemize}\index{Jamo}\index{Hangul}
-    \item \verb+J+ removes a Jamo letter. If the current character is a Hangul
+    \item \verb+J+ removes a Jamo letter.\index{\verb+J+}\index{Operator!\verb+J+}
+    If the current character is a Hangul
     syllab character, this character is first replaced by the equivalent Jamo
     sequence, and then, the last Jamo letter is removed. If the current
     character is neither a Jamo nor a Hangul, and error is raised.
     
-    \item \verb+.+ (latin dot) inserts a syllab bound. As a side effect, if the
+    \item \verb+.+ (latin dot)\index{\verb+.+}\index{Operator!\verb+.+}
+    inserts a syllab bound. As a side effect, if the
     top of the stack contains Jamo letters, they are first recombined into a
     Hangul character.
     \end{itemize}

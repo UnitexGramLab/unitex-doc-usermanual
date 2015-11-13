@@ -666,21 +666,11 @@ canonique et ajoute le code flexionnel \verb+:s+. Le second retranche une lettre
 
 Voici les opérateurs utilisables:
 
-\index{\verb+L+}\index{Opérateur!\verb+L+}\index{\verb+R+}\index{Opérateur!\verb+R+}
-\index{\verb+C+}\index{Opérateur!\verb+C+}\index{\verb+D+}\index{Opérateur!\verb+D+}
-\index{\verb+U+}\index{Opérateur!\verb+U+}
-\index{\verb+P+}\index{Opérateur!\verb+P+}
-\index{\verb+W+}\index{Opérateur!\verb+W+}
-\index{\verb+J+}\index{Opérateur!\verb+J+}
-\index{\verb+.+}\index{Opérateur!\verb+.+}
-\index{\verb+<R=?>+}\index{Opérateur!\verb+<R=?>+}
-\index{\verb+<I=?>+}\index{Opérateur!\verb+<I=?>+}
-\index{\verb+<X=n>+}\index{Opérateur!\verb+<X=n>+}
-
 \begin{itemize}
-\item \verb+L+ (left) enlève une lettre à l’entrée;
+\item \verb+L+ (left)\index{\verb+L+}\index{Opérateur!\verb+L+} enlève une lettre à l’entrée;
   	  
-\item \verb+R+ (right) rétablit une lettre de l’entrée. En français, beaucoup de verbes du premier
+\item \verb+R+ (right)\index{\verb+R+}\index{Opérateur!\verb+R+}
+             rétablit une lettre de l’entrée. En français, beaucoup de verbes du premier
   	  groupe se conjuguent au présent à la troisième personne du singulier en retirant le
   	  \verb+r+ de l’infinitif et en changeant la 4$\ieme$ lettre en partant de la fin en
   	  \texttt{è}: \verb+peler+ $\rightarrow$ \texttt{pèle},
@@ -690,8 +680,8 @@ Voici les opérateurs utilisables:
   	  \texttt{LLLLère}), on peut utiliser l’opérateur \verb+R+ pour n’en écrire qu’un seul :
   	  \texttt{LLLLèRR}.
   	  
-\item \verb+C+ (copy) duplique une lettre de l’entrée, en décalant tout ce qui se trouve à sa
-  	  droite.
+\item \verb+C+ (copy)\index{\verb+C+}\index{Opérateur!\verb+C+}
+             duplique une lettre de l’entrée, en décalant tout ce qui se trouve à sa droite.
   	  
 Supposons par exemple que l’on souhaite générer automatiquement des adjectifs en
 \verb+able+ à partir de noms. Dans des cas comme \verb+regrettable+ ou \verb+réquisitionnable+,
@@ -699,36 +689,44 @@ Supposons par exemple que l’on souhaite générer automatiquement des adjectif
 graphe de flexion pour chaque consonne finale possible, on peut utiliser l’opérateur
 \verb+C+ afin de dupliquer la consonne finale, quelle qu’elle soit;
   
-  \item \verb+D+ (delete) supprime une lettre de l’entrée, en décalant tout ce qui se trouve à sa
-  	  droite.
+  \item \verb+D+ (delete)\index{\verb+D+}\index{Opérateur!\verb+D+}
+             supprime une lettre de l’entrée, en décalant tout ce qui se trouve à sa  droite.
 Si l’on souhaite par exemple fléchir le mot roumain \verb+european+ en \verb+europeni+, on utilisera
 la séquence \verb+LDRi+. Le \verb+L+ positionnera le curseur sur la lettre \verb+a+, \verb+D+ va
 supprimer le \verb+a+, en décalant le \verb+n+ sur la gauche, puis \verb+Ri+ va rétablir le \verb+n+
 et ajouter un \verb+i+.
 
-\item \verb+U+ (unaccent) enlève l'accent du caractère courant s'il en comporte un.
+\item \verb+U+ (unaccent)\index{\verb+U+}\index{Opérateur!\verb+U+}
+          enlève l'accent du caractère courant s'il en comporte un.
 	Par exemple la séquence \verb+LLUx+ appliquée au mot
 	\texttt{mangés} produit la forme fléchie \verb+mangex+, puisque \verb+U+
 	à transformé le \texttt{é} en \verb+e+.
 
-\item \verb+P+ (uppercase) met en majuscule la première lettre de la pile. Par exemple, la séquence
+\item \verb+P+ (uppercase)\index{\verb+P+}\index{Opérateur!\verb+P+}
+          met en majuscule la première lettre de la pile. Par exemple, la séquence
 	\verb$Px$ transforme \verb$foo$ en \verb$Foox$.
   
-\item \verb+W+ (lowercase) met en minuscule la première lettre de la pile.
+\item \verb+W+ (lowercase)\index{\verb+W+}\index{Opérateur!\verb+W+}
+          met en minuscule la première lettre de la pile.
 
-\item \verb+<R=?>+ remplace la première lettre de la pile par la lettre \verb+?+.
+\item \verb+<R=?>+ \index{\verb+<R=?>+}\index{Opérateur!\verb+<R=?>+}
+          remplace la première lettre de la pile par la lettre \verb+?+.
 
-\item \verb+<I=?>+ insère la lettre \verb+?+ avant la première lettre de la pile 
+\item \verb+<I=?>+ \index{\verb+<I=?>+}\index{Opérateur!\verb+<I=?>+}
+          insère la lettre \verb+?+ avant la première lettre de la pile.
 
-\item \verb+<X=n>+ supprime les $n$ premières lettres de la pile.
+\item \verb+<X=n>+ \index{\verb+<X=n>+}\index{Opérateur!\verb+<X=n>+}
+          supprime les $n$ premières lettres de la pile.
 \end{itemize}
 
 \noindent Il y a également deux opérateurs spéciaux pour le  Coréen:
 \begin{itemize}\index{Jamo}\index{Hangul}
-\item \verb+J+ supprime une lettre Jamo. Si le caractère est un Hangul, ce caractère est d'abord
+\item \verb+J+ \index{\verb+J+}\index{Opérateur!\verb+J+}
+supprime une lettre Jamo. Si le caractère est un Hangul, ce caractère est d'abord
 remplacé par sa séquence équivalente en alphabet Jamo, ensuite, la dernière lettre Jamo est
 supprimée. Si le caractère n'est ni un Jamo, ni un Hangul, une erreur est produite.
-\item \verb+.+ (latin dot) insère une limite de syllabe. Ceci a un effet de ford, si le haut de la
+\item \verb+.+ (latin dot)\index{\verb+.+}\index{Opérateur!\verb+.+}
+           insère une limite de syllabe. Ceci a un effet de ford, si le haut de la
 	pile contient des lettres Jamo, elles sont recombinées en Hangul.
 \end{itemize}
 
