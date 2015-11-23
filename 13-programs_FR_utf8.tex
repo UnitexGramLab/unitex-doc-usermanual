@@ -826,7 +826,23 @@ DumpOffsets [OPTIONS] --convert_common_to_modified
 Il faut obligatoirement spécifier les deux tailles.
 
 Converti un fichier d'offset indiquant les plages de caractères identiques en fichier indiquant les caractères supprimés.
+\\
+\newline
+\noindent \textbf{OPTIONS:}
+\begin{itemize}
+\item \verb+-d/--denormalize+: Denormalize l'output
+\end{itemize}
+Typiquement ce program permet de rétablir les espaces, les espaces insecables, les sauts de ligne, les tabulations, etc. effacés par Normalize.
+Il rétablit aussi le texte qui a été supprimé par le Preprocessing ou par un graphe. Il conserve les ajouts à condition que ceux-ci soient placés entre chevrons.
 
+Le fichier\_dump contient les textes du fichier version 1 et les textes entre chevron (<, >) qui étaient ajoutés en fichier version 2.
+
+\bigskip
+\begin{verbatim}
+DumpOffsets [OPTIONS] -d -o <fichier_version1>
+-n <fichier_version2> <fichier_offset> -p <fichier_dump>
+\end{verbatim}
+\bigskip
 
 
 \section{Elag}\index{Programmes externes!\verb+Elag+}\index{\verb+Elag+}

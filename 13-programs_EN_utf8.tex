@@ -724,8 +724,21 @@ program \verb+SortTxt+ to sort them.
 \end{itemize} 	 
 
 \noindent Using \verb+-t+ instead \verb+-T+ will do the reverse translation 	 
+\\
+\\
+\noindent \textbf{OPTIONS:}
+\begin{itemize} 	 
+  \item \verb+-d+/\verb+--denormalize=+: Denormalize the output
+\end{itemize} 	
+\bigskip
+This programs reproduces the white spaces removed by Normalize. It also adds the text deleted by the Preprocessing or by a graph. It preserves the text added as long as it is between the brackets (<,>).
 
-
+The file fichier\_dump contains the text of the file fichier version 1 and the text added in the file fichier version 2.
+\begin{verbatim}
+DumpOffsets [OPTIONS] -d -o <fichier_version1>
+-n <fichier_version2> <fichier_offset> -p <fichier_dump>
+\end{verbatim}
+\bigskip
 
 \section{Elag}\index{External programs!\verb+Elag+}\index{\verb+Elag+}
 \verb+Elag [OPTIONS] <tfst>+
