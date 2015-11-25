@@ -8,7 +8,7 @@
 \frenchbsetup{StandardLists=true}
 \usepackage{palatino}
 \usepackage{epsfig}
-\usepackage{makeidx,color}
+\usepackage[xindy]{imakeidx}
 %The following line translates the \see macro of makeidx into French. Not sure it should be here
 \newcommand{\voir}[2]{\emph{voir} #1}
 \usepackage{graphicx}
@@ -45,6 +45,7 @@
            % pdfpagemode=FullScreen,
              pdfstartview=FitBH,
              unicode,
+             hyperindex=false
              ]{hyperref}
 
 
@@ -58,6 +59,8 @@
 \newcommand{\exemplebon}[1]{\textit{#1}}
 \newcommand{\exemplebizarre}[1]{\textit{? #1}}
 \newcommand{\exempletresbizarre}[1]{\textit{*? #1}}
+\newcommand{\targetindexentry}[1]{\hypertarget{index:#1}{#1}}
+\newcommand{\seelink}[1]{\hyperlink{index:#1}{\see{#1}}}
 \pagenumbering{arabic}
 \global\setlength{\topmargin}{-1.5cm}
 \global\setlength{\footskip}{2cm}
