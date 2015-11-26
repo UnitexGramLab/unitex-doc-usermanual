@@ -250,7 +250,7 @@ suivants donnent un aperçu des différents codes utilisés dans les dictionnair
 Unitex. Ces codes ont la même signification pour presque toutes les langues, même si certains
 d’entre eux sont propres à certaines langues (\textit{i.e.} marque du neutre, etc.).
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \index{\verbc{A}}\index{\verbc{ADV}}\index{\verbc{CONJC}}\index{\verbc{CONJS}}\index{\verbc{DET}}
 \index{\verbc{INTJ}}\index{\verbc{N}}\index{\verbc{PREP}}\index{\verbc{PRO}}\index{\verbc{V}}
 \begin{center}
@@ -283,7 +283,7 @@ d’entre eux sont propres à certaines langues (\textit{i.e.} marque du neutre,
 \end{center}
 \end{table}
 \vspace{-0.7cm}
-\begin{table}[!h]
+\begin{table}[!ht]
 \index{\verbc{z1}}\index{\verbc{z2}}\index{\verbc{z3}}\index{\verbc{Abst}}\index{\verbc{Anl}}\index{\verbc{AnlColl}}
 \index{\verbc{Conc}}\index{\verbc{ConcColl}}\index{\verbc{Hum}}\index{\verbc{HumColl}}\index{\verbc{t}}\index{\verbc{i}}
 \index{\verbc{en}}\index{\verbc{se}}\index{\verbc{ne}}
@@ -341,7 +341,7 @@ de tous les codes utilisés dans un dictionnaire, nous vous recommandons de vous
 directement à l’auteur du dictionnaire.
 
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \index{\verbc{m}}\index{\verbc{f}}\index{\verbc{n}}\index{\verbc{s}}\index{\verbc{p}}\index{\verbc{1}}
 \index{\verbc{2}}\index{\verbc{3}}\index{\verbc{P}}\index{\verbc{I}}\index{\verbc{S}}\index{\verbc{T}}
 \index{\verbc{Y}}\index{\verbc{C}}\index{\verbc{J}}\index{\verbc{W}}\index{\verbc{G}}\index{\verbc{K}}
@@ -423,7 +423,7 @@ SAV,Service Après-Vente.SIGLE
 \label{section-dictionary-lookup}
 Vous pouvez rechercher un mot dans plusieurs dictionnaires de deux manières : 
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig3-1.png}
 \caption{Menu "DELA"}
@@ -437,7 +437,7 @@ d'effectuer une recherche. Si le mot apparaît dans le dictionnaire, le bouton "
 première entrée correspondante. Si plusieurs entrées correspondent, vous pouvez les parcourir en
 cliquant sur les deux boutons en forme de flèche.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig3-2.png}
 \caption{Recherche d'un mot dans un dictionnaire}
@@ -448,7 +448,7 @@ cliquant sur les deux boutons en forme de flèche.
 \noindent
 Vous pouvez aussi rechercher un mots dans plusieurs dictionnaires en cliquant sur le bouton "Lookup" du menu "DELA". Vous pouvez ensuite sélectionner les dictionnaires dans lesquels rechercher le mot que vous avez entré.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig3-3.png}
 \caption{Recherche d'un mot dans plusieurs dictionnaires}
@@ -491,7 +491,7 @@ sous forme de fichiers texte. La convention généralement appliquée est de don
 d’abord l’ouvrir en cliquant sur "Open..." dans le menu "DELA".
 
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig3-4.png}
 \caption{Exemple de dictionnaire\label{fig-dictionary-example}}
@@ -513,7 +513,7 @@ La troisième erreur indique que le programme n’a trouvé aucun code grammatic
 
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig3-5.png}
 \caption{Vérification automatique d’un dictionnaire\label{fig-dictionary-checking}}
@@ -636,7 +636,7 @@ types de mots le dictionnaire est supposé contenir. Si une entrée non conforme
 rencontrée, un message d'erreur sera affiché.
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig3-7.png}
 \caption{Configuration de la flexion automatique\label{fig-inflection-configuration}}
@@ -644,7 +644,7 @@ rencontrée, un message d'erreur sera affiché.
 \end{figure}
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig3-8.png}
 \caption{Grammaire de flexion
@@ -1125,7 +1125,7 @@ fléchies où tous les préfixes et suffixes
 communs sont factorisés. Par exemple, l’automate minimal des mots \verb+me+, \verb+te+, \verb+se+,
 \verb+ma+, \verb+ta+ et \verb+sa+
 peut être représenté par le graphe de la figure~\ref{fig-example-minimal-automaton}.
-\bigskip \begin{figure}[!h]
+\bigskip \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=5cm]{resources/img/fig3-10.png}
 \caption{Représentation d’un exemple d’automate minimal\label{fig-example-minimal-automaton}}
@@ -1141,7 +1141,7 @@ figure ~\ref{fig-compression-result}
 montre le résultat de la compression d’un dictionnaire de mots simples.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig3-11.png}
 \caption{Résultat d’une compression\label{fig-compression-result}}
@@ -1275,7 +1275,7 @@ priorité basse afin qu’il soit appliqué après le dictionnaire général. Po
 se base sur les mots qui sont toujours inconnus après le passage du dictionnaire général. Les
 crochets correspondent à une définition de contexte (voir la section \ref{section-contexts}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.5cm]{resources/img/fig3-13.png}
 \caption{Graphe-dictionnaire étiquetant comme noms propres les mots inconnus commençant par une
@@ -1396,7 +1396,7 @@ mots simples et composés. Pour plus de détails, consultez la page de référen
 web d’Unitex: \url{http://www-igm.univ-mlv.fr/~unitex}
 
 \bigskip
-\begin{table}[!h]
+\begin{table}[!ht]
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline

@@ -40,7 +40,7 @@ s’il y en a, toutes les fenêtres relatives au texte courant. La langue couran
 la barre de titre de l’interface graphique.
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.2cm]{resources/img/fig2-1.png}
 \caption{\label{fig-language-selection}Sélection de la langue au lancement d’Unitex}
@@ -73,7 +73,7 @@ propose soit de remplacer le texte original, soit de renommer le fichier d’ori
 le processus de conversion va créer une copie de ce fichier ASCII nommée \verb$biniou.old.txt$, et
 va remplacer le contenu de \verb$biniou.txt$ par son équivalent en Unicode.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig2-2.png}
 \caption{\label{auto-transcoding}Conversion automatique d’un texte non Unicode}
@@ -96,7 +96,7 @@ d’un fichier (par exemple, un fichier qui serait déjà en Unicode), le traite
 avec le fichier suivant.
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig2-3.png}
 \caption{\label{transcoding}Conversion de fichiers}
@@ -109,7 +109,7 @@ votre document au format "Texte unicode". Dans OpenOffice Writer, vous devez cho
 "Coded Text (*.txt)" puis le codage "Unicode" dans la fenêtre de configuration comme le montre la
 figure~\ref{OfficeWriter}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12.5cm]{resources/img/fig2-4.png}
 \caption{\label{OfficeWriter}Sauvegarde en Unicode dans OpenOffice Writer}
@@ -126,7 +126,7 @@ Vous pouvez choisir le codage par défaut, UTF16LE, UTF16BE ou UTF8 dans l'ongle
 au sous-menu "Preference"  dans le menu "Info". Ce codage n'est valide que pour la langue
 courante.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig2-5.png}
 \caption{Choix de l'encodage par défaut pour la langue courante}
@@ -151,7 +151,7 @@ Ainsi, si vous voulez rechercher tous les verbes qui ont le trait sémantique
 autres occurrences de la lettre \verb$t$.
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig2-6.png}
 \caption{Recherche du trait sémantique \texttt{t}dans un dictionnaire
@@ -169,14 +169,14 @@ Pour utiliser un texte, il faut donc commencer par ouvrir le fichier  \verb+.txt
 correspondant en cliquant sur "Open..." dans le menu "Text".
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig2-7.png}
 \caption{Menu Text}
 \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig2-8.png}
 \caption{Ouverture d’un texte Unicode}
@@ -196,7 +196,7 @@ fonctionnement d’Unitex. Il vous sera toujours possible d’effectuer le prét
 en cliquant sur "Preprocess text..." dans le menu "Text".
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig2-9.png}
 \caption{Fenêtre de prétraitement\label{fig-preprocessing-frame}}
@@ -272,7 +272,7 @@ grammaires qui décrivent les différents contextes où peuvent apparaître les 
 La figure~\ref{fig-example-sentence-splitting} montre un exemple de grammaire de découpage en
 phrases.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig2-10.pdf}
 \caption{Grammaire de découpage en phrases pour le français
@@ -480,7 +480,7 @@ Ce programme produit plusieurs fichiers, stockés dans le répertoire du texte~:
 ce texte peut être représenté par la séquence d’entiers décrite dans le tableau suivant :
 
 \bigskip
-\begin{table}[h]
+\begin{table}[!ht]
 \begin{center}
 \begin{tabular}{|p{2.8cm}||c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
@@ -499,7 +499,7 @@ Unité lexicale correspondante & \textit{UN} &   & \textit{sou} &   & \textit{es
 \bigskip
 \noindent Pour plus de détails, voir le chapitre~\ref{chap-file-formats}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[height=10cm]{resources/img/fig2-12.png}
 \caption{Unités lexicales d’un texte anglais triées par fréquence}
@@ -634,7 +634,7 @@ grâce à laquelle il peut ouvrir un texte contenant des tags sans que les graph
 ne soient appliqués, comme on le voit sur la figure \ref{preprocess-tagged-text}.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14cm]{resources/img/fig2-15.png}
 \caption{Prétraitement d’un texte taggué\label{preprocess-tagged-text}}

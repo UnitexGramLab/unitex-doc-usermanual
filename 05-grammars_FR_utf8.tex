@@ -90,7 +90,7 @@ Quand une grammaire produira des sorties, nous utiliserons le terme \textit{tran
 \subsection{Création d'un graphe}
 Pour créer un graphe, cliquez sur "New" dans le menu "FSGraph" (\ref{fig-fsgraph-menu}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-1.png}
 \caption{Menu FSGraph\label{fig-fsgraph-menu}}
@@ -100,7 +100,7 @@ Pour créer un graphe, cliquez sur "New" dans le menu "FSGraph" (\ref{fig-fsgrap
 \bigskip
 \noindent On voit alors apparaitre une fenêtre comme celle de la figure~\ref{fig-new-graph}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-2.png}
 \caption{Graphe vierge\label{fig-new-graph}}
@@ -123,7 +123,7 @@ grammaire reconnaît les séquences décrites par les chemins allant de l'état 
 Vous verrez alors apparaître un carré bleu symbolisant la boîte vide créée (voir figure
 ~\ref{fig-box-creation}). Lors de la création d’une boîte, celle-ci est automatiquement sélectionnée.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-3.png}
 \caption{Création d’une boîte\label{fig-box-creation}}
@@ -138,7 +138,7 @@ le mot vide epsilon. Remplacez ce symbole par le texte \verb$I+you+he+she+it+we+
 appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept lignes (voir
 	figure~\ref{fig-pronoun-box}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-4.png}
 \caption{Boîte contenant
@@ -158,7 +158,7 @@ commence par \verb$/$. Le texte de la boîte est affiché en vert, et peut conte
 La boîte ne peut avoir, ni de transition entrante, ni de transition sortante (voir
 figure~\ref{comment-box}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12.5cm]{resources/img/fig5-4b.png}
 \caption{Boîte contenant un commentaire\label{comment-box}}
@@ -187,7 +187,7 @@ on obtient le graphe de la figure~\ref{fig-pronoun-graph}:
 figure~\ref{fig-loop-box}). Pour annuler, double-cliquez une nouvelle fois sur la boîte.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-6.png}
 \caption{Boîte reliée à elle-même\label{fig-loop-box}}
@@ -214,7 +214,7 @@ une boucle autour d'une seule boite: voir la section~\ref{nb-repetitions}.
 contextuel (fig.~\ref{contextual-menu}) qui permet d'effectuer les opérations les plus usuelles~:
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
 \caption{Menu contextuel\label{contextual-menu}}
@@ -254,7 +254,7 @@ précéder du caractère \verb+:+. Si vous entrez dans une boîte le texte suiva
 \medskip
 \noindent vous obtiendrez une boîte similaire à celle de la figure~\ref{fig-subgraph-call}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6cm]{resources/img/fig5-7.png}
 \caption{Graphe faisant appel aux sous-graphes \texttt{beta} et
@@ -271,7 +271,7 @@ vous utilisez un nom de graphe absolu, comme c’est ici le cas pour \verb+E:\gr
 le compilateur de graphe émettra un avertissement (voir
 figure~\ref{fig-warning-absolute-graph-name}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-8.png}
 \caption{Avertissement pour un nom de graphe non portable\label{fig-warning-absolute-graph-name}}
@@ -311,7 +311,7 @@ Choisissez votre répertoire dans le cadre "Graph repository". Le répertoire de
 à la langue de travail, vous n’êtes donc pas obligé d’utiliser le même répertoire pour plusieurs
 langues.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig5-10.png}
 \caption{Configuration du répertoire de dépôt\label{directories}}
@@ -328,14 +328,14 @@ utilisera l’appel
 (voir figure \ref{repository-graph-call}\,\footnote{Dans un souci de clarté, les appels
 à des graphes du répertoire de dépôt sont affichés sur fond kaki au lieu de gris.}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=3.9cm]{resources/img/fig5-11.png}
 \caption{Exemple de répertoire de dépôt\label{repository}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-12.png}
 \caption{Appel un graphe du répertoire de dépôt\label{repository-graph-call}}
@@ -360,7 +360,7 @@ ni le fichier \verb+.fst2+, l'appel au graphe manquant apparaît dans une ligne 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-9.png}
 \caption{Les sous-graphes manquants apparaissent en rouge}
@@ -395,7 +395,7 @@ Dans ces listes de sous-graphes:
 \item les sous-graphes non trouvés (ni en .grf ni en .fst2) apparaissent en rouge.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.2cm]{resources/img/fig5-12b.png}
 \caption{Affichage de la liste de tous les graphes appelés\label{list-called-graphs}}
@@ -450,7 +450,7 @@ et appuyez sur <Ctrl+C> ou cliquez sur "Copy" dans le menu "Edit". Votre sélect
 est maintenant dans le presse-papiers d’Unitex. Vous pouvez alors coller cette sélection en
 pressant <Ctrl+V> ou en cliquant sur "Paste" dans le menu "Edit".
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-14.png}
 \caption{Copier-coller d’une sélection multiple\label{copy-paste-multi-selection}}
@@ -477,7 +477,7 @@ Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le 
 la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
 ~\ref{fig-exemple-transduction}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-15.png}
 \caption{Exemple de sortie\label{fig-exemple-transduction}}
@@ -500,7 +500,7 @@ seul un chemin de poids maximal sera conservé.
 Après un "Locate", la concordance ne comportera qu'une seule fois la séquence reconnue, et avec la
 sortie appropiée (figure~\ref{fig-weights-in-graphs}).
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-15b.png}
 \caption{Poids dans les graphes \label{fig-weights-in-graphs}}
@@ -543,7 +543,7 @@ la fin de la zone à mémoriser. Créez deux boîtes contenant l’une \verb+$va
  un nombre, que l’on stocke dans une variable nommée \verb+var1+, suivi de \verb+dollar+ ou
  \verb+dollars+.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-16.png}
 \caption{Utilisation d’une variable d'entrée
@@ -567,7 +567,7 @@ figure~\ref{fig-date-grammar} reconnaît une date formée d’un mois et d’une
 \noindent Si on veut utiliser le caractère \verb+$+ en sortie d'une boîte, on doit le
 redoubler, comme le montre la figure~\ref{fig-using-variable}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-17.png}
 \caption{Interversion du mois et de l’année dans une date\label{fig-date-grammar}}
@@ -598,7 +598,7 @@ de la fonction de copie intégrée à votre éditeur. Créez ensuite une boîte 
 et utilisez <Ctrl+V> ou la commande "Paste" du menu "Edit" pour la coller dans la boîte.
 Vous verrez alors apparaître la fenêtre de la figure~\ref{fig-setting-contexts-for-multiple-copy}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-18.png}
 \caption{Sélection de contexte pour la copie d’une
@@ -626,7 +626,7 @@ les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 \medskip
 \noindent on obtient la boîte de la figure~\ref{fig-multiple-copy}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-19.png}
 \caption{Boîte obtenue par copie d’une liste avec ajout de contextes\label{fig-multiple-copy}}
@@ -645,7 +645,7 @@ les contextes \verb+<+ et \verb+.V>+ à la liste suivante:
 ainsi que la ou les façons de reconnaître ces caractères dans des textes.
 
 \index{Caractères spéciaux}
-\begin{table}[h]
+\begin{table}[!ht]
 \begin{center}
 \begin{tabular}{|c|p{9cm}|c|}
 \hline
@@ -750,7 +750,7 @@ graphe ou à une autre version du même graphe. Une nouvelle fenêtre est alors 
 déplacement de boîtes et changement de contenu d'une boîte apparaissent respectivement en vert,
 rouge, mauve et jaune.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.6cm]{resources/img/DIFF.png}
 \caption{DIFF\label{Graph-DIFF}}
@@ -791,7 +791,7 @@ caractères dans le codage Unicode.\index{Unicode}
 Le sous-menu "Zoom" vous permet de choisir l’échelle à laquelle sera affiché le graphe.
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.4cm]{resources/img/fig5-21.png}
 \caption{Sous-menu Zoom}
@@ -839,7 +839,7 @@ quez sur "Alignment..." dans le sous-menu "Format" du menu "FSGraph" ou appuyez 
   \item Bottom: les boîtes sont alignées sur la boîte la plus basse.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.6cm]{resources/img/fig5-23.png}
 \caption{Fenêtre d’alignement\label{fig-alignment-frame}}
@@ -860,7 +860,7 @@ de gauche qui a été alignée verticalement à gauche.
 
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11.5cm]{resources/img/fig5-24.png}
 \caption{Exemple d’alignement vertical gauche\label{fig-vertical-left-alignment}}
@@ -873,7 +873,7 @@ arrière-plan du graphe. Cela permet d’aligner approximativement les boîtes.
 \index{Grille}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig5-25.png}
 \caption{Exemple d’utilisation d’une grille}
@@ -888,7 +888,7 @@ Vous pouvez configurer l’aspect d’un graphe en appuyant sur <Ctrl+R> ou en c
 sur "Presentation..." dans le sous-menu "Format" du menu "FSGraph", ce qui provoque l’af-
 fichage de la fenêtre de la figure~\ref{fig-graph-display-configuration}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig5-26.png}
 \caption{Configuration de l’aspect d’un graphe\label{fig-graph-display-configuration}}
@@ -926,7 +926,7 @@ gauche du graphe. Cette option n’a d’effet que si l’option "File Name" est
 \end{itemize}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-27.png}
 \caption{Graphe se lisant de droite à gauche\label{fig-right-to-left-graph}}
