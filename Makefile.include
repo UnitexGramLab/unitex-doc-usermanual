@@ -25,7 +25,6 @@
 ### List of changes made by Cristian Martinez (martinec)
 ###
 ### - Add texindy support
-### - Clean target removes also associated .pdf files (as make distclean)
 ### - Change command \Revision{} by \DocumentRevision{}
 ### - Make view could open multiple files
 
@@ -56,11 +55,12 @@ endif
 
 ## Name of the target file, minus .pdf: e.g., TARGET=mypaper causes this
 ## Makefile to turn mypaper.tex into mypaper.pdf.
-TARGETS += $(TARGET)
+TARGETS   += $(TARGET)
 TEXTARGETS = $(TARGETS:=.tex)
 PDFTARGETS = $(TARGETS:=.pdf)
 AUXFILES   = $(TARGETS:=.aux)
 IDXFILES   = $(TARGETS:=.idx)
+XDYFILES   = $(TARGETS:=.xdy)
 LOGFILES   = $(TARGETS:=.log)
 
 ## If $(TARGET).tex refers to .bib files like \bibliography{foo,bar}, then
@@ -139,7 +139,7 @@ endif
 
 IDXDEPS = %.idx
 %.idx: %.aux
-	$(TEXINDY) $(IDXFILES)
+	$(TEXINDY) $(IDXFILES) -M $(XDYFILES)
 
 	
 # to generate aux but not pdf from pdflatex, use -draftmode
@@ -163,8 +163,7 @@ GLSDEPS = %.gls
 	$(MAKEGLOSSARIES) $(TARGETS)
 endif
 
-#$(PDFTARGETS): %.pdf: %.tex %.aux $(GLSDEPS) $(IDXDEPS) $(INCLUDEDTEX) $(REVDEPS)
-$(PDFTARGETS): %.pdf: %.tex %.aux $(GLSDEPS) $(IDXDEPS) $(INCLUDEDTEX) $(REVDEPS)
+$(PDFTARGETS): %.pdf: %.tex $(IDXDEPS) $(GLSDEPS) $(INCLUDEDTEX) $(REVDEPS)
 	$(PDFLATEX) $* $(ERRFILTER)
 ifneq ($(strip $(BIBFILES)),)
 	@if egrep -q "undefined (references|citations)" $*.log; then \
@@ -198,6 +197,6 @@ clean:
 		$(T).lot $(T).maf $(T).mtc $(T).nav \
 		$(T).out $(T).pag $(T).run.xml $(T).snm \
 		$(T).svn $(T).tdo $(T).tns $(T).toc \
-		$(T).vtc $(T).url $(T).pdf)  \
+		$(T).vtc $(T).url) \
 		$(REVDEPS) $(AUXFILES) $(LOGFILES) \
 		$(EXTRACLEAN)
