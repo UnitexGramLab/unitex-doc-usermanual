@@ -12,7 +12,7 @@ contraire, tous les fichiers texte décrits dans ce chapitre sont codés en Unic
 
 \section{Codage Unicode}
 \label{unicode-encoding}
-\index{Fichier!texte}\index{Unicode}\index{Fichier!\verb+.txt+}\index{Fichier!\verb+.snt+}
+\index{Fichier!texte}\index{Unicode}\index{Fichier!\verbc{.txt}}\index{Fichier!\verbc{.snt}}
 Par défaut, les fichiers textes manipulés par Unitex doivent être en Unicode Little-Endian.
 Unitex accepte aussi des fichiers Unicode Big-Endian ou UTF-8. Ce codage permet de représenter 65536
 caractères en les codant chacun sur 2 octets. En Little-Endian, les octets sont dans l’ordre poids
@@ -131,7 +131,7 @@ et un fichier indiquant des préférences pour le tri. Le premier est désigné 
 \index{Alphabet}
 Le fichier d’alphabet est un fichier texte décrivant tous les caractères d’une langue, ainsi
 que les correspondances entre lettres minuscules et majuscules. Ce fichier doit s’appeler
-\verb+Alphabet.txt+ \index{Fichier!\verb+Alphabet.txt+} et doit se trouver dans la racine du
+\verb+Alphabet.txt+ \index{Fichier!\verbc{Alphabet.txt}} et doit se trouver dans la racine du
 répertoire  de la langue concernée. Sa présence est obligatoire pour qu’Unitex puisse fonctionner.
 
 
@@ -201,7 +201,7 @@ L’inverse est également vrai : à une majuscule peuvent correspondre plusieur
 \subsection{Alphabet de tri}
 \index{Alphabet!trié}
 L’alphabet de tri est un fichier texte qui définit les priorités des lettres d’une langue lors
-du tri à l’aide du programme \verb+SortTxt+.\index{\verb+SortTxt+}\index{Programmes externes!\verb+SortTxt+} Chaque ligne de ce fichier définit un groupe de lettres. Si un groupe de
+du tri à l’aide du programme \verb+SortTxt+.\index{\verbc{SortTxt}}\index{Programmes externes!\verbc{SortTxt}} Chaque ligne de ce fichier définit un groupe de lettres. Si un groupe de
 lettres $A$ est défini avant un groupe de lettres $B$, n’importe quelle lettre de $A$ sera
 inférieure à n’importe quelle lettre de $B$.
 
@@ -241,7 +241,7 @@ et le format compilé \verb+.fst2+.
 
 
 \subsection{Format .grf}
-\index{Fichier!\verb+.grf+}
+\index{Fichier!\verbc{.grf}}
 Un fichier \verb+.grf+ est un fichier texte contenant des informations de présentation en plus
 des informations représentant les contenus des boîtes et les transitions du graphe. Un fichier
  \verb+.grf+ commence par les lignes suivantes:
@@ -437,7 +437,7 @@ toujours valoir $0$ pour l’état final.
 ligne.
 
 \subsection{Format .fst2}
-\index{Fichier!\verb+.fst2+}
+\index{Fichier!\verbc{.fst2}}
 Un fichier \verb+.fst2+ est un fichier texte qui décrit un ensemble de graphes. Voici un exemple
 de fichier \verb+.fst2+ file:
 
@@ -524,7 +524,7 @@ les séquences d’entrée et de sortie sont séparées par le caractère
 \section{Textes}
 Cette section présente les différents fichiers utilisés pour représenter des textes.
 \subsection{Fichiers .txt}
-\index{Fichier!\verb+.txt+}\index{\verb+{S}+}\index{Étiquette lexicale}\index{Séparateur!de phrases}
+\index{Fichier!\verbc{.txt}}\index{\verbt{\{S\}}}\index{Étiquette lexicale}\index{Séparateur!de phrases}
 \label{section-texts}
 Les fichiers \verb+.txt+ doivent être des fichiers texte codés en Unicode Little-Endian. Ces
 fichiers ne doivent pas contenir d’accolade ouvrante ou fermante, à moins qu’elles soient utilisées
@@ -534,16 +534,16 @@ spéciaux de valeurs hexadécimales \verb+000D+ and \verb+000A+.
 
 
 \subsection{Fichiers .snt}
-\index{Fichier!\verb+.snt+}
+\index{Fichier!\verbc{.snt}}
 \verb+.snt+ sont des fichiers \verb+.txt+ qui ont été prétraités par Unitex. Ces fichiers ne doivent
 pas contenir de tabulation. Ils ne doivent pas non plus contenir plusieurs espaces ou retours à la
 ligne consécutifs. Les seules accolades autorisées dans des fichiers \verb+.snt+ sont celles du
-séparateur de phrases \verb+{S}+\index{\verb+{S}+}\index{Séparateur!de phrases} et celles des
+séparateur de phrases \verb+{S}+\index{\verbt{\{S\}}}\index{Séparateur!de phrases} et celles des
 étiquettes lexicales (\verb+{aujourd'hui,.ADV}+)\index{Étiquette lexicale}.
 
 
 \subsection{Fichier text.cod}
-\index{Fichier!\verb+text.cod+}
+\index{Fichier!\verbc{text.cod}}
 Le fichier \verb+text.cod+ est un fichier binaire contenant une suite d’entiers représentant le
 texte. Chaque entier \verb+i+ renvoie au token d’indice \verb+i+ dans le fichier \verb+tokens.txt+                          Ces entiers sont codés sur 4 octets.
 
@@ -552,7 +552,7 @@ texte. Chaque entier \verb+i+ renvoie au token d’indice \verb+i+ dans le fichi
 \noindent NOTE : les tokens sont numérotés à partir de 0.
 
 \subsection{Fichier tokens.txt}
-\index{Fichier!\verb+tokens.txt+}
+\index{Fichier!\verbc{tokens.txt}}
 \label{fichier-tokens-txt}
 Le fichier \verb+tokens.txt+ est un fichier texte contenant la liste de toutes les unités lexicales
 du texte. La première ligne de ce fichier indique le nombre d’unités contenues dans le fichier.
@@ -564,7 +564,7 @@ texte avec des variantes de casse, chaque variante est codée par une unitée di
 
 
 \subsection{Fichier tok\_by\_alph.txt et tok\_by\_freq.txt}
-\index{Fichier!\verb+tok_by_alph.txt+}\index{Fichier!\verb+tok_by_freq.txt+}
+\index{Fichier!\verbc{tok_by_alph.txt}}\index{Fichier!\verbc{tok_by_freq.txt}}
 Ces deux fichiers sont des fichiers texte qui contiennent la liste des unités lexicales triée
 par ordre alphabétique ou par ordre de fréquence.
 
@@ -578,7 +578,7 @@ nombre d’occurrences apparaît avant le caractère tabulation et l’unité.
 
 
 \subsection{Fichier enter.pos}
-\index{Fichier!\verb+enter.pos+}
+\index{Fichier!\verbc{enter.pos}}
 Ce fichier est un fichier binaire contenant la liste des positions des retours à la ligne dans le
 fichier \verb+.snt+. Chaque position est l’indice dans le fichier text.cod d’un retour à la ligne
 ayant été remplacé par un espace. Ces positions sont des entiers codés sur 4 octets.
@@ -591,7 +591,7 @@ ayant été remplacé par un espace. Ces positions sont des entiers codés sur 4
 
 \subsection{Fichier text.tfst}
 \label{section-tfst-format}
-\index{Fichier!\verb+text.tfst+}
+\index{Fichier!\verbc{text.tfst}}
 Le fichier \verb+text.tfst+ représente l’automate du texte. C'est un fichier texte  qui commence par une ligne comportant dix chiffres qui indiquent le nombre de phrases contenues dans l'automate. Ensuite, pour chaque phrase, on dispose de l'en-tête suivante:
 
 
@@ -806,7 +806,7 @@ drinking orange juice.}
 
 
 \subsection{Fichier text.tind}
-\index{Fichier!\verb+text.tind+}
+\index{Fichier!\verbc{text.tind}}
 Le fichier \verb+text.tind+ utilisé pour sauter à l'octet d'offset correct dans le fichier
 \verb+text.tfst+ quand on veut charger une phrase donnée. C'est un fichier binaire qui contient $4
 \times N$ octets,où $N$ est le nombre de phrases. Il donne l'offset de départ de chaque phrase sous
@@ -815,7 +815,7 @@ la forme d'une suite de 4 octets en little-endian.
 
 \subsection{Fichier cursentence.grf}
 \label{section-cursentence_grf}
-\index{Fichier!\verb+cursentence.grf+}
+\index{Fichier!\verbc{cursentence.grf}}
 Le fichier  \verb+cursentence.grf+ est généré par Unitex lors de l’affichage d’un automate de
 phrase. Le programme \verb+Fst2Grf+ construit un fichier \verb+.grf+ représentant l’automate d’une phrase à partir du fichier \verb+text.fst2+.
 
@@ -844,14 +844,14 @@ section \ref{section-cursentence_grf}).
 
 
 \subsection{Fichier cursentence.txt}
-\index{Fichier!\verb+cursentence.txt+}
+\index{Fichier!\verbc{cursentence.txt}}
 Lors de l'extraction de l'automate phrase, le texte de la phrase est
 enregistré dans le fichier appelé \verb+cursentence.txt+. Ce fichier est utilisé par Unitex pour
 afficher le texte de la phrase sous l'automate. Ce fichier contient le texte de la phrase, suivie
 d'un saut de ligne.
 
 \subsection{The cursentence.tok file}
-\index{Fichier!\verb+cursentence.tok+}
+\index{Fichier!\verbc{cursentence.tok}}
 Lors de l'extraction de l'automate phrase, les numéros de tokens qui composent la phrase sont
 enregistrés dans un fichier nommé \verb+cursentence.tok+. Ce fichier contient une ligne par token,
 chaque ligne étant composée de 2 entiers \verb$x y$: \verb$x$ est le numéro de token, \verb$y$ est
@@ -883,14 +883,14 @@ sa longueur en caractères.
 
 
 \subsection{Fichiers tfst\_tags\_by\_freq.txt et tfst\_tags\_by\_alph.txt}
-\index{Fichier!\verb+tfst_tags_by_freq.txt+}
-\index{Fichier!\verb+tfst_tags_by_alph.txt+}
+\index{Fichier!\verbc{tfst_tags_by_freq.txt}}
+\index{Fichier!\verbc{tfst_tags_by_alph.txt}}
 Ces fichiers contiennent tous les tags qui apparaissent dans l'automate du texte classés par fréquence et par ordre alphabétique.
 
 
 \section{Concordances}
 \subsection{Fichier concord.ind}
-\index{Fichier!\verb+concord.ind+}
+\index{Fichier!\verbc{concord.ind}}
 Le fichier \verb+concord.ind+ est l’index des occurrences trouvées par les programmes \verb+Locate+
 ou \verb+LocateTfst+ lors de l’application d’une grammaire. C’est un fichier texte qui contient les
 positions de début et de fin de chaque occurrence, éventuellement accompagnées d’une chaîne de
@@ -962,7 +962,7 @@ est extrait du fichier texte.
 
 
 \subsection{Fichier concord.txt}
-\index{Fichier!\verb+concord.txt+}
+\index{Fichier!\verbc{concord.txt}}
 Le fichier \verb+concord.txt+ est un fichier texte représentant une concordance. Chaque occurrence
 est codée par une ligne composée de 3 chaînes de caractères séparées par le caractère de tabulation
 et qui représentent le contexte gauche, l’occurrence (éventuellement
@@ -971,7 +971,7 @@ modifiée par des transductions) et le contexte droit.
 
 
 \subsection{Fichier concord.html}
-\index{Fichier!\verb+concord.html+}
+\index{Fichier!\verbc{concord.html}}
 Le fichier \verb+concord.html+ est un fichier \verb+HTML+ qui représente une concordance. Ce fichier
 est codé en UTF-8.\index{UTF-8}
 
@@ -1061,7 +1061,7 @@ ci-dessus.
 
 
 \subsection{Fichier diff.html}
-\index{Fichier!\verb+diff.html+}
+\index{Fichier!\verbc{diff.html}}
 Le fichier \verb+diff.html+ est une page \verb+HTML+ qui montre les différences entre deux concordances. Ce fichier est encodé en UTF-8.\index{UTF-8} Voici un exemple de fichier (des retours à la ligne ont été introduits pour la mise en page) :
 
 
@@ -1105,22 +1105,22 @@ font-size: 12">
 Le programme \verb+Dico+ produit plusieurs fichiers qui représentent les dictionnaires.
 
 \subsection{dlf et dlc}
-\index{Fichier!\verb+dlf+}
-\index{Fichier!\verb+dlc+}
+\index{Fichier!\verbc{dlf}}
+\index{Fichier!\verbc{dlc}}
 
 \verb+dlf+ et \verb+dlc+ sont des dictionnaires de mots simples et composés au format DELAF
 format (voir section \ref{section-DELAF-format}).
 
 \subsection{err}
-\index{Fichier!\verb+err+}
+\index{Fichier!\verbc{err}}
 Ce fichier contient les mots inconnus, un par ligne.
 
 \subsection{tags\_err}
-\index{Fichier!\verb+tags_err+}
+\index{Fichier!\verbc{tags_err}}
 Ce fichier contient les mots inconnus, un par ligne. La différence avec le fichier \verb+err+ est que dans celui-ci les mots simples reconnus dans le fichier \verb+tags.ind+ n'apparaissent pas.
 
 \subsection{tags.ind}
-\index{Fichier!\verb+tags.ind+}
+\index{Fichier!\verbc{tags.ind}}
 \label{section-tags-ind}
 Ce fichier a le même format que \verb+concord.ind+ il s'obtient en mode MERGE ou REPLACE mais son en-tête est \verb+#T+. Remarquons que les sorties ne commence pas par un slash.
  
@@ -1134,12 +1134,12 @@ dictionnaire à partir des formes fléchies. Cette section décrit le format de 
 fichiers, ainsi que le format du fichier \verb+CHECK_DIC.TXT+, qui contient le résultat de
 la vérification d’un dictionnaire.
 
-\index{\verb+Compress+}\index{Programmes externes!\verb+Compress+}
+\index{\verbc{Compress}}\index{Programmes externes!\verbc{Compress}}
 
 \index{DELAF}\index{Dictionnaire!DELAF}
 
 \subsection{Fichier .bin}
-\index{Fichier!\verb+.bin+}
+\index{Fichier!\verbc{.bin}}
 Un fichier \verb$.bin$ est un fichier binaire représentant un automate. Les 4 premiers octets du
 fichier représentent un entier indiquant la taille du fichier en octets. Les états de l’automate
 sont ensuite codés de la manière suivante :
@@ -1175,7 +1175,7 @@ bits codent le nombre de transitions.
 \noindent Par convention, le premier état de l’automate est l’état initial.
 
 \subsection{Fichier.inf}
-\index{Fichier!\verb+.inf+}
+\index{Fichier!\verbc{.inf}}
 Un fichier \verb+.inf+ est un fichier texte décrivant les formes comprimées associées à un fichier \verb+.bin+. Voici un exemple de fichier \verb+.inf+ file:
 
 \bigskip
@@ -1282,8 +1282,8 @@ ou \verb+biniou.fst2+ à l'aide d'un texte brut nommé \verb+biniou.txt+, situé
 répertoire.
 
 \subsection{Fichier CHECK\_DIC.TXT}
-\index{Fichier!\verb+CHECK_DIC.TXT+}\index{\verb+CheckDic+}\index{Programmes
-externes!\verb+CheckDic+}
+\index{Fichier!\verbc{CHECK_DIC.TXT}}\index{\verbc{CheckDic}}\index{Programmes
+externes!\verbc{CheckDic}}
 Ce fichier est produit par le programme de vérification de dictionnaire \verb+CheckDic+.                                                                                             Il s’agit d’un fichier texte qui donne des informations sur le dictionnaire analysé, et se décom-
 pose en quatre parties.
 
@@ -1431,11 +1431,11 @@ une erreur s'est produite dans cette ligne.
 
 \section{Fichiers ELAG}
 \subsection{Fichier tagset.de}
-\index{Fichier!\verb+tagset.def+}
+\index{Fichier!\verbc{tagset.def}}
 See section \ref{section-elag-tagset}, page \pageref{section-elag-tagset}.
 
 \subsection{Fichiers .lst}
-\index{Fichier!\verb+.lst+}
+\index{Fichier!\verbc{.lst}}
 
 LES FICHIERS .LST NE SONT PAS CODÉS EN UNICODE.
 
@@ -1461,13 +1461,13 @@ le nom d'un fichier n'est pas absolu, il est relatif à l'emplacement du fichier
 \verb$PPVs/postpos.grf$\P
 
 \subsection{.elg files}
-\index{Fichier!\verb+.elg+}
+\index{Fichier!\verbc{.elg}}
 
 Les fichiers \verb$.elg$ contiennent des règles ELAG compilées. Ces fichiers sont au format \verb$.fst2$.
 
 
 \subsection{Fichier .rul}
-\index{Fichier!\verb+.rul+}
+\index{Fichier!\verbc{.rul}}
 
 LES FICHIERS .RUL NE SONT PAS CODÉS EN UNICODE.
 
@@ -1476,7 +1476,7 @@ LES FICHIERS .RUL NE SONT PAS CODÉS EN UNICODE.
 ELAG. Un fichier \verb$.rul$ est constitué d’autant de parties qu’il y a de fichiers  \verb$.elg$. Chaque
 partie est composée de la liste des grammaires ELAG qui correspondent à un fichier \verb$.elg$ . Les noms
 de fichiers \verb$.elg$ sont entres angles. Les lignes commençant par une tabulation ont valeur de commentaire
-et sont ignorées par le programme \verb+Elag+.\index{\verb+Elag+}\index{Programmes externes!\verb+Elag+}
+et sont ignorées par le programme \verb+Elag+.\index{\verbc{Elag}}\index{Programmes externes!\verbc{Elag}}
 Voici le fichier \verb$elag.rul$ fourni par défaut pour le français :
 
 \bigskip
@@ -1503,7 +1503,7 @@ Cette section présente les fichiers produits et utilisés par les programmes Tr
 Tagger.
 
 \subsection{Fichier corpus.txt}
-\index{Fichier!\verb+corpus.txt+}
+\index{Fichier!\verbc{corpus.txt}}
 \label{section-corpus-file}
 Ce fichier est utilisé par le programme TrainingTagger afin de calculer les statistiques pour le
 programme Tagger. Il contient des phrases où chaque mot est représenté sur une ligne séparée.
@@ -1584,7 +1584,7 @@ Voici un exemple d'un fichier corpus.txt:
 Le format \verb+.txt+ peut également être utilisé (voir section \ref{section-texts}). Chaque mot du
 texte doit être représenté par une étiquette lexicale valide
 (\verb+{aujourd'hui,.ADV}+)\index{Étiquette lexicale} et les phrases sont délimitées par
-\verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrase}.
+\verb+{S}+\index{\verbt{\{S\}}}\index{Délimiteur de phrase}.
 Voici l'exemple précédent dans le format \verb+.txt+ :
 
 \bigskip
@@ -1597,7 +1597,7 @@ Voici l'exemple précédent dans le format \verb+.txt+ :
 \verb${against,.PREP}$ \verb${higher,.A}$ \verb${interests,.N:p}$ \verb${.,.PONCT}$ \verb${S}$
 
 \subsection{Le fichier de données du taggueur}
-\index{Fichier!\verb+train_dict+}
+\index{Fichier!\verbc{train_dict}}
 \label{section-training-dict}
 The TrainingTagger programme  genère deux fichiers de données (par défaut) utilisé par le programme
 Tagger afin de calculer un modèle de Markov caché d'ordre 2. Ces fichiers contiennent des tuples
@@ -1675,7 +1675,7 @@ Cette ligne contient \verb+CODE FEATURES+ suivie soit le nombre 0 pour "cat" tag
 
 \section{Fichier de configuration}
 \subsection{Fichier Config}
-\index{Fichier!\verb+Config+}
+\index{Fichier!\verbc{Config}}
 Lorsque l’utilisateur modifie ses préférences pour une langue donnée, celles-ci sont sauvegardées
 dans un fichier texte nommé \verb+Config+ qui se trouve dans le répertoire de la langue courante. Ce
 fichier a la syntaxe suivante (l’ordre des lignes peut varier) :
@@ -1858,13 +1858,13 @@ dans une fenêtre d’Unitex.
 
 
 \subsection{Fichier system\_dic.def}
-\index{Fichier!\verb+system_dic.def+}
+\index{Fichier!\verbc{system_dic.def}}
 Le fichier \verb+system_dic.def+ est un fichier texte décrivant la liste des dictionnaires du
 système à appliquer par défaut. Ce fichier se trouve dans le répertoire de la langue courante.
 Chaque ligne correspond à un nom de fichier \verb+.bin+ file.
 Les dictionnaires du système doivent se trouver dans le
 répertoire système Unitex,\index{Répertoire!système Unitex}
-à l’intérieur du sous-répertoire \verb+(langue courante)/Dela+.\index{Fichier!\verb+.bin+}
+à l’intérieur du sous-répertoire \verb+(langue courante)/Dela+.\index{Fichier!\verbc{.bin}}
 Voici un exemple de fichier~:
 
 
@@ -1874,7 +1874,7 @@ Voici un exemple de fichier~:
 \verb$delaf.bin$\P
 
 \subsection{Fichier user\_dic.def}
-\index{Fichier!\verb+user_dic.def+}
+\index{Fichier!\verbc{user_dic.def}}
 Le fichier \verb+user_dic.def+ est un fichier texte décrivant la liste des dictionnaires de
 l’utilisateur à appliquer par défaut. Ce fichier se trouve dans le répertoire de la langue courante
 et a le même format que le fichier \verb+system_dic.def+. 
@@ -1883,7 +1883,7 @@ du répertoire personnel de travail.\index{Répertoire!personnel de travail}
 
 
 \subsection{Fichiers (nom d’utilisateur).cfg et .unitex.cfg}
-\index{Fichier!\verb+.cfg+}
+\index{Fichier!\verbc{.cfg}}
 Sous Linux et Mac OS, Unitex considère que le répertoire personnel de travail se nomme \verb+unitex+ et
 qu’il se trouve dans le répertoire racine de l'utilisateur (\verb+$HOME+). Si vous voulez changer cet emplacement
 par défaut, un fichier \verb+.unitex.cfg+ est créé dans votre répertoire racine, et il contient
@@ -1936,8 +1936,8 @@ affichées dans l’interface graphique. Cette section décrit ces différents f
 
 
 \subsection{Fichier dlf.n, dlc.n, err.n et tags\_err.n}
-\index{Fichier!\verb+dlf.n+}\index{Fichier!\verb+dlc.n+}\index{Fichier!\verb+err.n+}\index{Fichier!\verb+tags_err.n+}
-\index{Fichier!\verb+dlf+}\index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}\index{Fichier!\verb+tags_err+}
+\index{Fichier!\verbc{dlf.n}}\index{Fichier!\verbc{dlc.n}}\index{Fichier!\verbc{err.n}}\index{Fichier!\verbc{tags_err.n}}
+\index{Fichier!\verbc{dlf}}\index{Fichier!\verbc{dlc}}\index{Fichier!\verbc{err}}\index{Fichier!\verbc{tags_err}}
 Ces trois fichiers sont des fichiers texte se trouvant dans le répertoire du texte. Ils contiennent
 respectivement les nombres de lignes des fichiers \verb+dlf+, \verb+dlc+, \verb+err+ et
 \verb+tags_err+. Ces nombres sont suivis par un retour à la ligne.
@@ -1945,12 +1945,12 @@ respectivement les nombres de lignes des fichiers \verb+dlf+, \verb+dlc+, \verb+
 
 
 \subsection{Fichier stat\_dic.n}
-\index{Fichier!\verb+stat_dic.n+}
+\index{Fichier!\verbc{stat_dic.n}}
 Ce fichier est un fichier texte se trouvant dans le répertoire du texte. Il est formé de trois
 lignes, contenant les nombres de lignes des fichiers \verb+dlf+, \verb+dlc+ and \verb+err+.
 
 \subsection{Fichier stats.n}
-\index{Fichier!\verb+stats.n+}
+\index{Fichier!\verbc{stats.n}}
 Ce fichier texte se trouve dans le répertoire du texte et contient une ligne de la forme
 suivante :
 
@@ -1965,7 +1965,7 @@ suivante :
 
 \begin{itemize}
   \item \verb+sentence delimiters+: nombre de séparateurs de phrases
-  (\verb+{S}+);\index{\verb+{S}+}
+  (\verb+{S}+);\index{\verbt{\{S\}}}
   \index{Séparateur!de phrases}
 
   \item \verb+tokens+: nombre total d’unités lexicales du texte. Le nombre précédant \verb+diff+
@@ -1983,7 +1983,7 @@ le nombre de chiffres différents utilisés (au plus 10).
 
 
 \subsection{Fichier concord.n}
-\index{Fichier!\verb+concord.n+}
+\index{Fichier!\verbc{concord.n}}
 Le fichier \verb+concord.n+ est un fichier texte qui se trouve dans le répertoire du texte. Il
 contient des informations sur la dernière recherche de motifs effectuée sur ce texte et se
 présente de la manière suivante :
@@ -2003,7 +2003,7 @@ couvertes et le nombre total d’unités du texte.
 
 
 \subsection{Fichier concord\_tfst.n}
-\index{Fichier!\verb+concord_tfst.n+}
+\index{Fichier!\verbc{concord_tfst.n}}
 Le fichier \verb+concord_tfst.n+ est un fichier texte qui se trouve dans le répertoire du texte. Il
 contient des informations sur la dernière recherche sur l'automate du texte et ressemble à ce qui
 suit:
@@ -2039,7 +2039,7 @@ $\longmapsto$ \verb+ONE_TWO_THREE_NEW_LINE+
 \subsection{Fichier de mots interdits}
 \index{Fichier!de mots interdits} \label{section-forbidden-words}
 Le programme \verb+PolyLex+ requiert un de mots interdits pour le hollandais et le norvégien. Ce fichier texte brut est censé s'appeler \verb+ForbiddenWords.txt+
-\index{Fichier!\verb+ForbiddenWords.txt+}. Il doit se trouver dans le répertoire \verb+Dela+
+\index{Fichier!\verbc{ForbiddenWords.txt}}. Il doit se trouver dans le répertoire \verb+Dela+
 correspondant à la langue courante. Chaque ligne est censée contenir un mot interdit.
 
 
@@ -2091,7 +2091,7 @@ enregistrés; si cette ligne contient 1, ils sont enregistrés;
 \subsection{Règles typographiques de l'arabe: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
 \index{Fichier!des règles typographiques de l'arabe}
-\index{Fichier!\verb+arabic_typo_rules.txt+}
+\index{Fichier!\verbc{arabic_typo_rules.txt}}
 Pour l'arabe, la recherche dans le dictionnaire peut être paramétrée avec un fichier qui décrit si
 certaines variations typographiques sont autorisées ou non. Ce fichier est constitué de lignes comme
 celles-ci:

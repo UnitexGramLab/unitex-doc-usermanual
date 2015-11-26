@@ -9,8 +9,8 @@ UnitexManual: Version.tex UnitexManual_FR_utf8.tex 00-introduction_FR_utf8.tex 0
                   LGPL_FR_utf8.tex LGPLLR_FR_utf8.tex title_FR_utf8.tex bibliographie_utf8.bib
 	pdflatex -halt-on-error -file-line-error -interaction=batchmode UnitexManual_FR_utf8.tex
 	bibtex UnitexManual_FR_utf8
-	texindy UnitexManual_FR_utf8.idx -M indexstyle_FR.xdy
-	pdflatex -halt-on-error -interaction=batchmode UnitexManual_FR_utf8.tex
+	texindy UnitexManual_FR_utf8.idx -M UnitexManual_FR_utf8.xdy
+	pdflatex -halt-on-error -file-line-error -interaction=batchmode UnitexManual_FR_utf8.tex
 
 clean:
 	rm -f *.aux *.bbl *.blg *.brf *.dvi *.idx *.log *.out *.toc *.ind

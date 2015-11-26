@@ -1,0 +1,16 @@
+(require "makeindex.xdy")
+(require "page-ranges.xdy")
+
+(define-location-class "arabic-page-numbers" ("arabic-numbers") :min-range-length 1)
+(markup-locclass-list :open "\dotfill" :sep "")
+
+(define-attributes ( ("emph") ("texttsc") ("texttt") ("textttd") ))
+(markup-locref   :attr  "textbf"     :open "\textbf{\hyperpage{"  :close "}}"  )
+(markup-locref   :attr  "textit"     :open "\textit{\hyperpage{"  :close "}}"  )
+(markup-locref   :attr  "texttt"     :open "\texttt{\hyperpage{"  :close "}}"  )
+(markup-locref   :attr  "textttd"    :open "\textttd{\hyperpage{" :close "}}"  )
+(markup-locref   :attr  "texttsc"    :open "\texttsc{\hyperpage{" :close "}}"  )
+(markup-locref   :attr  "default"    :open "\hyperpage{"          :close "}"   )
+(markup-locref   :attr  "emph"       :open "\emph{\hyperpage{"    :close "}}"  )
+;;;(markup-keyword-list                 :open "\targetindexentry{"   :close "}"   )
+(markup-crossref-list   :class "see" :open "\seelink{"            :close "}{}" )

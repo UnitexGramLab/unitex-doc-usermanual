@@ -240,7 +240,7 @@ pour une analyse linguistique, on normalise ces séparateurs selon les règles s
 La distinction entre espace et retour à la ligne est conservée à cette étape car la présence
 de retours à la ligne peut intervenir dans le découpage du texte en phrases. Le résultat de
 la normalisation d’un fichier appelé \verb+mon_texte.txt+ est un fichier situé dans le même
-répertoire que le \verb+.txt+ et dont le nom est \verb+mon_texte.snt+. \index{Fichier!\verb+.snt+}
+répertoire que le \verb+.txt+ et dont le nom est \verb+mon_texte.snt+. \index{Fichier!\verbc{.snt}}
 
 \bigskip
 \noindent NOTE~: lorsque l’on prétraite un texte depuis l’interface graphique, un répertoire nommé
@@ -281,7 +281,7 @@ phrases.
 \end{figure}
 
 \noindent  Lorsqu’un chemin de la grammaire reconnaît une séquence dans le texte et que ce chemin
-produit le symbole délimiteur de phrases \verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrases},
+produit le symbole délimiteur de phrases \verb+{S}+\index{\verbt{\{S\}}}\index{Délimiteur de phrases},
 on insère ce symbole dans le texte. Ainsi,
 un chemin de la grammaire de la figure~\ref{fig-example-sentence-splitting} reconnaît la séquence
 composée d’un point d’interrogation et d’un mot commençant par une majuscule et insère le symbole 
@@ -300,10 +300,10 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
 \bigskip
 \noindent Une grammaire de découpage peut manipuler les symboles spéciaux, ou méta-symboles, suivants :
 
-\index{\verb+<E>+}\index{Epsilon|see{<E>}}
-\index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{Méta-symboles}
-\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
+\index{\verbc{<E>}}\index{Epsilon|see{<E>}}
+\index{\verbc{<MOT>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}\index{\verbc{<NB>}}
+\index{\verbc{<PNC>}}\index{\verbc{<^>}}\index{\verbt{\#}}\index{\verbc{<WORD>}}\index{\verbc{<UPPER>}}\index{Méta-symboles}
+\index{\verbc{<LOWER>}}\index{\verbc{<FIRST>}}
 \begin{itemize}
   \item \verb+<E>+~: mot vide, ou epsilon. Reconnaît la séquence vide~;
   \item \verb+<WORD>+~: reconnaît n’importe quelle suite de lettres~;
@@ -332,14 +332,14 @@ et majuscules sont définies par un fichier alphabet\index{Fichier!alphabet}\ind
 (voir chapitre~\ref{chap-file-formats}). Pour plus de détails sur les graphes,
 voir le chapitre~\ref{chap-grammars}. Pour plus de détails sur le découpage d’un texte en phrases,
 voir \cite{ameliorer-decoupage-en-phrases}. La grammaire utilisée se nomme \verb+Sentence.fst2+ et
-se trouve dans le répertoire suivant~:\index{Fichier!\verb+Sentence.fst2+}
+se trouve dans le répertoire suivant~:\index{Fichier!\verbc{Sentence.fst2}}
 
 \bigskip
 \verb+/(répertoire personnel)/(langue)/Graphs/Preprocessing/Sentence+
 
 \bigskip
 \noindent L’application de cette grammaire à un texte s’effectue grâce au programme \verb+Fst2Txt+
-\index{\verb+Fst2Txt+}\index{Programmes externes!\verb+Fst2Txt+} en mode MERGE.\index{MERGE} 
+\index{\verbc{Fst2Txt}}\index{Programmes externes!\verbc{Fst2Txt}} en mode MERGE.\index{MERGE} 
 Cela signifie que les sorties produites par la grammaire, en l’occurrence le symbole \verb+{S}+,
 sont insérées dans le texte. Ce programme prend en entrée un fichier \verb+.snt+ et le modifie.
 
@@ -396,7 +396,7 @@ autorisés dans les grammaires de découpage en phrases. La grammaire utilisée 
 
 \bigskip
 \noindent Comme pour le découpage en phrases, cette grammaire est utilisée avec le programme
-\verb+Fst2Txt+ \index{Programmes externes!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}, mais cette fois en
+\verb+Fst2Txt+ \index{Programmes externes!\verbc{Fst2Txt}}\index{\verbc{Fst2Txt}}, mais cette fois en
 mode REPLACE, ce qui signifie que les entrées reconnues par la grammaire sont remplacées par les
 séquences produites par celle-ci. On peut voir sur la figure~\ref{fig-normalization-grammar} une
 grammaire qui normalise des contractions verbales en anglais.
@@ -425,7 +425,7 @@ principe suivant :
 \noindent Une unité lexicale peut être :
 \begin{itemize}
   \item soit le délimiteur de phrases \verb+{S}+;
-  \item le marqueur \verb+{STOP}+.\index{\verb${STOP}$} Contrairement au délimiteur de phrases
+  \item le marqueur \verb+{STOP}+.\index{\verbt{\{STOP\}}} Contrairement au délimiteur de phrases
   \verb+{S}+, le marqueur \verb+{STOP}+ ne peut JAMAIS être reconnu par une grammaire, de quelque
   façon que ce soit. Il peut être utilisé dans un corpus pour délimiter des élements. Par exemple,
   si un corpus est formé de nouvelles séparées par \verb+{STOP}+, il est impossible pour une
@@ -450,19 +450,19 @@ recherche de motifs.
 \bigskip
 \noindent Quel que soit le mode de découpage, les retours à la ligne présents
 dans un texte sont remplacés par des espaces. Ce découpage est effectué par le programme
-\verb+Tokenize+\index{\verb+Tokenize+} \index{Programmes externes!\verb+Tokenize+}.
+\verb+Tokenize+\index{\verbc{Tokenize}} \index{Programmes externes!\verbc{Tokenize}}.
 Ce programme produit plusieurs fichiers, stockés dans le répertoire du texte~:
 \begin{itemize}
   \item \verb+tokens.txt+ contient la liste des unités lexicales dans l’ordre où elles ont été
-  	  trouvées dans le texte;\index{Fichier!\verb+tokens.txt+}
+  	  trouvées dans le texte;\index{Fichier!\verbc{tokens.txt}}
   \item \verb+text.cod+  contient un tableau d’entiers; chaque entier correspondant à l’indice d’une
   	  unité lexicale dans le fichier \verb+tokens.txt+;
-  \index{Fichier!\verb+text.cod+}
+  \index{Fichier!\verbc{text.cod}}
   \item \verb+tok_by_freq.txt+ contient la liste des unités lexicales triée par ordre de fréquence;
-  \index{Fichier!\verb+tok_by_freq.txt+}
+  \index{Fichier!\verbc{tok_by_freq.txt}}
   \item \verb+tok_by_alph.txt+ contient la liste des unités lexicales triée par ordre alphabétique;
-  \index{Fichier!\verb+tok_by_alph.txt+}
-\item \verb+stats.n+ contient quelques statistiques sur le texte. \index{Fichier!\verb+stats.n+}
+  \index{Fichier!\verbc{tok_by_alph.txt}}
+\item \verb+stats.n+ contient quelques statistiques sur le texte. \index{Fichier!\verbc{stats.n}}
 \end{itemize}
 
 \bigskip
@@ -545,13 +545,13 @@ pomme de terre,.N+z1:fs
 \bigskip
 \noindent La séquence \textit{Igor} n'étant ni un mot simple du français, ni une partie de mot
 composé, a été considérée comme un mot inconnu.\index{Mots!inconnus} L’application de dictionnaires
-s’effectue avec le programme \verb+Dico+.\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+}
+s’effectue avec le programme \verb+Dico+.\index{\verbc{Dico}}\index{Programmes externes!\verbc{Dico}}
 Les trois fichiers produits (\verb+dlf+ pour les mots simples, \verb+dlc+ pour les mots composés et
 \verb+err+ pour les mots inconnus) sont placés dans le répertoire du texte. On appelle dictionnaires
 du texte les fichiers \verb+dlf+ et \verb+dlc+
 \index{Dictionnaire!du texte}
-\index{Fichier!\verb+dlf+}
-\index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}
+\index{Fichier!\verbc{dlf}}
+\index{Fichier!\verbc{dlc}}\index{Fichier!\verbc{err}}
 
 \bigskip
 \noindent Une fois l’application des dictionnaires effectuée, Unitex présente par ordre alphabétique
@@ -607,8 +607,8 @@ dictionnaire, si elle existe, s’affichera dans le cadre inférieur.
 Dans certaines langues comme le norvégien, il est possible de former des mots composés
 libres en soudant leurs éléments. Par exemple, le mot \textit{aftenblad} signifiant \textit{journal
 du soir} est obtenu en combinant les mots \textit{aften} (\textit{soir}) et \textit{blad}
-(\textit{journal}). Le programme \verb+PolyLex+ \index{\verb+PolyLex+}\index{Programmes
-externes!\verb+PolyLex+} explore la liste des mots inconnus après application des dictionnaires au
+(\textit{journal}). Le programme \verb+PolyLex+ \index{\verbc{PolyLex}}\index{Programmes
+externes!\verbc{PolyLex}} explore la liste des mots inconnus après application des dictionnaires au
 texte et essaye d’analyser chacun de ces mots comme un mot composé. Si un mot possède au moins une
 analyse, il est retiré de la liste des mots inconnus et les lignes de dictionnaires produites pour
 ce mot sont ajoutées au dictionnaire des mots simples du texte.

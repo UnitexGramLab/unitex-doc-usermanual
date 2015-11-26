@@ -192,7 +192,7 @@ avant et après normalisation des clitiques.
 \end{figure}
 \clearpage
 
-\index{Programmes externes!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
+\index{Programmes externes!\verbc{Reconstrucao}}\index{\verbc{Reconstrucao}}
 \bigskip
 \noindent Le programme \verb+Reconstrucao+ permet de construire dynamiquement pour chaque texte
 une grammaire de normalisation de ces formes. La grammaire ainsi produite peut alors être
@@ -346,7 +346,7 @@ les interprétations non verbales de \verb+Est+ ont été supprimées.
 \subsection{Compilation des grammaires ELAG}
 \index{Compilation!d'une grammaire ELAG}
 Avant de pouvoir être appliquée à un automate de texte, une grammaire ELAG doit être
-compilée en un fichier \verb+.rul+. \index{Fichier!\verb+.rul+} Cette opération s’effectue via
+compilée en un fichier \verb+.rul+. \index{Fichier!\verbc{.rul}} Cette opération s’effectue via
 la commande "Elag Rules", dans le menu "Text", qui fait apparaître la fenêtre de la figure
 ~\ref{fig-elag-rules}.
 
@@ -362,14 +362,14 @@ la commande "Elag Rules", dans le menu "Text", qui fait apparaître la fenêtre 
 pouvez les retirer au moyen du bouton "<<". Sélectionnez ensuite votre grammaire dans l’explorateur
 de fichiers situé dans le cadre gauche, et cliquez sur le bouton">>" pour l’ ajouter à la liste du
 cadre droit. Cliquez alors sur le bouton "Compile". Ceci lancera le programme \verb+ElagComp+
-\index{Programmes externes!\verb+ElagComp+} qui va compiler la grammaire sélectionnée pour créer un
-fichier nommé \verb+elag.rul+ par défaut.\index{Fichier!\verb+.rul+}
+\index{Programmes externes!\verbc{ElagComp}} qui va compiler la grammaire sélectionnée pour créer un
+fichier nommé \verb+elag.rul+ par défaut.\index{Fichier!\verbc{.rul}}
 
 \bigskip
 \noindent Si vous avez sélectionné votre grammaire dans le cadre droit, vous pouvez rechercher les
 motifs qu’elle reconnaît en cliquant sur le bouton "Locate". Cela ouvre la fenêtre "Locate Pattern"
 en spécifiant automatiquement un nom de graphe se terminant par
-\verb+-conc.fst2+.\index{Fichier!\verb+-conc.fst2+}
+\verb+-conc.fst2+.\index{Fichier!\verbc{-conc.fst2}}
 Ce graphe correspond à la partie \textit{si} de la grammaire. Vous pouvez ainsi obtenir les
 occurrences du texte sur lesquelles la grammaire s’appliquera.
 
@@ -388,7 +388,7 @@ l’appliquer à l’automate du texte. Dans la fenêtre de l’automate du text
 "Apply Elag Rule". Une boîte de dialogue apparaîtra pour vous demander le nom du fichier \verb+.rul+
 à utiliser (voir figure~\ref{fig-text-auto1}). Comme le fichier par défaut est bien \verb+elag.rul+,
 cliquez simplement sur "OK". Cela lancera le programme \verb+Elag+\index{Programmes
-externes!\verb+Elag+} qui va effectuer la levée d’ambiguïtés.
+externes!\verbc{Elag}} qui va effectuer la levée d’ambiguïtés.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -432,7 +432,7 @@ déjà partiellement désambiguïsé, ce qui permet de cumuler les effets de plu
 \index{Grammaires!collection}
 Il est possible de regrouper plusieurs grammaires ELAG en un ensemble de grammaires,
 afin de les appliquer en une seule fois. Les ensembles de grammaires ELAG sont décrits dans
-des fichiers \verb+.lst+\index{Fichier!\verb+.lst+}. Ils sont gérés depuis la fenêtre de compilation
+des fichiers \verb+.lst+\index{Fichier!\verbc{.lst}}. Ils sont gérés depuis la fenêtre de compilation
 des grammaires ELAG (figure~\ref{fig-elag-rules}). Le label en haut à gauche indique le nom de 
 l’ensemble courant, par défaut \verb+elag.lst+.C’est le contenu de cet ensemble qui est affiché
 dans le cadre droit de la fenêtre.
@@ -452,7 +452,7 @@ sur le bouton <<.
 Une fois que vous avez sélectionné toutes vos grammaires, compilez-les en cliquant sur
 le bouton "Compile". Cela créera un fichier \verb+.rul+ portant le nom indiqué en bas à droite (le
 	nom du fichier est obtenu en remplaçant l’extension \verb+.lst+ par \verb+.rul+).
-\index{Fichier!\verb+.lst+}\index{Fichier!\verb+.rul+}
+\index{Fichier!\verbc{.lst}}\index{Fichier!\verbc{.rul}}
 
 \bigskip
 \noindent Vous pouvez maintenant appliquer votre ensemble de grammaires. Comme expliqué
@@ -461,7 +461,7 @@ plus haut, cliquez sur le bouton "Apply Elag Rule" dans la fenêtre de l’autom
 \subsection{Fenêtre de traitement d’ELAG}
 \index{Fenêtre de traitement d’ELAG}\index{ELAG!fenêtre de traitement}
 Lors de la désambiguïsation, le programme \verb+Elag+ 
-\index{Programmes externes!\verb+Elag+} est lancé dans une fenêtre de traitement qui permet
+\index{Programmes externes!\verbc{Elag}} est lancé dans une fenêtre de traitement qui permet
 de voir les messages émis par le programme pendant son exécution.
 
 
@@ -502,8 +502,8 @@ traitement d’ELAG.
 \index{Jeu d’étiquettes ELAG}
 
 Les programmes \verb+Elag+ and \verb+ElagComp+  
-\index{Programmes externes!\verb+Elag+}
-\index{Programmes externes!\verb+ElagComp+} nécessitent une description formelle du jeu d’étiquettes
+\index{Programmes externes!\verbc{Elag}}
+\index{Programmes externes!\verbc{ElagComp}} nécessitent une description formelle du jeu d’étiquettes
 des dictionnaires utilisés. Cette description consiste, grosso modo, en une énumération de toutes
 les catégories grammaticales présentes dans les dictionnaires, avec pour
 chacune d’elle, la liste des codes syntaxiques et flexionnels qui leur sont associées et une
@@ -512,7 +512,7 @@ nommé \verb$tagset.def$ qui se trouve dans votre répertoire personnel, dans le
 
 
 \subsubsection{\texttt{tagset.def} file}
-\index{Fichier!\verb$tagset.def$}
+\index{Fichier!\verbc{tagset.def}}
 Voici un extrait du fichier \verb$tagset.def$ utilisé pour le français.
 
 \begin{verbatim}
@@ -595,7 +595,7 @@ parties qui sont toutes optionnelles:
 
 
 \begin{itemize}
-  \item \verb$flex$\index{\verb$flex$}: cette partie énumère les codes flexionnels
+  \item \verb$flex$\index{\verbc{flex}}: cette partie énumère les codes flexionnels
  relatifs à la catégorie grammaticale. Par exemple, les codes \verb$1,2,3$ qui dénotent
  la personne de l’entrée, sont des codes pertinents pour les pronoms mais pas pour les adjectifs. 
  Chaque ligne décrit un attribut flexionnel (genre, temps, etc), et est composée du nom
@@ -607,7 +607,7 @@ parties qui sont toutes optionnelles:
 pers = 1 2 3
 \end{verbatim}
 
-\item \verb$cat$\index{\verb$cat$}: cette partie déclare les attributs syntaxiques
+\item \verb$cat$\index{\verbc{cat}}: cette partie déclare les attributs syntaxiques
 et sémantiques qui peuvent être attribués
 aux entrées appartenant à la catégorie grammaticale concernée. Chaque ligne décrit
 un attribut et les valeurs qu’il peut prendre. Les codes déclarés pour un même attribut
@@ -625,7 +625,7 @@ niveau_de_langue = z1 z2 z3
 %but this attribute is not necessarily present in all words.
 mais cet attribut n'est pas forcément présent pour tous les mots.
 
-\item \verb$discr$\index{\verb$discr$}: cette partie est constituée de la déclaration
+\item \verb$discr$\index{\verbc{discr}}: cette partie est constituée de la déclaration
 d’un unique attribut. La syntaxe est la même que dans la partie \verb$cat$ et l’attribut
 décrit ici ne doit pas y être répété. Cette partie permet de diviser la catégorie grammaticale
 en sous-catégories \textit{discriminantes} dans lesquelles les entrées ont des attributs
@@ -633,13 +633,13 @@ flexionnels similaires. Pour les pronoms par exemple, une indication de personne
 aux entrées appartenant à la sous-catégorie des pronoms personnels mais non aux pronoms relatifs.
 Ces dépendances sont décrites dans la partie \verb$complete$;
 
-\item \verb$complete$\index{\verb$complete$}: Dans cette partie est explicité l’étiquetage
+\item \verb$complete$\index{\verbc{complete}}: Dans cette partie est explicité l’étiquetage
 morphologique des mots appartenant à la catégorie grammaticale courante. Chaque ligne décrit
 une combinaison valide de codes flexionnels en fonction de leur sous catégorie discriminante
 (si une telle catégorie a été déclarée). Lorsqu’un nom d’attribut apparaît entre angles
 (\verb$<$ et \verb$>$), cela signifie que n’importe quelle valeur de cet attribut peut convenir.
  Il est également possible de déclarer qu’une entrée ne prend aucun trait flexionnel au moyen d’une
- ligne ne contenant que le caractère \verb$_$ (underscore).\index{\verb$_$} Ainsi par exemple, si
+ ligne ne contenant que le caractère \verb$_$ (underscore).\index{\verbc{_}} Ainsi par exemple, si
  nous considérons les lignes suivantes extraites de la section concernant la description des verbes :
 
 
@@ -687,7 +687,7 @@ PpvPr
 \bigskip
 \noindent Toutes les combinaisons des traits flexionnels et discriminants qui apparaissent dans
 les dictionnaires doivent être décrites dans le fichier \verb$tagset.def$;
-\index{Fichier!\verb$tagset.def$} faute de quoi les entrées correspondantes seront rejetées par
+\index{Fichier!\verbc{tagset.def}} faute de quoi les entrées correspondantes seront rejetées par
 ELAG.
 
 
@@ -753,7 +753,7 @@ pour \textit{bel}.}.
 
 \bigskip
 \noindent Tous les codes qui ne sont pas déclarés dans le fichier
-\verb$tagset.def$\index{Fichier!\verb$tagset.def$} sont ignorés par ELAG. Si une entrée de
+\verb$tagset.def$\index{Fichier!\verbc{tagset.def}} sont ignorés par ELAG. Si une entrée de
 dictionnaire contient un tel code, ELAG produira un avetissement et retirera le code de l’entrée.
 
 
@@ -785,7 +785,7 @@ du texte avant de lui appliquer les grammaires de désambiguïsation. Cette norm
 s’effectue en appliquant à l’automate du texte une grammaire n’imposant aucune contrainte,
 comme celle de la figure~\ref{fig-elag-norm}. Notez que cette grammaire est normalement présente
 dans la distribution d’Unitex et pré-compilée dans le fichier
-\verb+norm.rul+.\index{\verb+norm.rul+}\index{Fichier!\verb+norm.rul+}
+\verb+norm.rul+.\index{\verbc{norm.rul}}\index{Fichier!\verbc{norm.rul}}
 
 \begin{figure}[!h]
 \begin{center}
@@ -797,7 +797,7 @@ dans la distribution d’Unitex et pré-compilée dans le fichier
 \bigskip
 \noindent Le résultat de l’application de cette grammaire est que l’automate d’origine est nettoyé
 de tous les codes qui ne sont, soit pas décrits dans le fichier \verb$tagset.def$,
-\index{Fichier!\verb$tagset.def$} soit non conformes
+\index{Fichier!\verbc{tagset.def}} soit non conformes
 à cette description (à cause de catégories grammaticales inconnues ou de combinaisons invalides 
 de traits flexionnels). En remplaçant alors l’automate du texte par l’automate ainsi
 normalisé, on peut être sûr que les modifications ultérieures de l’automate seront 
@@ -807,7 +807,7 @@ uniquement dues aux effets des grammaires ELAG.
 \subsection{Optimiser les grammaires}
 \index{Optimiser les grammaires ELAG}
 La compilation des grammaires effectuée par le programme \verb+ElagComp+
-\index{Programmes externes!\verb+ElagComp+} consiste à constr-uire un automate dont le langage est
+\index{Programmes externes!\verbc{ElagComp}} consiste à constr-uire un automate dont le langage est
 l’ensemble des séquences d’entrées lexicales (ou interprétations lexicales d’une phrase) qui ne sont
 pas rejetées par les grammaires. Cette tâche est complexe et peut prendre beaucoup de temps, il est
 toutefois possible de l’accélérer sensiblement en observant certains principes lors de l’écriture
@@ -962,13 +962,13 @@ composé d'étiquettes dépourvues de codes sémantiques et syntaxiques.
 \label{section-displaying-sentence-automata}
 Comme nous l’avons vu précédemment, l’automate d’un texte est en réalité l’ensemble
 des automates des phrases de ce texte. Cette structure peut être représentée grâce au format
-\verb+.fst2+, utilisé pour représenter les grammaires compilées.\index{Fichier!\verb+.fst2+} 
+\verb+.fst2+, utilisé pour représenter les grammaires compilées.\index{Fichier!\verbc{.fst2}} 
 Cependant, ce format ne permet pas d’afficher directement les automates de phrases. Il
-faut donc utiliser un programme \verb+Fst2Grf+\index{\verb+Fst2Grf+}\index{Programmes
-externes!\verb+Fst2Grf+} pour convertir un automate de phrase en un graphe pour qu’il 
+faut donc utiliser un programme \verb+Fst2Grf+\index{\verbc{Fst2Grf}}\index{Programmes
+externes!\verbc{Fst2Grf}} pour convertir un automate de phrase en un graphe pour qu’il 
 puisse être affiché. Ce programme est appelé automatiquement quand
 vous sélectionnez une phrase pour générer le fichier \verb+.grf+.
-\index{Fichier!\verb+.grf+}
+\index{Fichier!\verbc{.grf}}
 
 \bigskip
 \noindent Les fichiers \verb+.grf+ générés ne sont pas interprétés de la même manière
@@ -1098,7 +1098,7 @@ allez dans le menu "Text" et cliquez sur "Convert FST-Text to Text...". La fenê
 le numéro de la première phrase contenant une ambiguïté. Sinon, le programme \verb+Tfst2Unambig+ 
 construira le fichier de sortie selon les principes suivants:
 
-\index{Programmes externes!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+\index{Programmes externes!\verbc{Tfst2Unambig}}\index{\verbc{Tfst2Unambig}}
 \begin{itemize}
   \item le fichier de sortie contient une ligne par phrase;
   \item toutes les phrases sauf la dernière sont terminées par \verb+{S}+;
@@ -1176,8 +1176,8 @@ Les principaux avantages sont que vous pouvez:
 \end{center}
 \end{figure}
 
-\item \verb+<TOKEN>+\index{\verb+<TOKEN>+} ne reconnaît pas les tokens tel que définis dans
-	 \verb+tokens.txt+\index{\verb+tokens.txt+}. Il reconnaît n'importe quelle étiquette de 
+\item \verb+<TOKEN>+\index{\verbc{<TOKEN>}} ne reconnaît pas les tokens tel que définis dans
+	 \verb+tokens.txt+\index{\verbc{tokens.txt}}. Il reconnaît n'importe quelle étiquette de 
 	l'automate du texte. Les étiquettes reconnues peuvent être  plus longues que les tokens si
 	ce sont des étiquettes de mots composés, ou même plus courtes, si l'automate comporte une
 	analyse mophologique comme \verb+un+ comme le montre la figure \ref{morphoB}, page

@@ -28,25 +28,25 @@ les informations flexionnelles qui seront produites.
 \end{center}
 \end{figure}
 
-\index{Opérateur!\verb+L+}
-\index{Opérateur!\verb+R+}
-\index{Opérateur!\verb+C+}
-\index{Opérateur!\verb+D+}
-\index{Opérateur!\verb+U+}
-\index{Opérateur!\verb+P+}
-\index{Opérateur!\verb+W+}
-\index{\verb+L+}
-\index{\verb+R+}
-\index{\verb+C+}
-\index{\verb+D+}
-\index{\verb+U+}
-\index{\verb+P+}
-\index{\verb+W+}
+\index{Opérateur!\verbc{L}}
+\index{Opérateur!\verbc{R}}
+\index{Opérateur!\verbc{C}}
+\index{Opérateur!\verbc{D}}
+\index{Opérateur!\verbc{U}}
+\index{Opérateur!\verbc{P}}
+\index{Opérateur!\verbc{W}}
+\index{\verbc{L}}
+\index{\verbc{R}}
+\index{\verbc{C}}
+\index{\verbc{D}}
+\index{\verbc{U}}
+\index{\verbc{P}}
+\index{\verbc{W}}
 \noindent Les chemins peuvent contenir des opérateurs et des lettres. Les opérateurs possibles
 sont représentés par les caractères \verb+L+, \verb+R+, \verb+C+, \verb+D+, \verb+U+, \verb+P+ et
 \verb+W+.
 Les lettres qui ne sont pas des opérateurs sont des caractères. Le seul symbole spécial autorisé est
-le mot vide \verb+<E>+.\index{\verb+<E>+} Il n’est pas possible de faire référence aux dictionnaires
+le mot vide \verb+<E>+.\index{\verbc{<E>}} Il n’est pas possible de faire référence aux dictionnaires
 dans un graphe de flexion. Il est cependant possible de
 faire appel à des sous-graphes.
 
@@ -95,10 +95,10 @@ syntaxiques utilisés pour la recherche de motifs. Les différences sont les sui
 
 \begin{itemize}
   \item on peut utiliser le symbole spécial \verb+<^>+ qui reconnaît un retour à la
-  	  ligne;\index{\verb+<^>+}
+  	  ligne;\index{\verbc{<^>}}
   \item si l'on travaille en mode caractère par caractère, il est possible d'utiliser 
   	  le symbole spécial \verb+<L>+ qui reconnaît une lettre, telle que définie dans le fichier
-  	  alphabet;\index{\verb+<L>+}
+  	  alphabet;\index{\verbc{<L>}}
   \item il est impossible de faire référence aux dictionnaires;
   \item il est impossible d’utiliser les filtres morphologiques;
   \item il est impossible d’utiliser le mode morphologique;
@@ -147,7 +147,7 @@ format des entrées d’un DELAF et être encadrées par les symboles
 \bigskip
 \noindent Il est possible de faire appel à des sous-graphes. Il n’est pas possible de faire référence
 aux dictionnaires pour décrire les formes à normaliser. L’unique symbole spécial reconnu
-dans ce type de graphe est le mot vide \verb+<E>+.\index{\verb+<E>+}
+dans ce type de graphe est le mot vide \verb+<E>+.\index{\verbc{<E>}}
 Les graphes de normalisation de formes ambiguës doivent être compilés avant de pouvoir être
 utilisés.
 
@@ -166,7 +166,7 @@ Il est toutefois possible de forcer le respect de la casse en encadrant une expr
 guillemets. L’emploi des guillemets permet également de forcer le respect des espacements.
 En effet, Unitex considère, par défaut, qu’un espace est possible entre deux boîtes. Pour forcer
 la présence d’un espace, il faut le mettre entre guillemets. Pour interdire la présence d’un
-espace, il faut utiliser le symbole spécial \verb+#+.\index{\verb+#+}
+espace, il faut utiliser le symbole spécial \verb+#+.\index{\verbt{\#}}
 \index{Respect!des minuscules/majuscules}\index{Casse!voir {Respect!des minuscules/majuscules}}
 \index{Minuscules!voir {Respect!de minuscules/majuscules}}
 \index{Majuscules!voir {Respect!de minuscules/majuscules}}
@@ -221,7 +221,7 @@ paramétrés seront développées dans le chapitre
 La compilation est l’opération qui permet de passer du format \verb+.grf+ à un format plus
 facile à manipuler par les programmes d’Unitex. Pour compiler un graphe, vous devez
 l’ouvrir, puis cliquer sur "Compile FST2" dans le sous-menu "Tools" du menu "FSGraph".
-Unitex lance alors le programme \verb+Grf2Fst2+\index{\verb+Grf2Fst2+}\index{Programmes externes!\verb+Grf2Fst2+} dont vous pouvez suivre l’exécution dans une fenêtre
+Unitex lance alors le programme \verb+Grf2Fst2+\index{\verbc{Grf2Fst2}}\index{Programmes externes!\verbc{Grf2Fst2}} dont vous pouvez suivre l’exécution dans une fenêtre
 (voir figure~\ref{fig-compilation-frame}).
 
 \bigskip
@@ -233,7 +233,7 @@ Unitex lance alors le programme \verb+Grf2Fst2+\index{\verb+Grf2Fst2+}\index{Pro
 \end{figure}
 
 \noindent Si le graphe fait appel à des sous-graphes, ceux-ci sont automatiquement compilés. Le
-résultat est un fichier \verb+.fst2+ fichier\index{Fichier!\verb+.fst2+} qui rassemble tous les
+résultat est un fichier \verb+.fst2+ fichier\index{Fichier!\verbc{.fst2}} qui rassemble tous les
 graphes qui composent la grammaire. La grammaire est alors prête à être utilisée par les
 différents programmes d’Unitex.
 
@@ -241,7 +241,7 @@ différents programmes d’Unitex.
 \subsection{Approximation par un transducteur fini}
 \index{Graphe!approximation par transducteur fini}
 \index{Approximation d'une grammaire par un transducteur fini}
-\index{\verb+Flatten+}\index{Programmes externes!\verb+Flatten+}\label{flatten-section}
+\index{\verbc{Flatten}}\index{Programmes externes!\verbc{Flatten}}\label{flatten-section}
 Le format FST2 conserve l’architecture en sous-graphes des grammaires, ce qui les différencie
 des stricts transducteurs à états finis. Le programme \verb+Flatten+ permet de transformer
 une grammaire FST2 en un transducteur à états finis quand cela est possible, et d’en
@@ -423,7 +423,7 @@ compiler le graphe \verb+Det+ de la figure~\ref{fig-recursive-calls-loop}.
 \end{figure}
 
 \noindent Si vous avez lancé une recherche de motifs en sélectionnant un graphe au format 
-\verb+.grf+ \index{Fichier!\verb+.grf+}, et qu’Unitex y décèle une erreur, l’opération
+\verb+.grf+ \index{Fichier!\verbc{.grf}}, et qu’Unitex y décèle une erreur, l’opération
 de recherche sera automatiquement interrompue.
 
 
@@ -444,8 +444,8 @@ tuelles qui n’ont pas les mêmes propriétés théoriques.
 .
 
 \subsection{Contextes droits}
-\index{\verb+$[+}
-\index{\verb+$]+}
+\index{\verbc{$[}}
+\index{\verbc{$]}}
 On définit un contexte droit en délimitant une zone du graphe avec des boîtes contenant
 \verb+$[+ and \verb+$]+, représentant respectivement les début et fin de contexte qui sont
 représentés dans le graphe par des crochets verts. Le début et la fin d’un contexte doivent
@@ -573,7 +573,7 @@ c’est le cas sur la figure ~\ref{fig-context6}). Si l’on applique ce graphe 
 \end{figure}
 
 \subsection{Contextes gauches}
-\index{\verb+$*+}
+\index{\verbc{$*}}
 Il est également possible de rechercher une expression $X$ si elle se trouve seulement après une 
 expression $Y$. Évidemment, il était déjà possible de le faire avec une grammaire semblable à celle
 de la figure \ref{fig-left-context1}. Cependant, avec ce type de grammaire, le contexte gauche est
@@ -712,7 +712,7 @@ manière une requête comme ``\textit{un mot constitué du préfixe} \verb$un$ \
 \bigskip
 \noindent Pour surmonter cette difficulté, nous introduisons un mode morphologique dans le programme
 \verb$Locate$. Il consiste à délimiter une partie de votre  grammaire avec les 
-symboles \verb+$<+ et \verb+$>+.\index{\verb+$<+}\index{\verb+$>+}
+symboles \verb+$<+ et \verb+$>+.\index{\verbc{$<}}\index{\verbc{$>}}
 Dans cette zone, les données sont reconnues lettre par lettre, comme le montre la figure
 \ref{fig-morpho2}.
 
@@ -755,15 +755,15 @@ et non pour les formes qui n'apparaissent dans le texte que comme des parties de
 \item On peut utiliser des sorties.
    
 \item \verb+<LETTER>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet.
-	\index{\verb+<MOT>+}\index{\verb+<LETTER>+}
+	\index{\verbc{<MOT>}}\index{\verbc{<LETTER>}}
 
-\item \verb+<LOWER>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verb+<MIN>+}\index{\verb+<LOWER>+}
+\item \verb+<LOWER>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verbc{<MIN>}}\index{\verbc{<LOWER>}}
 
-\item \verb+<UPPER>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verb+<MAJ>+}\index{\verb+<UPPER>+}
+\item \verb+<UPPER>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verbc{<MAJ>}}\index{\verbc{<UPPER>}}
 
 \item \verb+<DIC>+ reconnaît n'importe quel mot présent dans un dictionnaire du mode
-	 morphologique\index{\verb+<DIC>+}, mais les méta-symboles \verb+#+, \verb+<FIRST>+,  \verb+<NB>+,
- 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verb+#+} \index{\verb+<FIRST>+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+} \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}
+	 morphologique\index{\verbc{<DIC>}}, mais les méta-symboles \verb+#+, \verb+<FIRST>+,  \verb+<NB>+,
+ 	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verbt{\#}} \index{\verbc{<FIRST>}} \index{\verbc{<NB>}} \index{\verbc{<TOKEN>}} \index{\verbc{<SDIC>}} \index{\verbc{<CDIC>}}
 \item Si on atteint la fin de la zone sans être à la fin du token, la reconnaissance échoue.
 	Par exemple, si le texte contient \verb+enabled+, on ne peut pas reconnaître seulement
 	\verb+enable+.
@@ -1606,7 +1606,7 @@ contient cette occurrence.
 Vous pouvez choisir de modifier le texte au lieu de construire une concordance. Pour
 cela, sélectionnez un nom de fichier dans le cadre "Modify text" de la fenêtre de la figure
 ~\ref{fig-configuration-display-occurrences}. Ce fichier doit porter l’extension \verb+.txt+.
-\index{Fichier!\verb+.txt+}
+\index{Fichier!\verbc{.txt}}
 
 \bigskip
 \noindent Si vous souhaitez modifier le texte courant, il faut choisir le fichier \verb+.txt+                                                                                correspondant.
@@ -1644,8 +1644,8 @@ phrases contenant les occurrences ou non.
 \subsection{Comparaison de concordances}
 \label{section-comparing-concordances}
 \index{Comparaison!de concordances}\index{Concordance!comparaison}\index{Programmes
-externes!\verb+ConcorDiff+}
-\index{\verb+ConcorDiff+}
+externes!\verbc{ConcorDiff}}
+\index{\verbc{ConcorDiff}}
 L’option "Show differences with previous concordance" permet de comparer la concordance
 qui vient d’être calculée avec la concordance précédente, si elle existe. Pour cela, le programme
 \verb+ConcorDiff+ construit les deux concordances dans l’ordre du texte, puis compare leurs lignes.

@@ -12,7 +12,7 @@ in Unicode Little-Endian.
 
 \section{Unicode encoding}
 \label{unicode-encoding}
-\index{File!text}\index{Unicode}\index{File!\verb+.txt+}\index{File!\verb+.snt+}
+\index{File!text}\index{Unicode}\index{File!\verbc{.txt}}\index{File!\verbc{.snt}}
 By default, text files processed by Unitex have to be encoded in Unicode Little-Endian.
 Unitex accepts also Unicode Big-Endian or UTF-8 files.
 This encoding allows the representation of 65536 characters by coding each of
@@ -134,7 +134,7 @@ designed under the name \textit{alphabet}, the second under the name
 \index{Alphabet}
 The alphabet file is a text file that describes all characters of a language, as
 well as the correspondances between capitalized and non-capitalized letters. This
-file is called \verb+Alphabet.txt+ \index{File!\verb+Alphabet.txt+} and is found
+file is called \verb+Alphabet.txt+ \index{File!\verbc{Alphabet.txt}} and is found
 in the root of the directory of a language. Its presence is obligatory for Unitex
 to function.
 
@@ -207,7 +207,7 @@ capitalization of \verb+e+, \texttt{\'e}, \texttt{\`e}, \texttt{\"e} or
 \index{Alphabet!sorted}
 The sorted alphabet file defines the sorting priorities of the letters of a
 language. It is used by the \verb+SortTxt+
-program.\index{\verb+SortTxt+}\index{External programs!\verb+SortTxt+} Each line
+program.\index{\verbc{SortTxt}}\index{External programs!\verbc{SortTxt}} Each line
 of that file defines a group of letters. If a group of letters $A$ is defined
 before a group of letters $B$, every letter of group $A$ is inferior to every
 letter in group $B$.
@@ -257,7 +257,7 @@ the compiled format \verb+.fst2+.
 
 
 \subsection{Format .grf}
-\index{File!\verb+.grf+}
+\index{File!\verbc{.grf}}
 A \verb+.grf+ file is a text file that contains presentation information in
 addition to information representing the contents of the boxes and the
 transitions of the graph. A \verb+.grf+ file begins with the following lines:
@@ -455,7 +455,7 @@ This number is always $0$ for the final state.
 \noindent Every line of the box definition ends with a newline.
 
 \subsection{Format .fst2}
-\index{File!\verb+.fst2+}
+\index{File!\verbc{.fst2}}
 An \verb+.fst2+ file is a text file that describes a set of graphs. Here is an
 example of an \verb+.fst2+ file:
 
@@ -546,7 +546,7 @@ character followed by a newline.
 \section{Texts}
 This section presents the different files used to represent texts.
 \subsection{.txt files}
-\index{File!\verb+.txt+}\index{\verb+{S}+}\index{Lexical!labels}
+\index{File!\verbc{.txt}}\index{\verbt{\{S\}}}\index{Lexical!labels}
 \index{Sentence delimiter}
 \label{section-texts}
 \verb+.txt+ files are text files encoded in Unicode Little-Endian. These files
@@ -557,17 +557,17 @@ characters with hexadecimal values \verb+000D+ and \verb+000A+.
 
 
 \subsection{.snt files}
-\index{File!\verb+.snt+}
+\index{File!\verbc{.snt}}
 \verb+.snt+ files are \verb+.txt+ files that have been processed by Unitex. These
 files should not contain any tabs. They should also not contain multiple
 consecutive spaces or newlines. The only allowed braces in \verb+.snt+ files are
-those of the sentence delimiter \verb+{S}+\index{\verb+{S}+}\index{Sentence
+those of the sentence delimiter \verb+{S}+\index{\verbt{\{S\}}}\index{Sentence
 delimiter} and those of lexical labels
 (\verb+{aujourd'hui,.ADV}+)\index{Lexical!labels}.
 
 
 \subsection{File text.cod}
-\index{File!\verb+text.cod+}
+\index{File!\verbc{text.cod}}
 The \verb+text.cod+ file is a binary file containing a sequence of integers that
 represent the text. Each integer \verb+i+ reflects the token with index \verb+i+
 in the \verb+tokens.txt+ file. These integers are encoded in four bytes.
@@ -576,7 +576,7 @@ in the \verb+tokens.txt+ file. These integers are encoded in four bytes.
 \noindent NOTE: Tokens are numbered starting at 0.
 
 \subsection{The tokens.txt file}
-\index{File!\verb+tokens.txt+}
+\index{File!\verbc{tokens.txt}}
 The \verb+tokens.txt+ file is a text file that contains the list of all lexical
 units of the text. The first line of this file indicates the number of units
 found in the file. Units are separated by a newline. Whenever a sequence is found
@@ -588,7 +588,7 @@ unit.
 spaces. Therefore there is no unit encoding the newline.
 
 \subsection{The tok\_by\_alph.txt and tok\_by\_freq.txt files}
-\index{File!\verb+tok_by_alph.txt+}\index{File!\verb+tok_by_freq.txt+}
+\index{File!\verbc{tok_by_alph.txt}}\index{File!\verbc{tok_by_freq.txt}}
 These two files are text files that contain the list of lexical units sorted
 alphabetically or by frequence.
 
@@ -602,7 +602,7 @@ but the number of occurrences is placed after the tab and the unit.
 
 
 \subsection{The enter.pos file}
-\index{File!\verb+enter.pos+}
+\index{File!\verbc{enter.pos}}
 This file is a binary file containing the list of positions of the newline symbol
 in the \verb+.snt+ file. Each position is the index in the \verb+text.cod+ file
 where a newline has been replaced by a space. These positions are integers that
@@ -615,7 +615,7 @@ are encoded in 4 bytes.
 
 \subsection{The text.tfst file}
 \label{section-tfst-format}
-\index{File!\verb+text.tfst+}
+\index{File!\verbc{text.tfst}}
 The \verb+text.tfst+ file represents the text automaton. It is a text
 file that starts with a ten digit line indicating the number of sentence
 automata it contains. Then, for each sentence automaton, you have the following
@@ -840,7 +840,7 @@ drinking orange juice.}
 
 
 \subsection{The text.tind file}
-\index{File!\verb+text.tind+}
+\index{File!\verbc{text.tind}}
 The \verb+text.tind+ file is an index file used to jump at correct byte offset
 in the \verb+text.tfst+ file when we want to load a given sentence. It is a
 binary file that contains $4 \times N$ bytes, where $N$ is the number of
@@ -850,7 +850,7 @@ little-endian sequence.
 
 \subsection{The cursentence.grf file}
 \label{section-cursentence_grf}
-\index{File!\verb+cursentence.grf+}
+\index{File!\verbc{cursentence.grf}}
 The \verb+cursentence.grf+ file is generated by Unitex during the display of a
 sentence automaton. The \verb+Fst2Grf+ program constructs a \verb+.grf+ file from
 the \verb+text.fst2+ file that represents a sentence automaton.
@@ -880,14 +880,14 @@ section \ref{section-cursentence_grf}).
 
 
 \subsection{The cursentence.txt file}
-\index{File!\verb+cursentence.txt+}
+\index{File!\verbc{cursentence.txt}}
 During the extraction of the sentence automaton, the text of the sentence is
 saved in the file called \verb+cursentence.txt+. That file is used by Unitex to
 display the text of the sentence under the automaton. That file contains the text
 of the sentence, followed by a newline.
 
 \subsection{The cursentence.tok file}
-\index{File!\verb+cursentence.tok+}
+\index{File!\verbc{cursentence.tok}}
 During the extraction of the sentence automaton, the numbers of the tokens that
 compose the sentence are stored in a file named \verb+cursentence.tok+. This
 file contains one line per token, each line being made of 2 integers \verb$x y$:
@@ -920,14 +920,14 @@ file contains one line per token, each line being made of 2 integers \verb$x y$:
 
 
 \subsection{The tfst\_tags\_by\_freq.txt and tfst\_tags\_by\_alph.txt files}
-\index{File!\verb+tfst_tags_by_freq.txt+}
-\index{File!\verb+tfst_tags_by_alph.txt+}
+\index{File!\verbc{tfst_tags_by_freq.txt}}
+\index{File!\verbc{tfst_tags_by_alph.txt}}
 Those files contain all the tags that appear in the text automaton sorted by frequence and alphabetical order.
 
 
 \section{Concordances}
 \subsection{The concord.ind file}
-\index{File!\verb+concord.ind+}
+\index{File!\verbc{concord.ind}}
 The \verb+concord.ind+ file is the index of the occurrences found by either
 \verb+Locate+ or \verb+LocateTfst+ during the application of a grammar. It is a
 text file that contains the starting and ending positions of each occurrence,
@@ -1000,7 +1000,7 @@ been ignored, the contents of the occurrence is extracted from the text file.
 
 
 \subsection{The concord.txt file}
-\index{File!\verb+concord.txt+}
+\index{File!\verbc{concord.txt}}
 The \verb+concord.txt+ file is a text file that represents a concordance. Each
 occurrence is encoded in a line that is composed of three character sequences
 separated by a tab, representing the left context, the occurrence (possibly
@@ -1008,7 +1008,7 @@ modified by transducer outputs) and the right context.
 
 
 \subsection{The concord.html file}
-\index{File!\verb+concord.html+}
+\index{File!\verbc{concord.html}}
 The \verb+concord.html+ file is an \verb+HTML+ file that represents a
 concordance. This file is encoded in UTF-8.\index{UTF-8}
 
@@ -1094,7 +1094,7 @@ corresponds to the file below.
 
 
 \subsection{The diff.html file}
-\index{File!\verb+diff.html+}
+\index{File!\verbc{diff.html}}
 The \verb+diff.html+ file is an \verb+HTML+ file that presents the differences
 between two concordances. This file is encoded in UTF-8.\index{UTF-8} Here is an
 example of file (new lines have been introduced for presentation convenience):
@@ -1139,23 +1139,23 @@ font-size: 12">
 The \verb+Dico+ program produces several files that represent text dictionaries.
 
 \subsection{dlf and dlc}
-\index{File!\verb+dlf+}
-\index{File!\verb+dlc+}
+\index{File!\verbc{dlf}}
+\index{File!\verbc{dlc}}
 
 \verb+dlf+ and \verb+dlc+ are simple and compound word dictionaries in the DELAF
 format (see section \ref{section-DELAF-format}).
 
 \subsection{err}
-\index{File!\verb+err+}
+\index{File!\verbc{err}}
 This file is made of unkown words, one per line.
 
 \subsection{tags\_err}
-\index{File!\verb+tags_err+}
+\index{File!\verbc{tags_err}}
 This file is made of unkown words, one per line. The difference with the \verb+err+ file is that 
 in this one do not appear simple words that have been matched in the \verb+tags.ind+ file.
 
 \subsection{tags.ind}
-\index{File!\verb+tags.ind+}
+\index{File!\verbc{tags.ind}}
 \label{section-tags-ind}
 This file has the same format than a \verb+concord.ind+ one obtained in MERGE
 or REPLACE mode, but its header is \verb+#T+. Note that the outputs DO NOT BEGIN
@@ -1171,12 +1171,12 @@ compressed forms required for the construction of the dictionaries from the
 inflected forms. This section describes the format of these two file types, as
 well as the format of the \verb+CHECK_DIC.TXT+ file, which contains the result of
 the verification of a dictionary.
-\index{\verb+Compress+}\index{External programs!\verb+Compress+}
+\index{\verbc{Compress}}\index{External programs!\verbc{Compress}}
 
 \index{DELAF}\index{Dictionaries!DELAF}
 
 \subsection{The .bin files}
-\index{File!\verb+.bin+}
+\index{File!\verbc{.bin}}
 A \verb$.bin$ file is a binary file that represents an automaton. The first 4
 bytes of the file represent an integer that indicates the size of the file in
 bytes. The states of the automaton are encoded in the following way:
@@ -1214,7 +1214,7 @@ bytes. The states of the automaton are encoded in the following way:
 \noindent By convention, the first state of the automaton is the initial state.
 
 \subsection{The .inf files}
-\index{File!\verb+.inf+}
+\index{File!\verbc{.inf}}
 A \verb+.inf+ file is a text file that describes the compressed files that are
 associated to a \verb+.bin+ file. Here an example of a \verb+.inf+ file:
 
@@ -1322,7 +1322,7 @@ get some information with a right click. Such information is attached to a
 file named \verb+biniou.txt+, located in the same directory.
 
 \subsection{The CHECK\_DIC.TXT file}
-\index{File!\verb+CHECK_DIC.TXT+}\index{\verb+CheckDic+}\index{External programs!\verb+CheckDic+}
+\index{File!\verbc{CHECK_DIC.TXT}}\index{\verbc{CheckDic}}\index{External programs!\verbc{CheckDic}}
 This file is produced by the dictionary verification program \verb+CheckDic+. It
 is a text file that contains information about the analysed dictionary and has
 four parts.
@@ -1471,11 +1471,11 @@ an error occurred in this line.
 
 \section{ELAG files}
 \subsection{tagset.def file}
-\index{File!\verb+tagset.def+}
+\index{File!\verbc{tagset.def}}
 See section \ref{section-elag-tagset}, page \pageref{section-elag-tagset}.
 
 \subsection{.lst files}
-\index{File!\verb+.lst+}
+\index{File!\verbc{.lst}}
 
 .LST FILES ARE NOT UNICODE FILES.
 
@@ -1501,14 +1501,14 @@ of the \verb$elag.lst$ file. Here is the \verb$elag.lst$ file used for French:
 \verb$PPVs/postpos.grf$\P
 
 \subsection{.elg files}
-\index{File!\verb+.elg+}
+\index{File!\verbc{.elg}}
 
 \verb$.elg$ files contain compiled ELAG rules. These files are in the
 \verb$.fst2$ format.
 
 
 \subsection{.rul files}
-\index{File!\verb+.rul+}
+\index{File!\verbc{.rul}}
 
 .RUL FILES ARE NOT UNICODE FILES.
 
@@ -1518,7 +1518,7 @@ rule set. It contains one part per \verb$.elg$ file. Each part lists the ELAG
 grammars that correspond to a given \verb$.elg$ file. \verb$.elg$ file names are
 surrounded with angles brackets. The lines that start with a tabulation are
 considered as comments by the \verb+Elag+
-program.\index{\verb+Elag+}\index{External programs!\verb+Elag+} Here is the
+program.\index{\verbc{Elag}}\index{External programs!\verbc{Elag}} Here is the
 \verb$elag.rul$ file used for French:
 
 \bigskip
@@ -1544,7 +1544,7 @@ program.\index{\verb+Elag+}\index{External programs!\verb+Elag+} Here is the
 This section presents files produced and used by TrainingTagger and Tagger programs.
 
 \subsection{The corpus.txt file}
-\index{File!\verb+corpus.txt+}
+\index{File!\verbc{corpus.txt}}
 \label{section-corpus-file}
 This file is used by the TrainingTagger program in order to compute statistics for the Tagger program. It contains sentences 
 where each word is represented in a separate line. Each line representing a word is composed of a word, simple or compound, 
@@ -1620,7 +1620,7 @@ Here is an example of a corpus.txt file :
 \bigskip
 The \verb+.txt+ file format can also be used (see section \ref{section-texts}). Each word of the text 
 must be represented by a valid lexical label (\verb+{aujourd'hui,.ADV}+)\index{Lexical!labels} and sentences
-are delimited by  \verb+{S}+\index{\verb+{S}+}\index{Sentence delimiter}.
+are delimited by  \verb+{S}+\index{\verbt{\{S\}}}\index{Sentence delimiter}.
 Here is the previous example in the \verb+.txt+ file format :
 
 \bigskip
@@ -1633,7 +1633,7 @@ Here is the previous example in the \verb+.txt+ file format :
 \verb${against,.PREP}$ \verb${higher,.A}$ \verb${interests,.N:p}$ \verb${.,.PONCT}$ \verb${S}$
 
 \subsection{The tagger data file}
-\index{File!\verb+train_dict+}
+\index{File!\verbc{train_dict}}
 \label{section-training-dict}
 The TrainingTagger program generates two data files (by default) used by the Tagger program in order
 to compute a second-order hidden Markov model. 
@@ -1708,7 +1708,7 @@ This line contains \verb+CODE FEATURES+ followed by either the integer 0 for "ca
 
 \section{Configuration files}
 \subsection{The Config file}
-\index{File!\verb+Config+}
+\index{File!\verbc{Config}}
 Whenever the user modifies his preferences for a given languages, these
 modifications are saved in a text file named 'Config' which can be found in the
 directory of the current language. The file has the following syntax (the order
@@ -1897,13 +1897,13 @@ to use to render the \verb+$<+ and \verb+$>+ tags.
 
 
 \subsection{The system\_dic.def file}
-\index{File!\verb+system_dic.def+}
+\index{File!\verbc{system_dic.def}}
 The \verb+system_dic.def+ file is a text file that describes the list of system
 dictionaries that are applied by default. This file can be found in the directory
 of the current language. Each line corresponds to a name of a .bin file. The
 system dictionaries are in the Unitex system directory,\index{Directory!Unitex system}
 and within that directory, in the
-\verb+(current language)/Dela+ sub-directory. \index{File!\verb+.bin+} Here is an
+\verb+(current language)/Dela+ sub-directory. \index{File!\verbc{.bin}} Here is an
 example of this file:
 
 
@@ -1913,7 +1913,7 @@ example of this file:
 \verb$delaf.bin$\P
 
 \subsection{The user\_dic.def file}
-\index{File!\verb+user_dic.def+}
+\index{File!\verbc{user_dic.def}}
 The \verb+user_dic.def+ file is a text file that describes the list of
 dictionaries the user has defined to be applied by default. This file is in the
 directory of the current language and has the same format as the
@@ -1922,7 +1922,7 @@ The dictionaries need to be in the \verb+(current language)/Dela+ sub-directory 
 user's working directory.\index{Directory!personal working}
 
 \subsection{The (user login).cfg and .unitex.cfg files}
-\index{File!\verb+.cfg+}
+\index{File!\verbc{.cfg}}
 Under Linux and Mac OS, your working directory is expected to be called
 \verb+unitex+ and to be in your root directory (\verb+$HOME+). If you want
 to change this default location, a \verb+.unitex.cfg+ file is created in your home directory, and
@@ -1973,20 +1973,20 @@ files and some others.
 
 
 \subsection{The dlf.n, dlc.n, err.n et tags\_err.n files}
-\index{File!\verb+dlf.n+}\index{File!\verb+dlc.n+}\index{File!\verb+err.n+}\index{File!\verb+tags_err.n+}
-\index{File!\verb+dlf+}\index{File!\verb+dlc+}\index{File!\verb+err+}\index{File!\verb+tags_err+}
+\index{File!\verbc{dlf.n}}\index{File!\verbc{dlc.n}}\index{File!\verbc{err.n}}\index{File!\verbc{tags_err.n}}
+\index{File!\verbc{dlf}}\index{File!\verbc{dlc}}\index{File!\verbc{err}}\index{File!\verbc{tags_err}}
 These files are text files that are stored in the text directory. They
 contain the number of lines of the \verb+dlf+, \verb+dlc+, \verb+err+ and \verb+tags_err+ files
 respectively. These numbers are followed by a newline.
 
 
 \subsection{The stat\_dic.n file}
-\index{File!\verb+stat_dic.n+}
+\index{File!\verbc{stat_dic.n}}
 This file is a text file in the directory of the text. It has three lines that
 contain the number of lines of the \verb+dlf+, \verb+dlc+ and \verb+err+ files.
 
 \subsection{The stats.n file}
-\index{File!\verb+stats.n+}
+\index{File!\verbc{stats.n}}
 This file is in the text directory and contains a line with the following form:
 
 
@@ -1999,7 +1999,7 @@ This file is in the text directory and contains a line with the following form:
 \noindent The numbers indicated are interpreted in the following way:
 \begin{itemize}
   \item \verb+sentence delimiters+: number of sentence delimiters
-  (\verb+{S}+);\index{\verb+{S}+}
+  (\verb+{S}+);\index{\verbt{\{S\}}}
   \index{Sentence delimiter}
 
   \item \verb+tokens+: total number of lexical units in the text. The number
@@ -2016,7 +2016,7 @@ This file is in the text directory and contains a line with the following form:
 
 
 \subsection{The concord.n file}
-\index{File!\verb+concord.n+}
+\index{File!\verbc{concord.n}}
 The \verb+concord.n+ file is a text file in the directory of the text. It
 contains information on the latest search of the text and looks like the
 following:
@@ -2036,7 +2036,7 @@ the covered units and the total number of units in the text.
 
 
 \subsection{The concord\_tfst.n file}
-\index{File!\verb+concord_tfst.n+}
+\index{File!\verbc{concord_tfst.n}}
 The \verb+concord_tfst.n+ file is a text file in the directory of the text. It
 contains information on the latest search on the text automaton and looks like
 the following:
@@ -2073,7 +2073,7 @@ $\longmapsto$ \verb+ONE_TWO_THREE_NEW_LINE+
 \index{Forbidden word file} \label{section-forbidden-words}
 The \verb+PolyLex+ programs requires a forbidden word file for Dutch and
 Norwegian. This raw text file is supposed to be named \verb+ForbiddenWords.txt+
-\index{File!\verb+ForbiddenWords.txt+}. If must be in the user's \verb+Dela+
+\index{File!\verbc{ForbiddenWords.txt}}. If must be in the user's \verb+Dela+
 directory corresponding to the language to work on. Each line is supposed to
 contain one forbidden word.
 
@@ -2118,7 +2118,7 @@ if this line contains 1, they are recorded;
 \subsection{Arabic typographic rules: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
 \index{Arabic typographic rules}
-\index{File!\verb+arabic_typo_rules.txt+}
+\index{File!\verbc{arabic_typo_rules.txt}}
 For Arabic, dictionary lookups can be parameterized with a file that describes whether some typographic 
 variations are allowed or not. This file is made of lines like the following:
 

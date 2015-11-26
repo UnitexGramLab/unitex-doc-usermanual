@@ -201,7 +201,7 @@ automaton of a sentence after normalization of the clitics.
 \end{figure}
 \clearpage
 
-\index{External programs!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
+\index{External programs!\verbc{Reconstrucao}}\index{\verbc{Reconstrucao}}
 \bigskip
 \noindent The \verb+Reconstrucao+ program allows you to construct a
 normalization grammar for these forms for each text dynamically. The grammar thus produced can then be
@@ -366,7 +366,7 @@ figure~\ref{fig-synchronization-point}\label{fig-est-il}}
 \subsection{Compiling ELAG Grammars}
 \index{Compilation!of an ELAG grammar}
 Before an ELAG grammar can be applied to a text automaton, the grammar must be
-compiled in a  \verb+.rul+ file. \index{File!\verb+.rul+} This operation is
+compiled in a  \verb+.rul+ file. \index{File!\verbc{.rul}} This operation is
 carried out via the "Elag Rules" command in the "Text" menu, which opens the
 windows shown in figure~\ref{fig-elag-rules}.
 
@@ -383,14 +383,14 @@ wish to use, you can withdraw them with the "<<" button. Then select your
 grammar(s) in the file explorer located in the left frame, and click on the
 ">>" button to add them to the list in the right frame. Then click on the
 "Compile" button. This will launch the \verb+ElagComp+ program
-\index{External programs!\verb+ElagComp+} which will compile the selected grammars and create a file named
-\verb+elag.rul+ by default.\index{File!\verb+.rul+}
+\index{External programs!\verbc{ElagComp}} which will compile the selected grammars and create a file named
+\verb+elag.rul+ by default.\index{File!\verbc{.rul}}
 
 \bigskip
 \noindent If you have selected grammars in the right frame, you can search patterns whith
 them by clicking on the "Locate" button. This opens the window "Locate
 Pattern" and automatically enters a graph name ending with
-\verb+-conc.fst2+.\index{File!\verb+-conc.fst2+} This graphs corresponds to the
+\verb+-conc.fst2+.\index{File!\verbc{-conc.fst2}} This graphs corresponds to the
 \textit{if} part of the grammar. You can thus obtain the occurrences of the
 text to which the grammar will apply.
 
@@ -407,7 +407,7 @@ Once you have compiled your grammar into an \verb+elag.rul+ file, you can apply
 it to a text automaton. In the text automaton window, click on the "Apply Elag
 Rule" button. A dialog box will appear which asks for the \verb+.rul+ file
 to be used (see figure~\ref{fig-text-auto1}). The default file is
-\verb+elag.rul+. This will launch the \verb+Elag+ program \index{External programs!\verb+Elag+} which
+\verb+elag.rul+. This will launch the \verb+Elag+ program \index{External programs!\verbc{Elag}} which
 will try to resolve the ambiguity.
 
 \begin{figure}[!ht]
@@ -453,7 +453,7 @@ the effects of several grammars.
 \index{Grammars!collection}
 It is possible to gather several ELAG grammars into a grammar collection in order
 to compile and apply them in one step. The sets of ELAG grammars are described in
-\verb+.lst+\index{File!\verb+.lst+} files. They are managed through the window
+\verb+.lst+\index{File!\verbc{.lst}} files. They are managed through the window
 for compiling ELAG grammars (figure~\ref{fig-elag-rules}). The label on the top
 left indicates the name of the current collection, by default \verb+elag.lst+.
 The contents of this collection are displayed in the right part of the window.
@@ -467,7 +467,7 @@ In the dialog box that appears, enter the \verb+.lst+ file name for the collecti
 frame, and click on the ">>" button. Once you have selected all your grammars,
 compile them by clicking on the "Compile" button. This will create a
 \verb+.rul+ file bearing the name indicated at the bottom right (the name of the file is
-obtained by replacing \verb+.lst+ by \verb+.rul+).\index{File!\verb+.lst+}\index{File!\verb+.rul+}
+obtained by replacing \verb+.lst+ by \verb+.rul+).\index{File!\verbc{.lst}}\index{File!\verbc{.rul}}
 
 \bigskip
 \noindent You can now apply your grammar collection. As explained above, click on the
@@ -479,7 +479,7 @@ obtained by applying each grammar successively.
 \subsection{Window For ELAG Processing}
 \index{Window for ELAG Processing}
 At the time of disambiguation, the \verb+Elag+ program
-\index{External programs!\verb+Elag+} is launched in a processing window which displays the
+\index{External programs!\verbc{Elag}} is launched in a processing window which displays the
 messages printed by the program during its execution.
 
 \bigskip
@@ -520,8 +520,8 @@ information is displayed in the ELAG processing window.
 \index{ELAG tag sets}
 
 The \verb+Elag+ and \verb+ElagComp+ programs 
-\index{External programs!\verb+Elag+}
-\index{External programs!\verb+ElagComp+} require a formal
+\index{External programs!\verbc{Elag}}
+\index{External programs!\verbc{ElagComp}} require a formal
 description of the tag set to be used in dictionaries. This description
 consists essentially of an enumeration of all the parts of speech present in the
 dictionaries, with, for each of them, the list of syntactic and inflectional
@@ -532,7 +532,7 @@ the language.
 
 
 \subsubsection{\texttt{tagset.def} file}
-\index{File!\verb+tagset.def+}
+\index{File!\verbc{tagset.def}}
 Here is an extract of the \verb$tagset.def$ file used for French.
 
 \begin{verbatim}
@@ -614,7 +614,7 @@ the part of speech concerned. Each section is composed of 4 parts which are all
 optional:
 
 \begin{itemize}
-  \item \verb$flex$\index{\verb$flex$}: this part enumerates the inflectional
+  \item \verb$flex$\index{\verbc{flex}}: this part enumerates the inflectional
   codes belonging to the grammatical category. For example, the codes
   \verb$1,2,3$ which indicate the person of the entry are relevant for pronouns
   but not for adjectives. Each line describes an inflectional attribute (gender,
@@ -626,7 +626,7 @@ optional:
 pers = 1 2 3
 \end{verbatim}
 
-\item \verb$cat$\index{\verb$cat$}: this part declares the syntactic and semantic
+\item \verb$cat$\index{\verbc{cat}}: this part declares the syntactic and semantic
 attributes which can be assigned to the entries belonging to the part of speech
 concerned. Each line describes an attribute and the values which it can take. The
 codes declared for the same attribute must be exclusive. In other words, an entry
@@ -644,7 +644,7 @@ niveau_de_langue = z1 z2 z3
 
 but this attribute is not necessarily present in all words.
 
-\item \verb$discr$\index{\verb$discr$}: this part consists of a declaration of a
+\item \verb$discr$\index{\verbc{discr}}: this part consists of a declaration of a
 unique attribute. The syntax is the same as in the \verb$cat$ part and the
 attribute described here must not be repeated there. This part allows for
 dividing the grammatical category in \textit{discriminating} sub categories in
@@ -653,14 +653,14 @@ a person feature is assigned to entries that are part of the personal pronoun su
 category but not to relative pronouns. These dependencies are described in the
 \verb$complete$ part;
 
-\item \verb$complete$\index{\verb$complete$}: this part describes the
+\item \verb$complete$\index{\verbc{complete}}: this part describes the
 inflectional part of the tags of the words in the current part of speech. Each
 line describes a valid combination of inflectional codes by their discriminating
 sub category (if such a category was declared). If an attribute name is specified
 in angle brackets (\verb$<$ and \verb$>$), this signifies that any value of this
 attribute may occur. It is possible as well to declare that an entry does not
 take any inflectional feature by means of a line containing only the \verb$_$
-character (underscore).\index{\verb$_$} So for example, if we consider that the
+character (underscore).\index{\verbc{_}} So for example, if we consider that the
 following lines extracted from the section describing the verbs:
 
 
@@ -706,7 +706,7 @@ PpvPr
 \bigskip
 \noindent All combinations of inflectional features and discriminant subcategories which
 appear in the dictionaries must be described in the \verb$tagset.def$
-file\index{File!\verb+tagset.def+}; otherwise, the information in the
+file\index{File!\verbc{tagset.def}}; otherwise, the information in the
 corresponding entries will be discarded by ELAG.
 
 \bigskip
@@ -769,7 +769,7 @@ the nound to which it refers to, as is the case for \textit{bel}.}.
 
 \bigskip
 \noindent All codes which are not declared in the
-\verb$tagset.def$\index{File!\verb+tagset.def+} file are discarded by ELAG. If a
+\verb$tagset.def$\index{File!\verbc{tagset.def}} file are discarded by ELAG. If a
 dictionary entry contains such a code, ELAG will produce a warning and will
 withdraw the code from the entry.
 
@@ -800,7 +800,7 @@ text automaton before applying disambiguation grammars to it. This normalization
 is carried out by applying to the text automaton a grammar not imposing any
 constraint, like that of figure~\ref{fig-elag-norm}. Note that this grammar is
 normally present in the Unitex distribution and precompiled in the file
-\verb+norm.rul+.\index{\verb+norm.rul+}\index{File!\verb+norm.rul+}
+\verb+norm.rul+.\index{\verbc{norm.rul}}\index{File!\verbc{norm.rul}}
 
 \begin{figure}[!h]
 \begin{center}
@@ -812,7 +812,7 @@ normally present in the Unitex distribution and precompiled in the file
 \bigskip
 \noindent The result of applying such a grammar is that the
 original is cleaned of all the codes which either are not described in the \verb$tagset.def$
-file\index{File!\verb+tagset.def+}, or do not conform to this description
+file\index{File!\verbc{tagset.def}}, or do not conform to this description
 (because of unknown grammatical categories or invalid combinations of
 inflectional features). By then replacing the text automaton by this normalized
 automaton, one can be sure that later modifications of the automaton will only be
@@ -822,7 +822,7 @@ effects of ELAG grammars.
 \subsection{Grammar Optimization}
 \index{Optimizing ELAG Grammars}
 Compilation of ELAG grammars by the \verb+ElagComp+ program
-\index{External programs!\verb+ElagComp+} consists in building an automaton
+\index{External programs!\verbc{ElagComp}} consists in building an automaton
 whose language is the set of the sequences of lexical tags (or lexical analyses of a sentence) which
 are not accepted by the grammars. This task is complex and can take a lot of
 time. It is however possible to appreciably speed it up by observing certain
@@ -973,13 +973,13 @@ with an annotated corpus composed of tags without semantic and syntactic codes.
 As we have seen above, the text automaton is in fact the collection of the
 sentence automata of a text. This structure can be represented using the format
 \verb+.fst2+, also used for representing the compiled
-grammars.\index{File!\verb+.fst2+} This format does not allow the system to
+grammars.\index{File!\verbc{.fst2}} This format does not allow the system to
 directly display the sentence automata. Instead, the system uses the
-\verb+Fst2Grf+ program\index{\verb+Fst2Grf+}\index{External
-programs!\verb+Fst2Grf+} to convert the sentence automaton into a graph that can
+\verb+Fst2Grf+ program\index{\verbc{Fst2Grf}}\index{External
+programs!\verbc{Fst2Grf}} to convert the sentence automaton into a graph that can
 be displayed. This program is called automatically when you select a sentence  in
 order to generate the corresponding \verb+.grf+ file.
-\index{File!\verb+.grf+}
+\index{File!\verbc{.grf}}
 
 \bigskip
 \noindent The generated \verb+.grf+ files are not interpreted in the same manner
@@ -1095,7 +1095,7 @@ text file in the window as shown on Figure
 the first sentence that contain ambiguity. Otherwise, the \verb+Tfst2Unambig+ program
 will build the output file according to the following rules:
 
-\index{External programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+\index{External programs!\verbc{Tfst2Unambig}}\index{\verbc{Tfst2Unambig}}
 \begin{itemize}
   \item the output file contains one line per sentence;
   \item every line but the last is ended by \verb+{S}+;
@@ -1179,8 +1179,8 @@ pattern \textit{huit}\label{fig7-locatetfst1}}
 \end{center}
 \end{figure}
 
-    \item \verb+<TOKEN>+\index{\verb+<TOKEN>+} does not match tokens as defined
-    in \verb+tokens.txt+\index{\verb+tokens.txt+}. It matches any tag of the
+    \item \verb+<TOKEN>+\index{\verbc{<TOKEN>}} does not match tokens as defined
+    in \verb+tokens.txt+\index{\verbc{tokens.txt}}. It matches any tag of the
     text automaton. Matched tags can be either longer than text tokens if they
     are compound word tags, or even shorter, if the text automaton contains 
     morphological analysis like \verb+un+ as shown on 

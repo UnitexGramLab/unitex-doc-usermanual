@@ -50,7 +50,7 @@ l’infinitif. Cette information peut être omise comme dans l’exemple suivant
   
 \bigskip Cela signifie alors que la forme canonique est identique à la forme fléchie. La forme
 canonique est séparée de la forme fléchie par une virgule;
-\index{\verb+,+}
+\index{\verbc{,}}
   
 \bigskip \item \verb$A+z1$ est la séquence d’informations grammaticales et sémantiques.
 \index{Informations!grammaticales}\index{Informations!sémantiques} Dans notre exemple, \verb+A+
@@ -58,7 +58,7 @@ désigne un adjectif, et \verb+z1+ ndique qu’il s’agit d’un mot courant (v
 
 Toute entrée doit comporter au moins un code grammatical ou sémantique, séparé de
 la forme canonique par un point. S’il y a plusieurs codes, ceux-ci doivent être séparés
-par le caractère \verb$+$\index{\verb$+$}\index{\verb+.+}.
+par le caractère \verb$+$\index{\verbc{+}}\index{\verbc{.}}.
   
 \bigskip
 \item \verb+:mp:fp+ est la séquence d’informations flexionnelles.
@@ -66,17 +66,17 @@ par le caractère \verb$+$\index{\verb$+$}\index{\verb+.+}.
 de conjugaisons, les déclinaisons pour les langues à cas, etc. Ces informations sont facultatives.
 Un code flexionnel est composé d’un ou plusieurs caractères codant chacun une information. Les codes
 flexionnels doivent être séparés par le caractère :. Dans notre exemple, \verb+m+ signifie masculin,
-\verb+p+ pluriel et \verb+f+ féminin (voir tableau ~\ref{tab-inflectional-codes}). Le caractère \verb+:+ s’interprète comme un OU logique. Ainsi, \verb+:mp:fp+ signifie "masculin pluriel", ou "féminin pluriel". Comme chaque caractère correspond à une information, il est inutile d’utiliser plusieurs fois un même caractère. Ainsi, coder le participe passé avec le code\verb+:PP+ serait strictement équivalent à utiliser \verb+:P+ seul;\index{\verb+:+}
+\verb+p+ pluriel et \verb+f+ féminin (voir tableau ~\ref{tab-inflectional-codes}). Le caractère \verb+:+ s’interprète comme un OU logique. Ainsi, \verb+:mp:fp+ signifie "masculin pluriel", ou "féminin pluriel". Comme chaque caractère correspond à une information, il est inutile d’utiliser plusieurs fois un même caractère. Ainsi, coder le participe passé avec le code\verb+:PP+ serait strictement équivalent à utiliser \verb+:P+ seul;\index{\verbc{:}}
   
 \bigskip \item \verb+/ceci est un exemple+ est un commentaire. Les commentaires sont facultatifs et
 doivent être introduits par le caractère \verb+/+. Les commentaires sont supprimés lorsque
-l’on comprime les dictionnaires. \index{Commentaire!dans un dictionnaire} \index{Dictionnaire!commentaire}\index{\verb+/+}
+l’on comprime les dictionnaires. \index{Commentaire!dans un dictionnaire} \index{Dictionnaire!commentaire}\index{\verbc{/}}
 \end{itemize}
 
 \bigskip
 \noindent REMARQUE IMPORTANTE : il est possible d’utiliser le point et la virgule dans une
 entrée de dictionnaire. Pour cela, il faut les déspécialiser avec le caractère
-\verb+\+ \index{\verb+\,+}\index{\verb+\.+}\index{\verb+\+}:
+\verb+\+ \index{\verbt{\textbackslash,}}\index{\verbt{\textbackslash.}}\index{\verbt{\textbackslash~}}:
 
 \bigskip
 \begin{verbatim}
@@ -111,12 +111,12 @@ par,.N+z3:ms
 
 \subsubsection{Mots composés avec espace ou tiret}
 
-\index{Mots!composés!avec espace ou tiret}\index{\verb+=+}\index{\verb+\=+}
+\index{Mots!composés!avec espace ou tiret}\index{\verbc{=}}\index{\verbt{\textbackslash=}}
 
 Certains mots composés comme \textit{grand-mère} peuvent s’écrire avec des espaces ou avec
 des tirets. Pour éviter de devoir dédoubler toutes les entrées, il est possible d’utiliser 
 le caractère \verb+=+ . Lors de la compression du dictionnaire, le programme \verb+Compress+
-\index{Programmes externes!\verb+Compress+}\index{\verb+Compress+} vérifie pour chaque ligne
+\index{Programmes externes!\verbc{Compress}}\index{\verbc{Compress}} vérifie pour chaque ligne
 si la forme fléchie ou la forme canonique contient le caractère \verb+=+. Si c’est le cas, le
 programme remplace l’entrée par deux entrées : une où le caractère = est remplacé par un espace,
 et une où il est remplacé par un tiret. Ainsi, l’entrée suivante :
@@ -251,8 +251,8 @@ Unitex. Ces codes ont la même signification pour presque toutes les langues, m�
 d’entre eux sont propres à certaines langues (\textit{i.e.} marque du neutre, etc.).
 
 \begin{table}[!h]
-\index{\verb+A+}\index{\verb+ADV+}\index{\verb+CONJC+}\index{\verb+CONJS+}\index{\verb+DET+}
-\index{\verb+INTJ+}\index{\verb+N+}\index{\verb+PREP+}\index{\verb+PRO+}\index{\verb+V+}
+\index{\verbc{A}}\index{\verbc{ADV}}\index{\verbc{CONJC}}\index{\verbc{CONJS}}\index{\verbc{DET}}
+\index{\verbc{INTJ}}\index{\verbc{N}}\index{\verbc{PREP}}\index{\verbc{PRO}}\index{\verbc{V}}
 \begin{center}
 \begin{tabular}{|c|l|l|}
 \hline
@@ -284,9 +284,9 @@ d’entre eux sont propres à certaines langues (\textit{i.e.} marque du neutre,
 \end{table}
 \vspace{-0.7cm}
 \begin{table}[!h]
-\index{\verb+z1+}\index{\verb+z2+}\index{\verb+z3+}\index{\verb+Abst+}\index{\verb+Anl+}\index{\verb+AnlColl+}
-\index{\verb+Conc+}\index{\verb+ConcColl+}\index{\verb+Hum+}\index{\verb+HumColl+}\index{\verb+t+}\index{\verb+i+}
-\index{\verb+en+}\index{\verb+se+}\index{\verb+ne+}
+\index{\verbc{z1}}\index{\verbc{z2}}\index{\verbc{z3}}\index{\verbc{Abst}}\index{\verbc{Anl}}\index{\verbc{AnlColl}}
+\index{\verbc{Conc}}\index{\verbc{ConcColl}}\index{\verbc{Hum}}\index{\verbc{HumColl}}\index{\verbc{t}}\index{\verbc{i}}
+\index{\verbc{en}}\index{\verbc{se}}\index{\verbc{ne}}
 \begin{center}
 \begin{tabular}{|c|l|l|}
 \hline
@@ -342,10 +342,10 @@ directement à l’auteur du dictionnaire.
 
 
 \begin{table}[!h]
-\index{\verb+m+}\index{\verb+f+}\index{\verb+n+}\index{\verb+s+}\index{\verb+p+}\index{\verb+1+}
-\index{\verb+2+}\index{\verb+3+}\index{\verb+P+}\index{\verb+I+}\index{\verb+S+}\index{\verb+T+}
-\index{\verb+Y+}\index{\verb+C+}\index{\verb+J+}\index{\verb+W+}\index{\verb+G+}\index{\verb+K+}
-\index{\verb+F+}
+\index{\verbc{m}}\index{\verbc{f}}\index{\verbc{n}}\index{\verbc{s}}\index{\verbc{p}}\index{\verbc{1}}
+\index{\verbc{2}}\index{\verbc{3}}\index{\verbc{P}}\index{\verbc{I}}\index{\verbc{S}}\index{\verbc{T}}
+\index{\verbc{Y}}\index{\verbc{C}}\index{\verbc{J}}\index{\verbc{W}}\index{\verbc{G}}\index{\verbc{K}}
+\index{\verbc{F}}
 \begin{center}
 \begin{tabular}{|c|l|}
 \hline
@@ -466,14 +466,14 @@ Vous pouvez aussi rechercher un mots dans plusieurs dictionnaires en cliquant su
 \section{Vérification du format du dictionnaire}
 \index{Dictionnaire!vérification} \index{Vérification du format d'un dictionnaire}
 Lorsque les dictionnaires sont de taille importante, il devient fastidieux de les vérifier à
-la main. Unitex contient le programme \verb+CheckDic+\index{Programmes externes!\verb+CheckDic+}
-\index{\verb+CheckDic+} qui vérifie automatiquement les dictionnaires DELAF et DELAS.
+la main. Unitex contient le programme \verb+CheckDic+\index{Programmes externes!\verbc{CheckDic}}
+\index{\verbc{CheckDic}} qui vérifie automatiquement les dictionnaires DELAF et DELAS.
 
 \bigskip
 \noindent Ce programme effectue une vérification de la syntaxe des entrées. Pour chaque entrée
 mal formée, le programme affiche le numéro de ligne, le contenu de cette ligne et la nature
 de l’erreur. Les résultats de l’analyse sont sauvés dans un fichier nommé
-\verb+CHECK_DIC.TXT+\index{Fichier!\verb+CHECK_DIC.TXT+} qui est affiché une fois la vérification
+\verb+CHECK_DIC.TXT+\index{Fichier!\verbc{CHECK_DIC.TXT}} qui est affiché une fois la vérification
 terminée. En plus des éventuels messages d’erreurs, ce fichier contient la liste de tous les
 caractères utilisés dans les formes fléchies et canoniques, la liste des codes grammaticaux et
 sémantiques,ainsi que la liste des codes flexionnels utilisés.
@@ -487,7 +487,7 @@ vérifier qu’il n’y a pas de faute de frappe dans les codes du dictionnaire.
 \bigskip
 \noindent Le programme \verb+CheckDic+ fonctionne avec des dictionnaires non comprimés, c’est-à-dire
 sous forme de fichiers texte. La convention généralement appliquée est de donner l’extension
-\verb+.dic+ \index{Fichier!\verb+.dic+}. Pour vérifier le format d’un dictionnaire, il faut tout
+\verb+.dic+ \index{Fichier!\verbc{.dic}}. Pour vérifier le format d’un dictionnaire, il faut tout
 d’abord l’ouvrir en cliquant sur "Open..." dans le menu "DELA".
 
 
@@ -550,9 +550,9 @@ compare \texttt{pêche} et \texttt{pèche}.
 \bigskip \index{Alphabet!tri}
 \noindent
 Afin de prendre en compte ce phénomène, le programme de tri \verb+SortTxt+  
-\index{\verb+SortTxt+}\index{Programmes externes!\verb+SortTxt+} utilise un fichier qui définit des
+\index{\verbc{SortTxt}}\index{Programmes externes!\verbc{SortTxt}} utilise un fichier qui définit des
 équivalences de caractères. \index{Équivalence de caractères}  Ce fichier s’appelle
-\verb+Alphabet_sort.txt+ \index{Fichier!\verb+Alphabet_sort.txt+} et se trouve dans le répertoire
+\verb+Alphabet_sort.txt+ \index{Fichier!\verbc{Alphabet_sort.txt}} et se trouve dans le répertoire
 de la langue courante de l’utilisateur. Voici les premières lignes du fichier utilisé par défaut
 pour le français :
 
@@ -592,7 +592,7 @@ En modifiant ce fichier, vous pouvez définir vos propres préférences de tri.
 \bigskip
 \noindent Remarque : après l’application des dictionnaires sur un texte, les fichiers
 \verb+dlf+, \verb+dlc+ et \verb+err+ sont automatiquement triés avec ce programme.
-\index{Fichier!\verb+dlf+} \index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}
+\index{Fichier!\verbc{dlf}} \index{Fichier!\verbc{dlc}}\index{Fichier!\verbc{err}}
 
 
 
@@ -667,9 +667,9 @@ canonique et ajoute le code flexionnel \verb+:s+. Le second retranche une lettre
 Voici les opérateurs utilisables:
 
 \begin{itemize}
-\item \verb+L+ (left)\index{\verb+L+}\index{Opérateur!\verb+L+} enlève une lettre à l’entrée;
+\item \verb+L+ (left)\index{\verbc{L}}\index{Opérateur!\verbc{L}} enlève une lettre à l’entrée;
   	  
-\item \verb+R+ (right)\index{\verb+R+}\index{Opérateur!\verb+R+}
+\item \verb+R+ (right)\index{\verbc{R}}\index{Opérateur!\verbc{R}}
              rétablit une lettre de l’entrée. En français, beaucoup de verbes du premier
   	  groupe se conjuguent au présent à la troisième personne du singulier en retirant le
   	  \verb+r+ de l’infinitif et en changeant la 4$\ieme$ lettre en partant de la fin en
@@ -680,7 +680,7 @@ Voici les opérateurs utilisables:
   	  \texttt{LLLLère}), on peut utiliser l’opérateur \verb+R+ pour n’en écrire qu’un seul :
   	  \texttt{LLLLèRR}.
   	  
-\item \verb+C+ (copy)\index{\verb+C+}\index{Opérateur!\verb+C+}
+\item \verb+C+ (copy)\index{\verbc{C}}\index{Opérateur!\verbc{C}}
              duplique une lettre de l’entrée, en décalant tout ce qui se trouve à sa droite.
   	  
 Supposons par exemple que l’on souhaite générer automatiquement des adjectifs en
@@ -689,43 +689,43 @@ Supposons par exemple que l’on souhaite générer automatiquement des adjectif
 graphe de flexion pour chaque consonne finale possible, on peut utiliser l’opérateur
 \verb+C+ afin de dupliquer la consonne finale, quelle qu’elle soit;
   
-  \item \verb+D+ (delete)\index{\verb+D+}\index{Opérateur!\verb+D+}
+  \item \verb+D+ (delete)\index{\verbc{D}}\index{Opérateur!\verbc{D}}
              supprime une lettre de l’entrée, en décalant tout ce qui se trouve à sa  droite.
 Si l’on souhaite par exemple fléchir le mot roumain \verb+european+ en \verb+europeni+, on utilisera
 la séquence \verb+LDRi+. Le \verb+L+ positionnera le curseur sur la lettre \verb+a+, \verb+D+ va
 supprimer le \verb+a+, en décalant le \verb+n+ sur la gauche, puis \verb+Ri+ va rétablir le \verb+n+
 et ajouter un \verb+i+.
 
-\item \verb+U+ (unaccent)\index{\verb+U+}\index{Opérateur!\verb+U+}
+\item \verb+U+ (unaccent)\index{\verbc{U}}\index{Opérateur!\verbc{U}}
           enlève l'accent du caractère courant s'il en comporte un.
 	Par exemple la séquence \verb+LLUx+ appliquée au mot
 	\texttt{mangés} produit la forme fléchie \verb+mangex+, puisque \verb+U+
 	à transformé le \texttt{é} en \verb+e+.
 
-\item \verb+P+ (uppercase)\index{\verb+P+}\index{Opérateur!\verb+P+}
+\item \verb+P+ (uppercase)\index{\verbc{P}}\index{Opérateur!\verbc{P}}
           met en majuscule la première lettre de la pile. Par exemple, la séquence
 	\verb$Px$ transforme \verb$foo$ en \verb$Foox$.
   
-\item \verb+W+ (lowercase)\index{\verb+W+}\index{Opérateur!\verb+W+}
+\item \verb+W+ (lowercase)\index{\verbc{W}}\index{Opérateur!\verbc{W}}
           met en minuscule la première lettre de la pile.
 
-\item \verb+<R=?>+ \index{\verb+<R=?>+}\index{Opérateur!\verb+<R=?>+}
+\item \verb+<R=?>+ \index{\verbc{<R=?>}}\index{Opérateur!\verbc{<R=?>}}
           remplace la première lettre de la pile par la lettre \verb+?+.
 
-\item \verb+<I=?>+ \index{\verb+<I=?>+}\index{Opérateur!\verb+<I=?>+}
+\item \verb+<I=?>+ \index{\verbc{<I=?>}}\index{Opérateur!\verbc{<I=?>}}
           insère la lettre \verb+?+ avant la première lettre de la pile.
 
-\item \verb+<X=n>+ \index{\verb+<X=n>+}\index{Opérateur!\verb+<X=n>+}
+\item \verb+<X=n>+ \index{\verbc{<X=n>}}\index{Opérateur!\verbc{<X=n>}}
           supprime les $n$ premières lettres de la pile.
 \end{itemize}
 
 \noindent Il y a également deux opérateurs spéciaux pour le  Coréen:
 \begin{itemize}\index{Jamo}\index{Hangul}
-\item \verb+J+ \index{\verb+J+}\index{Opérateur!\verb+J+}
+\item \verb+J+ \index{\verbc{J}}\index{Opérateur!\verbc{J}}
 supprime une lettre Jamo. Si le caractère est un Hangul, ce caractère est d'abord
 remplacé par sa séquence équivalente en alphabet Jamo, ensuite, la dernière lettre Jamo est
 supprimée. Si le caractère n'est ni un Jamo, ni un Hangul, une erreur est produite.
-\item \verb+.+ (latin dot)\index{\verb+.+}\index{Opérateur!\verb+.+}
+\item \verb+.+ (latin dot)\index{\verbc{.}}\index{Opérateur!\verbc{.}}
            insère une limite de syllabe. Ceci a un effet de ford, si le haut de la
 	pile contient des lettres Jamo, elles sont recombinées en Hangul.
 \end{itemize}
@@ -1107,14 +1107,14 @@ suffixes. Dans cet exemple, on a codé à la fois les consonnes et les voyelles 
 
 Unitex applique aux textes des dictionnaires comprimés. La compression permet de réduire
 la taille des dictionnaires et d’en accélérer la consultation. Cette opération s’effectue
-avec le programme \verb+Compress+. \index{\verb+Compress+}\index{Programmes externes!\verb+Compress+}
+avec le programme \verb+Compress+. \index{\verbc{Compress}}\index{Programmes externes!\verbc{Compress}}
 Celui-ci prend en entrée un dictionnaire sous forme de fichier texte (par exemple
-	\verb+mon_dico.dic+) et produit deux fichiers:\index{Fichier!\verb+.dic+}
+	\verb+mon_dico.dic+) et produit deux fichiers:\index{Fichier!\verbc{.dic}}
 
 \begin{itemize}
   \item \verb+mon_dico.bin+ contient l’automate minimal des formes fléchies du dictionnaire;
-  	  \index{Fichier!\verb+.bin+}
-  \item \verb+mon_dico.inf+ \index{Fichier!\verb+.inf+}contient des codes qui permettent de
+  	  \index{Fichier!\verbc{.bin}}
+  \item \verb+mon_dico.inf+ \index{Fichier!\verbc{.inf}}contient des codes qui permettent de
   	  reconstruire le dictionnaire d’origine à partir
   	  des formes fléchies contenues dans \verb+mon_dico.bin+.
 \end{itemize}
@@ -1189,7 +1189,7 @@ des priorités.
 
 \bigskip
 \noindent Il y a trois niveaux de priorités. Les dictionnaires dont les noms sans extension se
-terminent par \verb+-+\index{\verb+-+}\index{\verb$+$} ont la priorité la plus grande ; ceux dont
+terminent par \verb+-+\index{\verbc{-}}\index{\verbc{+}} ont la priorité la plus grande ; ceux dont
 le nom se termine par \verb-+- ont la priorité la plus faible ; les autres dictionnaires sont
 appliqués avec une priorité moyenne. L’ordre d’application de plusieurs dictionnaires ayant la même
 priorité est sans importance. En ligne de commande, l’instruction :
@@ -1231,8 +1231,8 @@ majuscule dans le texte.
 
 \noindent \verb$Pierre,.N+Prénom$ ne reconnaîtra que \verb+Pierre+ et \verb+PIERRE+. Les lettres
 minuscules et majuscules sont définies par le fichier alphabet passé en paramètre au programme
-\verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+}
-\index{Fichier!\verb+Alphabet.txt+}\index{Fichier!alphabet}\index{Alphabet}.\index{Règles!espace}
+\verb+Dico+\index{\verbc{Dico}}\index{Programmes externes!\verbc{Dico}}
+\index{Fichier!\verbc{Alphabet.txt}}\index{Fichier!alphabet}\index{Alphabet}.\index{Règles!espace}
 
 \bigskip
 \noindent Le respect des espacements est une règle très simple : pour qu’une séquence du texte
@@ -1243,11 +1243,11 @@ ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 
 \subsection{Graphes-dictionnaires}
 \label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
-Le programme \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} est également capable
+Le programme \verb+Dico+\index{\verbc{Dico}}\index{Programmes externes!\verbc{Dico}} est également capable
 d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent,
 par défaut\footnote{Les graphes-dictionnaires morphologiques sont une exception
 (section~\ref{section-morphological-dictionary-graphs}) .}, la règle suivante :
-si on les applique avec le programme \verb+Locate+\index{\verb+Locate+}\index{Programmes externes!\verb+Locate+} en mode MERGE,\index{MERGE} ils doivent produire des séquences
+si on les applique avec le programme \verb+Locate+\index{\verbc{Locate}}\index{Programmes externes!\verbc{Locate}} en mode MERGE,\index{MERGE} ils doivent produire des séquences
 correspondant à des lignes de DELAF.\index{DELAF}\index{Dictionnaire!DELAF}
 Quand on les applique à un texte, ils attachent les étiquettes lexicales DELAF à ces séquences.
 
@@ -1375,7 +1375,7 @@ par une barre oblique (slash, /) comme premier caractère de sa sortie, comme da
 \end{figure}
 
 \noindent La règle est simple: toute sortie du graphe-dictionnaire commençant par une barre oblique (slash, /) 
-est ajoutée au fichier \verb+tags.ind+, \index{\verb+tags.ind+} situé dans le répertoire du texte.
+est ajoutée au fichier \verb+tags.ind+, \index{\verbc{tags.ind}} situé dans le répertoire du texte.
 Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des interprétations à
 l'automate du texte. La grammaire de la figure \ref{morphoA} reconnaît des mots
 formés par le préfixe \verb+un+ suivi d'un adjectif. Si on l'applique comme graphe-dictionnaire,

@@ -22,7 +22,7 @@ Ce répertoire est créé par l’interface graphique après la normalisation du
 \noindent IMPORTANT (2): lorsqu’un paramètre contient des espaces, vous devez l’entourer de
 guillemets pour qu’il ne soit pas considéré comme plusieurs paramètres.
 
-\index{Texte!répertoire}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
+\index{Texte!répertoire}\index{Programmes externes!\verbc{Normalize}}\index{\verbc{Normalize}}
 
 \bigskip
 \noindent ATTENTION (3): beaucoup de programmes utilisent un fichier \verb+Alphabet.txt+. Cette
@@ -112,7 +112,7 @@ plusieurs valeurs séparées par des virgules;
 \newline \verb+--output_encoding=utf16le-bom+.
 
 
-\section{BuildKrMwuDic}\index{Programmes externes!\verb+BuildKrMwuDic+}\index{\verb+BuildKrMwuDic+}
+\section{BuildKrMwuDic}\index{Programmes externes!\verbc{BuildKrMwuDic}}\index{\verbc{BuildKrMwuDic}}
 \index{Génération du dictionnaire des mots composés coréens}\index{Dictionnaire!mots composés
 coréens}
 \verb+BuildKrMwuDic [OPTIONS] dic+
@@ -136,7 +136,7 @@ coréens}
 
 
 
-\section{Cassys}\index{Programmes externes!\verb+Cassys+}\index{\verb+Cassys+}
+\section{Cassys}\index{Programmes externes!\verbc{Cassys}}\index{\verbc{Cassys}}
 \index{Cascade de transducteurs}
 \verb+Cassys [OPTIONS] <snt>+
 
@@ -200,7 +200,7 @@ replace, de ce fait \#M ou \#R à la première ligne du fichier \verb+concord.in
 
 
 
-\section{CheckDic}\index{Programmes externes!\verb+CheckDic+}\index{\verb+CheckDic+}
+\section{CheckDic}\index{Programmes externes!\verbc{CheckDic}}\index{\verbc{CheckDic}}
 \index{Vérification du format d'un dictionnaire}\index{Dictionnaire!vérification}
 \verb+CheckDic [OPTIONS] dic+
 
@@ -227,7 +227,7 @@ DELAF.\verb+dic+ qui correspond au nom du dictionnaire à vérifier
 \noindent Le programme teste la syntaxe des lignes du dictionnaire. Il dresse également la liste des
 caractères présents dans les formes fléchies et canoniques, la liste des codes grammaticaux
 et syntaxiques ainsi que la liste des codes flexionnels utilisés. Les résultats de la vérification
-sont stockés dans un fichier nommé \verb+CHECK_DIC.TXT+.\index{Fichier!\verb+CHECK_DIC.TXT+}
+sont stockés dans un fichier nommé \verb+CHECK_DIC.TXT+.\index{Fichier!\verbc{CHECK_DIC.TXT}}
 
 \bigskip
 \noindent Le choix de \verb+--strict+ permet de détecter l'utilisation de points non déspécialisés
@@ -239,12 +239,12 @@ pas.
 
 
 
-\section{Compress}\index{Programmes externes!\verb+Compress+}\index{\verb+Compress+}
+\section{Compress}\index{Programmes externes!\verbc{Compress}}\index{\verbc{Compress}}
 \index{Compression des dictionnaires}
 \label{section-compress}
 \verb+Compress [OPTIONS] dictionary+
 \index{Dictionnaire!DELAF}\index{Dictionnaire!compression}
-\index{Fichier!\verb+.dic+}\index{Fichier!\verb+.bin+}\index{Fichier!\verb+.inf+}
+\index{Fichier!\verbc{.dic}}\index{Fichier!\verbc{.bin}}\index{Fichier!\verbc{.inf}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -282,7 +282,7 @@ les lignes du dictionnaire à partir des formes fléchies contenues dans l’aut
 
 
 
-\section{Concord}\index{Programmes externes!\verb+Concord+}\index{\verb+Concord+}\index{Concordance}
+\section{Concord}\index{Programmes externes!\verbc{Concord}}\index{\verbc{Concord}}\index{Concordance}
 \label{section-Concord}
 \index{Texte!modification}\index{Modification du texte}
 \verb+Concord [OPTIONS] <index>+
@@ -404,7 +404,7 @@ description des paramètres:
   \index{Alphabet}\index{Fichier!alphabet}
 \end{itemize}
 
-\index{Fichier!\verb+.html+}\index{Fichier!\verb+.txt+}
+\index{Fichier!\verbc{.html}}\index{Fichier!\verbc{.txt}}
 \bigskip
 \noindent Le résultat de l’application de ce programme est un fichier \verb+concord.txt+
 si la concordance a été construite en mode texte, un fichier \verb+concord.html+ pour les modes
@@ -424,7 +424,7 @@ représente le numéro de la phrase dans laquelle apparaît l’occurrence.
 
 
 
-\section{ConcorDiff}\index{Programmes externes!\verb+ConcorDiff+}\index{\verb+ConcorDiff+}
+\section{ConcorDiff}\index{Programmes externes!\verbc{ConcorDiff}}\index{\verbc{ConcorDiff}}
 \verb+ConcorDiff [OPTIONS] <concor1> <concor2>+
 
 \bigskip
@@ -449,7 +449,7 @@ absolus, car Unitex en déduit le texte sur lequel elles ont été calculées;
 
 
 
-\section{Convert}\index{Programmes externes!\verb+Convert+}\index{\verb+Convert+}
+\section{Convert}\index{Programmes externes!\verbc{Convert}}\index{\verbc{Convert}}
 \verb+Convert [OPTIONS] <text_1> [<text_2> <text_3> ...]+
 
 \index{Unicode}
@@ -591,7 +591,7 @@ absolus, car Unitex en déduit le texte sur lequel elles ont été calculées;
 
 
 
-\section{Dico}\index{Programmes externes!\verb+Dico+}\index{\verb+Dico+}
+\section{Dico}\index{Programmes externes!\verbc{Dico}}\index{\verbc{Dico}}
 \index{Dictionnaire!application}
 \verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
 
@@ -623,7 +623,7 @@ unités lexicales par le programme \verb+Tokenize+.
 doit être soit un dictionnaire compressé au format \verb+.bin+ (obtenu avec le programme
 	\verb+Compress+) soit un graphe dictionnaire au format\verb+.fst2+ (voir section
 \ref{section-applying-dictionaries}, page \pageref{section-applying-dictionaries}).
-	\index{Fichier!\verb+.bin+} Il est possible de donner des priorités aux dictionnaires. Pour
+	\index{Fichier!\verbc{.bin}} Il est possible de donner des priorités aux dictionnaires. Pour
 	les détails voir section \ref{section-dictionary-priorities}.
 
 \bigskip
@@ -631,7 +631,7 @@ doit être soit un dictionnaire compressé au format \verb+.bin+ (obtenu avec le
 texte
 
 \begin{itemize}
-  \index{Fichier!\verb+dlf+}\index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}\index{Fichier!\verb+stat_dic.n+}
+  \index{Fichier!\verbc{dlf}}\index{Fichier!\verbc{dlc}}\index{Fichier!\verbc{err}}\index{Fichier!\verbc{stat_dic.n}}
   \item \verb+dlf+: dictionnaire des mots simples du texte;
   \item \verb+dlc+: dictionnaire des mots composés du texte;
   \item \verb+err+: liste des mots inconnus du texte;
@@ -648,7 +648,7 @@ texte
 
 
 
-\section{DumpOffsets}\index{Programmes externes!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
 \label{section-DumpOffsets}
 \textbf{Utilisation:} \verb+DumpOffsets [OPTIONS] <txt>+
 
@@ -760,7 +760,7 @@ Il faut obligatoirement spécifier les deux tailles.
 
 
 
-\section{DumpOffsets}\index{Programmes externes!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
 \label{section-DumpOffsets}
 
 \noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
@@ -845,19 +845,19 @@ DumpOffsets [OPTIONS] -d -o <fichier_version1>
 \bigskip
 
 
-\section{Elag}\index{Programmes externes!\verb+Elag+}\index{\verb+Elag+}
+\section{Elag}\index{Programmes externes!\verbc{Elag}}\index{\verbc{Elag}}
 \verb+Elag [OPTIONS] <tfst>+
 
 \bigskip
 \noindent Ce programme prend un fichier \verb+.tfst+ automate de texte \verb+<tfst>+ et lui applique
-des règles de levée d’ambiguïtés. \index{Fichier!\verb+.tfst+}
+des règles de levée d’ambiguïtés. \index{Fichier!\verbc{.tfst}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
 \item \verb+-l LANG/--language=LANG+: Le fichier de configuration ELAG pour la langue considérée
   \item \verb+-r RULES/--rules=RULES+: le fichier de règles compilées au format \verb+.rul+;
-  	  \index{Fichier!\verb+.rul+}
+  	  \index{Fichier!\verbc{.rul}}
   \item \verb+-o OUT/--output=OUT+: l’automate du texte de sortie.
 \end{itemize}
 
@@ -867,7 +867,7 @@ des règles de levée d’ambiguïtés. \index{Fichier!\verb+.tfst+}
 
 
 
-\section{ElagComp}\index{Programmes externes!\verb+ElagComp+}\index{\verb+ElagComp+}
+\section{ElagComp}\index{Programmes externes!\verbc{ElagComp}}\index{\verbc{ElagComp}}
 \verb+ElagComp [OPTIONS]+
 
 \bigskip
@@ -882,7 +882,7 @@ des règles de levée d’ambiguïtés. \index{Fichier!\verb+.tfst+}
   	  considérée;
   \item \verb+-o OUT+/\verb+--output=OUT+: nom du fichier de sortie. Par défaut, le fichier de
   	  sortie est identique à \verb+RULES+, sauf pour l’extension qui est
-  	  \verb+.rul+.\index{Fichier!\verb+.rul+}
+  	  \verb+.rul+.\index{Fichier!\verbc{.rul}}
 \end{itemize}
 
 
@@ -892,7 +892,7 @@ des règles de levée d’ambiguïtés. \index{Fichier!\verb+.tfst+}
 
 
 
-\section{Evamb}\index{Programmes externes!\verb+Evamb+}\index{\verb+Evamb+}
+\section{Evamb}\index{Programmes externes!\verbc{Evamb}}\index{\verbc{Evamb}}
 \verb+Evamb [OPTIONS] <tfst>+
 
 \bigskip
@@ -913,7 +913,7 @@ ou juste sur la phrase spécifiée par\verb+N+. Les résultats du calcul sont af
 
 
 
-\section{Extract}\index{Programmes externes!\verb+Extract+}\index{\verb+Extract+}
+\section{Extract}\index{Programmes externes!\verbc{Extract}}\index{\verbc{Extract}}
 \verb+Extract [OPTIONS] <text>+
 
 \bigskip
@@ -942,7 +942,7 @@ d’une phrase par ligne.
 
 
 
-\section{Flatten}\index{Programmes externes!\verb+Flatten+}\index{\verb+Flatten+}
+\section{Flatten}\index{Programmes externes!\verbc{Flatten}}\index{\verbc{Flatten}}
 \index{Graphe!approximation par transducteur fini}
 \index{Approximation d'une grammaire par un transducteur fini}
 \verb+Flatten [OPTIONS] <fst2>+
@@ -975,7 +975,7 @@ en un transducteur à états finis.
 
 
 
-\section{Fst2Check}\index{Programmes externes!\verb+Fst2Check+}\index{\verb+Fst2Check+}
+\section{Fst2Check}\index{Programmes externes!\verbc{Fst2Check}}\index{\verbc{Fst2Check}}
 \verb+Fst2Check [OPTIONS] <fst2>+
 
 \bigskip
@@ -1012,7 +1012,7 @@ en un transducteur à états finis.
 
 
 
-\section{Fst2List}\index{Programmes externes!\verb+Fst2List+}\index{\verb+Fst2List+}
+\section{Fst2List}\index{Programmes externes!\verbc{Fst2List}}\index{\verbc{Fst2List}}
 \verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
 
 \verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
@@ -1087,7 +1087,7 @@ en un transducteur à états finis.
 
 
 
-\section{Fst2Txt}\index{Programmes externes!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
+\section{Fst2Txt}\index{Programmes externes!\verbc{Fst2Txt}}\index{\verbc{Fst2Txt}}
 \label{section-Fst2Txt}
 \verb+Fst2Txt [OPTIONS] <fst2>+
 
@@ -1137,12 +1137,12 @@ texte n’est pas encore découpé en unités lexicales
 
 
 
-\section{Grf2Fst2}\index{Programmes externes!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
+\section{Grf2Fst2}\index{Programmes externes!\verbc{Grf2Fst2}}\index{\verbc{Grf2Fst2}}
 \index{Graphe!compilation}\index{Compilation!d'un graphe}
 \verb+Grf2Fst2 [OPTIONS] <grf>+
 
 \bigskip
-\noindent \index{Fichier!\verb+.grf+}\index{Fichier!\verb+.fst2+}
+\noindent \index{Fichier!\verbc{.grf}}\index{Fichier!\verbc{.fst2}}
 Ce programme compile une grammaire en un fichier \verb+.fst2+ (pour plus de détails, voir
 section \ref{section-graph-compilation}). Le paramètre \verb+<grf>+ désigne le chemin d’accès
 complet au graphe principal de la grammaire, sans omettre l’extension \verb+.grf+.
@@ -1242,8 +1242,8 @@ est renvoyé en cas d'erreur.
 
 
 \section{ImplodeTfst}
-\index{Programmes externes!\verb+ImplodeTfst+}
-\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
+\index{Programmes externes!\verbc{ImplodeTfst}}
+\index{\verbc{ImplodeTfst}} \verb+ImplodeTfst [OPTIONS] <tfst>+
 
 \bigskip
 \noindent Ce programme implose l'automate du texte spécifié en fusionnant ensemble les entrées lexicales qui ne diffèrent que par leurs catactéristiques flexionnelles.
@@ -1259,7 +1259,7 @@ est renvoyé en cas d'erreur.
 
 
 
-\section{Locate}\index{Programmes externes!\verb+Locate+}\index{\verb+Locate+}
+\section{Locate}\index{Programmes externes!\verbc{Locate}}\index{\verbc{Locate}}
 \label{section-Locate}
 \verb+Locate [OPTIONS] <fst2>+
 
@@ -1388,7 +1388,7 @@ quand une sortie contient une référence à une variable qui n'est pas correcte
 \end{itemize}
 
 \bigskip
-\noindent \index{Fichier!\verb+concord.ind+}\index{Fichier!\verb+concord.n+} Ce
+\noindent \index{Fichier!\verbc{concord.ind}}\index{Fichier!\verbc{concord.n}} Ce
 programme enregistre les références des occurrences trouvées dans un fichier appelé
 \verb+concord.ind+. Le nombre d'occurrences, le nombre d'unités appartenant à ces
 occurrences, ainsi que le pourcentage d'unités reconnues dans le texte sont
@@ -1401,7 +1401,7 @@ enregistrées dans un fichier appelé
 
 
 
-\section{LocateTfst}\index{Programmes externes!\verb+LocateTfst+}\index{\verb+LocateTfst+}
+\section{LocateTfst}\index{Programmes externes!\verbc{LocateTfst}}\index{\verbc{LocateTfst}}
 \label{section-LocateTfst}
 \verb+LocateTfst [OPTIONS] <fst2>+
 
@@ -1488,7 +1488,7 @@ quand une sortie une référence à une variable qui n'est pas correctement déf
   informations supplémentaires sur les états de début et de fin de chaque match.
 \end{itemize}
 \bigskip
-\noindent \index{Fichier!\verb+concord.ind+}\index{Fichier!\verb+concord_tfst.n+}Ce
+\noindent \index{Fichier!\verbc{concord.ind}}\index{Fichier!\verbc{concord_tfst.n}}Ce
 programme enregistre les références des occurrences trouvées dans un fichier appelé
 \verb+concord.ind+. Le nombre d'occurrences, et le nombre de sorties produites sont enregistrées
 dans un fichier appelé \verb+concord_tfst.n+. Ces deux fichiers sont stockés dans
@@ -1500,7 +1500,7 @@ le répertoire du texte.
 
 
 
-\section{MultiFlex}\index{Programmes externes!\verb+MultiFlex+}\index{\verb+MultiFlex+}
+\section{MultiFlex}\index{Programmes externes!\verbc{MultiFlex}}\index{\verbc{MultiFlex}}
 \verb+MultiFlex [OPTIONS] <dela>+
 
 \bigskip
@@ -1539,7 +1539,7 @@ anciens.
 
 
 
-\section{Normalize}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
+\section{Normalize}\index{Programmes externes!\verbc{Normalize}}\index{\verbc{Normalize}}
 \label{section-Normalize}
 \index{Texte!normalisation}
 \verb+Normalize [OPTIONS] <text>+
@@ -1555,11 +1555,11 @@ remplacées par un seul espace.
 \noindent Ce programme vérifie également la syntaxe des étiquettes lexicales présentes dans le
 texte. Toute séquence entre accolades doit être soit le délimiteur de phrase \verb+{S}+,
 le marqueur \verb+{STOP}+, soit une ligne de DELAF valide (\verb+{aujourd'hui,.ADV}+). 
-\index{\verb+{S}+}\index{Délimiteur de phrase}
+\index{\verbt{\{S\}}}\index{Délimiteur de phrase}
 
 \bigskip
 \noindent \index{Étiquette lexicale} Le paramètre \verb+<text>+ doit représenter le chemin d’accès complet au fichier du texte. Le programme produit une version modifiée du texte qui est sauvé dans
-un fichier portant l’extension \verb+.snt+.\index{Fichier!\verb+.snt+}
+un fichier portant l’extension \verb+.snt+.\index{Fichier!\verbc{.snt}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -1586,7 +1586,7 @@ séparateurs dans ces règles.
 
 
 
-\section{PolyLex}\index{Programmes externes!\verb+PolyLex+}\index{\verb+PolyLex+}
+\section{PolyLex}\index{Programmes externes!\verbc{PolyLex}}\index{\verbc{PolyLex}}
 \verb+PolyLex [OPTIONS] <list>+
 \index{Norvégien!mots composés libres}
 \index{Allemand!mots composés libres}
@@ -1635,7 +1635,7 @@ dans le même répertoire que \verb+BIN+.
 
 
 \section{RebuildTfst}
-\index{Programmes externes!\verb+RebuildTfst+}\index{\verb+RebuildTfst+}
+\index{Programmes externes!\verbc{RebuildTfst}}\index{\verbc{RebuildTfst}}
 \verb+RebuildTfst <tfst>+
 
 \bigskip
@@ -1646,7 +1646,7 @@ dans le même répertoire que \verb+BIN+.
 
 
 
-\section{Reconstrucao}\index{Programmes externes!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
+\section{Reconstrucao}\index{Programmes externes!\verbc{Reconstrucao}}\index{\verbc{Reconstrucao}}
 \index{Compression des dictionnaires}\index{Dictionnaire!compression}
 \index{Clitiques!normalisation}\index{Normalisation!des clitiques en portugais}
 \index{Portugais!normalisation des clitiques}
@@ -1685,12 +1685,12 @@ grammaire est nommée \verb+V-Pro-Suf+, et est stockée dans le répertoire
 
 
 
-\section{Reg2Grf}\index{Programmes externes!\verb+Reg2Grf+}\index{\verb+Reg2Grf+}
+\section{Reg2Grf}\index{Programmes externes!\verbc{Reg2Grf}}\index{\verbc{Reg2Grf}}
 \verb+Reg2Grf <txt>+
 
 \bigskip
 \noindent \index{Expression régulière} \index{Expression rationnelle}
-\index{Fichier!\verb+.grf+}\index{Fichier!\verb+regexp.grf+}Ce programme construit un fichier
+\index{Fichier!\verbc{.grf}}\index{Fichier!\verbc{regexp.grf}}Ce programme construit un fichier
 \verb+.grf+ correspondant à l’expression rationnelle contenue dans le fichier \verb+<txt>+.
 Le paramètre \verb+<txt>+ doit représenter le chemin d’accès complet au fichier contenant
 l’expression rationnelle. Ce fichier doit être un fichier texte Unicode. Le programme prend en
@@ -1701,8 +1701,8 @@ compte tous les caractères jusqu’au premier retour à ligne. Le fichier résu
 
 
 
-\section{Seq2Grf}\index{Programmes externes!\verb+Seq2Grf+}
-\index{\verb+Seq2Grf+}
+\section{Seq2Grf}\index{Programmes externes!\verbc{Seq2Grf}}
+\index{\verbc{Seq2Grf}}
 \label{Seq2Grf}
 \verb+Seq2Grf [OPTIONS] <snt>+
 
@@ -1733,7 +1733,7 @@ qui correspond aux séquences contenues dans le fichier \verb+<snt>+.
 \verb+.grf+ produit est stocké dans le répertoire Graphs de l'utilisateur. Les autres fichiers,
 nommés \verb+text.tfst+, \verb+text.tind+ se trouvent dans le répertoire text.
 
-\section{SortTxt}\index{Programmes externes!\verb+SortTxt+}\index{\verb+SortTxt+}
+\section{SortTxt}\index{Programmes externes!\verbc{SortTxt}}\index{\verbc{SortTxt}}
 
 \verb+SortTxt [OPTIONS] <txt>+
 
@@ -1774,7 +1774,7 @@ des caractères en Unicode, en supprimant les doublons.
 
 
 
-\section{Stats}\index{Programmes externes!\verb+Stats+}\index{\verb+Stats+}
+\section{Stats}\index{Programmes externes!\verbc{Stats}}\index{\verbc{Stats}}
 
 \verb+Stats [OPTIONS] <ind>+
 
@@ -1810,7 +1810,7 @@ des caractères en Unicode, en supprimant les doublons.
 
 
 
-\section{Table2Grf}\index{Programmes externes!\verb+Table2Grf+}\index{\verb+Table2Grf+}
+\section{Table2Grf}\index{Programmes externes!\verbc{Table2Grf}}\index{\verbc{Table2Grf}}
 \verb+Table2Grf [OPTIONS] <table>+
 
 \bigskip
@@ -1838,7 +1838,7 @@ grammaire \verb+<table>+ et d'un graphe patron
 
 
 
-\section{Tagger}\index{Programmes externes!\verb+Tagger+}\index{\verb+Tagger+}
+\section{Tagger}\index{Programmes externes!\verbc{Tagger}}\index{\verbc{Tagger}}
 \verb+Tagger [OPTIONS] <tfst>+
 \label{section-Tagger}
 
@@ -1868,8 +1868,8 @@ l'automate doit être développé avant d'applique le processus d'étiquetage un
 
 
 \section{TagsetNormTfst}
-\index{Programmes externes!\verb+TagsetNormTfst+}
-\index{\verb+TagsetNormTfst+} \verb+TagsetNormTfst [OPTIONS] <tfst>+
+\index{Programmes externes!\verbc{TagsetNormTfst}}
+\index{\verbc{TagsetNormTfst}} \verb+TagsetNormTfst [OPTIONS] <tfst>+
 
 \bigskip
 \noindent Ce programme normalise l’automate de texte \verb+.tfst+ selon
@@ -1891,8 +1891,8 @@ et \verb+{rouge,.A:ms}+.
 
 
 
-\section{TEI2Txt}\index{Programmes externes!\verb+TEI2Txt+} 
-\index{\verb+TEI2Txt+}
+\section{TEI2Txt}\index{Programmes externes!\verbc{TEI2Txt}} 
+\index{\verbc{TEI2Txt}}
 \verb+TEI2Txt [OPTIONS] <xml>+
 
 \bigskip
@@ -1913,7 +1913,7 @@ et \verb+{rouge,.A:ms}+.
 
 
 \section{Tfst2Grf}
-\index{Programmes externes!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
+\index{Programmes externes!\verbc{Tfst2Grf}}\index{\verbc{Tfst2Grf}}
 \index{Automate!du texte}\index{Texte!automate du}
 \verb+Tfst2Grf [OPTIONS] <tfst>+
 
@@ -1940,13 +1940,13 @@ et \verb+{rouge,.A:ms}+.
 répertoire du texte:
 
 \begin{itemize}
-\item \verb+cursentence.grf+: graphe représentant l'automate de la phrase; \index{Fichier!\verb+cursentence.grf+}
+\item \verb+cursentence.grf+: graphe représentant l'automate de la phrase; \index{Fichier!\verbc{cursentence.grf}}
 
 \item \verb+cursentence.txt+: fichier texte contenant la phrase;
-\index{Fichier!\verb+cursentence.txt+}
+\index{Fichier!\verbc{cursentence.txt}}
 
 \item \verb+cursentence.tok+: fichier texte contenant le nombre de token qui compose la phrase;
-\index{Fichier!\verb+cursentence.tok+}
+\index{Fichier!\verbc{cursentence.tok}}
 \end{itemize}
 
 
@@ -1955,7 +1955,7 @@ répertoire du texte:
 
 
 
-\section{Tfst2Unambig}\index{Programmes externes!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+\section{Tfst2Unambig}\index{Programmes externes!\verbc{Tfst2Unambig}}\index{\verbc{Tfst2Unambig}}
 \index{Texte!automate du!conversion en texte linéaire}
 \verb+Tfst2Unambig [OPTIONS] <tfst>+
 
@@ -1974,13 +1974,13 @@ répertoire du texte:
 
 
 
-\section{Tokenize}\index{Programmes externes!\verb+Tokenize+}\index{\verb+Tokenize+}
+\section{Tokenize}\index{Programmes externes!\verbc{Tokenize}}\index{\verbc{Tokenize}}
 \label{section-Tokenize}
 \index{Texte!découpage en unités lexicales}
 \verb+Tokenize [OPTIONS] <txt>+
 
 \index{Unité lexicale}
-\index{Fichier!\verb+.snt+}\index{Alphabet}\index{Fichier!alphabet} 
+\index{Fichier!\verbc{.snt}}\index{Alphabet}\index{Fichier!alphabet} 
 \bigskip
 \noindent Ce programme découpe le texte en unités lexicales.
 \verb+<txt>+ le chemin d’accès complet au fichier texte, sans omettre l’extension \verb+.snt+ 
@@ -1996,7 +1996,7 @@ extension.
   	  du marqueur \verb+{STOP}+ et d'étiquettes lexicales comme \verb+{today,.ADV}+ qui sont considérées comme des unités simples;
 
  \item \verb+-w+/\verb+--word_by_word+: Avec cette option, le programme 
- 	 considère qu'une unité est soit une séquence de lettres (ces lettres sont définies dans le fichier \verb+alphabet+), ou un caractère qui n'est pas une lettre, ou le délimiteur de phrase \verb+{S}+\index{\verb+{S}+}, ou une étiquette lexicale comme
+ 	 considère qu'une unité est soit une séquence de lettres (ces lettres sont définies dans le fichier \verb+alphabet+), ou un caractère qui n'est pas une lettre, ou le délimiteur de phrase \verb+{S}+\index{\verbt{\{S\}}}, ou une étiquette lexicale comme
  	 \verb+{aujourd'hui,.ADV}+. \index{Délimiteur de phrase}
    \index{Étiquette lexicale} C'est le mode par défaut.
 
@@ -2011,7 +2011,7 @@ extension.
 \end{itemize}
 
 
-\index{Fichier!\verb+tokens.txt+}\index{Fichier!\verb+text.cod+}
+\index{Fichier!\verbc{tokens.txt}}\index{Fichier!\verbc{text.cod}}
 \bigskip
 \noindent Le programme code chaque unité par un entier. La liste des unités est sauvegardée dans
 un fichier texte nommé \verb+tokens.txt+. La suite des codes représentant les unités permet alors
@@ -2038,8 +2038,8 @@ phrases, le nombre d’unités, le nombre de mots simples et le nombre de chiffr
   correctement sélectionnée dans le texte.
 
 \end{itemize}
-\index{Fichier!\verb+tok_by_freq.txt+}\index{Fichier!\verb+tok_by_alph.txt+}
-\index{Fichier!\verb+stats.n+}\index{Fichier!\verb+enter.pos+}
+\index{Fichier!\verbc{tok_by_freq.txt}}\index{Fichier!\verbc{tok_by_alph.txt}}
+\index{Fichier!\verbc{stats.n}}\index{Fichier!\verbc{enter.pos}}
 
 \bigskip
 \noindent Tous les fichiers produits sont sauvegardés dans le répertoire du texte.
@@ -2049,7 +2049,7 @@ phrases, le nombre d’unités, le nombre de mots simples et le nombre de chiffr
 
 
 
-\section{TrainingTagger}\index{Programmes externes!\verb+TrainingTagger+}\index{\verb+TrainingTagger+}
+\section{TrainingTagger}\index{Programmes externes!\verbc{TrainingTagger}}\index{\verbc{TrainingTagger}}
 \verb+TrainingTagger [OPTIONS] <txt>+
 \label{section-TrainingTagger}
 
@@ -2085,8 +2085,8 @@ Dans le second fichier de données, les étiquettes sont de type "morph" (i.e. d
 
 \bigskip
 
-\section{Txt2Tfst}\index{Programmes externes!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
-\index{Automate!du texte}\index{Texte!automate du}\index{Fichier!\verb+.snt+}
+\section{Txt2Tfst}\index{Programmes externes!\verbc{Txt2Tfst}}\index{\verbc{Txt2Tfst}} \verb+Txt2Tfst [OPTIONS] <txt>+
+\index{Automate!du texte}\index{Texte!automate du}\index{Fichier!\verbc{.snt}}
 \index{Fichier!alphabet}\index{Alphabet}
 \bigskip
 \noindent Ce programme construit l’automate du texte. Le paramètre \verb+<txt>+ doit représenter le
@@ -2116,7 +2116,7 @@ phrase. Si ce n’est pas le cas, le programme découpe arbitrairement le texte 
 2000 unités lexicales et construit un automate pour chacune de ces séquences.
 \index{Unité lexicale}
 
-\index{Fichier!\verb+text.tfst+}\index{Fichier!\verb+text.tind+}
+\index{Fichier!\verbc{text.tfst}}\index{Fichier!\verbc{text.tind}}
 \bigskip
 \noindent Le résultat est un fichier nommé \verb+text.tfst+ qui est sauvegardé dans le répertoire du
 texte. Un autre fichier \verb+text.tind+ est aussi produit.
@@ -2131,7 +2131,7 @@ texte. Un autre fichier \verb+text.tind+ est aussi produit.
 
 
 
-\section{Uncompress}\index{Programmes externes!\verb+Uncompress+}\index{\verb+Uncompress+}
+\section{Uncompress}\index{Programmes externes!\verbc{Uncompress}}\index{\verbc{Uncompress}}
 \label{section-Uncompress}
 \verb+Uncompress [OPTIONS] <bin>+
 
@@ -2153,7 +2153,7 @@ texte. Un autre fichier \verb+text.tind+ est aussi produit.
 
 
 
-\section{Untokenize}\index{Programmes externes!\verb+Untokenize+}\index{\verb+Untokenize+}
+\section{Untokenize}\index{Programmes externes!\verbc{Untokenize}}\index{\verbc{Untokenize}}
 \label{section-Untokenize}
 \verb+Untokenize [OPTIONS] <txt>+
 
@@ -2181,7 +2181,7 @@ Ces fichiers se trouvent dans le répertoire XXX\_snt où XXX est sans son exten
 
 
 \section{UnitexTool}
-\index{Programmes externes!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Script de programmes Unitex}
+\index{Programmes externes!\verbc{UnitexTool}}\index{\verbc{UnitexTool}}\index{Script de programmes Unitex}
 \label{section-UnitexTool}
 \verb+UnitexTool <utilities>+
 
@@ -2233,7 +2233,7 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 
-\section{UnitexToolLogger}\index{Programmes externes!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log programmes Unitex}
+\section{UnitexToolLogger}\index{Programmes externes!\verbc{UnitexToolLogger}}\index{\verbc{UnitexToolLogger}}\index{Log programmes Unitex}
 \label{section-UnitexToolLogger}
 \verb+UnitexToolLogger <utilities>+
 
@@ -2361,7 +2361,7 @@ Unitex\English\Corpus\ivanhoe.txt }
 \end{verbatim}
 
 
-\section{Unxmlize}\index{Programmes externes!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Fichier
+\section{Unxmlize}\index{Programmes externes!\verbc{Unxmlize}}\index{\verbc{Unxmlize}}\index{Fichier
 de log programmes Unitex}
 \label{section-Unxmlize}
 
@@ -2401,7 +2401,7 @@ Note: par défaut, balises de script sont traitées comme des balises normales (
 
 
 
-\section{XMLizer}\index{Programmes externes!\verb+XMLizer+}\index{\verb+XMLizer+}
+\section{XMLizer}\index{Programmes externes!\verbc{XMLizer}}\index{\verbc{XMLizer}}
 \label{section-XMLizer}
 \verb+XMLizer [OPTIONS] <txt>+
 

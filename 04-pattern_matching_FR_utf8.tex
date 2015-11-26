@@ -32,7 +32,7 @@ Dans une expression rationnelle, l’unité lexicale a la même définition qu�
 (page \pageref{tokenization}). Notons que les symboles point, plus, étoile, inférieur ainsi que les
 parenthèses ouvrantes et fermantes ont une signification particulière, il faut donc les
 déspécialiser avec le caractère \verb+\+ si l’on souhaite les rechercher. Voici quelques exemples
-d’unités lexicales valides: \index{\verb+\+}
+d’unités lexicales valides: \index{\verbt{\textbackslash~}}
 
 \begin{verbatim}
 chat
@@ -69,9 +69,9 @@ un retour à ligne, mais tous les retours à la ligne
 ayant été remplacés par des espaces, ce symbole n’a plus aucune utilité lors de la recherche de
 motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte sont les suivants~:
 
-\index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
-\index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
+\index{\verbc{<MOT>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}\index{\verbc{<NB>}}
+\index{\verbt{\#}}\index{\verbc{<E>}}\index{\verbc{<DIC>}}\index{\verbc{<SDIC>}}\index{\verbc{<CDIC>}}
+\index{\verbc{<TDIC>}}\index{\verbc{<WORD>}}\index{\verbc{<UPPER>}}\index{\verbc{<LOWER>}}\index{\verbc{<FIRST>}}
 \begin{itemize}
   \item \verb+<E>+ : mot vide, ou epsilon. Reconnaît la séquence vide;
   \item \verb+<TOKEN>+ : reconnaît n’importe quelle unité lexicale sauf l'espace
@@ -102,7 +102,7 @@ motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte
 pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \bigskip
-\noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verb+{STOP}+}, pas même \verb+<TOKEN>+.
+\noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verbt{\{STOP\}}}, pas même \verb+<TOKEN>+.
 
 \subsection{Référence aux informations fournies par les dictionnaires}
 \index{Masque lexical}\index{Dictionnaire!référence aux informations du}
@@ -162,7 +162,7 @@ possède tous les codes présents dans le masque.
 
 \bigskip
 \noindent On peut exclure des codes en les faisant précéder du caractère \verb+~+
-au lieu de \verb$+$.\index{Exclusion des codes grammaticaux et sémantiques}\index{\verb+~+}
+au lieu de \verb$+$.\index{Exclusion des codes grammaticaux et sémantiques}\index{\verbt{\textasciitilde~}}
 \index{Négation!d’une propriété}
 Pour être reconnue, une entrée doit contenir tous les codes exigés par le
 masque, sans aucun des codes qu'il interdit. Par exemple, \verb$<A~z3>$ reconnaît toutes les
@@ -261,7 +261,7 @@ code \verb+Y2+ est inclus dans au moins un code de $E$, le masque lexical $M$ re
 
 \subsection{Négation d’un masque lexical}
 \index{Négation!d’un masque lexical}
-\index{\verb+"!+}
+\index{\verbc{"!}}
 Il est possible de faire la négation d’un motif au moyen du caractère~\verb+!+ placé immédiatement
 après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<WORD>+, \verb+<LOWER>+,
 \verb+<UPPER>+,
@@ -270,7 +270,7 @@ après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<
 \verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
 codes grammaticaux, sémantiques ou flexionnels (\textit{i.e.} \verb$<!V~z3:P3>$). Les motifs
 \verb+#+ et \verb+" "+  sont la négation l’un de l’autre.
-\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+}
+\index{\verbc{<E>}}\index{\verbc{<NB>}}\index{\verbt{\#}}
 Le méta \verb$<!WORD>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
 lettres, sauf le séparateur de phrases \verb+{S}+ et, bien sûr, le marqueur \verb+{STOP}+.
 La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ et
@@ -281,8 +281,8 @@ La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb
 \verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ et
 \verb+<!FIRST>+\footnote{Et dans leurs équivalents dépréciés <MIN>, <MAJ> et
 <PRE>. Voir section~\ref{section-special-symbols}.}.
-\index{\verb+<DIC>+}\index{\verb+<LOWER>+}\index{\verb+<UPPER>+}\index{\verb+<FIRST>+}
-\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
+\index{\verbc{<DIC>}}\index{\verbc{<LOWER>}}\index{\verbc{<UPPER>}}\index{\verbc{<FIRST>}}
+\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}
 Au lieu de reconnaître toutes les formes qui ne sont pas reconnues
 par le méta sans la négation, ces motifs ne donnent que des formes qui sont des séquences
 de lettres. Ainsi, le méta \verb+<!DIC>+ permet d’obtenir les mots inconnus du texte (cf.
@@ -326,7 +326,7 @@ being,.N+Hum:s
   	  (voir figure~\ref{fig-search-<!WORD>}). Ce masque ne reconnait pas le séparateur de phrase
   	  \verb+{S}+
   	  ni le tag \verb+{STOP}+.
-  	  \index{\verb+{S}+}\index{Séparateur!de phrases}\index{\verb+{STOP}+}
+  	  \index{\verbt{\{S\}}}\index{Séparateur!de phrases}\index{\verbt{\{STOP\}}}
 \end{itemize}
 
 \bigskip
@@ -339,7 +339,7 @@ being,.N+Hum:s
 \end{figure}
 
 \section{Concaténation}
-\index{Concaténation d'expressions rationnelles}\index{\verb+.+}\index{Opérateur!concaténation}
+\index{Concaténation d'expressions rationnelles}\index{\verbc{.}}\index{Opérateur!concaténation}
 
 On peut concaténer des expressions rationnelles de trois façons. La première consiste à
 utiliser l’opérateur de concaténation représenté par le point. Ainsi, l’expression:
@@ -371,7 +371,7 @@ le.<A>chat
 \end{verbatim}
 
 \section{Union}
-\index{Union d'expressions rationnelles}\index{\verb$+$}
+\index{Union d'expressions rationnelles}\index{\verbc{+}}
 \index{Opérateur!disjonction}
 L’union d’expressions rationnelles se fait en les séparant par le caractère \verb$+$.
 L’expression:
@@ -383,7 +383,7 @@ L’expression:
 \noindent
 reconnaît un pronom suivi par un verbe. Si l’on veut rendre un élément facultatif dans
 une expression, il suffit de faire l’union de cet élément avec le mot vide epsilon.
-\index{\verb+<E>+} Exemples:
+\index{\verbc{<E>}} Exemples:
 
 \bigskip
 \noindent \verb$le(petit+<E>)chat$ reconnaît les séquences \textit{le chat}
@@ -394,7 +394,7 @@ et \textit{le petit chat}
 \textit{franco-anglais} et \textit{franco-belge}
 
 \section{Étoile de Kleene}
-\index{Étoile de Kleene}\index{\verb+*+}\index{Opérateur!étoile de Kleene}\index{Opérateur!itération}
+\index{Étoile de Kleene}\index{\verbc{*}}\index{Opérateur!étoile de Kleene}\index{Opérateur!itération}
 L’étoile de Kleene, représentée par le caractère \verb+*+,permet de reconnaître zéro, une ou
 plusieurs occurrences d’une expression. L’étoile doit être placée à droite de l’élément concerné.
 L’expression :
@@ -559,8 +559,8 @@ Par défaut la recherche est effectuée avec le programme \verb+Locate+. Pour ut
 \bigskip
 \noindent Entrez une expression et cliquez sur "Search" pour lancer la recherche. Unitex va transformer
 l’expression en une grammaire au format \verb+.grf+.
-\index{Fichier!\verb+.grf+} Cette grammaire va ensuite être compilée en une grammaire au format
-\verb+.fst2+\index{Fichier!\verb+.fst2+} qui sera utilisée par le programme de recherche.
+\index{Fichier!\verbc{.grf}} Cette grammaire va ensuite être compilée en une grammaire au format
+\verb+.fst2+\index{Fichier!\verbc{.fst2}} qui sera utilisée par le programme de recherche.
 
 
 \subsection{Affichage des résultats}

@@ -53,7 +53,7 @@ apples,apple.N+conc:p/this is an example
   
   \bigskip This means that the canonical form is the same as the inflected form.
   The canonical form is separated from the inflected form by a
-  comma.\index{\verb+,+}
+  comma.\index{\verbc{,}}
   
   \bigskip \item \verb$N+Conc$ is the sequence of grammatical and semantic
   information. \index{Information!grammatical} \index{Information!semantic}In our
@@ -62,7 +62,7 @@ apples,apple.N+conc:p/this is an example
   
   Each entry must have at least one grammatical or semantic code, separated from
   the canonical form by a period. If there are more codes, these are separated by
-  the \verb$+$\index{\verb$+$}\index{\verb+.+} character.
+  the \verb$+$\index{\verbc{+}}\index{\verbc{.}} character.
   
   \bigskip \item \verb+:p+ is an inflectional code which indicates that the noun
   is  plural.\index{Information!inflectional} Inflectional codes are used to
@@ -79,18 +79,18 @@ apples,apple.N+conc:p/this is an example
   table~\ref{tab-inflectional-codes}) Since each character
   represents one information, you must not use the same character
   more than once. In this way, encoding the past participle using the code \verb+:PP+ would be
-  exactly equivalent to using \verb+:P+ alone;\index{\verb+:+}
+  exactly equivalent to using \verb+:P+ alone;\index{\verbc{:}}
   
   \bigskip \item \verb+/this is an example+ is a comment. Comments are optional
   and are introduced by the \verb+/+ character. These comments are left out when
   the dictionaries are compressed. \index{Comment!in a dictionary}
-  \index{Dictionaries!comments in} \index{\verb+/+}
+  \index{Dictionaries!comments in} \index{\verbc{/}}
 \end{itemize}
 
 \bigskip
 \noindent IMPORTANT REMARK: It is possible to use the full stop and the comma
 within a dictionary entry. In order to do this they have to be escaped using the
-\verb+\+ \index{\verb+\,+}\index{\verb+\.+}\index{\verb+\+} character:
+\verb+\+ \index{\verbt{\textbackslash,}}\index{\verbt{\textbackslash.}}\index{\verbt{\textbackslash~}} character:
 
 \bigskip
 \begin{verbatim}
@@ -123,13 +123,13 @@ English,.N+z3:s
 
 \subsubsection{Compound words with spaces or dashes}
 
-\index{Words!compound!with space or dash}\index{\verb+=+}\index{\verb+\=+}
+\index{Words!compound!with space or dash}\index{\verbc{=}}\index{\verbt{\textbackslash=}}
 
 Certain compound words like \textit{acorn-shell} can be written using spaces or
 dashes. In order to avoid duplicating the entries, it is possible to use the
 \verb+=+ character. At the time when the dictionary is compressed, the
 \verb+Compress+ program \index{External
-programs!\verb+Compress+}\index{\verb+Compress+} checks for each line if the
+programs!\verbc{Compress}}\index{\verbc{Compress}} checks for each line if the
 inflected or canonical form contains a non-escaped \verb+=+ character. If this is
 the case, the program replaces this by two entries: one where the \verb+=+
 character is replaced by a space, and one where it is replaced by a dash. Thus,
@@ -238,7 +238,7 @@ number of entries in the dictionary increases.
 The DELAS format is very similar to the one used in the DELAF. The only
 difference is that there is only a canonical form followed by grammatical
 and/or semantic codes. The canonical form is separated from the different codes
-by a comma. There is an example: \index{\verb+,+}
+by a comma. There is an example: \index{\verbc{,}}
 
 \begin{verbatim}
 horse,N4+Anl
@@ -265,8 +265,8 @@ some of them are special for certain languages (\textit{i.e.} code for neuter
 nouns, etc.).
 
 \begin{table}[!h]
-\index{\verb+A+}\index{\verb+ADV+}\index{\verb+CONJC+}\index{\verb+CONJS+}\index{\verb+DET+}
-\index{\verb+INTJ+}\index{\verb+N+}\index{\verb+PREP+}\index{\verb+PRO+}\index{\verb+V+}
+\index{\verbc{A}}\index{\verbc{ADV}}\index{\verbc{CONJC}}\index{\verbc{CONJS}}\index{\verbc{DET}}
+\index{\verbc{INTJ}}\index{\verbc{N}}\index{\verbc{PREP}}\index{\verbc{PRO}}\index{\verbc{V}}
 \begin{center}
 \begin{tabular}{|c|l|l|}
 \hline
@@ -298,9 +298,9 @@ nouns, etc.).
 \end{table}
 
 \begin{table}[!h]
-\index{\verb+z1+}\index{\verb+z2+}\index{\verb+z3+}\index{\verb+Abst+}\index{\verb+Anl+}\index{\verb+AnlColl+}
-\index{\verb+Conc+}\index{\verb+ConcColl+}\index{\verb+Hum+}\index{\verb+HumColl+}\index{\verb+t+}\index{\verb+i+}
-\index{\verb+en+}\index{\verb+se+}\index{\verb+ne+}
+\index{\verbc{z1}}\index{\verbc{z2}}\index{\verbc{z3}}\index{\verbc{Abst}}\index{\verbc{Anl}}\index{\verbc{AnlColl}}
+\index{\verbc{Conc}}\index{\verbc{ConcColl}}\index{\verbc{Hum}}\index{\verbc{HumColl}}\index{\verbc{t}}\index{\verbc{i}}
+\index{\verbc{en}}\index{\verbc{se}}\index{\verbc{ne}}
 \begin{center}
 \begin{tabular}{|c|l|l|}
 \hline
@@ -348,9 +348,9 @@ described here. For a complete description of all codes used within a dictionary
 we recommend that you  contact the author of the dictionary directly.
 
 \begin{table}[!h]
-\index{\verb+m+}\index{\verb+f+}\index{\verb+n+}\index{\verb+s+}\index{\verb+p+}\index{\verb+1+}
-\index{\verb+2+}\index{\verb+3+}\index{\verb+P+}\index{\verb+I+}\index{\verb+S+}\index{\verb+T+}
-\index{\verb+Y+}\index{\verb+C+}\index{\verb+J+}\index{\verb+W+}\index{\verb+G+}\index{\verb+K+}\index{\verb+F+}
+\index{\verbc{m}}\index{\verbc{f}}\index{\verbc{n}}\index{\verbc{s}}\index{\verbc{p}}\index{\verbc{1}}
+\index{\verbc{2}}\index{\verbc{3}}\index{\verbc{P}}\index{\verbc{I}}\index{\verbc{S}}\index{\verbc{T}}
+\index{\verbc{Y}}\index{\verbc{C}}\index{\verbc{J}}\index{\verbc{W}}\index{\verbc{G}}\index{\verbc{K}}\index{\verbc{F}}
 \begin{center}
 \begin{tabular}{|c|l|}
 \hline
@@ -467,14 +467,14 @@ You can also look up a word in several dictionnaries by clicking on the Lookup b
 \index{Dictionaries!checking} \index{Checking dictionary format}
 When dictionaries become large, it becomes tiresome to check them by hand.
 Unitex contains the program \verb+CheckDic+\index{External
-programs!\verb+CheckDic+}\index{\verb+CheckDic+} that automatically checks the
+programs!\verbc{CheckDic}}\index{\verbc{CheckDic}} that automatically checks the
 format of DELAF and DELAS dictionaries.
 
 \bigskip
 \noindent This program verifies the syntax of the entries. For each malformed
 entry the program outputs the line number, the content of the line and an error
 message. Results are saved in the file
-\verb+CHECK_DIC.TXT+\index{File!\verb+CHECK_DIC.TXT+} which is displayed when the
+\verb+CHECK_DIC.TXT+\index{File!\verbc{CHECK_DIC.TXT}} which is displayed when the
 verification is finished. In addition to eventual error messages, the file also
 contains the list of all characters used in the inflectional and canonical forms,
 the list of grammatical and semantic codes, and the list of inflectional codes
@@ -491,7 +491,7 @@ in the codes of the dictionary.
 \noindent The \verb+CheckDic+ program works with non-compressed dictionaries,
 \textit{i.e.} the files in text format. The general convention is to use the
 \verb+.dic+ extension for these dictionaries. In order to check the 
-\index{File!\verb+.dic+} format of a
+\index{File!\verbc{.dic}} format of a
 dictionary, you first open it by choosing "Open..." in the "DELA" menu.
 
 \begin{figure}[h]
@@ -555,9 +555,9 @@ identical, as they are when comparing \texttt{p\^eche} and
 \bigskip \index{Alphabet!sort}
 \noindent
 To allow for such effect, the \verb+SortTxt+ program  
-\index{\verb+SortTxt+}\index{External programs!\verb+SortTxt+} uses a file which
+\index{\verbc{SortTxt}}\index{External programs!\verbc{SortTxt}} uses a file which
 defines the equivalence of characters. \index{Equivalent characters}  This file
-is named \verb+Alphabet_sort.txt+ \index{File!\verb+Alphabet_sort.txt+} and can
+is named \verb+Alphabet_sort.txt+ \index{File!\verbc{Alphabet_sort.txt}} and can
 be found in the user directory for the current language. By default the first
 lines of this file for French look like this:
 
@@ -595,8 +595,8 @@ file, you can define your own sorting order.
 \bigskip
 \noindent NOTE: After applying the dictionaries to a text, the files
 \verb+dlf+, \verb+dlc+ and \verb+err+ are automatically sorted using this
-program. \index{File!\verb+dlf+} \index{File!\verb+dlc+}
-\index{File!\verb+err+}
+program. \index{File!\verbc{dlf}} \index{File!\verbc{dlc}}
+\index{File!\verbc{err}}
 
 
 
@@ -669,9 +669,9 @@ the \verb+L+ operator, then adds the \verb+ces+ suffix and adds the inflectional
 code \verb+:mp+. Here are the operators that can be used:
 
 \begin{itemize}
-  \item \verb+L+ (left) removes a letter from the entry.\index{\verb+L+}\index{Operator!\verb+L+}
+  \item \verb+L+ (left) removes a letter from the entry.\index{\verbc{L}}\index{Operator!\verbc{L}}
   
-  \item \verb+R+ (right) restores a letter to the entry.\index{\verb+R+}\index{Operator!\verb+R+}
+  \item \verb+R+ (right) restores a letter to the entry.\index{\verbc{R}}\index{Operator!\verbc{R}}
   In French, many verbs
   of the first group are conjugated in the present singular  of the third person form  by removing the
   \verb+r+ of the infinitive and changing the 4$^{th}$ letter from the end to
@@ -682,53 +682,53 @@ code \verb+:mp+. Here are the operators that can be used:
   \texttt{LLLL\`ere}), the \verb+R+ operator can be used to
   describe it in one way: \texttt{LLLL\`eRR}.
   
-  \item \verb+C+ (copy)\index{\verb+C+}\index{Operator!\verb+C+}
+  \item \verb+C+ (copy)\index{\verbc{C}}\index{Operator!\verbc{C}}
   duplicates a letter in the entry and moves everything on
   its right by one position. In cases like \verb+permitted+ or \verb+hopped+, we
   see a duplication of the final consonant of the verb. To avoid writing an
   inflectional graph for every possible final consonant, one can use the \verb+C+
   operator to duplicate any final consonant.
   
-  \item \verb+D+ (delete)\index{\verb+D+}\index{Operator!\verb+D+} deletes a
+  \item \verb+D+ (delete)\index{\verbc{D}}\index{Operator!\verbc{D}} deletes a
   letter, shifting anything located on the right of this letter. For instance, if
   you want to inflect the Romanian word \verb+european+ into \verb+europeni+, you
   must use the sequence \verb+LDRi+. \verb+L+ will move the cursor on the
   \verb+a+, \verb+D+ will delete the \verb+a+, shifting the \verb+n+ on the left,
   and then \verb+Ri+ will restore the \verb+n+ and add an \verb+i+.
 
-  \item \verb+U+ (unaccent)\index{\verb+U+}\index{Operator!\verb+U+}
+  \item \verb+U+ (unaccent)\index{\verbc{U}}\index{Operator!\verbc{U}}
   removes the accent of the current character, if
   any. For instance the sequence \verb+LLUx+ applied to the word
   \texttt{mang\'es} produces the inflected form \verb+mangex+, since \verb+U+
   has turn the \texttt{\'e} into a \verb+e+.
 
-  \item \verb+P+ (uppercase)\index{\verb+P+}\index{Operator!\verb+P+}
+  \item \verb+P+ (uppercase)\index{\verbc{P}}\index{Operator!\verbc{P}}
   uppercases the initial letter of the stack. For
   instance, the sequence \verb$Px$ will turn \verb$foo$ into \verb$Foox$.
   
-  \item \verb+W+ (lowercase)\index{\verb+W+}\index{Operator!\verb+W+}
+  \item \verb+W+ (lowercase)\index{\verbc{W}}\index{Operator!\verbc{W}}
   lowercases the initial letter of the stack.
 
-  \item \verb+<R=?>+ \index{\verb+<R=?>+}\index{Operator!\verb+<R=?>+}
+  \item \verb+<R=?>+ \index{\verbc{<R=?>}}\index{Operator!\verbc{<R=?>}}
   replaces the initial letter of the stack by the letter \verb+?+.
 
-  \item \verb+<I=?>+ \index{\verb+<I=?>+}\index{Operator!\verb+<I=?>+}
+  \item \verb+<I=?>+ \index{\verbc{<I=?>}}\index{Operator!\verbc{<I=?>}}
   inserts the letter \verb+?+ before the initial letter of the stack. 
 
-  \item \verb+<X=n>+ \index{\verb+<X=n>+}\index{Operator!\verb+<X=n>+}
+  \item \verb+<X=n>+ \index{\verbc{<X=n>}}\index{Operator!\verbc{<X=n>}}
   removes the first $n$ letters of the stack. 
    
 \end{itemize}
 
 \noindent There are also two operators dedicated to Korean:
 \begin{itemize}\index{Jamo}\index{Hangul}
-    \item \verb+J+ removes a Jamo letter.\index{\verb+J+}\index{Operator!\verb+J+}
+    \item \verb+J+ removes a Jamo letter.\index{\verbc{J}}\index{Operator!\verbc{J}}
     If the current character is a Hangul
     syllab character, this character is first replaced by the equivalent Jamo
     sequence, and then, the last Jamo letter is removed. If the current
     character is neither a Jamo nor a Hangul, and error is raised.
     
-    \item \verb+.+ (latin dot)\index{\verb+.+}\index{Operator!\verb+.+}
+    \item \verb+.+ (latin dot)\index{\verbc{.}}\index{Operator!\verbc{.}}
     inserts a syllab bound. As a side effect, if the
     top of the stack contains Jamo letters, they are first recombined into a
     Hangul character.
@@ -1125,15 +1125,15 @@ Arabic nouns and adjectives where masculine forms are generated by inserting vow
 
 Unitex applies compressed dictionaries to the text. The compression reduces the
 size of the dictionaries and speeds up the lookup. This operation is done by the
-\verb+Compress+ program. \index{\verb+Compress+}\index{External
-programs!\verb+Compress+}This program takes a dictionary in text form 
+\verb+Compress+ program. \index{\verbc{Compress}}\index{External
+programs!\verbc{Compress}}This program takes a dictionary in text form 
 as input (for example \verb+my_dico.dic+) and produces two files:
 
-\index{File!\verb+.dic+}
+\index{File!\verbc{.dic}}
 \begin{itemize}
   \item \verb+my_dico.bin+ contains the minimal automaton of the inflected forms of the dictionaries;
-  \index{File!\verb+.bin+}
-  \item \verb+my_dico.inf+ contains the codes extracted from the original dictionary.\index{File!\verb+.inf+}
+  \index{File!\verbc{.bin}}
+  \item \verb+my_dico.inf+ contains the codes extracted from the original dictionary.\index{File!\verbc{.inf}}
 \end{itemize}
 
 \index{Automaton!minimal}
@@ -1202,7 +1202,7 @@ different entries, they will be ignored given the priority rule.
 \bigskip
 \noindent There are three priority levels. The dictionaries whose names without
 extension end with~\verb+-+
-\index{\verb+-+}\index{\verb$+$}
+\index{\verbc{-}}\index{\verbc{+}}
 have the highest priority; those that end with~\verb-+- have the lowest one.
 All other dictionaries are applied with medium priority. The order in which
 dictionaries with the same priority are applied does not matter.
@@ -1246,8 +1246,8 @@ letters and spaces. The upper case rule is as follows:
 % do not remove this line jump
 \noindent \verb$Peter,.N+firstName$ only 
 recognizes \verb+Peter+ and \verb+PETER+. Lower and upper case
-letters are defined in the alphabet file passed to the \verb+Dico+ program\index{\verb+Dico+}
-\index{External programs!\verb+Dico+}\index{File!\verb+Alphabet.txt+}\index{File!alphabet}\index{Alphabet}
+letters are defined in the alphabet file passed to the \verb+Dico+ program\index{\verbc{Dico}}
+\index{External programs!\verbc{Dico}}\index{File!\verbc{Alphabet.txt}}\index{File!alphabet}\index{Alphabet}
 as a parameter.
 
 \index{Rules!white space}
@@ -1261,12 +1261,12 @@ follows the apostrophe.
 
 \subsection{Dictionary graphs}
 \label{section-dictionary-graphs}\index{Dictionary graphs}
-The \verb+Dico+\index{\verb+Dico+}\index{External programs!\verb+Dico+} program
+The \verb+Dico+\index{\verbc{Dico}}\index{External programs!\verbc{Dico}} program
 can also apply dictionary graphs. Dictionary graphs,
 by default,\footnote{Morphological dictionary-graphs are an exception (section
 \ref{section-morphological-dictionary-graphs}) .}
-conform to the following rule: if applied by \verb+Locate+\index{\verb+Locate+}\index{External
-programs!\verb+Locate+} in MERGE\index{MERGE} mode,
+conform to the following rule: if applied by \verb+Locate+\index{\verbc{Locate}}\index{External
+programs!\verbc{Locate}} in MERGE\index{MERGE} mode,
 they must produce output sequences that are valid DELAF lines.\index{DELAF}\index{Dictionaries!DELAF}
 When they are applied to a text, they attach the DELAF lexical labels to the sequences.
 
@@ -1388,7 +1388,7 @@ character of its output, as in Figure \ref{morphoA}.
 \end{figure}
 
 \noindent The rule is simple: any output of a dictionary graph that begins
-with a slash will be added to the file \verb+tags.ind+, \index{\verb+tags.ind+}
+with a slash will be added to the file \verb+tags.ind+, \index{\verbc{tags.ind}}
 located in the text directory. This file is used by the \verb+Txt2Fst2+ program
 in order to add interpretations into the text automaton. The
 grammar of Figure \ref{morphoA} matches words made of the prefix

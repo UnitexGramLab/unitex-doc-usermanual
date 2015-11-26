@@ -247,7 +247,7 @@ The distinction between space and newline is maintained at this point because th
 presence of newlines may have an effect on the process of splitting the text into
 sentences. The result of the normalization of a text named  \verb+my_text.txt+ is
 a file in the same directory as the \verb+.txt+ file and is named
-\verb+my_text.snt+. \index{File!\verb+.snt+}
+\verb+my_text.snt+. \index{File!\verbc{.snt}}
 
 \bigskip
 \noindent NOTE: When the text is preprocessed using the graphical interface, a
@@ -292,7 +292,7 @@ French\label{fig-example-sentence-splitting}}
 \bigskip
 \noindent When a path of the grammar recognizes a sequence in the text and when
 this path produces the sentence delimiter symbol \verb+{S}+
-\index{\verb+{S}+}\index{Sentence delimiter}, this symbol is inserted into the
+\index{\verbt{\{S\}}}\index{Sentence delimiter}, this symbol is inserted into the
 text. For example, one of the paths shown in
 figure~\ref{fig-example-sentence-splitting} recognizes the sequence consisting
 of a question mark and a word beginning with a capital letter and inserts the 
@@ -312,10 +312,10 @@ the following word. The following text:
 \noindent A  grammar for end-of-sentence detection may use the following
 special symbols, or meta-symbols:
 
-\index{\verb+<E>+}\index{Epsilon|see{<E>}}
-\index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+<PNC>+}\index{\verb+<^>+}\index{\verb+#+}\index{Meta-symbols}
-\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
+\index{\verbc{<E>}}\index{Epsilon|see{<E>}}
+\index{\verbc{<MOT>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}\index{\verbc{<NB>}}
+\index{\verbc{<PNC>}}\index{\verbc{<^>}}\index{\verbt{\#}}\index{Meta-symbols}
+\index{\verbc{<WORD>}}\index{\verbc{<UPPER>}}\index{\verbc{<LOWER>}}\index{\verbc{<FIRST>}}
 \begin{itemize}
   \item \verb+<E>+: empty word, or epsilon. Recognizes the empty sequence;
   \item \verb+<WORD>+: recognizes any sequence of letters;
@@ -349,14 +349,14 @@ more details on grammars, see chapter~\ref{chap-grammars}.\index{Alphabet}
 For more information about sentence boundary detection, see
 \cite{ameliorer-decoupage-en-phrases}. The grammar used here is named
 \verb+Sentence.fst2+ and can be found in the following directory:
-\index{File!\verb+Sentence.fst2+}
+\index{File!\verbc{Sentence.fst2}}
 
 \bigskip
 \verb+/(working directory)/(language)/Graphs/Preprocessing/Sentence+
 
 \bigskip
 \noindent This grammar is applied to a text with the \verb+Fst2Txt+ program
-\index{\verb+Fst2Txt+}\index{External programs!\verb+Fst2Txt+} in
+\index{\verbc{Fst2Txt}}\index{External programs!\verbc{Fst2Txt}} in
 MERGE mode.\index{MERGE} This has the effect that the output produced
 by the grammar, in this case the symbol \verb+{S}+, is inserted into
 the text. This program takes a \verb+.snt+ file and modifies it.
@@ -413,7 +413,7 @@ allowed for the sentence splitting grammar. The normalization grammar is called
 
 \bigskip
 \noindent As in the case of sentence splitting, this grammar is applied using the
-\verb+Fst2Txt+ \index{External programs!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
+\verb+Fst2Txt+ \index{External programs!\verbc{Fst2Txt}}\index{\verbc{Fst2Txt}}
 program, but in REPLACE mode, which means that input sequences recognized by the
 grammar are replaced by the output sequences that are produced.
 Figure~\ref{fig-normalization-grammar} shows a grammar that
@@ -446,7 +446,7 @@ follows:
 \noindent A token can be:
 \begin{itemize}
   \item the sentence delimiter \verb+{S}+; \item the stop marker
-  \verb+{STOP}+.\index{\verb${STOP}$} This token is a special one that can
+  \verb+{STOP}+.\index{\verbt{\{STOP\}}} This token is a special one that can
   NEVER be matched in any way by a grammar. It can be used to bound elements
   in a corpus. For instance, if a corpus is made of news separated by
   \verb+{STOP}+, it will be impossible that a grammar matches a sequence that
@@ -467,20 +467,20 @@ but limits the optimization of search operations for patterns.
 
 \bigskip
 \noindent Regardless of the tokenization mode, newlines in a text are
-replaced by spaces. Tokenization is done by the \verb+Tokenize+\index{\verb+Tokenize+}
-\index{External programs!\verb+Tokenize+} program. This program creates several
+replaced by spaces. Tokenization is done by the \verb+Tokenize+\index{\verbc{Tokenize}}
+\index{External programs!\verbc{Tokenize}} program. This program creates several
 files that are saved in the text directory:
 \begin{itemize}
   \item \verb+tokens.txt+ contains the list of tokens in the order in which they are found in the text;
-  \index{File!\verb+tokens.txt+}
+  \index{File!\verbc{tokens.txt}}
   \item \verb+text.cod+ contains an integer array; every
   integer corresponds to the index of a token in the file \verb+tokens.txt+;
-  \index{File!\verb+text.cod+}
+  \index{File!\verbc{text.cod}}
   \item \verb+tok_by_freq.txt+ contains the list of tokens sorted by frequency;
-  \index{File!\verb+tok_by_freq.txt+}
+  \index{File!\verbc{tok_by_freq.txt}}
   \item \verb+tok_by_alph.txt+ contains the list of tokens in alphabetical order;
-  \index{File!\verb+tok_by_alph.txt+}
-  \item \verb+stats.n+ contains some statistics about the text. \index{File!\verb+stats.n+}
+  \index{File!\verbc{tok_by_alph.txt}}
+  \item \verb+stats.n+ contains some statistics about the text. \index{File!\verbc{stats.n}}
 \end{itemize}
 
 \bigskip
@@ -567,12 +567,12 @@ father in law,.N+NPN+Hum+z1:s
 \noindent Since the sequence \textit{Igor} is neither a simple English word nor a part of a
 compound word, it is treated as an unknown word. \index{Words!unknown} The
 application of dictionaries is done through the program \verb+Dico+.
-\index{\verb+Dico+}\index{External programs!\verb+Dico+} The three files produced
+\index{\verbc{Dico}}\index{External programs!\verbc{Dico}} The three files produced
 (\verb+dlf+ for simple words, \verb+dlc+ for compound words and \verb+err+ for
 unknown words) are placed in the text directory. The \verb+dlf+ and \verb+dlc+
 files are called text dictionaries.  \index{Dictionaries!text}
-\index{File!\verb+dlf+}
-\index{File!\verb+dlc+}\index{File!\verb+err+}
+\index{File!\verbc{dlf}}
+\index{File!\verbc{dlc}}\index{File!\verbc{err}}
 
 \bigskip
 \noindent As soon as the dictionary look-up  is finished, Unitex displays the sorted lists
@@ -629,8 +629,8 @@ In certain languages like Norwegian, German and others, it is possible to form
 new compound words by concatenating  together other words. For example, the word
 \textit{aftenblad} meaning \textit{evening journal} is obtained by combining the
 words \textit{aften} (\textit{evening}) et \textit{blad} (\textit{journal}). The
-\verb+PolyLex+ program \index{\verb+PolyLex+}\index{External
-programs!\verb+PolyLex+} parses the list of unknown words after the application
+\verb+PolyLex+ program \index{\verbc{PolyLex}}\index{External
+programs!\verbc{PolyLex}} parses the list of unknown words after the application
 of dictionaries and tries to analyze each of these words as a compound word. If
 a word has at least one analysis as a compound word,  it is removed from the
 list of unknown words and the lines produced for this word are appended to the

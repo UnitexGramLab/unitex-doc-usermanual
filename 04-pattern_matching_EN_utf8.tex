@@ -38,7 +38,7 @@ In a regular expression, a token is defined as in \ref{tokenization} (page
 star, less than, opening and closing parentheses and double quotes have a
 special meaning. It is therefore necessary to precede them with an escape character
 \verb+\+ if you want to search for them. Here are some examples of valid
-tokens: \index{\verb+\+}
+tokens: \index{\verbt{\textbackslash~}}
 
 \begin{verbatim}
 cat
@@ -75,9 +75,9 @@ since all line feeds have been replaced by spaces, this symbol cannot be
 useful anymore when searching for lexical masks.) The meta-symbols that can be used to search a text for patterns are
 the following:
 
-\index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
-\index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
-\index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
+\index{\verbc{<MOT>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}\index{\verbc{<NB>}}
+\index{\verbt{\#}}\index{\verbc{<E>}}\index{\verbc{<DIC>}}\index{\verbc{<SDIC>}}\index{\verbc{<CDIC>}}
+\index{\verbc{<TDIC>}}\index{\verbc{<WORD>}}\index{\verbc{<UPPER>}}\index{\verbc{<LOWER>}}\index{\verbc{<FIRST>}}
 \begin{itemize}
   \item \verb+<E>+: the empty word or epsilon. Matches the empty string;
   \item \verb+<TOKEN>+: matches any token, except the space; used by default
@@ -108,7 +108,7 @@ so that the number of lexical masks in use does not increase uselessly.
 
 \bigskip
 \noindent NOTE: as described in section \ref{tokenization}, NO meta can be used
-to match the \verb+{STOP}+\index{\verb+{STOP}+} marker, not even \verb+<TOKEN>+.
+to match the \verb+{STOP}+\index{\verbt{\{STOP\}}} marker, not even \verb+<TOKEN>+.
 
 \subsection{References to information in the dictionaries}
 \index{Reference to information in the dictionaries}\index{Dictionaries!reference to information in the}
@@ -183,7 +183,7 @@ escape this character by preceding it with a \verb+\+.
 \noindent CHANGE NOTE: before version 2.1, the negation operator was the minus. If you want
                        to preserve backward compatibility without modifying your graphs, you have
                        to call \verb+Locate+ by hand with the \verb+-g minus+ option.
-\index{Exclusion of grammatical and semantic codes}\index{\verb+~+}
+\index{Exclusion of grammatical and semantic codes}\index{\verbt{\textasciitilde~}}
 
 \bigskip
 \noindent The syntax of lexical masks does not make any difference between grammatical codes
@@ -274,7 +274,7 @@ included in at least one code of $E$. Therefore, mask $M$ recognizes entry $E$.
 
 \subsection{Negation of a lexical mask}
 \index{Negation!of a lexical mask}
-\index{\verb+"!+}
+\index{\verbc{"!}}
 It is possible to negate a lexical mask by placing the character~\verb+!+ immediately
 after the character~\verb+<+.
 Negation is possible with the masks \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+,
@@ -282,7 +282,7 @@ Negation is possible with the masks \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>
 <PRE>. See Section~\ref{section-special-symbols}.} \verb+<DIC>+ as well as with the masks that carry grammatical,
 semantic of inflectional codes (\textit{i.e.} \verb$<!V~z3:P3>$).
 The masks \verb+#+ and \verb+" "+ are the negation of each other.
-\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+} The
+\index{\verbc{<E>}}\index{\verbc{<NB>}}\index{\verbt{\#}} The
 mask \verb$<!WORD>$ recognizes all tokens that do not consist of
 letters except for the sentence delimiter \verb+{S}+ and the \verb+{STOP}+ marker.
 Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ and \verb+<TOKEN>+.
@@ -292,8 +292,8 @@ Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC
 \verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ and
 \verb+<!FIRST>+.\footnote{And with their deprecated counterparts <!MIN>, <!MAJ>,
 <!PRE>. See Section~\ref{section-special-symbols}.}
-\index{\verb+<DIC>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
-\index{\verb+<LOWER>+}\index{\verb+<UPPER>+}\index{\verb+<FIRST>+}
+\index{\verbc{<DIC>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}
+\index{\verbc{<LOWER>}}\index{\verbc{<UPPER>}}\index{\verbc{<FIRST>}}
 Instead of recognizing all forms that are not recognized by the mask without
 negation, these masks find only forms that are sequences of letters.
 Thus, the mask \verb+<!DIC>+ allows you to find all unknown words in a text.
@@ -334,7 +334,7 @@ being,.N+Hum:s
   \item \verb$<!WORD>$: all tokens that are not made of letters (cf.
   figure~\ref{fig-search-<!WORD>}). This mask does not recognize the sentence
   delimiter \verb+{S}+ and the special tag \verb+{STOP}+.
-  \index{\verb+{S}+}\index{Sentence delimiter}\index{\verb+{STOP}+}
+  \index{\verbt{\{S\}}}\index{Sentence delimiter}\index{\verbt{\{STOP\}}}
 \end{itemize}
 
 \bigskip
@@ -347,7 +347,7 @@ being,.N+Hum:s
 \end{figure}
 
 \section{Concatenation}
-\index{Concatenation of regular expressions}\index{\verb+.+}
+\index{Concatenation of regular expressions}\index{\verbc{.}}
 There are three ways to concatenate regular expressions. The first consists in
 using the concatenation operator which is represented by the dot.
 \index{Operator!concatenation}
@@ -379,7 +379,7 @@ the.<A>cat
 \end{verbatim}
 
 \section{Union}
-\index{Union of regular expressions}\index{\verb$+$}
+\index{Union of regular expressions}\index{\verbc{+}}
 \index{Operator!disjunction}
 The union of regular expressions is expressed by typing the character \verb$+$
 between them. The expression
@@ -391,7 +391,7 @@ between them. The expression
 \noindent
 recognizes a pronoun followed by a verb. If an element in an
 expression is optional, it is sufficient to use the union of this
-element and the empty word epsilon. \index{\verb+<E>+} Examples:
+element and the empty word epsilon. \index{\verbc{<E>}} Examples:
 
 \bigskip
 \noindent \verb$the (little+<E>) cat$ recognizes the sequences \textit{the cat}
@@ -402,7 +402,7 @@ and \textit{the little cat}
 \textit{Anglo-French} and \textit{Anglo-Indian}
 
 \section{Kleene star}
-\index{Kleene star}\index{\verb+*+}\index{Operator!Kleene star}\index{Operator!iteration}
+\index{Kleene star}\index{\verbc{*}}\index{Operator!Kleene star}\index{Operator!iteration}
 The Kleene star, represented by the character \verb+*+,  allows you to recognize
 zero, one or several occurrences of an expression. The star must be placed on
 the right hand side of the element in question. The expression:
@@ -569,8 +569,8 @@ the text automaton with \verb+LocateTfst+. By default, search is done with the
 \bigskip
 \noindent Enter an expression and click on "Search" in order to start the
 search. Unitex will transform the expression into a grammar in the \verb+.grf+ format.
-\index{File!\verb+.grf+} This grammar will then be compiled into a grammar of
-the \verb+.fst2+ format\index{File!\verb+.fst2+} that will be used for the
+\index{File!\verbc{.grf}} This grammar will then be compiled into a grammar of
+the \verb+.fst2+ format\index{File!\verbc{.fst2}} that will be used for the
 search.
 
 \subsection{Presentation of the results}

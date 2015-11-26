@@ -8,7 +8,6 @@
 \frenchbsetup{StandardLists=true}
 \usepackage{palatino}
 \usepackage{epsfig}
-\usepackage[xindy]{imakeidx}
 %The following line translates the \see macro of makeidx into French. Not sure it should be here
 \newcommand{\voir}[2]{\emph{voir} #1}
 \usepackage{graphicx}
@@ -48,7 +47,8 @@
              hyperindex=false
              ]{hyperref}
 
-
+% put always after hyperref
+\usepackage[xindy]{imakeidx}
 
 %
 % définitions de commandes
@@ -61,6 +61,10 @@
 \newcommand{\exempletresbizarre}[1]{\textit{*? #1}}
 \newcommand{\targetindexentry}[1]{\hypertarget{index:#1}{#1}}
 \newcommand{\seelink}[1]{\hyperlink{index:#1}{\see{#1}}}
+% use without escaping special chars
+\newcommand{\verbc}[1]{\texttt{\detokenize{#1}}}
+% use escaping special chars
+\newcommand{\verbt}[1]{\texttt{#1}}
 \pagenumbering{arabic}
 \global\setlength{\topmargin}{-1.5cm}
 \global\setlength{\footskip}{2cm}

@@ -133,7 +133,7 @@ Vous verrez alors apparaître un carré bleu symbolisant la boîte vide créée 
 \bigskip
 \noindent Le contenu de la boîte s’affiche dans la zone de texte située en
 haut de la fenêtre (figure~\ref{fig-box-creation}).
-La boîte créée contient le symbole \verb+<E>+\index{\verb+<E>+} qui représente
+La boîte créée contient le symbole \verb+<E>+\index{\verbc{<E>}} qui représente
 le mot vide epsilon. Remplacez ce symbole par le texte \verb$I+you+he+she+it+we+they$ et validez en
 appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept lignes (voir
 	figure~\ref{fig-pronoun-box}).
@@ -147,7 +147,7 @@ appuyant sur la touche Entrée. Vous venez de créer une boîte contenant sept l
 \end{figure}
 
 \bigskip
-\noindent En effet, le caractère \verb$+$ sert de séparateur.\index{\verb$+$} La boîte apparaît sous la
+\noindent En effet, le caractère \verb$+$ sert de séparateur.\index{\verbc{+}} La boîte apparaît sous la
 forme de lignes de texte rouge car elle n’est pour l’instant reliée à aucune autre.
 On utilise souvent ce type de boîtes pour insérer des commentaires dans un graphe.
 \index{Graphe!commentaires}\index{Commentaire!dans un graphe}
@@ -244,7 +244,7 @@ la barre d'outils de la fenêtre d'édition du graphe (voir section~\ref{toolbar
 
 \subsection{Sous-graphes}
 \label{section-subgraphs}
-\index{Graphe!appel à un sous-graphe}\index{\verb+:+}
+\index{Graphe!appel à un sous-graphe}\index{\verbc{:}}
 Pour faire appel à un sous-graphe, il faut indiquer son nom dans une boîte en le faisant
 précéder du caractère \verb+:+. Si vous entrez dans une boîte le texte suivant:
 
@@ -471,7 +471,7 @@ elle est issue.
 \noindent On ne peut pas supprimer l'état initial ni l'état final.
 
 \subsection{Sortie}
-\label{Transducers}\index{Transducteur}\index{\verb+/+}
+\label{Transducers}\index{Transducteur}\index{\verbc{/}}
 Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le caractère spécial
 \verb+/+. Tous les caractères situés à droite de celui-ci seront considérés comme faisant partie de
 la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
@@ -529,7 +529,7 @@ se chevauchent  (cf. section~\ref{section-priorite-gauche}).
 
 \subsection{Variables d'entrée}
 \label{section-using-variables}
-\index{Graphe!variables}\index{Variable!d'entrée}\index{\verb+$+}
+\index{Graphe!variables}\index{Variable!d'entrée}\index{\verbt{\$}}
 \index{Transducteur!avec variables}
 
 Il est possible de sélectionner des parties du texte reconnu par une grammaire au moyen
@@ -554,12 +554,12 @@ la fin de la zone à mémoriser. Créez deux boîtes contenant l’une \verb+$va
 \bigskip
 \noindent Les noms de variables peuvent contenir des lettres latines non accentuées, minuscules
 ou majuscules, ainsi que des chiffres et le caractère \verb+_+ (underscore).
-\index{\verb+_+}\index{Noms de variables} Unitex fait la différence entre les lettres minuscules
+\index{\verbc{_}}\index{Noms de variables} Unitex fait la différence entre les lettres minuscules
 et majuscules.\index{Underscore}
 
 \bigskip
 \noindent Quand une variable a ainsi été définie, on peut l’utiliser dans les sorties en encadrant
-son nom avec le caractère \verb+$+.\index{\verb+$+} La grammaire de la
+son nom avec le caractère \verb+$+.\index{\verbt{\$}} La grammaire de la
 figure~\ref{fig-date-grammar} reconnaît une date formée d’un mois et d’une année,
  et produit en sortie la même date, mais dans l’ordre année-mois.
 

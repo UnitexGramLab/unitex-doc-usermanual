@@ -27,25 +27,25 @@ produced.
 \end{center}
 \end{figure}
 
-\index{Operator!\verb+L+}
-\index{Operator!\verb+R+}
-\index{Operator!\verb+C+}
-\index{Operator!\verb+D+}
-\index{Operator!\verb+U+}
-\index{Operator!\verb+P+}
-\index{Operator!\verb+W+}
-\index{\verb+L+}
-\index{\verb+R+}
-\index{\verb+C+}
-\index{\verb+D+}
-\index{\verb+U+}
-\index{\verb+P+}
-\index{\verb+W+}
+\index{Operator!\verbc{L}}
+\index{Operator!\verbc{R}}
+\index{Operator!\verbc{C}}
+\index{Operator!\verbc{D}}
+\index{Operator!\verbc{U}}
+\index{Operator!\verbc{P}}
+\index{Operator!\verbc{W}}
+\index{\verbc{L}}
+\index{\verbc{R}}
+\index{\verbc{C}}
+\index{\verbc{D}}
+\index{\verbc{U}}
+\index{\verbc{P}}
+\index{\verbc{W}}
 \noindent The paths may contain operators and letters. The possible operators
 are represented by the characters \verb+L+, \verb+R+, \verb+C+, \verb+D+, 
 \verb+U+,\verb+P+ and \verb+W+.
 All letters that are not operators are characters. The only
-allowed special symbol is the empty word \verb+<E>+.\index{\verb+<E>+} It is not
+allowed special symbol is the empty word \verb+<E>+.\index{\verbc{<E>}} It is not
 possible to refer to information in dictionaries in an inflection transducer,
 but it is possible to reference subgraphs.
 
@@ -91,10 +91,10 @@ normalization of non-ambiguous forms and sentence boundary recognition.
 \noindent The interpretation of these graphs in Unitex is very close to that of
 syntactic graphs used by the search for patterns. The differences are the following:
 \begin{itemize}
-  \item you can use the special symbol \verb+<^>+ that recognizes a newline;\index{\verb+<^>+}
+  \item you can use the special symbol \verb+<^>+ that recognizes a newline;\index{\verbc{<^>}}
   \item if you work in character by character mode, you can use the special
   symbol \verb+<L>+ that recognizes one letter, as defined in
-  the alphabet file;\index{\verb+<L>+}
+  the alphabet file;\index{\verbc{<L>}}
   \item it is impossible to refer to information in dictionaries;
   \item it is impossible to use morphological filters;
   \item it is impossible to use morphological mode;
@@ -146,7 +146,7 @@ You cannot use morphological filters, morphological mode or contexts.
 \noindent It is possible to reference subgraphs. It is not possible to reference
 information in dictionaries in order to describe the forms to normalize. The only special
 symbol that is recognized in this type of graph is the empty word
-\verb+<E>+.\index{\verb+<E>+} The graphs for normalizing ambiguous forms need to
+\verb+<E>+.\index{\verbc{<E>}} The graphs for normalizing ambiguous forms need to
 be compiled before using them.
 
 
@@ -165,7 +165,7 @@ expression in double quotes. The use of double quotes also allows you to enforce
 the respect of spaces. In fact, Unitex by default assumes that a space is possible between two
 boxes. In order to enforce the presence of a space you have to enclose it in
 double quotes. For prohibiting the presence of a space you have to use the
-special symbol \verb+#+.\index{\verb+#+}
+special symbol \verb+#+.\index{\verbt{\#}}
 \index{Respect!of lowercase/uppercase}\index{Case!respect of
 lowercase/uppercase}\index{Lowercase!case respect}\index{Uppercase!case respect}
 \index{Respect!of spaces}
@@ -221,8 +221,8 @@ Compilation is the operation that converts the \verb+.grf+ format
 to a format that can be manipulated more easily  by Unitex programs. In order to
 compile a graph, you must open it and then click on "Compile FST2" in the
 "Tools" submenu of the menu "FSGraph". Unitex then launches the 
-\verb+Grf2Fst2+ program.\index{\verb+Grf2Fst2+}\index{External
-programs!\verb+Grf2Fst2+} You can keep track of its execution in a 
+\verb+Grf2Fst2+ program.\index{\verbc{Grf2Fst2}}\index{External
+programs!\verbc{Grf2Fst2}} You can keep track of its execution in a 
 window (cf. Figure~\ref{fig-compilation-frame}).
 
 \bigskip
@@ -234,13 +234,13 @@ window (cf. Figure~\ref{fig-compilation-frame}).
 \end{figure}
 
 \noindent If the graph references subgraphs, those are automatically compiled.
-The result is a \verb+.fst2+ file\index{File!\verb+.fst2+} that contains all the graphs
+The result is a \verb+.fst2+ file\index{File!\verbc{.fst2}} that contains all the graphs
 that make up a grammar. The grammar is then ready to be used by Unitex programs.
 
 \subsection{Approximation with a finite state transducer}
 \index{Graph!approximation with a finite state transducer}
 \index{Approximation of a grammar with a finite state transducer}
-\index{\verb+Flatten+}\index{External programs!\verb+Flatten+}
+\index{\verbc{Flatten}}\index{External programs!\verbc{Flatten}}
 \label{flatten-section}
 The FST2 format conserves the architecture in subgraphs of the grammars, which
 is what makes them different from strict finite state transducers. The 
@@ -424,7 +424,7 @@ Figure~\ref{fig-recursive-calls-loop}.
 \end{figure}
 
 \noindent When you start a pattern search with a \verb+.grf+
-graph \index{File!\verb+.grf+}, if Unitex detects an error at the graph
+graph \index{File!\verbc{.grf}}, if Unitex detects an error at the graph
 compilation, the locate operation is automatically interrupted.
 
 
@@ -443,8 +443,8 @@ that case, graphs are no more equivalent to algebraic grammars, but to context-s
 grammars that do not have the same theoretical properties.
 
 \subsection{Right contexts}
-\index{\verb+$[+}
-\index{\verb+$]+}
+\index{\verbc{$[}}
+\index{\verbc{$]}}
 To define a right context, you must bound a zone of the graph with boxes
 containing \verb+$[+ and \verb+$]+, which indicate the start and the end of the
 right context. These bounds appear in the graph as green square brackets. Both
@@ -572,7 +572,7 @@ mode to the text \textit{the cat is white}, you will obtain:
 \end{figure}
 
 \subsection{Left contexts}
-\index{\verb+$*+}
+\index{\verbc{$*}}
 It is also possible to look for an expression $X$ only if it
 occurs after an expression $Y$. Of course, it was already possible to do that with a grammar
 like the one shown on Figure \ref{fig-left-context1}. However, with such a
@@ -715,7 +715,7 @@ adjective suffixed with} \verb+able+''.
 \bigskip
 \noindent To overcome this difficulty, we introduced a morphological mode in
 the \verb$Locate$ program. It consists of bounding a part of your grammar with
-the special symbols \verb+$<+ and \verb+$>+.\index{\verb+$<+}\index{\verb+$>+}
+the special symbols \verb+$<+ and \verb+$>+.\index{\verbc{$<}}\index{\verbc{$>}}
 Within this zone, sequences are matched letter by letter, as shown on Figure
 \ref{fig-morpho2}.
 
@@ -760,17 +760,17 @@ between double quotes).
    \item You can use outputs.
    
     \item \verb+<LETTER>+ will match any letter, as defined in the alphabet
-    file.\index{\verb+<LETTER>+}\index{\verb+<MOT>+}
+    file.\index{\verbc{<LETTER>}}\index{\verbc{<MOT>}}
 
     \item \verb+<LOWER>+ will match any lowercase letter, as defined in the
-    alphabet file.\index{\verb+<MIN>+}\index{\verb+<LOWER>+}
+    alphabet file.\index{\verbc{<MIN>}}\index{\verbc{<LOWER>}}
 
     \item \verb+<UPPER>+ will match any uppercase letter, as defined in the
-    alphabet file.\index{\verb+<MAJ>+}\index{\verb+<UPPER>+}
+    alphabet file.\index{\verbc{<MAJ>}}\index{\verbc{<UPPER>}}
 
     \item \verb+<DIC>+ will match any word present in a morphological-mode
-    dictionary\index{\verb+<DIC>+}, but the meta-symbols \verb+#+, \verb+<FIRST>+, \verb+<NB>+, 
-    \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verb+#+} \index{\verb+<NB>+} \index{\verb+<TOKEN>+}  \index{\verb+<SDIC>+} \index{\verb+<CDIC>+}\index{\verb+<FIRST>+}
+    dictionary\index{\verbc{<DIC>}}, but the meta-symbols \verb+#+, \verb+<FIRST>+, \verb+<NB>+, 
+    \verb+<SDIC>+ and \verb+<CDIC>+ are forbidden.\index{\verbt{\#}} \index{\verbc{<NB>}} \index{\verbc{<TOKEN>}}  \index{\verbc{<SDIC>}} \index{\verbc{<CDIC>}}\index{\verbc{<FIRST>}}
 
     \item If you reach the end of the morphological zone and if you are not
     at the end of a token, the match will fail. For instance, if the text
@@ -1614,7 +1614,7 @@ You can choose to modify the text instead of constructing a concordance. In orde
 to do that, type a file name in the "Modify text" field in the window of
 Figure~\ref{fig-configuration-display-occurrences}. This file has to have the
 extension \verb+.txt+.
-\index{File!\verb+.txt+}
+\index{File!\verbc{.txt}}
 
 \bigskip
 \noindent If you want to modify the current text, you have to choose the
@@ -1649,8 +1649,8 @@ sentences that do not contain any match will be extracted.
 
 \subsection{Comparing concordances}
 \label{section-comparing-concordances}
-\index{Comparing concordances}\index{Concordance!comparison}\index{External programs!\verb+ConcorDiff+}
-\index{\verb+ConcorDiff+}
+\index{Comparing concordances}\index{Concordance!comparison}\index{External programs!\verbc{ConcorDiff}}
+\index{\verbc{ConcorDiff}}
 With the "Show differences with previous concordance" option, you can compare the current
 concordance with the previous one. The  \verb+ConcorDiff+ program builds both concordances
 according to text order and compares them line by line. The result is an HTML page that

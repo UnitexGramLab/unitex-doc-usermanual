@@ -140,7 +140,7 @@ instead of Ctrl in every action involving the Ctrl key.
 \bigskip
 \noindent You see the contents of the box in the text field at the top of the
 window (figure~\ref{fig-box-creation}). The newly created box contains the \verb+<E>+ symbol that represents the empty word
-epsilon.\index{\verb+<E>+} Replace this symbol by the text \verb$I+you+he+she+it+we+they$ and
+epsilon.\index{\verbc{<E>}} Replace this symbol by the text \verb$I+you+he+she+it+we+they$ and
 press the Enter key. You see that the box now contains seven lines (see
 figure~\ref{fig-pronoun-box}).
 
@@ -154,7 +154,7 @@ figure~\ref{fig-pronoun-box}).
 
 \bigskip
 \noindent The \verb$+$ character serves as a
-separator.\index{\verb$+$} The box is displayed in the form of red text lines since it is 
+separator.\index{\verbc{+}} The box is displayed in the form of red text lines since it is 
 not connected to another one at the moment.
 We often use this type of boxes to insert comments into a
 graph. \index{Graph!comments in}\index{Comment!in a graph}
@@ -245,7 +245,7 @@ If one or several boxes are currently selected, the following menus will be acce
 
 \subsection{Sub-Graphs}
 \label{section-subgraphs}
-\index{Graph!calling a sub-graph}\index{\verb+:+}
+\index{Graph!calling a sub-graph}\index{\verbc{:}}
 In order to call a sub-graph, its name is inserted into a box and preceded by the
 \verb+:+ character. If you enter the text:
 
@@ -456,7 +456,7 @@ and press the Enter key.
 \noindent The initial and final states cannot be deleted.
 
 \subsection{Transducers}
-\label{Transducers}\index{Transducers}\index{\verb+/+}
+\label{Transducers}\index{Transducers}\index{\verbc{/}}
 A transducer is a graph in which outputs can be associated with boxes. To insert
 an output, use the special character \verb+/+. All characters to the right of
 it will be part of the output. Thus, the text \verb$one+two+three/number$ results in
@@ -504,7 +504,7 @@ You cannot define a priority among embedded matching sequences (cf. section~\ref
 
 \subsection{Input Variables}
 \label{section-using-variables}
-\index{Graph!variables in a}\index{Variable!input}\index{\verb+$+}
+\index{Graph!variables in a}\index{Variable!input}\index{\verbt{\$}}
 \index{Transducer!with variables}
 
 It is possible to select parts of a text sequence recognized by a grammar using input
@@ -531,13 +531,13 @@ The graph in figure~\ref{fig-using-variable} recognises a sequence of digits bef
 
 \noindent Variable names may contain latin letters (without accents), upper or
 lower case, numbers, or the \verb+_+ (underscore)
-character.\index{\verb+_+}\index{Variable!names} Unitex distinguishes
+character.\index{\verbc{_}}\index{Variable!names} Unitex distinguishes
 between uppercase and lowercase characters.
 \index{Underscore}
 
 \bigskip
 \noindent Once a variable is defined, you can use it in transducer outputs by
-surrounding its name with \verb+$+.\index{\verb+$+} The grammar in
+surrounding its name with \verb+$+.\index{\verbt{\$}} The grammar in
 figure~\ref{fig-date-grammar} recognizes a date formed by a month and a
 year, and produces the same date as an output, but in the order year-month.
 

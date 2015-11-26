@@ -30,7 +30,7 @@ create the directory manually before the execution of the program
 \noindent WARNING (2): whenever a parameter contains spaces, it needs to
 be enclosed in quotation marks so it will not be considered as multiple
 parameters.
-\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
+\index{External programs!\verbc{Normalize}}\index{\verbc{Normalize}}
 
 \bigskip
 \noindent WARNING (3): many programs need an \verb+Alphabet.txt+ file. For all
@@ -117,7 +117,7 @@ For the input format, you can specify several *-bom encoding separated by comma,
 By default, value are \verb+--input_encoding=utf16le-bom,utf16be-bom,utf8-bom --output_encoding=utf16le-bom+.
 
 
-\section{BuildKrMwuDic}\index{External programs!\verb+BuildKrMwuDic+}\index{\verb+BuildKrMwuDic+}
+\section{BuildKrMwuDic}\index{External programs!\verbc{BuildKrMwuDic}}\index{\verbc{BuildKrMwuDic}}
 \index{Generation of Korean MWU dictionary}\index{Korean MWU dictionary}
 \verb+BuildKrMwuDic [OPTIONS] dic+
 
@@ -135,7 +135,7 @@ of each MWU.
    \item \verb+-b BIN+/\verb+--binary=BIN+: .bin simple word dictionary to use.
 \end{itemize}
 
-\section{Cassys}\index{External programs!\verb+Cassys+}\index{\verb+Cassys+}
+\section{Cassys}\index{External programs!\verbc{Cassys}}\index{\verbc{Cassys}}
 \index{Cascade of transducers}
 \verb+Cassys [OPTIONS] <snt>+
 
@@ -182,7 +182,7 @@ applied in merge or replace mode so the \#M or \#R at the first line of the file
 
 
 
-\section{CheckDic}\index{External programs!\verb+CheckDic+}\index{\verb+CheckDic+}
+\section{CheckDic}\index{External programs!\verbc{CheckDic}}\index{\verbc{CheckDic}}
 \index{Verification of the dictionary format}\index{Dictionaries!verification}
 \verb+CheckDic [OPTIONS] dic+
 
@@ -212,7 +212,7 @@ of the dictionary that is to be verified.
 list of all characters occurring in the inflected and canonical forms of words in
 the text, the list of grammatical codes and syntax, as well as the list of
 inflection codes used. The results of the verification are stored in a file
-called \verb+CHECK_DIC.TXT+.\index{File!\verb+CHECK_DIC.TXT+}
+called \verb+CHECK_DIC.TXT+.\index{File!\verbc{CHECK_DIC.TXT}}
 
 \bigskip
 \noindent Selecting strict syntax checking detects using unprotected dot in
@@ -223,12 +223,12 @@ and lower and does not detect them.
 
 
 
-\section{Compress}\index{External programs!\verb+Compress+}\index{\verb+Compress+}
+\section{Compress}\index{External programs!\verbc{Compress}}\index{\verbc{Compress}}
 \index{Compression of a dictionary}
 \label{section-compress}
 \verb+Compress [OPTIONS] dictionary+
 \index{Dictionaries!DELAF}\index{Dictionaries!compression}
-\index{File!\verb+.dic+}\index{File!\verb+.bin+}\index{File!\verb+.inf+}
+\index{File!\verbc{.dic}}\index{File!\verbc{.bin}}\index{File!\verbc{.inf}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -264,7 +264,7 @@ The compression of a dictionary \verb+dico.dic+ produces two files:
 
 
 
-\section{Concord}\index{External programs!\verb+Concord+}\index{\verb+Concord+}\index{Concordance}
+\section{Concord}\index{External programs!\verbc{Concord}}\index{\verbc{Concord}}\index{Concordance}
 \label{section-Concord}
 \index{Text!modification}\index{Modification of the text}
 \verb+Concord [OPTIONS] <index>+
@@ -371,7 +371,7 @@ the occurrences. Here is the description of the parameters:
   \index{Alphabet}\index{File!alphabet}
 \end{itemize}
 
-\index{File!\verb+.html+}\index{File!\verb+.txt+}
+\index{File!\verbc{.html}}\index{File!\verbc{.txt}}
 \bigskip
 \noindent The result of the application of this program is a file called \verb+concord.txt+
 if the concordance was constructed in text mode, a file called
@@ -391,7 +391,7 @@ the sentence in which the occurrence was found.
 
 
 
-\section{ConcorDiff}\index{External programs!\verb+ConcorDiff+}\index{\verb+ConcorDiff+}
+\section{ConcorDiff}\index{External programs!\verbc{ConcorDiff}}\index{\verbc{ConcorDiff}}
 \verb+ConcorDiff [OPTIONS] <concor1> <concor2>+
 
 \bigskip
@@ -418,7 +418,7 @@ there were computed.
 
 
 
-\section{Convert}\index{External programs!\verb+Convert+}\index{\verb+Convert+}
+\section{Convert}\index{External programs!\verbc{Convert}}\index{\verbc{Convert}}
 \verb+Convert [OPTIONS] <text_1> [<text_2> <text_3> ...]+
 
 \index{Unicode}
@@ -563,7 +563,7 @@ see below):
 
 
 
-\section{Dico}\index{External programs!\verb+Dico+}\index{\verb+Dico+}
+\section{Dico}\index{External programs!\verbc{Dico}}\index{\verbc{Dico}}
 \index{Dictionaries!applying}
 \verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
 
@@ -595,7 +595,7 @@ lexical units by the \verb+Tokenize+ program.
 a dictionary. The dictionary must be a \verb+.bin+ dictionary (obtained with 
 the \verb+Compress+ program) or a dictionary graph in the \verb+.fst2+ format (see section
 \ref{section-applying-dictionaries}, page \pageref{section-applying-dictionaries}).
-\index{File!\verb+.bin+}It is possible to give priorities to the dictionaries. For details see 
+\index{File!\verbc{.bin}}It is possible to give priorities to the dictionaries. For details see 
 section \ref{section-dictionary-priorities}.
 
 \bigskip
@@ -603,7 +603,7 @@ section \ref{section-dictionary-priorities}.
 them in the directory of the text:
 
 \begin{itemize}
-  \index{File!\verb+dlf+}\index{File!\verb+dlc+}\index{File!\verb+err+}\index{File!\verb+stat_dic.n+}
+  \index{File!\verbc{dlf}}\index{File!\verbc{dlc}}\index{File!\verbc{err}}\index{File!\verbc{stat_dic.n}}
   \item \verb+dlf+: dictionary of simple words in the text;
   \item \verb+dlc+: dictionary of compound words in the text;
   \item \verb+err+: list of unknown words in the text;
@@ -620,7 +620,7 @@ program \verb+SortTxt+ to sort them.
 
 
 
-\section{DumpOffsets}\index{External programs!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\section{DumpOffsets}\index{External programs!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
 \label{section-DumpOffsets}
 \textbf{Usage:} \verb+DumpOffsets [OPTIONS] <txt>+
 
@@ -740,12 +740,12 @@ DumpOffsets [OPTIONS] -d -o <fichier_version1>
 \end{verbatim}
 \bigskip
 
-\section{Elag}\index{External programs!\verb+Elag+}\index{\verb+Elag+}
+\section{Elag}\index{External programs!\verbc{Elag}}\index{\verbc{Elag}}
 \verb+Elag [OPTIONS] <tfst>+
 
 \bigskip
 \noindent This program takes a \verb+.tfst+ text automaton \verb+<tfst>+ and
-applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
+applies to it ambiguity removal rules.\index{File!\verbc{.tfst}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -753,7 +753,7 @@ applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
   \item \verb+-l LANG/--language=LANG+: ELAG configuration file for the language of the
   text;
   \item \verb+-r RULES/--rules=RULES+: rule file compiled in the \verb+.rul+
-  format; \index{File!\verb+.rul+}
+  format; \index{File!\verbc{.rul}}
   \item \verb+-o OUT/--output=OUT+: output text automaton.
 \end{itemize}
 
@@ -762,7 +762,7 @@ applies to it ambiguity removal rules.\index{File!\verb+.tfst+}
 
 
 
-\section{ElagComp}\index{External programs!\verb+ElagComp+}\index{\verb+ElagComp+}
+\section{ElagComp}\index{External programs!\verbc{ElagComp}}\index{\verbc{ElagComp}}
 \verb+ElagComp [OPTIONS]+
 
 \bigskip
@@ -778,7 +778,7 @@ the grammars specified in the \verb+RULES+ file. The result is stored in the
   \item \verb+-l LANG+/\verb+--language=LANG+: ELAG configuration file for the language of the grammar(s);
   \item \verb+-o OUT+/\verb+--output=OUT+: output file. By default, the output file name is 
         the same as \verb+RULES+, except for the extension that is
-        \verb+.rul+.\index{File!\verb+.rul+}
+        \verb+.rul+.\index{File!\verbc{.rul}}
 \end{itemize}
 
 
@@ -788,7 +788,7 @@ the grammars specified in the \verb+RULES+ file. The result is stored in the
 
 
 
-\section{Evamb}\index{External programs!\verb+Evamb+}\index{\verb+Evamb+}
+\section{Evamb}\index{External programs!\verbc{Evamb}}\index{\verbc{Evamb}}
 \verb+Evamb [OPTIONS] <tfst>+
 
 \bigskip
@@ -811,7 +811,7 @@ The text automaton is not modified.
 
 
 
-\section{Extract}\index{External programs!\verb+Extract+}\index{\verb+Extract+}
+\section{Extract}\index{External programs!\verbc{Extract}}\index{\verbc{Extract}}
 \verb+Extract [OPTIONS] <text>+
 
 \bigskip
@@ -843,7 +843,7 @@ sentence per line.
 
 
 
-\section{Flatten}\index{External programs!\verb+Flatten+}\index{\verb+Flatten+}
+\section{Flatten}\index{External programs!\verbc{Flatten}}\index{\verbc{Flatten}}
 \index{Graph!approximation with a finite state transducer}
 \index{Approximation of a grammar with a finite state transducer}
 \verb+Flatten [OPTIONS] <fst2>+
@@ -875,7 +875,7 @@ transform it into a finite-state transducer.
 
 
 
-\section{Fst2Check}\index{External programs!\verb+Fst2Check+}\index{\verb+Fst2Check+}
+\section{Fst2Check}\index{External programs!\verbc{Fst2Check}}\index{\verbc{Fst2Check}}
 \verb+Fst2Check [OPTIONS] <fst2>+
 
 \bigskip
@@ -911,7 +911,7 @@ transform it into a finite-state transducer.
 
 
 
-\section{Fst2List}\index{External programs!\verb+Fst2List+}\index{\verb+Fst2List+}
+\section{Fst2List}\index{External programs!\verbc{Fst2List}}\index{\verbc{Fst2List}}
 \verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
 
 \verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
@@ -989,7 +989,7 @@ recognized by this grammar. The parameters are:
 
 
 
-\section{Fst2Txt}\index{External programs!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
+\section{Fst2Txt}\index{External programs!\verbc{Fst2Txt}}\index{\verbc{Fst2Txt}}
 \label{section-Fst2Txt}
 \verb+Fst2Txt [OPTIONS] <fst2>+
 
@@ -1038,12 +1038,12 @@ preprocessing stage, when the text has not been cut into lexical units yet.
 
 
 
-\section{Grf2Fst2}\index{External programs!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
+\section{Grf2Fst2}\index{External programs!\verbc{Grf2Fst2}}\index{\verbc{Grf2Fst2}}
 \index{Graph!compilation}\index{Compilation!of a graph}
 \verb+Grf2Fst2 [OPTIONS] <grf>+
 
 \bigskip
-\noindent \index{File!\verb+.grf+}\index{File!\verb+.fst2+}
+\noindent \index{File!\verbc{.grf}}\index{File!\verbc{.fst2}}
 This program compiles a grammar into a \verb+.fst2+ file (for more details see
 section \ref{section-graph-compilation}). The parameter \verb+<grf>+ 
 denotes the complete path of the main graph of the grammar, without omitting the
@@ -1138,8 +1138,8 @@ nothing is printed. 2 is returned in case of error.
 
 
 \section{ImplodeTfst}
-\index{External programs!\verb+ImplodeTfst+}
-\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
+\index{External programs!\verbc{ImplodeTfst}}
+\index{\verbc{ImplodeTfst}} \verb+ImplodeTfst [OPTIONS] <tfst>+
 
 \bigskip
 \noindent This program implodes the specified text automaton by merging
@@ -1157,7 +1157,7 @@ together lexical entries which only differ in their inflectional features.
 
 
 
-\section{Locate}\index{External programs!\verb+Locate+}\index{\verb+Locate+}
+\section{Locate}\index{External programs!\verbc{Locate}}\index{\verbc{Locate}}
 \label{section-Locate}
 \verb+Locate [OPTIONS] <fst2>+
 
@@ -1279,7 +1279,7 @@ when an output is found that contains a reference to a variable that is not corr
 \end{itemize}
 
 \bigskip
-\noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord.n+}This 
+\noindent \index{File!\verbc{concord.ind}}\index{File!\verbc{concord.n}}This 
 program saves the references to the found occurrences in a file called
 \verb+concord.ind+. The number of occurrences, the number of units belonging to
 those occurrences, as well as the percentage of recognized units within the text
@@ -1292,7 +1292,7 @@ directory of the text.
 
 
 
-\section{LocateTfst}\index{External programs!\verb+LocateTfst+}\index{\verb+LocateTfst+}
+\section{LocateTfst}\index{External programs!\verbc{LocateTfst}}\index{\verbc{LocateTfst}}
 \label{section-LocateTfst}
 \verb+LocateTfst [OPTIONS] <fst2>+
 
@@ -1378,7 +1378,7 @@ when an output is found that contains a reference to a variable that is not corr
   additional information on the start and end states of each match.
 \end{itemize}
 \bigskip
-\noindent \index{File!\verb+concord.ind+}\index{File!\verb+concord_tfst.n+}This 
+\noindent \index{File!\verbc{concord.ind}}\index{File!\verbc{concord_tfst.n}}This 
 program saves the references to the found occurrences in a file called
 \verb+concord.ind+. The number of occurrences and the number of produced outputs
 are saved in a file called \verb+concord_tfst.n+. These two files are stored in the
@@ -1390,7 +1390,7 @@ directory of the text.
 
 
 
-\section{MultiFlex}\index{External programs!\verb+MultiFlex+}\index{\verb+MultiFlex+}
+\section{MultiFlex}\index{External programs!\verbc{MultiFlex}}\index{\verbc{MultiFlex}}
 \verb+MultiFlex [OPTIONS] <dela>+
 
 \bigskip
@@ -1432,7 +1432,7 @@ files.
 
 
 
-\section{Normalize}\index{External programs!\verb+Normalize+}\index{\verb+Normalize+}
+\section{Normalize}\index{External programs!\verbc{Normalize}}\index{\verbc{Normalize}}
 \label{section-Normalize}
 \index{Text!normalization}
 \verb+Normalize [OPTIONS] <text>+
@@ -1448,13 +1448,13 @@ replaced by a single space.
 \noindent This program also checks the syntax of lexical tags found in the text. All
 sequences in curly brackets should be either the sentence delimiter \verb+{S}+,
 the stop marker \verb+{STOP}+, or valid entries in the DELAF format (\verb+{aujourd'hui,.ADV}+). 
-\index{\verb+{S}+}\index{Sentence delimiter}
+\index{\verbt{\{S\}}}\index{Sentence delimiter}
 
 \bigskip
 \noindent \index{Lexical!labels}Parameter \verb+<text>+ 
 represents the complete path of the text file. The program
 creates a modified version of the text that is saved in a file with extension
-\verb+.snt+.\index{File!\verb+.snt+}
+\verb+.snt+.\index{File!\verbc{.snt}}
 
 \bigskip
 \noindent \textbf{OPTIONS:}
@@ -1480,7 +1480,7 @@ manipulate separators in such rules.
 
 
 
-\section{PolyLex}\index{External programs!\verb+PolyLex+}\index{\verb+PolyLex+}
+\section{PolyLex}\index{External programs!\verbc{PolyLex}}\index{\verbc{PolyLex}}
 \verb+PolyLex [OPTIONS] <list>+
 \index{Norwegian!free compound words}\index{German!free compound words}\index{Dutch!free compound words}
 \index{Russian!free compound words}
@@ -1530,7 +1530,7 @@ in the same directory than \verb+BIN+.
 
 
 \section{RebuildTfst}\index{External
-programs!\verb+RebuildTfst+}\index{\verb+RebuildTfst+}
+programs!\verbc{RebuildTfst}}\index{\verbc{RebuildTfst}}
 \verb+RebuildTfst <tfst>+
 
 \bigskip
@@ -1546,7 +1546,7 @@ automaton is modified.
 
 
 
-\section{Reconstrucao}\index{External programs!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
+\section{Reconstrucao}\index{External programs!\verbc{Reconstrucao}}\index{\verbc{Reconstrucao}}
 \index{Compression of a dictionary}\index{Dictionaries!compression}
 \index{Clitics!normalization}\index{Normalization!of clitics in Portuguese}
 \index{Portuguese!normalization of clitics}
@@ -1589,11 +1589,11 @@ grammar is called \verb+V-Pro-Suf+, and is stored in the
 
 
 
-\section{Reg2Grf}\index{External programs!\verb+Reg2Grf+}\index{\verb+Reg2Grf+}
+\section{Reg2Grf}\index{External programs!\verbc{Reg2Grf}}\index{\verbc{Reg2Grf}}
 \verb+Reg2Grf <txt>+
 
 \bigskip
-\noindent \index{Regular expressions}\index{File!\verb+.grf+}\index{File!\verb+regexp.grf+}This 
+\noindent \index{Regular expressions}\index{File!\verbc{.grf}}\index{File!\verbc{regexp.grf}}This 
 program constructs a \verb+.grf+ file corresponding to the regular
 expression written in file \verb+<txt>+. The parameter \verb+<txt>+ represents the
 complete path to the file containing the regular expression. This file needs to
@@ -1605,8 +1605,8 @@ same directory as \verb+<txt>+.
 
 
 
-\section{Seq2Grf}\index{External programs!\verb+Seq2Grf+}
-\index{\verb+Seq2Grf+}
+\section{Seq2Grf}\index{External programs!\verbc{Seq2Grf}}
+\index{\verbc{Seq2Grf}}
 \label{Seq2Grf}
 \verb+Seq2Grf [OPTIONS] <snt>+
 
@@ -1639,7 +1639,7 @@ corresponding to the sequences contained in file \verb+<snt>+.
 	The produced .grf file is stored in the user's Graphs directory
 	The other files, named \verb+text.tfst+, \verb+text.tind+ are stored in the text directory.
 
-\section{SortTxt}\index{External programs!\verb+SortTxt+}\index{\verb+SortTxt+}
+\section{SortTxt}\index{External programs!\verbc{SortTxt}}\index{\verbc{SortTxt}}
 
 \verb+SortTxt [OPTIONS] <txt>+
 
@@ -1680,7 +1680,7 @@ the sorting is performed in the order of Unicode characters, removing duplicate 
 
 
 
-\section{Stats}\index{External programs!\verb+Stats+}\index{\verb+Stats+}
+\section{Stats}\index{External programs!\verbc{Stats}}\index{\verbc{Stats}}
 
 \verb+Stats [OPTIONS] <ind>+
 
@@ -1718,7 +1718,7 @@ concordance index file.
 
 
 
-\section{Table2Grf}\index{External programs!\verb+Table2Grf+}\index{\verb+Table2Grf+}
+\section{Table2Grf}\index{External programs!\verbc{Table2Grf}}\index{\verbc{Table2Grf}}
 \verb+Table2Grf [OPTIONS] <table>+
 
 \bigskip
@@ -1748,7 +1748,7 @@ and a template graph.
 
 
 
-\section{Tagger}\index{External programs!\verb+Tagger+}\index{\verb+Tagger+}
+\section{Tagger}\index{External programs!\verbc{Tagger}}\index{\verbc{Tagger}}
 \verb+Tagger [OPTIONS] <tfst>+
 \label{section-Tagger}
 
@@ -1777,7 +1777,7 @@ exploded before applying the tagging process and a tagset file must be specified
 
 
 \section{TagsetNormTfst}\index{External
-programs!\verb+TagsetNormTfst+}\index{\verb+TagsetNormTfst+} \verb+TagsetNormTfst [OPTIONS] <tfst>+
+programs!\verbc{TagsetNormTfst}}\index{\verbc{TagsetNormTfst}} \verb+TagsetNormTfst [OPTIONS] <tfst>+
 
 \bigskip
 \noindent This program normalizes the specified \verb+.tfst+ text automaton according
@@ -1801,8 +1801,8 @@ and \verb+{rouge,.A:ms}+.
 
 
 
-\section{TEI2Txt}\index{External programs!\verb+TEI2Txt+} 
-\index{\verb+TEI2Txt+}
+\section{TEI2Txt}\index{External programs!\verbc{TEI2Txt}} 
+\index{\verbc{TEI2Txt}}
 \verb+TEI2Txt [OPTIONS] <xml>+
 
 \bigskip
@@ -1823,7 +1823,7 @@ and \verb+{rouge,.A:ms}+.
 
 
 \section{Tfst2Grf}\index{External
-programs!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
+programs!\verbc{Tfst2Grf}}\index{\verbc{Tfst2Grf}}
 \index{Automaton!of the text}\index{Text!automaton of the}
 \verb+Tfst2Grf [OPTIONS] <tfst>+
 
@@ -1854,14 +1854,14 @@ directory of the text:
 
 \begin{itemize}
   \item \verb+cursentence.grf+: graph representing the automaton of the
-  sentence;\index{File!\verb+cursentence.grf+}
+  sentence;\index{File!\verbc{cursentence.grf}}
 
   \item \verb+cursentence.txt+: text file containing the
-  sentence;\index{File!\verb+cursentence.txt+}
+  sentence;\index{File!\verbc{cursentence.txt}}
 
   \item \verb+cursentence.tok+: text file containing the
   numbers of the tokens that compose the
-  sentence.\index{File!\verb+cursentence.tok+}
+  sentence.\index{File!\verbc{cursentence.tok}}
 \end{itemize}
 
 
@@ -1871,7 +1871,7 @@ directory of the text:
 
 
 \section{Tfst2Unambig}\index{External
-programs!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+programs!\verbc{Tfst2Unambig}}\index{\verbc{Tfst2Unambig}}
 \index{Text!automaton of the!conversion into linear text}
 \verb+Tfst2Unambig [OPTIONS] <tfst>+
 
@@ -1892,12 +1892,12 @@ ambiguity). See section \ref{section-linear-text}, page \pageref{section-linear-
 
 
 
-\section{Tokenize}\index{External programs!\verb+Tokenize+}\index{\verb+Tokenize+}
+\section{Tokenize}\index{External programs!\verbc{Tokenize}}\index{\verbc{Tokenize}}
 \label{section-Tokenize}
 \index{Text!tokenization}\index{Tokenization}\index{Token}
 \verb+Tokenize [OPTIONS] <txt>+
 
-\index{Lexical!unit}\index{File!\verb+.snt+}\index{Alphabet}\index{File!alphabet} 
+\index{Lexical!unit}\index{File!\verbc{.snt}}\index{Alphabet}\index{File!alphabet} 
 \bigskip
 \noindent This program tokenizes a tet text into lexical units.
 \verb+<txt>+ the complete path of the text file, without omitting the \verb+.snt+ 
@@ -1916,7 +1916,7 @@ extension.
  \item \verb+-w+/\verb+--word_by_word+: with this option, the program
   considers a unit to be either a sequence of letters (the letters are defined
   by file \verb+alphabet+), or a character which is not a letter, or the
-  sentence separator \verb+{S}+\index{\verb+{S}+}, or a lexical label 
+  sentence separator \verb+{S}+\index{\verbt{\{S\}}}, or a lexical label 
   like \verb+{aujourd'hui,.ADV}+. \index{Sentence delimiter}
   \index{Lexical!labels} This is the default mode.
 
@@ -1931,7 +1931,7 @@ extension.
 \end{itemize}
 
 
-\index{File!\verb+tokens.txt+}\index{File!\verb+text.cod+}
+\index{File!\verbc{tokens.txt}}\index{File!\verbc{text.cod}}
 \bigskip
 \noindent The program codes each unit as a whole. The list of units is saved in a text file
 called \verb+tokens.txt+. The sequence of codes representing the units now allows
@@ -1956,8 +1956,8 @@ the coding of the text. This sequence is saved in a binary file named
   containing the list of the positions of newlines in the text.
 
 \end{itemize}
-\index{File!\verb+tok_by_freq.txt+}\index{File!\verb+tok_by_alph.txt+}
-\index{File!\verb+stats.n+}\index{File!\verb+enter.pos+}
+\index{File!\verbc{tok_by_freq.txt}}\index{File!\verbc{tok_by_alph.txt}}
+\index{File!\verbc{stats.n}}\index{File!\verbc{enter.pos}}
 
 \bigskip
 \noindent All produced files are saved in the text directory.
@@ -1967,7 +1967,7 @@ the coding of the text. This sequence is saved in a binary file named
 
 
 
-\section{TrainingTagger}\index{External programs!\verb+TrainingTagger+}\index{\verb+TrainingTagger+}
+\section{TrainingTagger}\index{External programs!\verbc{TrainingTagger}}\index{\verbc{TrainingTagger}}
 \verb+TrainingTagger [OPTIONS] <txt>+
 \label{section-TrainingTagger}
 
@@ -1997,9 +1997,9 @@ In the second data file, tags are "morph" tags (i.e. grammatical, syntactic, sem
 \bigskip
 
 \section{Txt2Tfst}\index{External
-programs!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
+programs!\verbc{Txt2Tfst}}\index{\verbc{Txt2Tfst}} \verb+Txt2Tfst [OPTIONS] <txt>+
 
-\index{Automaton!of the text}\index{Text!automaton of the}\index{File!\verb+.snt+}
+\index{Automaton!of the text}\index{Text!automaton of the}\index{File!\verbc{.snt}}
 \index{File!alphabet}\index{Alphabet}
 \bigskip
 \noindent This program constructs an automaton of a text. \verb+<txt>+
@@ -2030,7 +2030,7 @@ automaton for each sentence. If this is not the case, the program arbitrarily
 cuts the text into sequences of 2000 tokens and produces an automaton for
 each of these sequences.\index{Lexical!unit}\index{Token}
 
-\index{File!\verb+text.tfst+}\index{File!\verb+text.tind+}
+\index{File!\verbc{text.tfst}}\index{File!\verbc{text.tind}}
 \bigskip
 \noindent The result is a file called \verb+text.tfst+ which is saved in the directory of
 the text. Another file named \verb+text.tind+ is also produced.
@@ -2046,7 +2046,7 @@ any (see section \ref{section-tags-ind}).
 
 
 \section{Uncompress}\index{External
-programs!\verb+Uncompress+}\index{\verb+Uncompress+}
+programs!\verbc{Uncompress}}\index{\verbc{Uncompress}}
 \label{section-Uncompress}
 \verb+Uncompress [OPTIONS] <bin>+
 
@@ -2069,7 +2069,7 @@ programs!\verb+Uncompress+}\index{\verb+Uncompress+}
 
 
 \section{Untokenize}\index{External
-programs!\verb+Untokenize+}\index{\verb+Untokenize+}
+programs!\verbc{Untokenize}}\index{\verbc{Untokenize}}
 \label{section-Untokenize}
 \verb+Untokenize [OPTIONS] <txt>+
 
@@ -2097,7 +2097,7 @@ programs!\verb+Untokenize+}\index{\verb+Untokenize+}
 
 
 \section{UnitexTool}\index{External
-programs!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Scripting Unitex programs}
+programs!\verbc{UnitexTool}}\index{\verbc{UnitexTool}}\index{Scripting Unitex programs}
 \label{section-UnitexTool}
 \verb+UnitexTool <utilities>+
 
@@ -2150,7 +2150,7 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 \section{UnitexToolLogger}\index{External
-programs!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log Unitex programs}
+programs!\verbc{UnitexToolLogger}}\index{\verbc{UnitexToolLogger}}\index{Log Unitex programs}
 \label{section-UnitexToolLogger}
 \verb+UnitexToolLogger <utilities>+
 
@@ -2276,7 +2276,7 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 \section{Unxmlize}
-\index{External programs!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Log Unitex programs}
+\index{External programs!\verbc{Unxmlize}}\index{\verbc{Unxmlize}}\index{Log Unitex programs}
 \label{section-Unxmlize}
 
 This program removes all xml tags from the given .xml or .html file to produce a text file that 
@@ -2313,7 +2313,7 @@ can be processed by Unitex.
          
 
 
-\section{XMLizer}\index{External programs!\verb+XMLizer+}\index{\verb+XMLizer+}
+\section{XMLizer}\index{External programs!\verbc{XMLizer}}\index{\verbc{XMLizer}}
 \label{section-XMLizer}
 \verb+XMLizer [OPTIONS] <txt>+
 
