@@ -141,7 +141,6 @@ IDXDEPS = %.idx
 %.idx: %.aux
 	$(TEXINDY) $(IDXFILES) -M $(XDYFILES)
 
-	
 # to generate aux but not pdf from pdflatex, use -draftmode
 %.aux: %.tex $(REVDEPS)
 	$(PDFLATEX) -draftmode $* $(ERRFILTER)
