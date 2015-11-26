@@ -89,7 +89,7 @@ transducer in the area of finite state automata.\index{Automaton!finite state}
 \subsection{Creating a graph}
 In order to create a graph, click on "New" in the "FSGraph" menu (\ref{fig-fsgraph-menu}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-1.png}
 \caption{FSGraph menu\label{fig-fsgraph-menu}}
@@ -99,7 +99,7 @@ In order to create a graph, click on "New" in the "FSGraph" menu (\ref{fig-fsgra
 \bigskip
 \noindent You will then see the window coming up as in figure~\ref{fig-new-graph}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-2.png}
 \caption{Empty graph\label{fig-new-graph}}
@@ -126,7 +126,7 @@ figure~\ref{fig-box-creation}).
 \bigskip
 \noindent When the box is created, it is automatically selected. 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-3.png}
 \caption{Creating a box\label{fig-box-creation}}
@@ -144,7 +144,7 @@ epsilon.\index{\verbc{<E>}} Replace this symbol by the text \verb$I+you+he+she+i
 press the Enter key. You see that the box now contains seven lines (see
 figure~\ref{fig-pronoun-box}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-4.png}
 \caption{Box containing
@@ -165,7 +165,7 @@ The text in this box will be displayed in green, and may contain empty lines.
 This box can't have any incoming nor outgoing transitions (see
 figure~\ref{comment-box}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12.5cm]{resources/img/fig5-4b.png}
 \caption{Box containing comments\label{comment-box}}
@@ -195,7 +195,7 @@ pronouns\label{fig-pronoun-graph}}
 figure~\ref{fig-loop-box}). To undo this double-click on the
 same box a second time, or use the "Undo" button.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-6.png}
 \caption{Box connected to itself\label{fig-loop-box}}
@@ -221,7 +221,7 @@ see section~\ref{nb-repetitions}.
 perform standard graph edition operations by right clicking in the background of the graph window.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig5-6b.png}
 \caption{contextual menu\label{contextual-menu}}
@@ -257,7 +257,7 @@ In order to call a sub-graph, its name is inserted into a box and preceded by th
 figure~\ref{fig-subgraph-call}:
 
 \medskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6cm]{resources/img/fig5-7.png}
 \caption{Graph that calls sub-graphs \texttt{beta} and
@@ -272,7 +272,7 @@ it. References to absolute path names should as a rule be avoided, since such
 calls are not portable. If you use such an absolute path name, the graph compiler
 will emit a warning (see figure~\ref{fig-warning-absolute-graph-name}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-8.png}
 \caption{Warning about a non portable graph
@@ -315,7 +315,7 @@ your directory in the "Graph repository" frame (see Figure \ref{directories}).
 There is one graph repository per language, so feel free to share or not the same
 directory for all the languages you work with.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8cm]{resources/img/fig5-10.png}
 \caption{Setting the path to the graph repository\label{directories}}
@@ -336,14 +336,14 @@ that refer to the repository are displayed in brown instead of grey.}).
 
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=3.9cm]{resources/img/fig5-11.png}
 \caption{Graph repository example\label{repository}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-12.png}
 \caption{Call to a graph located in the
@@ -362,7 +362,7 @@ can modify the graphs in your repository with no constraint on your own graphs,
 because the only graph that will have to be modified is the one located at the
 repository root.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-9.png}
 \caption{Missing called sub-graphs appear in red\label{call-colours}}
@@ -390,7 +390,7 @@ In these Lists of subgraphs :
 \item sub-graphs that are not found (neither .grf nor .fst2) appear in red
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.2cm]{resources/img/fig5-12b.png}
 \caption{Display the list of all called graphs\label{list-called-graphs}}
@@ -435,7 +435,7 @@ press <Ctrl+C> or click on "Copy" in the "Edit" menu. The selection is now in th
 clipboard. You can then paste this selection by pressing <Ctrl+V> or by selecting
 "Paste" in the "Edit" menu.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig5-14.png}
 \caption{Copy-Paste of a multiple selection\label{copy-paste-multi-selection}}
@@ -462,7 +462,7 @@ an output, use the special character \verb+/+. All characters to the right of
 it will be part of the output. Thus, the text \verb$one+two+three/number$ results in
 a box like in figure~\ref{fig-exemple-transduction}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-15.png}
 \caption{Example of a transducer\label{fig-exemple-transduction}}
@@ -480,7 +480,7 @@ After a locate, this will affect the concordance, in which
 the matched sequences of words will appear only once with the appropriate output
 (Figure~\ref{fig-weights-in-graphs}).
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-15b.png}
 \caption{weights in graphs \label{fig-weights-in-graphs}}
@@ -521,7 +521,7 @@ The graph in figure~\ref{fig-using-variable} recognises a sequence of digits bef
 \verb+var1+.
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig5-16.png}
 \caption{Using the input variable
@@ -542,7 +542,7 @@ figure~\ref{fig-date-grammar} recognizes a date formed by a month and a
 year, and produces the same date as an output, but in the order year-month.
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-17.png}
 \caption{Inverting month and year in a date\label{fig-date-grammar}}
@@ -580,7 +580,7 @@ A window as in Figure~\ref{fig-setting-contexts-for-multiple-copy}
 opens:
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig5-18.png}
 \caption{Selecting a context for copying a list\label{fig-setting-contexts-for-multiple-copy}}
@@ -607,7 +607,7 @@ empty. If you use the contexts  \verb+<+ and \verb+.V>+ with the following list:
 \noindent you will get the box in figure~\ref{fig-multiple-copy}:
 
 \bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.7cm]{resources/img/fig5-19.png}
 \caption{Box resulting from copying a list and applying contexts\label{fig-multiple-copy}}
@@ -627,7 +627,7 @@ these symbols for Unitex, as well as the ways to recognize these characters in t
 
 \bigskip
 \index{Meta-characters}
-\begin{table}[h]
+\begin{table}[!ht]
 \begin{center}
 \begin{tabular}{|c|p{9cm}|c|}
 \hline
@@ -727,7 +727,7 @@ The two green arrows button will refresh the current graph to load the latest ve
 
 \bigskip
 \noindent 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.6cm]{resources/img/DIFF.png}
 \caption{DIFF\label{Graph-DIFF}}
@@ -762,7 +762,7 @@ the lines of the box according to the order of the characters in the Unicode
 encoding.
 \index{Unicode}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6cm]{resources/img/fig5-21.png}
 \caption{Zoom sub-menu}
@@ -811,7 +811,7 @@ You will then see the window in Figure~\ref{fig-alignment-frame}.
   \item Bottom: boxes are aligned with the bottom-most box.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.6cm]{resources/img/fig5-23.png}
 \caption{Alignment window\label{fig-alignment-frame}}
@@ -831,7 +831,7 @@ of alignment. The group of boxes to the right is (quite) a copy of the ones to t
 left that was aligned.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11.5cm]{resources/img/fig5-24.png}
 \caption{Example of box alignment\label{fig-vertical-left-alignment}}
@@ -844,7 +844,7 @@ background of the graph. This allows you to approximately align the
 boxes.\index{Grid}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig5-25.png}
 \caption{Example of using the grid}
@@ -860,7 +860,7 @@ clicking on "Presentation..." in the "Format" sub-menu of the "FSGraph" menu,
 which opens the window as in
 figure~\ref{fig-graph-display-configuration}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig5-26.png}
 \caption{Configuring the display options of a graph\label{fig-graph-display-configuration}}
@@ -900,7 +900,7 @@ figure~\ref{fig-graph-display-configuration}.
 \end{itemize}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.5cm]{resources/img/fig5-27.png}
 \caption{Graph with reading direction set to right to left\label{fig-right-to-left-graph}}

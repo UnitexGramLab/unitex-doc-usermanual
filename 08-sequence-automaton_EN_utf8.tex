@@ -37,7 +37,7 @@ This sequences corpus is stored in one single file wich must be from one of the 
 \pagebreak 
 \indent Since the corpus contains specific sequences, it must be done by hand. This means that you have to either write all the sequences in a raw text file and separate them by an end  of line (figure~\ref{fig8-1CorpusTxt}), or insert the specific xml tag in an existing TEILite Document (figure~\ref{fig8-3CorpusTEI}). The preprocessing of TXT or XML Documents will produce a SNT file that is used for the build of the Sequence Automaton (figure~\ref{fig8-2CorpusSNT}). This File can be used as an input. The produced graph will only recognize the sequences that are correctly delimited. Production of local grammars is automatic only from a corpus of well-defined sequences. If you have such a corpus, then the time saved is considerable.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{minipage}[h!]{0.5\linewidth}
 		\centering
 		\includegraphics[scale=0.6]{resources/img/fig8-1tomorrow.png}	
@@ -52,7 +52,7 @@ This sequences corpus is stored in one single file wich must be from one of the 
 	\end{minipage}
 	\hspace{0.1cm}
 \end{figure}
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{minipage}[h!]{\linewidth}
 		\centering
 			\includegraphics[width=14cm]{resources/img/fig8-3tomorrowTEI.png}
@@ -101,7 +101,7 @@ All the details about the use of jokers is detailed in section \ref{approximatio
 \noindent You can see in figures~\ref{fig8-5GRFnoBeautify} and~\ref{fig8-6GRFBeautify} the graphes without wildcards produced without or with beautify.
 
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\begin{minipage}[h!]{0.5\linewidth}
 		\centering
 		\includegraphics[width=8cm]{resources/img/fig8-5GRFnoBeautify.png}	

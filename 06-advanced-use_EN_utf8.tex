@@ -20,7 +20,7 @@ forms and the corresponding outputs contain the inflectional information that wi
 produced.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig6-1.png}
 \caption{Example of an inflectional grammar}
@@ -64,7 +64,7 @@ figure~\ref{fig-equivalent-inflection-paths}).\index{Respect!of lowercase/upperc
 lowercase/uppercase}\index{Lowercase!case respect}\index{Uppercase!case respect}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=5.5cm]{resources/img/fig6-2.png}
 \caption{Two equivalent paths in an inflection grammar\label{fig-equivalent-inflection-paths}}
@@ -120,7 +120,7 @@ ambiguity explicit. Figure~\ref{fig-tfst-normalization-grammar} shows an
 extract of the normalization graph used by default for French.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig6-3.png}
 \caption{Extract of the normalization graph used for French\label{fig-tfst-normalization-grammar}}
@@ -226,7 +226,7 @@ programs!\verbc{Grf2Fst2}} You can keep track of its execution in a
 window (cf. Figure~\ref{fig-compilation-frame}).
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.7cm]{resources/img/fig6-4.png}
 \caption{Compilation window\label{fig-compilation-frame}}
@@ -256,7 +256,7 @@ window of Figure~\ref{fig-flatten-configuration} allows you to
 configure the approximation process.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.4cm]{resources/img/fig6-5.png}
 \caption{Configuration of approximation of a
@@ -286,7 +286,7 @@ is equivalent to the original grammar (cf.
 Figure~\ref{fig-flatten-result}).
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.7cm]{resources/img/fig6-6.png}
 \caption{Resultat of the approximation of a grammar\label{fig-flatten-result}}
@@ -311,7 +311,7 @@ output (cf. Figure~\ref{fig-subgraph-output}).
 \index{Output associated to a subgraph call}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9.1cm]{resources/img/fig6-7.png}
 \caption{How to associate an output with a call to a subgraph\label{fig-subgraph-output}}
@@ -336,7 +336,7 @@ output. Thus, the transition with the empty word of
 Figure~\ref{fig-epsilon-output-loop} will not be suppressed
 and will cause a void loop.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.2cm]{resources/img/fig6-8.png}
 \caption{Void loop due to a transition by the empty word with a
@@ -415,7 +415,7 @@ displayed in the compilation window. Figure~\ref{fig-error-message} shows
 the message that appears if one tries to compile the graph \verb+Det+ of
 Figure~\ref{fig-recursive-calls-loop}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15cm]{resources/img/fig6-11.png}
 \caption{Error message when trying to compile
@@ -451,7 +451,7 @@ right context. These bounds appear in the graph as green square brackets. Both
 bounds of a right context must be located in the same graph.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.4cm]{resources/img/fig6-12.png}
 \caption{Using a right context\label{fig-context1}}
@@ -486,7 +486,7 @@ considered as a failure, because it would have matched a forbidden sequence. At 
 the context stop cannot be reached, then \verb$Locate$ will rewind at the
 position $pos$ and go on exploring the grammar after the context end.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.3cm]{resources/img/fig6-13.png}
 \caption{Using a negative right context\label{fig-context2}}
@@ -499,7 +499,7 @@ beginning of the graph. Figure~\ref{fig-context3} shows a graph that matches an
 adjective in the right context of something that is not a past participle. In other words, this
 graph matches adjectives that are not ambiguous with past participles.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig6-14.png}
 \caption{Matching an adjective that is not ambiguous with a past
@@ -513,7 +513,7 @@ need to match the same number of tokens as the box after it. For example, before
 the graph of Figure~\ref{too-also} recognizes \verb+too+, the negative right context checks if
 it occurs in a phrase like \verb+too early+ or \verb+too many+.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.5cm]{resources/img/fig-too-also.png}
 \caption{A context that does not check the same number of words as the box after it\label{too-also}}
@@ -532,7 +532,7 @@ this graph will match \textit{Black cats}, but not \textit{town hall}, which is
 a compound word.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8.9cm]{resources/img/fig6-15.png}
 \caption{Advanced use of right contexts\label{fig-context4}}
@@ -546,7 +546,7 @@ for a dot followed by a number. Thus, in the sequence \textit{5.0+7.=12}, this g
 will match \textit{5}, \textit{0} and \textit{12}.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig6-16.png}
 \caption{Nested contexts\label{fig-context5}}
@@ -564,7 +564,7 @@ mode to the text \textit{the cat is white}, you will obtain:
 
 \bigskip
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12.2cm]{resources/img/fig6-17.png}
 \caption{Variable defined inside a right context\label{fig-context6}}
@@ -904,7 +904,7 @@ the "Tools" menu, and click on "Explore Graph paths". The Window of
 figure~\ref{fig-explore-graph-paths} appears.
 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.4cm]{resources/img/fig6-18.png}
 \caption{Exploring the paths of a grammar\label{fig-explore-graph-paths}}
@@ -983,7 +983,7 @@ paths):
 \noindent
 \texttt{glace pistache}
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10.9cm]{resources/img/fig6-19.png}
 \caption{Sample graph \label{fig-glace}}
@@ -1021,7 +1021,7 @@ with the "Build Graph Collection" command in the "FSGraph Tools" sub-menu. One c
 this operation by means of the window seen in
 figure~\ref{fig-build-graph-collection}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-20.png}
 \caption{Building a graph collection\label{fig-build-graph-collection}}
@@ -1049,7 +1049,7 @@ sub-directories (here directories \textit{Banque} and \textit{Nourriture}), and
 that the other box calls  all the graphs which were in the directory (here the
 graph \texttt{truc.grf}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig6-21.png}
 \caption{Main graph of a graph collection\label{fig-graph-collection}}
@@ -1072,7 +1072,7 @@ that have been read in the text. When a box in a transducer has no
 output, it is processed as if it had an \verb+<E>+ output. In MERGE mode, the
 output is inserted to the left of the recognized sequences. 
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.2cm]{resources/img/fig6-22.png}
 \caption{Example of a transducer\label{fig-transducer-example}}
@@ -1084,7 +1084,7 @@ output is inserted to the left of the recognized sequences.
 If this transducer is applied to the novel \textit{Ivanhoe} by Sir Walter Scott
 in MERGE mode, the following concordance is obtained.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=14.4cm]{resources/img/fig6-23.png}
 \caption{Concordance obtained in MERGE mode with the transducer of
@@ -1111,7 +1111,7 @@ are all indexed. Note that we talk about real overlapping occurrences like
 \verb+bc+. During the construction of the concordance all these overlapping 
 occurrences are presented (cf. Figure~\ref{fig-overlappping-occurrences}).
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig6-24.png}
 \caption{Overlapping occurrences in concordance\label{fig-overlappping-occurrences}}
@@ -1420,7 +1420,7 @@ occurrences. By default, the search is limited to the 200 first
 occurrences.\index{Occurrences!number of}
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-30.png}
 \caption{Locate pattern Window\label{fig-regexp-frame}}
@@ -1452,7 +1452,7 @@ If you select the "Advanced options" tab, you will see the frame shown on
 Figure \ref{fig6-advanced-options1}.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options1.png}
 \caption{Advanced search options\label{fig6-advanced-options1}}
@@ -1463,7 +1463,7 @@ Figure \ref{fig6-advanced-options1}.
 \noindent The "Ambiguous output policy" option can be illustrated with the
 graph shown on Figure \ref{fig6-advanced-options2}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options2.png}
 \caption{A graph with ambiguous outputs\label{fig6-advanced-options2}}
@@ -1478,7 +1478,7 @@ outputs" option (the default one), we will obtain the text order
 concordance shown of Figure \ref{fig6-advanced-options3}. As you can see, two
 outputs have been produced for the input sequence \textit{the noble}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=8.8cm]{resources/img/fig6-advanced-options3.png}
 \caption{Ambiguous outputs for \textit{the noble}\label{fig6-advanced-options3}}
@@ -1491,7 +1491,7 @@ outputs" option, we will obtain the text order
 concordance shown of Figure \ref{fig6-advanced-options4}, with only one
 arbitrarily chosen output for the input sequence \textit{the noble}.
 
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options4.png}
 \caption{Single output for \textit{the noble}\label{fig6-advanced-options4}}
@@ -1508,7 +1508,7 @@ For instance, let us consider the graph shown on Figure
 \ref{fig6-advanced-options5}. 
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options5.png}
 \caption{A variable \textit{A} that may be
@@ -1521,7 +1521,7 @@ ignored, as if it had an empty content, as shown on Figure
 \ref{fig6-advanced-options6}. 
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig6-advanced-options6.png}
 \caption{
@@ -1536,7 +1536,7 @@ will exit with an error message, as shown on Figure
 \ref{fig6-advanced-options7}.
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=9cm]{resources/img/fig6-advanced-options7.png}
 \caption{Exiting on variable error\label{fig6-advanced-options7}}
@@ -1551,7 +1551,7 @@ when variables are undefined. For instance, the application of grammar
 \ref{fig6-advanced-options8}. 
 
 \bigskip
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig6-advanced-options8.png}
 \caption{Backtracking on variable error\label{fig6-advanced-options8}}
@@ -1576,7 +1576,7 @@ concordance in the "Sort According to" menu. For further details on the
 parameters of concordance construction, refer to
 section~\ref{section-display-occurrences}.
 %\bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig6-31.png}
 \caption{Configuration for displaying the encountered occurrences
@@ -1596,7 +1596,7 @@ you see the selected sequence appear (cf.
 Figure~\ref{fig-back-to-text}).
 
 %\bigskip
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13.5cm]{resources/img/fig6-32.png}
 \caption{Selection of an occurrence in the text\label{fig-back-to-text}}
@@ -1659,7 +1659,7 @@ presents alternatively lines from both concordances, leaving an empty line when 
 Lines are greyed for the previous concordance and left with a white background for the current one.
 In each line, only matched tokens are coloured. You can click on each match to open the text at its position. Figure~\ref{fig-concordiff} gives an example.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig6-33.png}
 \caption{Example of a concordance comparison\label{fig-concordiff}}
@@ -1682,7 +1682,7 @@ in the window shown in figure~\ref{fig-regexp-frame},
 if you activate the debug mode in the "Locate pattern in the form of" field,
 the concordance will be displayed in a special window such as in figure~\ref{fig-debug-mode}, divided into three parts :
 
-\begin{figure}[h]
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[height=9cm]{resources/img/fig6-34.png}
 \caption{The Concordance window in debug mode\label{fig-debug-mode}}
