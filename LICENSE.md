@@ -1,0 +1,23 @@
+# Documentation licensing
+
+These are the license details, copyright notice, and disclaimer for the
+documentation distributed with Unitex/GramLab. Unitex/GramLab is an open
+source, cross-platform, multilingual, lexicon- and grammar-based corpus
+processing suite.
+
+## Copyright notice
+
+> Copyright (C) 2001-2015 Université Paris-Est Marne-la-Vallée <unitex-devel@univ-mlv.fr>  
+> All rights reserved.
+> 
+> Permission is granted to copy, distribute and/or modify this document
+> under the terms of the GNU Free Documentation License, Version 1.3
+> or any later version published by the Free Software Foundation;
+> with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+> Texts. A copy of the license is included in the section entitled "GNU
+> Free Documentation License".
+
+---
+
+[GFDL]:         http://www.gnu.org/licenses/fdl-1.3.txt
+
