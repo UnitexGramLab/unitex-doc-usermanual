@@ -3,14 +3,14 @@
 %----------------------------------------------------------------------------- %
 \newcommand{\UnitexAppName}{\verbl{@UNITEX_PRETTYAPPNAME@}}
 \newcommand{\UnitexRelease}{\verbl{@UNITEX_BUILD_RELEASE@}}
-\newcommand{\UnitexFullRelease}{\verbl{@UNITEX_BUILD_FULL_RELEASE@}}
+\newcommand{\UnitexFullRelease}{\verbl{@UNITEX_VERSION_RELEASE@}}
 %----------------------------------------------------------------------------- %
 \newcommand{\UnitexVersion}{\verbl{@UNITEX_VERSION@}}
 \newcommand{\UnitexVersionMajor}{\verbl{@UNITEX_VERSION_MAJOR_NUMBER@}}
 \newcommand{\UnitexVersionMinor}{\verbl{@UNITEX_VERSION_MINOR_NUMBER@}}
 \newcommand{\UnitexVersionRevision}{\verbl{@UNITEX_VERSION_REVISION_NUMBER@}}
 \newcommand{\UnitexVersionSuffix}{\verbl{@UNITEX_VERSION_SUFFIX@}}
-\newcommand{\UnitexSemVer}{\verbl{@UNITEX_SEMVER_STRING@}}
+\newcommand{\UnitexSemVer}{\verbl{@UNITEX_VERSION_SEMVER@}}
 %----------------------------------------------------------------------------- %
 \newcommand{\UnitexPackageName}{\verbl{@UNITEX_PACKAGE_NAME@}}
 \newcommand{\UnitexPackageWin}{\verbl{@UNITEX_PACKAGE_WIN32_PREFIX@}}
