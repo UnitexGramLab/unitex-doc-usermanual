@@ -21,7 +21,7 @@
 % e.g. beta
 \newcommand{\UnitexVersionSuffix}{\verbl{@UNITEX_VERSION_SUFFIX@}}
 % e.g. 3.1beta Rev. 3816
-\newcommand{\UnitexVersionRevision}{\verbl{@UNITEX_VERSION_STRING@}}
+\newcommand{\UnitexVersionString}{\verbl{@UNITEX_VERSION_STRING@}}
 % e.g. 3.1.3816-beta
 \newcommand{\UnitexSemVer}{\verbl{@UNITEX_VERSION_SEMVER@}}
 %----------------------------------------------------------------------------- %
