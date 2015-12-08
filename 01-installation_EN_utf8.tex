@@ -2,7 +2,7 @@
 \label{chap-install}
 
 Unitex is a multi-platform system that runs on Windows as well as on Linux or
-MacOS. This chapter describes how to install and how to launch Unitex on any of
+OS X. This chapter describes how to install and how to launch Unitex on any of
 these systems. It also presents the procedures used to add new languages and to
 uninstall Unitex.
 
@@ -19,9 +19,9 @@ for:
 (\cite{TRE}), which is under a 2-clause BSD-style license;
 
 \item the wingetopt library, by Todd Miller and the NetBSD Foundation,
- which is under BSD license, more permissive than the LGPL;
+ which is under a 2-clause BSD-style, more permissive than the LGPL;
 
-\item the Xerces2 Java Parser, by the Apache Software Foundation, which is under Apache license;
+\item the Xerces2 Java Parser, by the Apache Software Foundation, which is under the Apache Software License version 2.0;
 
 \item  the LibYAML library by Kirill Simonov, under MIT license, which is 
 also more permissive than LGPL;
@@ -62,23 +62,27 @@ Sun Microsystems web site (\cite{site-java}) at the following address:
 \url{http://java.sun.com}.
 
 \bigskip
-\noindent If you are working under Linux or MacOS, or if you are using a Windows version
+\noindent If you are working under Linux or OS X, or if you are using a Windows version
 with personal user accounts, you have to ask your system administrator to install Java.
 
 \section{Installers}
+\begin{samepage}
 \index{Installer}
 The Unitex/GramLab installers can be downloaded from:
 
-\verb+http://unitex.univ-mlv.fr/releases/latest-beta+
+\begin{center}
+{\tt\url{\UnitexURLLatestReleases}}
+\end{center}
+\end{samepage}
 
 \subsection{Installer for Windows}
 \index{Installation!on Windows}
 The downloaded file will be named something like:
 
-%\verb+Unitex-GramLab-3.1beta_win32-setup.exe+
-{\tt Unitex-GramLab-\UnitexVersion{}\_win32-setup.exe}
-
-{\tt{U}nitex-GramLab-\UnitexVersion{}\_win64-setup.exe}
+\begin{flushleft}
+{\tt \UnitexPackageWin{}}
+{\tt \UnitexPackageWinSF{}}
+\end{flushleft}
 
 \noindent Then, double-click on this file and follow the instructions. It is recommended to uninstall any
 existing versions before installing a new one. Unitex/GramLab will be installed in a directory
@@ -90,88 +94,118 @@ directory, and which will be called in this manual the Unitex system directory\i
 contains several subdirectories,  one  of which is called \verb+App+. This directory contains two
 files called \verb+Unitex.jar+\index{File!\verbc{Unitex.jar}} and \verb+GramLab.jar+. They
 are the Java files that launch the graphical interfaces. You can double-click on them to start
-Unitex or GramLab (see~\ref{section-first-use}). To facilitate launching them, you may want to
-add shortcuts to these files on the desktop.
+Unitex or GramLab (see~\ref{section-first-use}). To facilitate launching them, the installer adds shortcuts to these files on the desktop.
 
 \bigskip
 \noindent If Unitex is to be installed on a multi-user Windows machine, it is recommended
 that the systems administrator performs the installation. If you are the only
-user on your machine, you can perform the installation  yourself.
+user on your machine, you can perform the installation yourself.
 
 \bigskip
+\begin{samepage}
 \noindent The Windows installer can also be launched in command line and accepts several optional
 command line parameters. Some of them are:
 
-\verb|+ `/AllUsers`|                              \hspace{.15in} Sets default to a per-machine install
-
-\verb|+ `/CurrentUser`|                        \hspace{.15in} Sets default to a per-user install
-
-\verb|+ `/D C:\path\without quotes\`| \hspace{.15in} Sets the default installation directory
-
-\verb|+ `/NCRC`|                                  \hspace{.15in} Skip the cyclic redundancy check
-
-\verb|+ `/S`|                                         \hspace{.15in} Runs the installer silently
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{/AllUsers} : Sets default to a per-machine install\\
+\item
+  \texttt{/CurrentUser} : Sets default to a per-user install\\
+\item
+  \texttt{/D C:\textbackslash{}path\textbackslash{}without quotes\textbackslash{}}:
+  Sets the default installation directory\\
+\item
+  \texttt{/NCRC} : Not perform a Cyclic Redundancy Check\\
+\item
+  \texttt{/S} : Runs the installer silently
+\end{itemize}
+\end{samepage}
 
 \bigskip
 \noindent If you run Unitex under Windows 7, you may experience troubles with your Unitex configuration
 file, because Unitex tries to write it in the \verb+Users+ subdirectory, and Windows 7 forbids it.
 
-\subsection{Installer for Linux and MacOS X}
-\index{Installation!on Linux}\index{Installation!on MacOS X}
+\subsection{Installer for GNU/Linux and OS X}
+\index{Installation!on Linux}\index{Installation!on OS X}
 The downloaded file will be named something like:
 
-{\tt Unitex-GramLab-\UnitexVersion{}-linux-i686.run}
-
-{\tt Unitex-GramLab-\UnitexVersion{}-linux-x86\_64.run}
+\begin{flushleft}
+{\tt \UnitexPackageLinux{}}
+{\tt \UnitexPackageLinuxSF{}}
+\end{flushleft}
 
 \noindent Then, give it executable permissions, by typing, for example:
 
-{\tt chmod a+x Unitex-GramLab-\UnitexVersion{}-linux-i686.run}
+\begin{flushleft}
+{\tt chmod a+x \UnitexPackageLinux{}}
+\end{flushleft}
 
 \noindent The \verb+.run+ file is a self-extracting archive. Execute it with:
 
-{\tt ./Unitex-GramLab-\UnitexVersion{}-linux-i686.run}
+\begin{flushleft}
+{\tt ./\UnitexPackageLinux{}}
+\end{flushleft}
 
-\noindent The Linux installer accepts several optional command line parameters. Some of them are:
+\begin{samepage}
+\noindent The GNU/Linux installer accepts several optional command line parameters. Some of them are:
 
-\verb|+ `--confirm`|       \hspace{.15in} Ask before running the embedded installation script
-
-\verb|+ `--quiet`|          \hspace{.15in} Do not print anything except error messages
-
-\verb|+ `--noexec`|      \hspace{.15in} Do not run the embedded installation script
-
-\verb|+ `--target dir`|   \hspace{.15in} Sets the default installation directory
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{-\/-confirm} : Ask before running the embedded installation
+  script\\
+\item
+  \texttt{-\/-quiet} : Do not print anything except error messages\\
+\item
+  \texttt{-\/-noexec} : Do not run the embedded installation script\\
+\item
+  \texttt{-\/-target dir} : Sets the default installation directory
+\end{itemize}
+\end{samepage}
 
 \section{Manual installation}
-You can also install Unitex/GramLab manually from the source distribution package. Download it from:
 
-\verb+http://unitex.univ-mlv.fr/releases/latest-beta+
+\begin{samepage}
+
+You can also install Unitex/GramLab manually from the source distribution package. Download it from:
+\nopagebreak
+\begin{center}
+{\tt\url{\UnitexURLLatestReleases/source}}
+\end{center}
 
 \noindent The downloaded file will be named something like:
+\begin{flushleft}
+{\tt \UnitexPackageSource{}}
+% This does not works for now
+%{\tt \UnitexPackageSource{}}\index{File!{\tt\UnitexPackageSource{}}}
+\end{flushleft}
 
-{\tt Unitex-GramLab-\UnitexVersion{}-source-distribution.zip}\index{File!{\tt Unitex-GramLab-\UnitexVersion{}-source-distribution.zip}}
+\end{samepage}
 
 \noindent Decompress it into a directory called for example {\tt Unitex\UnitexVersion{}}, which
 should preferably be created in the \verb+Program Files+ directory,
 and which will be the Unitex system directory\index{Directory!Unitex system}.
 
 \bigskip
-\noindent If your computer runs one of the following operating systems, the installation is finished: Windows (32-bit, 64-bit), GNU/Linux (i686, x86\_64) and OS X (10.7+). (If it runs another OS, like FreeBSD, or has another architecture, like ARM/Linux, go into the \verb+App/install+ directory and type:
+\noindent If your computer runs one of the following operating systems, the installation is finished: Windows (32-bit, 64-bit), GNU/Linux (i686, x86\_64) and OS X (10.7+). If it runs another Unix-like OS, like FreeBSD, or has another processor architecture, like ARM go into the \verb+App/install+ directory and type:
 
+\begin{flushleft}
 \verb+sh setup+
+\end{flushleft}
 
 \noindent This script checks if Java is installed, compiles the C++ Core sources, sets up the
 Unitex and GramLab personal working directories and creates some desktop shortcuts.\footnote{If
-you want to compile only the C++ Core sources, extract the files from the source distribution package,
-go into the {\tt Src/C++/build} directory and type {\tt make install}.})
+you want to compile only the C++ Core sources, extract the files from the source
+distribution package, go into the {\tt Src/C++/build} directory and type {\tt make install}.})
 
 \bigskip
 \noindent When the installation is finished, the Unitex system directory contains several
 subdirectories,  one  of which is called \verb+App+. This directory contains two
-files called \verb+Unitex.jar+\index{File!\verbc{Unitex.jar}} and \verb+GramLab.jar+. They
-are the Java files that launch the graphical interfaces. You can double-click on one of them
+shell scripts called \verb+Unitex+\index{File!\verbc{Unitex}} and \verb+GramLab+. They
+are the files that launch the graphical interfaces. You can double-click on one of them
 to start Unitex or GramLab (see~\ref{section-first-use}). To facilitate launching them,
-you may want to add shortcuts to these files on the desktop.
+the setup script adds shortcuts to these files on the desktop.
 
 %\section{Installation on Linux}
 %\index{Installation!on Linux}
@@ -199,8 +233,8 @@ you may want to add shortcuts to these files on the desktop.
 %\bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
 
 
-%\section{Installation on MacOS X}
-%\index{Installation!on MacOS X}
+%\section{Installation on OS X}
+%\index{Installation!on OS X}
 %\label{section-macos-install}
 %\noindent NOTE: this short tutorial will tell you how to install and run 
 %Unitex on Mac OS X. Your questions, comments, suggestions, 
@@ -210,22 +244,22 @@ you may want to add shortcuts to these files on the desktop.
 
 
 %\bigskip
-%\noindent There is an official Java from Oracle for MacOS X 10.7.3 and higher.
+%\noindent There is an official Java from Oracle for OS X 10.7.3 and higher.
 %	See section ``Information and system requirements for installing and using Oracle Java on Mac OS X'', at \url{https://www.java.com/en/download/faq/java_mac.xml}
 
 
 
 %\bigskip
-%\noindent There is a Java from Apple for MacOS X 10.7 and higher.
+%\noindent There is a Java from Apple for OS X 10.7 and higher.
 %	See \url{https://support.apple.com/kb/DL1572}. For OS X 10.6, there is another Apple JRE, see \url{https://support.apple.com/kb/DL1573}.
 
 	
 	
 %\bigskip
-%\noindent There is an official Java 1.6 for MacOS X 10.5, 64-bit Intel 
+%\noindent There is an official Java 1.6 for OS X 10.5, 64-bit Intel 
 %(Core 2 Duo), but there is no official solution for older OS X (10.4 or older),
 %PowerPC and 32-bit Intel (Core Duo). So,
-% if you have OS X 10.5, and 64-bit Intel MacOS, you can just get the
+% if you have OS X 10.5, and 64-bit Intel OS X, you can just get the
 %    Apple JRE 1.6. The only problem is that this version does not start by
 %    default. See section ``Java for Mac OS X 10.5 Update 10'', 
 %    at \url{https://support.apple.com/kb/DL1359}
@@ -306,7 +340,7 @@ on the icon showing a file (see
 figure~\ref{fig-creation-personal-directory}).
 
 \bigskip
-\noindent If you are using Linux or MacOS, the program will automatically create a
+\noindent If you are using Linux or OS X, the program will automatically create a
 personal working directory called \verb+/unitex+ in your \verb+$HOME+ directory.
 
 \bigskip
@@ -368,7 +402,7 @@ created an alias.
 If you are a programmer, you may be interested in linking your code with Unitex
 C++ sources. To facilitate such operation, you can compile Unitex as a
 dynamic library that contains all Unitex functions, except \verb+main+s, of
-course. Under Linux/MacOS, type:
+course. Under Linux/OS X, type:
 
 \bigskip
 \verb+make LIBRARY=yes+

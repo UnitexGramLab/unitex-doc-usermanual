@@ -28,30 +28,30 @@
 % Package names
 % e.g. Unitex-GramLab
 \newcommand{\UnitexPackageName}{\verbl{@UNITEX_PACKAGE_NAME@}}
-% e.g. Unitex-GramLab-3.1beta_win32-setup
-\newcommand{\UnitexPackageWin}{\verbl{@UNITEX_PACKAGE_WIN32_PREFIX@}}
-% e.g. Unitex-GramLab-3.1beta_win64-setup
-\newcommand{\UnitexPackageWinSF}{\verbl{@UNITEX_PACKAGE_WIN64_PREFIX@}}
-% e.g. Unitex-GramLab-3.1beta-linux-i686
-\newcommand{\UnitexPackageLinux}{\verbl{@UNITEX_PACKAGE_LINUX_I686_PREFIX@}}
-% e.g. Unitex-GramLab-3.1beta-linux-x86_64
-\newcommand{\UnitexPackageLinuxSF}{\verbl{@UNITEX_PACKAGE_LINUX_X86_64_PREFIX@}}
-% e.g. Unitex-GramLab-3.1beta-osx
-\newcommand{\UnitexPackageOSX}{\verbl{@UNITEX_PACKAGE_OSX_PREFIX@}}
-% e.g. Unitex-GramLab-3.1beta-source-distribution
-\newcommand{\UnitexPackageSource}{\verbl{@UNITEX_PACKAGE_SRCDIST_PREFIX@}}
+% e.g. Unitex-GramLab-3.1beta_win32-setup.exe
+\newcommand{\UnitexPackageWin}{\verbl{@UNITEX_PACKAGE_WIN32_PREFIX@.exe}}
+% e.g. Unitex-GramLab-3.1beta_win64-setup.exe
+\newcommand{\UnitexPackageWinSF}{\verbl{@UNITEX_PACKAGE_WIN64_PREFIX@.exe}}
+% e.g. Unitex-GramLab-3.1beta-linux-i686.run
+\newcommand{\UnitexPackageLinux}{\verbl{@UNITEX_PACKAGE_LINUX_I686_PREFIX@.run}}
+% e.g. Unitex-GramLab-3.1beta-linux-x86_64.run
+\newcommand{\UnitexPackageLinuxSF}{\verbl{@UNITEX_PACKAGE_LINUX_X86_64_PREFIX@.run}}
+% e.g. Unitex-GramLab-3.1beta-osx.run
+\newcommand{\UnitexPackageOSX}{\verbl{@UNITEX_PACKAGE_OSX_PREFIX@.run}}
+% e.g. Unitex-GramLab-3.1beta-source-distribution.zip
+\newcommand{\UnitexPackageSource}{\verbl{@UNITEX_PACKAGE_SRCDIST_PREFIX@}.zip}
 %----------------------------------------------------------------------------- %
 % URLs
 % e.g. http://unitex.univ-mlv.fr
-\newcommand{\UnitexURLWebsite}{\verbl{@UNITEX_VERSION_URL_WEBSITE@}}
+\newcommand{\UnitexURLWebsite}{@UNITEX_VERSION_URL_HOMEPAGE@}
 % e.g. http://releases.unitexgramlab.org
-\newcommand{\UnitexURLReleases}{\verbl{@UNITEX_VERSION_URL_RELEASES@}}
+\newcommand{\UnitexURLReleases}{@UNITEX_VERSION_URL_RELEASES@}
 % e.g. http://releases.unitexgramlab.org/latest-beta
-\newcommand{\UnitexURLLatestReleases}{\verbl{@UNITEX_RELEASES_LATEST_URL@}}
+\newcommand{\UnitexURLLatestReleases}{@UNITEX_RELEASES_LATEST_URL@}
 % e.g. http://code.unitexgramlab.org
-\newcommand{\UnitexURLSources}{\verbl{@UNITEX_VERSION_URL_SOURCES@}}
+\newcommand{\UnitexURLSources}{@UNITEX_VERSION_URL_SOURCES@}
 % e.g. http://forum.unitexgramlab.org
-\newcommand{\UnitexURLForum}{\verbl{@UNITEX_VERSION_URL_FORUM@}}
+\newcommand{\UnitexURLForum}{@UNITEX_VERSION_URL_FORUM@}
 % e.g. http://governance.unitexgramlab.org
-\newcommand{\UnitexURLGovernance}{\verbl{@UNITEX_VERSION_URL_REPOSITORY_GOVERNANCE@}}
+\newcommand{\UnitexURLGovernance}{@UNITEX_VERSION_URL_REPOSITORY_GOVERNANCE@}
 %----------------------------------------------------------------------------- %
