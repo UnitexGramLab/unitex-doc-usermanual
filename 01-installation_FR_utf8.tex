@@ -1,8 +1,8 @@
 \chapter{Installation d'Unitex}
 \label{chap-install}
 
-Unitex est un système multi-plateformes capable de fonctionner aussi bien sous Win
-dows que sous Linux ou OS X. Ce chapitre décrit l’installation et le lancement d’Unitex
+Unitex est un système multi-plateformes capable de fonctionner aussi bien sous
+Windows que sous Linux ou OS~X. Ce chapitre décrit l’installation et le lancement d’Unitex
 pour chacun de ces systèmes. Il présente également les procédures d’ajout de nouvelles
 langues et de désinstallation.
 
@@ -17,8 +17,8 @@ sous licence LGPL (\cite{LGPL}), à l’exception de~:
 \item la bibliothèque de manipulation d’expressions régulières TRE de Ville Laurikari (\cite{TRE}),
 qui est sous une licence du genre des licences BSD à 2 clauses~;
 
-\item la bibliothèque wingetopt de Todd Miller et de la Fondation NetBSD, sous licence
-BSD license, plus permissive que la licence LPGL~;
+\item la bibliothèque \verb+wingetopt+ de Todd Miller et de la Fondation NetBSD, également sous une licence
+ du genre des licences BSD à 2 clauses, plus permissive que la licence LPGL~;
 
 \item l'analyseur syntaxique Xerces2 Java Parser, de l'Apache Software Foundation, sous licence Apache~;
 
@@ -67,159 +67,291 @@ utilisez une version de Windows gérant des comptes personnels pour les utilisat
 faudra demander à votre administrateur système d’installer Java.
 
 
+\section{Fichiers d'installation}
+\begin{samepage}
+\index{Fichier!d'installation}
+Les fichiers d'installation d'Unitex/GramLab peuvent être téléchargés depuis cette page~:
 
-\section{Installation sous Windows}
+\begin{center}
+{\tt\url{\UnitexURLLatestReleases}}
+\end{center}
+\end{samepage}
+
+\subsection{Sous Windows}
 \index{Installation!sous Windows}
-    Si vous désirez installer Unitex sur une machine Windows multi-utilisateurs, il est pré-
-férable de demander à votre administrateur de le faire. Si vous êtes l’utilisateur unique de
+Le nom du fichier téléchargé sera par exemple~:
+
+\begin{flushleft}
+{\tt \UnitexPackageWin{}}
+{\tt \UnitexPackageWinSF{}}
+\end{flushleft}
+
+\noindent Ensuite, double-cliquez sur ce fichier et suivez les instructions. Il est recommandé de désinstaller
+toute version existante avant d'en installer une nouvelle. Unitex/GramLab sera installé
+dans un répertoire (dossier)\index{Dossier|see{Répertoire}} situé
+de préférence dans le répertoire  \verb+Program Files+, et qui sera appelé dans ce manuel
+le répertoire système Unitex.\index{Répertoire!système Unitex}
+
+\bigskip
+\noindent Une fois l'installation terminée, une icône Unitex et une icône GramLab apparaissent
+sur le bureau~: double-cliquez dessus pour lancer Unitex ou GramLab (voir~\ref{section-first-use}).
+(Si le fichier d'installation n'a pas créé ces icônes, ouvrez le répertoire Unitex système~: il contient
+plusieurs sous-répertoires, dont un est \verb+App+.  Ce dernier répertoire contient deux fichiers
+\verb+Unitex.jar+\index{Fichier!\verbc{Unitex.jar}} et \verb+GramLab.jar+.
+ Ce sont les fichiers Java qui lancent les interfaces graphiques. Double-cliquez sur l'un d'entre eux
+pour lancer Unitex ou GramLab (voir~\ref{section-first-use}).
+Pour faciliter le lancement du programme, il est conseillé de créer des raccourcis vers ces fichiers sur le bureau.)
+
+\bigskip
+\noindent Si vous désirez installer Unitex sur une machine Windows multi-utilisateurs, il est
+préférable de demander à votre administrateur de le faire. Si vous êtes le seul utilisateur de
 votre machine, vous pouvez effectuer l’installation vous-même.
 
 \bigskip
-\noindent Décompressez le fichier \index{Fichier!\verbc{Unitex3.1beta.zip}} \verb+Unitex3.1beta.zip+ (ou \verb+Unitex3.0.zip+)
---- vous pouvez télécharger ces fichiers à l’adresse suivante : \url{http://igm.univ-mlv.fr/~unitex} ---
-dans un répertoire (dossier) \verb+Unitex3.1beta+ que vous aurez préalablement créé,
+\begin{samepage}
+\noindent Le fichier d'installation sous Windows peut aussi être lancé en ligne de commande et dans ce cas
+il accepte plusieurs paramètres optionnels. En voici quelques-uns~:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{/AllUsers} \hspace{.15in} Par défaut i'installation vaudra pour tous les utilisateurs\\
+\item
+  \texttt{/CurrentUser} \hspace{.15in} Par défaut i'installation vaudra pour l'utilisateur seulement\\
+\item
+  \texttt{/D C:\textbackslash{}path\textbackslash{}without quotes\textbackslash{}} \hspace{.15in}
+  Spécifie le répertoire d'installation par défaut\\
+\item
+  \texttt{/NCRC} \hspace{.15in} Saute le contrôle de redondance cyclique\\
+\item
+  \texttt{/S} \hspace{.15in} Supprime toutes les questions
+\end{itemize}
+\end{samepage}
+
+\noindent Sous Windows~7, on peut avoir des problèmes avec le fichier de configuration d'Unitex, car Unitex
+essaie de le créer dans le sous-répertoire Unitex et Windows~7 le lui interdit.
+
+\subsection{Sous GNU/Linux et OS~X}
+\index{Installation!sous Linux}\index{Installation!sous OS X}
+Le nom du fichier téléchargé sera par exemple~:
+
+\begin{flushleft}
+{\tt \UnitexPackageLinux{}}
+{\tt \UnitexPackageLinuxSF{}}
+\end{flushleft}
+
+\noindent Donnez-lui les droits d'exécution, par exemple par~:
+
+\begin{flushleft}
+{\tt chmod a+x \UnitexPackageLinux{}}
+\end{flushleft}
+
+\noindent Le fichier \verb+.run+ est une archive qu'on décompresse en l'exécutant~: 
+
+\begin{flushleft}
+{\tt ./\UnitexPackageLinux{}}
+\end{flushleft}
+
+\begin{samepage}
+\noindent Le fichier d'installation sous GNU/Linux et OS~X accepte plusieurs paramètres de ligne de commande optionnels. En voici quelques-uns~:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{-\/-confirm} \hspace{.15in} Demander avant de lancer le script d'installation \\
+\item
+  \texttt{-\/-quiet} \hspace{.15in} N'afficher que les messages d'erreur\\
+\item
+  \texttt{-\/-noexec} \hspace{.15in} Ne pas lancer le script d'installation \\
+\item
+  \texttt{-\/-target dir}  \hspace{.15in} Spécifier le répertoire d'installation par défaut
+\end{itemize}
+\end{samepage}
+
+\section{Installation manuelle}
+\begin{samepage}
+
+On peut aussi installer Unitex/GramLab manuellement à l'aide du paquet de distribution. Téléchargez-le depuis cette page~:
+\nopagebreak
+\begin{center}
+{\tt\url{\UnitexURLLatestReleases/source}}
+\end{center}
+
+\noindent Le nom du fichier téléchargé sera par exemple~:
+\begin{flushleft}
+{\tt \UnitexPackageSource{}}
+% The following does not work for now:
+%{\tt \UnitexPackageSource{}}\index{File!{\tt\UnitexPackageSource{}}}
+% Anyway, this filename is too long for the index, it would overlap another item
+\end{flushleft}
+
+\end{samepage}
+
+\noindent  Créez un répertoire que vous nommez par exemple {\tt Unitex\UnitexVersion{}},
 de préférence dans le répertoire  \verb+Program Files+, et qui sera appelé dans ce manuel
-le répertoire système Unitex.\index{Répertoire!système Unitex}\index{Dossier|see{Répertoire}}
+le répertoire système Unitex.\index{Répertoire!système Unitex} Décompressez-y le paquet de distribution.
 
 \bigskip
-\noindent Après la décompression, le répertoire \verb+Unitex3.1beta+
-(le répertoire système Unitex) contient plusieurs
-sous-répertoires dont un nommé \verb+App+. Ce dernier répertoire contient un fichier nommé
-\verb+Unitex.jar+\index{Fichier!\verbc{Unitex.jar}}.
- Ce fichier est l’exécutable Java qui lance l’interface graphique. Il vous suffit de double-cliquer
-dessus pour lancer le programme.
-Pour faciliter le lancement du programme, il est conseillé de créer un raccourci vers ce fichier sur le bureau.
+\noindent Si votre ordinateur est sous un des systèmes d'exploitation suivants, l'installation est terminée~:
+Windows (32 bits ou 64 bits), GNU/Linux (i686 ou x86\_64) et OS~X (10.7+). (S'il fonctionne sous un autre système Unix, comme
+FreeBSD, ou s'il a une autre architecture de processeur, comme ARM, allez dans le répertoire \verb+App/install+ et lancez~:
 
+\begin{flushleft}
+\verb+sh setup+
+\end{flushleft}
 
-\section{Installation sous Linux}
-\index{Installation!sous Linux}
-Pour installer Unitex sous Linux et OS X, il est recommandé d’être administrateur système. Décompressez le fichier \verb+Unitex3.1beta.zip+ dans un répertoire nommé
-\verb+Unitex+, au moyen de la commande suivante :
-
-
-\bigskip \noindent \verb$unzip Unitex3.1beta.zip -d Unitex$
+\noindent Ce script vérifie si Java est installé, compile les sources C++, crée les répertoires personnels de travail
+Unitex et GramLab et met en place des raccourcis sur le bureau\footnote{ Si vous voulez uniquement compiler les sources C++,
+extrayez les fichiers du paquet de distribution, placez-vous dans le répertoire {\tt Src/C++/build} et lancez {\tt make install}.}.)
 
 \bigskip
-\noindent Ce répertoire sera appelé dans ce manuel le répertoire système Unitex.\index{Répertoire!système Unitex}
-Placez-vous ensuite dans le répertoire \verb|Unitex/Src/C++/build|   , et lancez la compilation des
-programmes au moyen de la commande :
+\noindent Une fois l'installation terminée, le répertoire système Unitex contient plusieurs
+sous-répertoires dont un est \verb+App+.
+\begin{itemize}
+\item Sous Windows~: \verb+App+ contient des fichiers \verb+Unitex.jar+\index{File!\verbc{Unitex.jar}}
+et \verb+GramLab.jar+. Ce sont les fichiers Java qui lancent les interfaces graphiques. Double-cliquez sur l'un
+d'entre eux pour lancer Unitex ou GramLab (voir~\ref{section-first-use}). Pour faciliter le lancement du programme,
+il est conseillé de créer des raccourcis vers ces fichiers sur le bureau.
+\item Sous Linux ou OS~X: le répertoire \verb+App+ contient deux scripts shell \verb+Unitex+\index{File!\verbc{Unitex}}
+et \verb+GramLab+. Lancez l'un d'entre eux pour démarrer Unitex or GramLab (voir~\ref{section-first-use}). Si vous
+avez lancé le script d'installation, il a normalement fait apparaitre sur le bureau des raccourcis vers ces fichiers.
+\end{itemize}
+
+%Ce dernier répertoire contient un fichier nommé
+%\verb+Unitex.jar+\index{Fichier!\verbc{Unitex.jar}}.
+% Ce fichier est l’exécutable Java qui lance l’interface graphique. Il vous suffit de double-cliquer
+%dessus pour lancer le programme.
+%Pour faciliter le lancement du programme, il est conseillé de créer un raccourci vers ce fichier sur le bureau.
 
 
-\bigskip \verb+make install+
+%Pour installer Unitex sous Linux et OS X, il est recommandé d’être administrateur système. Décompressez le fichier %\verb+Unitex3.1beta.zip+ dans un répertoire nommé
+%\verb+Unitex+, au moyen de la commande suivante :
 
-\bigskip
-\noindent ou si avez un ordinateur 64 bits avec la commande :
+
+%\bigskip \noindent \verb$unzip Unitex3.1beta.zip -d Unitex$
+
+%\bigskip
+%\noindent Ce répertoire sera appelé dans ce manuel le répertoire système Unitex.\index{Répertoire!système Unitex}
+%Placez-vous ensuite dans le répertoire \verb|Unitex/Src/C++/build|   , et lancez la compilation des
+%programmes au moyen de la commande :
+
+
+%\bigskip \verb+make install+
+
+%\bigskip
+%\noindent ou si avez un ordinateur 64 bits avec la commande :
  
-\bigskip \verb+make install 64BITS=yes+
+%\bigskip \verb+make install 64BITS=yes+
 
-\bigskip
-\noindent Créez ensuite un alias sur le modèle suivant :
+%\bigskip
+%\noindent Créez ensuite un alias sur le modèle suivant :
 
-\bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
-
-
-\section{Installation sous OS X}
-\index{Installation!sous OS X}
-\label{section-macos-install}
-\noindent NOTE: ce court tutoriel va vous expliquer comment installer et exécuter Unitex sous Mac OS
-X. Vos questions, commentaires, suggestions,
-corrections sont plus que bienvenus.
-\noindent Contact: \url{cedrick.fairon@uclouvain.be}
+%\bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
 
 
-\bigskip
-\noindent Une version officielle Oracle de Java existe pour OS X 10.7.3 (Lion) et plus récent.
-	Voir section ``Informations et configuration minimale requise pour l'installation et l'utilisation d'Oracle Java sur Mac OS X'', à \url{https://www.java.com/fr/download/faq/java_mac.xml}
+%\section{Installation sous OS X}
+
+%\label{section-macos-install}
+%\noindent NOTE: ce court tutoriel va vous expliquer comment installer et exécuter Unitex sous Mac OS
+%X. Vos questions, commentaires, suggestions,
+%corrections sont plus que bienvenus.
+%\noindent Contact: \url{cedrick.fairon@uclouvain.be}
+
+
+%\bigskip
+%\noindent Une version officielle Oracle de Java existe pour OS X 10.7.3 (Lion) et plus récent.
+%	Voir section ``Informations et configuration minimale requise pour l'installation et l'utilisation d'Oracle Java sur Mac OS X'', à %\url{https://www.java.com/fr/download/faq/java_mac.xml}
 
 	
 
-\bigskip
-\noindent Il existe une distribution Java d'Apple for OS X 10.7 and higher.
-	Voir \url{https://support.apple.com/kb/DL1572}. Pour OS X 10.6, il existe une autre distribution Apple sur \url{https://support.apple.com/kb/DL1573}.
+%\bigskip
+%\noindent Il existe une distribution Java d'Apple for OS X 10.7 and higher.
+%	Voir \url{https://support.apple.com/kb/DL1572}. Pour OS X 10.6, il existe une autre distribution Apple sur %\url{https://support.apple.com/kb/DL1573}.
 
 
-\bigskip
-\noindent Une version officielle de Java 1.6 existe pour OS X 10.5, 64-bit Intel 
-(Core 2 Duo), mais il n'y a pas de solution officielle pour les anciens OS X (10.4 ou plus anciens),
-PowerPC et 32-bit Intel (Core Duo). Ainsi,
- si vous avez OS X 10.5, un OS X 64-bit Intel, il vous suffit de vous procurer
-	la JRE 1.6. Apple. Le seul problème est que cette version ne démarre pas par défaut.
-	Voir section ``Java pour Mac OS X 10.5 Update 10'', à \url{https://support.apple.com/kb/DL1359}
+%\bigskip
+%\noindent Une version officielle de Java 1.6 existe pour OS X 10.5, 64-bit Intel 
+%(Core 2 Duo), mais il n'y a pas de solution officielle pour les anciens OS X (10.4 ou plus anciens),
+%PowerPC et 32-bit Intel (Core Duo). Ainsi,
+% si vous avez OS X 10.5, un OS X 64-bit Intel, il vous suffit de vous procurer
+%	la JRE 1.6. Apple. Le seul problème est que cette version ne démarre pas par défaut.
+%	Voir section ``Java pour Mac OS X 10.5 Update 10'', à \url{https://support.apple.com/kb/DL1359}
 
 
-\noindent\textbf{Comment savoir si mon processeur est un 32 ou un 64 bits ?}
+%\noindent\textbf{Comment savoir si mon processeur est un 32 ou un 64 bits ?}
 
-\noindent Dans le menu Apple, cliquez sur "About this Mac". Si vous voyez quelquechose comme:
-"Processor : x.xx Ghz Intel Core Duo", votre processeur est un 32 bits.
+%\noindent Dans le menu Apple, cliquez sur "About this Mac". Si vous voyez quelquechose comme:
+%"Processor : x.xx Ghz Intel Core Duo", votre processeur est un 32 bits.
 
-\bigskip
-\noindent Si vous voyez "Processeur: x.xx Ghz Intel Core 2 Duo", ou si votre
-processeur est de type Intel (comme Xeon), alors vous avez un processeur 64 bits.
+%\bigskip
+%\noindent Si vous voyez "Processeur: x.xx Ghz Intel Core 2 Duo", ou si votre
+%processeur est de type Intel (comme Xeon), alors vous avez un processeur 64 bits.
 
-\subsection{Utiliser Apple Java 1.6 runtime}
-\bigskip\index{Java!Apple Java 1.6 runtime}
-\noindent Si vous utilisez Mac OS X 10.5 (ou ultérieur) sur des processeurs Intel 64 bits, vous pouvez simplement utiliser le Java 1.6 d'Apple. Vous pouvez l'obtenir à partir de \url{https://support.apple.com/kb/DL1359}.
+%\subsection{Utiliser Apple Java 1.6 runtime}
+%\bigskip\index{Java!Apple Java 1.6 runtime}
+%\noindent Si vous utilisez Mac OS X 10.5 (ou ultérieur) sur des processeurs Intel 64 bits, vous pouvez simplement utiliser le Java 1.6 %d'Apple. Vous pouvez l'obtenir à partir de \url{https://support.apple.com/kb/DL1359}.
 
-\noindent Vous pouvez aller dans Application -> Utilities -> Java Preferences pour vérifier la présence  de "Java SE 6" dans la liste "Java Applications".
+%\noindent Vous pouvez aller dans Application -> Utilities -> Java Preferences pour vérifier la présence  de "Java SE 6" dans la liste %"Java Applications".
 
 
-\subsubsection{Option 1 : modifier le runtime par défaut pour Java Applications}
-\noindent Si vous n'utilisez pas une autre application Java qui a besoin de Java 1.5, vous pouvez
-simplement mettre "Java SE 6" en haut de la liste «Applications Java" dans Utilitaire de préférence
-Java.
-\subsubsection{Option 2 : Créer un alias pour lancer Java 1.6}
-\noindent Si vous ne voulez pas modifier les paramètres globaux de Java, vous pouvez créer un alias
+%\subsubsection{Option 1 : modifier le runtime par défaut pour Java Applications}
+%\noindent Si vous n'utilisez pas une autre application Java qui a besoin de Java 1.5, vous pouvez
+%simplement mettre "Java SE 6" en haut de la liste «Applications Java" dans Utilitaire de préférence
+%Java.
+%\subsubsection{Option 2 : Créer un alias pour lancer Java 1.6}
+%\noindent Si vous ne voulez pas modifier les paramètres globaux de Java, vous pouvez créer un alias
 
-\bigskip
-\noindent \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/+
-\noindent \verb+1.6/Commands/java"+
+%\bigskip
+%\noindent \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/+
+%\noindent \verb+1.6/Commands/java"+
    
-\bigskip
-\noindent \verb+jre6 -jar Unitex.jar+
+%\bigskip
+%\noindent \verb+jre6 -jar Unitex.jar+
 
-\bigskip
-\noindent Ensuite lancer Unitex depuis un terminal.
+%\bigskip
+%\noindent Ensuite lancer Unitex depuis un terminal.
 
 %\subsection{SoyLatte}
 
 %\subsection{Comment compiler les programmes les C++ Unitex sur un ordinateur Macintosh}
 
 
-\subsection{Comment rendre tous les fichiers visibles sur Mac OS}
-\noindent Voir
-\url{http://www.macworld.com/article/51830/2006/07/showallfinder.html}.
+%\subsection{Comment rendre tous les fichiers visibles sur Mac OS}
+%\noindent Voir
+%\url{http://www.macworld.com/article/51830/2006/07/showallfinder.html}.
 
-\bigskip
-\noindent Ou essayez tout de suite... Tapez: 
+%\bigskip
+%\noindent Ou essayez tout de suite... Tapez: 
 
-\bigskip
-\verb+defaults write com.apple.Finder AppleShowAllFiles ON+
+%\bigskip
+%\verb+defaults write com.apple.Finder AppleShowAllFiles ON+
 
-\bigskip
-\noindent Ensuite redémarrez le Finder:
+%\bigskip
+%\noindent Ensuite redémarrez le Finder:
 
-\bigskip
-\verb+killall Finder+
+%\bigskip
+%\verb+killall Finder+
 
-\begin{figure}[!ht]
-\begin{center}
-\includegraphics[width=12cm]{resources/img/fig-mac6.png}
-\caption{Redémarrez le Finder\label{fig-mac6}}
-\end{center}
-\end{figure}
+%\begin{figure}[!ht]
+%\begin{center}
+%\includegraphics[width=12cm]{resources/img/fig-mac6.png}
+%\caption{Redémarrez le Finder\label{fig-mac6}}
+%\end{center}
+%\end{figure}
 
-\bigskip
-\noindent Pour revenir à la configuration d'origine, tapez: 
+%\bigskip
+%\noindent Pour revenir à la configuration d'origine, tapez: 
 
-\bigskip
-\verb+defaults write com.apple.Finder AppleShowAllFiles OFF+
+%\bigskip
+%\verb+defaults write com.apple.Finder AppleShowAllFiles OFF+
 
 
 \section{Première utilisation}
+\label{section-first-use}
 Si vous travaillez sous Windows, le programme vous demandera de choisir un répertoire personnel de travail
 \index{Répertoire!personnel de travail}, que vous pourrez changer ultérieurement dans
 "Info>Preferences...>Di-rectories". Pour créer un répertoire, cliquez sur l’icône représentant un
-dossier (voir figure \ref{fig-creation-personal-directory}).
+dossier (voir figure~\ref{fig-creation-personal-directory}).
 
 \bigskip
 \noindent Sous Linux et OS X, le programme créera automatiquement un répertoire personnel de travail,
