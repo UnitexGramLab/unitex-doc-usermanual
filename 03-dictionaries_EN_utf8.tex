@@ -69,7 +69,7 @@ apples,apple.N+conc:p/this is an example
   describe gender, number, declension, and conjugation. This information is
   optional. An inflectional code is made up of one or more characters that
   represent one information each. Inflectional codes have to be separated by the
-  : character, for instance in an entry like the following:
+  "\verb+:+'' character, for instance in an entry like the following:
   
   \verb+hang,.V:W:P1s:P2s:P1p:P2p:P3p+
   
@@ -508,13 +508,6 @@ figure~\ref{fig-dictionary-checking} is opened. You
 must select the type of dictionary you want to check. After checking the dictionary in Figure~\ref{fig-dictionary-example}, 
 results are presented as shown in Figure~\ref{fig-dictionary-checking-results}.
 
-\bigskip
-\noindent The first error is caused by a missing period. The second, by the fact
-that no comma was found after the end of an inflected form. The third error indicates
-that the program didn't find any grammatical or semantic codes.
-
-
-
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig3-5.png}
@@ -528,6 +521,54 @@ that the program didn't find any grammatical or semantic codes.
 \caption{Results of checking\label{fig-dictionary-checking-results}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent The first error is caused by a missing period. The second, by the fact
+that no comma was found after the end of an inflected form. The third error indicates
+that the program didn't find any grammatical or semantic codes.
+
+\section{Transliterating Arabic dictionaries}
+\index{Transliterating!Arabic}\index{Dictionaries!transliterating}
+
+When Arabic linguists read dictionaries in order to spot errors in dictionaries,
+reading them in the Arabic script is simple and efficient. However, when they
+create inflectional grammars (\ref{section-automatic-inflection}), parts of
+Arabic words occur in the same box as morpho-syntactic annotation encoded
+in the Latin alphabet. In this context, switching from right-to-left Arabic script
+to left-to-right Latin alphabet is a real hassle, and Unitex offers facilities that allow
+users to encode their inflectional grammars in the Buckwalter++
+transliteration,\index{Buckwalter++}
+a one-to-one mapping between a Unicode encoding of Arabic script and
+Latin letters. The Buckwalter++ transliteration is defined by the table
+of Fig.~\ref{buckwalter1} and \ref{buckwalter2} (cf.~\cite{neme2011},
+Section~3.2).
+Unitex provides tools to internally transliterate DELA and DELAF Arabic
+dictionaries to and from Buckwalter++ encoding
+(Fig.~\ref{Arabic-transliteration}).
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=19.4cm]{resources/img/buckwalter1.pdf}
+\caption{Buckwalter++ transliteration\label{buckwalter1}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=19.4cm]{resources/img/buckwalter2.pdf}
+\caption{Buckwalter++ transliteration\label{buckwalter2}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/Arabic-transliteration.pdf}
+\caption{Transliteration of a DELAF
+dictionary from Buckwalter++ (left) to the Arabic script (right)\label{Arabic-transliteration}}
+\end{center}
+\end{figure}
+
+
 
 
 \section{Sorting}
