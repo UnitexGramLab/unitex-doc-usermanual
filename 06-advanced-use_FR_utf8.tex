@@ -699,7 +699,7 @@ faire des requêtes qui entrent à l'intérieur des "tokens", sauf avec les filt
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=8cm]{resources/img/fig6-17k.png}
+\includegraphics[width=7cm]{resources/img/fig6-17k.png}
 \caption{Reconnaissance d'éléments morphologiques\label{fig-morpho1}}
 \end{center}
 \end{figure}
@@ -1158,9 +1158,8 @@ Comme nous l’avons vu à la section~\ref{section-using-variables}, il est poss
 des variables d'entrée pour mémoriser le texte qui a été analysé par une grammaire. Ces variables
 peuvent être utilisées dans les graphes de prétraitement et dans les graphes syntaxiques.
 
-
 \bigskip
-\noindent Vous devez donner des noms aux variables que vous utilisez. Ces noms peuvent contenir
+\noindent On doit donner des noms aux variables qu'on utilise. Ces noms peuvent contenir
 les lettres comprises entre \verb+A+ et \verb+Z+, non accentuées minuscules ou majuscules, 
 des chiffres et le caractère \verb+_+ (underscore).\index{Underscore}
 
@@ -1179,29 +1178,31 @@ graphe et l’appeler dans un autre, comme l’illustrent les graphes de la figu
 ~\ref{fig-variable-definition}. Si on applique le graphe \verb+TitleName+ en mode MERGE au texte
 \textit{Ivanhoe}, on obtient la concordance de la figure ~\ref{fig6-14}.
 
-\begin{figure}[!p]
-\begin{center}
-\includegraphics[width=12cm]{resources/img/fig6-25.png}
-\caption{Définition d’une variable d'entrée dans un sous-graphe\label{fig-variable-definition}}
-\end{center}
-\end{figure}
-
-\begin{figure}[!p]
-\begin{center}
-\includegraphics[width=13.5cm]{resources/img/fig6-26.png}
-\caption{Concordance obtenue par l’application du graphe \texttt{TitleName}\label{fig6-14}}
-\end{center}
-\end{figure}
-
-\index{Déplacement de groupes de mots}
 \bigskip
-\noindent Les sorties à variables peuvent être utilisées pour déplacer des groupes de mots. En effet,
+\noindent Les sorties à variables peuvent être utilisées pour déplacer des groupes de
+mots.\index{Déplacement de groupes de mots} En effet,
 l’application d’un transducteur en mode REPLACE n’écrit dans le texte que les séquences
 produites par des sorties. Pour intervertir deux groupes de mots, il suffit donc de les stocker
 dans des variables et de produire une sortie avec ces variables dans l’ordre souhaité. Ainsi,
 le transducteur de la
 figure~\ref{fig-swapping-words} appliqué en mode REPLACE au texte \textit{Ivanhoe}
 donne la concordance de la figure~\ref{fig-no-space-problem}.
+
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=16cm]{resources/img/fig6-25.pdf}
+\caption{Définition d’une variable d'entrée dans un sous-graphe\label{fig-variable-definition}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig6-26.png}
+\caption{Concordance obtenue par l’application du graphe \texttt{TitleName}\label{fig6-14}
+de la fig.~\ref{fig-variable-definition}
+}
+\end{center}
+\end{figure}
 
 \begin{figure}[!ht]
 \begin{center}

@@ -172,15 +172,15 @@ partially done by the "keep best paths" heuristic, if enabled. To go further,
 you will need to use the ELAG disambiguation functionality.
 
 
-\subsection{Normalization of clitical pronouns in Portuguese}
+\subsection{Normalization of clitic pronouns in Portuguese}
 \label{section-portuguese-clitics}
 \index{Clitics!normalization}\index{Normalization!of clitics in Portuguese}
 \index{Portuguese!normalization of clitics}
 In Portuguese, verbs in the future tense and in the conditional can be modified
-by the insertion of one or two clitical pronouns between the root and the suffix
+by the insertion of one or two clitic pronouns between the root and the suffix
 of the verb. For example, the sequence \textit{dir-me-\~ao} (\textit{they will
 tell me}), corresponds to the complete verbal form \textit{dir\~ao}, associated
-with the pronoun \textit{me}. In order to be able to manipulate this rewritten form,
+with the pronoun \textit{me}. In order to be able to manipulate this underlying form,
 it is necessary to introduce it into the text automaton in parallel to the
 original form. Thus, the user can search one or the other form. The 
 figures~\ref{fig-1285-not-normalized} and~\ref{fig-1285-normalized}  show the
@@ -190,13 +190,13 @@ automaton of a sentence after normalization of the clitics.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig7-6.png}
-\caption{Non-normalized phrase automaton\label{fig-1285-not-normalized}}
+\caption{Text automaton without normalization\label{fig-1285-not-normalized}}
 \end{center}
 \end{figure}
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=11cm]{resources/img/fig7-7.png}
-\caption{Normalized phrase automaton\label{fig-1285-normalized}}
+\caption{Normalized text automaton\label{fig-1285-normalized}}
 \end{center}
 \end{figure}
 \clearpage

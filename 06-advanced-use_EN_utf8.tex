@@ -701,7 +701,7 @@ filters (see section \ref{section-filters}), as shown on Figure~\ref{fig-morpho1
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=8cm]{resources/img/fig6-17k.png}
+\includegraphics[width=7cm]{resources/img/fig6-17k.png}
 \caption{Matching morphological elements\label{fig-morpho1}}
 \end{center}
 \end{figure}
@@ -1155,7 +1155,13 @@ possible to use input variables to store some text that has been analyzed by a
 grammar. Such variables can be used in preprocessing graphs and in syntactic
 graphs.
 
-\bigskip
+\begin{figure}[!htp]
+\begin{center}
+\includegraphics[width=16cm]{resources/img/fig6-25.pdf}
+\caption{Definition of an input variable in a subgraph\label{fig-variable-definition}}
+\end{center}
+\end{figure}
+
 \noindent You have to give names to the variables you use. These names can
 contain non-accented lower-case and upper-case letters between \verb+A+ and \verb+Z+,
 digits and the character \verb+_+ (underscore).\index{Underscore}
@@ -1169,29 +1175,21 @@ and the other in \verb-$- and \verb-)- for the end.
 In order to use a variable in a transducer output, its name must be
 surrounded by the character \verb-$- (cf. Figure~\ref{fig-variable-definition}).
 
-\begin{figure}[!p]
-\begin{center}
-\includegraphics[width=12cm]{resources/img/fig6-25.png}
-\caption{Definition of an input variable in a subgraph\label{fig-variable-definition}}
-\end{center}
-\end{figure}
-
 \bigskip
 \noindent Variables are global. This means that you can define a variable in a graph and
 reference it in another as is illustrated in the graphs of
 Figure~\ref{fig-variable-definition}. If the graph \verb+TitleName+ is applied in MERGE mode to the text
 \textit{Ivanhoe}, the concordance in Figure~\ref{fig6-14} is obtained.
 
-\begin{figure}[!p]
+\begin{figure}[!htp]
 \begin{center}
-\includegraphics[width=13.5cm]{resources/img/fig6-26.png}
-\caption{Concordance obtained by application of graph \texttt{TitleName}\label{fig6-14}}
+\includegraphics[width=13cm]{resources/img/fig6-26.png}
+\caption{Concordance obtained by application of graph \texttt{TitleName} of
+Fig.~\ref{fig-variable-definition}\label{fig6-14}}
 \end{center}
 \end{figure}
 
-\index{Moving phrases}
-\bigskip
-\noindent Outputs with variables can be used to move phrases. In
+\noindent Outputs with variables can be used to move phrases.\index{Moving phrases} In
 fact, the application of a transducer in REPLACE mode inserts only the produced sequences
 into the text. In order to swap two phrases, you just have to
 store them into variables and produce an output with these variables in the
@@ -1215,7 +1213,6 @@ figure~\ref{fig-swapping-words}\label{fig-no-space-problem}}
 \end{center}
 \end{figure}
 
-\bigskip
 \noindent If the beginning or the end of variable does not conform to the syntax above (end of a variable before
 its beginning, or absence of the beginning or end of a variable), by default, it
 will be ignored during the emission of outputs. See section

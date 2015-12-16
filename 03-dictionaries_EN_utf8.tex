@@ -527,49 +527,6 @@ results are presented as shown in Figure~\ref{fig-dictionary-checking-results}.
 that no comma was found after the end of an inflected form. The third error indicates
 that the program didn't find any grammatical or semantic codes.
 
-\section{Transliterating Arabic dictionaries}
-\index{Transliterating!Arabic}\index{Dictionaries!transliterating}
-
-When Arabic linguists read dictionaries in order to spot errors in dictionaries,
-reading them in the Arabic script is simple and efficient. However, when they
-create inflectional grammars (\ref{section-automatic-inflection}), parts of
-Arabic words occur in the same box as morpho-syntactic annotation encoded
-in the Latin alphabet. In this context, switching from right-to-left Arabic script
-to left-to-right Latin alphabet is a real hassle, and Unitex offers facilities that allow
-users to encode their inflectional grammars in the Buckwalter++
-transliteration,\index{Buckwalter++}
-a one-to-one mapping between a Unicode encoding of Arabic script and
-Latin letters. The Buckwalter++ transliteration is defined by the table
-of Fig.~\ref{buckwalter1} and \ref{buckwalter2} (cf.~\cite{neme2011},
-Section~3.2).
-Unitex provides tools to internally transliterate DELA and DELAF Arabic
-dictionaries to and from Buckwalter++ encoding
-(Fig.~\ref{Arabic-transliteration}).
-
-\begin{figure}[!p]
-\begin{center}
-\includegraphics[height=19.4cm]{resources/img/buckwalter1.pdf}
-\caption{Buckwalter++ transliteration\label{buckwalter1}}
-\end{center}
-\end{figure}
-
-\begin{figure}[!p]
-\begin{center}
-\includegraphics[height=19.4cm]{resources/img/buckwalter2.pdf}
-\caption{Buckwalter++ transliteration\label{buckwalter2}}
-\end{center}
-\end{figure}
-
-\begin{figure}[!ht]
-\begin{center}
-\includegraphics[width=15cm]{resources/img/Arabic-transliteration.pdf}
-\caption{Transliteration of a DELAF
-dictionary from Buckwalter++ (left) to the Arabic script (right)\label{Arabic-transliteration}}
-\end{center}
-\end{figure}
-
-
-
 
 \section{Sorting}
 \index{Dictionaries!sorting}\index{Sorting!a dictionary}
@@ -603,21 +560,17 @@ be found in the user directory for the current language. By default the first
 lines of this file for French look like this:
 
 \bigskip
-\noindent
-\texttt{A\`A\^A\"Aa\`a\^a\"a}
+\begin{minipage}{\textwidth}
+\noindent\texttt{A\`A\^A\"Aa\`a\^a\"a}
 
-\noindent
-\texttt{Bb}
+\noindent\texttt{Bb}
 
-\noindent
-\texttt{C\c{C}c\c{c}}
+\noindent\texttt{C\c{C}c\c{c}}
 
-\noindent
-\texttt{Dd}
+\noindent\texttt{Dd}
 
-\noindent
-\texttt{E\'E\`E\^E\"Ee\'e\`e\^e\"e}
-
+\noindent\texttt{E\'E\`E\^E\"Ee\'e\`e\^e\"e}
+\end{minipage}
 
 \bigskip
 \noindent Characters in the same line are considered equivalent if the context permits. If
@@ -1092,17 +1045,20 @@ contain the semantic code preceeded by a plus, as shown on Figure \ref{fig-infle
 \end{center}
 \end{figure}
 
+
 \subsection{Inflection of compound words}
 See chapter \ref{chap-multiflex}.
 
-\subsection{Inflection of semitic languages}
+
+\subsection{Inflection of Semitic languages}
 \label{subsection-semitic-inflection}
 \index{Semitic languages}
-Semitic languages like Arabic or Hebrew are not inflected in the same way as 
-other types of languages. Their morphology obeys a different logic. In
- such languages, words are inflected according to \textit{consonant
-skeletons}\index{Consonant skeleton}. The
-inflection process combines this skeleton with vowels.
+Semitic languages like Arabic or Hebrew are inflected in a way not easily representable 
+with the inflection operators described above. Their morphology obeys a different logic:
+words are inflected according to \textit{consonant
+skeletons}\index{Consonant skeleton}. The inflection process combines this skeleton with vowels.
+Specific operators have been implemented for Semitic languages, and some of them may be useful
+also for languages outside the Semitic family, such as Tagalog.
 
 \bigskip
 \noindent First, let us see a case where we encode only the consonants in the lemma field of the DELAS  entry:
@@ -1114,7 +1070,8 @@ inflection process combines this skeleton with vowels.
 \noindent The \verb+$+ sign before the grammatical code indicates that the inflection grammar 
 is in the Semitic mode, and the form \verb+ktb+ in the lemma field is the consonant
 skeleton. Figure~\ref{semitic-grammar} shows the toy grammar \verb+V31-123.grf+
-that illustrates how the Semitic mode works.  
+that illustrates how the Semitic mode works. The inflection grammars use the Buckwalter++
+transliteration of the Arabic script (cf.~Section~\ref{transliteration-Arabic}).
 
 \bigskip
 \begin{figure}[!ht]
@@ -1124,7 +1081,6 @@ that illustrates how the Semitic mode works.
 \end{center}
 \end{figure}
 
-\bigskip
 \noindent The Semitic mode obeys the following rules:
 \begin{enumerate}
   \item All standard inflection operators can be used (\verb+L+, \verb+R+, etc).
@@ -1135,8 +1091,7 @@ that illustrates how the Semitic mode works.
   protect its index with angles like \verb+<10>+.
 \end{enumerate}  
 
-\bigskip
-\noindent The DELAF output for this grammar is: 
+\noindent The DELAF output for this grammar is:
   
 \verb+yakotubu,ktb.V:aI3ms+
 
@@ -1148,9 +1103,6 @@ but differ in the vowels, we must encode the vowels in the inflection grammars:
 
 \verb+Hsb,$V3ii	// to think, Hasiba, yaHosibu+
 
-\bigskip
-\noindent In order to copy the complete lemma field, use the <LEMMA> operator (Figure~\ref{LEMMA-operator}).
-
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=10cm]{resources/img/fig3-LEMMA-operator.png}
@@ -1158,8 +1110,84 @@ but differ in the vowels, we must encode the vowels in the inflection grammars:
 \end{center}
 \end{figure}
 
-\noindent Thus, a path with all this field does not depend on the number of letters in the field. This operator is useful for
-Arabic nouns and adjectives where masculine forms are generated by inserting vowels in the consonantal skeleton, whereas feminine forms are obtained by appending suffixes. In this example, both consonants and vowels are encoded in the lemma field.
+\bigskip
+\noindent In order to copy the complete lemma field, use the <LEMMA> operator.
+A box with this operator retrieves the complete lemma field but does not depend on
+the number of letters in the field. This operator is useful for Arabic nouns and adjectives where
+masculine forms are generated by inserting vowels in the consonantal skeleton, whereas
+feminine forms are obtained by appending suffixes (Figure~\ref{LEMMA-operator}). In this example,
+both consonants and vowels are encoded in the lemma field.
+
+\bigskip
+\noindent The <n.LEMMA> operator copies the lemma from the $n$th position to the end.
+For example, in some Arabic nouns, the short vowel of the first syllable alternates: \verb+a/u+,
+\verb+a/i+ or \verb+u/i+, as in \verb+nufayap+/\verb+nifayap+ ''rubbish''. The inflection grammar of
+Fig.~\ref{n.LEMMA-operator} produces both variants with  \verb+u+ and with  \verb+i+ as inflected forms
+of \verb+nufayap+.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/N0_i_0ap-f-At.png}
+\caption{An inflection grammar in the Semitic mode with the <n.LEMMA> operator\label{n.LEMMA-operator}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent In Tagalog, an Austronesian language spoken in the Philippines and that uses commonly infixes
+and reduplication for inflection, <LEMMA> and <n.LEMMA> may be used to produce verb tenses.
+The toy inflection grammar of Fig.~\ref{tagalog} produces the perfect \verb+kumain+, future \verb+kakain+
+and imperfect \verb+kumakain+ of the verb \verb+kain+ ''eat''.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/V1um.png}
+\caption{A toy inflection grammar for Tagalog in the Semitic mode\label{tagalog}}
+\end{center}
+\end{figure}
+
+
+
+\section{Transliterating Arabic dictionaries}
+\label{transliteration-Arabic}
+\index{Transliterating!Arabic}\index{Dictionaries!transliterating}
+
+When Arabic linguists analyse dictionaries in order to spot errors,
+reading in the Arabic script is simple and efficient. However, when they
+create inflectional grammars (Section~\ref{section-automatic-inflection}), parts of
+Arabic words occur in the same box as morphosyntactic information encoded
+in the Latin alphabet, and in this context, switching from right-to-left Arabic script
+to left-to-right Latin alphabet is a real hassle. With Unitex, you can encode your
+inflectional grammars entirely in the Latin alphabet, by using the Buckwalter++
+transliteration,\index{Buckwalter++} a one-to-one mapping between a Unicode
+encoding of Arabic script and Latin letters (cf.~\cite{neme2011},
+Section~3.2, pages~4--6). The Buckwalter++ transliteration is defined by the table
+of Fig.~\ref{buckwalter1} and \ref{buckwalter2}.
+Unitex provides a tool to internally transliterate DELAS and DELAF Arabic
+dictionaries to and from Buckwalter++ encoding
+(Fig.~\ref{Arabic-transliteration}). This tool is accessible through the DELA menu.
+
+\begin{figure}[!p]
+\centering
+\includegraphics[height=23.5cm]{resources/img/buckwalter1.pdf}
+\caption{Buckwalter++ transliteration table, first half\label{buckwalter1}}
+\end{figure}
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=23.5cm]{resources/img/buckwalter2.pdf}
+\caption{Buckwalter++ transliteration table, second half\label{buckwalter2}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/Arabic-transliteration.pdf}
+\caption{Transliteration of a DELAF
+dictionary from Buckwalter++ (left) to the Arabic script (right)\label{Arabic-transliteration}}
+\end{center}
+\end{figure}
+
+
 
 \section{Compression}
 \index{Dictionaries!compression}
@@ -1182,7 +1210,8 @@ as input (for example \verb+my_dico.dic+) and produces two files:
 representation of inflected forms in which all common prefixes and suffixes are factorized. For
 example, the minimal automaton of the words \verb+me+, \verb+te+, \verb+se+,
 \verb+ma+, \verb+ta+ et \verb+sa+ can be represented by the graph shown in
-Figure~\ref{fig-example-minimal-automaton}. \bigskip \begin{figure}[!ht]
+Figure~\ref{fig-example-minimal-automaton}.
+\begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=5cm]{resources/img/fig3-10.png}
 \caption{Representation of a minimal
@@ -1209,9 +1238,14 @@ the compression of a dictionary of simple words. \bigskip
 simple words and 50\% for those with compound words.
 
 \bigskip
-\noindent NOTE: for semitic languages, a special compression algorithm is used to reduce the size of
-                the output \verb+.bin+ and \verb+.inf+ files. The fact that a language is considered as
-                a semitic one can be configured in the global preferences.
+\noindent When the Semitic mode (\ref{subsection-semitic-inflection}) has been heavily used
+to inflect a dictionary, a specific variant of the compression algorithm may reduce the size of the
+resulting \verb+.bin+ and \verb+.inf+ files. In order to use it, either declare the language as
+being a Semitic one in the global preferences by checking the ''Semitic language'' option in
+''Preferences > Language and Presentation'', or use the Compress program in command line with the
+\verb+--semitic+ option.
+
+
 \section{Applying dictionaries}
 \label{section-applying-dictionaries}
 \index{Dictionaries!applying}
