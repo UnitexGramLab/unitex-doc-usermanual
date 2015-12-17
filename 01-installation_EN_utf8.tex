@@ -123,20 +123,31 @@ user on your machine, you can perform the installation yourself.
 \noindent The Windows installer can also be launched in command line and accepts several optional
 command line parameters. Some of them are:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \texttt{/AllUsers} \hspace{.15in} Sets default to a per-machine install\\
-\item
-  \texttt{/CurrentUser} \hspace{.15in} Sets default to a per-user install\\
-\item
-  \texttt{/D C:\textbackslash{}path\textbackslash{}without quotes\textbackslash{}} \hspace{.15in}
-  Sets the default installation directory\\
-\item
-  \texttt{/NCRC} \hspace{.15in} Skip cyclic redundancy check\\
-\item
-  \texttt{/S} \hspace{.15in} Runs the installer silently
-\end{itemize}
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{ll}
+\texttt{/AllUsers}    & Sets default to a per-machine install \\
+\texttt{/CurrentUser} & Sets default to a per-user install\\
+\texttt{/D C:\textbackslash{}path\textbackslash{}without quotes\textbackslash{}} & Sets the default installation directory \\
+\texttt{/NCRC}        & Skip the cyclic redundancy check\\
+\texttt{/S}           & Runs the installer silently
+\end{tabular}
+\end{table}
+
+%\begin{itemize}
+%\itemsep1pt\parskip0pt\parsep0pt
+%\item
+  %\texttt{/AllUsers} \hspace{.15in} Sets default to a per-machine install\\
+%\item
+  %\texttt{/CurrentUser} \hspace{.15in} Sets default to a per-user install\\
+%\item
+  %\texttt{/D C:\textbackslash{}path\textbackslash{}without quotes\textbackslash{}} \hspace{.15in}
+  %Sets the default installation directory\\
+%\item
+  %\texttt{/NCRC} \hspace{.15in} Skip cyclic redundancy check\\
+%\item
+  %\texttt{/S} \hspace{.15in} Runs the installer silently
+%\end{itemize}
 \end{samepage}
 
 \noindent If you run Unitex under Windows 7, you may experience trouble with your Unitex configuration
@@ -151,7 +162,7 @@ The downloaded file will be named something like:
 {\tt \UnitexPackageLinuxSF{}}
 \end{flushleft}
 
-\noindent Then, give it executable permissions, by typing, for example:
+\noindent Then, give it executable permissions, by typing, for example :
 
 \begin{flushleft}
 {\tt chmod a+x \UnitexPackageLinux{}}
@@ -165,19 +176,28 @@ The downloaded file will be named something like:
 
 \begin{samepage}
 \noindent The GNU/Linux and OS X installer accepts several optional command line parameters. Some of them are:
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{ll}
+\texttt{-\/-confirm}    & Ask before running the embedded installation script\\
+\texttt{-\/-quiet}      & Do not print anything except error messages\\
+\texttt{-\/-noexec}     & Do not run the embedded installation script\\
+\texttt{-\/-target dir} & Sets the default installation directory
+\end{tabular}
+\end{table}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \texttt{-\/-confirm} \hspace{.15in} Ask before running the embedded installation
-  script\\
-\item
-  \texttt{-\/-quiet} \hspace{.15in} Do not print anything except error messages\\
-\item
-  \texttt{-\/-noexec} \hspace{.15in} Do not run the embedded installation script\\
-\item
-  \texttt{-\/-target dir}  \hspace{.15in} Sets the default installation directory
-\end{itemize}
+%\begin{itemize}
+%\itemsep1pt\parskip0pt\parsep0pt
+%\item
+  %\texttt{-\/-confirm} \hspace{.15in} Ask before running the embedded installation
+  %script\\
+%\item
+  %\texttt{-\/-quiet} \hspace{.15in} Do not print anything except error messages\\
+%\item
+  %\texttt{-\/-noexec} \hspace{.15in} Do not run the embedded installation script\\
+%\item
+  %\texttt{-\/-target dir}  \hspace{.15in} Sets the default installation directory
+%\end{itemize}
 \end{samepage}
 
 \section{Manual installation}
