@@ -1,7 +1,7 @@
 \chapter{Cascade of Transducers}
 \label{chap-cassys}
 
-This chapter presents the tool \textit{Cassys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{Cascade of transducers} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
+This chapter presents the tool \textit{CasSys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{Cascade of transducers} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
 
 \bigskip
 \noindent The first prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
@@ -10,7 +10,7 @@ This chapter presents the tool \textit{Cassys} that provides users the possibili
 
 Unitex grammars are known as Context free grammars and contain the notion of transduction derived from the field 
 of finite state automata. A grammar with transduction (a transducer) is enabled to produce some ouput. 
-Cassys is dedicated to the application of transducers in the form of a cascade.
+CasSys is dedicated to the application of transducers in the form of a cascade.
 
 \bigskip
 A cascade can be used for syntactic analysis, chunking, information extraction, etc. 
@@ -53,12 +53,12 @@ In the language directory, there is a directory named CasSys where the cascade c
 \subsection{Editing the list of transducers}
 \label{subsec:editlistTrans}
 
-The Cassys configuration window (Figure \ref{fig13-03}) is divided into three parts :
+The CasSys configuration window (Figure \ref{fig13-03}) is divided into three parts :
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=16cm]{resources/img/fig13-03.png}
-  \caption{Cassys configuration window with a list of transducers on the right hand side}
+  \caption{CasSys configuration window with a list of transducers on the right hand side}
   \label{fig13-03}
 \end{figure}
 
@@ -87,7 +87,7 @@ The Cassys configuration window (Figure \ref{fig13-03}) is divided into three pa
 			\item  \textit{"Delete"} permits to remove a selected transducer from the list of transducers. 
 			\item		\textit{"Add"} adds a transducer (previously selected in the explorer) onto the list. It replaces the drag and drop actions described above. 
 			\item \textit{"View"} opens the selected graph either in the file explorer or in the list of transducers of the window. It is very useful to get a quick access to any transducer either to take a quick look at its content or to modify it.
-			\item \textit{"Save"} and \textit{"Save as"} permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys directory of the current language (e.g. English/Cassys).
+			\item \textit{"Save"} and \textit{"Save as"} permit to save the list of transducers. By default, the lists of transducers are stored in the CasSys directory of the current language (e.g. English/CasSys).
 			\item \textit{"Compile"} recompile all the graphs of the cascade. Very useful to avoid to recompile a graph after changes.
 			\item \textit{"Disable all"} to disable all the graphs of the cascade. 
 			\item \textit{"Enable all"} to enable all the graphs of the cascade. 
@@ -140,17 +140,17 @@ system for the cascades is provided. This possibility is offered in the "\textit
 To share a cascade list file, the following steps has to be fullfilled :
 \begin{enumerate}
   \item \textbf{Export :} Select a cascade file and click the export button. (A
-  ready to share file is created in the \texttt{/Cassys/Share} repository)
+  ready to share file is created in the \texttt{/CasSys/Share} repository)
   \item Send the file to share to your colleague
   \item \textbf{Import :} Select the imported file and click the import button.
-  (A ready to use file is created in the \texttt{/Cassys} repository)
+  (A ready to use file is created in the \texttt{/CasSys} repository)
 \end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Details on the behavior of Cassys}
+\section{Details on the behavior of CasSys}
 
-In this section , we present details concerning the functioning of Cassys.
+In this section , we present details concerning the functioning of CasSys.
 
 %%%%%%%%%%%%%
 \subsection{Type of graphs used}
@@ -211,7 +211,7 @@ In the cascade, each successive graph is applied following the unitex rules:
 	graph of the cascade : so it is necessary to choose among these occurrences the one that will be taken into account. To do that, the priority is given to the leftmost sequence.
 	\item \textit{Priority of the longest match}: in CasSys, during the application of a graph, it is the longest sequence 
 	that will be kept.
-	\item	\textit{Search limitation to a certain number of occurrences}: in Cassys, this search is not limited. Such a limitation has no sense in the use of CasSys, we always index all occurrences in the text.
+	\item	\textit{Search limitation to a certain number of occurrences}: in CasSys, this search is not limited. Such a limitation has no sense in the use of CasSys, we always index all occurrences in the text.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%
@@ -219,7 +219,7 @@ In the cascade, each successive graph is applied following the unitex rules:
 
 The output of the transducers can be used to insert special information into texts, particularly to mark up the recognized patterns: it is 
 possible to use all the marks you want such as ( ), [], "", etc. or xml tags such as <xxx> </xxx>.\\
-Cassys also offers\textit{ a special way to mark up patterns}, that offers some advantages and that we present here.  
+CasSys also offers\textit{ a special way to mark up patterns}, that offers some advantages and that we present here.  
 
 \bigskip
 \noindent Unitex splits texts into different sorts of tokens like the sentence delimiter {S}; the stop marker {STOP}, contiguous 
@@ -230,7 +230,7 @@ For example, if the token \emph{\{curly brackets,.N\}} is in a text, neither "cu
 A lexical tag can contain complex lexical information. For example, the codes \emph{N+Pers+Hum:fs} tags a token which is a noun, a person, a human and feminine singular. In a graph, you can look for a lexical token using the lexical codes it contains: for example, you can write lexical masks such as \emph{<N>} to search a noun, \emph{<Pers+Hum>} for a human person or simply \emph{<Pers>} (lexical masks are explained in section \ref{section-special-symbols}).
  
 \bigskip
-\noindent In Cassys, we use the lexical tag in a special way. A cascade of transducers is interesting to locate the island of certainty first. It is necessary for such a system to avoid that previously recognized patterns be ambiguous with patterns recognized by the following graphs. To do that, you can tag the patterns of your graphs surrounding them by \emph{\{} and \emph{,.tag1+tag2+tagn\}} in the outputs of the graph (where \emph{tag1, tag2, etc.} are your own tags).
+\noindent In CasSys, we use the lexical tag in a special way. A cascade of transducers is interesting to locate the island of certainty first. It is necessary for such a system to avoid that previously recognized patterns be ambiguous with patterns recognized by the following graphs. To do that, you can tag the patterns of your graphs surrounding them by \emph{\{} and \emph{,.tag1+tag2+tagn\}} in the outputs of the graph (where \emph{tag1, tag2, etc.} are your own tags).
 
 \bigskip
 \noindent To explain this behavior, here is a very simple example. The text on which we work is :
@@ -378,14 +378,14 @@ The figure \ref{fig13-04} presents a sample of concordance resulting of a cascad
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/fig13-04.png}
-  \caption{Concordance of Cassys under Unitex}
+  \caption{Concordance of CasSys under Unitex}
   \label{fig13-04}
 \end{figure}
 
 %%%%%%%%%%%%
 \subsection{The different resulting files of a cascade}
 
-Cassys keeps all the text created by each graph of the cascade. This can be useful to test, debug or check the different results of the cascade. It is possible to correct the errors on the order of the graphs or to find the errors in the writing of the graphs. A good idea is to write the name of the graph recognizing a pattern in the output of this graph: thanks to that, you can see in the final results the name of the graph by which a pattern is recognized. 
+CasSys keeps all the text created by each graph of the cascade. This can be useful to test, debug or check the different results of the cascade. It is possible to correct the errors on the order of the graphs or to find the errors in the writing of the graphs. A good idea is to write the name of the graph recognizing a pattern in the output of this graph: thanks to that, you can see in the final results the name of the graph by which a pattern is recognized. 
 \bigskip
 
 If you apply a cascade on the text named \texttt{example.txt}, two directories are created: \texttt{example\_snt} and \texttt{example\_csc}.

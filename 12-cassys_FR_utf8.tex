@@ -1,7 +1,7 @@
 \chapter{Cascade de Transducteurs}
 \label{chap-cassys}
 
-Ce chapitre presente l'outil \textit{Cassys} qui donne la possibilité de créer une cascade
+Ce chapitre presente l'outil \textit{CasSys} qui donne la possibilité de créer une cascade
 de  transducteurs et de nouvelles manières de travailler sur la langue naturelle avec des 
 graphes à états finis. Une \textit{cascade de transducteurs} \index{cascade de transducteurs}
 applique plusieurs graphes (automates ou transducteurs), l'un après l'autre, sur le texte: chaque
@@ -22,7 +22,7 @@ David Nott}que l'intégration complète  de CasSys à Unitex a pu être réalis�
 
 Les grammaire Unitex sont de type Context free et intègrent la notion de transduction issue
 du domaine des automates à états finis. Une grammaire avec transduction (un  transducteur) est
-capable de produire une sortie. Cassys est spécialisé dans l'application de transducteurs sous
+capable de produire une sortie. CasSys est spécialisé dans l'application de transducteurs sous
 la forme d'une cascade.
 
 \bigskip
@@ -118,7 +118,7 @@ La fenêtre de configuration de CasSys (\ref{fig13-03}) comporte trois parties :
 		le modifier.
 		\item \textit{"Save"} et \textit{"Save as"} permettent d'enregistrer la
 		liste des transducteurs. Par défaut, les listes des transducteurs sont placées dans
-		le répertoire CasSys de la langue courante  (par exemple French/Cassys).
+		le répertoire CasSys de la langue courante  (par exemple French/CasSys).
 		\item \textit{"Compile"} recompile tous les graphes de la cascade.	
 		\item \textit{"Disable all"} pour désélectionner tous les graphes de la cascade.	
 		\item \textit{"Enable all"} pour sélectionner tous les graphes de la cascade.	
@@ -175,10 +175,10 @@ fournie à l'aide d'un fichier liste de transducteurs. Cette possibilité est of
 Pour partager un fichier liste de cascade, les points suivants doivent être remplis:
 \begin{enumerate}
 \item \textbf{Export :} Choisissez un fichier cascade et cliquez sur le bouton "export".
-	(Un fichier partageable est créé dans le répertoire \texttt{/Cassys/Share})
+	(Un fichier partageable est créé dans le répertoire \texttt{/CasSys/Share})
 \item Envoyez le fichier partagé à vos collègues
 \item \textbf{Import :} Choisissez un fichier  et cliquez sur le bouton "import".
-	(Un fichier prêt à être utilisé est créé dans le répertoire \texttt{/Cassys})
+	(Un fichier prêt à être utilisé est créé dans le répertoire \texttt{/CasSys})
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +205,7 @@ debug avant d'appliquer le graphe avec \verb+Locate Pattern+.
 \subsection{Application itérative}
 \label{sub:AppWhiCon}
 
-Cassys peut appliquer un graphe sur un texte de manière itérative tant que de nouvelles concordances sont obtenues.
+CasSys peut appliquer un graphe sur un texte de manière itérative tant que de nouvelles concordances sont obtenues.
 Ce comportement est sélectionné ou non pour chaque graphe selon que la case \verb+Until fix point+ est cochée ou non. Cette section présente le comportement de cette option\\
 
 Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le remplace par \emph{A}.\\
