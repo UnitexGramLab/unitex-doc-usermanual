@@ -223,10 +223,10 @@ CasSys also offers\textit{ a special way to mark up patterns}, that offers some 
 
 \bigskip
 \noindent Unitex splits texts into different sorts of tokens like the sentence delimiter {S}; the stop marker {STOP}, contiguous 
-sequences of letters, lexical tags {aujourd'hui,.ADV}, etc.//
+sequences of letters, lexical tags {aujourd'hui,.ADV}, etc.
 The lexical tag is used by CasSys in a special way. The lexical tag (between curly brackets) is normally used to avoid ambiguities (see section \ref{tokenization} and section\ref{section-displaying-sentence-automata}). 
 For example, if the token \emph{\{curly brackets,.N\}} is in a text, neither "curly" nor "brackets" will be recognized but the whole sequence 
-"curly brackets" or the tag <N>.// 
+"curly brackets" or the tag <N>.
 A lexical tag can contain complex lexical information. For example, the codes \emph{N+Pers+Hum:fs} tags a token which is a noun, a person, a human and feminine singular. In a graph, you can look for a lexical token using the lexical codes it contains: for example, you can write lexical masks such as \emph{<N>} to search a noun, \emph{<Pers+Hum>} for a human person or simply \emph{<Pers>} (lexical masks are explained in section \ref{section-special-symbols}).
  
 \bigskip
@@ -290,7 +290,7 @@ Note that for programming reasons (ambiguities between characters in the curly b
 
 
 \section{Generic Graphs}
-Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the dictionary of the text to be analysed by the future graph.
+Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the token list of the text to be analysed by the future graph.
 
 \subsection{Identifying a Generic Graph}
 CasSys recognises a graph as generic graph if the column \emph{Generic} is checked (figure \ref{fig12-3}).
@@ -302,7 +302,7 @@ CasSys recognises a graph as generic graph if the column \emph{Generic} is check
 \end{figure}
 
 \subsection{Structure of a Generic Graph}
-A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the dictionary of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the dictionary of the text as shown in the figure \ref{fig12-3-01a}. Additionally, a negative right context (section~\ref{section-contexts} is added to prevent the element from being annotated twice.
+A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the token list (tok\_by\_alph.txt) of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the token list of the text as shown in the figure \ref{fig12-3-01a}. Additionally, a negative right context (section~\ref{section-contexts} is added to prevent the element from being annotated twice.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
@@ -316,7 +316,7 @@ A path in a generic graph must begin with a box containing \$G and an opening cu
   \label{fig12-3-01a}
 \end{figure}
 
-In the case of a dictionary entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of the figure \ref{fig12-3-01} places in the box \textit{A B} as displayed in the figure \ref{fig12-3-02}.
+In the case of a token list entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of the figure \ref{fig12-3-01} places in the box \textit{A B} as displayed in the figure \ref{fig12-3-02}.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
