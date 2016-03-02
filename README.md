@@ -2,6 +2,10 @@
 
 > [Unitex/GramLab][unitex] is an open source, cross-platform, multilingual, lexicon- and grammar-based corpus processing suite.
 
+### User’s Manual
+
+User’s Manual (in PDF format) is available in English and French (more translations are welcome). You can view and print them with Evince, downloadable [here](https://wiki.gnome.org/Apps/Evince/Downloads). The latest version of the User’s Manual is accessible [here](http://releases.unitexgramlab.org/latest-rc/man).
+
 ### Contributing
 
 We welcome everyone to contribute to improve this project. Below are some of the
