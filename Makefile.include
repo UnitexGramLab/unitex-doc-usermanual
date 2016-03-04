@@ -60,6 +60,7 @@ TEXTARGETS = $(TARGETS:=.tex)
 PDFTARGETS = $(TARGETS:=.pdf)
 AUXFILES   = $(TARGETS:=.aux)
 IDXFILES   = $(TARGETS:=.idx)
+IDNFILES   = $(TARGETS:=.idn)
 XDYFILES   = $(TARGETS:=.xdy)
 LOGFILES   = $(TARGETS:=.log)
 
@@ -137,10 +138,6 @@ Revision.tex: $(VCSTURD)
 AUXFILES += Revision.aux
 endif
 
-IDXDEPS = %.idx
-%.idx: %.aux
-	$(TEXINDY) $(IDXFILES) -M $(XDYFILES)
-
 # to generate aux but not pdf from pdflatex, use -draftmode
 %.aux: %.tex $(REVDEPS)
 	$(PDFLATEX) -draftmode $* $(ERRFILTER)
@@ -162,7 +159,7 @@ GLSDEPS = %.gls
 	$(MAKEGLOSSARIES) $(TARGETS)
 endif
 
-$(PDFTARGETS): %.pdf: %.tex $(IDXDEPS) $(GLSDEPS) $(INCLUDEDTEX) $(REVDEPS)
+$(PDFTARGETS): %.pdf: %.tex %.aux $(GLSDEPS) $(INCLUDEDTEX) $(REVDEPS)
 	$(PDFLATEX) $* $(ERRFILTER)
 ifneq ($(strip $(BIBFILES)),)
 	@if egrep -q "undefined (references|citations)" $*.log; then \
@@ -170,6 +167,9 @@ ifneq ($(strip $(BIBFILES)),)
 endif
 	@while grep -q "Rerun to" $*.log; do \
 		$(PDFLATEX) $* $(ERRFILTER); done
+	$(TEXINDY) $(IDXFILES) -M $(XDYFILES)
+	$(PDFLATEX) $* $(ERRFILTER)
+	$(PDFLATEX) $* $(ERRFILTER)
 
 DRAFTS := $(PDFTARGETS:.pdf=-$(REVISION).pdf)
 $(DRAFTS): %-$(REVISION).pdf: %.pdf
