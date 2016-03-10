@@ -63,6 +63,7 @@ of the text. This is why we use the term ``text automaton'' even if this object
 is not manipulated as a global automaton for practical reasons.
 
 \section{Construction}
+\label{construction-text-automaton}
 In order to construct the text automaton, open the text, then click on 
 "Construct FST-Text..." in the menu "Text". One should first split the text into
 sentences and  apply dictionaries. If sentence boundary detection
@@ -1010,15 +1011,9 @@ case letter.
 \end{figure}
 
 \subsection{Modifying the text automaton}
-It is possible to manually modify the sentence automaton. You can add or erase
-boxes or transitions. When a graph is modified, it is saved to the text file  
-\verb+sentenceN.grf+, where $N$ represents the number of the sentence.
-
-\bigskip
-\noindent When you select a sentence, if a modified graph exists for this sentence, this
-one is displayed. You can then reset the automaton of that sentence by clicking
-on the botton "Reset Sentence Graph" (cf. 
-figure~\ref{fig-modified-sentence-automaton}).
+It is possible to manually modify sentence automata, except those in the ELAG frame
+(lower frame). You can edit or erase
+boxes or transitions (cf. figure~\ref{fig-modified-sentence-automaton}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1028,19 +1023,29 @@ figure~\ref{fig-modified-sentence-automaton}).
 \end{figure}
 
 \bigskip
-\noindent During the construction of the text automaton, all the modified
-sentence graphs in the text file are erased.
+\noindent When a graph is modified, it is saved to the text file  
+\verb+sentenceN.grf+, where $N$ represents the number of the sentence,
+but this operation does not modify the global text automaton. Thus, you can discard the
+manually modified graph and reset the automaton of that sentence from the global text automaton
+by clicking on the "Reset Sentence Graph" button.
 
 \bigskip
-\noindent NOTE: After you reconstruct the text automaton, you can save your
-manual modifications. In order to do that, click on the button "Rebuild
-FST-Text". All sentences that have been modified are then replaced in the text
-automaton by their modified versions. The new text automaton is then
-automatically reloaded.
+\noindent When you select a sentence, if a modified graph exists for this sentence, Unitex
+displays it. 
 
-\subsubsection{Manually resolve Ambiguities}
-The text automaton may contains many paths of tags because of lexical ambiguity. You can resolve ambiguities with ELAG Grammars or manually select the right paths for one or each graph of the sentence automaton.
-To do so you can perform a right click on the box you want to keep when several boxes with different tags are proposed. The edges of the selected box will become more bold when the other boxes will appear grayed (see Figure~\ref{fig-manually-resolve-ambiguities}).
+\bigskip
+\noindent After you edited sentence automata, you can save your
+manual modifications to the global text automaton. In order to do that, click on the "Rebuild
+FST-Text" button. All sentences that have been modified are then replaced by their modified versions.
+The new text automaton is then automatically reloaded.
+
+\bigskip
+\noindent During the construction of the text automaton (\ref{construction-text-automaton}), all the modified
+sentence graphs in the text file are erased.
+
+\subsubsection{Manually resolving ambiguities}
+The text automaton may contain many paths of tags because of lexical ambiguity. You can either resolve ambiguities with ELAG Grammars or manually select the right paths for one or each graph of the sentence automaton.
+To do so, you can perform a right click on the box you want to keep when several boxes with different tags are proposed. The edges of the selected box will become more bold and the other boxes will appear grayed (see Figure~\ref{fig-manually-resolve-ambiguities}).
 
 \begin{figure}[!ht]
 \begin{center}

@@ -58,6 +58,7 @@ correspondrait à l’automate de tout le texte. On utilise donc le terme ``auto
 même si l’on ne manipule pas réellement cet objet pour des raisons pratiques.
 
 \section{Construction}
+\label{construction-text-automaton}
 Pour construire l’automate d’un texte, vous devez ouvrir ce texte, puis cliquer dans le menu "Text"
 sur "Construct FST-Text...". Il est recommandé d’avoir découpé le texte en phrases et
 de lui avoir appliqué les dictionnaires. Si vous n’avez pas découpé le texte en phrases, le
@@ -1000,14 +1001,8 @@ deux entrées du dictionnaire, mais comme la forme canonique de ces entrées est
 
 \subsection{Modifier manuellement l’automate du texte}
 Il est possible de modifier manuellement les automates de phrase, sauf ceux qui appa-
-raissent dans le cadre réservé à ELAG (cadre du bas). Vous pouvez ajouter ou supprimer des
-boîtes ou des transitions. Lorsqu’un graphe est modifié, il est sauvegardé dans le répertoire
-du texte sous le nom \verb+sentenceN.grf+, où $N$ représente le numéro de la phrase.
-
-\bigskip
-\noindent Lorsque vous sélectionnez une phrase, si un graphe modifié existe pour cette phrase,
-celui-ci est affiché. Vous pouvez alors réinitialiser l’automate de cette phrase en cliquant sur
-le bouton "Reset Sentence Graph" (voir figure~\ref{fig-modified-sentence-automaton}).
+raissent dans le cadre réservé à ELAG (cadre du bas). On peut modifier ou supprimer des
+boîtes ou des transitions (voir figure~\ref{fig-modified-sentence-automaton}).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1017,21 +1012,31 @@ le bouton "Reset Sentence Graph" (voir figure~\ref{fig-modified-sentence-automat
 \end{figure}
 
 \bigskip
-\noindent Lors de la construction de l’automate d’un texte, tous les graphes de phrase modifiés
-présents dans le répertoire du texte sont effacés.
-
+\noindent Lorsqu’un graphe est modifié, il est sauvegardé dans le répertoire
+du texte sous le nom \verb+sentenceN.grf+, où $N$ représente le numéro de la phrase,
+mais cette opération ne modifie pas l'automate global du texte.
+On peut donc annuler les modifications faites manuellement et réinitialiser l’automate de cette phrase
+en cliquant sur le bouton "Reset Sentence Graph".
 
 \bigskip
-\noindent NOTE : vous pouvez reconstruire l’automate du texte en prenant en compte vos modifications 
-manuelles. Pour cela, cliquez sur le bouton "Rebuild FST-Text". Toutes les phrases
+\noindent Lorsqu’on sélectionne une phrase, si un graphe modifié existe pour cette phrase,
+Unitex l'affiche.
+
+\bigskip
+\noindent Après avoir édité des automates de phrases, on peut sauvegarder ses modifications
+manuelles dans l’automate global du texte. Pour cela, on clique sur le bouton "Rebuild FST-Text". Toutes les phrases
 pour lesquelles des modifications ont été faites sont alors remplacées dans l’automate du
 texte par leur version modifiée. Le nouvel automate du texte est ensuite rechargé automatiquement.
+
+\bigskip
+\noindent Lors de la construction de l’automate d’un texte (\ref{construction-text-automaton}), toutes les
+modifications manuelles sauvegardées dans l'automate du texte sont annulées.
 
 
 %%%%%%%%%%%%%%%%
 \subsubsection{Levée manuelle des ambiguïtés}
 L’automate du texte peut contenir de nombreux chemins étiquetés en raison de l'ambiguïté lexicale.
-Vous pouvez lever les ambiguités avec des grammaires ELAG ou sélectionner manuellement les chemins
+Vous pouvez soit lever les ambiguités avec des grammaires ELAG, soit sélectionner manuellement les chemins
 corrects pour l'un ou tous les graphes de l'automate de phrase. Vous devez pour cela effectuer un
 clic droit sur la boîte que vous voulez garder lorsque plusieurs boîtes avec différentes étiquettes
 sont proposées. Les bords de la boîte sélectionnée deviendront plus gras tandis que les autres
