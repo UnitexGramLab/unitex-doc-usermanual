@@ -119,14 +119,14 @@ dans les dictionnaires du texte. Les quatre formes possibles sont~:
 	sémantique;
   \item \verb+<lire.>+: reconnaît toutes les entrées qui ont \verb+lire+ comme forme canonique.
   	  Ce masque lexical n'est pas ambigu avec le précédent;
-  \item \verb+<be.V>+: reconnaît toutes les entrées qui ont \verb+lire+ comme forme canonique
+  \item \verb+<lire.V>+: reconnaît toutes les entrées qui ont \verb+lire+ comme forme canonique
                        et qui ont le code grammatical  \verb+V+;
   \item \verb+<V>+: reconnaît toutes les entrées qui ont le code grammatical \verb+V+.
-  	  Ce masque lexical est ambigu comme le premier. Pour lever l'ambuguité, on peut utiliser
+  	  Ce masque lexical est ambigu comme le premier. Pour lever l'ambiguïté, on peut utiliser
   	  \verb+<.V>+ ou \verb$<+V>$;
    \index{Étiquette lexicale}
 \item \verb+{lirons,lire.V}+ ou \verb+<lirons,lire.V>+: reconnaît toutes les entrées qui ont
-	\verb+lir-+\newline\verb+ons+ comme forme fléchie, \verb+lire+ comme forme canonique et qui
+	\verb+li-+\newline\verb+rons+ comme forme fléchie, \verb+lire+ comme forme canonique et qui
 	ont le code grammatical
   \verb+V+. Ce type de masque n’a d’intérêt que si l’on travaille sur l’automate du texte où sont
   explicitées les ambiguïtés des mots.
