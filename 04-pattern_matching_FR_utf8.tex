@@ -76,10 +76,10 @@ motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte
   \item \verb+<E>+ : mot vide, ou epsilon. Reconnaît la séquence vide;
   \item \verb+<TOKEN>+ : reconnaît n’importe quelle unité lexicale sauf l'espace
   	  utilisé par défaut pour les filtres morphologiques;
-  \item \verb+<WORD>+ : reconnaît n’importe quelle unité lexicale formée de lettres;
-  \item \verb+<LOWER>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules;
-  \item \verb+<UPPER>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules;
-  \item \verb+<FIRST>+ : reconnaît n’importe quelle unité lexicale formée de lettres et commençant par
+  \item \verb+<MOT>+ : reconnaît n’importe quelle unité lexicale formée de lettres;
+  \item \verb+<MIN>+ : reconnaît n’importe quelle unité lexicale formée de lettres minuscules;
+  \item \verb+<MAJ>+ : reconnaît n’importe quelle unité lexicale formée de lettres majuscules;
+  \item \verb+<PRE>+ : reconnaît n’importe quelle unité lexicale formée de lettres et commençant par
   	  une majuscule;
   \item \verb+<DIC>+ : reconnaît n’importe quel mot figurant dans les dictionnaires du texte;
   \item \verb+<SDIC>+ : reconnaît n’importe quel mot simple figurant dans les dictionnaires du
@@ -94,12 +94,8 @@ motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte
   \item \verb+#+ : interdit la présence de l'espace.\index{Espace!interdit}
 \end{itemize}
 
-\noindent  Les anciens codes correspondant à \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
- étaient respectivement \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+.
- Ils restent opérationnels afin de conserver la compatibilité descendante
- du système avec les graphes existants, mais ils sont maintenant dépréciés,
- c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
-pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
+\noindent  Il est également possible d'utiliser de manière alternative  les codes anglais \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
+respectivement à la place de \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+ si vous réalisez des grammaires dans cette langue.
 
 \bigskip
 \noindent NOTE : comme il a été dit en section \ref{tokenization}, AUCUN des métas ne peut être utilisé pour reconnaître le marqueur \verb+{STOP}+\index{\verbt{\{STOP\}}}, pas même \verb+<TOKEN>+.
@@ -263,24 +259,24 @@ code \verb+Y2+ est inclus dans au moins un code de $E$, le masque lexical $M$ re
 \index{Négation!d’un masque lexical}
 \index{\verbc{"!}}
 Il est possible de faire la négation d’un motif au moyen du caractère~\verb+!+ placé immédiatement
-après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<WORD>+, \verb+<LOWER>+,
-\verb+<UPPER>+,
-\verb+<FIRST>+\footnote{Et sur leurs équivalents dépréciés  <MOT>,<MIN>, <MAJ>,
-<PRE>. Voir section~\ref{section-special-symbols}.},
+après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<MOT>+, \verb+<MIN>+,
+\verb+<MAJ>+,
+\verb+<PRE>+\footnote{Et sur leurs équivalents anglais  <WORD>, <LOWER>, <UPPER>, 
+<FIRST>. Voir section~\ref{section-special-symbols}.},
 \verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
 codes grammaticaux, sémantiques ou flexionnels (\textit{i.e.} \verb$<!V~z3:P3>$). Les motifs
 \verb+#+ et \verb+" "+  sont la négation l’un de l’autre.
 \index{\verbc{<E>}}\index{\verbc{<NB>}}\index{\verbt{\#}}
-Le méta \verb$<!WORD>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
+Le méta \verb$<!MOT>$ peut reconnaître toutes les unités lexicales qui ne sont pas formées de
 lettres, sauf le séparateur de phrases \verb+{S}+ et, bien sûr, le marqueur \verb+{STOP}+.
 La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ et
 \verb+<TOKEN>+.
 
 \bigskip
 \noindent La négation est interprétée d’une façon particulière dans les métas 
-\verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ et
-\verb+<!FIRST>+\footnote{Et dans leurs équivalents dépréciés <MIN>, <MAJ> et
-<PRE>. Voir section~\ref{section-special-symbols}.}.
+\verb+<!DIC>+, \verb+<!MIN>+, \verb+<!MAJ>+ et
+\verb+<!PRE>+\footnote{Et dans leurs équivalents anglais <LOWER>, <UPPER> et
+<FIRST>. Voir section~\ref{section-special-symbols}.}.
 \index{\verbc{<DIC>}}\index{\verbc{<LOWER>}}\index{\verbc{<UPPER>}}\index{\verbc{<FIRST>}}
 \index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}
 Au lieu de reconnaître toutes les formes qui ne sont pas reconnues
@@ -321,7 +317,7 @@ being,.N+Hum:s
   \item \verb$<facteur.N~Hum>$ : toutes les entrées nominales ayant \textit{facteur} comme forme
   	  canonique et ne possédant pas le code sémantique \verb+Hum+;
   \item \verb$<!ADV>$ : tous les mots qui ne sont pas des adverbes;
-  \item \verb$<!WORD>$ : tous les caractères qui ne sont pas des lettres, sauf le séparateur de
+  \item \verb$<!MOT>$ : tous les caractères qui ne sont pas des lettres, sauf le séparateur de
   	  phrases
   	  (voir figure~\ref{fig-search-<!WORD>}). Ce masque ne reconnait pas le séparateur de phrase
   	  \verb+{S}+
