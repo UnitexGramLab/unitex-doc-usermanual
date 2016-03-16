@@ -306,10 +306,10 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
 \index{\verbc{<LOWER>}}\index{\verbc{<FIRST>}}
 \begin{itemize}
   \item \verb+<E>+~: mot vide, ou epsilon. Reconnaît la séquence vide~;
-  \item \verb+<MOT>+~: reconnaît n’importe quelle suite de lettres~;
-  \item \verb+<MIN>+~: reconnaît n’importe quelle suite de lettres minuscules~;
-  \item \verb+<MAJ>+~: reconnaît n’importe quelle suite de lettres majuscules~;
-  \item \verb+<PRE>+~: reconnaît n’importe quelle suite de lettres commençant par une majuscule~;
+  \item \verb+<WORD>+~: reconnaît n’importe quelle suite de lettres~;
+  \item \verb+<LOWER>+~: reconnaît n’importe quelle suite de lettres minuscules~;
+  \item \verb+<UPPER>+~: reconnaît n’importe quelle suite de lettres majuscules~;
+  \item \verb+<FIRST>+~: reconnaît n’importe quelle suite de lettres commençant par une majuscule~;
   \item \verb+<NB>+~: reconnaît n’importe quelle suite de chiffres contigus (1234 est reconnu mais pas 1 234)~; 
   \item \verb+<PNC>+~: reconnaît les symboles de ponctuation ; , ! ? : ainsi que les points d’exclamation
   	  et d’interrogation inversés de l’espagnol et quelques signes de ponctuation asiatiques~;
@@ -317,8 +317,12 @@ composée d’un point d’interrogation et d’un mot commençant par une majus
   \item \verb+#+~: interdit la présence de l’espace.
 \end{itemize}
 
-\noindent  Il est également possible d'utiliser de manière alternative  les codes anglais \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
-respectivement à la place de \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+ si vous réalisez des grammaires dans cette langue.
+\noindent  Les anciens codes correspondant à \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
+ étaient respectivement \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+.
+ Ils restent opérationnels afin de conserver la compatibilité descendante
+ du système avec les graphes existants, mais ils sont maintenant dépréciés,
+ c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \bigskip
 \noindent Par défaut, l’espace est facultatif entre deux boîtes. Si l’on veut interdire la présence

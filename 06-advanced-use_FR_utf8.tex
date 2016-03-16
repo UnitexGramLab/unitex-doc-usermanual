@@ -754,23 +754,27 @@ et non pour les formes qui n'apparaissent dans le texte que comme des parties de
 
 \item On peut utiliser des sorties.
    
-\item \verb+<LETTRE>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet.
+\item \verb+<LETTER>+ reconnaît n'importe quelle lettre définie dans le fichier alphabet.
 	\index{\verbc{<MOT>}}\index{\verbc{<LETTER>}}
 
-\item \verb+<MIN>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verbc{<MIN>}}\index{\verbc{<LOWER>}}
+\item \verb+<LOWER>+ reconnaît n'importe quelle minuscule définie dans le fichier alphabet.\index{\verbc{<MIN>}}\index{\verbc{<LOWER>}}
 
-\item \verb+<MAJ>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verbc{<MAJ>}}\index{\verbc{<UPPER>}}
+\item \verb+<UPPER>+ reconnaît n'importe quelle majuscule définie dans le fichier alphabet.\index{\verbc{<MAJ>}}\index{\verbc{<UPPER>}}
 
 \item \verb+<DIC>+ reconnaît n'importe quel mot présent dans un dictionnaire du mode
-	 morphologique\index{\verbc{<DIC>}}, mais les méta-symboles \verb+#+, \verb+<PRE>+,  \verb+<NB>+,
+	 morphologique\index{\verbc{<DIC>}}, mais les méta-symboles \verb+#+, \verb+<FIRST>+,  \verb+<NB>+,
  	 \verb+<SDIC>+ et\verb+<CDIC>+ sont interdits.\index{\verbt{\#}} \index{\verbc{<FIRST>}} \index{\verbc{<NB>}} \index{\verbc{<TOKEN>}} \index{\verbc{<SDIC>}} \index{\verbc{<CDIC>}}
 \item Si on atteint la fin de la zone sans être à la fin du token, la reconnaissance échoue.
 	Par exemple, si le texte contient \verb+enabled+, on ne peut pas reconnaître seulement
 	\verb+enable+.
 \end{enumerate}
 
-\noindent  Il est également possible d'utiliser de manière alternative  les codes anglais \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
-respectivement à la place de \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+ si vous réalisez des grammaires dans cette langue.
+\noindent  Les anciens codes correspondant à \verb+<LETTER>+, \verb+<LOWER>+ et \verb+<UPPER>+
+ étaient respectivement \verb+<LETTRE>+, \verb+<MIN>+ et \verb+<MAJ>+.
+ Ils restent opérationnels afin de conserver la compatibilité descendante
+ du système avec les graphes existants, mais ils sont maintenant dépréciés,
+ c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \subsection{Dictionnaires du mode morphologique}
 \index{Dictionnaire!du mode morphologique}
