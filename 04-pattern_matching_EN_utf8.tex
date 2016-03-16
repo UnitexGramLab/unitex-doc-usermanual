@@ -101,8 +101,8 @@ the following:
 
 \noindent Earlier codes for \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ and \verb+<FIRST>+
 were respectively \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ and \verb+<PRE>+.
-They can still be used for backward compatibility of the system with existing graphs,
-but they are now deprecated, i.e.\ it is recommended to avoid them in graphs designed to be used with
+They can still be used for backward compatibility of the system with existing graphs.
+Though there are no current plans to remove this codes, it is recommended to avoid them in graphs designed to be used with
 more recent versions,\footnote{From version 3.1beta, revision 4072, October 2, 2015.}
 so that the number of lexical masks in use does not increase uselessly.
 
@@ -278,7 +278,7 @@ included in at least one code of $E$. Therefore, mask $M$ recognizes entry $E$.
 It is possible to negate a lexical mask by placing the character~\verb+!+ immediately
 after the character~\verb+<+.
 Negation is possible with the masks \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+,
-\verb+<FIRST>+,\footnote{And with their deprecated counterparts  <MOT>,<MIN>, <MAJ>,
+\verb+<FIRST>+,\footnote{And with their legacy counterparts  <MOT>,<MIN>, <MAJ>,
 <PRE>. See Section~\ref{section-special-symbols}.} \verb+<DIC>+ as well as with the masks that carry grammatical,
 semantic of inflectional codes (\textit{i.e.} \verb$<!V~z3:P3>$).
 The masks \verb+#+ and \verb+" "+ are the negation of each other.
@@ -290,7 +290,7 @@ Negation has no effect on \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC
 \bigskip
 \noindent The negation is interpreted in a special way in the masks
 \verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ and
-\verb+<!FIRST>+.\footnote{And with their deprecated counterparts <!MIN>, <!MAJ>,
+\verb+<!FIRST>+.\footnote{And with their legacy counterparts <!MIN>, <!MAJ>,
 <!PRE>. See Section~\ref{section-special-symbols}.}
 \index{\verbc{<DIC>}}\index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}
 \index{\verbc{<LOWER>}}\index{\verbc{<UPPER>}}\index{\verbc{<FIRST>}}

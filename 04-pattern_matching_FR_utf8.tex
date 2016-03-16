@@ -97,8 +97,7 @@ motifs.) Les méta-symboles utilisables pour rechercher des motifs dans un texte
 \noindent  Les anciens codes correspondant à \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ et \verb+<FIRST>+
  étaient respectivement \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ et \verb+<PRE>+.
  Ils restent opérationnels afin de conserver la compatibilité descendante
- du système avec les graphes existants, mais ils sont maintenant dépréciés,
- c'est-à-dire qu'on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+ du système avec les graphes existants. Même s'il n'est pas prévu de supprimer ces codes, on recommande de les éviter dans les graphes conçus pour fonctionner avec les versions plus récentes\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
 pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 
 \bigskip
@@ -265,7 +264,7 @@ code \verb+Y2+ est inclus dans au moins un code de $E$, le masque lexical $M$ re
 Il est possible de faire la négation d’un motif au moyen du caractère~\verb+!+ placé immédiatement
 après le caractère ~\verb+<+. La négation est possible sur les métas \verb+<WORD>+, \verb+<LOWER>+,
 \verb+<UPPER>+,
-\verb+<FIRST>+\footnote{Et sur leurs équivalents dépréciés  <MOT>,<MIN>, <MAJ>,
+\verb+<FIRST>+\footnote{Et sur leurs équivalents anciens <MOT>,<MIN>, <MAJ>,
 <PRE>. Voir section~\ref{section-special-symbols}.},
 \verb+<DIC>+  ainsi que sur les masques lexicaux ne comportant que des
 codes grammaticaux, sémantiques ou flexionnels (\textit{i.e.} \verb$<!V~z3:P3>$). Les motifs
@@ -279,7 +278,7 @@ La négation est sans effet sur \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb
 \bigskip
 \noindent La négation est interprétée d’une façon particulière dans les métas 
 \verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ et
-\verb+<!FIRST>+\footnote{Et dans leurs équivalents dépréciés <MIN>, <MAJ> et
+\verb+<!FIRST>+\footnote{Et dans leurs équivalents anciens <MIN>, <MAJ> et
 <PRE>. Voir section~\ref{section-special-symbols}.}.
 \index{\verbc{<DIC>}}\index{\verbc{<LOWER>}}\index{\verbc{<UPPER>}}\index{\verbc{<FIRST>}}
 \index{\verbc{<MIN>}}\index{\verbc{<MAJ>}}\index{\verbc{<PRE>}}
