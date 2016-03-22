@@ -1242,9 +1242,10 @@ M/N:mp:ms . Mdiba (de/DET/Dind:fp:mp:fs:ms)|(de/PREP)|(de/PREP/z1
 
 \section{Le cas particulier du coréen}
 \label{section-korean}
-Le coréen est une langue  agglutinante qui possède une morphologie très particulière: les mots sont
-formés de caractères représentant des syllabes appelés Hangul, mais un caractère Hangul correspond à
-plusieurs caractères de l'alphabet JAMO. Par exemple, vous pouvez voir figure \ref{fig7-korean1} deux exemples de caractères Hangul suivis de leus équivalents en alphabet Jamo.
+Le coréen est une langue  agglutinante qui possède un système d'écriture spécifique~: les mots sont
+formés de caractères représentant des syllabes et appelés Hangul, mais un caractère Hangul correspond à
+plusieurs caractères de l'alphabet JAMO. Par exemple, la figure~\ref{fig7-korean1} donne deux exemples
+de caractères Hangul suivis de leurs équivalents en alphabet Jamo.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1254,14 +1255,12 @@ plusieurs caractères de l'alphabet JAMO. Par exemple, vous pouvez voir figure \
 \end{center}
 \end{figure}
 
-\noindent En outre, les morphèmes ne  correspondent pas nécéssairement à des caractères Hangul.
-Par exemple, la figure \ref{fig7-korean2} montre qu'un token donné (en vert) doit être analysé
-comme une combinaison de deux éléments: un verbe et un modifieur.
-
+\noindent En outre, tous les morphèmes ne  correspondent pas à des caractères Hangul.
+Par exemple, la figure~\ref{fig7-korean2} montre un token (en vert) analysé
+comme une combinaison de deux éléments~: un verbe et un modifieur.
 Le problème est que le modifieur n'est formé que d'un caractère Jamo qui se
 combine avec le dernier caractère Hangul du verbe pour donner le dernier caractère
-Hangul du mot entier (en vert). Les tokens en vert correspondent à des tokens non étiquetés.
-Les tokens non étiquetés ne sont pas surlignés en vert pour les autres langues.
+Hangul du mot entier (en vert). 
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1272,8 +1271,8 @@ Les tokens non étiquetés ne sont pas surlignés en vert pour les autres langue
 
 \bigskip
 \noindent Par conséquent, il est préférable pour les utilisateurs coréens d'écrire des grammaires
-avec un mélange de Hangul et de caractères Jamo. Ainsi, une grammaire comme celle de la figure
-\ref{fig7-korean3} reconnaîtra des séquences comme celles de la figure \ref{fig7-korean4}.
+avec un mélange de caractères Hangul et Jamo. Ainsi, une grammaire comme celle de la
+figure~\ref{fig7-korean3} reconnaîtra des séquences comme celles de la figure~\ref{fig7-korean4}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1285,30 +1284,35 @@ avec un mélange de Hangul et de caractères Jamo. Ainsi, une grammaire comme ce
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig7-korean4.png}
-\caption{Automate de phrase reconnue par la grammaire de la
+\caption{Automate d'une phrase reconnue par la grammaire de la
 figure \ref{fig7-korean3}\label{fig7-korean4}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent REMARQUES: 
+\noindent En coréen, l'automate du texte affiche les tokens non étiquetés sur fond lavande\footnote{En coréen, les
+versions avant la 3.1~bêta rév. 4272 affichent les tokens non étiquetés en vert, comme dans les
+figures~\ref{fig7-korean2} et \ref{fig7-korean4}.}.
+
+\bigskip
+\noindent  REMARQUES: 
 \begin{enumerate}
 \item Les lettres Jamo ne sont pas dans le fichier contenant l'alphabet coréen
 	(\verb+Alphabet.txt+). NE LES AJOUTEZ PAS A CE FICHIER, parce que cela occasionnerait
     	    des disfonctionnements des programmes.\index{Alphabet!coréen}
     
 \item Ce fichier alphabet contient les équivalences entre certains caractères chinois
-	et certains Hangul. Dans la pratique, si la grammaire contient un caractère chinois
-	qui possède un tel Hangul comme équivalent, il reconnaît celui-ci dans l'automate du texte.
-	Par exemple la grammaire de la figure \ref{fig7-korean5} reconnaît la phrase de la figure
-	\ref{fig7-korean4}, parce que l'alphabet contient un équivalent pour ce 
-	caractère, comme le montre la figure \ref{fig7-korean6}.\index{Caractères chinois}
+	et des Hangul. Dans la pratique, si la grammaire contient un caractère chinois
+	qui possède un Hangul comme équivalent, il reconnaît celui-ci dans l'automate du texte.
+	Par exemple la grammaire de la figure~\ref{fig7-korean5} reconnaît la phrase de la
+figure~\ref{fig7-korean4}, parce que l'alphabet contient un équivalent pour ce 
+	caractère, comme le montre la figure~\ref{fig7-korean6}.\index{Caractères chinois}
 \end{enumerate}
 
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=5cm]{resources/img/fig7-korean5.png}
-\caption{Une grammaire avec un caractères chinois\label{fig7-korean5}}
+\caption{Une grammaire avec un caractère chinois\label{fig7-korean5}}
 \end{center}
 \end{figure}
 

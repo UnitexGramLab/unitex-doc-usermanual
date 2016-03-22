@@ -1252,7 +1252,7 @@ M/N:mp:ms . Mdiba (de/DET/Dind:fp:mp:fs:ms)|(de/PREP)|(de/PREP/z1
 
 \section{The special case of Korean}
 \label{section-korean}
-Korean is an agglutinative language that has a very special morphological
+Korean is an agglutinative language with a unique writing
 system: words are made of Hangul syllabic characters, but one Hangul character
 corresponds to several Jamo alphabetic characters. For instance, you can see on
 Figure \ref{fig7-korean1} two examples of Hangul characters followed by their
@@ -1266,14 +1266,13 @@ sequences\label{fig7-korean1}}
 \end{center}
 \end{figure}
 
-\noindent Moreover, morphemes do not correspond necessarily to Hangul
-characters. For instance, Figure \ref{fig7-korean2} shows that a given token
-(shown in green) must be analyzed as a combination of two elements: a verb and
+\bigskip
+\noindent Not all morphemes correspond to Hangul
+characters. For instance, Figure \ref{fig7-korean2} shows a given token
+(shown in green) analyzed as a combination of two elements: a verb and
 a modifier. The point is that the modifier is only made of one Jamo letter that
 combines with the last Hangul character of the verb in order to give the last
-Hangul character of the whole word (in green). The green tokens correspond to
-untagged tokens. Untagged tokens are not highlighted in green for other
-languages.
+Hangul character of the whole word (in green).
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1282,7 +1281,6 @@ languages.
 \end{center}
 \end{figure}
 
-\bigskip
 \noindent As a consequence, it can be convenient for Korean users to write
 grammars with mixes of Hangul and Jamo characters. Thus, a grammar like the one shown on
 Figure \ref{fig7-korean3} will match sequences like the one shown Figure 
@@ -1302,6 +1300,11 @@ Figure \ref{fig7-korean3} will match sequences like the one shown Figure
 Figure \ref{fig7-korean3}\label{fig7-korean4}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent In Korean, the text automaton displays untagged tokens on a lavender-blue
+background.\footnote{In Korean, versions before 3.1beta rev. 4272 display untagged tokens
+on a  green background, as in Fig.~\ref{fig7-korean2} and \ref{fig7-korean4}.}
 
 \bigskip
 \noindent REMARKS: 
