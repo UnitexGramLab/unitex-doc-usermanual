@@ -7,7 +7,7 @@ in English and French (more translations are welcome). You can view and print th
 downloadable [here](https://wiki.gnome.org/Apps/Evince/Downloads). The latest compiled version of the 
 User's Manual is accessible [here](http://releases.unitexgramlab.org/latest-stable/man/).
 
-## Latex User's Manual
+## Tex User's Manual
 
 To compile your own copy of the User's Manual, simply follow these steps:
 
@@ -18,12 +18,12 @@ Start cloning the GitHub repository:
 
 ### English
 
-    cd latex
+    cd tex
     make -f Makefile_EN_utf8
     
 ### French
 
-    cd latex
+    cd tex
     make -f Makefile_FR_utf8
     
 ### Other options
