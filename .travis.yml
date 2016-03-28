@@ -30,7 +30,7 @@ install:
   - cd .
   
 script:
-  - cd latex
+  - cd tex
   - make -f Makefile_EN_utf8
   - make -f Makefile_FR_utf8
   - chktex -W
