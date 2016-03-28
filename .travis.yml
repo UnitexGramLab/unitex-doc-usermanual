@@ -7,7 +7,7 @@
 os: linux
 
 # R VM already contains LaTeX
-language: r
+# language: r
 
 # sudo required
 sudo: required
