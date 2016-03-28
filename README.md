@@ -1,4 +1,4 @@
-# Unitex/GramLab User's Manual
+# Unitex/GramLab User's Manual [![Build Status](https://travis-ci.org/UnitexGramLab/unitex-doc-usermanual.svg?branch=master)](https://travis-ci.org/UnitexGramLab/unitex-doc-usermanual)
 
 > [Unitex/GramLab][unitex] is an open source, cross-platform, multilingual, lexicon- and grammar-based corpus processing suite.
 
