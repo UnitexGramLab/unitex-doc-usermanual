@@ -33,10 +33,10 @@ script:
   - cd tex
   - make -f Makefile_EN_utf8
   - make -f Makefile_FR_utf8
-  - chktex -W
-  - chktex -q -n 6 *.tex 2>/dev/null | tee lint.out
-  - test ! -s lint.out
-    
+  #- chktex -W
+  #- chktex -q -n 6 *.tex 2>/dev/null | tee lint.out
+  #- test ! -s lint.out
+
 deploy:
   provider: releases
   api_key:
