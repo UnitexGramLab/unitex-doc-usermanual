@@ -50,4 +50,4 @@ sudo mkdir /usr/share/texmf-texlive/tex/latex/xparse
 sudo cp xparse.sty /usr/share/texmf-texlive/tex/latex/xparse
 
 # create ls-R databases
-sudo mktexlsr
+sudo texhash
