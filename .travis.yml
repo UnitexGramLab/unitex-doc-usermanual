@@ -24,7 +24,7 @@ notifications:
 
 before_install:
   - sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended
-    texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended chktex
+    texlive-latex-extra texlive-lang-all texlive-fonts-extra dvipng texlive-latex-recommended chktex
 
 install:
   - cd .
