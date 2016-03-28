@@ -7,7 +7,7 @@ in English and French (more translations are welcome). You can view and print th
 downloadable [here](https://wiki.gnome.org/Apps/Evince/Downloads). The latest compiled version of the 
 User's Manual is accessible [here](http://releases.unitexgramlab.org/latest-stable/man/).
 
-## Tex User's Manual
+## User's Manual
 
 To compile your own copy of the User's Manual, simply follow these steps:
 
