@@ -5,6 +5,7 @@
 #  https://gist.github.com/snim2/9160862
 #  https://docs.travis-ci.com/user/notifications
 os: linux
+dist: trusty
 
 # R VM already contains LaTeX
 # language: r
