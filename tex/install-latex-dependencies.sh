@@ -26,12 +26,12 @@ sudo cp xpatch.sty /usr/share/texmf-texlive/tex/latex/xpatch
 # l3kernel TDS
 wget http://mirrors.ctan.org/install/macros/latex/contrib/l3kernel.tds.zip
 unzip l3kernel.tds.zip
-sudo cp tex/latex/l3kernel /usr/share/texmf-texlive/tex/latex/l3kernel
+sudo mv tex/latex/l3kernel /usr/share/texmf-texlive/tex/latex/l3kernel
 
 # l3packages TDS
 wget http://mirrors.ctan.org/install/macros/latex/contrib/l3packages.tds.zip
 unzip l3packages.tds.zip
-sudo cp tex/latex/l3packages /usr/share/texmf-texlive/tex/latex/l3packages
+sudo mv tex/latex/l3packages /usr/share/texmf-texlive/tex/latex/l3packages
 
 # create ls-R databases
 sudo texhash
