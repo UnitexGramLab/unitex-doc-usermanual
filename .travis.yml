@@ -42,8 +42,8 @@ deploy:
   api_key:
     secure: XU5V/23iB7pz8LmO4Xz7FiQlF/dkjkhdg0W7ZEh3rFYLD70hO+umf++lfkhyUY+7l3iLko9er4SE00aZW0/ZfD21+O+sch9Fnt977BfFcuKKy3DlmLXLOiuHefng3WxlTW75rib4ZFbLEg8e+1tq8vDHKSCuVFd3MDr4e20omI1wufJB9/x+Jm9CuxwzCqpZ3Z04DzQDeTTTce7kEA3ShlBExD0F6g9C2JT1cRs0qgsJVi9RQjLihg9+NFyQR8hpa5Q1HVQNsQmrAJ/RmMyDMuVWhOxeq2mJpRF0oA6YCjp/m+FnLFqmhedxsFev8XX0/ufRnThRwYcKTijKCEcXh4Lc7VqX14Rz8N6SbdejTBBUa/WxSyIg2INJv1DtRAWZrEoIGPm0qwcfc1nHYvx+VYyBCtEZzJPZaAnd27lyApimgXbXXnHSshBHA4TqtEoOYgnp8atjenuRSZsisVlCe4vCp3U9Jb9p9a+X/U6Vwkg7AAtnUntm60OszfWOjamvOuCAmL+8LlMdxyARO3lAW6Q8A6T8DV7uWPH4eOsSFNMVNEMw0jTvgmrC2y2NOqxpjrNOPxtH5VsqKaym9AWeTmEkLifxhja3B+lpl5xWGA8FclKv6xRlPJ2fSHZMocoFW48/APkZ9o3lY4YPIBiiyQ4SKOVUC0QwmSZMqR0/tek=
   file:
-  - tex/UnitexManual_EN_utf8.pdf
-  - tex/UnitexManual_FR_utf8.pdf
+  - UnitexManual_EN_utf8.pdf
+  - UnitexManual_FR_utf8.pdf
   skip_cleanup: true
   on:
     repo: UnitexGramLab/unitex-doc-usermanual
