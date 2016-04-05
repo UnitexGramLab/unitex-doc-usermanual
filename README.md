@@ -73,6 +73,8 @@ tools) always use "Unitex/GramLab".
 
 ## License
 
+<a href="/LICENSE"><img height="56" align="left" src="http://www.gnu.org/graphics/empowered-by-gnu.svg"></a>
+
 Documentation is licensed under the [GNU Free Documentation License version 1.3 (GFDL)](/LICENSE).
 Linguistic resources, as the graphs under `tex/resources/grf`, are licensed under the terms of
 the Lesser General Public License For Linguistic Resources (LGPLLR). Contact unitex-devel@univ-mlv.fr 
