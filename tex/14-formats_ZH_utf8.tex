@@ -1,0 +1,2014 @@
+\chapter{文件格式}
+\label{chap-file-formats}
+\index{Fichier!formats}\index{Format!de fichier}
+该章节展示了由Unitex读取或生成文件的不同格式。DELAS和DEKLAF字典的格式都在\ref{section-DELAF-format}和 \ref{section-DELAS-format}.中表示。
+
+\bigskip
+\noindent 
+注意：在这一章节中， ¶ 符号表示换行。除非另有说明，所有的在该章节中的文本文件都是由Unicode Little-Endian进行编码的。
+
+
+\section{Unicode 代码}
+\label{unicode-encoding}
+\index{Fichier!texte}\index{Unicode}\index{Fichier!\verb+.txt+}\index{Fichier!\verb+.snt+}
+默认由Unitex操作的文本文件由Unicode Little-Endian编码。
+Unitex也接受Unicode Big-Endian格式或UTF-8格式文件。这个编码可以表示65536个字符，每两个字节构成一个字符。Little-Endian代码中，字节是以由低到高的顺序排列。而Big-Endian的顺序则是相反。一个由 Little-Endian, Big-Endian或UTF-8变码的文件由16进制特殊字符 \verb+FF+\,\verb+FE+(Little-Endian)、\verb+FE+\,\verb+FF+ (Big-Endian)或\verb+EF+\,\verb+BB+\,\verb+BF+ (UTF-8)开始（Unicode Byte Order Mark - BOM）。因为UTF-8没有字节顺序，在BOM UTF-8添加是可选的；对于UTF-16来说是必须的。跨行符号应由\verb+0D+\,\verb+00+ 和\verb+0A+\,\verb+00+ (Little-Endian)，\verb+00+\,\verb+0D+和\verb+00+\,\verb+0A+(Big-Endian)或\verb+0D+和\verb+0A+(UTF-8)两个字符构成。
+
+\bigskip
+\noindent 
+参考以下文本：
+
+
+\bigskip
+\texttt{Unitex\P}
+
+\texttt{$\beta$-version\P}
+
+\bigskip
+\noindent
+这里是由Unicode Little-Endian编码文本：
+
+\bigskip
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+BOM header & U & n & i & t & e & x & \P & $\beta$
+\\
+\hline
+\verb+FF+\,\verb+FE+ & \verb+55+\,\verb+00+ & \verb+6E+\,\verb+00+ & \verb+69+\,\verb+00+ & \verb+74+\,\verb+00+ & \verb+65+\,\verb+00+ & \verb+78+\,\verb+00+
+& \verb+0D+\,\verb+00+\,\verb+0A+\,\verb+00+ & \verb+B2+\,\verb+03+
+\\
+\hline
+\hline
+- & v & e & r & s & i & o & n & \P
+\\
+\hline
+\verb+2D+\,\verb+00+ & \verb+76+\,\verb+00+ & \verb+65+\,\verb+00+ & \verb+72+\,\verb+00+ & \verb+73+\,\verb+00+ & \verb+69+\,\verb+00+ & \verb+6F+\,\verb+00+
+& \verb+6E+\,\verb+00+ & \verb+0D+\,\verb+00+\,\verb+0A+\,\verb+00+
+\\
+\hline
+\end{tabular}
+\caption{16进制表示由Unicode Little-Endian编码的文本}
+\end{center}
+\end{table}
+\pagebreak
+\bigskip
+\noindent
+这里是由Unicode Big-Endian表示的：
+
+\bigskip
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+BOM header & U & n & i & t & e & x & \P & $\beta$
+\\
+\hline
+\verb+FE+\,\verb+FF+ & \verb+00+\,\verb+55+ & \verb+00+\,\verb+6E+ & \verb+00+\,\verb+69+ & \verb+00+\,\verb+74+ & \verb+00+\,\verb+65+ & \verb+00+\,\verb+78+
+& \verb+00+\,\verb+0D+\,\verb+00+\,\verb+0A+ & \verb+03+\,\verb+B2+
+\\
+\hline
+\hline
+- & v & e & r & s & i & o & n & \P
+\\
+\hline
+\verb+00+\,\verb+2D+ & \verb+00+\,\verb+76+ & \verb+00+\,\verb+65+ & \verb+00+\,\verb+72+ & \verb+00+\,\verb+73+ & \verb+00+\,\verb+69+ & \verb+00+\,\verb+6F+
+& \verb+00+\,\verb+6E+ & \verb+00+\,\verb+0D+\,\verb+00+\,\verb+0A+
+\\
+\hline
+\end{tabular}
+\caption{16进制表示由Unicode Big-Endian编码的文本}
+\end{center}
+\end{table}
+
+\bigskip
+\noindent 
+这里是由UTF-8表示的：
+
+
+\bigskip
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+BOM header & U & n & i & t & e & x & \P & $\beta$
+\\
+\hline
+\verb+EF+\,\verb+BB+\,\verb+BF+ & \verb+55+ & \verb+6E+ & \verb+69+ & \verb+74+ & \verb+65+ & \verb+78+
+& \verb+0D+\,\verb+0A+ & \verb+CE+\,\verb+B2+
+\\
+\hline
+\hline
+- & v & e & r & s & i & o & n & \P
+\\
+\hline
+\verb+2D+ & \verb+76+ & \verb+65+ & \verb+72+ & \verb+73+ & \verb+69+ & \verb+6F+
+& \verb+6E+ & \verb+0D+\,\verb+0A+
+\\
+\hline
+\end{tabular}
+\caption{16进制表示由UTF-8编码的文本}
+\end{center}
+\end{table}
+
+\bigskip
+\noindent
+Unicode Little-Endian编码中，高位字节和低位字节是倒过来的，这说明开始的字符是由 \verb+FF+\,\verb+FE+编码，而不是\verb+FE+\,\verb+FF+，同上，\verb+00+\,\verb+0D+ 和 \verb+00+\,\verb+0A+分别变成\verb+0D+\,\verb+00+和\verb+0A+\,\verb+00+。
+
+\section{字母文件}
+有两种字母文件输出格式：一个是定义一种语言的字符，还有一种是显示了字符的排序。第一个被称为\textit{alphabet}，第二个被称为\textit{alphabet de tri}。
+
+
+\subsection{字母}
+\index{字母}
+字母文件是记录一种语言中所有字符与小写和大写字母之间的对应关系的文本文件。该文件被称为\verb+Alphabet.txt+ \index{Fichier!\verb+Alphabet.txt+}，可以在相关语言根目录中被找到。Unitex能够运行必须要它的存在。
+
+\bigskip
+\noindent 
+举例～：英文字母文件可以在\verb+.../English/+目录里找到。
+
+\bigskip
+\noindent 
+字母文件的每一行都应该有三种以下形式之一，然后另起一行：
+
+\begin{itemize}
+\item \includegraphics[height=0.5cm]{resources/img/korean_letters.png} : 
+在$X$和$Y$两个字符后的升号表示所有在$X$和$Y$字符中包含的所有字符都是字母。 所有字符都同时被认为是大写或小写。这种模式被用来定义亚洲语言的字，比如韩语，中文，日语，不区分大小写或返回的字符数太繁琐，枚举出来太多
+
+
+
+\item \verb+Aa+ : 
+ $X$和$Y$两个字符表示$X$和$Y$是两个字母并且$X$等效于大小字母$Y$。
+\item \includegraphics[height=0.3cm]{resources/img/thai_letter.png}: 
+ 单独的字符$X$表示$X$同时作为大小写字母。 这种模式适用于及时处理亚洲语言。
+
+
+\end{itemize}
+
+\bigskip
+\noindent 
+对于某些类似于法语的语言，会有一个小写字母对应大写字母的情况。比如\texttt{é}，大写字母可以是\verb+E或\texttt{\'E}。为了表示它，只要使用多线操作。反过来也是一样：一个大写字母可以对应多个小写字母。因此\verb+E+ 可以是\verb+e+, \texttt{é}, \texttt{è}, \texttt{ë}或\texttt{ê}的大写字母。这里是法语字母文件处理定义不同的字母
+
+
+\verb+e+:
+
+\bigskip
+\noindent
+\texttt{Ee}\P
+
+\noindent
+\texttt{Eé}\P
+
+\noindent
+\texttt{\'Eé}\P
+
+\noindent
+\texttt{Eè}\P
+
+\noindent
+\texttt{\`Eè}\P
+
+
+\noindent
+\texttt{Eë}\P
+
+\noindent
+\texttt{\"Eë}\P
+
+\noindent
+\texttt{Eê}\P
+
+\noindent
+\texttt{\^Eê}\P
+
+\subsection{顺序字母表}
+\index{Alphabet!trié}
+顺序字母表是一个文本文件，它在\verb+SortTxt+程序的帮助下定义了一种语言的字母排序\index{\verb+SortTxt+}\index{Programmes externes!\verb+SortTxt+} 文件中的每一行定义一组字母。如果$A$组的字母在$B$之前就定义好，$A$中的任何字母都比$B$中的任何字母高级。
+
+\bigskip
+\noindent
+同一组的字母非必要的情况下不需要区分。比如，如果我们定义一组字母\verb+eéèëê+，\verb+ébahi+
+就会被看作比\verb+estuaire+更小，而它本身比\verb+été+更小。\verb+e+和 \verb+é+ 后的字母可以用于分类这些单词，我们没有找来比较\verb+e+和\verb+é+，因为它们在同一个组。
+另一方面，如果我们比较\verb+chantés+和\verb+chantes+，\verb+chantes+ 更小。实际上，应该比较\verb+e+和\verb+é+ 来区分这两个单词。 \verb+e+出现在字母组\verb+eéèëê+的第一个，它在\verb+é+前面。因此\verb+chantes+ 
+被看作比 \verb+chantés+更小的单词。
+
+\bigskip
+\noindent
+顺序字母表文件可以定义等效字符。因此我们能忽视发音的不同。比如如果我们要给字母\verb+b+, \verb+c+, 和\verb+d+排序，不区分大小写和变音符号，我们可以写出如下几行：
+
+\bigskip
+\noindent
+\texttt{Bb}\P
+
+\noindent
+\texttt{Cc\c{C}\c{c}}\P
+
+\noindent
+\texttt{Dd}\P
+
+\bigskip
+\noindent 
+这个文件是可选的，当在给Unicode编码字符排序的\verb+SortTxt+程序中没有顺序字母表时。
+
+\section{图形}
+\index{Graphe!format}
+本节介绍图的两种格式：图形格式 \verb+.grf+和编译格式 \verb+.fst2+。
+
+
+\subsection{Format .grf}
+\index{Fichier!\verb+.grf+}
+\verb+.grf+文件是含有除了信息表示的框和图表的转换内容的提示信息的文本文件。\verb+.grf+文件由下面的内容开始：
+
+
+\bigskip
+\verb+#Unigraph+\P
+
+\verb+SIZE 1313 950+\P
+
+\verb+FONT Times New Roman:  12+\P
+
+\verb+OFONT Times New Roman:B 12+\P
+
+\verb+BCOLOR 16777215+\P
+
+\verb+FCOLOR 0+\P
+
+\verb+ACOLOR 12632256+\P
+
+\verb+SCOLOR 16711680+\P
+
+\verb+CCOLOR 255+\P
+
+\verb+DBOXES y+\P
+
+\verb+DFRAME y+\P
+
+\verb+DDATE y+\P
+
+\verb+DFILE y+\P
+
+\verb+DDIR y+\P
+
+\verb+DRIG n+\P
+
+\verb+DRST n+\P
+
+\verb+FITS 100+\P
+
+\verb+PORIENT L+\P
+
+\verb+#+\P
+
+\bigskip
+\noindent
+第一行\verb+#Unigraph+ 是评论行。下面的几行定义图形演示设置的值：
+
+
+
+\begin{itemize}
+  \item \verb+SIZE x y+ : 定义以像素为单位的图的宽度  \verb+x+ 和高度verb+y+ d；
+  
+  \item \verb+FONT name:xyz+ : 设置用于显示框的内容的字体。
+  	  \verb+name+ 是字体的名字. \verb+x+ 定义字体是否加粗. 如果 \verb+x+ 是 \verb+B+, 表示字体加粗. 对于正常的字体来说, \verb+x+是一个空格. 同样, \verb+y+ 是
+  	  \verb+I+ 如果字体是斜的，否则就是一个空格。 \verb+z+ 表示字体的大小;
+
+  \item \verb+OFONT name:xyz+ : 设置用于显示转导的字体。
+  参数\verb+name+, \verb+x+, \verb+y+, 和 \verb+z+ 同样定义 \verb+FONT+;
+  
+  \item \verb+BCOLOR x+ : 设置图形的背景的色彩。 \verb+x+ 表示RGB格式颜色;
+  \item \verb+FCOLOR x+ : 定义图形绘制颜色。 \verb+x+ 表示RGB格式的颜色;
+
+  \item \verb+ACOLOR x+ : 
+  定义用于对应子图的框的颜色。\verb+x+表示表示RGB格式的颜色。
+
+  \item \verb+SCOLOR x+ :
+定义用来写的评论框的内容的颜色 (i.e. 未链接到任何其他的框)。\verb+x+表示RGB格式的颜色。
+
+
+  \item \verb+CCOLOR x+ : 设置用于绘制选择框的颜色。 
+  \verb+x+ 表示表示RGB格式的颜色;
+
+  \item \verb+DBOXES x+ : 
+  这一行语句被Unitex忽视。它是为了保存图索引的兼容性；
+
+  \item \verb+DFRAME x+ : 
+  根据\verb+x+的值为\verb+y+或\verb+n+来决定为图的框架作图或不作图；
+
+
+  \item \verb+DDATE x+ : 
+  根据\verb+x+的值为\verb+y+或\verb+n+来决定是不是在图的底部显示时间；
+
+
+  \item \verb+DFILE x+ : 
+  根据\verb+x+的值为\verb+y+或\verb+n+来决定图的底部是否显示文件的名字；
+
+
+  \item \verb+DDIR x+ : 
+  根据\verb+x+的值为 \verb+y+或\verb+n+来决定是否在图的底部显示打开文件的完整路径；
+  这个操作只在\verb+DFILE+参数的值为\verb+y+的时候考虑；
+
+  \item \verb+DRIG x+ : 
+  根据\verb+x+的值为\verb+y+，或 \verb+n+来决定图是从左向右还是从右向左；
+
+
+  \item \verb+DRST x+ : 
+  这一行语句被Unitex忽视。它是为了保存图索引的兼容性；
+
+  \item \verb+FITS x+ :
+  这一行语句被Unitex忽视。它是为了保存图索引的兼容性；
+  \item \verb+PORIENT x+ : 这一行语句被Unitex忽视。它是为了保存图索引的兼容性；
+
+  \item \verb+#+ : 
+  这一行语句被Unitex忽视。它从信息的开始指向结尾。
+  
+
+\end{itemize}
+
+\bigskip
+\noindent
+下面的几行语句表示内容和图的位置。之后的几行对应于图形识别图：
+
+
+
+\bigskip
+\verb+3+\P
+
+\verb+"<E>" 84 248 1 2 +\P
+
+\verb+"" 272 248 0 +\P
+
+\verb$s"1+2+3+4+5+6+7+8+9+0" 172 248 1 1 $\P
+
+\bigskip
+\noindent
+第一行语句表示图的编号，随后另起一行。这个数字不能小于二，因为一个图形总是
+被认为至少拥有一个初始状态和最终状态
+
+
+\bigskip
+\noindent 
+下面的语句表示图形框。这些框从$0$开始编号，$0$是初始状态，$1$是最终状态。最终状态的内容总是空的。
+
+
+
+\bigskip
+\noindent
+每一个图的框都被有如下格式的语句定义
+
+
+
+
+\bigskip
+\textit{contenu X Y N transitions \P}
+
+\bigskip
+\noindent \textit{内容}是用引号括起来的字符串，它代表了框的内容。这个字符串可任意由在倒入图形索引\verb+s+的情况下形成；该字符被Unitex忽视。字符串的内容是在图形编辑器的文本控制其中的文本。\ref{table10-2}给出未在文件\verb+.grf+:编码为这样的两个特殊序列的编码
+
+
+
+\bigskip
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ \verb+.grf+文件中序列和图片编辑器中的序列
+
+
+\\
+\hline
+\verb$"$ & \verb$\"$
+\\
+\hline
+\verb$\"$ & \verb$\\\"$
+\\
+\hline
+\end{tabular}
+\caption{特殊的编码序列\label{table10-2}}
+\end{center}
+\end{table}
+
+\bigskip
+\noindent
+注意：\verb+<+与\verb+>+中的或\verb+{+和\verb+}+ 的字符不是注释。因此 \verb$+$符号在\verb$"le <A+Conc>"$ 字符串中不是分隔符的意思，因为\verb$<A+Conc>$优先解释。
+
+\bigskip
+\noindent \textit{X} and \textit{Y}表示像素框的坐标. 图
+\ref{fig-box-coordinates} 显示这些坐标是如何被Unitex解释。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/repere.pdf}
+\caption{框的调配说明\label{fig-box-coordinates}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent \textit{N}
+表示从框中转换的次数。该数字在最终状态下总为$0$。
+
+\bigskip
+\noindent 
+这些转换由它们所指向的框的号码定义。
+
+\bigskip
+\noindent 
+每一行定义箱必须用一个空格，接着一个换行符结束。
+
+\subsection{Format .fst2}
+\index{Fichier!\verb+.fst2+}
+\verb+.fst2+文件是一个文本文件描述图的集合。这里是\verb+.fst2+ file文件的例子：
+
+\bigskip
+\verb+0000000002+\P
+
+\verb+-1 NP+\P
+
+\verb+: 1 1 +\P
+
+\verb+: 2 2 -2 2 +\P
+
+\verb+: 3 3 +\P
+
+\verb+t +\P
+
+\verb+f +\P
+
+\verb+-2 Adj+\P
+
+\verb+: 6 1 5 1 4 1 +\P
+
+\verb+t +\P
+
+\verb+f +\P
+
+\verb+%<E>+\P
+
+\verb+%the/DET+\P
+
+\verb+%<A>/ADJ+\P
+
+\verb+%<N>+\P
+
+\verb+%nice+\P
+
+\verb+@pretty+\P
+
+\verb+%small+\P
+
+\verb+f+\P
+
+\bigskip
+\noindent 
+第一行表示文件里已经编码的图片号码。每个图的开头由指向号码和图的名称的语句定义。 (
+	(\verb+-1 NP+ et \verb+-2 Adj+ dans le fichier ci-dessus)。
+
+\bigskip
+\noindent 
+之后的语句描述图的状态。如果状态为结束，语句由\verb+t+开始，否则由\verb+:+开始 \verb+:+。对于每一种状态，转换列表可能是一系列可能为空的整数对：
+
+\begin{itemize}
+  \item
+第一个整数表示标签号码或与转换相对应的子图的号码。  标签从0开始编号。子图由负整数表示，图的编号都为负数；
+
+
+  \item 
+ 第二个整数表示转换到达时的状态。在每一个图中，状态都从0开始标记，按照惯例，0状态时初始状态。
+  
+
+\end{itemize}
+
+\bigskip
+\noindent
+
+每个状态定义行必须以空格结尾。
+每一幅图的结尾都要被包含一个空格和换行后的\verb+f+符号的语句标记。
+
+\bigskip
+\noindent
+标签在最后一个图之后被定义。如果语句由\verb+@+开始，表示标签的内容应在没有变化的条件下查找。这个信息之外标签是一个单词的时候被使用。如果语句由 \verb+%+ 开始，变化的情况已经被授权。如果一个标签支持转换，输入和输出序列被 \verb+/+(比如 : \verb+the/DET+)分开。按惯例来说，第一个标签总是空的 (\verb+<E>+)，即使标签未在任何转换中使用。
+
+\bigskip
+\noindent
+文件的末尾由换行后包含f的字符的语句指出。
+
+
+
+
+\section{Textes}
+这个章节表示用来表示文本的不同文件。
+
+\subsection{文件 .txt}
+\index{Fichier!\verb+.txt+}\index{\verb+{S}+}\index{词汇标签}\index{Séparateur!de phrases}
+\label{section-texts}
+\verb+.txt+文件应该是由 Unicode Little-Endian编码的文本文件。这些文件不应包含闭合或开启的大括号，除非它们被用来写一个句子分离器 (\verb+{S}+) 或一个有效的词汇标签(\verb+{aujourd'hui,.ADV}+)，回车必须由两个特殊字符十六进制值编码\verb+000D+和\verb+000A+。
+
+
+\subsection{文件.snt}
+\index{Fichier!\verb+.snt+}
+\verb+.snt+是Unitex处理过的\verb+.txt+文件。这些文件不包含标签。在连续的语句中不包含多个空格或回车。\verb+.snt+文件中只有用来分开句子\verb+{S}+\index{\verb+{S}+}\index{Séparateur!de phrases}
+的大括号和词汇标 (\verb+{aujourd'hui,.ADV}+)\index{词汇标签}签的大括号才会被授权。
+
+\subsection{文本文件.cod}
+\index{Fichier!\verb+text.cod+}
+\verb+text.cod+ 文件是一个二进制文件包含一系列整数来表示文档。每一个整数\verb+i+在\verb+tokens.txt+文件中返回标记索引\verb+i+。这些整数占用4个字节。
+
+\bigskip
+\noindent 
+注意：这些令牌从0开始标记。
+
+
+
+\subsection{令牌文件.txt}
+\index{Fichier!\verb+tokens.txt+}
+\label{fichier-tokens-txt}
+\verb+tokens.txt+ 文件是一个文本文件包含所有词汇文本单元列表的文件。文件的第一行语句表示包含在文件中的单元的数目。每一个单元通过换行隔开。当文档中的一个系列随着变化的情况找到时，每一个变体子都被一个独立的单元编码。
+
+
+\bigskip
+\noindent
+注意：\verb+.snt+ 文件中可能出现的回车是和空格一样被编码的。因此从来没有回车的编码单元。
+
+
+\subsection{ tok\_by\_alph.txt et tok\_by\_freq.txt 文件}
+\index{Fichier!\verb+tok_by_alph.txt+}\index{Fichier!\verb+tok_by_freq.txt+}
+这两个文件是按字母顺序或字幕出现频率包含排序词汇单元列表的文本文件。
+
+\bigskip
+\noindent
+ \verb+tok_by_alph.txt+文件中，每一行语句包含一个单元，接着是制表符和这个单元在文本中出现的次数
+\bigskip
+\noindent
+\verb+tok_by_freq.txt+文件中的语句是因相同的原理形成的，但是制表符和单元前面会显示出现次数。
+
+
+
+
+\subsection{ enter.pos 文件}
+\index{Fichier!\verb+enter.pos+}
+这个文件是包含fichier \verb+.snt+文件中的换行符位置列表的二进制文件。每个位置都是text.cod
+文件中用空格代替回车键的指数。这些位置是由4位二进制表示的整数。
+
+
+
+
+\section{文本自动机}
+
+\subsection{ text.tfst 文件}
+\label{section-tfst-format}
+\index{Fichier!\verb+text.tfst+}
+ \verb+text.tfst+文件表示文本自动机。这是与十位指示中包含的控制器句子的数目的行开始的文本文件。接着对于每一个句子，它具有以下标题：
+
+
+
+\begin{itemize}
+\item \verb+$XXX+\P : \verb+XXX+ = numéro de la phrase;
+
+\item \verb+foo foo foo...+\P : 句子文本;
+
+\item \verb+a/b c/d e/f g/h...+\P : 对于每个句子的令牌, 有一个 \verb+x/y+部分: \verb+x+ 是该文件中的标记索引\verb+tokens.txt+, \verb+y+ 是它的字符长度;
+
+\item \verb+X_Y+\P : \verb+X+ 
+是从文本开始的第一个句子令牌的偏移量；\verb+Y+是相同的但是偏移量表示的是字符数。\end{itemize}
+
+
+\bigskip
+\noindent
+然后，所有自动机的状态都被逐行编码。如果状态是最终状态，语句由\verb+t+.开始。否则，由\verb+:+开始。所有的转变都由\verb+x y+, \verb+x+部分的形式来描述作为数字标签，\verb+y+是目的状态数。注意与\verb+.fst2+格式不同，语句要由空格来结束。状态列表的最后一行语句包含\verb+f+。
+
+
+\bigskip
+\noindent 最后，所有的标签进行编码。按照惯例，第一个标签总是是最小值：
+\bigskip
+\noindent \verb$@<E>$\P
+
+\noindent \verb$.$\P
+
+
+\bigskip
+\noindent 
+其他标签应该要么是词汇单元或大括号里DELAF格式的入口。它的编码如下：
+
+
+\bigskip
+\noindent \verb$@STD$\P
+
+\noindent \verb$@$\textit{content}\P
+
+\noindent \verb$@$\textit{a}\verb$.$\textit{b}\verb$.$\textit{c}\verb$-$
+\textit{x}\verb$.$\textit{y}\verb$.$\textit{z}\P
+
+\noindent \verb$.$\P
+
+
+\bigskip
+\noindent \textit{内容} 是标签内容.信息 \textit{a.b.c-x.y.z}
+描述由标签所覆盖的文本区:
+
+\begin{itemize}
+\item \textit{a}: 通过自句子的开头令牌起始偏移;
+\item \textit{b}: 在从第一开头字符，令牌标签;开始偏移;
+	token du tag;
+\item \textit{c}: 从标签的第一个字符的逻辑字母开头偏移。这个信息对于韩语有用的，因为一个标记代表 Jamo符号出现在朝鲜语内的字符序列。因此字符偏移量不够准确；\index{Jamo}\index{Hangul}
+
+    \item \textit{x}:
+    从句头开始，结尾用令牌抵消；
+
+    \item \textit{y}: 从标签的最后一个令牌的开头字符结束偏移;
+    \item \textit{z}: 因为标签的最后一个字符的字母逻辑结束。在韩语的句子自动机中，空表面的形成能对应空的文本。在这种情况下，\textit{z}得值为$-1$。
+
+\end{itemize}
+
+\bigskip
+\noindent 
+标签的定义由包含\verb+f+的语句结束。
+
+\bigskip
+\noindent 举例 : 这是与文本 \textit{He is
+drinking orange juice.}对应的文件
+
+\bigskip
+\noindent\verb$0000000001$\P
+
+\noindent\verb+$1+\P
+
+\noindent\verb$He is drinking orange juice. $\P
+
+\noindent\verb$0/2 1/1 2/2 1/1 3/8 1/1 4/6 1/1 5/5 6/1 1/1$\P
+
+\noindent\verb$0_0$\P
+
+\noindent\verb$: 2 1 1 1$\P
+
+\noindent\verb$: 4 2 3 2$\P
+
+\noindent\verb$: 7 3 6 3 5 3$\P
+
+\noindent\verb$: 10 5 9 4 8 4$\P
+
+\noindent\verb$: 12 5 11 5$\P
+
+\noindent\verb$: 13 6$\P
+
+\noindent\verb$t$\P
+
+\noindent\verb$f$\P
+
+\noindent\verb$@<E>$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{He,he.N:s:p}$\P
+
+\noindent\verb$@0.0.0-0.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{He,he.PRO+Nomin:3ms}$\P
+
+\noindent\verb$@0.0.0-0.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{is,be.V:P3s}$\P
+
+\noindent\verb$@2.0.0-2.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{is,i.N:p}$\P
+
+\noindent\verb$@2.0.0-2.1.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drinking.A}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drinking.N:s}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{drinking,drink.V:G}$\P
+
+\noindent\verb$@4.0.0-4.7.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange,orange.A}$\P
+
+\noindent\verb$@6.0.0-6.5.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange,orange.N:s}$\P
+
+\noindent\verb$@6.0.0-6.5.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{orange juice,orange juice.N+XN+z1:s}$\P
+
+\noindent\verb$@6.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{juice,juice.N+Conc:s}$\P
+
+\noindent\verb$@8.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@{juice,juice.V:W:P1s:P2s:P1p:P2p:P3p}$\P
+
+\noindent\verb$@8.0.0-8.4.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$@STD$\P
+
+\noindent\verb$@.$\P
+
+\noindent\verb$@9.0.0-9.0.0$\P
+
+\noindent\verb$.$\P
+
+\noindent\verb$f$\P
+
+
+
+
+
+
+\subsection{ text.tind文件}
+\index{Fichier!\verb+text.tind+}
+ \verb+text.tind+ 文件用来当你想加载一个给定的句子时，跳转到\verb+text.tfst+文件的正确偏移量。这是一个二进制文件包含$4
+\times N$ 字节，$N$是句子的数量。它给每个句子起始偏移量小于little-endian的四个字节。
+ 
+
+
+\subsection{ cursentence.grf文件}
+\label{section-cursentence_grf}
+\index{Fichier!\verb+cursentence.grf+}
+\verb+cursentence.grf+文件是显示一个句子时自动时。由Unitex管理。 \verb+Fst2Grf+程序建立一个\verb+.grf+文件表示从\verb+text.fst2+文件开始的句子自动机。
+
+
+
+\bigskip
+\noindent
+注意：框的出口用来标记偏移量，在\verb+.tfst+中定义。偏移量由空格分开。这里是几行表示\textit{Ivanhoe}的第一句话的语句。
+
+
+
+\bigskip
+\noindent \verb$"Ivanhoe/0 0 0 0 6 0" 100 200 2 3 4 $\P
+ 
+\noindent \verb$"{by,by.PART}/2 0 0 2 1 0" 220 150 2 5 6 $\P
+
+\noindent \verb$"{by,by.PREP}/2 0 0 2 1 0" 220 50 2 5 6 $\P
+
+\noindent \verb$"{Sir,sir.N+Hum:s}/4 0 0 4 2 0" 310 200 1 7$\P 
+
+
+
+
+\subsection{句子文件.grf}
+当用户修改了句子自动机，这个自动机就会保存为\verb+sentenceN.grf+， \verb+N+表示句子号码。
+
+
+一个这样的图形在图形框里包含偏移量（见 \ref{section-cursentence_grf}）
+
+\subsection{ cursentence.txt文件}
+\index{Fichier!\verb+cursentence.txt+}
+当提取句子自动机时，句子文本保存在名为\verb+cursentence.txt+的文件中。这个文件被Unitex使用来在自动机上显示句子文本。这个文件包含句子文本，其次是一个换行符。
+
+
+\subsection{The cursentence.tok file}
+\index{Fichier!\verb+cursentence.tok+}
+当提取句子自动机时，组成句子的令牌号码保存在\verb+cursentence.tok+文件中。这个文件每个令牌包含一行语句，每个语句包含两个整形\verb$x y$；\verb$x$是令牌的号码，\verb$y$是字符长度。
+
+\bigskip
+\noindent 这里是\textit{Ivanhoe}的第一句内容。
+\bigskip
+\noindent \verb$0 7$\P \verb$         $\textit{Ivanhoe}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$2 2$\P \verb$         $\textit{by}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$3 3$\P \verb$         $\textit{Sir}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$4 6$\P \verb$         $\textit{Walter}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+\noindent \verb$5 5$\P \verb$         $\textit{Scott}
+
+\noindent \verb$1 1$\P \verb$         $\texttt{\char `\ }
+
+
+\subsection{Fichiers tfst\_tags\_by\_freq.txt et tfst\_tags\_by\_alph.txt}
+\index{Fichier!\verb+tfst_tags_by_freq.txt+}
+\index{Fichier!\verb+tfst_tags_by_alph.txt+}
+这些文件包含所有出现在由频率和字母排序的文本自动机中的令牌。
+
+
+\section{语句索引}
+\subsection{ concord.ind文件}
+\index{Fichier!\verb+concord.ind+}
+ \verb+concord.ind+文件是在应用一个语法的时候由\verb+Locate+或\verb+LocateTfst+找到的指数索引。这是一个文本文件包含每一个事件的初始位置和结束位置，如果考虑到可能的语法转换已经被匹配时，用字符串任选。这里是文件的例子：
+
+
+\bigskip
+\verb$#M$\P
+
+\verb$59.0.0 63.3.0 the[ADJ= greater] part$\P
+
+\verb$67.0.0 71.4.0 the beautiful hills$\P
+
+\verb$87.0.0 91.3.0 the pleasant town$\P
+
+\verb$123.0.0 127.4.0 the noble seats$\P
+
+\verb$157.0.0 161.5.0 the fabulous Dragon$\P
+
+\verb$189.0.0 193.3.0 the Civil Wars$\P
+
+\verb$455.0.0 459.11.0 the feeble interference$\P
+
+\verb$463.0.0 467.6.0 the English Council$\P
+
+\verb$566.0.0 570.10.0 the national convulsions$\P
+
+\verb$590.0.0 594.5.0 the inferior gentry$\P
+
+\verb$626.0.0 630.11.0 the English constitution$\P
+
+\verb$696.0.0 700.4.0 the petty kings$\P
+
+\verb$813.0.0 817.5.0 the certain hazard$\P
+
+\verb$896.0.0 900.5.0 the great Barons$\P
+
+\verb$938.0.0 942.3.0 the very edge$\P
+
+\bigskip
+\noindent 第一行表示模式转导一致性计算。
+可能的三个值是:
+
+\begin{itemize}
+  \item \verb+#I+ : 这些转换被忽视;
+
+  \item \verb+#M+ : 转换被列入可识别的序列 ( MERGE模式);
+  \index{MERGE}
+  
+  \item \verb+#R+ : 转换已经取代了可识别的序列 ( REPLACE 模式).
+  \index{REPLACE}
+\end{itemize}
+
+\bigskip
+\noindent 
+每个事件由一个语句描述。这些语句从事件开始或结束的位置开始。这些位置对应于标签文件\verb$.tfst$中定义的偏移量(见 \ref{section-tfst-format})。
+\bigskip
+\noindent 
+如果文件中包含标题语句 \verb+#I+，每个事件的的结束位置后面紧跟着一个换行符。否则，它后跟一个空格和一个字符串。在REPLACE模式中，这个字符串对应公认的序列产生的转换。在MERGE模式中，它代表其中插入转换的识别序列。在MERGE模式或REPLACE模式中，相应的显示字符串。如果转换被忽视了，事件的内容是由文本文件处理的。
+
+\subsection{ concord.txt 文件}
+\index{Fichier!\verb+concord.txt+}
+ \verb+concord.txt+文件是表示索引的文本文件。每个事件由包括由制表符分隔的三个字符串行编码，并表示左背景，事件（可能通过转换修改），和右背景。
+\subsection{concord.html 文件}
+\index{Fichier!\verb+concord.html+}
+ \verb+concord.html+ 文件是 \verb+HTML+文件表示一种对应关系。这个文件由 UTF-8编码\index{UTF-8}。
+
+
+\bigskip
+\noindent
+页面的标题是事件的号码。这些对应的语句是被看作是超链接的事件语句编码的，与每个链接相关的参考都是形式~：
+
+\medskip
+\verb+<a href="X Y Z">+
+
+\medskip
+\noindent \verb+X+ 和\verb+Y+ 表示\verb+name_of_text.snt+文件里用字符表示的事件开头和结尾的位置。\verb+Z+表示出现在这个事件里的数字。
+
+\bigskip
+\noindent
+所有空间被类似于(\verb+&nbsp;+ in HTML)编码，这可以保持对事件的，即使其中之一，位于文件开始时，已经完成了与空格的左侧上下文。
+
+
+
+\bigskip
+\noindent
+注意：在用glossanet参数建立的索引中，HTML文件获得相同的结构，除了相关链接。在这些冲突中，事件是返回到GlossaNet应用的服务器上的实际链接。对于GlossaNet上的大部分信息，在Unitex的网站上检查链接(http://www-igm.univ-mlv.fr/~unitex)。\index{GlossaNet}
+
+
+
+\bigskip
+\noindent 这里是文件的例子:
+
+\bigskip
+
+\verb$<html lang=en>$\P
+
+\verb$<head>$\P
+
+\verb$$\P
+
+\verb$   <meta http-equiv="Content-Type" content="text/html;$
+
+\verb$         charset=UTF-8">$\P
+
+\verb$   <title>6 matches</title>$\P
+
+\verb$</head>$\P
+
+\verb$<body>$\P
+
+\verb$<table border="0" cellpadding="0" width="100%" $
+
+\verb$       style="font-family: 'Arial Unicode MS'; font-size: 12">$\P
+
+\verb$<font face="Courier new" size=3>$\P
+
+\verb$on, there <a href="116 124 2">extended</a>&nbsp;i&nbsp;<br>$\P
+
+\verb$&nbsp;extended <a href="125 127 2">in</a>&nbsp;ancient&nbsp;<br>$\P
+
+\verb$&nbsp;Scott {S}<a href="32 34 2">IN</a>&nbsp;THAT PL&nbsp;<br>$\P
+
+\verb$STRICT of <a href="61 66 2">merry</a>&nbsp;Engl&nbsp;<br>$\P
+
+\verb+S}IN THAT <a href="40 48 2">PLEASANT</a>&nbsp;D&nbsp;<br>+\P
+
+\verb+&nbsp;which is <a href="84 91 2">watered</a>&nbsp;by&nbsp;<br>+\P
+
+\verb$</font>$\P
+
+\verb$</td></table></body>$\P
+
+\verb$</html>$\P
+
+
+\bigskip
+\noindent 图 \ref{fig-example-concordance-2}对应下面文件的页面。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig10-2.png}
+\caption{一致性的例子 \label{fig-example-concordance-2}}
+\end{center}
+\end{figure}
+
+
+
+\subsection{diff.html 文件}
+\index{Fichier!\verb+diff.html+}
+\verb+diff.html+文件是 \verb+HTML+页面表示两个词汇索引的不同。这个文件由UTF-8编码。\index{UTF-8}这里是一个文件例子(换行已被引入布局)
+
+
+
+\begin{verbatim}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8">
+<style type="text/css">
+a.blue {color:blue; text-decoration:underline;}
+a.red {color:red; text-decoration:underline;}
+a.green {color:green; text-decoration:underline;}
+</style>
+</head>
+<body>
+<h4>
+<font color="blue">Blue:</font> identical sequences<br>
+<font color="red">Red:</font> similar but different sequences<br>
+<font color="green">Green:</font> sequences that occur in only
+one of the two concordances<br>
+<table border="1" cellpadding="0" style="font-family: Courier new;
+font-size: 12">
+<tr><td width="450"><font color="blue">ed in ancient times
+<u>a large forest</u>, covering the greater par</font></td>
+<td width="450"><font color="blue">ed in ancient times
+<u>a largeforest</u>, covering the greater par</font></td>
+</tr>
+<tr><td width="450"><font color="green">ge forest, covering
+<u>the greater part</u>&nbsp;of the beautiful hills </font>
+</td>
+<td width="450"><font color="green"></font></td>
+</tr>
+</table>
+</body>
+</html>
+\end{verbatim}
+
+
+\section{文本字典}
+\verb+Dico+程序产生多个代表字典的文件。
+
+
+\subsection{dlf 和 dlc}
+\index{Fichier!\verb+dlf+}
+\index{Fichier!\verb+dlc+}
+
+\verb+dlf+ et \verb+dlc+ 是单词字典包含DELAF格式 (见 \ref{section-DELAF-format})。
+
+
+\subsection{err}
+\index{Fichier!\verb+err+}
+该文件逐行包含生词。
+
+\subsection{tags\_err}
+\index{Fichier!\verb+tags_err+}
+这个文件逐行包含生词。与\verb+err+文件的区别是，其中\verb+tags.ind+文件中已知的词不出现。
+
+\subsection{tags.ind}
+\index{Fichier!\verb+tags.ind+}
+\label{section-tags-ind}
+和\verb+concord.ind+有着相同格式的文件获得MERGE或REPLACE模式但是它的开头是\verb+#T+。需要注意的是不以斜杠开始输出。
+
+
+
+\section{词典}
+通过 \verb+Compress+程序压缩的DELAF词典产生两个文件：\verb+.bin+文件表示词典文件形式的最小自动机，\verb+.inf+文件包含压缩格式，从这个格式开始重新建立词典语句。本节介绍了这两种类型的文件格式。如 \verb+CHECK_DIC.TXT+文件的格式包含字典的验证结果。
+
+\index{\verb+Compress+}\index{外部程序!\verb+Compress+}
+
+\index{DELAF}\index{词典!DELAF}
+
+\subsection{ .bin文件}
+\index{Fichier!\verb+.bin+}
+ \verb$.bin$ 文件是表示自动机的二进制文件。文件的头四个字节代表整数表示文件字节大小。自动机的状态由如下代码表示。
+
+
+\begin{itemize}
+
+  \item
+  头两个字节表示状态是否是结束状态，和转换次数。如果状态为结束，最高位为0，否则为1.其他15位是转换次数的代码。
+
+
+  \bigskip 
+  比如：有着17个转换的非结束状态由8011十六进制序列表示。
+
+
+  \bigskip \item 
+  如果状态为结束，后三个字节编码压缩文件 \verb+.inf+中的索引用来重建这个文件格式的词典语句。
+
+  \bigskip
+  例子：如果状态返回到索引25133的压缩形式，
+  对应的十六进制就是\verb+00622D+。
+  \bigskip \item
+  每个转换输出后由5个字节编码。前两个字节表示该标记字符转换，之后的三个字节表示\verb+.bin+文件到达状态的位置。这些状态的转换依次编码。
+
+
+  \bigskip
+  例子：被指向第$50106$个目标的A所标记的转换，字节将由十六进制序列来表示。
+
+\end{itemize}
+
+\bigskip
+\noindent
+按照惯例，第一个状态就是初始状态。
+
+
+\subsection{.inf文件}
+\index{Fichier!\verb+.inf+}
+ \verb+.inf+文件是描述与\verb+.bin+文件相关联的压缩格式的文档文件。这里是 \verb+.inf+ file文件的例子：
+
+\bigskip
+\verb$0000000006$\P
+
+\verb$_10\0\0\7.N$\P
+
+\verb$.PREP$\P
+
+\verb$_3.PREP$\P
+
+\verb$.PREP,_3.PREP$\P
+
+\verb$1-1.N+Hum:mp$\P
+
+\verb$3er 1.N+AN+Hum:fs$\P
+
+\bigskip
+\noindent 
+文件的第一行表示所包含的压缩文件的号码。
+每一行都能包含一个或多个压缩格式。如果有多个格式，要用逗号将它们隔开。每一个压缩格式由一个能从弯曲格式找到的正常的格式的序列组成，接着是与词形变化码，相关联语法，语义的序列。
+
+
+\bigskip
+\noindent 
+正常格式的压缩模式根据词尾变化形式的功能不同而不同。如果这两个形式完全一样，压缩的形式就会概括成为语法信息，语义信息和词形变化信息，如下列情况：
+
+\bigskip
+\verb$.N+Hum:ms$
+
+\bigskip
+\noindent
+如果这些形式不同，压缩程序切入两种单位形式。这些单位可以是一个空间或一个连字符，或不包含空格或破折号字符序列。这种分割模式可以有效地考虑复合词的词形变化形式。
+
+
+\bigskip
+\noindent
+如果词尾变化形式和标准形式不包含相同的数字单元，该程序代码规范的形式由字符数从词尾变化的形式相减，因此，上述文件的第一行是字典行：
+
+
+\bigskip
+\verb+James Bond,007.N+
+
+\bigskip
+\noindent
+\verb+James Bond+序列包含三个单元而\verb+007+只有一个，正常形式由\verb+_10\0\0\7+编码。\verb+_+符号表示两种形式不具有相同数量的单元。后面的数字 (这里是 10)表示要减去的字符数。跟在后面的\verb+\0\0\7+序列表示我们应该加上\verb+\0\0\7+序列。数字在字符\verb+\+前面为了不与要减去的字符数相混淆。
+
+
+
+\bigskip
+\noindent 
+当两个形状具有相同数量的单元，这些单元是成对压缩。如果这两个单元构成的空间或连字符的，该单元的压缩形式是单元本身，如以下情况：
+
+
+\bigskip
+\verb$0-1.N:p$
+
+\bigskip
+\noindent 是 \verb$battle-axes,battle-axe.N:p$的出口
+
+\bigskip
+\noindent 
+当词典包含复合词时，这可以保存\verb+.inf+文件中特定的变量。
+
+
+
+
+\bigskip
+\noindent
+当单元中的至少一个不是空格或连字符时，压缩形式组成的字符数的减去跟随字符添加的序列。
+因此词典里的序列：
+
+\bigskip
+\noindent
+\texttt{premi\`ere partie,premier parti.N+AN+Hum:fs}
+
+\bigskip
+\noindent 被该语句编码 :
+
+\bigskip
+\verb$3er 1.N+AN+Hum:fs$
+
+\bigskip
+\noindent
+ \verb+3er+码表示我们应该在\texttt{premi\`ere}的序列中减去三个字符并加上\verb+er+ 字符来获得\verb+premier+。\verb+1+表示我们应该在\verb+partie+中只删除一个字符来获得\verb+parti+序列。\verb+0+数字用来表示我们不想删除任何字符。
+
+
+\subsection{词典的文件信息}
+\index{Fichier!information dictionnaire}
+ 在"Apply lexical resources"框架里，右击鼠标可以获得词典信息。这些词典信息因为名为\verb+biniou.txt+的纯文本而与\verb+biniou.bin+或\verb+biniou.fst2+相关，它们在同一个目录里。
+
+\subsection{ CHECK\_DIC.TXT文件}
+\index{Fichier!\verb+CHECK_DIC.TXT+}\index{\verb+CheckDic+}\index{Programmes
+externes!\verb+CheckDic+}
+
+该文件由\verb+CheckDic+词典的确认程序产生。
+这是一个文本文件，它提供所分析的字典的信息，被分成四个部分。
+
+
+\bigskip
+\noindent
+第一部分给出的列表中，可能是空的，所有在字典中找到的语法错误：没有词尾变化的形式或规范的形式，缺少语法代码，空行等。由受影响的语句的数量，描述错误的性质的消息，该行的内容中描述的每个错误。这里是一个信息的例子：
+
+\begin{verbatim}
+第 12451行: 语句意外结束
+garden,N:s
+\end{verbatim}
+
+\bigskip
+\noindent
+第二和第三部分分别给出语法、语义、词形变化的代码清单。为了避免编码错误，该程序报告包含空格代码、标签或非ASCII字符。而且如果一个希腊语词典包含\verb+ADV+代码，\verb+A+符号和
+\verb+A+希腊语代替了拉丁语\verb+A+，该程序警告如下：
+
+
+\begin{verbatim}
+ADV警告: 一个可疑字符 (1 non ASCII char): (0391 D V)
+\end{verbatim}
+
+\bigskip
+\noindent
+非ASCII字符以他们的十六进制数表示。在上面的例子中 \verb+0391+ 代码表示希腊字符 \verb+A+ 。\verb+SPACE+序列表示空格。
+
+
+\begin{verbatim}
+Km s warning: 1 suspect char (1 space): (K m SPACE s)
+\end{verbatim}
+
+\bigskip
+\noindent
+
+当检查一下词典时：
+
+
+\begin{verbatim}
+1,2 et 3!,.INTJ 
+abracadabra,INTJ 
+supercalifragilisticexpialidocious,.INTJ
+damned,. INTJ
+Paul,.N+Hum+Hum
+eat,.V:W:P1s:Ps:P1p:P2p:P3p
+\end{verbatim}
+
+\bigskip
+\noindent 我们可以得到 \verb+CHECK_DIC.TXT+ 文件，如下 :
+
+\bigskip
+\verb$Line 1: unprotected comma in lemma$\P
+
+\verb$1,2 et 3!,.INTJ $\P
+
+\verb$Line 2: unexpected end of line$\P
+
+\verb$abracadabra,INTJ $\P
+
+\verb$Line 5: duplicate semantic code$\P
+
+\verb$Paul,.N+Hum+Hum$\P
+
+\verb$Line 6: an inflectional code is a subset of another$\P
+
+\verb$eat,.V:W:P1s:Ps:P1p:P2p:P3p$\P
+
+\verb$-----------------------------------$\P
+
+\verb$-------------  Stats  -------------$\P
+
+\verb$-----------------------------------$\P
+
+\verb$File: D:\My Unitex\English\Dela\axe.dic$\P
+
+\verb$Type: DELAF$\P
+
+\verb$6 lines read$\P
+
+\verb$2 simple entries for 2 distinct lemmas$\P
+
+\verb$0 compound entry for 0 distinct lemma$\P
+
+\verb$-----------------------------------$\P
+
+\verb$----  All chars used in forms  ----$\P
+
+\verb$-----------------------------------$\P
+
+\verb$a (0061)$\P
+
+\verb$c (0063)$\P
+
+\verb$d (0064)$\P
+
+\verb$e (0065)$\P
+
+\verb$f (0066)$\P
+
+\verb$g (0067)$\P
+
+\verb$i (0069)$\P
+
+\verb$l (006C)$\P
+
+\verb$m (006D)$\P
+
+\verb$n (006E)$\P
+
+\verb$o (006F)$\P
+
+\verb$p (0070)$\P
+
+\verb$r (0072)$\P
+
+\verb$s (0073)$\P
+
+\verb$t (0074)$\P
+
+\verb$u (0075)$\P
+
+\verb$x (0078)$\P
+
+\verb$-------------------------------------------------------------$\P
+
+\verb$----    2 grammatical/semantic codes used in dictionary  ----$\P
+
+\verb$-------------------------------------------------------------$\P
+
+\verb$INTJ$\P
+
+\verb$ INTJ warning: 1 suspect char (1 space): (SPACE I N T J)$\P
+
+\verb$-----------------------------------------------------$\P
+
+\verb$----    0 inflectional code used in dictionary  -----$\P
+
+\verb$-----------------------------------------------------$\P
+
+\bigskip
+\noindent 
+\verb+eat+的词形变化码没有被报告，因为在此行中发生错误。
+
+
+\section{ ELAG文件}
+\subsection{ tagset.de 文件}
+\index{Fichier!\verb+tagset.def+}
+见 \ref{section-elag-tagset}, 页面 \pageref{section-elag-tagset}.
+
+\subsection{ .lst文件}
+\index{Fichier!\verb+.lst+}
+lst文件不能用UNICODE编码。
+
+
+\bigskip
+\noindent
+\verb$.lst$文件包含一个文件名列表\verb$.grf$。如果文件名不确定，就与\verb$elag.lst$文件的位置相对。这里是\verb$elag.lst$文件的法文版：
+
+
+\bigskip
+\verb$PPVs/PpvIL.grf$\P
+
+\verb$PPVs/PpvLE.grf$\P
+
+\verb$PPVs/PpvLUI.grf$\P
+
+\verb$PPVs/PpvPR.grf$\P
+
+\verb$PPVs/PpvSeq.grf$\P
+
+\verb$PPVs/SE.grf$\P
+
+\verb$PPVs/postpos.grf$\P
+
+\subsection{.elg 文档}
+\index{Fichier!\verb+.elg+}
+\verb$.elg$ 文件包含编译的ELAG规则。这些文件都是 \verb$.fst2$格式。
+
+
+
+\subsection{ .rul 文件}
+\index{Fichier!\verb+.rul+}
+RUL文件不是用Unicode编码的。
+
+
+\bigskip
+\noindent包含ELAG规则的集合。 \verb$.rul$文件和\verb$.elg$文件由同样多的部分组成。每一个部分由和 \verb$.elg$文件对应的ELAG语法列表组成。\verb$.elg$文件名为英文。由表格开始的语句都为批注而且被\verb+Elag+程序忽略。\index{\verb+Elag+}\index{Programmes externes!\verb+Elag+}这里是\verb$elag.rul$文件默认为法语：
+
+\bigskip
+\verb$    PPVs/PpvIL.elg$\P
+
+\verb$    PPVs/PpvLE.elg$\P
+
+\verb$    PPVs/PpvLUI.elg$\P
+
+\verb$<elag.rul-0.elg>$\P
+
+\verb$    PPVs/PpvPR.elg$\P
+
+\verb$    PPVs/PpvSeq.elg$\P
+
+\verb$    PPVs/SE.elg$\P
+
+\verb$    PPVs/postpos.elg$\P
+
+\verb$<elag.rul-1.elg>$\P
+
+\section{标签文件}
+本节介绍了TrainingTagger标注器和程序使用的产品和文件。
+
+\subsection{ corpus.txt文件}
+\index{Fichier!\verb+corpus.txt+}
+\label{section-corpus-file}
+该文件所使用的 TrainingTagger程序来计算Tagger程序的统计信息。它包含在其中的每个字在一个单独的语句示出的短语。
+每一行语句表示一个单词是由另一个单词或复合词构造的，后面试斜杠和单词的标签。
+这个标签是由语法代码组成，每次后接\verb$'+'$和语法和语义代码。词形变化码是在\verb+':'+之后。如果单词是复合词，里面包含的单词就会用\verb+'_'+隔开。这里是一个例子：
+
+
+\bigskip
+\verb$The/DET+Ddef:s$\P
+
+\verb+GATT/N:s+\P
+
+\verb+had/V:I3s+\P
+
+\verb+formerly/ADV+\P
+
+\verb$a/DET+Dind:s$\P
+
+\verb+political/A+\P
+
+\verb+assessment/N:s+\P
+
+\verb+of/PREP+\P
+
+\verb$the/DET+Ddef:s$\P
+
+\verb+behavior/N:s+\P
+
+\verb+of/PREP+\P
+
+\verb+foreign_countries/N:p+\P
+
+\verb+./PONCT+\P
+
+\P
+
+\verb$She/PRO+Nomin:3fs$\P
+
+\verb+closed/V:I3s+\P
+
+\verb+easily/ADV+\P
+
+\verb$her/DET+Poss3fs:p$\P
+
+\verb+eyes/N:p+\P
+
+\verb+when/CONJ+\P
+
+\verb$some/DET+Dadj:p$\P
+
+\verb+infractions/N:p+\P
+
+\verb+might/V:I3p+\P
+
+\verb+appear/V:W+\P
+
+\verb+justified/V:K+\P
+
+\verb+against/PREP+\P
+
+\verb+higher/A+\P
+
+\verb+interests/N:p+\P
+
+\verb+./PONCT+\P
+
+\P
+
+\bigskip
+\noindent
+注意：这些句子应该用空行分割。
+
+
+\bigskip
+\verb+.txt+格式同样可以被运用（见\ref{section-texts}）。文本的每一个字必须用一个有效的词汇标签来表示(\verb+{aujourd'hui,.ADV}+)\index{Étiquette lexicale}，并且每句话应由\verb+{S}+\index{\verb+{S}+}\index{Délimiteur de phrase}分隔。这里是 \verb+.txt+格式：
+
+\bigskip
+\verb${The,.DET+Ddef:s}$ \verb${GATT,.N:s}$ \verb${had,.V:I3s}$ \verb${formerly,.ADV}$\\ 
+\verb${a,.DET+Dind:s}$ \verb${political,.A}$ \verb${assessment,.N:s}$ \verb${of,.PREP}$\\ 
+\verb${the,.DET+Ddef:s}$ \verb${behavior,.N:s}$ \verb${of,.PREP}$ \verb${foreign countries,.N:p}$\\ 
+\verb${.,.PONCT}$ \verb${S}$ \verb${She,.PRO+Nomin:3fs}$ \verb${closed,.V:I3s}$ \verb${easily,.ADV}$\\
+\verb${her,.DET+Poss3fs:p}$ \verb${eyes,.N:p}$ \verb${when,.CONJ}$ \verb${some,.DET+Dadj:p}$\\
+\verb${infraction,.N:p}$ \verb${might,.V:I3p}$ \verb${appear,.V:W}$ \verb${justified,.V:K}$\\
+\verb${against,.PREP}$ \verb${higher,.A}$ \verb${interests,.N:p}$ \verb${.,.PONCT}$ \verb${S}$
+
+\subsection{标签数据文件}
+\index{Fichier!\verb+train_dict+}
+\label{section-training-dict}
+TrainingTagger程序管理两个由Tagger使用用来计算二阶 Markov模型数据文件 (默认)。这些文件包含单字母，双字母组合三个字母组来处理corpus.txt标签。元组是由任一的2或3个标签序列组成的（为了计算转移概率）或是在0或1的标签之前的一个语句（计算发射的概率）。在一个元组的单位，必须由制表分开。这些元组由序列定界符监视“。”然后由一个整数，表示该元组在语料库中出现的次数。
+
+
+\bigskip
+
+\noindent
+文件名以"cat"或"morph"为后缀。首先，元组由代码标记语法，句法和语义。其次，由元组组成的代码标记语法，句法和语义每次后接\verb+':'+和词形变化码。
+这里是有着"cat"类型的标签的数据文件例子：
+
+\bigskip
+\verb+the,.9630+\P
+
+\verb+those,.236+\P
+
+\verb+eyes,.32+\P
+
+\verb$DET+Ddef	 the,.9630$\P
+
+\verb$DET+Ddem	 those,.140$\P
+
+\verb$PRO+Pdem	 those,.96$\P
+
+\verb+N		   eyes,.32+\P
+
+\verb+DET	 N,.62541+\P
+
+\verb+PREP	DET  N,.25837+\P
+
+\P
+
+\bigskip
+
+\noindent 这里是有着"morph"类型的标签的数据文件例子：
+
+
+\bigskip
+\verb+the,.9630+\P
+
+\verb+those,.236+\P
+
+\verb+eyes,.32+\P
+
+\verb$DET+Ddef:s	 the,.4437$\P
+
+\verb$DET+Ddef:p	 the,.5193$\P
+
+\verb$DET+Ddem:p	 those,.140$\P
+
+\verb$PRO+Pdem:p	 those,.96$\P
+
+\verb+N:p		   eyes,.32+\P
+
+\verb+DET:s	 N:s,.18489+\P
+
+\verb+PREP	  DET:s  N:s,.6977+\P
+
+\P
+
+\bigskip
+\noindent
+如果文件包含"cat"或"morph"标签，就需要具体的语句加入到数据文件进行确认。
+这一行包含\verb+CODE FEATURES+，后面是代表"cat"的0，或代表"morph"的1
+
+\bigskip
+\noindent
+注意：在最后一步， TrainingTagger压缩两个数据文件到\verb+.bin+格式。
+
+
+\section{配置文件}
+\subsection{ Config文件}
+\index{Fichier!\verb+Config+}
+当用户为特定的语言修改配置时，这些保存在可以在当前语言目录中找到、名为\verb+Config+的文档文件中。这个文件的语法如下（该行的顺序可能会有所不同）：
+
+
+
+
+\bigskip
+\verb$#Unitex configuration file of 'paumier' for 'English'$\P
+
+\verb$#Fri Oct 10 15:18:06 CEST 2008$\P
+
+\verb$TEXT\ FONT\ NAME=Courier New$\P
+
+\verb$TEXT\ FONT\ STYLE=0$\P
+
+\verb$TEXT\ FONT\ SIZE=10$\P
+
+\verb$CONCORDANCE\ FONT\ NAME=Courier new$\P
+
+\verb$CONCORDANCE\ FONT\ HTML\ SIZE=12$\P
+
+\verb$INPUT\ FONT\ NAME=Times New Roman$\P
+
+\verb$INPUT\ FONT\ STYLE=0$\P
+
+\verb$INPUT\ FONT\ SIZE=10$\P
+
+\verb$OUTPUT\ FONT\ NAME=Arial Unicode MS$\P
+
+\verb$OUTPUT\ FONT\ STYLE=1$\P
+
+\verb$OUTPUT\ FONT\ SIZE=12$\P
+
+\verb$DATE=true$\P
+
+\verb$FILE\ NAME=true$\P
+
+\verb$PATH\ NAME=false$\P
+
+\verb$FRAME=true$\P
+
+\verb$RIGHT\ TO\ LEFT=false$\P
+
+\verb$BACKGROUND\ COLOR=-1$\P
+
+\verb$FOREGROUND\ COLOR=-16777216$\P
+
+\verb$AUXILIARY\ NODES\ COLOR=-3289651$\P
+
+\verb$COMMENT\ NODES\ COLOR=-65536$\P
+
+\verb$SELECTED\ NODES\ COLOR=-16776961$\P
+
+\verb$PACKAGE\ NODES\ COLOR=-2302976$\P
+
+\verb$CONTEXT\ NODES\ COLOR=-16711936$\P
+
+\verb$CHAR\ BY\ CHAR=false$\P
+
+\verb$ANTIALIASING=false$\P
+
+\verb$HTML\ VIEWER=$\P
+
+\verb$MAX\ TEXT\ FILE\ SIZE=2097152$\P
+
+\verb$ICON\ BAR\ POSITION=West$\P
+
+\verb$PACKAGE\ PATH=D\:\\repository$\P
+
+\verb$MORPHOLOGICAL\ DICTIONARY=D\:\\MyUnitex\\English\\Dela\\zz.bin$\P
+
+\verb$MORPHOLOGICAL\ NODES\ COLOR=-3911728$\P
+
+\verb$MORPHOLOGICAL\ USE\ OF\ SPACE=false$\P
+
+
+\bigskip
+\noindent
+前两行是注释行。接下来的三行显示用于显示文本的名称，样式和字体大小，词典，词汇单元，文本自动机的句子等。
+
+
+
+\bigskip
+\noindent
+\verb$CONCORDANCE FONT NAME$和 \verb$CONCORDANCE FONT HTML SIZE$
+定义名称并用于显示HTML匹配的字体大小。字体大小必须在1和7之间。
+
+\bigskip
+\noindent 
+参数\verb$INPUT FONT ...$和\verb$OUTPUT FONT ...$ 定义用于显示路径和传导图字体的名称，样式和尺寸。
+
+\bigskip
+\noindent
+
+以下10个参数对应于标头图表提议的参数。 \ref{tab-parameters}表描述对应关系。
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\verb+Config+文件配置和 \verb+.grf+文件配置
+\\
+\hline
+\verb$DATE$ & \verb$DDATE$
+\\
+\hline
+\verb$FILE NAME$ & \verb$DFILE$
+\\
+\hline
+\verb$PATH NAME$ & \verb$DDIR$
+\\
+\hline
+\verb$FRAME$ & \verb$DFRAME$
+\\
+\hline
+\verb$RIGHT TO LEFT$ & \verb$DRIG$
+\\
+\hline
+\verb$BACKGROUND COLOR$ & \verb$BCOLOR$
+\\
+\hline
+\verb$FOREGROUND COLOR$ & \verb$FCOLOR$
+\\
+\hline
+\verb$AUXILIARY NODES COLOR$ & \verb$ACOLOR$
+\\
+\hline
+\verb$COMMENT NODES COLOR$ & \verb$SCOLOR$
+\\
+\hline
+\verb$SELECTED NODES COLOR$ & \verb$CCOLOR$
+\\
+\hline
+\end{tabular}
+\caption{参数说明\label{tab-parameters}}
+\end{center}
+\end{table}
+
+\bigskip
+\noindent 
+\verb+PACKAGE NODES+配置表示目录里子图的调用颜色。
+
+\bigskip
+\noindent 
+ \verb+CONTEXT NODES+ 配置表示对应于上下文的开始或结束的框的颜色。
+
+
+\bigskip
+\noindent
+\verb+CONTEXT NODES+配置表示当前语言是否应被视为字符。
+
+\bigskip
+\noindent
+\verb+ANTIALIASING+ 配置指定图形和句子自动机是否要在默认情况下使用平滑处理的效果显示。
+
+
+
+\bigskip
+\noindent
+\verb+HTML VIEWER+配置表示要用来查看匹配的浏览器的名称。如果没有指定浏览器的名称，词汇索引将在Unitex窗口显示。
+
+\bigskip
+\noindent
+\verb+MAX TEXT FILE SIZE+配置不再被使用。
+
+
+\bigskip
+\noindent 
+\verb+ICON BAR POSITION+配置定义在图形窗口中的图标条的位置。
+
+\bigskip
+\noindent 
+\verb+PACKAGE PATH+配置定义用于该语言的目录。
+
+
+\bigskip
+\noindent
+ \verb+MORPHOLOGICAL DICTIONARY+配置列出了字典形态模式，用分号隔开。
+
+
+\bigskip
+\noindent
+\verb+MORPHOLOGICAL NODES COLOR+配置形态模式\verb+$<+ et \verb+$>+标签的颜色。
+
+
+
+\bigskip
+\noindent 
+\verb+MORPHOLOGICAL USE OF SPACE+配置表示\verb+Locate+程序是否能通过识别领域开始。（默认不是）。
+
+\subsection{ system\_dic.def 文件}
+\index{Fichier!\verb+system_dic.def+}
+ \verb+system_dic.def+文件是描述系统字典列表，默认将应用于文本文件。该文件位于当前的语言的目录。每一个语句对应\verb+.bin+文件的名字。该系统的词典必须在Unitex系统目录，\index{Répertoire!système Unitex}在子目录内。\index{Fichier!\verb+.bin+}
+ 这里是文件的范例~：
+
+\bigskip
+\verb$delacf.bin$\P
+
+\verb$delaf.bin$\P
+
+\subsection{ user\_dic.def 文件}
+\index{Fichier!\verb+user_dic.def+}
+\verb+user_dic.def+文件是描述用户默认情况下应用于词典列表的文本文件。该文件是在当前的语言的目录，并具有相同的格式文件。用户词典必须在个人工作目录的子目录\verb+(langue courante)/Dela+里。\index{Répertoire!personnel de travail}
+
+
+\subsection{文件 (用户姓名).cfg et .unitex.cfg}
+\index{Fichier!\verb+.cfg+}
+% FIXME()
+%在Linux和Mac OS，Unitex认为工作人员的工作目录被命名为 \verb+unitex+ 并且位于用户根目录中 (\verb+$HOME+$)。如果要更改此默认位置,\verb+.unitex.cfg+文件在根目录中创建，它包含到工作目录Unitexd的路径。这个文件是UTF8文件。如果\verb+.unitex.cfg+Linux并不包含对现有目录的有效路径，则会被忽视\,\footnote{可以在Linux，Window上运行Unitex，共享文件~：通向Unitex个人工作目录的Windows路径在\texttt中指出{.unitex.cfg}，而在Linux中运行时，Unitex会忽视}，
+
+\bigskip
+在Windows,它并不是总是可以默认与用户相连的目录。为了解决这个问题，Unitex为每个用户创建 \verb+.cfg+文件，包含包含工作目录的路径。该文件在Unitex系统目录的字目录\verb+Users+下保存为\verb+(用户名).cfg+，\index{Répertoire!système Unitex}如果用户没有权限写入该目录，\verb+.unitex.cfg+文件被并保存在用户配置备份文件目录中~，
+
+\begin{itemize}
+\item 在 \verb+文件和设置\(user login)+ 在Windows XP上
+\item 在 \verb+Users\(user login)+ 在Windows Vista或更高版本。
+\end{itemize}
+
+\bigskip
+\noindent
+注意~：本文件并不以Unicode的方式保存工作人员的工作。\index{Répertoire!个人工作}
+后面没有语句。
+
+\section{ CasSys 文件}
+
+\subsection{配置文件 CasSys csc}
+为了存储CasSys级联转换器列表，我们使用一个文本文件（CSV），其中每一语句包含转换器监测输出模式路径（合并/替换）应用到换能器。
+csc文件的语句格式是： Name\_and\_path\_of\_transducer 合并
+级联CSC文件的例子：
+
+
+\ttfamily
+"C:$\backslash$apps$\backslash$my\_unitex$\backslash$French$\backslash$Graphs$\backslash$grf1.fst2" Merge
+
+"C:$\backslash$apps$\backslash$my\_unitex$\backslash$French$\backslash$Graphs$\backslash$grf2.fst2" Replace
+\rmfamily
+
+\section{其他文件}
+
+对于每个文本，Unitex创建在GUI包含要显示的信息的多个文件。本节介绍了这些文件。
+
+\subsection{Fichier dlf.n, dlc.n, err.n et tags\_err.n}
+\index{Fichier!\verb+dlf.n+}\index{Fichier!\verb+dlc.n+}\index{Fichier!\verb+err.n+}\index{Fichier!\verb+tags_err.n+}
+\index{Fichier!\verb+dlf+}\index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}\index{Fichier!\verb+tags_err+}
+这三个文件是文本目录中的文本文件。它们分别包含\verb+dlf+, \verb+dlc+, \verb+err+ 和\verb+tags_err+文件的语句数量。这些数字后面跟着一个换行符。
+
+\subsection{ stat\_dic.n 文件}
+\index{Fichier!\verb+stat_dic.n+}
+该文件是在文本目录中的文本文件。它包含三个语句，包括\verb+dlf+, \verb+dlc+ 和 \verb+err+文件的语句数。
+
+\subsection{ stats.n文件}
+\index{Fichier!\verb+stats.n+}
+该文本文件是在文本目录并包含以下语句：
+
+
+\bigskip
+\verb$3949 sentence delimiters, 169394 (9428 diff) tokens, 73788 (9399)$
+
+\verb$simple forms, 438 (10) digits$\P
+
+\bigskip
+\noindent
+所指的数字解释以下方法：
+
+
+\begin{itemize}
+  \item \verb+sentence delimiters+:句子分隔符的数量
+  (\verb+{S}+);\index{\verb+{S}+}
+  \index{Séparateur!de phrases}
+
+  \item \verb+tokens+: 
+  
+  
+  令牌文本的总数。 之前的数字\verb+diff+表示不同单元的数量;  
+
+  \item \verb+simple forms+: 
+  由字母组成的词汇单元文本总数。括号中的数字表示其中由字母不同词汇单元的数目；
+  
+  \item \verb+digits+: 
+文本中的总数。括号中的数字表示显示的数字（最多10个）。
+
+\end{itemize}
+
+
+\subsection{concord.n 文件}
+\index{Fichier!\verb+concord.n+}
+\verb+concord.n+文件是文本文件，在文本目录。它包含这个文本模式进行的最新的研究资料，情况如下：
+
+\bigskip
+\verb$6 matches$\P
+
+\verb$6 recognized units$\P
+
+\verb$(0.004% of the text is covered)$\P
+
+\bigskip
+\noindent 
+第一行给出了发现出现的次数，由这些出现覆盖单元的第二个数字。第三行表示的的覆盖单元的数目和文字单元的总数之间的比率。
+
+\subsection{ concord\_tfst.n 文件}
+\index{Fichier!\verb+concord_tfst.n+}
+\verb+concord_tfst.n+文件是在文本目录中的文本文件。它包含对文本自动机的最新研究信息，如下所示：
+
+\bigskip
+\verb$23 matches(45 outputs)$\P
+
+
+
+\subsection{文件规范化规则}
+\index{Fichier!règles de normalisation}
+\label{section-normalization-file}
+该文件由\verb+Normalization+程序和\verb+XMLizer+程序使用。它代表了规范化规则。每一行代表一个规则。根据以下格式($\longmapsto$代表制表符)
+
+\bigskip
+\noindent \verb+input sequence+ $\longmapsto$ \verb+output sequence+
+
+\bigskip
+\noindent 
+如果您想使用的选项卡或换行，你必须用一个反斜杠，像这样：
+
+\bigskip
+\noindent
+\verb+123\+
+
+\noindent
+$\longmapsto$ \verb+ONE_TWO_THREE_NEW_LINE+
+
+
+
+\subsection{被禁止的单词文件}
+\index{Fichier!de mots interdits} \label{section-forbidden-words}
+\verb+PolyLex+程序用于产生荷兰和挪威语需要的禁词。
+
+
+\verb+PolyLex+程序获得荷兰语和挪威语的禁词。这个纯文本文件应该被称为 \verb+ForbiddenWords.txt+
+\index{Fichier!\verb+ForbiddenWords.txt+}. 
+它可以在对应于当前语言的\verb+Dela+目录里找到。每一行应该包含一个禁止的单词。
+
+\subsection{日志文件}
+\index{Fichier!de log programmes Unitex} \label{section-log-file}
+\verb+UnitexToolLogger+程序，如果\verb+unitex_logging_parameters.txt+文件 被发现有一个路径（要保存日志文件）创建一个文件。运行选择Unitex工具.ulp日志。
+
+\bigskip
+它创建\verb+unitex_logging_parameters_count.txt+ 文件，仅包含最后创建的日志文件的数目。
+日志文件（扩展名为.ulp）是一种未压缩的压缩文件，解压后用兼容并解压缩所有的标准工具。我们可以重新创建InfoZip的ZIP（-X选项-0）。它包含文件：
+
+
+\begin{itemize}
+\item \verb+test_info/command_line.txt+:
+用于运行工具的命令行参数的列表。有每行的参数。第一行包含返回值，第二行的参数的数量;
+
+  \item \verb+test_info/command_line_synth.txt+:
+单个语句和命令语句的摘要用来执行；
+
+
+\item \verb+test_info/list_file_in.txt+: 
+由工具创建的文件的列表。
+第一列是文件大小，第二个是CRC32，第三个是该文件名;
+
+\item \verb+test_info/list_file_out.txt+: 
+由工具创建的文件的列表。
+第一列是文件大小，第二个是CRC32，第三个是该文件名;
+
+  \item \verb+test_info/std_out.txt+: 控制台的标准输出内容;
+
+  \item \verb+test_info/std_err.txt+: 在控制台上的输出内容的错误;
+
+  \item \verb+src/xxx+: 
+  由工具（再次操作日志所需）读取文件的副本;
+
+  \item \verb+dest/xxx+:由工具创建的文件的副本
+\end{itemize}
+%FIXME()
+%如果第二行Unitex\日志\ parameters.txt包含0，这些文件不会被保存;如果此行包含1，他们登记;
+
+\subsection{阿拉伯语排版规则: arabic\_typo\_rules.txt}
+\label{subsection-arabic-typo-rules}
+\index{Fichier!des règles typographiques de l'arabe}
+\index{Fichier!\verb+arabic_typo_rules.txt+}
+在阿拉伯语中，字典查找可以与描述了某些排版变化的是否允许或不允许的文件进行配置。此文件包含这样的线路：
+
+\bigskip
+\noindent \verb+fatha omission=YES+
+
+\bigskip
+\noindent  \verb+fatha omission+ 是规则的名称。有关所有可用规则的完整说明，请参阅在源程序中的文件 \verb+Arabic.h+ dans les sources du programme.
+
+\subsection{不同印刷文件}
+\label{subsection-offsets-diff}，
+ DumpOffsets(\ref{section-DumpOffsets}), Normalize(\ref{section-Normalize}), Fst2Txt(\ref{section-Fst2Txt}), Tokenize(\ref{section-Tokenize}), Concord(\ref{section-Concord}) 和 GrfTest, 并被Tokenize(\ref{section-Tokenize})读取。
+\bigskip
+这些文本文件由含有4个整数， A B C D的每一行对应于所述文本的修改，如下列语句所示：
+
+\bigskip
+区间[A，B[文字******任何处理由范围[C替换之前; D [处理后，A，B，C和D在文本文件中的字符位置之中。
+\bigskip
+
+例如，如果规格化程序被施加到文本“Hello World”（字之间包含两个空格），会出现这样的语句：
+
+\bigskip
+\noindent \verb+5 7 5 6+
+\bigskip
+
+这意味着两个字符（2个空格）的序列是由一个字符的序列代替。
+
+\bigskip
+
+其原理是，以产生一个新的文件偏移对每个程序应用到修改的文本，以作为输入由前面的程序产生的偏移文件。因此，看着最后一个偏移量产品的文件，我们知道，每行ABCD，区间[C; D [.snt文件中对应于区间[A，B [在首发.txt文件
+
+\subsection{抵消了公共区域的文件}
+\label{subsection-offsets-common}
+偏移文件被DumpOffsets读取，编写。
+
+\bigskip
+这些文本文件由含有4个整数 A B C D的每一行对应于所述文本的修改，如以下语句表示：
+\bigskip
+区间[A，B[对应区间[C原文; D [处理后，A，B，C和D在文本文件中的字符位置之中。在每一行，B-A-C = D。
+\bigskip
+
+例如，如果规格化程序被施加到文本“Hello World”（字之间有两个空格），会出现这样的语句：
+\bigskip
+\noindent \verb+0 5 0 5+
+\newline
+\noindent \verb+7 12 6 11+
+\bigskip
+
+这意味着0字符（包括）到5（不含税）两个文件包含完全相同的文字，这7（含）到12（不包括）第一个文本包含相同的文本6（含）至11（不含）。
+
+
+\subsection{偏移文件UIMA}
+\label{subsection-offsets-uima}
+UIMA偏移文件由Tokenize编写并由 Concord读取 (利用工具 \verb$--uima=$, \verb$--xml-with-header=$ ou \verb$--xml=$) 这些文件建立每个连续标记和原始文件中的位置之间的对应关系。
+\bigskip
+这些文本文件是包含三个整数A B C与文本之间<et>语句。
+
+\bigskip
+每一行对应表述如下令牌：
+令牌数A是对应于原始文件中的C（不含税）的位置B（包含）的文本，和在<et>中提到的的令牌。
+%FIXME()
+%令牌数A的数量对应tokens.txt出现的语句数量（加1个tokens.txt标题行（后\{参考标记-TXT文件}））
+
+
+\bigskip

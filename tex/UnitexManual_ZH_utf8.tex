@@ -1,0 +1,119 @@
+\documentclass[11pt,twoside,a4paper]{book}
+%
+% Unitex manual
+%
+\usepackage{CJKutf8}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+%\usepackage[T1]{fontenc}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage[nodayofweek]{datetime}
+\newdateformat{mydate}{\monthname[\THEMONTH]{ }\twodigit{\THEDAY}, \THEYEAR}
+\input{Version}
+
+\title{Unitex \UnitexVersion{} User Manual (draft)}
+\author{Sébastien Paumier - Université Paris-Est Marne-la-Vallée}
+\date{2015}
+
+
+\usepackage[%
+%%              ps2pdf,
+%%              dvips,
+             pdfauthor={Sébastien Paumier},
+             pdftitle={Unitex User Manual},
+             pdfcreator={LaTeX, hyperref},
+             pdfkeywords={corpus linguistics, computational linguistics,
+             finite state automata / transducer, local grammar, lexicon grammar}, pdfsubject={Manual of Unitex, a corpus processing system, based on automata-oriented technology},
+             %final, % use hyperlinks ever
+             bookmarks,
+             backref,
+%%              breaklinks=true,
+             colorlinks=true,
+             urlcolor=blue,
+%%              linkcolor=black,
+%%              citecolor=black,
+%%              anchorcolor=black,
+             pdfpagemode=None,
+           % pdfpagemode=FullScreen,
+             pdfstartview=FitBH,
+             unicode,
+             hyperindex=false
+             ]{hyperref}
+
+
+% put always after hyperref
+\usepackage[xindy]{imakeidx}
+
+%
+% définitions de commandes
+%
+%\newcommand{\httplink}[1]{\textcolor{blue}{\underline{\texttt{http://#1}}}}
+\newcommand{\E}{$\varepsilon$}
+\newcommand{\exemplemauvais}[1]{\textit{* #1}}
+\newcommand{\exemplebon}[1]{\textit{#1}}
+\newcommand{\exemplebizarre}[1]{\textit{? #1}}
+\newcommand{\exempletresbizarre}[1]{\textit{*? #1}}
+\newcommand{\targetindexentry}[1]{\hypertarget{index:#1}{#1}}
+\newcommand{\seelink}[1]{\hyperlink{index:#1}{\see{#1}}}
+% use without escaping special chars
+\newcommand{\verbc}[1]{\texttt{\detokenize{#1}}}
+% use escaping special chars
+\newcommand{\verbt}[1]{\texttt{#1}}
+% light verb without monospace font
+\newcommand{\verbl}[1]{\detokenize\expandafter{#1}}
+\pagenumbering{arabic}
+\global\setlength{\topmargin}{-1.5cm}
+\global\setlength{\footskip}{2cm}
+\global\setlength{\headheight}{1.5cm}
+\global\setlength{\headsep}{0.3cm}
+\global\setlength{\textheight}{21.5cm}
+\global\setlength{\oddsidemargin}{0.5cm}
+\global\setlength{\evensidemargin}{0.5cm}
+\global\setlength{\marginparwidth}{1.5cm}
+\global\setlength{\textwidth}{15.5cm}
+
+\def\xindyopts{-L chinise}
+\makeindex[options=\xindyopts]
+
+%\frenchbsetup{ReduceListSpacing=false}
+%\global\setlength{\itemsep}{20pt}
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+
+\input{title_ZH_utf8}
+
+\tableofcontents
+
+\input{00-introduction_ZH_utf8}
+\input{01-installation_ZH_utf8}
+\input{02-loading_texts_ZH_utf8}
+\input{03-dictionaries_ZH_utf8}
+\input{04-pattern_matching_ZH_utf8}
+\input{05-grammars_ZH_utf8}
+\input{06-advanced-use_ZH_utf8}
+\input{07-text_automaton_ZH_utf8}
+\input{08-sequence-automaton_ZH_utf8}
+\input{09-lexicon-grammar_ZH_utf8}
+\input{10-alignment_ZH_utf8}
+\input{11-multiflex_ZH_utf8}
+\input{12-cassys_ZH_utf8}
+\input{13-programs_ZH_utf8}
+\input{14-formats_ZH_utf8}
+%Appendix A
+\input{LGPL_ZH_utf8}
+%Appendix B
+\input{2-clause_BSD_ZH_utf8}
+\input{LGPLLR_ZH_utf8}
+% 参考书目
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{bibliographie_utf8.bib}
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+\clearpage\end{CJK*}
+\end{document}

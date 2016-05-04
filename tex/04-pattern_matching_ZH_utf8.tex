@@ -1,0 +1,622 @@
+\chapter{正则表达式搜索}
+\label{chap-regexp}
+
+本章介绍了如何使用正则表达式来搜索文本的简单模式。
+
+\section{定义}
+\index{Expression rationnelle}\index{Expression régulière}
+
+本章的目的不是对正式语言的介绍，而是展示了如何在 Unitex中使用正则表达式，来查找简单的模式。感兴趣的读者可以参考更多相关作品。
+
+
+\bigskip \noindent 一个正则表达式,又称正规表示法, 可以表示为:
+
+\begin{itemize}
+  \item 一个标记token (\verb+书+)或者一个词汇掩模
+  (\verb+<吃.V>+);
+  \item 在文本中的特定位置： 开始\verb+{^}+或结尾 \verb+{$}+
+  \item 两个正则表达式的连接 (\verb+我 吃+);\index{Concaténation d'expressions rationnelles}
+  \item 两个正则表达式的结合(\verb$Pierre+Paul$);\index{Union d'expressions rationnelles} 
+  \item Kleene星号的正则表达式 (\verb+très*+).\index{Étoile de Kleene}
+\end{itemize}
+
+
+\section{词汇单位}
+\index{Unité lexicale}
+
+在一个正则表达式， 词汇单位token的定义在 \ref{tokenization}
+(page \pageref{tokenization}). 说明了句号，加号，星号，小于号，开，闭括号，�和双引号有特殊意义，因此，有必要在它们前面加上一个转义字符\verb+\+如果你要寻找他们。下面是单位词正确的一些例子：\index{\verb+\+}
+
+\begin{verbatim}
+chat
+\.
+<N:ms>
+{S}
+\end{verbatim}
+
+\index{Respect!de la casse}\index{Respect!des minuscules/majuscules}
+\noindent  默认情况下, Unitex被设置为让小写模式也能找到大写并与其匹配。 可以使用引号来强制区分大小写。
+因此, \verb+"pierre"+ 只能识别 \verb+pierre+ 而不能识别 \verb+Pierre+ 和 \verb+PIERRE+。
+
+\bigskip
+\noindent 注意：为了使空间强制性的，它需要用引号括起来。
+
+
+\index{Espace!obligatoire}
+
+
+\section{词汇掩模}
+\index{Masque lexical} 词汇掩模是标记或一串标记对应的搜索查询。
+
+\subsection{特殊符号}
+\label{section-special-symbols}
+\index{Méta-symboles}
+
+有两种词汇掩模。第一种介绍章节在~\ref{section-sentence-splitting},包含 除了 \verb$<PNC>$ 和  \verb+<^>+. (符号 \verb$<PNC>$的特殊符号和元符号,
+能够匹配标点符号, 只有在预处理阶段有效~; \verb+<^>+ 匹配换行，但当所有的换行都被空间替换？？？？，此符号在搜索词汇掩模时就不适用了。) 可用于搜索文本的模式的元符号的情况如下～:
+
+\index{\verb+<MOT>+}\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}\index{\verb+<NB>+}
+\index{\verb+#+}\index{\verb+<E>+}\index{\verb+<DIC>+}\index{\verb+<SDIC>+}\index{\verb+<CDIC>+}
+\index{\verb+<TDIC>+}\index{\verb+<WORD>+}\index{\verb+<UPPER>+}\index{\verb+<LOWER>+}\index{\verb+<FIRST>+}
+\begin{itemize}
+  \item \verb+<E>+ : 空词, 或者ε。识别出空序列;
+  \item \verb+<TOKEN>+ : 识别任何标记除了默认用于形态滤波器的空间;
+  \item \verb+<WORD>+ : 识别任何字母组成的词汇掩模;
+  \item \verb+<LOWER>+ : 识别任何小写字母组成的词汇掩模;
+  \item \verb+<UPPER>+ : 识别任何大写字母组成的词汇掩模;
+  \item \verb+<FIRST>+ : 识别任何首字母大写组成的词汇掩模;
+  \item \verb+<DIC>+ : 识别任何出现在文本字典的词;
+  \item \verb+<SDIC>+ : 识别任何出现在文本字典的单词;  \index{Mots!simples}
+  \item \verb+<CDIC>+ : 识别任何出现在文本字典的复合词;
+  	  \index{Mots!composés}
+  \item \verb+<TDIC>+ : 识别任何标签标记比如
+  	  \verb+{XXX,XXX.XXX}+;
+  \item \verb+<NB>+ : 识别任何连续的数字串
+  	  (1234 可以被识别 但是 1 234不可以) ;
+  \item \verb+#+ :禁止的空间的存在。\index{Espace!interdit}
+\end{itemize}
+
+\noindent  对应旧代码 \verb+<WORD>+, \verb+<LOWER>+, \verb+<UPPER>+ 和 \verb+<FIRST>+ 
+ 分别是 \verb+<MOT>+, \verb+<MIN>+, \verb+<MAJ>+ 和 \verb+<PRE>+.
+ 它们仍然可以使用，以保持现有图形的系统兼容性,但是现在它们是过时的,也就是说为了最新版本的运行，我们建议避免它们的使用在图形设计中\footnote{À partir de la version 3.1bêta, révision 4072 du 2 octobre 2015.},
+为了避免不必要的词汇掩模使用的增加。
+
+\bigskip
+\noindent NOTE : 如章节 \ref{tokenization}所述,任何métas都不能用来识别标记  \verb+{STOP}+\index{\verb+{STOP}+},  \verb+<TOKEN>+也不能。
+
+\subsection{参考字典提供的信息}
+\index{Masque lexical}\index{Dictionnaire!référence aux informations du}
+\index{Référence aux informations dans les dictionnaires}\index{Dictionnaire!du texte}
+
+第二种词汇掩模包括来那些能够查找文本字典的信息。四种可能的形式是~:
+
+
+\bigskip
+\begin{itemize}
+\item \verb+<lire>+: 识别所有包含 \verb+lire+的词条 作为标准形式。
+	我们说这张形式是歧义的，如果 \verb+lire+ 是一个语法代码同时又是一个语义代码;
+  \item \verb+<lire.>+: 识别所有包含 \verb+lire+的词条作为标准形式。
+  	  这个词汇掩模在上一种情况中不是歧义的;
+  \item \verb+<be.V>+: 识别所有包含 \verb+lire+和语法代码\verb+V+的词条，作为标准形式;
+  \item \verb+<V>+: 识别所有包含语法代码 \verb+V+的词条。
+  	   这个词汇掩模是歧义的如同第一种情况。 为了消除歧义性, 我们可以使用
+  	  \verb+<.V>+ 或者\verb$<+V>$;
+   \index{Étiquette lexicale}
+\item \verb+{lirons,lire.V}+ 或者 \verb+<lirons,lire.V>+: 识别所有包含
+	\verb+lir-+\newline\verb+ons+ 的词条作为屈折形式,包含 \verb+lire+的词条作为标准形式和包含语法代码
+  \verb+V+. 如果您在文本自动机进行了说明词的多义性工作，这种类型的词汇掩模是唯一有用。
+  \index{Texte!automate du}\index{Automate!du texte} 当我们搜索一篇文章时, 这个掩模和标记 \verb+lirons+识别相同的东西。
+\end{itemize}
+
+\subsection{语法和语义约束}
+
+前面的词汇掩模的例子是简单的。为了表达更为复杂的模式，在语法，语义代码中间用\verb$+$分隔开。如果有很多代码, 符号 \verb$+$ 可以解释成 `'和''~:在字典中一个词条只有当它所有的代码都包括在掩模中，才能被识别。
+  掩模\verb$<N+z1>$ 识别这些词条 :
+
+\bigskip
+\noindent
+\texttt{broderies,broderie.N+z1:fp}
+
+\noindent
+\texttt{capitales europ\'eennes,capitale europ\'eenne.N+NA+Conc+HumColl+z1:fp}
+
+\bigskip
+\noindent 不识别:
+
+\bigskip
+\noindent
+\texttt{Descartes,Ren\'e Descartes.N+Hum+NPropre:ms}
+
+\noindent
+\texttt{habitu\'e,.A+z1:ms}
+
+\bigskip
+\noindent 我们可以排除代码，让在它之前加上字符\verb+~+
+而不用 \verb$+$.\index{Exclusion des codes grammaticaux et sémantiques}\index{\verb+~+}
+\index{Négation!d’une propriété}
+为了被识别,一个词条必须包括所有掩模所要求的代码, 不包含任何它禁止的代码. 举个例子, \verb$<A~z3>$ 识别所有包含代码\verb+A+，而不包含代码\verb+z3+的词条 (cf. table~\ref{tab-semantic-codes})\footnote{Si les dictionnaires décrivent un
+mot par deux entrées dont une avec \texttt{A+z3} et l'autre avec seulement \texttt{A}, ce mot est
+reconnu par \texttt{<A+z3>} à cause de la première entrée et par
+\texttt{<A{\textasciitilde}z3>} à cause de l'autre.}.
+如果我们想要搜索一个包含字符 \verb$~$的代码,我们需要在它前面加一个字符\verb+\+.
+
+\bigskip
+\noindent 注：2.1版本之前，否定运算符是减号。如果想  要
+使用旧图不加修改，需要在命令行加\verb+Locate+和操作\verb+-g minus+。
+
+\bigskip
+\noindent 词汇掩模的句法在语法码(table~\ref{tab-grammatical-codes})和语义码(table~\ref{tab-semantic-codes})之间没有差别。在DELAF电子词典里，语法码是那些出现在第一个和编码语法范畴，但在Unitex的词汇掩模中，语法码和语义码的出现顺序不重要。以下三个词汇掩模是等价的：
+
+\begin{verbatim}
+<N~Hum+z1>
+<z1+N~Hum>
+<~Hum+z1+N>
+\end{verbatim}
+
+\noindent 一个词汇掩模可以包含语义码而没有语法范畴的代码。 
+
+\bigskip
+\noindent 注意：使用只有禁止码的掩模是不可以的。 
+\verb+<~N>+ 和 \verb+<~A~z1>+是不正确的掩模。但是，你可以运用上下文解释这个约束。(见章节~\ref{section-contexts}).
+
+
+\subsection{屈折限制}
+\index{Contraintes flexionnelles}
+另外，也可以指定有关屈折代码约束。这些限制都必须先通过至少一个语法或语义代码。他们遵循相同格式的约束，由字典中的屈折代码组成。
+以下是一些使用屈折限制的词汇掩模的例子：
+
+
+\begin{itemize}
+  \item \verb+<A:m>+ 识别一个阳性的形容词~;
+  \item \verb+<A:mp>+ 识别一个阳性复数形容词。
+\end{itemize}
+
+\noindent 屈折代码由字母引入\verb+:+有一个或多个字母构成，而且每个字母传达一个信息。先从一个单独屈折代码组成的词汇条目和掩模的简单情况开始。为了词条条目 $E$被掩模$M$识别,需要$E$的
+屈折代码中包含了$M$的屈折代码中的所有字符~:
+
+\bigskip
+$E$=\verb$sépare,séparer.V:Y2s$
+
+$M$=\verb$<V:Y2>$
+
+\bigskip
+\noindent $E$的\verb+Y2s+ 包括字符\verb+Y+ 和 \verb+2+。 $E$至少包括一个\verb+Y2+, 词汇掩模 $M$ 识别条目 $E$。
+
+\bigskip
+\noindent屈折代码内部字符的顺序是无关紧要的。所有的语法和语义代码必须先于屈折代码。 
+
+\bigskip
+\noindent 如果几个屈折码存在于一个词法掩模, 符号 \verb+:+ 表示 `'或''~:
+
+\begin{itemize}
+  \item \verb+<A:mp:f>+ 同时匹配 \verb+<A:mp>+和 à \verb+<A:f>+~; 它识别要么阳性复数形容词，要么阴性形容词~;
+  % FIXME()
+  %\item \verb+<V:2:3>+ 识别第 2{\ieme}人称或第 3{\ieme} 人称;排除了既没有第二或第三人称（不定式，过去分词和现在分词）的所有时态以及以第一人称变位的时态。 
+\end{itemize}
+
+\noindent 为了一个字典词条 $E$ 被掩模$M$识别,需要$E$中的至少
+一个屈折代码包含$M$的至少一种屈折代码的所有字符。
+考虑以下的例子:
+
+\bigskip
+$E$=\verb$sépare,séparer.V:W:P1s:P3s:S1s:S3s:Y2s$
+
+$M$=\verb$<V:P2s:Y2>$
+
+\bigskip
+\noindent 没有同时包含\verb+P+, \verb+2+和\verb+s+的屈折代码
+$E$。然而,$E$代码\verb+Y2s+ 却包含字符 \verb+Y+ 和 \verb+2+。代码 \verb+Y2+ 至少包括一个代码$E$,因此词汇掩模
+$M$ 能识别条目 $E$。
+
+
+\subsection{词汇掩模的否定}
+\index{Négation!d’un masque lexical}
+\index{\verb+"!+}
+可以通过排列字符~\verb+!+于字符~\verb+<+后面来否定词汇掩模。  否定是可能的在掩模 \verb+<WORD>+, \verb+<LOWER>+,
+\verb+<UPPER>+,
+\verb+<FIRST>+\footnote{Et sur leurs équivalents dépréciés  <MOT>,<MIN>, <MAJ>,
+<PRE>. Voir section~\ref{section-special-symbols}.},
+\verb+<DIC>+  以及只包含语法，语义和屈折的词汇掩模(\textit{i.e.} \verb$<!V~z3:P3>$)。掩模\verb+#+ 和 \verb+""+彼此是否定的。 
+\index{\verb+<E>+}\index{\verb+<NB>+}\index{\verb+#+}
+掩模\verb$<!WORD>$ 能够识别所有的不由字母组成的词汇单元, 除了句子分隔符 \verb+{S}+ 和标记 \verb+{STOP}+。
+否定对 \verb+<NB>+, \verb+<SDIC>+, \verb+<CDIC>+, \verb+<TDIC>+ 和\verb+<TOKEN>+没有影响。
+
+\bigskip
+\noindent 该否定以一种特别方式解释， 当掩模是 
+\verb+<!DIC>+, \verb+<!LOWER>+, \verb+<!UPPER>+ 和
+\verb+<!FIRST>+\footnote{Et dans leurs équivalents dépréciés <MIN>, <MAJ> 和
+<PRE>时。 参考章节~\ref{section-special-symbols}.}.
+\index{\verb+<DIC>+}\index{\verb+<LOWER>+}\index{\verb+<UPPER>+}\index{\verb+<FIRST>+}
+\index{\verb+<MIN>+}\index{\verb+<MAJ>+}\index{\verb+<PRE>+}
+ 这些掩模只识别字母序列的形式，而不是识别不能被非否定掩模匹配的形式。 因此, 掩模 \verb+<!DIC>+让你找到未知词语的文本
+ (cf. figure~\ref{fig-search-<!DIC>})。这些未知的形式大多是专有名词，新词和拼写错误。
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig4-1.png}
+\caption{Résultat de la recherche du méta \texttt{<!DIC>}\label{fig-search-<!DIC>}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 词汇掩模的否定 例如 \verb+<V:G>+ 能匹配所有词，除了能被该掩模匹配的词。 然而,掩模 \verb+<!V:G>+无法识别英文形式 \emph{being},即使存在于词典同名非动词条目：
+
+
+\begin{verbatim}
+being,.A
+being,.N+Abst:s
+being,.N+Hum:s
+\end{verbatim}
+\index{Mots!inconnus}
+
+\noindent 下面是不同约束类型的词汇掩模例子:
+
+\begin{itemize}
+  \item \verb$<A~Hum:fs>$ : adjectif non humain au féminin singulier;
+  \item \verb+<lire.V:P:F>+ : le verbe \textit{lire} au présent ou au futur;
+  \item \verb$<suis,suivre.V>$ : le mot \textit{suis} en tant que forme conjuguée du verbe
+  	  \textit{suivre}
+  	  (par opposition à la forme du verbe \textit{être});
+  \item \verb$<facteur.N~Hum>$ : toutes les entrées nominales ayant \textit{facteur} comme forme
+  	  canonique et ne possédant pas le code sémantique \verb+Hum+;
+  \item \verb$<!ADV>$ : tous les mots qui ne sont pas des adverbes;
+  \item \verb$<!WORD>$ : tous les caractères qui ne sont pas des lettres, sauf le séparateur de
+  	  phrases
+  	  (voir figure~\ref{fig-search-<!WORD>}). Ce masque ne reconnait pas le séparateur de phrase
+  	  \verb+{S}+
+  	  ni le tag \verb+{STOP}+.
+  	  \index{\verb+{S}+}\index{Séparateur!de phrases}\index{\verb+{STOP}+}
+\end{itemize}
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig4-2.png}
+\caption{Résultat de la recherche du méta
+\texttt{<!WORD>}\label{fig-search-<!WORD>}}
+\end{center}
+\end{figure}
+
+\section{级联}
+\index{Concaténation d'expressions rationnelles}\index{\verb+.+}\index{Opérateur!concaténation}
+
+有三种连接正则表达式的方法。第一种使用由点表示的级联运算符。 因此,表达式如下:
+
+\begin{verbatim}
+<DET>.<N>
+\end{verbatim}
+
+\noindent 识别一个由名词跟着的限定词。该空间也可以用于级联，以及空字符串。
+以下为表达式例子： 
+
+
+\begin{verbatim}
+le <A> chat
+le<A>chat
+\end{verbatim}
+
+\noindent 识别词汇单位\textit{le}, 后面跟着的是形容词和词汇
+单位\textit{chat}。括号\index{Parenthèses}被用作正则表达式的分隔符。
+以下表达式都是等效的:
+
+
+\begin{verbatim}
+le <A> chat
+(le <A>)chat
+le.<A>chat
+(le).<A> chat
+(le.(<A>)) (chat)
+\end{verbatim}
+
+\section{合并}
+\index{Union d'expressions rationnelles}\index{\verb$+$}
+\index{Opérateur!disjonction}
+正则表达式的合并通过字符\verb$+$分隔开。 
+表达式:
+
+\begin{verbatim}
+(je+tu+il+elle+on+nous+vous+ils+elles) <V>
+\end{verbatim}
+
+\noindent
+识别代词后跟一个动词。如果在表达式中的元素是可选的，它足以使用该元素和空字符的联合。 
+\index{\verb+<E>+} 例子:
+
+\bigskip
+\noindent \verb$le(petit+<E>)chat$ 识别序列 \textit{le chat}
+和 \textit{le petit chat}
+
+\smallskip
+\noindent \verb$(<E>+franco-)(anglais+belge)$ 识别 \textit{anglais}, \textit{belge},
+\textit{franco-anglais} 和\textit{franco-belge}
+
+\section{Kleene星号}
+\index{Étoile de Kleene}\index{\verb+*+}\index{Opérateur!étoile de Kleene}\index{Opérateur!itération}
+Kleene星号, 由符号 \verb+*+表示,可以识别零,出现一个或多个在表达式中。星号应该位于相关元素的右边.
+表达式 :
+
+
+\begin{verbatim}
+il fait très* froid
+\end{verbatim}
+
+\noindent 识别 \textit{il fait froid}, \textit{il fait très froid},
+\textit{il fait très très froid}, 等等. 星号较其他运算符有较
+高优先级。为了在复杂的表达式中使用星号，需要使用括号。 
+表达式 :
+
+
+\begin{verbatim}
+0,(0+1+2+3+4+5+6+7+8+9)*
+\end{verbatim}
+
+\noindent 识别零, 后跟一个逗号和一串空数字。
+
+\bigskip
+\noindent 注意 : 禁止用正则表达式搜索空词。如果我们尝试查找 
+\verb$(0+1+2+3+4+5+6+7+8+9)*$, 系统将报错，
+如图~\ref{fig-epsilon-error}。
+
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig4-3.png}
+\caption{Erreur lors de la recherche d’une expression reconnaissant le mot vide \label{fig-epsilon-error}}
+\end{center}
+\end{figure}
+
+
+\section{形态滤波器}
+\label{section-filters}
+\index{Filtre morphologique}
+
+将形态滤波器用于词汇单位的查找是可能的。为此, 有必要立即跟随
+由在双括号的滤波器中找到的词汇单位：
+
+
+\bigskip
+\noindent
+\textit{motif}\verb$<<$\textit{motif morphologique}\verb$>>$ \\
+
+
+\bigskip\index{Expression régulière}\index{Expression rationnelle}\index{POSIX}
+\noindent 该形态滤波器表示为POSIX格式的正则表达式(见 \cite{TRE} 详细语法). 下面是基本过滤器的一些例子:
+
+
+
+
+\begin{itemize}
+  \item \verb$<<ss>>$: 包含 \verb$ss$
+  \item \verb$<<^a>>$: 开始于 \verb$a$
+  \item \verb+<<ez$>>+: 以 \verb$ez$结束
+  \item \verb$<<a.s>>$: 包含 \verb$a$ 后跟任何一个字符,  后跟 \verb$s$
+  \item \verb$<<a.*s>>$: 包含 \verb$a$ 后跟任何多个字符, 后跟\verb$s$
+  \item \verb$<<ss|tt>>$: 包含 \verb$ss$ 或者 \verb$tt$
+  \item \verb$<<[aeiouy]>>$: 包含无重音符号原音
+  \item \verb$<<[aeiouy]{3,5}>>$: 包含一串无重音符号原音, 其长度在3到5之间
+  \item \verb$<<es?>>$: 包含 \verb$e$ 后可跟一个字符 \verb$s$ 
+  \item \verb$<<ss[^e]?>>$: 包含 \verb$ss$ 后跟非原音字符 \verb$e$
+\end{itemize}
+
+\bigskip
+\noindent 可以组合这些基本过滤器，以形成更复杂的过滤器:
+
+\begin{itemize}
+\item \verb+<<[ai]ble$>>+: 结束于 \verb$able$ 或者 \verb$ible$
+\item \verb$<<^(anti|pro)-?>>$: 开始于 \verb$anti$ 或者 \verb$pro$, 后可跟一个破折号
+  \item \verb+<<^([rst][aeiouy]){2,}$>>+: 由两个或更多词组成的，由 \verb$r$, \verb$s$ 或者\verb$t$
+  开头，后跟一个无重音符号原音。
+  \item \verb!<<^([^l]|l[^e])>>!: 不由 \verb$l$开头或者第二个词不是\verb$e$,也就是说无论什么词除了\verb$le$开头的。这种限制更好的说明在章节(见~\ref{section-contexts})。
+\end{itemize}
+
+\noindent 一般情况下,单独一个形态滤波器被认为是将其应用于词汇掩模\verb$<TOKEN>$, 也就是说无论什么词汇单元除了空格和
+\verb+{STOP}+。
+另一方面，当过滤器紧跟一个词汇掩模，它适用于由词法掩模识别的。这里有这样的组合的一些例子：
+
+
+
+\begin{itemize}
+  \item \verb+<V:K><<i$>>+: 过去分词由 \verb$i$结尾
+  \item \verb!<CDIC><<->>!: 复合词中包含破折号
+  \item \verb!<CDIC><< .* >>!: 含有至少两个空格的复合词
+  \item \verb!<A:fs><<^pro>>!:由\verb$pro$开始的阴性单数形容词
+  \item \verb!<DET><<^([^u]|(u[^n])|(un.+))>>!:不同于 \verb$un$的限定词
+  \item \verb+<!DIC><<es$>>+: 不在字典里的词而且结束于
+  \verb$es$
+  \item \verb!<V:S:T><<uiss>>!:包含\verb$uiss$的现在、过去虚拟式动词
+\end{itemize}
+
+\noindent \index{Respect!de la casse}\index{Respect!des minuscules/majuscules}标记 : 一般情况下,默认情况下，形态滤
+波器受词汇掩模一样的变化。 因此,过滤器 \verb$<<^é>>$  能识别
+所有\texttt{é,}，\texttt{E} 或 \texttt{É}开头的单词。为了增
+强严格遵守过滤器的容量，需要在过滤后立即加上\verb+_f_+。 例子 : \verb+<A><<^é>>_f_+.
+
+
+
+\section{搜索}
+\index{Configuration de la recherche}
+\subsection{搜索配置}
+\label{section-configuration-recherche}
+为了搜索一个表达式, 首先需要打开一篇文章 (见章节~\ref{chap-text})。 然后点击 "Locate Pattern..."在菜
+单"Text"中。 窗口如图片所示~\ref{fig-regexp-search-configuration} 
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8.8cm]{resources/img/fig4-4.png}
+\caption{Fenêtre de recherche d’expressions\label{fig-regexp-search-configuration}}
+\end{center}
+\end{figure}
+
+\noindent "Locate Pattern"框让您可以选择正则表达式或者一
+个语法。 点击 "Regular expression"。
+
+
+\bigskip
+\noindent  "Index"框可以选择识别模式： 
+
+\bigskip
+\index{Shortest matches}\index{Longest matches}\index{All matches}
+\index{Occurrences!les plus courtes}\index{Occurrences!les plus longues}\index{Occurrences!toutes}
+\begin{itemize}
+  \item "Shortest matches" : 优先考虑最短序列。
+  	  比如, 如果程序识别这两个序列 \textit{very hot chili} 和\textit{very hot}, 第一个会被丢弃;
+  \item "Longest matches" : 优先考虑最长序列。 这是默认模式;
+  \item "All matches" : 考虑所有识别出的序列。
+\end{itemize}
+
+\bigskip
+\noindent  "Search limitation"框用于限制一个特定的情况数量。  默认情况,搜索情况数量是 200 。
+\index{Occurrences!nombre}
+
+\bigskip
+\noindent  "Grammar outputs"的选项和正则表达式无关。具体情况描述于章节 
+~\ref{section-applying-graphs-to-text}. 同样为了选项标签
+"Advanced options"(见章节\ref{section-advanced-search-options})。
+
+\bigskip
+\noindent 在 "Search algorithm"框, 我们规定如果我们想对文章用程序\verb+Locate+进行搜索，或者在自动程序 \verb+LocateTfst+。默认情况下使用程序\verb+Locate+。如果你想使用\verb+LocateTfst+, 可阅读章节 \ref{section-locate-tfst}。
+
+\bigskip
+\noindent 输入表达式，然后单击"Search"以开始搜索。Unitex将表达式转变成了一种\verb+.grf+\index{Fichier!\verb+.grf+}格式的语法。此语法将被编译成格式\verb+.fst2+\index{Fichier!\verb+.fst2+} 的语法，这将是用于程序搜索。
+
+
+\subsection{显示结果}
+\label{section-display-occurrences}
+一旦搜索结束, 窗口如图~\ref{fig-search-results}出现, 指出找到的匹配个数,识别的词汇单位的总数,和它占文章词汇单位总数的比例。
+
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=6.5cm]{resources/img/fig4-5.png}
+\caption{Résultats de la recherche \label{fig-search-results}}
+\end{center}
+\end{figure}
+
+\noindent 点击 "OK"后, 您将会看到窗口如图
+\ref{fig-configuration-concordance} 它显示匹配的事件。您也可以通过点击"Display Located Sequences..." 在菜单 "Text"来显示该窗口。
+我们把\textit{concordance}\index{Concordance}叫做事件清单。
+
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-6.png}
+\caption{Configuration de l’affichage des occurrences trouvées\label{fig-configuration-concordance}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent "Modify text"让我们有可能把找到的事件替换成最终输
+出。这在章节~\ref{chap-advanced-grammars}提到。
+
+\bigskip
+\noindent Le cadre "Extract units"让你可以用所有包含或不包含
+匹配单元的句子来创建一个文本文件。  按钮 "Set File"让你选择
+输出文件。然后点击 "Extract matching units" 或 "Extract unmatching units" 取决于你是否喜欢句子包含匹配单元或否。
+
+
+\bigskip
+\noindent 在 "Show Matching Sequences in Context"框,你可以选择匹配单元显示的左右边文章字符长度。如果匹配具有比文章右部更少的字符,这行将会以必要字符显示。如果匹配具有比文章右部更多的字符，它会被完全显示出来。 
+
+
+\bigskip
+\noindent 注：在泰国，上下文的大小是由可显示的字符衡量的，而不是实际的字符，这有利于保持匹配单元行的直线性，尽管连接其他字母的区别符号不是像一般字符那样显示的。 
+
+
+\index{Tri!de concordance}
+\index{Contexte!concordance}
+\bigskip
+\noindent 您可以在"Sort According to"中选择排序顺序。"Text Order" 模式按事件在文章出现的顺序显示。其他六种模式允许列的排列。行的三个区域分别是左侧文本，匹配事件，右侧文本。匹配事件和右侧文本从左向右排序。左侧文本从右向左排序。使用的默认模式是 "Center, Left Col."。索引生成HTML.\index{Fichier!HTML}
+格式的文件。
+
+\bigskip
+\noindent 如果一个索引对应上千个事件，它最好用一个浏览器来显示  (Firefox \cite{Firefox}, Netscape \cite{Netscape}, 
+Internet Explorer, 等等.).\index{Navigateur web}
+\newline
+然后选择 "Use a web browser to view the concordance" (参见图
+	~\ref{fig-configuration-concordance}).
+	当事件超过3000，该选项将默认自动执行。为了自定义使用的浏览器, 点击 "Preferences..." 在菜单 "Info"。单击选项卡 "Text Presentation" 然后在"Html Viewer" 选择使用的程序。
+ (参见图~\ref{fig-browser-selection}).
+
+\bigskip
+\noindent \index{Cadre des concordances} 如果你选择在Unitex内部打开索引，\ref{fig-example-concordance}。 
+选项 "Enable links"默认运行，以保证匹配事件的超链接。 而且, 当我们点击一个事件,文本窗口被打开，相应的序列被突出显示。此外，如果文本可自动建立，如果此窗口未图标化，包含索引的句子自动器将被装载。如果我们选择选项"Allow concordance edition", 我们不能点击索引, 但是我们可以作为文本修改它。可以用光标移
+动它,如果我们要处理大量的文章，使用索引会变得很方便。
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8cm]{resources/img/fig4-7.png}
+\caption{选择一个浏览器来显示词汇索引\label{fig-browser-selection}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=18cm]{resources/img/fig4-8.png}
+\caption{一致性的例\label{fig-example-concordance}}
+\end{center}
+\end{figure}
+
+\clearpage
+\subsection{统计}
+\label{section-statistics}
+如果我们在``Located sequences..''选择 ``Statistics'' ,
+显示如图的面板~\ref{fig-statistics}。该面板可以让你从之前的索引序列中得到一些统计数据。 
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-9.png}
+\caption{Panneau statistiques \label{fig-statistics}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 在面板 ``Mode''，你可以选择你想要的统计方式： 
+\begin{itemize}
+  \item 搭配词由频率: 指出文章中的词汇单元在匹配文章
+  \item 搭配词由Z值: 同上,  ( 在匹配文章和整个文库的匹配
+  词的数量, 搭配词的Z值)
+  \item 上下文由频率: 指出在左右侧文本词汇单元 (见下文)。 ``count'' 是识别序列的匹配的总数
+\end{itemize}
+
+\bigskip
+\noindent 在第二个面板, 我们选择左右侧文本的长度为了使用无空格标记。
+注意: 这个上下文的概念和语法的不同。
+
+
+\bigskip
+\noindent 在最后一个面板, 我们可以允许或不允许大小写转换.
+在允许的情况下, \verb$the$ 和 \verb$THE$ 是同样的词汇单元, 计数总和是 \verb$the$的总数加上\verb$THE$的总数。
+
+\bigskip
+\noindent 下图显示了在计算各模式的查询统计
+\verb$<have>$ 于 \verb$ivanhoe.snt$.
+
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-10.png}
+\caption{事件的背景下+左+右+上下文匹配数\label{fig-statistics-mode0}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=11cm]{resources/img/fig4-11.png}
+\caption{搭配\label{fig-statistics-mode1}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig4-12.png}
+\caption{collocate, count et d'autres informations\label{fig-statistics-mode2}}
+\end{center}
+\end{figure}

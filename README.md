@@ -25,6 +25,10 @@ Start cloning the GitHub repository:
 
     cd tex
     make -f Makefile_FR_utf8
+
+### Chinese (Simplified)
+    cd tex
+    make -f Makefile_ZH_utf8
     
 ### Other options
 
