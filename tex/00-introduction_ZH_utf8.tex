@@ -1,181 +1,126 @@
-\chapter*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{介绍}
+\addcontentsline{toc}{chapter}{介绍}
 
-Unitex est un ensemble de logiciels permettant de traiter des textes en langues naturelles en
-utilisant des ressources linguistiques. Ces ressources se présentent sous la forme de dictionnaires
-électroniques, de grammaires et de tables de lexique-grammaire. Elles sont issues de travaux initiés
-sur le français par Maurice Gross au Laboratoire d’Automatique Documentaire et Linguistique (LADL)
-. \index{LADL} Ces travaux ont été étendus à d’autres langues au travers du réseau de laboratoires
-RELEX.
+Unitex是一个使用语言资源，来处理自然语言文本的软件包。这些资源以电子字典，语法，词汇语法表的形式存在。  他们由法语开始，由自动化文献和语言学实验室(LADL)的Maurice Gross建立。 
+. \index{LADL} 这项工作是通过RELEX实验室网络扩展到其他语言。
+\bigskip
+\noindent 电子字典描述某种语言的简单词和复合词，以相关的原型或是语义和屈折代码。这些字典的存在，表明了与普通搜索模式工具的主要差别，因为我们可以参考其包含信息，以很简单的方式描述不同种类的词。这些字典都是以DELA形式，被多国语言团队开发成几种语言（法语，英语，希腊语，意大利语，西班牙语，德语，泰语，韩语，波兰语，挪威语，葡萄牙语，等...）。
 
 \bigskip
-\noindent Les dictionnaires électroniques décrivent les mots simples et composés d’une langue en
-leur associant un lemme ainsi qu’une série de codes grammaticaux, sémantiques et flexionnels. La présence de ces dictionnaires constitue une différence majeure par rapport aux outils
-usuels de recherche de motifs, car on peut faire référence aux informations qu’ils contiennent
-et ainsi décrire de larges classes de mots avec des motifs très simples. Ces dictionnaires sont
-représentés selon le formalisme DELA et ont été élaborés par des équipes de linguistes pour
-plusieurs langues (français, anglais, grec, italien, espagnol, allemand, thaï, coréen, polonais,
-norvégien, portugais, etc...).
-
+\noindent 这里使用的语法是递归转移网络（RTN）的基础上的语言现象，一个与有限状态自动机密切相关的形式化。大量研究显示自动机为语言问题的大量研究显示自动机为语言问题的一致性
+从词法和句法的音标问题的所有描述的水平。与Unitex共同创建的语法使用甚至比自动更强大的形式主义进一步落实这一做法。这些语法被表示为使得用户能够容易地创建和更新的图像。
+\bigskip
+\noindent词汇，语法表是描述一些词性质矩阵。许多这样的表已构建了法语所有简单的动词作为描述及其相关语法属性的一种方式。经验表明，每字具有几乎唯一的行为，而这些表是呈现每个元素的语法于词典的一个方法，故名词典 - 语法为此语言理论。Unitex提供了一种从词汇，语法表自动构建语法的方法。 
 
 \bigskip
-\noindent Les grammaires sont des représentations de phénomènes linguistiques par réseaux de
-transitions récursifs (RTN), un formalisme proche de celui des automates à états finis. De
-nombreuses études ont mis en évidence l’adéquation des automates aux problèmes linguistiques et ce,
-aussi bien en morphologie qu’en syntaxe ou en phonétique. Les grammaires manipulées par Unitex
-reprennent ce principe, tout en reposant sur un formalisme encore plus puissant que les automates.
-Ces grammaires sont représentées au moyen de graphes que l’utilisateur peut aisément créer et
-mettre à jour.
-
-\bigskip
-\noindent Les tables de lexique-grammaire sont des matrices décrivant les propriétés de certains
-mots. De telles tables ont été élaborées pour tous les verbes simples du français dont elles
-décrivent les propriétés syntaxiques. L’expérience ayant montré que chaque mot a un comportement
-quasi unique, ces tables permettent de donner la grammaire de chaque élément de lexique, d’où le nom
-de lexique-grammaire. Unitex permet de construire des grammaires à partir de telles tables.
-
-\bigskip
-\noindent Unitex est un moteur permettant d’exploiter ces ressources linguistiques. Ses
-caractéristiques techniques sont la portabilité, la modularité, la possibilité de gérer des langues
-possédant des systèmes d’écritures particuliers comme certaines langues asiatiques et l’ouverture,
-grâce à une distribution en logiciel libre. Ses caractéristiques linguistiques sont celles
-qui ont motivé l’élaboration des ressources : la précision, l’exhaustivité et la prise en compte
-des phénomènes de figement, notamment en ce qui concerne le recensement des mots com-
-posés.
+\noindent Unitex可以被看作是一个工具，其中可以导入语言资源，并使用它们。其技术特点是它的便携性，模块化，处理使用特殊的书写系统（如许多亚洲语言）语言的可能性，以及它的开放性，这要归功于其开源分发。其语言特征是具有的那些促使这些资源的制定：精密，完整性，以及要考虑到词组的情况，最明显的是涉及复合词。
 
 
 
 
-\section*{Quoi de neuf depuis la version 3.0 ?}
-\addcontentsline{toc}{section}{Quoi de neuf depuis la version 3.0 ?}
-Voici les principales nouvelles fonctionnalités:
+\section*{3.0版本新内容是什么?}
+\addcontentsline{toc}{section}{3.0版本新内容是什么?}
+以下是主要的新特性:
 \begin{itemize}
 
-  \item Moteur plus rapide qui utilise moins de pile.
-  \item Version améliorée de \verb$CasSys$~:
-  nouveaux fichiers \verb$csc$,
-  ouverture de cascade possible aussi avec le menu \verb$FSGraph$,
-  suppression du répertoire \verb$Share$,
-  application de graphe jusqu'au point fixe, graphes génériques,
-  redénormalisation du dernier fichier
-  (chapitre \ref{chap-cassys}).
-  \item Introduction du malgache.
-  \item Publication de \verb$main_UnitexTool_C$ comme API publique.
-  \item Version améliorée de l'éditeur de graphes~: sélection et édition des boites, ouverture, sauvegarde, exportation comme image (\ref{section-editing-graphs}, \ref{exporting-graphs}).
-  \item Les commandes non applicables des menus sont maintenant grisées.
-  \item Introduction de l'opérateur \verb$<n.LEMMA>$ pour la flexion en mode sémitique (non encore documenté).
-  \item Introduction d'une liste de graphes et corpus récemment ouverts.
-  \item Introduction d'une liste de fenêtres ouvertes.
-  \item Compatibilité améliorée avec Ruby.
-  \item Introduction de \verb$InstallLingResourcePackage$, un outil qui installe un paquetage de ressources et de scripts dans un environnement cible (non encore documenté).
-  \item Introduction de \verb$RunScript$, qui exécute dans l'environnement cible des scripts installés par \verb$InstallLingResourcePackage$ (non encore documenté). Avec ces deux outils, on peut mettre au point des opérations Unitex dans un environnement et les déployer dans un autre.
-  \item Introduction de l'option "match word boundaries" dans l'algorithme de recherche par intersection d'automates (\ref{section-locate-tfst})~: avec cette option, active par défaut pour la plupart des langues, \textit{enlever} and \textit{en lever} ne matchent pas (non encore documenté).
-  \item Suivi amélioré des offsets, c'est-à-dire de la différence entre les adresses d'une même position dans un corpus suivant différentes versions du corpus (\ref{section-DumpOffsets}).
-  \item Compilation quotidienne d'exécutables pour Windows (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+).
-  \item Installateurs automatiques pour toutes ces plates-formes.
+  \item 使用更少栈引擎速度更快。
+  \item 更新\verb$CasSys$~版本，新的\verb$csc$文件，菜单\verb$FSGraph$用于\verb$Share$目录的压制，打开级联，应用到定点的，通用的图形，最后一个文件可能不规范（第\ref{chap-cassys}章）。
+   \item malgache的介绍。
+  \item \verb$main_UnitexTool_C$的公共方法作为公共API。
+  
+  \item 增强图形编辑器版本：框中选择，编辑框中，打开，保存，导出为
+图像(\ref{section-editing-graphs}, \ref{exporting-graphs})。
+  
+  \item 不适用的菜单项现在为灰。
+  \item 操作\verb$<n.LEMMA>$的介绍，用于犹太语的词形变化 (目前无文档)。
+  \item 最近打开的图形和语料库的列表介绍。
+  \item 打开的窗口列表的介绍。
+  \item 使用Ruby增强兼容性。
+  \item \verb$InstallLingResourcePackage$的介绍,安装资源包和脚本到目标环境的工具（但没有文件）。 
+  \item  \verb$RunScript$的介绍,在目标环境中运行\verb$InstallLingResourcePackage$ 安装的脚本（目前无文件）。使用这两项工具，用户可以在环境中实施Unitex的操作和部署它们于另一个。
+  \item  自动机搜索算法中"match word boundaries"选项的介绍(\ref{section-locate-tfst})~: 此选项在默认情况下，对大多数语言启用。\textit{enlever}不等同于\textit{en lever}（目前无文件）。
+  \item 在不同版本语料库中对给定位置语料库的地址之间的偏移增强跟踪。(\ref{section-DumpOffsets}).
+  
+  \item 适用于Windows的日常可执行汇编 (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+).
+  \item 提供了所有目标平台上的安装设置。
 
 \end{itemize}
 
 \bigskip
-\noindent IMPORTANT: certains formats de fichiers ayant été changés et de nouveaux ayant été
-ajoutés, nous vous recommandons d'effectuer un nouveau prétraitement de vos textes en particulier si
-vous utilisez l'automate du texte.
+\noindent 注意: 文章的一些格式已经被修改或增加，我们建议重新预处理您的文本尤其是如果您使用了文本自动机。
 
 \clearpage
 
-\section*{Contenu}
-\addcontentsline{toc}{section}{Content}
-\noindent Le chapitre \ref{chap-install} décrit comment installer et lancer Unitex.
+\section*{内容}
+\addcontentsline{toc}{section}{内容}
+\noindent \ref{chap-install}章节描述如何安装运行Unitex。
 
-\bigskip \noindent Le chapitre \ref{chap-text} présente les différentes étapes de l'analyse d'un
-texte.
+\bigskip \noindent  \ref{chap-text}章节表示文档分析的各个阶段。 
+\bigskip \noindent \ref{chap-dictionaries}章节描述了DELA电子词典可被应用于它们的各种操作的形式。
 
-\bigskip \noindent Le chapitre \ref{chap-dictionaries} décrit le formalisme 
-des dictionnaires électroniques DELA et les différentes opérations qui peuvent leur être appliqués.
+\bigskip \noindent \ref{chap-regexp} 和 \ref{chap-grammars}章节
+呈现不同的方式来搜索文本模式。
+\ref{chap-grammars}章节描述图形编辑器的使用细节。
+\bigskip \noindent ref{chap-advanced-grammars}章节致力于不同的用途语法。每种类型的语法的特殊性介绍。
 
-\bigskip \noindent Les chapitres \ref{chap-regexp} et \ref{chap-grammars}
-présentent les différents moyens d’effectuer des recherches de motifs dans des textes.
-Le chapitre \ref{chap-grammars} décrit en détail l'utilisation de l'éditeur de graphe.
+\bigskip \noindent \ref{chap-text-automaton}章节介绍文字自动机的概念，并介绍了这一概念的属性。本章还介绍了操作对象，特别是如何消除歧义与ELAG程序词项。
 
-\bigskip \noindent Le chapitre \ref{chap-advanced-grammars} est consacré aux différentes
-utilisations possibles des grammaires. Les particularités de chaque type de grammaires y sont
-présentées.
+\bigskip \noindent  \ref{chap-lexicon-grammar}章节包含了词库文法表，以及基于这些表的语法结构的方法的说明。 
 
-\bigskip \noindent Le chapitre \ref{chap-text-automaton} présente le concept d'automate du texte 
-et décrit les propriétés de cette notion. Ce chapitre  décrit également les opérations sur cet
-objet, en particulier, comment désambiguiser les items lexicaux avec le programme ELAG.
+\bigskip \noindent  \ref{chap-alignment}章节描述了基于xalign工具的文本的对齐模块。
+\bigskip \noindent \ref{chap-multiflex}章节描述了词组的词形变换模型，作为单词词性变换模型的补充，在\ref{chap-dictionaries}章节中有所介绍。 
 
-\bigskip \noindent Le chapitre \ref{chap-lexicon-grammar} contient une présentation des tables du
-lexique-grammaire, et la description d'une méthode de construction de  grammaires fondées sur ces
-tables.
+\bigskip \noindent  \ref{chap-cassys}章节描述了CasSys转换器的级联系统。
 
-\bigskip \noindent Le chapitre \ref{chap-alignment} décrit le module d'alignement de texte basé sur
-l'outil XAlign.
+\bigskip \noindent Le chapitre \ref{chap-external-programs} 包含组成Unitex系统的外部程序细节说明。
+\bigskip \noindent \ref{chap-file-formats}章节包含所有Unitex使用的文件格式说明。
 
-\bigskip \noindent Le chapitre \ref{chap-multiflex} décrit le module de flexion des mots composés,
-en tant que complément du système de flexion des mots simples, présenté au chapitre
-\ref{chap-dictionaries}.
+\bigskip \noindent 
+读者可以在Unitex发布的源代码上找到LGPL附属协议和适用于语言数据的LGPLLR协议。还可以发现适用于TRE库的2-clause BSD协议，运用在Unitex的形态滤波器中。
 
-\bigskip \noindent Le chapitre \ref{chap-cassys} décrit le système de cascade de transducteur
-CasSys.
-
-\bigskip \noindent Le chapitre \ref{chap-external-programs} contient une description détaillée des
-programmes externes qui composent le système Unitex.
-
-\bigskip \noindent Le chapitre \ref{chap-file-formats} contient une description de tous les formats
-de fichiers utilisés par Unitex.
-
-
-\bigskip \noindent Le lecteur trouvera en annexe la licence LGPL sous  laquelle le code source
-Unitex est diffusé, ainsi que la licence LGPLLR qui s'applique pour les données linguistiques
-distribuées avec Unitex. Il y trouvera aussi la licence 2-clause BSD qui s'applique à la
-bibliothèque TRE, utilisée par Unitex pour les filtres morphologiques.
 
 \clearpage
 
-\section*{Contributions à Unitex}
-\addcontentsline{toc}{section}{Unitex contributeurs}
-Unitex est né comme un pari sur la puissance de la philosophie Open Source dans le monde
-universitaire (voir \url{http://igm.univ-mlv.fr/~unitex/why_unitex.html}), en s'appuyant sur l'hypothèse que les gens seraient intéressés à partager leurs connaissances et leurs compétences dans un tel projet ouvert.
+\section*{对Unitex的贡献}
+\addcontentsline{toc}{section}{Unitex 贡献者}
+Unitex 是作为世界开源理论动力而产生的(见 \url{http://igm.univ-mlv.fr/~unitex/why_unitex.html})基于这样的假设，人们将有兴趣在这样一个开放的项目分享他们的知识和技能。
+
+
+
 %The following list sounds like Open Source is good for science:
 
 \begin{itemize}                   
-    \item Olivier Blanc: a intégré le système ELAG à Unitex, originellement conçu par Eric Laporte,
-    Anne Monceaux et certains de leurs étudiants, a également écrit \verb+RebuildTfst+ (anciennement
-     appelé \verb+MergeTextAutomaton+)
-    \item Matthieu Constant: auteur de \verb+Grf2Fst2+
-    \item Julien Decreton: auteur de l'éditeur de texte intégré à Unitex,
-    	    a aussi réalisé la fonctionnalité \verb+undo+ de l'éditeur de graphe
-    \item Claude Devis: ajout des filtres morphologiques, fondé sur la librairie TRE
-    \item Hyun-Gue Huh: auteur de l'outil de génération de dictionnaires coréens
-    \item Claude Martineau: a travaillé sur la flexion des mots simples dans \verb+MultiFlex+
-    \item Sebastian Nagel: a optimisé de nombreuses parties du code, il a également adapté
-    	    \verb+PolyLex+ pour l'allemand et le russe
-    \item Alexis Neme: a optimisé \verb+Dico+ et \verb+Tokenize+, a aussi intégré \verb+Locate+ dans \verb+Dico+ pour accepter des graphes dictionnaires
-     \item Aljosa Obuljen: auteur de \verb+Stats+
-     \item Sébastien Paumier: développeur principal
-     \item Agata Savary: auteure de \verb+MultiFlex+
-    \item Gilles Vollant: auteur de \verb+UnitexTool+, a optimisé beaucoup
-    	    d'aspects du code d'Unitex (mémoire, vitesse, compatibilité multi-compilateur, etc)
-    \item Patrick Watrin: auteur de \verb+XMLizer+, a travaillé sur l'intégration de \verb+XAlign+ à Unitex
-    \item Anthony Sigogne: auteur de \verb+Tagger+ et de \verb+TrainingTagger+
-    \item Nathalie Friburger: auteure de \verb+CaSsys+
+    \item Olivier Blanc:已经加入Unitex的ELAG系统，该系统最初由Eric Laporte设计，Anne Monceaux和她的一些学生也写了\verb+RebuildTfst+（原\verb+MergeTextAutomaton+）
+    
+
+    \item Matthieu Constant: \verb+Grf2Fst2+ 的作者
+    \item Julien Decreton:Unitex集成文本编译器的作者，也实现了图形编辑器的\verb+undo+ 功能
+    \item Claude Devis: 在TRE库上添加形态滤波器
+    \item Hyun-Gue Huh:韩文字典管理工具的作者
+    \item Claude Martineau: 在\verb+MultiFlex+
+    上处理有关简单的词形变化工作
+    \item Sebastian Nagel: 优化许多代码部分，同样适用于德语和瑞士语的 \verb+PolyLex+
+    \item Alexis Neme: 优化 \verb+Dico+ 和 \verb+Tokenize+, 
+    并在\verb+Dico+ 中集中\verb+Locate+ 来获取字典图像
+
+     \item Aljosa Obuljen: \verb+Stats+ 的作者
+     \item Sébastien Paumier: 主开发者
+     \item Agata Savary: \verb+MultiFlex+ 的作者
+    \item Gilles Vollant:\verb+UnitexTool+ 的作者, 优化大量Uintex代码部分（存储量，速度，多编译器的兼容性等）
+    \item Patrick Watrin: \verb+XMLizer+ 的作者, 实现\verb+XAlign+ 在Unitex上的集成
+    \item Anthony Sigogne: \verb+Tagger+ 和 de \verb+TrainingTagger+ 的作者
+    \item Nathalie Friburger: \verb+CaSsys+ 的作者
 \end{itemize}
 
 \bigskip
-\noindent Il faut ajouter que Unitex serait inutile sans les précieuses ressources linguistiques
-qu'il renferme. Toutes ces ressources sont le fruit d'un énorme et difficile travail effectué par
-des personnes qui ne doivent pas être oubliées. Certaines sont citées dans les avertissements qui
-sont fournis avec les dictionnaires, une information complète est disponible sur:
+\noindent
+需要强调的是没有精确的相关语言资源的Unitex是无用的。所有的资源都是由人们实现的庞大且困难的工作成果，向所有工作人员致敬。有些资源在字典警告中被指出，详细完整信息请参考：
 
-\bigskip
 \noindent \url{http://igm.univ-mlv.fr/~unitex/linguistic_data_bib.html}
 
 
-\section*{Si vous utilisez Unitex dans des projets de recherche...}
-\addcontentsline{toc}{section}{Si vous utilisez Unitex dans des projets de recherche...}
-Unitex a été utlisé dans plusieurs projets de recherche. Certains sont listés dans la section 
-``Related works'' de la page d'accueil d'Unitex. Si vous avez effectuer des travaux de recherche
-avec Unitex (ressources, projet, article, thèse, ...) et si vous désirez qu'ils soient référencés
-sur le site envoyez un mail à \url{unitex@univ-mlv.fr}.
+\section*{如果您在搜索项目中使用Unitex...}
+\addcontentsline{toc}{section}{如果您在搜索项目中使用Unitex...}
+Unitex已经在多个搜索项目中被运用。一些搜索项目被列在Unitex主页山的“相关工作”一栏中。如果您已经用Unitex执行了搜索工作（资源，项目，文章，论文，……）并且如果您想在网站上获取更多相关信息，发送邮件到\url{unitex@univ-mlv.fr}。
+
 

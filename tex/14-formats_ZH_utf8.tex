@@ -1776,8 +1776,9 @@ TrainingTagger程序管理两个由Tagger使用用来计算二阶 Markov模型�
 
 \subsection{文件 (用户姓名).cfg et .unitex.cfg}
 \index{Fichier!\verb+.cfg+}
-% FIXME()
-%在Linux和Mac OS，Unitex认为工作人员的工作目录被命名为 \verb+unitex+ 并且位于用户根目录中 (\verb+$HOME+$)。如果要更改此默认位置,\verb+.unitex.cfg+文件在根目录中创建，它包含到工作目录Unitexd的路径。这个文件是UTF8文件。如果\verb+.unitex.cfg+Linux并不包含对现有目录的有效路径，则会被忽视\,\footnote{可以在Linux，Window上运行Unitex，共享文件~：通向Unitex个人工作目录的Windows路径在\texttt中指出{.unitex.cfg}，而在Linux中运行时，Unitex会忽视}，
+在Linux和Mac OS，Unitex认为工作人员的工作目录被命名为 \verb+unitex+ 并且位于用户根目录中 (\verb+HOME+)。
+%FIXME()
+%如果要更改此默认位置,\verb+.unitex.cfg+文件在根目录中创建，它包含到工作目录Unitexd的路径。这个文件是UTF8文件。如果\verb+.unitex.cfg+ Linux并不包含对现有目录的有效路径，则会被忽视。\footnote {可以在Linux，Window上运行Unitex，共享文件~：通向Unitex个人工作目录的Windows路径在 \text{.unitex.cfg} 中指出，而在Linux中运行时，Unitex会忽视。}
 
 \bigskip
 在Windows,它并不是总是可以默认与用户相连的目录。为了解决这个问题，Unitex为每个用户创建 \verb+.cfg+文件，包含包含工作目录的路径。该文件在Unitex系统目录的字目录\verb+Users+下保存为\verb+(用户名).cfg+，\index{Répertoire!système Unitex}如果用户没有权限写入该目录，\verb+.unitex.cfg+文件被并保存在用户配置备份文件目录中~，
@@ -1941,8 +1942,8 @@ $\longmapsto$ \verb+ONE_TWO_THREE_NEW_LINE+
 
   \item \verb+dest/xxx+:由工具创建的文件的副本
 \end{itemize}
-%FIXME()
-%如果第二行Unitex\日志\ parameters.txt包含0，这些文件不会被保存;如果此行包含1，他们登记;
+如果第二行Unitex日志\
+parameters.txt包含0，这些文件不会被保存;如果此行包含1，他们登记;
 
 \subsection{阿拉伯语排版规则: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
@@ -2007,8 +2008,7 @@ UIMA偏移文件由Tokenize编写并由 Concord读取 (利用工具 \verb$--uima
 \bigskip
 每一行对应表述如下令牌：
 令牌数A是对应于原始文件中的C（不含税）的位置B（包含）的文本，和在<et>中提到的的令牌。
-%FIXME()
-%令牌数A的数量对应tokens.txt出现的语句数量（加1个tokens.txt标题行（后\{参考标记-TXT文件}））
+令牌数A的数量对应tokens.txt出现的语句数量（加1个tokens.txt标题行（后{参考标记-TXT文件}））
 
 
 \bigskip

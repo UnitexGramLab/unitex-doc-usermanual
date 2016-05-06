@@ -1,162 +1,134 @@
-\chapter{Installation d'Unitex}
+\chapter{安装Unitex}
 \label{chap-install}
+Unitex是一个多平台软件，它能在Windows、Linux或MacOS下良好运行。这一章节描述了Unitex在这些操作系统下的安装和运行。这一章节也阐述了加入新语言和卸载的方法。
 
-Unitex est un système multi-plateformes capable de fonctionner aussi bien sous Win
-dows que sous Linux ou MacOS. Ce chapitre décrit l’installation et le lancement d’Unitex
-pour chacun de ces systèmes. Il présente également les procédures d’ajout de nouvelles
-langues et de désinstallation.
-
-\section{Licences}
+\section{证书}
 \label{section-licences}
-\index{Licence!LGPL}\index{Licence!LGPL}
-Unitex est un logiciel libre. Cela signifie que les sources des programmes sont distribuées avec le
-logiciel, et que chacun peut les modifier et les redistribuer. Le code des programmes d’Unitex est
-sous licence LGPL (\cite{LGPL}), à l’exception de la bibliothèque de manipulation d’expressions
-régulières TRE de Ville Laurikari (\cite{TRE}), qui est sous licence "2 Clause BSD" (plus permissive que la licence LPGL), et
-de la bibliothèque LibYAML, qui est sous licence MIT, également plus permissive que la licence LGPL.
-La licence LGPL est plus permissive que la licence GPL, car elle permet d’utiliser du code LGPL dans
-des logiciels non libres. Du point de vue de l’utilisateur, il n’y a pas de différence, car dans
-les deux cas, le logiciel peut être librement utilisé et distribué.
+\index{LGPL证书}\index{LGPL证书}
+Unitex是一个开放的软件，也就是说这些工程的资源是由该软件分配的，而且每个人都能修改或再分配。Unitex工程的代码是遵循LPGL证书的(\cite{LGPL})，除了对常规表达的操作库TRE(\cite{TRE})，这遵循着证书"2 Clause BSD" (比LPGL证书更加宽松)，而LibYAML库遵循的MIT证书也比LGPL更宽松。
+LGPL证书比GPL宽松，因为它能在不开源的软件中使用LGPL代码。从用户们的角度两者没有区别，因为他们都能自由的使用和分配。
+
+\bigskip
+\noindent所有Unitex分配的语言学暑假都遵循LGPLLR证书
+\index{证书LGPLLR} (\cite{LGPLLR}).
+
+\bigskip
+\noindent GPL，LGPL和LGPLLR证书的完整文本都在用户手册的附件中。
+
+\section{执行Java的环境}
+Unitex包含了由Java语言编写的图形界面而外部程序由 \textit{C/C\kern-.05em\raisebox{.5ex}{++}\kern-.1em}。这种编程语言的混合使用使程序更迅速并能在多个操作系统下运行。
 
 
 \bigskip
-\noindent Toutes les données linguistiques distribuées avec Unitex sont soumises à la licence LGPLLR
-\index{Licence!LGPLLR} (\cite{LGPLLR}).
+\noindent 为了使用图形界面，需要先准备一个虚拟机\index{Java虚拟机}或
+JRE\index{JRE} (Java运行环境\index{Java运行环境}\index{Java!JRE}).
 
 \bigskip
-\noindent Le texte complet des licences GPL, LGPL et LGPLLR se trouve dans les annexes à la fin de
-ce manuel.
-
-\section{Environnement d’exécution Java}
-Unitex est composé d’une interface graphique écrite en Java et de programmes externes
-écrits en \textit{C/C\kern-.05em\raisebox{.5ex}{++}\kern-.1em}. Ce mélange de langages de 
-programmation permet d’avoir une application rapide et portable sous différents systèmes d’exploitation.
-
+\noindent 在图形模式下运行，Unitex需要1.6（或更高版本）的Java版本。如果你还是        Java的旧版本，Unitex将你选择了你的工作语言后锁定。
 
 \bigskip
-\noindent Afin de pouvoir utiliser l’interface graphique, il faut préalablement installer
-un environnement d’exécution, communément appelé machine virtuelle \index{Java!machine virtuelle} ou
-JRE\index{JRE} (Java Runtime Environment\index{Java!Runtime Environment}\index{Java!JRE}).
-
-\bigskip
-\noindent Pour fonctionner en mode graphique, Unitex nécessite une version 1.6 (ou plus récente)
-de Java. Si vous avez une version trop ancienne de Java, Unitex se bloquera après que vous
-ayez choisi votre langue de travail.
-
-
-\bigskip
-\noindent Vous pouvez télécharger librement la machine virtuelle correspondant à votre 
-système d’exploitation sur le site de Sun Microsystems (\cite{site-java}) à l’adresse suivante : 
+\noindent 您可以随意下载的虚拟机操作系统从Sun Microsystems的网站 (\cite{site-java}) : 
 \url{http://java.sun.com}.
 
 \bigskip
-\noindent Si vous travaillez sous Linux ou MacOS, ou si vous
-utilisez une version de Windows gérant des comptes personnels pour les utilisateurs, il vous
-faudra demander à votre administrateur système d’installer Java.
+\noindent 如果你正在使用Linux或MacOS或如果你使用一个版本的Windows的管理做实个人账户的用户，你需要问你的系统管理员安装Java。
 
 
 
-\section{Installation sous Windows}
+\section{Windows下安装}
 \index{Installation!sous Windows}
-    Si vous désirez installer Unitex sur une machine Windows multi-utilisateurs, il est pré-
-férable de demander à votre administrateur de le faire. Si vous êtes l’utilisateur unique de
-votre machine, vous pouvez effectuer l’installation vous-même.
+如果你希望在多用户的Windows计算机上安装Unitex，最好是让您的管理员这样做。如果你是你的机器的唯一用户，您可以自己安装。
+
+
+
+\section{Windows安装}
+\index{Windows环境下的安装}
+    如果您希望在Windows多用户系统上安装Unitex，需要管理员权限。如果您是该计算机的唯一用户，您可以自己安装。
 
 \bigskip
-\noindent Décompressez le fichier \index{Fichier!\verb+Unitex3.1beta.zip+} \verb+Unitex3.1beta.zip+ (ou \verb+Unitex3.0.zip+)
---- vous pouvez télécharger ces fichiers à l’adresse suivante : \url{http://igm.univ-mlv.fr/~unitex} ---
-dans un répertoire (dossier) \verb+Unitex3.1beta+ que vous aurez préalablement créé,
-de préférence dans le répertoire  \verb+Program Files+, et qui sera appelé dans ce manuel
-le répertoire système Unitex.\index{Répertoire!système Unitex}\index{Dossier|see{Répertoire}}
+\noindent 解压缩文件 \index{文件!\verb+Unitex3.1beta.zip+} \verb+Unitex3.1beta.zip+ (或 \verb+Unitex3.0.zip+)
+--- 您可以在以下地址下载这些文件: \url{http://igm.univ-mlv.fr/~unitex} ---
+在提前创建的\verb+Unitex3.1beta+目录(文件夹)中，
+在偏好目录\verb+Program Files+，而它会调用系统目录中的Unitex.\index{系统目录Unitex}\index{文件夹|见{目录}}
 
 \bigskip
-\noindent Après la décompression, le répertoire \verb+Unitex3.1beta+
-(le répertoire système Unitex) contient plusieurs
-sous-répertoires dont un nommé \verb+App+. Ce dernier répertoire contient un fichier nommé
-\verb+Unitex.jar+\index{Fichier!\verb+Unitex.jar+}.
- Ce fichier est l’exécutable Java qui lance l’interface graphique. Il vous suffit de double-cliquer
-dessus pour lancer le programme.
-Pour faciliter le lancement du programme, il est conseillé de créer un raccourci vers ce fichier sur le bureau.
+\noindent 解压缩之后，目录 \verb+Unitex3.1beta+
+(le répertoire système Unitex) 包含了多个名为\verb+App+的子目录。 最后一个目录包含了名为\verb+Unitex.jar+\index{文件!\verb+Unitex.jar+}的文件。
+ 该Java文件用于运行图形界面。您仔细双击该图表就能运行该软件。
+为了更方便地运行，建议您在桌面建立快捷方式。
 
-
-\section{Installation sous Linux}
-\index{Installation!sous Linux}
-Pour installer Unitex sous Linux et MacOS, il est recommandé d’être administrateur système. Décompressez le fichier \verb+Unitex3.1beta.zip+ dans un répertoire nommé
-\verb+Unitex+, au moyen de la commande suivante :
+\section{Linux安装}
+\index{Linux环境下的安装}
+在Linux和MacOS系统上安装Unitex，要求管理员权限。您将文件\verb+Unitex3.1beta.zip+解压缩于名为\verb+Unitex+的文件夹，通过以下命令：
 
 
 \bigskip \noindent \verb$unzip Unitex3.1beta.zip -d Unitex$
 
 \bigskip
-\noindent Ce répertoire sera appelé dans ce manuel le répertoire système Unitex.\index{Répertoire!système Unitex}
-Placez-vous ensuite dans le répertoire \verb|Unitex/Src/C++/build|   , et lancez la compilation des
-programmes au moyen de la commande :
+\noindent 该目录将会调用系统目录Unitex\index{系统目录Unitex},
+接着您在目录 \verb|Unitex/Src/C++/build| 中通过以下命令进行编译：
 
 
-\bigskip \verb+make install+
+\bigskip \verb+安装+
 
 \bigskip
-\noindent ou si avez un ordinateur 64 bits avec la commande :
+\noindent 如果是64位计算机：
  
 \bigskip \verb+make install 64BITS=yes+
-
 \bigskip
-\noindent Créez ensuite un alias sur le modèle suivant :
+\noindent 然后在接下来的模型中创建一个别名在:
 
 \bigskip \verb$alias unitex='cd /..../Unitex/App/ ; java -jar Unitex.jar'$
 
 
-\section{Installation sous MacOS X}
-\index{Installation!sous MacOS X}
+\section{MacOS X系统安装Unitex}
+\index{MacOS X系统安装Unitex}
 \label{section-macos-install}
-\noindent NOTE: ce court tutoriel va vous expliquer comment installer et exécuter Unitex sous Mac OS
-X. Vos questions, commentaires, suggestions,
-corrections sont plus que bienvenus.
-\noindent Contact: \url{cedrick.fairon@uclouvain.be}
+\noindent 注：这个简短的教程将告诉你如何在Mac OS X系统中 安装和运行Unitex。
+欢迎提出你的问题或对我们的评价和建议。
+\noindent 请联系: \url{cedrick.fairon@uclouvain.be}
 
 
 \bigskip
-\noindent Une version officielle Oracle de Java existe pour MacOS X 10.7.3 (Lion) et plus récent.
-	Voir section ``Informations et configuration minimale requise pour l'installation et l'utilisation d'Oracle Java sur Mac OS X'', à \url{https://www.java.com/fr/download/faq/java_mac.xml}
+\noindent Java 的 Oracle正式版 适用于 MacOS X 10.7.3 (Lion)至最新版本。
+	查看``Mac OS X系统安装和使用Oracle Java的基本配置及详细说明'' 于以下网页 \url{https://www.java.com/fr/download/faq/java_mac.xml}
 
 	
 
 \bigskip
-\noindent Il existe une distribution Java d'Apple for MacOS X 10.7 and higher.
-	Voir \url{https://support.apple.com/kb/DL1572}. Pour OS X 10.6, il existe une autre distribution Apple sur \url{https://support.apple.com/kb/DL1573}.
-
-
-\bigskip
-\noindent Une version officielle de Java 1.6 existe pour MacOS X 10.5, 64-bit Intel 
-(Core 2 Duo), mais il n'y a pas de solution officielle pour les anciens OS X (10.4 ou plus anciens),
-PowerPC et 32-bit Intel (Core Duo). Ainsi,
- si vous avez OS X 10.5, un MacOS 64-bit Intel, il vous suffit de vous procurer
-	la JRE 1.6. Apple. Le seul problème est que cette version ne démarre pas par défaut.
-	Voir section ``Java pour Mac OS X 10.5 Update 10'', à \url{https://support.apple.com/kb/DL1359}
-
-
-\noindent\textbf{Comment savoir si mon processeur est un 32 ou un 64 bits ?}
-
-\noindent Dans le menu Apple, cliquez sur "About this Mac". Si vous voyez quelquechose comme:
-"Processor : x.xx Ghz Intel Core Duo", votre processeur est un 32 bits.
+\noindent 适用于 MacOS X 10.7 至最新版本 的 Apple的Java结构，
+	详情见以下网页 \url{https://support.apple.com/kb/DL1572}. 
+	适用于 MacOS X 10.6 的 Apple的结构，
+	详情见以下网页 \url{https://support.apple.com/kb/DL1573}.
 
 \bigskip
-\noindent Si vous voyez "Processeur: x.xx Ghz Intel Core 2 Duo", ou si votre
-processeur est de type Intel (comme Xeon), alors vous avez un processeur 64 bits.
+\noindent Java 1.6 正式版 适用于MacOS X 10.5, 64-bit Intel (Core 2 Duo), 但对于OS X的更早版本(10.4或更早)没有正式的解决方法,
+PowerPC 和 32-bit Intel (Core Duo)。然而,如果你的系统是OS X 10.5（ MacOS 64-bit Intel）,只需有 JRE 1.6. Apple。唯一的问题是这个版本不能默认启动。
+	查看 ``Java 适用于 Mac OS X 10.5 Update 10'', 于以下网页 \url{https://support.apple.com/kb/DL1359}
 
-\subsection{Utiliser Apple Java 1.6 runtime}
+
+\noindent\textbf{如何查看处理器是32位还是64位?}
+
+\noindent Apple菜单中, 点击 "关于本机"。你将看到以下条目:
+"Processor : x.xx Ghz Intel Core Duo", 您的处理器是 32 bits.
+
+\bigskip
+\noindent 如果你看到："Processeur: x.xx Ghz Intel Core 2 Duo", 或你的处理器是Intel(如Xeon)的, 那么你的处理器是64位的。
+
+\subsection{使用 Apple Java 1.6 runtime}
 \bigskip\index{Java!Apple Java 1.6 runtime}
-\noindent Si vous utilisez Mac OS X 10.5 (ou ultérieur) sur des processeurs Intel 64 bits, vous pouvez simplement utiliser le Java 1.6 d'Apple. Vous pouvez l'obtenir à partir de \url{https://support.apple.com/kb/DL1359}.
+\noindent 如果你使用 Mac OS X 10.5 (或更高版本) 于Intel 64 bits处理器, 你就能轻松地使用Java 1.6 d'Apple。
+详细说明于以下网页 \url{https://support.apple.com/kb/DL1359}.
 
-\noindent Vous pouvez aller dans Application -> Utilities -> Java Preferences pour vérifier la présence  de "Java SE 6" dans la liste "Java Applications".
+\noindent 点击进入 Application -> Utilities -> Java Preferences 
+然后在 "Java Applications"列表中 找到"Java SE 6"。
 
+\subsubsection{选项1：更改Java应用程序的默认运行}
+\noindent 如果你不使用Java 1.5应用程序，
+那么你可以按照个人使用习惯，在"Applications Java"列表中将"Java SE 6"置顶。
 
-\subsubsection{Option 1 : modifier le runtime par défaut pour Java Applications}
-\noindent Si vous n'utilisez pas une autre application Java qui a besoin de Java 1.5, vous pouvez
-simplement mettre "Java SE 6" en haut de la liste «Applications Java" dans Utilitaire de préférence
-Java.
-\subsubsection{Option 2 : Créer un alias pour lancer Java 1.6}
-\noindent Si vous ne voulez pas modifier les paramètres globaux de Java, vous pouvez créer un alias
+\subsubsection{选项2：创建一个别名运行Java1.6}
+\noindent 如果你不想修改Java中的全局变量,你能创建一个别名。
 
 \bigskip
 \noindent \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/+
@@ -166,25 +138,25 @@ Java.
 \noindent \verb+jre6 -jar Unitex.jar+
 
 \bigskip
-\noindent Ensuite lancer Unitex depuis un terminal.
+\noindent 然后从终端运行Unitex
 
 %\subsection{SoyLatte}
 
 %\subsection{Comment compiler les programmes les C++ Unitex sur un ordinateur Macintosh}
 
 
-\subsection{Comment rendre tous les fichiers visibles sur Mac OS}
-\noindent Voir
+\subsection{如何使Mac OS中的所有文件可见}
+\noindent 查看
 \url{http://www.macworld.com/article/51830/2006/07/showallfinder.html}.
 
 \bigskip
-\noindent Ou essayez tout de suite... Tapez: 
+\noindent 或立即尝试... 输入: 
 
 \bigskip
 \verb+defaults write com.apple.Finder AppleShowAllFiles ON+
 
 \bigskip
-\noindent Ensuite redémarrez le Finder:
+\noindent 然后重新运行Finder:
 
 \bigskip
 \verb+killall Finder+
@@ -192,109 +164,90 @@ Java.
 \begin{figure}[!h]
 \begin{center}
 \includegraphics[width=12cm]{resources/img/fig-mac6.png}
-\caption{Redémarrez le Finder\label{fig-mac6}}
+\caption{重新运行 Finder\label{fig-mac6}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Pour revenir à la configuration d'origine, tapez: 
+\noindent 要返回原来的配置，需要输入：
 
 \bigskip
 \verb+defaults write com.apple.Finder AppleShowAllFiles OFF+
 
 
-\section{Première utilisation}
-Si vous travaillez sous Windows, le programme vous demandera de choisir un répertoire personnel de travail
-\index{Répertoire!personnel de travail}, que vous pourrez changer ultérieurement dans
-"Info>Preferences...>Di-rectories". Pour créer un répertoire, cliquez sur l’icône représentant un
-dossier (voir figure \ref{fig-creation-personal-directory}).
+\section{第一次使用}
+如果您使用的是Windows，你需要选择一个工作主目录
+\index{Répertoire!personnel de travail}。 您可以在“信息>首选项...>目录”更改。要创建一个文件夹，点击文件夹图标
+（见图 \ref{fig-creation-personal-directory}).
 
 \bigskip
-\noindent Sous Linux et MacOS, le programme créera automatiquement un répertoire personnel de travail,
-appelé \verb+/unitex+, dans votre répertoire \verb+$HOME+. 
+\noindent 如果您使用的是Linux和Mac OS，该程序会自动创建一个个人工作目录，称为\verb+/unitex+ 在目录\verb+$HOME+. 
 
 \bigskip
-\noindent Le répertoire personnel de travail, ou répertoire de l'utilisateur, vous permettra de stocker vos
-données Unitex personnelles. Pour chaque langue que vous utiliserez, le
-programme copiera l’arborescence de la langue dans votre répertoire de travail,
-à l’exception des dictionnaires. Vous pourrez ainsi modifier à votre guise votre copie des données
-sans risquer d’endommager les données du système, stockées dans le
-répertoire système Unitex.\index{Répertoire!système Unitex}
+\noindent 在个人工作目录，您将存储您的Unitex个人资料。您所使用的每种语言，程序会复制语言的树在你的工作目录中，除了字典。然后，您可以编辑，你需要不损坏的复制你的数据存放在Unitex系统目录系统数据。\index{Répertoire!système Unitex}
 
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=6.3cm]{resources/img/fig1-1.png}
-\caption{Première utilisation sous Windows}
+\caption{Windows系统第一次使用}
 \end{center}
 \end{figure}
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=7cm]{resources/img/fig1-2.png}
-\caption{Première utilisation sous Linux}
+\caption{Linux系统第一次使用}
 \end{center}
 \end{figure}
 
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=13cm]{resources/img/fig1-3.png}
-\caption{Création du répertoire personnel de travail
+\caption{个人工作目录的建立
 \label{fig-creation-personal-directory}}
 \end{center}
 \end{figure}
 
 
 
-\section{Ajout de nouvelles langues}
+\section{添加新的语言}
 \index{Ajout de nouvelles langues}
 
 \bigskip
-\noindent Il y a deux manières d’ajouter des langues. Si vous désirez ajouter une nouvelle langue
-accessible à tous les utilisateurs, il vous faut copier le répertoire correspondant à cette langue
-dans le répertoire système Unitex,\index{Répertoire!système Unitex}
-ce qui nécessite d’avoir les droits d’accès à ce répertoire
-(il vous faudra peut-être demander à votre administrateur système de le faire).
-En revanche, si vous êtes le seul utilisateur concerné par la langue, vous pouvez copier le répertoire
-en question dans votre répertoire de travail.\index{Répertoire!personnel de travail}
-Vous pourrez ainsi travailler sur cette langue sans qu’elle soit proposée aux autres utilisateurs.
+\noindent 有两种方法来添加语言。如果你想添加一个新的语言到所有用户，你必须复制进Unitex系统语言目录,\index{Répertoire!système Unitex}
+这需要有访问该目录的权利(你可能需要询问系统管理员).但是，如果是这语言有关的唯一用户，你可以在你的工作目录复制目录。\index{Répertoire!personnel de travail}您将能够在这语言工作而不提供给其他用户。
 
 
-
-\section{Désinstallation}
-Quel que soit le système sous lequel vous travaillez, il vous suffit de supprimer le répertoire
-\verb+Unitex+ pour effacer tous les fichiers du système. Sous Windows, vous devrez ensuite supprimer
-le raccourci vers \verb+Unitex.jar+ \index{Fichier!\verb+Unitex.jar+} si vous en avez créé un ;
-même chose sous Linux ou MacOS si vous avez créé un alias.
+\section{卸载}
+不管是什么系统，你的工作，你只需删除\verb+Unitex目录所有的系统文件。在Windows上，则必须删除快捷方式\verb+Unitex.jar+ \index{Fichier!\verb+Unitex.jar+} 如果您已创建了一个;同样在Linux或MacOS上，如果你已经创建了一个别名。
 
 
-\section{Unitex pour les développeurs}
+\section{Unitex开发}
 \label{section-unitex-developpers}
-Si vous êtes programmeur, cela peut vous intéresser de lier votre code avec les sources C++
-d'Unitex. Pour faciliter cette opération, vous pouvez compiler Unitex en tant que librairie
-dynamique qui contient toutes les fonctions Unitex functions, sauf \verb+main+s, bien sûr. La
-page \url{http://docs.unitexgramlab.org/projects/unitex-library/fr/latest/} contient une documentation sur la librairie.
+
+如果你是一个程序员，那你可能感兴趣是Unitex的C++代码来源的链接。为了推动这项工作，你就可以编译Unitex为包含除库\verb+main+s所有功能以外Unitex功
+能的动态.\url{http://docs.unitexgramlab.org/projects/unitex-library/fr/latest/}页面包含有关库文档。
 
 
 \bigskip
-Sous Linux/MacOS, tapez:
+Linux/MacOS下, 输入:
 
 \bigskip
 \verb+make LIBRARY=yes+
 
 \bigskip
-\noindent et vous obtiendrez une librairie nommée \verb+libunitex.so+. Si vous souhaitez produire 
-DLL Windows nommée \verb+unitex.dll+, utilisez les commandes suivantes:
+\noindent 你会得到一个库命名为 \verb+libunitex.so+. 如果你想制作的Windows DLL文件名为\verb+unitex.dll+,请使用以下命令：
 
 \bigskip
 Windows: \verb+make SYSTEM=windows LIBRARY=yes+
 
-Cross-compilation avec mingw32: \verb+make SYSTEM=mingw32 LIBRARY=yes+
+带mingw32的交叉编译: \verb+make SYSTEM=mingw32 LIBRARY=yes+
 
 \bigskip
-\noindent dans tous les cas, vous obtiendrez aussi un programme nommé
-\verb+Test_lib+(\verb+.exe+). Si tout a bien fonctionné, ce programme devrait afficher l'écran
-suivant:
+\noindent 在所有情况下，你也将获得一个所谓的AA程序
+\verb+Test_lib+(\verb+.exe+). 
+如果一切行之有效，该程序应显示以下画面：
 
 \begin{verbatim}
 Expression converted.
