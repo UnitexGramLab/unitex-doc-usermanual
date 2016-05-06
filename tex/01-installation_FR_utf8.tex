@@ -51,7 +51,7 @@ un environnement d’exécution, communément appelé machine virtuelle \index{J
 JRE\index{JRE} (Java Runtime Environment\index{Java!Runtime Environment}\index{Java!JRE}).
 
 \bigskip
-\noindent Pour fonctionner en mode graphique, Unitex nécessite une version 1.6 (ou plus récente)
+\noindent Pour fonctionner en mode graphique, Unitex nécessite une version 1.7 (ou plus récente)
 de Java. Si vous avez une version trop ancienne de Java, Unitex se bloquera après que vous
 ayez choisi votre langue de travail.
 
@@ -279,11 +279,11 @@ avez lancé le script d'installation, il a normalement fait apparaitre sur le bu
 
 
 %\bigskip
-%\noindent Une version officielle de Java 1.6 existe pour OS X 10.5, 64-bit Intel 
+%\noindent Une version officielle de Java 1.7 existe pour OS X 10.5, 64-bit Intel 
 %(Core 2 Duo), mais il n'y a pas de solution officielle pour les anciens OS X (10.4 ou plus anciens),
 %PowerPC et 32-bit Intel (Core Duo). Ainsi,
 % si vous avez OS X 10.5, un OS X 64-bit Intel, il vous suffit de vous procurer
-%	la JRE 1.6. Apple. Le seul problème est que cette version ne démarre pas par défaut.
+%	la JRE 1.7. Apple. Le seul problème est que cette version ne démarre pas par défaut.
 %	Voir section ``Java pour Mac OS X 10.5 Update 10'', à \url{https://support.apple.com/kb/DL1359}
 
 
@@ -296,26 +296,26 @@ avez lancé le script d'installation, il a normalement fait apparaitre sur le bu
 %\noindent Si vous voyez "Processeur: x.xx Ghz Intel Core 2 Duo", ou si votre
 %processeur est de type Intel (comme Xeon), alors vous avez un processeur 64 bits.
 
-%\subsection{Utiliser Apple Java 1.6 runtime}
-%\bigskip\index{Java!Apple Java 1.6 runtime}
-%\noindent Si vous utilisez Mac OS X 10.5 (ou ultérieur) sur des processeurs Intel 64 bits, vous pouvez simplement utiliser le Java 1.6 %d'Apple. Vous pouvez l'obtenir à partir de \url{https://support.apple.com/kb/DL1359}.
+%\subsection{Utiliser Apple Java 1.7 runtime}
+%\bigskip\index{Java!Apple Java 1.7 runtime}
+%\noindent Si vous utilisez Mac OS X 10.5 (ou ultérieur) sur des processeurs Intel 64 bits, vous pouvez simplement utiliser le Java 1.7 %d'Apple. Vous pouvez l'obtenir à partir de \url{https://support.apple.com/kb/DL1359}.
 
-%\noindent Vous pouvez aller dans Application -> Utilities -> Java Preferences pour vérifier la présence  de "Java SE 6" dans la liste %"Java Applications".
+%\noindent Vous pouvez aller dans Application -> Utilities -> Java Preferences pour vérifier la présence  de "Java SE 7" dans la liste %"Java Applications".
 
 
 %\subsubsection{Option 1 : modifier le runtime par défaut pour Java Applications}
-%\noindent Si vous n'utilisez pas une autre application Java qui a besoin de Java 1.5, vous pouvez
-%simplement mettre "Java SE 6" en haut de la liste «Applications Java" dans Utilitaire de préférence
+%\noindent Si vous n'utilisez pas une autre application Java qui a besoin de Java 1.6, vous pouvez
+%simplement mettre "Java SE 7" en haut de la liste «Applications Java" dans Utilitaire de préférence
 %Java.
-%\subsubsection{Option 2 : Créer un alias pour lancer Java 1.6}
+%\subsubsection{Option 2 : Créer un alias pour lancer Java 1.7}
 %\noindent Si vous ne voulez pas modifier les paramètres globaux de Java, vous pouvez créer un alias
 
 %\bigskip
-%\noindent \verb+alias jre6="/System/Library/Frameworks/JavaVM.framework/Versions/+
-%\noindent \verb+1.6/Commands/java"+
+%\noindent \verb+alias jre7="/System/Library/Frameworks/JavaVM.framework/Versions/+
+%\noindent \verb+1.7/Commands/java"+
    
 %\bigskip
-%\noindent \verb+jre6 -jar Unitex.jar+
+%\noindent \verb+jre7 -jar Unitex.jar+
 
 %\bigskip
 %\noindent Ensuite lancer Unitex depuis un terminal.
