@@ -1,0 +1,162 @@
+\chapter{序列控制器}
+\label{chap-sequence-automaton}
+\index{序列控制器}
+
+当地的语法建设可能是一个漫长的过程，该过程中语言重复多次相同的动作\ \verb+Seq2Grf+ 该程序的目的是自动迅速生成当地语法。
+
+\bigskip
+\noindent
+这个程序可以通过线上命令或者点击‘文本’菜单上的‘构建自动序列’，
+这部分是命令\ \verb+Seq2Grf+ 的使用说明\ ~\ref{Seq2Grf}。
+
+\bigskip
+\noindent 对于给定的文件（\ \verb+TEILite+ 或是文件格式\ \verb+txt+ 或\ \verb+SNT+ 当它们被预先标记过\ \verb+{STOP}+ ） 这个程序构建一个独特的自动装置，该装置能识别文件中的所有序列。
+
+\bigskip
+\noindent 我们需要特别注意该序列表的构建需要被图表识别。
+
+\bigskip
+\noindent 本章介绍该程序支持的文件格式\ \verb+Seq2Grf+ , 构建自动序列表和使用通配符。
+\bigskip
+
+\section{语料库序列}
+\index{语料库序列}
+我们所说的\ \textit{语料库序列}\ \index{语料库序列} 或\ \textit{合格的语料库}
+\index{合格的语料库} 一个或多个字的序列表，我们想通过单一图画表示的当地语法来认识序列表
+\bigskip
+文库序列储存在一个文件中，该文件可能是以下格式 ：
+\begin{itemize}
+\item 纯文本文件, 该文件中的序列被末端限定
+\item 文件\ \verb+SNT+ 已经预先处理 菜单显示: 序列已被限定
+		由\ \verb+{STOP}+
+\item 文件\ \verb+TEILite+ 文件中的序列被标签限定\ \verb+xml+ 该
+		格式 :
+%不要删除下行
+
+		\verb+{<seg type="sequence">example</seg>}+
+\end{itemize}
+\pagebreak 
+\indent 因为文集包含了特别的序列，它必须由手工完成
+这意味着你应该在纯文本文件中写下所有序列，并用换行分隔它们（\ ~\ref{fig8-1CorpusTxt} ）, 插入特定标识符\ \verb+XML+ 。
+在一个现存文件中\ \verb+TEILite+ （\ ~\ref{fig8-3CorpusTEI} ）。预处理文件\ \verb+TXT+ 或\ \verb+XML+ 产生\ \verb+SNT+ 被用于顺序结构的文件（\ ~\ref{fig8-2CorpusSNT} ）。
+该文件能作为入口使用，该产品图只能认识出正确划分的序列，当地的语法只是自动地从明确定义的序列语料库中产生，如果你有这样一个语库，那么节省的时间是相当可观的。
+
+\begin{figure}[h!]
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{resources/img/fig8-1tomorrow.png}
+		\caption{TXT\ \label{fig8-1CorpusTxt}}
+		\label{fig7-TXT}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[scale=0.6]{resources/img/fig8-2tomorrowSNT.png}
+		\caption{SNT\ \label{fig8-2CorpusSNT}}
+	\end{minipage}
+	\hspace{0.1cm}
+\end{figure}
+\begin{figure}[h!]
+	\begin{minipage}[h!]{\linewidth}
+		\centering
+			\includegraphics[width=14cm]{resources/img/fig8-3tomorrowTEI.png}
+			\caption{TEILite\ \label{fig8-3CorpusTEI}}
+	\end{minipage}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{使用}
+
+要创建一个顺序的自动控制器, 
+点击“测试”菜单上的“顺序结构”
+
+你将会看到一个窗口的出现\ ~\ref{fig8-4Menu1}。
+此窗口允许你定义参数，以产生一个顺序自动控制器。
+你应该遵循三个步骤：
+\begin{itemize}
+\item 选择语料库序列：
+它可以是一个文件，其格式是上一节中所描述的三种格式之一。
+根据文件扩展名的文件格式自动检测。
+\item设置特定的选项：
+“应用美化算法”将代替每个框，这样产生的图是体积更小，更容易阅读。
+"精确匹配情况"将令牌字面括号中的图，以便它不能识别的标记具有相同的字母，但与壳体的差异。
+
+
+你可以设置附加选项，以产生一个图使近似匹配：你可以修复通配符的数量用于生产从原来的语料序列的新序列，并选择适当的通配符。
+使用通配符的所有细节都在这一章。
+\ref{approximation}
+
+\item 选择图片保存的路径
+\end{itemize}
+\medskip
+\begin{figure}[h!]
+	\begin{minipage}[h!]{0.5\linewidth}	
+		\centering
+			\includegraphics[width=8cm]{resources/img/fig8-4Menu1.png}
+			\caption{序列控制器菜单\ \label{fig8-4Menu1}}
+	\end{minipage}	
+	\hspace{0.3cm}
+	\begin{minipage}[h!]{0.5\linewidth}	
+		\centering
+			\includegraphics[width=8cm]{resources/img/fig8-4Menu2.png}
+			\caption{序列控制器的选项菜单\ \label{fig8-4Menu2}}
+	\end{minipage}
+\end{figure}
+
+\bigskip
+\noindent 你能看到\ ~\ref{fig8-5GRFnoBeautify} 和\ ~\ref{fig8-6GRFBeautify} 没有通配符或者没有美化的图片，
+
+
+\begin{figure}[h!]
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[width=8cm]{resources/img/fig8-5GRFnoBeautify.png}	
+		\caption{\ "beautify" 无选项的自动机 \ \label{fig8-5GRFnoBeautify}}
+	\end{minipage}
+	\hspace{0.1cm}
+	\begin{minipage}[h!]{0.5\linewidth}
+		\centering
+		\includegraphics[width=8cm]{resources/img/fig8-6GRFBeautify.png}
+		\caption{\ "beautify" 有选项的自动机\ \label{fig8-6GRFBeautify}}
+	\end{minipage}
+	\hspace{0.1cm}
+\end{figure}
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{近似查询}
+\label{approximation}
+
+当你使用该程序所产生的图形做出一个文字“定位器”，\ \verb+Seq2Grf+ ，你只发现存在于原始序列的主体序列。
+序列类似于原始语料库可以存在于文本和被忽略，因为它们不包括在本语料库。
+这些序列应该包含在顺序控制器。
+为了包括这些序列，必须应用三种通配符，并产生一个图表，识别语料的所有序列和新序列。
+每一个通配符能申一个产生新的序列的操作。
+
+\begin{itemize}
+	\item 插入：对于每个序列，加入所有序列中的\ \verb+<TOKEN>+ 原始序列的两个词之间插入自动控制器
+	\item 替换：对于每个序列，加入所有序列中的\ $i$ 用\ \verb+<TOKEN>+ 来替换
+	\item 删除：对于每个序列，加入所有序列中被删除的位置
+\end{itemize}
+所有这些操作的可应用数次到原始序列。此语法到文本的应用程序允许引入近似在寻求文本序列。
+
+如果使用通配符，产品图遵循这些规则：
+\begin{itemize}
+	\item 原序列和衍生的序列被包括在控制器中，
+	\item 空序列或序列中只有通配符，将不会添加到该图中（这样的序列可以通过缺失或短序列的置换来制备）
+	\item 序列的头部和尾部不能插入通配符
+	\item 每一个序列的令牌都能够被通配符代替
+\end{itemize}
+
+使用通配符生成的图表包含许多错误的序列，并且应该对照语料库\ \verb+Locate+ 只保留相应的序列。
+这些序列可以用来产生一个你希望保存的新图形。
+
+如图\ ~\ref{fig8-7GRF1replace} 产生于一个标记符和一个激活的\ "beautifying" 选项。（\ cf.  ~\ref{fig8-2CorpusSNT} ）
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[width=8cm]{resources/img/fig8-7GRF1replace.png}
+		\caption{允许替换的控制器\ \label{fig8-7GRF1replace}}
+	\end{center}
+\end{figure}
