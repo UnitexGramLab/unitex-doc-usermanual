@@ -1,0 +1,126 @@
+\chapter*{介绍}
+\addcontentsline{toc}{chapter}{介绍}
+
+Unitex 是一个使用语言资源，来处理自然语言文本的软件包。这些资源以电子字典，语法，词汇语法表的形式存在。  他们由法语开始，由自动化文献和语言学实验室(LADL)的\ Maurice Gross 建立。 
+. \index{LADL} 这项工作是通过\ RELEX 实验室网络扩展到其他语言。
+\bigskip
+\noindent 电子字典描述某种语言的简单词和复合词，以相关的原型或是语义和变位代码。这些字典的存在，表明了与普通搜索模式工具的主要差别，因为我们可以参考其包含信息，以很简单的方式描述不同种类的词。这些字典都是以\ DELA 形式，被多国语言团队开发成几种语言（法语，英语，希腊语，意大利语，西班牙语，德语，泰语，韩语，波兰语，挪威语，葡萄牙语，等...）。
+
+\bigskip
+\noindent 这里使用的语法是递归转移网络(RTN)的基础上的语言现象，一个与有限状态自动机密切相关的形式化。大量研究显示自动机为语言问题的大量研究显示自动机为语言问题的一致性
+从词法和句法的音标问题的所有描述的水平。与\ Unitex 共同创建的语法使用甚至比自动更强大的形式主义进一步落实这一做法。这些语法被表示为使得用户能够容易地创建和更新的图像。
+\bigskip
+\noindent词汇，语法表是描述一些词性质矩阵。许多这样的表已构建了法语所有简单的动词作为描述及其相关语法属性的一种方式。经验表明，每字具有几乎唯一的行为，而这些表是呈现每个元素的语法于词典的一个方法，故名词典 - 语法为此语言理论。Unitex 提供了一种从词汇，语法表自动构建语法的方法。 
+
+\bigskip
+\noindent Unitex 可以被看作是一个工具，其中可以导入语言资源，并使用它们。其技术特点是它的便携性，模块化，处理使用特殊的书写系统（如许多亚洲语言）语言的可能性，以及它的开放性，这要归功于其开源分发。其语言特征是具有的那些促使这些资源的制定：精密，完整性，以及要考虑到词组的情况，最明显的是涉及复合词。
+
+
+
+
+\section*{3.0 版本新内容是什么?}
+\addcontentsline{toc}{section}{3.0 版本新内容是什么?}
+以下是主要的新特性:
+\begin{itemize}
+
+  \item 使用更少栈引擎速度更快。
+  \item 更新\ \verb$CasSys$~ 版本，新的\ \verb$csc$ 文件，菜单\ \verb$FSGraph$ 用于\ \verb$Share$ 目录的压制，打开级联，应用到定点的，通用的图形，最后一个文件可能不规范（第\ ~\ref{chap-cassys} 章）。
+   \item malgache 的介绍。
+  \item \verb$main_UnitexTool_C$ 的公共方法作为公共\ API。
+  
+  \item 增强图形编辑器版本：框中选择，编辑框中，打开，保存，导出为
+图像(\ref{section-editing-graphs}， \ref{exporting-graphs})。
+  
+  \item 不适用的菜单项现在为灰。
+  \item 操作\ \verb$<n.LEMMA>$ 的介绍，用于犹太语的词形变化 (目前无文档)。
+  \item 最近打开的图形和语料库的列表介绍。
+  \item 打开的窗口列表的介绍。
+  \item 使用\ Ruby 增强兼容性。
+  \item \verb$InstallLingResourcePackage$ 的介绍，安装资源包和脚本到目标环境的工具（但没有文件）。 
+  \item  \verb$RunScript$ 的介绍，在目标环境中运行\ \verb$InstallLingResourcePackage$  安装的脚本（目前无文件）。使用这两项工具，用户可以在环境中实施\ Unitex 的操作和部署它们于另一个。
+  \item  自动机搜索算法中\ "match word boundaries" 选项的介绍\ (\ref{section-locate-tfst})~: 此选项在默认情况下，对大多数语言启用。\textit{enlever} 不等同于\ \textit{en lever}（目前无文件）。
+  \item 在不同版本语料库中对给定位置语料库的地址之间的偏移增强跟踪。(\ref{section-DumpOffsets})。
+  
+  \item 适用于\ Windows 的日常可执行汇编 \ (32-bit, 64-bit)， GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+)。
+  \item 提供了所有目标平台上的安装设置。
+
+\end{itemize}
+
+\bigskip
+\noindent 注意: 文章的一些格式已经被修改或增加，我们建议重新预处理您的文本尤其是如果您使用了文本自动机。
+
+\clearpage
+
+\section*{内容}
+\addcontentsline{toc}{section}{内容}
+\noindent \ref{chap-install}章节描述如何安装运行\ Unitex。
+
+\bigskip \noindent  \ref{chap-text}章节表示文档分析的各个阶段。 
+\bigskip \noindent \ref{chap-dictionaries}章节描述了\ DELA 电子词典可被应用于它们的各种操作的形式。
+
+\bigskip \noindent \ref{chap-regexp} 和 \ref{chap-grammars}章节
+呈现不同的方式来搜索文本模式。
+\ref{chap-grammars}章节描述图形编辑器的使用细节。
+\bigskip \noindent ref{chap-advanced-grammars} 章节致力于不同的用途语法。每种类型的语法的特殊性介绍。
+
+\bigskip \noindent \ref{chap-text-automaton}章节介绍文字自动机的概念，并介绍了这一概念的属性。本章还介绍了操作对象，特别是如何消除歧义与\ ELAG 程序词项。
+
+\bigskip \noindent  \ref{chap-lexicon-grammar}章节包含了词库文法表，以及基于这些表的语法结构的方法的说明。 
+
+\bigskip \noindent  \ref{chap-alignment}章节描述了基于\ xalign 工具的文本的对齐模块。
+\bigskip \noindent \ref{chap-multiflex}章节描述了词组的词形变换模型，作为单词词性变换模型的补充，在\ ~\ref{chap-dictionaries}章节中有所介绍。 
+
+\bigskip \noindent  \ref{chap-cassys}章节描述了\ CasSys 转换器的级联系统。
+
+\bigskip \noindent Le chapitre \ref{chap-external-programs} 包含组成\ Unitex 系统的外部程序细节说明。
+\bigskip \noindent \ref{chap-file-formats}章节包含所有\ Unitex 使用的文件格式说明。
+
+\bigskip \noindent 
+读者可以在\ Unitex 发布的源代码上找到\ LGPL 附属协议和适用于语言数据的\ LGPLLR 协议。还可以发现适用于\ TRE 库的\ 2-clause BSD 协议，运用在\ Unitex 的形态滤波器中。
+
+
+\clearpage
+
+\section*{对\ Unitex 的贡献}
+\addcontentsline{toc}{section}{Unitex 贡献者}
+Unitex 是作为世界开源理论动力而产生的(见 \url{http://igm.univ-mlv.fr/~unitex/why_unitex.html})基于这样的假设，人们将有兴趣在这样一个开放的项目分享他们的知识和技能。
+
+
+
+%The following list sounds like Open Source is good for science:
+
+\begin{itemize}                   
+    \item Olivier Blanc:已经加入\ Unitex 的\ ELAG 系统，该系统最初由\ Eric Laporte 设计，Anne Monceaux 和她的一些学生也写了\ \verb+RebuildTfst+（原\ \verb+MergeTextAutomaton+）
+    
+
+    \item Matthieu Constant: \verb+Grf2Fst2+ 的作者
+    \item Julien Decreton:Unitex 集成文本编译器的作者，也实现了图形编辑器的\ \verb+undo+ 功能
+    \item Claude Devis: 在\ TRE 库上添加形态滤波器
+    \item Hyun-Gue Huh:韩文字典管理工具的作者
+    \item Claude Martineau: 在\ \verb+MultiFlex+ 
+    上处理有关简单的词形变化工作
+    \item Sebastian Nagel: 优化许多代码部分，同样适用于德语和瑞士语的 \ \verb+PolyLex+
+    \item Alexis Neme: 优化 \ \verb+Dico+ 和\  \verb+Tokenize+， 
+    并在\ \verb+Dico+ 中集中\ \verb+Locate+ 来获取字典图像
+
+     \item Aljosa Obuljen: \ \verb+Stats+ 的作者
+     \item Sébastien Paumier: 主开发者
+     \item Agata Savary: \ \verb+MultiFlex+ 的作者
+    \item Gilles Vollant:\ \verb+UnitexTool+ 的作者， 优化大量\ Uintex 代码部分（存储量，速度，多编译器的兼容性等）
+    \item Patrick Watrin: \verb+XMLizer+ 的作者， 实现\ \verb+XAlign+ 在\ Unitex 上的集成
+    \item Anthony Sigogne: \verb+Tagger+ 和 \ de \verb+TrainingTagger+ 的作者
+    \item Nathalie Friburger:\  \verb+CaSsys+ 的作者
+\end{itemize}
+
+\bigskip
+\noindent
+需要强调的是没有精确的相关语言资源的\ Unitex 是无用的。所有的资源都是由人们实现的庞大且困难的工作成果，向所有工作人员致敬。有些资源在字典警告中被指出，详细完整信息请参考：
+
+\noindent \url{http://igm.univ-mlv.fr/~unitex/linguistic_data_bib.html}
+
+
+\section*{如果您在搜索项目中使用\ Unitex...}
+\addcontentsline{toc}{section}{如果您在搜索项目中使用\ Unitex...}
+Unitex已经在多个搜索项目中被运用。一些搜索项目被列在\ Unitex\ 主页山的“相关工作”一栏中。如果您已经用\ Unitex 执行了搜索工作（资源，项目，文章，论文，……）并且如果您想在网站上获取更多相关信息，发送邮件到\ \url{unitex@univ-mlv.fr}。
+
+
