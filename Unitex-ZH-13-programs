@@ -1,0 +1,2040 @@
+
+\chapter{使用外部程序}
+\label{chap-external-programs}
+本章介绍了不同程序的使用，其中包括\ Unitex。这些程序可在\ \verb+Unitex/App+ 目录中找到， 由接口自动启动（实际上， 启动\ \verb+UnitexToolLogger+ 以显著减少下载的zip文件的大小）。点击  "Info>Console"查看已执行的命令。也可点击 "Info>Help on commands"查看不同程序的操作（如图\ \ref{fig-help}）。所有\ Unitex 程序有\ \verb$-h$/\verb$--help$ 所示操作。
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig11-1.png}
+\caption{命令帮助\label{fig-help}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 注意: 许多程序使用文本目录(\verb+mon_texte_snt+)。此目录在文本正常化之后由图形界面创建。如果你使用命令行，你必须在程序标准化执行之前手动创建该目录。\index{Répertoire!texte}
+
+\bigskip
+\noindent 注意(2): 当一个参数包含空格，它需要在两边加
+引号，以防止它被视为多个参数。
+
+\index{Texte!répertoire}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
+
+\bigskip
+\noindent 注意(3):许多程序使用一个\ Alphabet.txt 文件。对于这些程序，也可省略该步骤。在这种情况下，一个默认字母定义被使用（见在源文件\ \verb$Unicode.cpp$ 中的\ \verb+u_is_letter+）。
+
+
+\section{创建日志文件}\index{Création de fichiers log}
+\label{section-creating-log-files}
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig11-1a.png}
+\caption{日志文件配置\label{fig-logging-config}}
+\end{center}
+\end{figure}
+
+
+您可以创建外部程序启动的\ \verb+log+ 文件。这些日志文件可以使用在调试或回归测试过程中。你只需要在偏好设置中启用此功能。你必须选择，所有的日志文件将存储在日志目录，选择"Produce log"。点击“Clear all logs”按钮将删除这个目录中的所有日志文
+件。然后，任何进一步的程序执行将产生位于\ log 目录中的\ \verb+unitex_log_XXX.ulp+ 文件。 \verb+XXX+ 代表在控制台中的日志编号（见下节）。
+
+
+
+
+
+\section{控制台}\index{Console}
+\label{section-console}
+当\ Unitex 启动外部程序时，调用命令行被存储在控制台中。查看点击“Info>Console”。当命令没有发出任何错误消息，它显示一个绿色的图标。否则，该显示图标是一个红色三角形，你可以点击查看错误信息，如图\ \ref{fig-console}所示。当出现错误信息非常快，你无法读取时，这是非常有效的。如果一个命令已被记录，其日志号显示在第二列。请注意，您可以用\ Ctrl+C 导出控制台显示的所有命令。
+
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig11-2.png}
+\caption{控制台\label{fig-console}}
+\end{center}
+\end{figure}
+
+\section{Unitex JNI}
+\index{Unitex JNI}
+\label{section-unitex-JNI}
+
+您可以使用\ Unitex 和\ JNI作为以下接口：
+\begin{verbatim}
+import fr.umlv.unitex.jni.UnitexJni;
+import java.io.*;
+import fr.umlv.unitex.*;
+\end{verbatim}
+这将允许您加载的\ .bin，.fst2 和字母文件，并保留在内存中持续。您使用\ loadPersistent* 创建的文件名。
+
+
+\begin{verbatim}
+String persistentAlphabet = UnitexJni.loadPersistentAlphabet("/.../unitex/French/Alphabet.txt");
+String persistentFst2 = UnitexJni.loadPersistentFst2("/.../unitex/French/Dela/fogg-r.fst2");
+String persistentDictionary = UnitexJni.loadPersistentDictionary(
+		"/.../unitex/French/Dela/communesFR+.bin");
+\end{verbatim}
+
+
+\section{文本文件编码设置}\index{Paramètres de codage des fichiers textes}\index{Fichier!texte!paramètres de codage}
+\label{section-text-file-encoding-parameters}
+对于文本文件\ Unitex 使用\ Unicode 见章节\ \ref{unicode-encoding}。所有的程序，读取或写入文本文件共享相同的编码参数。允许的格式有\ utf16le-bom， utf16le-no-bom， utf16be-bom， utf16be-no-bom， utf8-bom， utf8-no-bom，对应\ Unicode 的\ Big-Endian，Little-Endian 和\ UTF-8，有或无在文件的开头“Unicode字节顺序标记”。对于输入格式，您可以指定几个\ *-bom 编码用逗号隔开，但只有一个\ *-no-BOM 编码。
+ 
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-k=ENCODING+/\verb+--input_encoding=ENCODING+: 输入文本文件格式。可以包含多个值，用逗号分隔；
+\item \verb+-q=ENCODING+/\verb+--output_encoding=ENCODING+: 输出文本文件格式。 
+\end{itemize}
+
+\noindent 默认值为: \verb+--input_encoding=utf16le-bom，utf16be-bom，utf8-bom+
+\newline \verb+--output_encoding=utf16le-bom+.
+
+
+\section{构建KrAwu字典}\index{Programmes externes!\verb+BuildKrMwuDic+}\index{\verb+BuildKrMwuDic+}
+\index{Génération du dictionnaire des mots composés coréens}\index{Dictionnaire!mots composés
+coréens}
+\verb+BuildKrMwuDic [OPTIONS] dic+
+
+\bigskip
+\noindent 该程序从一个\ \verb+dic+ 表产生图表，来描述了每个复合词的每个分量。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o GRF+/\verb+--output=GRF+: 产生文件 \verb+.grf+；
+\item \verb+-d DIR+/\verb+--directory=DIR+: 包含以产生基层形态学变型所需要的变位图形目录；
+\item \verb+-a ALPH+/\verb+--alphabet=ALPH+:使用的字母文件；
+\item \verb+-b BIN+/\verb+--binary=BIN+:  使用简单类型\ \verb+.bin+ 的词典；
+\end{itemize}
+
+
+
+
+
+
+\section{Cassys}\index{Programmes externes!\verb+Cassys+}\index{\verb+Cassys+}
+\index{Cascade de transducteurs}
+\verb+Cassys [OPTIONS] <snt>+
+
+\bigskip
+\noindent 该程序适用一个有序语法列表以一个文本和创建已发现事件的索引。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件；
+\item \verb+-r X+/\verb+--transducer_dir=X+: 在目录 \ \verb+X+ 采用一个译码器（对于每个译码器不用给完整路径； 注意 \ \verb+X+ 必须反斜线结束；
+\item \verb+-w DIC/--morpho=DIC+: 表明\ \verb+DIC+ 是一个 \ \verb+.bin+ 使用形态模式的字典。也可使用有\ \verb+.bin+ 的\ \verb+-m XXX+ q\verb+.bin+。你可以用冒号来分隔许多 。 \ \verb+.bin+。
+
+\item \verb+-l TRANSDUCERS_LIST+/\verb+--transducers_list=TRANSDUCERS_LIST+: 含有译码器的列表以及它们的应用方法的文件；
+\item \verb+-s transducer.fst2+/\verb+--transducer_file=transducer.fst2+: 使用译码器；
+\item \verb+-m output_policy+/\verb+--transducer_policy=output_policy+: 指定的译码器的应用程序模式；
+\item \verb+-t TXT+/\verb+--text=TXT+:文本文件进行修改，以扩展名\ \verb+.snt+； 
+\item \verb+-i+/\verb+--in_place+: 意味着对每个译码器使用相同的 \ \verb+csc/snt+ 目录；
+\item \verb+-d+/\verb+--no_create_directory+: 意味着所有\ \verb+snt/csc+ 目录已经存在，并不需要创建；
+\item \verb+-g minus+/\verb+--negation_operator=minus+: 使用减号作为否定运算符 （ Unitex 版本 2.0）；
+\item \verb+-g tilde+/\verb+--negation_operator=tilde+:   使用波浪号作为否定运算符（默认）；
+\item \verb+-h+/\verb+--help+: 显示帮助
+\end{itemize} 	
+
+
+\bigskip
+\noindent Cassys 使用一系列语法于文章，并保存匹配序列索引
+于文本目录下一个名为\ \verb+concord.ind+ 的文件。目标文本文件必须是一个\ \verb+\_snt/+ 文件。译码器列表文件，其中每一行包含路径到一个换能器，随后通过输出政策应用于该译码器的一个文件。
+
+\bigskip
+\noindent 除了一个列表，你还可以指定每个文件和应用程序方法通过一对变量来介绍列表\ \verb+-s/--transducer\_file+ 和\ \verb+-m/--transducer\_policy+。
+      
+\bigskip
+\noindent 应用程序方法可以是合并或替换。
+      
+\bigskip
+\noindent 该文件选项，字母选项和译码器列表文件选项是强制性的。
+     
+\bigskip
+\noindent 作为定位程序，该程序将事件索引保存在\ \verb+_snt/+ 目录下的\ \verb+concord.ind+ 文件，\verb+concord.ind+ 文件产生的格式与章节\ \ref{chap-file-formats}的一样，但是级联形式可由合并或替换形式图像组成，这种情况下\ #M 或\ #R 在\ \verb+concord.ind+ 文件第一行没有意义。
+
+
+
+\section{检查字典}\index{Programmes externes!\verb+CheckDic+}\index{\verb+CheckDic+}
+\index{Vérification du format d'un dictionnaire}\index{Dictionnaire!vérification}
+\verb+CheckDic [OPTIONS] dic+
+
+\bigskip
+\noindent 该程序执行\ DELAS 或者\ DELAF 的字典格式的验证。\verb+dic+ 对应于要被验证的字典的名称。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-f+/\verb+--delaf+: 检查屈折字典；
+\item \verb+-s+/\verb+--delas+: 检查标准的字典；
+\item \verb+-r+/\verb+--strict+: 严格的语法检查，对未受保护点和逗号检查；
+\item \verb+-t+/\verb+--tolerate+: 允许无保护点和逗号（默认）；
+\item \verb+-n+/\verb+--no_space_warning+:允许语法/语义/屈折码中的空格；
+\item \verb+-p+/\verb+--skip_path+:不显示词典的（对于在多个系统一致的日志文件有用）的完整路径； 
+\item \verb+-a ALPH+/\verb+--alphabet=ALPH+:指定使用的字母文件。 
+\end{itemize}
+
+\bigskip
+\noindent 程序检查字典的行的语法。它还创建了词尾变化和规范化形式存在的所有字符列表，还创建了语法代码和语法的列表，以及使用的变位代码列表。验证的结果存储在一个称为\ \verb+CHECK_DIC.TXT+ 的文件中。\index{Fichier!\verb+CHECK_DIC.TXT+}
+
+
+\bigskip
+\noindent 选择\ \verb+--strict+ 选项用于检测词形变化形式的未受保护点的使用，或未受保护的逗号。\verb+--tolerate+ 运行照常如在\ Unitex 2.0 版本和更低版本和无法检测到。
+
+
+
+
+\section{压缩}\index{Programmes externes!\verb+Compress+}\index{\verb+Compress+}
+\index{Compression des dictionnaires}
+\label{section-compress}
+\verb+Compress [OPTIONS] dictionary+
+\index{Dictionnaire!DELAF}\index{Dictionnaire!compression}
+\index{Fichier!\verb+.dic+}\index{Fichier!\verb+.bin+}\index{Fichier!\verb+.inf+}
+
+\bigskip
+\noindent \textbf{选项:}
+\begin{itemize}
+\item \verb+-o BIN+/\verb+--output=BIN+: 设置输出文件。默认情况下，一个\ \verb+xxx.dic+ 文件将产生一个\ \verb+xxx.bin+ 文件；
+\item \verb+-f+/\verb+--flip+: 表明词形变化和规范形式应该在压缩字典交换。这个功能被用于构建逆词典所必需的程序\ \verb+Reconstrucao+；
+\item \verb+-s+/\verb+--semitic+: 指示闪语压缩算法应该被使用。
+该选项设置闪语如阿拉伯语显著降低输出字典的大小。
+\item \verb+--v1+: 产生一个老式的\ \verb+.bin+ 文件；
+\item \verb+--v2+: 产生一个新式的\ .bin 文件，具有更小的尺寸而且没有文件大小限制为\ 16 MB（默认）。
+\end{itemize}
+
+\bigskip
+\noindent 该程序占用一个\ DELAF 字典作为参数，并进行压缩。该
+字典\ \verb+dico.dic+ 的压缩产生两个文件：
+
+
+\begin{itemize}
+  \item \verb+dico.bin+: 包含字典的变化形式的最小自动化二进制文件；
+  \item \verb+dico.inf+: 包含重建从在控制器中的词尾变化形式的字典行所需的压缩形式文本文件。
+\end{itemize}
+
+\bigskip
+\noindent 有关这些文件格式的更多详细信息，请参见章节\ \ref{chap-file-formats}。
+
+
+
+
+
+
+\section{一致性}\index{Programmes externes!\verb+Concord+}\index{\verb+Concord+}\index{Concordance}
+\label{section-Concord}
+\index{Texte!modification}\index{Modification du texte}
+\verb+Concord [OPTIONS] <index>+
+
+\bigskip
+\noindent 此程序采用由\ \verb+Locate+ 程序产生的一个协调索引文件，并产生一个索引。它也可以产生一个修改后的文本版本考虑到相关联事件的换能器的输出。下面是参数说明： 
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-f FONT+/\verb+--font=FONT+: 如果输出是一个\ HTML 文件要使用的字体的名称；
+  \item \verb+-s N+/\verb+--fontsize=N+: 输出是一个\ HTML 文件使用的字体大小。如果输出是一个\ HTML 文件的，那么字体参数是必需的；
+  \item \verb+--only_ambiguous+:只显示有不明确产出的相同事件，按照文本顺序。 
+  \item \verb+--only_matches+: 
+此选项将迫使左右上下文为空。此外，如果与\ \verb+-t/--text+ 使用，索引不会与周围已知序列匹配。
+  \item \verb+-l X+/\verb+--left=X+:事件（默认值为0）左侧的字符数。
+在泰语模式，这代表着无音调符号字符数。\index{Contexte!concordance} 
+  \item \verb+-r X+/\verb+--right=X+:发生事件右侧的字符（泰语模式下非音调符号）的数量（默认值为\ 0）。
+如果发生低于该值时，一行的索引完成到右边。如果发生高于该值（由右决定）时，它将被全部保存。
+ 
+  
+  \bigskip
+  注意: 对于 \ \verb+--left+ 和\ \verb+--right+， 你可以加入字符\ \verb+s+ 在句子\ \verb+{S}+ 末端的第一个符号。
+   例如， 如果你把\ \verb+40s+ 作为左边的值， 左边的文本字符数将最多\ 40，如果\ \verb+{S}+ 字符在之前，小于\ 40。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{排序模式:}\index{Tri!de concordance}
+\begin{itemize}
+  \item \verb+--TO+: 按事件出现在文本的顺序（默认）；
+  \item \verb+--LC+: 左侧上下文为主要分类，出现顺序作为第二分类；
+  \item \verb+--LR+: 左边上下文， 右边上下文；
+  \item \verb+--CL+: 事件出现，左边上下文；
+  \item \verb+--CR+: 事件出现， 右边上下文；
+  \item \verb+--RL+: 右边上下文， 左边上下文；
+  \item \verb+--RC+: 右边上下文， 事件出现。
+\end{itemize}
+\noindent 
+有关排序模式的详细信息，请参见\ \ref{section-display-occurrences}。
+
+\bigskip
+\noindent \textbf{输出模式:}
+\begin{itemize}
+  \item \verb+-H+/\verb+--html+: 生成一个在\ UTF-8 编码下\ HTML 格式的索引\index{UTF-8} （默认下）；
+  \item \verb+-t+/\verb+--text+: 生成一个\ Unicode 文本格式的索引； 
+  \item \verb+-g SCRIPT+/\verb+--glossanet=SCRIPT+: 为\ GlossaNet 生成一个\ HTML 格式的索引。
+ HTML 文件是\ UTF-8 编码；\index{GlossaNet}
+  \item \verb+-p SCRIPT+/\verb+--script=SCRIPT+: 生成一个\ HTML 格式的索引，连接由\ \verb+SCRIPT+ 写的事件。例如，如果你使用\ \verb$-phttp://www.google.com/search?q=$， 您将得到一个\ HTML 格式的索引，事件连接的是访问\ Google 的地址；
+
+\item \verb+-i+/\verb+--index+: 产生一个一致性的索引， 他包括事件（跟随语法的输出， 如果有的话）， 在文本文件事件位置之前，由字符表示；
+\item \verb+-u+ \verb+offsets+/\verb+--uima=offsets+: 产生一个一致性相关原文本文件的索引，
+在\ Unitex 的所有操作实施前。 Offsets 是由\ Tokenize 在\ \verb+--output_offsets+ 操作下生成的文件
+
+%  the same as \verb+--index+, but the ending position of each occurrence is also given;
+\item \verb+-e+/\verb+--xml+: 生成一个一致性的\ xml 索引；
+\item \verb+-w+/\verb+--xml-with-header+: 生成一个一致性的\ xml 索引和头文件；
+\item \verb+--lemmatize+: 生成一个\ HTML 索引文件专门用于\ Unitex 图形接口的\ lemmatisation 接口。
+
+注意: 命令操作\ -e 和\ -w接受\ offset 的两种文件，与\ -u 情况相同 
+\item \verb+--PRLG=X,Y+: 产生一个文库\ PRLG 的索引，每行用\ Unxmlize 的\ \verb+--PRLG+ 进行信息提取前缀。 X 是 \ Unxmlize 的\ \verb+--PRLG 操作产生的文件， Y 是\ Tokenize 的 \ \verb+--output_offsets+ 操作产生的文件。注意如果该操作与\ \verb+-u+ 一起使用，Y 的参数覆盖\ X 的参数； 
+	
+\item \verb+-A+/\verb+--axis+:与\ \verb+--index+ 十分相似， 但是数量代表了每个事件的中位字符。更多详细信息，见\cite{axis}；
+
+\item \verb+-x+/\verb+--xalign+: 另一个索引文件，被文本排列模块所使用。 每一行是由\ 3 个整数\ $X$ $Y$ $Z$ 组成，之后的事件的内容。$X$ 是句子号码，从\ 1 开始。$Y$ 和\ $Z$ 是在字符句子中一个事件开始和结束位置；
+
+\item \verb+-m TXT+/\verb+--merge=TXT+: 表明程序应该产生一个修改版本的文本，并将其保存在名为\ \verb+TXT+ 的文件（见~\ \ref{section-modifying-text}）。
+ 
+\item  \verb+T--export_csv+: 产生具有制表分隔符的文件\ export.csv，文本顺序如下格式:
+	\subitem A B C D E F， 其中:
+	\subitem  A =文件的行数\ .csv
+	\subitem  B =句子的数量
+	\subitem  C =\ PRLG 附注，如果存在
+	\subitem  D =存在于文本的变位
+	\subitem  E 原型，如果存在
+	\subitem  F = 代码，如果有
+	运行需要再次调用文件\ concord.ind， 该文件既没有标记\ {S} 也不包括空格。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{其他功能:}
+\begin{itemize}
+\item \verb+-d DIR+/\verb+--directory=DIR+:指示程序它不能正常工作程序，在同一个目录\ \verb+<index>+ 但在\ \verb+DIR+ 可行； 
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 用于分类排序的字母文件；
+  \item \verb+-T+/\verb+--thai+: 用于泰文词汇索引的选项。
+  \index{Alphabet}\index{Fichier!alphabet}
+\end{itemize}
+
+\index{Fichier!\verb+.html+}\index{Fichier!\verb+.txt+}
+\bigskip
+\noindent 如果词汇配合是文本模式创建的，该程序的应用的结果是一个名为\ \verb+concord.txt+ 的文件，如果该程序建立可编辑的文本，那么是一个文件 \ \verb+concord.html+ 用于模式\ \verb+--html+， \verb+--glossanet+ 和\ \verb$--script$，和另一个由用户定义的文本文件。
+
+
+
+\bigskip
+\noindent 在\ \verb+--html+ 模式下， 事件被编码一个超文链接。该链接的附注是\ \verb+<a href="X Y Z">+ 形式的。在文件\ \verb+text_name.snt+ 中，\verb+X+  和 \ \verb+Y+ 代表了字符事件的开端和结束。\verb+Z+ 代表了出现事件的句子号码。
+
+
+
+
+
+
+\section{ConcorDiff}\index{Programmes externes!\verb+ConcorDiff+}\index{\verb+ConcorDiff+}
+\verb+ConcorDiff [OPTIONS] <concor1> <concor2>+
+
+\bigskip
+\noindent 该程序需要两个文件的一致性，并产生一个\ HTML 页面，显示
+他们的区别（见\ \ref{section-comparing-concordances}，\pageref{section-comparing-concordances}页）。 一致性文件\ \verb+<concor1>+ 和\ \verb+<concor2>+ 必须有绝对的文件名，因为\ Unitex 使用这些名称推断哪个已经过计算。
+
+
+\bigskip
+\noindent \textbf{功能选项:}
+\begin{itemize}
+  \item \verb+-o X+/\verb+--out=X+: 输出\ HTML 页面；
+  \item \verb+-f FONT+/\verb+--font=FONT+:在输出\ HTML 页面中使用的字体；
+  \item \verb+-s N+/\verb+--size=N+:在输出\ HTML 页面中使用的字体大小；
+  \item \verb+-d/--diff_only+: 不显示相同的序列；
+\end{itemize}
+
+
+
+
+
+
+
+\section{转换}\index{Programmes externes!\verb+Convert+}\index{\verb+Convert+}
+\verb+Convert [OPTIONS] <text_1> [<text_2> <text_3> ...]+
+
+\index{Unicode}
+\bigskip
+\noindent 该程序用于转码文本文件。
+
+\bigskip
+\noindent \textbf{功能选项:}
+\begin{itemize}
+\item \verb+-s X+/\verb+--src=X+: 输入编码；
+\item \verb+-d X+/\verb+--dest=X+: 输出编码
+	（默认 = \ \verb$LITTLE-ENDIAN$）；
+\end{itemize}
+
+\bigskip
+\noindent \textbf{音译选项（仅适用于阿拉伯语）:}
+\begin{itemize}
+\item \verb+-F+/\verb+--delaf+:输入是\ DELAF，我们只直译词尾变位形式和原型；
+\item \verb+-S+/\verb+--delas+: 输入是\ DELAS，我们只直译原型。
+\end{itemize}
+
+
+\bigskip
+\noindent \textbf{输出功能:}
+\begin{itemize}
+\item \verb+-r+/\verb+--replace+: 输入文件将被覆盖（默认）；
+\item \verb+-o file+/\verb+--output=file+: 目标文件名（只有一个文件进行转换）；
+\item \verb+--ps=PFX+: 输入文件用\ \verb+PFX+ 前缀重命名(\verb+toto.txt+ $\Rightarrow$ \verb+PFXtoto.txt+)； 
+\item \verb+--pd=PFX+: 目标文件用\ \verb+PFX+ 前缀重命名；
+\item \verb+--ss=SFX+: 输入文件用\ \verb+SFX+ 后缀重命名；
+        (\verb+toto.txt+ $\Rightarrow$ \verb+totoSFX.txt+)；
+\item \verb+--sd=SFX+: 目标文件用；\verb+SFX+ 后缀重命名。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{功能 HTML:}
+
+\noindent \verb+Convert+ 提供用于\ HTML 文件的一些特殊的功能。您可以使用以下功能的组合:
+
+\begin{itemize}
+\item \verb+--dnc+ (Decode Normal Chars): 字符串像\ \verb+&eacute;+ \verb+&#120;+ 和 \ \verb+&#xF8;+ 将被解码为单个等效\ Unicode 字符，除非它表示
+一个\ HTML 控制字符； 
+  
+  \item \verb+--dcc+ (Decode Control Chars): \verb+&lt;+ \verb+&gt;+
+  	  \verb+&amp;+ 和\ \verb+&quot;+将被解码为\ \verb+<+\verb+>+\verb+&+ 和引号（同为十进制和十六进制表示）；
+
+  
+  \item \verb+--eac+ (Encode All Chars):未由输出编码支持的每个字符将被编码为像 \ \verb+&#457;+ 的字符串 
+  
+  \item \verb+--ecc+ (Encode Control Chars): \verb+<+ ，\verb+>+，
+  	  \verb+&+ 和引号被 \ \verb+&lt;+ \verb+&gt;+ \verb+&amp;+ 和 \ \verb+&quot;+编码。
+\end{itemize} 
+
+\noindent 所有的\ HTML 选项默认设置为停用。
+
+\bigskip
+\noindent \textbf{其他功能:}
+\begin{itemize}
+\item \verb+-m+/\verb+--main-names+: 打印编码主要名称的列表；
+\item \verb+-a+/\verb+--aliases+: 打印编码别名列表；
+\item \verb+-A+/\verb+--all-infos+: 打印所有的编码相关信息；
+\item \verb+-i X+/\verb+--info=X+: 打印所有关于编码\ X 上的信息。
+\end{itemize}
+
+\bigskip
+\noindent 
+该编码可以采取以下列表的值（非详尽，见下文）:
+
+\bigskip
+\verb$FRENCH$
+
+\verb$ENGLISH$
+
+\verb$GREEK$
+
+\verb$THAI$
+
+\verb$CZECH$
+
+\verb$GERMAN$
+
+\verb$SPANISH$
+
+\verb$PORTUGUESE$
+
+\verb$ITALIAN$
+
+\verb$NORWEGIAN$
+
+\verb$LATIN$ (default latin code page)
+
+\verb$windows-1252$: Microsoft Windows 1252 - Latin I (Western Europe \& USA)
+
+\verb$windows-1250$: Microsoft Windows 1250 - Central Europe
+
+\verb$windows-1257$: Microsoft Windows 1257 - Baltic
+
+\verb$windows-1251$: Microsoft Windows 1251 - Cyrillic
+
+\verb$windows-1254$: Microsoft Windows 1254 - Turkish
+
+\verb$windows-1258$: Microsoft Windows 1258 - Viet Nam
+
+\verb$iso-8859-1  $: ISO 8859-1  - Latin 1 (Europe de l'ouest \& USA)
+
+\verb$iso-8859-15 $: ISO 8859-15 - Latin 9 (Western Europe \& USA)
+
+\verb$iso-8859-2  $: ISO 8859-2  - Latin 2 (Eastern and Central Europe)
+
+\verb$iso-8859-3  $: ISO 8859-3  - Latin 3 (Southern Europe)
+
+\verb$iso-8859-4  $: ISO 8859-4  - Latin 4 (Northern Europe)
+
+\verb$iso-8859-5  $: ISO 8859-5  - Cyrillic
+
+\verb$iso-8859-7  $: ISO 8859-7  - Greek
+
+\verb$iso-8859-9  $: ISO 8859-9  - Latin 5 (Turkish)
+
+\verb$iso-8859-10 $: ISO 8859-10 - Latin 6 (Nordic)
+
+\verb$next-step   $: NextStep code page
+
+\verb$LITTLE-ENDIAN$
+
+\verb$BIG-ENDIAN$
+
+\verb$UTF8$
+
+
+
+
+
+
+
+\section{Dico}\index{Programmes externes!\verb+Dico+}\index{\verb+Dico+}
+\index{Dictionnaire!application}
+\verb+Dico [OPTIONS] <dic_1> [<dic_2> <dic_3>...]+
+
+\bigskip
+\noindent 该程序将应用字典于一个文本。\verb+Tokenize+ 程序必须将文本分割成词汇单元。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-t TXT+/\verb+--text=TXT+: \verb+.snt+ 文本文件的完整名称；
+\item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 使用的字母文件；
+\item \verb+-m DICS+/\verb+--morpho=DICS+:该选项参数指示哪些形态学模式字典是要使用的，如果需要的话通过一些\ \verb+.fst2+ 字典。 \verb+DICS+ 代表用分号分隔的\ \verb+.bin+ 文件（全路径）的列表；
+\item \verb+-K+/\verb+--korean+: 指示\ \verb$Dico$ 适用于韩语；
+\item \verb+-s+/\verb+--semitic+: 指示\ \verb$Dico$，在闪族语环境下运行（在\ \verb$Dico$ 需要压缩字典的情况下需要）；
+\item \verb+-u X+/\verb+--arabic_rules=X+:规定了阿拉伯语排版规则配置文件。
+\item \verb+r X+/\verb+--raw=X+: 表明\ \verb$Dico$ 应只生产一个含有简单和复合词输出文件\ X，而不需要一个文本目录。如果\ X被忽略了，结果显示在标准输出。
+\end{itemize}
+
+\bigskip
+\noindent \verb+<dic_i>+ 表示字典的路径和名称。这本字典必须是\ .\verb+.bin+ 压缩格式（由\ \verb+Compress+ 程序获得），或\ \verb+.fst2+ 格式的图像字典（见章节\ \ref{section-applying-dictionaries}，\pageref{section-applying-dictionaries} 页）。	\index{Fichier!\verb+.bin+}可以给该字典优先权。详细内容请参见\ \ref{section-dictionary-priorities}。
+
+\bigskip
+\noindent 程序\ \verb+Dico+ 生成以下文件，并在文本目录保存它们：
+
+\begin{itemize}
+  \index{Fichier!\verb+dlf+}\index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}\index{Fichier!\verb+stat_dic.n+}
+  \item \verb+dlf+: 文本中简单词汇的字典；
+  \item \verb+dlc+: 文本中复合词汇的字典；
+  \item \verb+err+: 文本中未知词汇的列表；
+  \item \verb+tags_err+:未被文件\ \verb+tags.ind+ 识别的简单未知词汇；
+  \item \verb+tags.ind+ : 插入序列于自动机
+  （见章节 \ \ref{section-dictionary-graphs}， 页数 \ \pageref{section-dictionary-graphs}）；
+  \item \verb+stat_dic.n+:包含文本中简单，复合词和未知词汇数量的文件。 
+\end{itemize}
+
+\bigskip
+\noindent 注：文件\ \verb+dlf+， \verb+dlc+， \verb+err+ 和 \ \verb+tags_err+ 不排序。使用程序\ \verb+SortTxt+ 对它们进行排序。
+
+
+
+\section{转储偏移}\index{Programmes externes!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\label{section-DumpOffsets}
+\textbf{用法:} \verb+DumpOffsets [OPTIONS] <txt>+
+
+\bigskip
+\noindent\verb+<txt>: fichier d'offsets d'origine+
+
+\bigskip
+\noindent 该程序允许学习和使用偏移量对应的文件，由一些Unitex工具操控，如\ Unxmlize， Normalize， Fst2Txt， Tokenize， Concord 和 GrfTest。
+
+\bigskip
+\noindent \textbf{功能:}
+
+\begin{itemize} 	 
+  \item \verb+-o X+/\verb+--old=X+: 旧文件名称
+  \item \verb+-n X+/\verb+--new=X+: 新文件名称 
+  \item \verb+-p X+/\verb+--output=X+: 输出文件的名称
+  \item \verb+-f+/\verb+--full+: 加入常用的文本
+  \item \verb+-q+/\verb+--quiet+:不显示消息
+  \item \verb+-c+/\verb+--no_escape_sequence+: 不要忽略文本序列
+  \item \verb+-h+/\verb+--help+: 帮助 	 
+\end{itemize}
+
+\noindent 例子: 
+\begin{verbatim}
+	 UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt 	 
+	         --output_offsets .\work\text_file_offset.txt 	 
+	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt 	 
+	        -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt 	 
+\end{verbatim}
+
+\bigskip
+\noindent \textbf{其他用途:} \verb+DumpOffsets [-m/--merge] [OPTIONS] <txt>+
+
+\bigskip
+\noindent \verb+<txt>: 偏移原始文件+
+
+\bigskip
+\noindent 通过两个连续的文本修改而产生的两个偏移文件合并。
+
+\bigskip
+\noindent \textbf{功能:}
+
+\begin{itemize} 	 
+  \item \verb+-o X+/\verb+--old=X+: 旧文件名称
+  \item \verb+-n X+/\verb+--output=X+: 合并偏移文件名称
+\end{itemize}
+
+\bigskip
+\noindent \textbf{其他用途:} \verb+DumpOffsets [-v/--convert_modified_to_common] [OPTIONS] <txt>+
+
+\bigskip
+\noindent \verb+<txt>: 偏移原始文件+
+
+\bigskip
+\noindent 创建偏移文件，该文件列出原始的和修改过的文件之间的共同字符串的偏移量。必须提供至少一个尺寸。	 
+
+\bigskip
+\noindent \textbf{功能:}
+	  	 
+\begin{itemize} 	 
+  \item \verb+-s N+/\verb+--old_size=N+: 原始文件的大小（以字符计算）
+  \item \verb+-S N+/\verb+--new_size=N+: 修改后的文件大小（以字符计算）
+  \item \verb+-p X+/\verb+--output=X+: 常用偏移文件的名称	 
+  \item \verb+-h+/\verb+--help+: 帮助
+\end{itemize} 	 
+
+\bigskip
+\noindent \textbf{其他用途:} \verb+DumpOffsets [-M/--convert_modified_to_common] [OPTIONS] <txt>+
+
+\bigskip
+\noindent \verb+<txt>: 偏移原始文件+
+
+\bigskip
+\noindent 从原来的和修改过的文件之间的共同字符串的偏移量创建一个标准的偏移编辑文件。必须提供两种大小。
+	
+\bigskip
+\noindent \textbf{功能:}
+	  	 
+\begin{itemize} 	 
+  \item \verb+-s N+/\verb+--old_size=N+: 原始文件的大小（以字符计算）
+  \item \verb+-S N+/\verb+--new_size=N+: 修改后的文件大小（以字符计算）
+  \item \verb+-p X+/\verb+--output=X+: 常用偏移文件的名称 	 
+  \item \verb+-h+/\verb+--help+: 帮助	 
+\end{itemize} 	 
+
+\bigskip
+\noindent \textbf{其他用途:} \verb+DumpOffsets -o <list_of_position_file_to_read.txt>+
+
+\bigskip
+\noindent \verb+<list_of_position_file_to_read.txt>+是在每行只有一个号码（一个位置）的文本文件。 
+\bigskip
+\noindent 这里使用偏移文件转换一个位置列表。如果在这个位置上的字符在新文件中，所创建的文件每一行中包含后接一个\ + 的新位置，如果该字符被删除，后接\ -。
+	  
+	  	 
+\begin{itemize}
+  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
+\end{itemize} 	 
+
+\noindent 使用\ \verb+-t+ 代替\ \verb+-T+ 会做反向翻译。 
+
+
+
+
+
+\section{转储偏移}\index{Programmes externes!\verb+DumpOffsets+}\index{\verb+DumpOffsets+}
+\label{section-DumpOffsets}
+
+\noindent 该程序允许学习和使用偏移量对应的文件，由一些\ Unitex 工具操控，如\ Unxmlize， Normalize， Fst2Txt， Tokenize， Concord 和 GrfTest。
+\bigskip
+\begin{verbatim}
+DumpOffsets --merge -o <fichier_offsets1> <fichier_offsets2>
+  -p <fichier_offset12>
+\end{verbatim}
+起始， 文件\ offsets1 （章节\ \ref{subsection-offsets-diff}， 页数 \ \pageref{subsection-offsets-diff}）包含\ A，B 版本文件之间的对应偏移，文件\ offset2 包含\ B，C 版本文件直接的对应偏移， 文件\ fichier\_offset12 最终结果将是\ A，B 版本文件之间。 
+
+\begin{verbatim}
+DumpOffsets [OPTIONS] -o <fichier_version1> -n <fichier_Version2>
+  <fichier_offset> -p <fichier_dump>
+\end{verbatim}
+\bigskip
+
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-f/--full+: 包括更完整的信息
+\end{itemize}
+起始， 文件\ fichier\_offset 包含了\ fichier\_version1 和\ fichier\_version2 之间的对应偏移。结尾，文本文件\ <fichier\_dump> 包含两个文件的序列比较并检查它们的一致性。此文件是阅读手册，以便于学习偏移文件的内容。
+
+
+
+\bigskip
+\begin{verbatim}
+DumpOffsets [OPTIONS] --convert_modified_to_common 
+  <fichier_offset_différence> -p <fichier_offset_zone_commune>
+\end{verbatim}
+\bigskip
+
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-s N/--old_size=N+: 原始文件的大小（以字符计算）
+\item \verb+-S N/--new_size=N+: 修改后的文件大小（以字符计算）
+\end{itemize}
+必须指定两种尺寸之一。UTF16BE\_BOM 编码格式的文件，尺寸为字节，我们先减去\ BOM 签名的两个字节，然后除以\ 2 因为每个字符占两个字节。 在\ UTF8 格式，一致性不是立即的。 
+
+将指示删除的字符的偏移文件（由\ Unitex 其他工具提供）转换为，指示相同字符的地方。 （见章节\ \ref{subsection-offsets-common}）。
+
+\bigskip
+\begin{verbatim}
+DumpOffsets [OPTIONS] --convert_common_to_modified
+  <fichier_offset_zone_commune> -p <fichier_offset_différence>
+\end{verbatim}
+\bigskip
+
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-s N/--old\_size=N+: 原始文件的大小（以字符计算）
+\item \verb+-S N/--new\_size=N+: 修改后的文件大小（以字符计算）
+\end{itemize}
+必须指定两种尺寸。
+
+将指示相同字符的地方的偏移文件转换为指示删除字符的文件。
+
+
+
+\section{Elag}\index{Programmes externes!\verb+Elag+}\index{\verb+Elag+}
+\verb+Elag [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序需要使用\ \verb+.tfst+ 文本自动\ \verb+<tfst>+，并让其适用于歧义去除规则。 \index{Fichier!\verb+.tfst+}
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-l LANG/--language=LANG+: 文本语言配置文件\ ELAG
+  \item \verb+-r RULES/--rules=RULES+: \verb+.rul+ 格式的规则文件；
+  	  \index{Fichier!\verb+.rul+}
+  \item \verb+-o OUT/--output=OUT+: 输出文本自动机。
+\end{itemize}
+
+
+
+
+
+
+
+\section{ElagComp}\index{Programmes externes!\verb+ElagComp+}\index{\verb+ElagComp+}
+\verb+ElagComp [OPTIONS]+
+
+\bigskip
+\noindent 该程序编译名为\ \verb+GRAMMAR+ 的语法\ ELAG，或在\ \verb+RULES+ 文件中指定的所有语法。其结果存储在将由\ \verb+Elag+ 程序使用的\ \verb+OUT+ 文件。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-r RULES+/\verb+--rules=RULES+: 列出\ ELAG 语法的文件；
+  \item \verb+-g GRAMMAR+/\verb+--grammar=GRAMMAR+: 一个给出的\ ELAG 语法；
+  \item \verb+-l LANG+/\verb+--language=LANG+: 对相关语言的\ ELAG 配置文件；
+  \item \verb+-o OUT+/\verb+--output=OUT+: 输出文件。默认情况下，输出文件都遵循\ \verb+RULES+，除了扩展名\ \verb+.rul+。\index{Fichier!\verb+.rul+} 
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{Evamb}\index{Programmes externes!\verb+Evamb+}\index{\verb+Evamb+}
+\verb+Evamb [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序对所有的文本自动计算\ \verb+<tfst>+，或者只是\ \verb+N+ 指定的句子计算平均歧义率。计算的结果显示在标准输出。文本自动机不被该程序修改。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o OUT+/\verb+--output=OUT+: 可选文件名；
+  \item \verb+-s N+/\verb+--sentence=N+: 句子编号。
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{提取}\index{Programmes externes!\verb+Extract+}\index{\verb+Extract+}
+\verb+Extract [OPTIONS] <text>+
+
+\bigskip
+\noindent 该程序从文本提取所有至少含有一个一致性事件的句子。参数\ \verb+<text>+ 代表了文本文件的完整路径，不省略扩展名\ \verb+.snt+。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-y+/\verb+--yes+: 提取包含匹配单元所有句子（默认）；
+\item \verb+-n+/\verb+--no+: 提取不包含匹配单位所有句子；
+  \item \verb+-o OUT+/\verb+--output=OUT+: 输出文本文件；
+  \item \verb+-i X+/\verb+--index=X+: 描写一致性文件\ \verb+.ind+。默认条件下，\verb+X+ 是位于文本目录下的\ \verb+concord.ind+ 文件。
+\end{itemize}
+
+\bigskip
+\noindent 结果是包含所有提取的句子，每行一个句子的文本文件。
+
+
+
+
+
+
+
+
+\section{展平}\index{Programmes externes!\verb+Flatten+}\index{\verb+Flatten+}
+\index{Graphe!approximation par transducteur fini}
+\index{Approximation d'une grammaire par un transducteur fini}
+\verb+Flatten [OPTIONS] <fst2>+
+
+\bigskip
+\noindent 该程序需要\ \verb+.fst2+ 语法作为它的参数，并试图将其改造成一个有限状态传感器。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-f+/\verb+--fst+:语法是“展开”，以最大程度，而且截断如果子图调用存在。截断调用由空转变所取代。其结果是一个仅含有一个单一的有限状态换能器\ \verb+.fst2+ 语法； 
+
+\item \verb+-r+/\verb+--rtn+:变换留下之后子图调用也继续存在。在有利的情况下，结果是有限状态换能器，相反情况下优化的语法严格等同于原始语法（默认）；
+
+\item \verb+-d N+/\verb+--depth=N+:最大深度决定了哪个图调用将被打开。默认值为\ 10。
+\end{itemize}
+
+
+
+
+
+
+
+\section{Fst2Check}\index{Programmes externes!\verb+Fst2Check+}\index{\verb+Fst2Check+}
+\verb+Fst2Check [OPTIONS] <fst2>+
+
+\bigskip
+\noindent 该程序检查文件\ .fst2 是否无本地错误。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-y+/\verb+--loop_check+:运行错误错误校验（循环检测）；
+\item \verb+-n+/\verb+--no_loop_check+: 禁用错误检查（默认）；
+	\index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}\index{Erreurs
+	dans les graphes}
+\item \verb+-t+/\verb+--tfst_check+:检查给定的图是否可以被视为有效的句子自动机；
+\item \verb+-e+/\verb+--no_empty_graph_warning+: 当图识别空词时不出现警告。 该功能由 \ \verb+MultiFlex+ 使用，为了用户不被毫无意义的错误消息吓到，当他们创建了识别空词的词形变化语法。
+
+\end{itemize}
+
+\bigskip
+\noindent \textbf{输出功能:}
+\begin{itemize}
+\item \verb+-o file+/\verb+--output=file+: 错误信息输出文件；
+\item \verb+-a+/\verb+--append+: 追加模式下打开一个错误信息文件；
+\item \verb+-s+/\verb+--statistics+: 显示文件\ \verb+.fst2+ 统计信息。
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{Fst2List}\index{Programmes externes!\verb+Fst2List+}\index{\verb+Fst2List+}
+\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
+
+\verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
+
+\verb@         [-c SS=0xxxx]* fname@
+
+\bigskip
+\noindent 该程序需要一个\ \verb+.fst2+ 文件，并列出了这个语法识别的序列。参数如下：
+
+
+\begin{itemize}
+  \item \verb$fname$ :语法名称， 伴随扩展名\ \verb@.fst2@；
+  \item \verb$-o out$ : 指定输出文件。 默认情况下，该文件名为\ \verb@lst.txt@；
+  \item \verb$-S$ : 在标准输出上的显示效果。专用\ \verb$-o$；
+  \item \verb$-[a/t] s/m$ : 如果程序必须考虑到(\verb$t$) 或不(\verb$a$)在任何语法的输出。 \verb$s$ 表示只存在一个初始状态，而\ \verb$m$ 表示有几个（该模式对韩语有效）。默认情况，参数\ \verb$-a s$；
+
+  \item \verb$-l line#$ : 在输出文件被打印行的最大数量；
+  \item \verb$-i subname$ : 表示当程序识别图形\ \verb$subname$ 必须停止进入递归检查。这个参数可多次用于以指定多个停止图表；
+  
+  \item \verb$-p s/f/d$ : \verb$s$ 显示语法的路径图； \verb$f$ （默认）显示全球的路径； \verb$d$ 可以显示全球的路径和嵌套图形调用的信息；
+
+  \item \verb$-c SS=0xXXXX$: 替换\ \verb$SS$，当它出现在十六进制\ \verb$0xXXXX$ 尖括号之间； 
+
+  \item \verb$-s "L[,R]"$ : 指定包围项目的左(\verb$L$)和右(\verb$R$)分隔符。默认情况下，没有分隔符；
+
+  \item \verb$-s0 "Str"$ :如果程序必须把输出考虑在内，此参数指定将输入和输出之间插入序列\ \verb$Str$。默认情况下，没有分隔；
+
+  \item \verb$-f a/s$ : 如果程序必须把输出考虑在内， 此参数规定了将要生成的行的格式 :
+  \verb$in0 in1 out0 out1$ (\verb$s$) 或 \ \verb$in0 out0 in1 out1$ (\verb$a$)。默认值为\ \verb$s$；
+  
+\item \verb$-ss "stop"$: 定义 "str" 为搜索停止的标志。
+	默认值为 \ \verb$null$；
+
+  \item \verb$-v$ : 显示过程中的信息； （详细模式）；
+  
+  \item \verb$-m$ : 字母描述特殊模式；
+  	  
+  \item \verb$-rx "L,[R]"$: 该参数指定了周期该如何说明设计分隔符的\ \verb$L$ 和 \ \verb$R$。我们可以考虑下图 \ \ref{cycle}，
+  	  下面是我们得出的结果\ \verb$L$="\verb$[$" 和 \ \verb$R$="\verb$]*$":
+
+  \medskip
+  \noindent
+  \texttt{il fait [tr\`es tr\`es]*}
+  
+  \noindent
+  \texttt{il fait tr\`es beau}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig10-1.png}
+\caption{含有循环的图像\label{cycle}}
+\end{center}
+\end{figure}
+
+\end{itemize}
+
+
+
+
+
+
+
+\section{Fst2Txt}\index{Programmes externes!\verb+Fst2Txt+}\index{\verb+Fst2Txt+}
+\label{section-Fst2Txt}
+\verb+Fst2Txt [OPTIONS] <fst2>+
+
+\bigskip
+\noindent 本程序将应用传感器在预处理阶段中最长的匹配模式于文本，当文本还没有被切割成词汇单位。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-t TXT+/\verb+--text=TXT+: 可修改的文本文件，以扩展名\ .snt；
+  
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 文本语言的字母文件；\index{Alphabet}\index{Fichier!alphabet}
+
+  \item \verb+-s+/\verb+--start_on_space+:该参数表示搜索将在文本中的任何位置开始，即使是空格前。该参数应仅用来进行形态学的搜索； 
+  	  
+  \item \verb+-x+/\verb+--dont_start_on_space+:禁止程序识别从空格开始的序列（默认）；
+  
+  \item \verb+-c+/\verb+--char_by_char+:  对逐个字符使用字符标记化模式。对于像泰语非常适用；
+
+  \item \verb+-w+/\verb+--word_by_word+:逐个词语运行 （默认）；
+  \item \verb+--input_offsets=XXX+: 使用的偏移文件。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{输出功能:}
+\begin{itemize}
+\item \verb+-M+/\verb+--merge+: 合并文本输入和传感器输出 （默认）；
+\item \verb+-R+/\verb+--replace+: 用相应的传感器输出代替文本输入。
+\item \verb+--output_offsets=XXX+: 生成的偏移文件
+\end{itemize}
+
+\bigskip
+\noindent 该程序用于修改输入文本文件。
+
+
+
+
+
+
+
+\section{Grf2Fst2}\index{Programmes externes!\verb+Grf2Fst2+}\index{\verb+Grf2Fst2+}
+\index{Graphe!compilation}\index{Compilation!d'un graphe}
+\verb+Grf2Fst2 [OPTIONS] <grf>+
+
+\bigskip
+\noindent \index{Fichier!\verb+.grf+}\index{Fichier!\verb+.fst2+}
+该程序将语法编译成\ \verb+.fst2+ 文件（详见章节 \ \ref{section-graph-compilation}）。参数\ \verb+<grf>+ 表示语法的主要图形的完整路径，不省略扩展名\ \verb+.grf+。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-y+/\verb+--loop_check+: 启用错误检查（循环检测）； 
+  \item \verb+-n+/\verb+--no_loop_check+: 禁用错误检查（默认）；
+  	  \index{Détection d'erreur dans les graphes}\index{Graphe!détection d'erreur}\index{Erreurs dans les graphes}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 指定用于在语法箱子划分词汇单元的字母文件。
+
+  \item \verb+-c+/\verb+--char_by_char+: 划分由逐个字符完成。如果没有使用\ \verb+-c+ 也没有使用 \ \verb+-a+ 时，词汇单位将是任意\ Unicode 字母排列的。
+  \item \verb+-d DIR+/\verb+--pkgdir=DIR+: 指定编译语法的库目录 （见章节 \ \ref{section-repository}， 页码 \ \pageref{section-repository}）。
+  \item \verb+-e+/\verb+--no_empty_graph_warning+: 当图像匹配空词时不发出警告。 该功能由\ \verb+MultiFlex+ 使用，为了当用户创建了识别空词的词形变化语法，不被毫无意义的错误消息吓到。
+  \item \verb+-t+/\verb+--tfst_check+: 检查给出的图形是否是有效的句子自动器；
+\item \verb+-s+/\verb+--silent_grf_name+: 不显示图形名称
+	（日志文件需多系统兼容使用）；
+\item \verb+-r XXX+/\verb+--named_repositories=XXX+:声明库的目录名。  XXX 由一个或多个\ X=Y 序列组成，用`;'分开，X 是由路径\ Y 设定的库目录名称。该功能可多次使用；
+\item \verb+--debug+: 调试模式下编译图形；
+\item \verb+-v+/\verb+check_variables+:检查输出有效性以避免格式错误变量表达式。
+\end{itemize}
+
+\bigskip
+\noindent 结果是与作为传递给该程序作为参数的图形具有相同名称的文件，扩展名\ \verb+.fst2+。该文件保存在同一目录\ \verb+<grf>+。
+
+
+
+
+
+\section{GrfDiff}
+\verb+GrfDiff <grf1> <grf2>: fichier fichiers .grf+  à comparer
+
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+--output X+: 保存结果于\ X 而不显示 
+\end{itemize}
+         
+比较给定的\ .grf 文件并显示他们在标准输出上的差异。如果它们有相同的模再排序框和转换，返回\ 0，如果有差异返回\ 1，错误的情况下返回\ 2。
+
+这里是\ GrfDiff 可以发出的指示：
+
+		 
+
+\begin{itemize}
+		 
+\item \verb+P name+: 介绍属性已更改。名称=属性名（大小，
+字体，...）
+\item \verb+M a b+:  盒子移动。a=<grf1> 中盒子编号， b=<grf2> 中盒子编号
+\item \verb+C a b+:  盒子内容已变。 a=<grf1> 中盒子编号， b=<grf2> 中盒子编号
+\item \verb+A x+:    已添加一个盒子。 x=<grf2> 中盒子编号
+\item \verb+R x+:    已删除一个盒子。 x=<grf1> 中盒子编号
+\item \verb+T a b x y+: 一个转变已被添加。 a,b=<grf1> 中盒子\ src 和\ dst 编号。
+	x,y= <grf2>中盒子src和dst编号
+\item \verb+X a b x y+: 一个转变已被删除。 a,b=<grf1> 中盒子\ src 和\ dst 编号。
+	x,y=<grf2> 中盒子\ src 和\ dst 编号。
+\end{itemize}
+		 
+请注意有关已添加或移除框的转变修改不被报告。
+
+
+
+
+
+\section{GrfDiff3}
+GrfDiff3 <mine> <base> <other>
+
+<mine>: 我的文件 \ .grf
+<other>: 产生冲突的其他文件 \ .grf 
+<base>: 共同的原始文件 \ .grf 
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+--output+ \verb+X+: 保存结果于\ X，而不是在输出。
+\item \verb+--conflicts+ \verb+X+: 保存冲突的描述，如果有保存于\ X。
+\item \verb+--only-cosmetic+: 标明所有变化的冲突，不单单是表面的。
+
+\end{itemize}
+
+尝试合并\ <mine> 和\ <other>。在成功的情况下，结果被打印在标准输出并返回\ 0。在冲突未解决的情况下，则返回\ 1，并不打印任何内容。 在出错的情况下返回\ 2。 
+
+
+
+\section{ImplodeTfst}
+\index{Programmes externes!\verb+ImplodeTfst+}
+\index{\verb+ImplodeTfst+} \verb+ImplodeTfst [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序内爆特定的文本自动机，通过合并只有屈折特征不同的词目。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o OUT+/\verb+--output=OUT+: 输出文件。默认情况，修改文本自动机 。
+\end{itemize}
+
+
+
+
+
+
+\section{定位}\index{Programmes externes!\verb+Locate+}\index{\verb+Locate+}
+\label{section-Locate}
+\verb+Locate [OPTIONS] <fst2>+
+
+\bigskip
+\noindent \index{Motif de recherche}
+该程序使用语法于文本并构造发现事件的索引文件。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-t TXT+/\verb+--text=TXT+: 文本文件的完整路径，不省略扩展名\ \verb+.snt+；
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+:字母文件的完整路径；\index{Alphabet}\index{Fichier!alphabet}
+  
+  \item \verb+-m DICS+/\verb+--morpho=DICS+: 此可选参数指示哪些形态学模式字典是要使用的，需要\ \verb+.fst2+ 字典。  \verb+DICS+ 代表用分号分隔的\ \verb+.bin+ 文件列表（全路径）；
+  
+  \item \verb+-s+/\verb+--start_on_space+: 该参数表示搜索将从文本中的任何位置开始，即使是空格之前。该参数应仅用来进行形态学的搜索；
+
+  
+  \item \verb+-x+/\verb+--dont_start_on_space+:禁止程序识别从空格开始的序列 （默认）；
+	
+  \item \verb+-c+/\verb+--char_by_char+: 此可选参数对逐个字符使用换能器在字符模式。该功能适用于亚洲语言例如泰语；
+  
+  \item \verb+-w+/\verb+--word_by_word+: 逐词模式运行 （默认）；
+  
+\item \verb+-d DIR+/\verb+--sntdir=DIR+:将成品文件置于\ \verb+DIR+ 目录而不是文本目录。注意\ \verb+DIR+ 必须由分隔文件结束 （\verb+\+ 或者\ \verb+/+）；
+  
+  \item \verb+-K+/\verb+--korean+: 表示\ \verb+Locate+ 运行于韩语；
+
+  \item \verb+-u X+/\verb+--arabic_rules=X+: 阿拉伯语排版规则配置文件；
+
+  \item \verb+-g X+/\verb+--negation_operator=X+:
+  指定否定运算符在词汇掩模的使用。\verb+X+ 的两个可能的值为\ \verb+moins+ 和\ \verb+tilde+（默认）。
+  使用\ \verb+moins+ 使\ Unitex 与原先版本兼容。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{搜索限制功能:}
+\begin{itemize}
+\item \verb+-l+/\verb+--all+: 查找所有匹配 （默认）；
+\item \verb+-n N+/\verb+--number_of_matches=N+: 
+  \verb+N+ 匹配之后停止。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{每个标记最大迭代次数功能:}
+\begin{itemize}
+\item \verb+-o N+/\verb+--stop_token_count=N+: 在一个标记上\ N 次迭代后停止；
+\item \verb+-o N,M+/\verb+--stop_token_count=N,M+: 发出在一个标记\ N 次迭代后的警告，\ M 迭代后停止警告。
+
+\end{itemize}
+
+\bigskip
+\noindent \textbf{匹配模式功能:}
+\begin{itemize}
+  \item \verb+-S+/\verb+--shortest_matches+;
+  \item \verb+-L+/\verb+--longest_matches+ （默认）;
+  \item \verb+-A+/\verb+--all_matches+.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{输出功能:}
+\begin{itemize}
+\item \verb+-I+/\verb+--ignore+: 忽略传感器输出（默认）；
+\item \verb+-M+/\verb+--merge+: 合并文本输入和传感器输出；
+\item \verb+-R+/\verb+--replace+: 用相应的传感器输出替换文本输入；
+\item \verb+-p+/\verb+--protect_dic_chars+: 当使用\verb+-M+ 和 \verb+-R+模式时，
+	\verb+-p+ 用反斜杠保护一些输入的字符。
+	当\ \verb+Dico+ 调用\ \verb+Locate+ 时该功能被激活，
+	以防止不好结果的行，例如:
+  
+  %do not remove this line jump
+  \verb+3,14,.PI.NUM+
+  \item \verb+-v X=Y+/\verb+--variable=X=Y+:定义一个输出变量\ \verb+X+ 和一个内容物\ \verb+Y+。 
+  	  注意\ Y 必须是\ ASCII 码。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{歧义的输出功能:}
+\begin{itemize}
+  \item \verb+-b+/\verb+--ambiguous_outputs+: 允许匹配最终成品具有相同的输入，但不同的输出（默认）；
+\item \verb+-z+/\verb+--no_ambiguous_outputs+: 禁止歧义的输出。在不明确输出的情况下，一个将被任意选择并保持，根据程序的内部状态。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{变量错误功能}
+
+\noindent 如果输出模式设置\verb+--ignore+，该功能无效； 反之， 当输出包含对不正确定义变量的引用时，它们定义了\ \verb+Locate+ 程序的行动。
+\begin{itemize}
+\item \verb+-X+/\verb+--exit_on_variable_error+: 中断程序；
+\item \verb+-Y+/\verb+--ignore_variable_errors+: 如果变量内容为空则运行（默认）；
+\item \verb+-Z+/\verb+--backtrack_on_variable_errors+: 中断对语法路径的搜索。
+\end{itemize}
+  
+\bigskip
+\noindent \textbf{变量注入:}
+\begin{itemize}
+\item \verb+-v X=Y+/\verb+--variable=X=Y+:定义一个输出变量\ \verb+X+ 和一个内容物\ \verb+Y+。 
+  注意\ Y 必须是\ ASCII 码。
+\end{itemize}
+
+\bigskip
+\noindent \index{Fichier!\verb+concord.ind+}\index{Fichier!\verb+concord.n+} 该程序保存一个叫\ \verb+concord.ind+ 文件中发现的事件引用。
+事件的数量， 属于这些事件的单元数量，以及文本中匹配单元百分比都保存在一个叫\ \verb+concord.n+ 的文件里。这两个文件都保存在文本目录下。
+
+
+
+
+
+
+
+\section{定位Tfst}\index{Programmes externes!\verb+LocateTfst+}\index{\verb+LocateTfst+}
+\label{section-LocateTfst}
+\verb+LocateTfst [OPTIONS] <fst2>+
+
+\bigskip
+\noindent \index{Recherche de motifs}
+该程序使用语法于一个文本自动机，并保存匹配序列的索引于一个名为\ \verb+concord.ind+ 的文件中，如同\ \verb+Locate+ 的功能。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-t TFST+/\verb+--text=TFST+: 文本文件的完整路径，不省略扩展名；
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件的完整路径；\index{Alphabet}\index{Fichier!alphabet}
+  
+  \item \verb+-K+/\verb+--korean+:指示  \ \verb+LocateTfst+ 在韩语环境下运行；
+
+  \item \verb+-g X+/\verb+--negation_operator=X+: 
+  指定否定运算符在词汇掩模的使用。\verb+X+ 的两个可能的值为\ \verb+moins+ 和\ \verb+tilde+（默认）。
+  使用\ \verb+moins+ 使\ Unitex 与原先版本兼容。
+  
+\end{itemize}
+
+\bigskip
+\noindent \textbf{搜索限制功能:}
+\begin{itemize}
+  \item \verb+-l+/\verb+--all+: 查找所有匹配（默认）；
+  \item \verb+-n N+/\verb+--number_of_matches=N+: 第一次\ \verb+N+ 匹配之后停止。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{匹配模式功能:}
+\begin{itemize}
+  \item \verb+-S+/\verb+--shortest_matches+;
+  \item \verb+-L+/\verb+--longest_matches+ （默认）;
+  \item \verb+-A+/\verb+--all_matches+.
+\end{itemize}
+
+\bigskip
+\noindent \textbf{输出功能:}
+\begin{itemize}
+  \item \verb+-I+/\verb+--ignore+: 忽略传感器输出（默认）；
+  \item \verb+-M+/\verb+--merge+:合并文本输入和传感器输出；
+  \item \verb+-R+/\verb+--replace+: 用相应的传感器输出替换文本输入；
+\end{itemize}
+
+\bigskip
+\noindent \textbf{歧义的输出功能:}
+\begin{itemize}
+  \item \verb+-b+/\verb+--ambiguous_outputs+: 允许匹配最终成品具有相同的输入，但不同的输出（默认）；
+  \item \verb+-z+/\verb+--no_ambiguous_outputs+: 禁止歧义的输出。在不明确输出的情况下，一个将被任意选择并保持，根据程序的内部状态。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{变量错误功能}
+
+\noindent 如果输出模式设置\verb+--ignore+，该功能无效； 反之， 当输出包含对不正确定义变量的引用时，它们定义了\ \verb+Locate+ 程序的行动。
+\begin{itemize}
+\item \verb+-X+/\verb+--exit_on_variable_error+: 中断程序；
+\item \verb+-Y+/\verb+--ignore_variable_errors+: 如果变量内容为空则运行（默认）；
+\item \verb+-Z+/\verb+--backtrack_on_variable_errors+:中断对语法路径的搜索。
+\end{itemize}
+\noindent \textbf{变量注入}
+\begin{itemize}
+\item \verb+-v X=Y+/\verb+--variable=X=Y+: 定义一个输出变量\ \verb+X+ 和一个内容物\ \verb+Y+。 
+  注意\ Y 必须是\ ASCII码。
+\end{itemize}
+\noindent \textbf{标签功能}
+\begin{itemize}
+\item \verb+--tagging+: 指示一致性必须是标记之一，包含在每个匹配的开始和结束状态的其他信息。
+\end{itemize}
+\bigskip
+\noindent \index{Fichier!\verb+concord.ind+}\index{Fichier!\verb+concord_tfst.n+}
+该程序保存一个叫\ \verb+concord.ind+ 文件中发现的事件引用。
+事件的数量， 和输出成品的数量都保存在一个叫\ \verb+concord_tfst.n+ 的文件里。这两个文件都保存在文本目录下。
+
+
+
+
+
+
+
+\section{MultiFlex}\index{Programmes externes!\verb+MultiFlex+}\index{\verb+MultiFlex+}
+\verb+MultiFlex [OPTIONS] <dela>+
+
+\bigskip
+\noindent \index{Dictionnaire!flexion automatique}\index{Flexion automatique}
+该程序执行DELA字典的词形变化自动，字典包括简单词原型（参见章节\ \ref{section-DELAS-format}）和复合词（参见章节\ \ref{chap-multiflex}）原型。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o DELAF+/\verb+--output=DELAF+: 输出\ DELAF 文件；
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件；
+  \item \verb+-d DIR+/\verb+--directory=DIR+: 包含文件\ \verb+Morphology+ 和 \ \verb+Equivalences+ 以及简单，复合词词形变化图像的目录；
+  \item \verb+-K+/\verb+--korean+: 指示 \ \verb+MultiFlex+ 在韩文的环境下运行；
+  \item \verb+-s+/\verb+--only-simple-words+:程序会把复合词看作错误；
+  \item \verb+-c+/\verb+--only-compound-words+: 程序会把简单词看作错误；
+  \item \verb+-p DIR+/\verb+--pkgdir=DIR+: 指示图形目录。
+  \item \verb+-rXXX+/\verb+--named_repositories=XXX+: 声明库的目录名。XXX 由一个或多个\ X=Y 序列组成，用\ ; 分开，X 是由路径\ Y 设定的库目录名称。该功能可多次使用；
+  
+\end{itemize}\index{Hangul}\index{Hangul}
+
+\bigskip
+\noindent 需要注意的是词形变化传感器\ \verb+.fst2+ 会自动从\ \verb+.grf+ 相应文件构建，在缺失情况或者比\ \verb+.grf+ 文件旧的情况下。
+
+
+
+
+
+
+
+\section{规范化}\index{Programmes externes!\verb+Normalize+}\index{\verb+Normalize+}
+\label{section-Normalize}
+\index{Texte!normalisation}
+\verb+Normalize [OPTIONS] <text>+
+
+\bigskip
+\noindent \index{Normalisation!des séparateurs} 
+该程序进行文本分隔符的规范化。分离器可以是空格，制表符和换行符。分隔符每一个序列包含至少一个换行符，由唯一的换行符替换。分离器的所有其他序列由一个空格替换。
+
+\bigskip
+\noindent 该程序还检查文本中发现的词汇标签的句法。在大括号里的所有序列应该是句子分隔符\ \verb+{S}+，停止标记\ \verb+{STOP}+，或者\ DELAF 格式的有效条目（\verb+{aujourd'hui,.ADV}+）。
+
+\index{\verb+{S}+}\index{Délimiteur de phrase}
+
+\bigskip
+\noindent \index{Étiquette lexicale} 参数\ \verb+<text>+ 表示文本文件的完整路径。该程序创建
+一个修改版本的文本，保存在扩展名为\ \verb+.snt+ 的文件中。
+\index{Fichier!\verb+.snt+}
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-n+/\verb+--no_carriage_return+: 每一个分离器序列将变成一个单一的空格；
+\item \verb+--input_offsets=XXX+: 使用的偏移文件。
+\item \verb+--output_offsets=XXX+: 产生的偏移文件。
+\item \verb+-r XXX+/\verb+--replacement_rules=XXX+:
+指定要使用的规范化规则文件。请参阅有关此文件格式的详细信息\ \ref{section-normalization-file}。默认情况下，该程序只用\ \verb+[+ 和\ \verb+]+ 替换\ \verb+{+ 和\ \verb+}+。
+\item \verb+--no_separator_normalization+:仅适用指明\ -r 的替换规则。
+\end{itemize}
+
+\bigskip
+\noindent 警告：如果您指定了规范化规则文件，它的规则将优先于之前别的。所以，你在该规则下操纵这些分离器要非常小心。
+
+
+
+
+
+\section{PolyLex}\index{Programmes externes!\verb+PolyLex+}\index{\verb+PolyLex+}
+\verb+PolyLex [OPTIONS] <list>+
+\index{Norvégien!mots composés libres}
+\index{Allemand!mots composés libres}
+\index{Néerlandais!mots composés libres}
+\index{Russe!mots composés libres}
+\index{Analyse des mots composés libres!langues germaniques}
+\index{Mots!composés libres!langues germaniques}
+\index{Analyse des mots composés libres!russe}
+\index{Mots!composés libres!russe}
+
+\bigskip
+\noindent 该程序占用包含未知词\ \verb+<list>+的文件，并试图把每个单词作为获得的复合词分析，用连接简单词的方法。从未知词汇文件中拿出具有至少一个分析数据的词，对应分析数据的字典行的被添加到\ \verb+OUT+文件。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 使用的字母文件；
+
+  \item \verb+-d BIN+/\verb+--dictionary=BIN+: 使用的字典\ .bin；
+
+  \item \verb+-o OUT+/\verb+--output=OUT+: 指定产生词典行的文件需要被记录；如果该文件已经存在，所产生的行追加在该文件的末尾；
+  \item \verb+-i INFO+/\verb+--info=INFO+: 指定其中有关分析的信息已经产生的文本文件。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{语言功能:}
+\begin{itemize}
+  \item \verb+-D+/\verb+--dutch+
+  \item \verb+-G+/\verb+--german+
+  \item \verb+-N+/\verb+--norwegian+
+  \item \verb+-R+/\verb+--russian+
+\end{itemize}  
+
+\bigskip
+\noindent 注：荷兰语或挪威语，程序试图读取包含禁止单词列表的文本文件。该文件应该被命名为\ \verb+ForbiddenWords.txt+ （参见章节\ \ref{section-forbidden-words}），并和\ \verb+BIN+ 存储在同一目录。
+
+
+
+\section{重建Tfst}
+\index{Programmes externes!\verb+RebuildTfst+}\index{\verb+RebuildTfst+}
+\verb+RebuildTfst <tfst>+
+
+\bigskip
+\noindent \index{Texte!automate du}\index{Reconstruction de l'automate du texte}
+考虑到手动修改该程序重构文本自动\ \verb+<tfst>+。如果程序发现和\ \verb+<tfst>+ 在同一目录下的文件\ \verb+sentenceN.grf+，它会用\ \verb+sentenceN.grf+ 中的替换\ \verb+N+ 的句子自动机。输入的文本自动机被修改。
+
+
+
+
+
+
+\section{Reconstrucao}\index{Programmes externes!\verb+Reconstrucao+}\index{\verb+Reconstrucao+}
+\index{Compression des dictionnaires}\index{Dictionnaire!compression}
+\index{Clitiques!normalisation}\index{Normalisation!des clitiques en portugais}
+\index{Portugais!normalisation des clitiques}
+\verb+Reconstrucao [OPTIONS] <index>+
+
+\bigskip
+\noindent 该程序产生一个标准化的语法，该语法设计应用于葡萄牙语文本自动机构建之前。\verb+<index>+ 文件介绍说明了\ MERGE 模式下产生的一致性，提取各种形式进行规范化的语法。此语法称为\ \verb+V-Pro-Suf+，并存储在\ \verb+/Portuguese/Graphs/Normalization+ 目录。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 使用的字母文件；
+
+  \item \verb+-r ROOT+/\verb+--root=ROOT+:
+   \verb+.bin+逆字典用于查找将来时态和条件式。它通过压缩伴随参数\ \verb+--flip+ 的，将来时和条件式动词词典（见章节\ \ref{section-compress}）；
+  
+  \item \verb+-d BIN+/\verb+--dictionary=BIN+: 使用的\ \verb+.bin+ 字典；
+  
+  \item \verb+-p PRO+/\verb+--pronoun_rules=PRO+: 代词改写的语法\ \verb+.fst2+；
+
+  \item \verb+-n PRO+/\verb+--nasal_pronoun_rules=PRO+: 改写鼻音代词的语法 \ \verb+.fst2+；
+
+  \item \verb+-o OUT+/\verb+--output=OUT+: 生成的图形\ \verb+.grf+名称
+\end{itemize}
+
+
+
+
+
+
+
+\section{Reg2Grf}\index{Programmes externes!\verb+Reg2Grf+}\index{\verb+Reg2Grf+}
+\verb+Reg2Grf <txt>+
+
+\bigskip
+\noindent \index{Expression régulière} \index{Expression rationnelle}
+\index{Fichier!\verb+.grf+}\index{Fichier!\verb+regexp.grf+}
+这个程序构造一个\ \verb+.grf+ 文件，对应的正则表达式写在文件\ \verb+<txt>+。参数\ \verb+<txt>+ 表示包含正则表达式的文件的完整路径。该文件必须是\ Unicode 文本文件。程序考虑到了所有的字符，直到第一个换行符。结果文件名为\ \verb+regexp.grf+ 并保存在同一目录\ \verb+<txt>+。
+
+
+
+
+
+\section{Seq2Grf}\index{Programmes externes!\verb+Seq2Grf+}
+\index{\verb+Seq2Grf+}
+\label{Seq2Grf}
+\verb+Seq2Grf [OPTIONS] <snt>+
+
+\index{Tri}
+\bigskip
+\noindent 该项目是建立一个在文件 \ \verb+<snt>+ 中对应序列的文件\ \verb+.grf+。
+
+\bigskip
+\noindent \textbf{功能:}
+
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 使用的字母文件。
+  \item \verb+-o XXX+/\verb+--output=XXX+: 输出的图形文件；
+  \item \verb+-s+/\verb+--only-stop+: 只考虑通过\ \verb+{STOP}+ 分离的序列；
+  \item \verb+-b+/\verb+--beautify+: 对图形使用美化算法；
+  \item \verb+-n+/\verb+--no_beautify+: 不对图形使用美化算法；（默认）；
+  \item \verb+--case-sensitive+: 区分大小写（默认）；
+  \item \verb+--case-insensitive+: 不区分大小写 ；
+  \item \verb+-w x+: 通配符数目；
+  \item \verb+-i x+: 插入的数目；
+  \item \verb+-r x+: 替换的数目；
+  \item \verb+-d x+: 删除的数目；
+\end{itemize}
+
+\bigskip
+\noindent 构造序列自动机：识别所有\ SNT 的序列的一个单一自动机。该序列必须用特殊标记\ \verb+{STOP}+ 分隔。所产生的\ \verb+.grf+ 文件存储在用户的图形目录下。名为\ \verb+text.tfst+， \verb+text.tind+ 的其它文件，存储在文本目录下。
+
+\section{SortTxt}\index{Programmes externes!\verb+SortTxt+}\index{\verb+SortTxt+}
+
+\verb+SortTxt [OPTIONS] <txt>+
+
+\index{Tri}
+\bigskip
+\noindent 该程序执行文件\ \verb+<txt>+ 行的词典分类。\verb+<txt>+ 表示进行排序的文件完整路径。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-n+/\verb+--no_duplicates+: 删除重复项（默认）；
+
+\item \verb+-d+/\verb+--duplicates+: 保留重复项；
+
+\item \verb+-r+/\verb+--reverse+: 以递减的顺序排序；
+
+\item \verb+-o XXX+/\verb+--sort_order=XXX+:使用文件\ \verb+XXX+ 定义的字母顺序排序。如果该参数为\ Abscent，排序是根据\ Unicode 字符的顺序进行的；
+
+\item \verb+-l XXX+/\verb+--line_info=XXX+: 保存结果文件的行数于文件\ \verb+XXX+；
+  
+\item \verb+-t+/\verb+--thai+: 分类泰语文本的可用功能。
+\item \verb+-f+/\verb+--factorize_inflectional_codes+: 转化两个输入 \ XXX，YYY。ZZZ:A 和\ XXX，YYY。ZZZ:B 唯一的输入\ XXX，YYY。ZZZ:A:B
+\end{itemize}
+
+\bigskip
+\noindent 排序操作修改文本文件。默认情况下，排序按照\ Unicode 字符顺序进行，删除重复项。
+
+
+
+
+
+
+
+
+\section{统计}\index{Programmes externes!\verb+Stats+}\index{\verb+Stats+}
+
+\verb+Stats [OPTIONS] <ind>+
+
+\index{Statistiques}
+\bigskip
+\noindent 这个程序从一致性索引文件\ \verb+<ind>+ 计算统计数据。
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-m MODE+/\verb+--mode=MODE+: 指定要产出的输出：
+  \begin{itemize}
+  \item \verb+0+ = 左，右上下文匹配 + 出现次数；
+  \item \verb+1+ = 搭配 + 出现次数；
+      \item \verb+2+ = 搭配 + 出现次数 + z-score。
+  \end{itemize}
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 使用的字母文件；
+
+  \item \verb+-o OUT+/\verb+--output=OUT+: 输出文件；
+
+  \item \verb+-l N+/\verb+--left=N+: 左侧上下文标记的长度；
+   
+  \item \verb+-r N+/\verb+--right=N+: 右侧上下文标记的长度；
+  
+  \item \verb+-c N+/\verb+--case=N+: 大小写处理：\verb+0+ = 不区分大小写，
+\verb+1+ = 区分大小写（默认）。
+\end{itemize}
+
+
+
+
+
+
+
+\section{Table2Grf}\index{Programmes externes!\verb+Table2Grf+}\index{\verb+Table2Grf+}
+\verb+Table2Grf [OPTIONS] <table>+
+
+\bigskip
+\noindent \index{Lexique-grammaire!table}\index{Graphe!principal}
+该程序从词汇语法图 \ \verb+<table>+ 和模板图自动生成图形。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-r GRF+/\verb+--reference_graph=GRF+: 模板图名称；
+  
+\item \verb+-o OUT+/\verb+--output=OUT+: 主要结果图的名称；
+  
+  \item \verb+-s XXX+/\verb+--subgraph_pattern=XXX+: 
+  如果指定此可选参数，所有的生产子图将按照这个模式来命名。为了有明确的名称，我们建议参数中含有\ \verb+@%+ 
+  （提醒\ \verb+@%+ 将由表中的条目的行号替换）。例如，如果你设置模式参数为'\verb+subgraph-@%.grf+'，子图的名字会变这样'\verb+subgraph-0013.grf+'。默认情况下，子图名字像'\verb+result_0013.grf+'，其中'\verb+result.grf+'是结果主要图形。
+  
+\end{itemize}
+
+
+
+
+\section{打标签}\index{Programmes externes!\verb+Tagger+}\index{\verb+Tagger+}
+\verb+Tagger [OPTIONS] <tfst>+
+\label{section-Tagger}
+
+\bigskip
+\noindent 该程序的输入是\ \verb+.tfst+ 指定的文本自动机。 程序使用 \ Viterbi 算法，并产生一个线性自动机。该自动机基于二阶\ Markov 模型概率方式精简而来。 如果指定的标签数据文件中包含的“cat”的标签元组，标签是在语法，句法和语义的基础上精简而来。 （举例， \ \verb$that.DET+Ddem$ 与\ \verb$that.PRO+Pdem$ 相反）。 相反，如果指定的标签数据文件中包含的“morph”的标签元组，标签是在语法，句法和语义和词形变化的基础上精简而来(\ \verb$the.DET+Ddef:s$ 与 \ \verb$the.DET+Ddef:p$ 相反)。 在这种情况下，在加标记过程之前自动机需要被分解，必须用下面 \ \verb+-t+ 选项来指定一个标记集的文件。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件。
+\item \verb+-o OUT+/\verb+--output=OUT+: 输出文本自动机。
+  \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: 标签集文件名称。
+  \item \verb+-d DATA+/\verb+--data=DATA+:给定标签的文件\ .bin ，包含了单字，双字母组和三字母的出现数目，以此计算概论。该文件由程序\ \verb+TrainingTagger+ 产生（见章节 \ \ref{section-training-dict}）。
+\end{itemize}
+
+
+
+
+
+\section{TagsetNormTfst}
+\index{Programmes externes!\verb+TagsetNormTfst+}
+\index{\verb+TagsetNormTfst+} \verb+TagsetNormTfst [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序根据标记集描述文件规范了指定\ \verb+.tfst+ 文本自动机，丢弃未宣布的字典代码和不连贯的词目。屈折功能未分解，这样\ \verb+{rouge,.A:fs:ms}+ 将被分为\ 2 个标签\ \verb+{rouge,.A:fs}+ 和 \ \verb+{rouge,.A:ms}+。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o OUT+/\verb+--output=OUT+: 输出文本自动机。默认情况下，输入的文本自动机被修改；
+\item \verb+-t TAGSET+/\verb+--tagset=TAGSET+: 标签集描述文件的名称。
+\end{itemize}
+
+
+
+
+
+
+
+\section{TEI2Txt}\index{Programmes externes!\verb+TEI2Txt+} 
+\index{\verb+TEI2Txt+}
+\verb+TEI2Txt [OPTIONS] <xml>+
+
+\bigskip
+\noindent 从给定的\ TEI \ \verb+<xml>+ 文件的产生一个原始文本文件。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-o TXT+/\verb+--output=TXT+: 输出文本文件名称。默认情况下，输出文件与输入文件具有相同的名字，用\ \verb+.txt+ 替换\ \verb+.xml+。
+\end{itemize}
+
+
+
+
+
+
+
+\section{Tfst2Grf}
+\index{Programmes externes!\verb+Tfst2Grf+}\index{\verb+Tfst2Grf+}
+\index{Automate!du texte}\index{Texte!automate du}
+\verb+Tfst2Grf [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序从给定文本自动机中提取格式为\ \verb+.grf+ 的一个句子自动机。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-s N+/\verb+--sentence=N+: 要提取的句子的数目；
+  
+\item \verb+-o XXX+/\verb+--output=XXX+: 用于命名输出文件的方法
+	\ \verb+XXX.grf+， \verb+XXX.txt+ 和\ \verb+XXX.tok+ （默认 =\ \verb+cursentence+）；
+ 
+\item \verb+-f FONT+/\verb+--font=FONT+: 设置\ \verb+.grf+ 输出中使用的字体 
+   
+%DO NOT REMOVE THIS LINE JUMP
+  （默认=\verb+Times new Roman+）；
+\item \verb+-z N+/\verb+--fontsize=N+: 设置字体大小（默认值 = 10）。
+\end{itemize}
+
+\bigskip
+\noindent 程序生成以下文件，保存于文本目录下:
+
+\begin{itemize}
+\item \verb+cursentence.grf+:句子自动机图形； \index{Fichier!\verb+cursentence.grf+}
+
+\item \verb+cursentence.txt+: 包含句子的文本文件；
+\index{Fichier!\verb+cursentence.txt+}
+
+\item \verb+cursentence.tok+: 包含构成该句子标记数量的文本文件；
+\index{Fichier!\verb+cursentence.tok+}
+\end{itemize}
+
+
+
+
+
+
+
+\section{Tfst2Unambig}\index{Programmes externes!\verb+Tfst2Unambig+}\index{\verb+Tfst2Unambig+}
+\index{Texte!automate du!conversion en texte linéaire}
+\verb+Tfst2Unambig [OPTIONS] <tfst>+
+
+\bigskip
+\noindent 该程序需要\ \verb$.tfst$ 文本自动机，并产生一个等效文本文件，如果
+自动机是线性的（即，无歧义性）。见章节\ \ref{section-linear-text}，页码 \ \pageref{section-linear-text}。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o TXT+/\verb+--out=TXT+: 输出文件。
+\end{itemize}
+
+
+
+
+
+
+
+\section{标记化}\index{Programmes externes!\verb+Tokenize+}\index{\verb+Tokenize+}
+\label{section-Tokenize}
+\index{Texte!découpage en unités lexicales}
+\verb+Tokenize [OPTIONS] <txt>+
+
+\index{Unité lexicale}
+\index{Fichier!\verb+.snt+}\index{Alphabet}\index{Fichier!alphabet} 
+\bigskip
+\noindent 该程序将文本切分成词汇单元。\verb+<txt>+ 文本文件完整路径，不省略扩展名\ \verb+.snt+。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件；
+  
+  \item \verb+-c+/\verb+--char_by_char+: 指示程序是否由逐个字符运行，用句分隔符\ \verb+{S}+，停止标记\ \verb+{STOP}+ 和词汇标签等\ \verb+{today,.ADV}+ 这被认为是单一的单位；
+
+ \item \verb+-w+/\verb+--word_by_word+: 使用该选项，程序认为一个单位是字母顺序（由\ \verb+alphabet+ 文件定义），或不是字母的字符，或句分离器\ \verb+{S}+ \index{\verb+{S}+}，或者一个词汇标签
+ 	 \ \verb+{aujourd'hui,.ADV}+。 \index{Délimiteur de phrase}
+   \index{Étiquette lexicale} 这是默认模式。
+
+\item \verb+-t TOKENS+/\verb+--tokens=TOKENS+: 指定可加载和修改的\ \verb+tokens.txt+ 文件，而不是从头开始创建一个新的。
+\end{itemize}
+\bigskip
+\noindent \textbf{偏移功能:}
+\begin{itemize}
+\item \verb+input_offsets+: 使用的基本偏移文件；
+\item \verb+output_offsets+: 产出的偏移文件；
+\end{itemize}
+
+
+\index{Fichier!\verb+tokens.txt+}\index{Fichier!\verb+text.cod+}
+\bigskip
+\noindent 该程序将每个单元编码为一个整体。单元列表被保存在名为\ \verb+tokens.txt+ 的文本文件里。表示单位的代码序列现在允许文本编码。该序列被保存在名为\ \verb+text.cod+ 的二进制文件。该程序还产生以下四个文件：
+
+
+\begin{itemize}
+  \item \verb+tok_by_freq.txt+: 含有按频率顺序排序的单位的文本文件；
+  \item \verb+tok_by_alph.txt+: 含有按字母顺序排序的单位的文本文件；
+
+  \item \verb+stats.n+: 含有句分隔符的数量，单位数，简单词的数量和数字的数目的信息的文本文件；
+
+
+  \item \verb+enter.pos+: 包含文本中换行符位置列表的二进制文件。文本的编码表示不包含换行符，但包含空格。因为一个换行符计为两个字符和一个空格，有必要知道换行符出现在文本的位置，当事件被\ \verb+Locate+ 程序与文本文件同步。 \verb+enter.pos+ 文件由\ \verb+Concord+ 程序用于此目的。由于这一点，当此一致性事件发生点击时，它被正确地在文本中选择。该文件是包含文本中换行符位置的列表的二进制文件。
+
+\end{itemize}
+\index{Fichier!\verb+tok_by_freq.txt+}\index{Fichier!\verb+tok_by_alph.txt+}
+\index{Fichier!\verb+stats.n+}\index{Fichier!\verb+enter.pos+}
+
+\bigskip
+\noindent 所有产出的文件都保存在文本目录中。
+
+
+
+
+
+
+\section{打标签培训}\index{Programmes externes!\verb+TrainingTagger+}\index{\verb+TrainingTagger+}
+\verb+TrainingTagger [OPTIONS] <txt>+
+\label{section-TrainingTagger}
+
+\bigskip
+\noindent \index{Lexique-grammaire!table}\index{Graphe!principal}
+该程序从标记语料库文本文件自动生成两个打标签数据文件。它们被\ \verb+Tagger+ 程序用于计算概率和线性化文本自动机。该标注语料库文件必须按照章节\ \ref{section-corpus-file}描述的格式。这些文件包含元组（unigrams， bigrams 和 \ trigrams），通过标签和文字形成的。在第一种数据文件，标签是“cat”的标签（即，语法，句法和语义码）。在第二种数据文件，标签“morph”标签（即语法，句法，语义和屈折代码）。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-a/--all+: 指示程序应该产生所有数据文件（默认）；
+\item \verb+-c/--cat+: 指示程序应该只生产出“cat”标签的数据文件；
+  \item \verb+-m/--morph+: 指示程序应该只生产出"morph"标签的数据文件；
+  \item \verb+-n/--no_binaries+:指示程序不应该压缩数据文件到\ \verb+.bin+ 文件。在这种情况下，只有\ \verb+.dic+ 数据文件生成；
+  \item \verb+-b/--binaries+:指示程序应该压缩数据文件到\ \verb+.bin+ 文件（默认） ；
+  \item \verb+-o XXX/--output=XXX+:用于命名输出标签数据文件\ \verb+XXX_data_cat.bin+ 和 \ \verb+XXX_data_morph.bin+ 的模式 （默认: 语料库文件名无扩展名）；
+  \item \verb+-s/--semitic+: 表示闪族语压缩算法应该被使用。
+\end{itemize}
+
+\bigskip
+
+\section{Txt2Tfst}\index{Programmes externes!\verb+Txt2Tfst+}\index{\verb+Txt2Tfst+} \verb+Txt2Tfst [OPTIONS] <txt>+
+\index{Automate!du texte}\index{Texte!automate du}\index{Fichier!\verb+.snt+}
+\index{Fichier!alphabet}\index{Alphabet}
+\bigskip
+\noindent 该程序构建一个文本的自动机。参数\ \verb+<txt>+ 表示文本文件完整路，径不省略扩展名\ \verb+.snt+。
+
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件；
+  
+  \item \verb+-c+/\verb+--clean+: 指示保存最佳路径的规则 （见章节 \ \ref{section-keeping-best-paths}） 应被使用 \index{Conservation des meilleurs chemins}；
+  
+  \item \verb+-n XXX+/\verb+--normalization_grammar=XXX+: 运用于文本自动机的标准化语法名称； \index{Normalisation!de formes ambiguës}
+  	  \index{Normalisation!de l'automate du texte}
+  \item \verb+-t TAGSET+/\verb+--tagset=TAGSET+:用于标准化字典条目的
+  \ Elag 标记集文件；
+  \item \verb+-K+/\verb+--korean+: 指示 \ \verb+Txt2Tfst+ 适用于韩语。
+
+\end{itemize}
+
+\bigskip
+\noindent 如果文本被分为句子，程序为每个句子构建了一个自动机。如果不是这种情况，该程序任意地切断文本成为\ 2000 个标记的序列，并对每个序列产生一个自动机。
+\index{Unité lexicale}
+
+\index{Fichier!\verb+text.tfst+}\index{Fichier!\verb+text.tind+}
+\bigskip
+\noindent 其结果是一个名为\ \verb+text.tfst+ 的文件，其保存在文本目录下。也会生成另一个名为\ \verb+text.tind+ 的文件。
+
+\bigskip
+\noindent 注：该程序还将尝试使用\ \verb+tags.ind+ 文件，如果有的话（见章节\ \ref{section-tags-ind}）。
+
+
+
+
+
+
+
+\section{解压缩}\index{Programmes externes!\verb+Uncompress+}\index{\verb+Uncompress+}
+\label{section-Uncompress}
+\verb+Uncompress [OPTIONS] <bin>+
+
+\bigskip
+\noindent 该程序将字典\ \verb+.bin+ 解压缩成一个文本文件
+\ \verb+.dic+。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o OUT+/\verb+--output=OUT+: 可选的输出文件名 （默认:  \verb+file.bin+ > \verb+file.dic+）。
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{去标记化}\index{Programmes externes!\verb+Untokenize+}\index{\verb+Untokenize+}
+\label{section-Untokenize}
+\verb+Untokenize [OPTIONS] <txt>+
+
+\bigskip
+\noindent 去标记化和重建原始文本。标记列表存储于文件\ \verb+tokens.txt+，编码文本存储于\ \verb+text.cod+。该文件\ \verb+enter.pos+ 包含标记中所有回车序列的位置。这些文件位于 \ XXX\_snt 目录，其中\ XXX 无扩展名。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+
+\item \verb+-d X+/\verb+--sntdir=X+: 使用\ X 目录，而不是文本目录；请注意，\ X 必须以反斜杠结尾
+\item \verb+-n N+/\verb+--number_token=N+: 给每个\ N 标记加入编号；
+\item \verb+-r N+/\verb+--range=N+: 发出从编号\ N 开始到最后的标记；
+  \item \verb+-r N,M+/\verb+--range=N,M+: 发出从编号\ N 开始到\ M 的标记。
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{Unitex工具}
+\index{Programmes externes!\verb+UnitexTool+}\index{\verb+UnitexTool+}\index{Script de programmes Unitex}
+\label{section-UnitexTool}
+\verb+UnitexTool <utilities>+
+
+\bigskip
+\noindent 该程序是个超级程序，使您可以调用所有\ Unitex 外部程序。有了它，你可以控制命令，使他们可以在同一系统进程中调用，从而加快处理速度。这可以通过调用嵌套圆括号，来完成命令：
+ 
+\bigskip
+\begin{verbatim}
+UnitexTool { SelectOutput [OPTIONS] } 
+                { cmd #1+args } 
+                { cmd #2+args }
+                etc.
+\end{verbatim}
+
+\bigskip
+\noindent 例如，如果你想加入一个定位操作和建立匹配，可以使用下面的命令：
+
+\bigskip
+\begin{verbatim}
+UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt" 
+"D:\My Unitex\English\regexp.fst2"
+"-aD:\My Unitex\English\Alphabet.txt" -L -I -n200 
+"--morpho=D:\Unitex2.0\English\Dela\dela-en-public.bin" -b -Y }
+{ Concord "D:\My Unitex\English\Corpus\ivanhoe_snt\concord.ind" 
+"-fCourier new" -s12 -l40 -r55 --CL --html 
+"-aD:\My Unitex\English\Alphabet_sort.txt" }
+\end{verbatim}
+ 
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: 激活（ON）或关闭（OFF）标准输出
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: 激活（ON）或禁用（OFF）的标准错误输出
+\end{itemize} 
+ 
+\noindent 例如:
+\begin{verbatim}
+UnitexTool { SelectOutput -o off -e off } { Normalize
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
+
+
+
+
+
+
+\section{Unitex日志记录工具}\index{Programmes externes!\verb+UnitexToolLogger+}\index{\verb+UnitexToolLogger+}\index{Log programmes Unitex}
+\label{section-UnitexToolLogger}
+\verb+UnitexToolLogger <utilities>+
+
+\bigskip
+\noindent 该程序是\ UnitexTool 的扩展集。它可以重新运行\ .ulp 日志文件。它还可以记录\ UnitexTool 的运行会话，并创建一个\ .ulp 日志文件。如果\ UnitexToolLogger 运行如同\ UnitexTool（对\ Unitex 外部程序只用命令行参数），如果一个名为\ unitex\_logging\_parameters\_count.txt 的文件（在当前目录下）包含路径，那么正在运行会话的日志文件\ .ulp 将被创建。该\ .ulp 文件是一个压缩文件（带解压缩兼容），它可用于调试。
+
+\bigskip
+\verb+UnitexToolLogger RunLog [OPTIONS] <ulp>+
+
+\bigskip
+\noindent \textbf{运行日志后的功能:}
+\begin{itemize}
+  \item \verb+-m+/\verb+--quiet+: 运行时不发出消息；
+  \item \verb+-v+/\verb+--verbose+: 运行时发出消息；
+  
+  \item \verb+-d DIR+/\verb+--rundir=DIR+: 执行日志文件的路径；
+  \item \verb+-r newfile.ulp+/\verb+--result=newfile.ulp+: 创建的结果文件\ ulp；
+
+  \item \verb+-c+/\verb+--clean+: 运行开始后删除工作文件；
+  \item \verb+-k+/\verb+--keep+: 运行开始后保存工作文件；
+
+  \item \verb+-s file.txt+/\verb+--summary；=file.txt+: 日志比较结果摘要文件
+  \item \verb+-e file.txt+/\verb+--summary-error=file.txt+: 错误比较结果摘要文件；
+
+  \item \verb+-b+/\verb+--no-benchmark+: 不记录在日志文件的执行时间；
+
+  \item \verb+-n+/\verb+--cleanlog+: 不保存执行时间于结果日志；
+  \item \verb+-l+/\verb+--keeplog+: 删除执行后的结果ulp；
+
+  \item \verb+-o NameTool+/\verb+--tool=NameTool+:  对\ \verb+NameTool+ 只启动日志；
+  \item \verb+-i N+/\verb+--increment=N+:  从\ 0 到 \ N 递增文件名\ <ulp>；
+  \item \verb+-t N+/\verb+--thread=N+: 创建一个线程；
+  \item \verb+-a N+/\verb+--random=N+: 在列表中选择\ N 次随机日志文件（在每个线程）；
+  \item \verb+-f N+/\verb+--break-after=N+: \ N 次运行后取消用户（只使用一个线程）；
+
+  \item \verb+-u PATH+/\verb+--unfound-location=PATH+: 如果缺少日志文件，从\ PATH 提取字典和\ FST2；
+\end{itemize}
+
+
+UnitexToolLogger 的另一个用途是使用\ MzRepairUlp 来修复损坏的\ ulp 文件（通常情况下，崩溃日志）：
+
+\bigskip
+\verb+UnitexToolLogger MzRepairUlp [OPTIONS] <ulpfile>+
+
+\bigskip
+\noindent \textbf{MzRepairUlp之后的功能:}
+\begin{itemize}
+\item \verb+-t X+/\verb+--temp=X+: 把\ X 用作临时文件名（<ulpfile>. 默认建立）；
+\item \verb+-o X+/\verb+--output=X+: 把\ X 用作 \ .ulp 文件名（<ulpfile>.默认修复）；
+  \item \verb+-m+/\verb+--quiet+: 运行时不发送消息；
+  \item \verb+-v+/\verb+--verbose+: 运行时发送消息；
+\end{itemize}
+
+
+UnitexToolLogger 的另一个用途是使用\ CreateLog 功能（用大括号），创建\ Unitex 程序的运行日志文件，如：
+
+\bigskip
+\noindent \verb$UnitexToolLogger { CreateLog [OPTIONS] } cmd args$
+
+\bigskip
+\noindent \verb$UnitexToolLogger { CreateLog [OPTIONS] } { cmd #1+args } { cmd #2+args } etc.$
+
+\noindent 例如，
+\begin{verbatim}
+UnitexToolLogger { CreateLog --log_file=my_run_normalize.ulp }
+             Normalize "C:\My Unitex\French\Corpus\80jours.txt"
+\end{verbatim}
+
+\bigskip
+\begin{verbatim}
+UnitexToolLogger { CreateLog --directory=c:\logs }
+                  { Compress c:\dela\mydela.dic }
+                  { CheckDic --delaf c:\dela\mydela.inf }
+\end{verbatim}
+
+\bigskip
+\noindent \textbf{创建日志后的功能:}
+\begin{itemize}
+\item \verb+-g+/\verb+--no_create_log+: 不创建日志文件。不兼容所有其他功能；
+
+\item \verb+-p XXX+/\verb+--param_file=XXX+: 加载设置文件为\ unitex\_logging\_parameters.txt。不兼容所有其他功能；
+
+\item \verb+-d XXX/--directory=XXX+: 创建日志文件的目录位置；
+\item \verb+-l XXX/--log_file=XXX+: 创建的日志文件名；
+\item \verb+-i+/\verb+--store_input_file+:保存输入文件于日志中（默认）；
+\item \verb+-n+/\verb+--no_store_input_file+: 不保存输入文件于日志中 （阻止恢复日志文件）；
+\item \verb+-o+/\verb+--store_output_file+: 保存输出文件于日志；
+\item \verb+-u+/\verb+--no_store_output_file+: 不保存输出文件于日志（默认）；
+\item \verb+-s+/\verb+--store_list_input_file+: 保存输入文件列表于日志（默认）；
+\item \verb+-t+/\verb+--no_store_list_input_file+:  不保存输入文件列表于日志；
+\item \verb+-r+/\verb+--store_list_output_file+: 保存输出文件列表于日志（默认）；
+\item \verb+-f+/\verb+--no_store_list_output_file+: 不保存输出文件列表于日志；
+\end{itemize}
+
+ 
+\bigskip
+\begin{verbatim}
+UnitexToolLogger { SelectOutput [OPTIONS] } 
+                { cmd #1+args } 
+                { cmd #2+args }
+                etc.
+\end{verbatim}
+
+\bigskip
+\noindent \textbf{选择输出后功能 :}
+\begin{itemize}
+\item \verb+-o [on/off]+/\verb+--output=[on/off]+: 激活（ON）或关闭（OFF）标准输出
+\item \verb+-e [on/off]+/\verb+--error=[on/off]+: 激活（ON）或关闭（OFF）标准错误输出
+\end{itemize} 
+
+\noindent 例如:
+\begin{verbatim}
+UnitexToolLogger { SelectOutput -o off -e off } { Normalize 
+Unitex\English\Corpus\ivanhoe.txt }
+\end{verbatim}
+
+
+\section{Unxmlize}\index{Programmes externes!\verb+Unxmlize+}\index{\verb+Unxmlize+}\index{Fichier
+de log programmes Unitex}
+\label{section-Unxmlize}
+
+该程序将从给定的.xml或.html文件移除所有的xml标签，产生一个由Unitex处理的文本文件。
+\bigskip
+\noindent
+\verb+Unxmlize [OPTIONS] <file>+           
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-o TXT+/\verb+--output=TXT+: 输出文件。 默认情况下， foo.xml => foo.txt
+\item \verb+--output_offsets=XXX+: 产生的偏移文件
+\item \verb+--PRLG=XXX+: 在古希腊语提取用于\ PRLG 项目的信息于\ XXX 文件（要求 \ \verb+--output_offsets+）
+		
+\bigskip 
+\item \verb+-t+/\verb+--html+: 将文件视作\ html 文件（不考虑扩展名）
+\item \verb+-x+/\verb+--xml+: 将文件视作\ xml 文件（不考虑扩展名） 
+\item \verb+-l+/\verb+--tolerate+: 尽量容忍一些标记语言畸形
+	
+\bigskip	 
+\item \verb+--comments=IGNORE+: 每一个评论被删除（默认）
+\item \verb+--comments=SPACE+: 每条注释是由一个空格替换
+		   \item \verb+--scripts=IGNORE+:删除每一个脚本块
+		   \item \verb+--scripts=SPACE+: 每条注释由单个空格代替（默认情况\ .html）
+		   
+\end{itemize}   
+注意：默认情况下，脚本标记作为一般的标签处理（默认情况\ .xml）。
+\begin{itemize}		     
+\item \verb+--normal_tags=IGNORE+:所有其他标记将被删除（默认情况\ .xml）
+
+\item \verb+--normal_tags=SPACE+: 所有其他标记由单个空格代替（默认情况\ .html）
+\end{itemize}
+
+
+
+
+\section{XMLizer}\index{Programmes externes!\verb+XMLizer+}\index{\verb+XMLizer+}
+\label{section-XMLizer}
+\verb+XMLizer [OPTIONS] <txt>+
+
+\bigskip
+\noindent 该程序需要一个原始文本文件\ \verb+<txt>+ 并产生对应\ TEI 或\ XML 基本文件。TEI 和\ XML 之间的区别在于，TEI 文件将包含一个\ TEI 标题。
+
+\bigskip
+\noindent \textbf{功能:}
+\begin{itemize}
+\item \verb+-x+/\verb+--xml+: 产生一个\ XML 文件；
+  
+  \item \verb+-t+/\verb+--tei+: 产生一个\ TEI 文件 （默认）；
+
+  \item \verb+-n XXX+/\verb+--normalization=XXX+: 指定使用的规范化规则文件（见章节 \ \ref{section-normalization-file}）；
+
+  \item \verb+-o OUT+/\verb+--output=OUT+:可选的输出文件名 （默认情况:
+  \verb+file.txt+ > \verb+file.xml+)；
+
+  \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: 字母文件；
+  
+  \item \verb+-s SEG+/\verb+--segmentation_grammar=SEG+: 要使用的句子划定语法。该语法应该像在预处理阶段时使用于语料库的\ \verb+Sentence.grf+ ，但它可以包括特殊标记\ \verb+{P}+ ，以此指示段落边界。
+  
+\end{itemize}
+
