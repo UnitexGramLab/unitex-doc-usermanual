@@ -376,31 +376,31 @@ $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
   \label{fig13-07}
 \end{figure}
 
-\section{Graphes g\'{e}n\'{e}riques}
+\section{Graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
 
-Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} leur contexte, mais si ces \'{e}l\'{e}ments apparaissent ailleurs hors contexte on ne les reconna\^{i}t pas. Afin de trouver de telles occurences, CasSys propose d'utiliser des graphes g\'{e}n\'{e}riques. Ces graphes contiennent des bo\^{i}tes vides qui sont remplies automatiquement par le programme avant d'\^{e}tre appliqu\'{e}s au texte. Ces graphes g\'{e}n\'{e}riques ne fonctionnent qu'avec l'utilisation d'accolades, car le programme consulte la liste de token (tok\_by\_alph.txt) du texte \`{a} analyser par le futur graphe.
+Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} leur contexte, mais si ces \'{e}l\'{e}ments apparaissent ailleurs hors contexte on ne les reconna\^{i}t pas. Afin de trouver de telles occurences, CasSys propose d'utiliser des graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage. Ces graphes contiennent des bo\^{i}tes vides qui sont remplies automatiquement par le programme avant d'\^{e}tre appliqu\'{e}s au texte. Ces graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage ne fonctionnent qu'avec l'utilisation d'accolades, car le programme consulte la liste de token (tok\_by\_alph.txt) du texte \`{a} analyser par le futur graphe.
 
-\subsection{D\'{e}claration d'un graphe g\'{e}n\'{e}rique}
-Pour que CasSys reconnaisse un graphe g\'{e}n\'{e}rique il faut cocher la colonne \emph{Generic} (figure \ref{fig12-3}).
+\subsection{D\'{e}claration d'un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
+Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage il faut cocher la colonne \emph{Generalization} (figure \ref{fig12-3}).
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=15cm]{resources/img/fig12-3.png}
-  \caption{Graphe g\'{e}n\'{e}rique}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
   \label{fig12-3}
 \end{figure}
 
-\subsection{Structure d'un graphe g\'{e}n\'{e}rique}
-Un chemin dans un graphe g\'{e}n\'{e}rique doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure \ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites de la liste de token du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} de la liste de token du texte comme dans la figure \ref{fig12-3-01a}. En plus, un contexte droit n\'{e}gatif (section~\ref{section-contexts}) est plac\'{e} pour emp\^{e}cher le  deuxi\`{e}me \'{e}tiquetage de l'occurence.
+\subsection{Structure d'un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
+Un chemin dans un graphe de g\'{e}n\'{e}ralization d'\'{e}tiquetage doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure \ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites de la liste de token du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} de la liste de token du texte comme dans la figure \ref{fig12-3-01a}. En plus, un contexte droit n\'{e}gatif (section~\ref{section-contexts}) est plac\'{e} pour emp\^{e}cher le  deuxi\`{e}me \'{e}tiquetage de l'occurence.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
-  \caption{Graphe g\'{e}n\'{e}rique}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
   \label{fig12-3-01}
 \end{figure}
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=9cm]{resources/img/fig12-3-01a.png}
-  \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage modifi\'{e}}
   \label{fig12-3-01a}
 \end{figure}
 
@@ -409,7 +409,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
-  \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage modifi\'{e}}
   \label{fig12-3-02}
 \end{figure}
 
@@ -417,14 +417,14 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-03.png}
-  \caption{Graphe g\'{e}n\'{e}rique avec une restriction}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage avec une restriction}
   \label{fig12-3-03}
 \end{figure}
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-04.png}
-  \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage modifi\'{e}}
   \label{fig12-3-04}
 \end{figure}
 
@@ -440,7 +440,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-05.png}
-  \caption{Graphe g\'{e}n\'{e}rique avec une n\'{e}gation}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage avec une n\'{e}gation}
   \label{fig12-3-05}
 \end{figure}
 
@@ -448,7 +448,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=7cm]{resources/img/fig12-3-06.png}
-  \caption{Graphe g\'{e}n\'{e}rique modifi\'{e}}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage modifi\'{e}}
   \label{fig12-3-06}
 \end{figure}
 
@@ -456,7 +456,7 @@ Si on veut compl\'{e}ter la sortie du graphe par quelque chose qui ne doit pas \
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=6cm]{resources/img/fig12-3-07.png}
-  \caption{Graphe g\'{e}n\'{e}rique avec un compl\'{e}ment}
+  \caption{Graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage avec un compl\'{e}ment}
   \label{fig12-3-07}
 \end{figure}
 
