@@ -289,11 +289,11 @@ Note that for programming reasons (ambiguities between characters in the curly b
 \end{figure}
 
 
-\section{Generic Graphs}
-Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise generic graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generic graphs work only with the usage of curly brackets, because the program consults the token list of the text to be analysed by the future graph.
+\section{Tagging Generalization Graphs}
+Sometimes, we are able to locate elements because of their context, but if these elements appear without context, then they cannot be identified. In order to locate such occurences, CasSys proposes to utilise tagging generalization graphs. These graphs contain empty boxes that are filled automatically by the program before being applied to the text. These generalizatoin graphs work only with the usage of curly brackets, because the program consults the token list of the text to be analysed by the future graph.
 
-\subsection{Identifying a Generic Graph}
-CasSys recognises a graph as generic graph if the column \emph{Generic} is checked (figure \ref{fig12-3}).
+\subsection{Identifying a Tagging Generalization Graph}
+CasSys recognises a graph as tagging generalization graph if the column \emph{Generalization} is checked (figure \ref{fig12-3}).
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=15cm]{resources/img/fig12-3.png}
@@ -301,18 +301,18 @@ CasSys recognises a graph as generic graph if the column \emph{Generic} is check
   \label{fig12-3}
 \end{figure}
 
-\subsection{Structure of a Generic Graph}
-A path in a generic graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the token list (tok\_by\_alph.txt) of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the token list of the text as shown in the figure \ref{fig12-3-01a}. Additionally, a negative right context (section~\ref{section-contexts} is added to prevent the element from being annotated twice.
+\subsection{Structure of a Tagging Generalization Graph}
+A path in a tagging generalization graph must begin with a box containing \$G and an opening curly bracket as output. It is this box which is updated by CasSys. The second box has as output the element to be searched. In the figure \ref{fig12-3-01}, CasSys places in the box all the entries of category \textit{x} extracted from the token list (tok\_by\_alph.txt) of the text. For example, CasSys extracts  \textit{A} from the line \emph{\{A,.x\}} of the token list of the text as shown in the figure \ref{fig12-3-01a}. Additionally, a negative right context (section~\ref{section-contexts} is added to prevent the element from being annotated twice.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
-  \caption{Generic Graph}
+  \caption{Tagging Generalization Graph}
   \label{fig12-3-01}
 \end{figure}
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=9cm]{resources/img/fig12-3-01a.png}
-  \caption{Modified Generic Graph}
+  \caption{Modified Tagging Generalization Graph}
   \label{fig12-3-01a}
 \end{figure}
 
@@ -320,7 +320,7 @@ In the case of a token list entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
-  \caption{Modified Generic Graph}
+  \caption{Modified Tagging Generalization Graph}
   \label{fig12-3-02}
 \end{figure}
 
@@ -328,14 +328,14 @@ In the case of a token list entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-03.png}
-  \caption{Generic Graph with a restriction}
+  \caption{Tagging Generalization Graph with a restriction}
   \label{fig12-3-03}
 \end{figure}
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-04.png}
-  \caption{Modified Generic Graph}
+  \caption{Modified Tagging Generalization Graph}
   \label{fig12-3-04}
 \end{figure}
 
@@ -343,7 +343,7 @@ In the case of a token list entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-05.png}
-  \caption{Generic Graph with a negation}
+  \caption{Tagging Generalization Graph with a negation}
   \label{fig12-3-05}
 \end{figure}
 
@@ -351,7 +351,7 @@ In the case of a token list entry \emph{\{\{A,.y\} \{B,.z\},.x\}} the graph of t
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=7cm]{resources/img/fig12-3-06.png}
-  \caption{Modified Generic Graph}
+  \caption{Modified Tagging Generalization Graph}
   \label{fig12-3-06}
 \end{figure}
 
@@ -359,7 +359,7 @@ If the output of the graph needs to be complemented with certain information tha
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=6cm]{resources/img/fig12-3-07.png}
-  \caption{Generic Graph with Additional Information}
+  \caption{Tagging Generalization Graph with Additional Information}
   \label{fig12-3-07}
 \end{figure}
 
