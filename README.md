@@ -90,6 +90,6 @@ We welcome everyone to contribute to improve this project. Below are some of the
 
 --
 
-Copyright (C) 2016 Université Paris-Est Marne-la-Vallée
+Copyright (C) 2017 Université Paris-Est Marne-la-Vallée
 
 [unitex]: http://unitexgramlab.org
