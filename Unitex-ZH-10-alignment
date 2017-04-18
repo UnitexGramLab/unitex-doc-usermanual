@@ -1,0 +1,122 @@
+\chapter{文本对齐}
+\label{chap-alignment}
+\index{文本对齐}
+
+文本对齐方式的原理很简单：对两个或更多文本时，第一个被认为是源，另一个是它的翻译。对准在句子的层面做出，因为文字的水平对齐方式尚无法肯定无关。一个可以搜索表达式\ $A$ 文本，然后搜索与含有\ $A$ 对准那些句子的翻译。
+
+\bigskip
+\noindent 要添加\ Unitex 中的此功能，Patrick Watrin 整合文本对齐工具，开源\ \verb+XAlign+ 在\ LORIA 开发 (\cite{XAlign})。在本章中，我们将解释如何使用对齐模块。读者感兴趣的一体化细节\ \verb+XAlign+ 可以看到\ \cite{IGML_DumPau08} 或\ \cite{IGML_PauDum08} 和\ \cite{dusko_xalign} 得到一个什么样可以用这个模块来完成的想法。
+
+\section{加载文本}
+您必须先选择两个文本。要做到这一点，进入\ "XAlign>Open files\ldots" ，你会看到图\ \ref{fig-x-text-selection} 的一部分。两种文本格式，可以用：Unicode 的纯文本（如在语料库）或\ TEI 文本格式（\ XML 格式类型，请参阅\ \cite{TEI} ）。在后场，选择一个对准的\ XML 文件，如果你已经建成之一。如果选择纯文本，Unitex 必须建立自己的文本\ TEI 版本（详细信息，请参阅程序\ \ref{section-XMLizer} 节的\ \verb+XMLizer+）。当您单击“确定”，XML文件的要求，你的名字是如图\ \ref{fig-x-tei-name} 。那么\ Unitex 建，如果需要的话，您的文本的\ XML 版本，并显示图\ \ref{fig-x-frame} 的框架。正如你所看到的，每个文本被表示为一个列表，每个单元包括一个句子。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=9.5cm]{resources/img/figX-1.png}
+\caption{文本选择窗口对齐\ \label{fig-x-text-selection} }
+\end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/figX-2.png}
+\caption{注意原始文本\ \label{fig-x-tei-name} }
+\end{center}
+\end{figure}
+\clearpage
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15.5cm]{resources/img/figX-3.png}
+\caption{文本对齐框架\ \label{fig-x-frame} }
+\end{center}
+\end{figure}
+
+\section{文本对齐}
+加载文本后，您可以通过点击“对齐”注册。包含所有排列信息的XML文件的名称将被要求
+。然后\ Unitex 启动程\ \verb+XAlign+ 你然后可视化的排列句子之间红线的形式对齐，如图\ \ref{fig-x-links} 
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15.5cm]{resources/img/figX-4.png}
+\caption{排列句子\ \label{fig-x-links} }
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 
+
+您可以编辑用鼠标对准链接。点击‘链接删除’。要添加链接（或删除，如果它已经存在）
+，用鼠标选择（在你的选择，源或目标的文本）短语和鼠标移动到对应的句子中的其他文字。
+如图\ \ref{fig-x-adding-a-link} 正在创建的链接显示为黄色。通过选择该链接实际上就是添加变为红色。
+当所有的修正，储存使用按钮“保存校准”新定位“另存为对齐\ldots"”。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15.5cm]{resources/img/figX-5.png}
+\caption{添加链接\ \label{fig-x-adding-a-link} }
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent  该计划的一个有趣的特点是，它是\ xalign\ \textit{réentrant} 。\ \index{Alignement réentrant} 这意味着你可以使用现有的线为一组的需要作为输入的取向处理环节对齐折返。
+这是非常有用的，如果你想用\ \textit{mots apparentés} 工作。
+\ \index{Mots apparentés} 词有关相关词和\ xalign 的更多信息，请参阅\ \cite{IGML_PauDum08} 。
+\clearpage
+\section{搜索模式}
+
+您可以执行的模式在每个文本相匹配，通过点击“查找”按钮。
+第一次，汇利达要求构建文本的工作版本，如图\ \ref{fig-x-fig6} 。在文字语言的光这个版本将进行预处理（尤其是默认选中的字典将被应用）。
+
+
+\bigskip
+\noindent 警告：文本的语言由它的全名确定。
+例如，如果你的文件在\ \verb+.../MyUnitex/Klingon/Corpus+ ，语言将被视\ \verb+Klingon+ 。
+所以，如果你的文本是在你的工作目录的子目录，\ \index{Répertoire!personnel de travail} 工作人员工作语言将无法正确识别。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/figX-6.png}
+\caption{\ Unitex 必须建立文本的工作版本\ \label{fig-x-fig6} }
+\end{center}
+\end{figure}
+ 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=7.8cm]{resources/img/figX-7.png}
+\caption{模式匹配上对齐文本\ \label{fig-x-locate-frame} }
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 一旦\ Unitex 创建和预处理文本的工作版本，您可以查询，如图\ \ref{fig-x-locate-frame} 中。
+由\ \verb+Locate+ 进行，后者是找到\ \index{\verb+Locate+} 颇为相似于正常的语料进行。
+唯一的限制是，它是不可能的，如果它们的行为使用语法的输出。
+
+
+\bigskip
+\noindent 寻找例如模式\ \verb+<manger>+ 在我们的例子中的文本。
+首先，我们没有得到任何结果，因为我们没有改变文本的显示模式，默认情况下是“所有奖项/纯文本”。
+通过选择“匹配的句子，”我们只看到包含事件，通常以蓝色突出显示，如图\ \ref{fig-x-concord} 短语。
+点击\ “All sentences/ HTML” 我们得到了所有与蓝色高亮实例句子。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15.5cm]{resources/img/figX-8.png}
+\caption{视图中识别句子\ \label{fig-x-concord} }
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 要使用平行文本，有趣的是找到公认的短语词组排列。
+只需选择\ \textit{pour l'autre texte}，显示模式\ “Aligned with source concordance” 。
+在这种模式下，Unitex 滤波器非相关短语中的源文本短语识别。
+这便于搜索文本短语，并找到相应的句子在另一方面，如图\ \ref{fig-x-concord-aligned}。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15.5cm]{resources/img/figX-9.png}
+\caption{视图中识别短语和句子与它们相连
+\label{fig-x-concord-aligned}}
+\end{center}
+\end{figure}

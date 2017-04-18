@@ -1,0 +1,1001 @@
+\chapter{词典}
+\label{chap-dictionaries}
+
+\section{DELA词典}
+\index{DELA}\index{Dictionnaire!format}\index{LADL}
+
+Unitex所使用的电子词典使用DELA形式（LADL电子词典）。这种形式能描述用户输入的某种语言的简单或复合的词目，给出它的语法，词义及词形变化。电子词典共有两种类型。第一种更加常用的带有变位形式的字典，叫做 DELAF（DELA的变位形式）或 DELACF，它是针对复合词的字典。第二类型的字典叫做 DELAS（DELA简单形式）或DELAC。Unitex的项目并不区分简单形式和复合形式的字典。我们使用 DELAF 和 DELAS 两种词典，来解释不同种类的词目（简单的、复合的或混合的）。 
+
+\subsection{DELAF的形式}
+\label{section-DELAF-format}
+\subsubsection{输入的语法}
+\label{section-DELAF-entry-syntax}
+一个DELAF的输入就是一行以回车结束的文本，它符合以下的规则：
+
+\bigskip
+\begin{verbatim}
+mercantiles,mercantile.A+z1:mp:fp/ceci est un exemple
+\end{verbatim}
+
+\bigskip
+\noindent 组成这一行的元素如下：
+
+\bigskip
+\begin{itemize}
+\item \verb+mercantiles + 是这条词目的变化形式。\index{Forme!fléchie} 这个变化形式是必须的；
+  
+\bigskip \item \verb+mercantile+ 是这条词目的标准形式。
+\index{Lemme}\index{Forme!canonique} 对于名词和形容词，它一般是阳性单数形式；对于动词，标准形式指该动词的原型。这条信息可以被省略，就像以下这个例子：
+
+  
+\bigskip
+\verb$boîte à merveilles,.N+z1:fs$
+  
+\bigskip 该词目的标准形式正是它的变化形式。标准形式和变化形式之间用逗号隔开；
+\index{\verb+,+}
+  
+\bigskip \item \verb$A+z1$ 是该词目的语法和词义信息。，
+\index{Informations!grammaticales}\index{Informations!sémantiques} 在我们的例子中 \verb+A+
+表示形容词， \verb+z1+ 代表当前词 (见表 ~\ref{tab-semantic-codes}).
+
+每一条词目都至少有一条语法和词义信息，用句号和标准形式隔开。如果有许多条信息，互相之间用加号隔开。 \verb$+$\index{\verb$+$}\index{\verb+.+}.
+  
+\bigskip
+\item \verb+:mp:fp+ 是词形变化信息。
+\index{Informations!flexionnelles} 它描述了该词目的种类，数量，时态和语态，变化形式等。这些信息不是必须的，一条词目可包含一条或多条变化信息，互相之间用冒号隔开。在我们的例子中， \verb+m+ 表示阳性，
+\verb+p+ 表示复数 \verb+f+ 表示阴性 (见表 ~\ref{tab-inflectional-codes}). 字符 \verb+:+ 可理解为“或”。 如\verb+:mp:fp+ 代表“阳性复数”或“阴性复数”。 C因为每一个字母代表一条信息，没有必要重复使用相同的字母。如：用\verb+:PP+ 表示过去分词完全等于用 \verb+:P+ 单独表示;\index{\verb+:+}
+  
+\bigskip \item \verb+/是一条注释。注释不是必须的，它可以用 \verb+/+来表示。当人们削减字典时注释将被删除。\index{Commentaire!dans un dictionnaire} \index{Dictionnaire!commentaire}\index{\verb+/+}
+\end{itemize}
+
+\bigskip
+\noindent 重要提示：逗号和句号可以在字典中被使用。为了完成这一点，需要同时使用以下符号：
+\verb+\+ \index{\verb+\,+}\index{\verb+\.+}\index{\verb+\+}:
+
+\bigskip
+\begin{verbatim}
+3\,1415,PI.NOMBRE
+Organisation des Nations Unies,O\.N\.U\..SIGLE
+\end{verbatim}
+
+
+\bigskip
+\noindent 注意：每个字符包含在一个字典条目中。例如，如果输入的空间中，这些将被认为的信息的一个组成部分。在下面一行：
+
+
+\begin{verbatim}
+gît,gésir.V+z1:P3s /voir ci-gît
+\end{verbatim}
+
+\bigskip \noindent 字符前的空格 \verb+/+被看做包含 \verb+P+, \verb+3+, \verb+s+ 和一个空格的四位可变字符。
+
+
+\bigskip \noindent 可以在词典 DELAF 或 DELAS中输入
+,用 $/$来表示行。例如，
+
+\bigskip
+\begin{verbatim}
+/ L’entrée nominale pour ’par’ est un terme de golf
+par,.N+z3:ms
+\end{verbatim}
+
+
+\subsubsection{有空格或破折号的词}
+
+\index{Mots!composés!avec espace ou tiret}\index{\verb+=+}\index{\verb+\=+}
+
+某些复合词如 \textit{grand-mère}可以用空格或破折号来写。为了避免重复的条目，可以使用\verb+=+ . 在当字典被压缩时，程序\verb+Compress+
+\index{Programmes externes!\verb+Compress+}\index{\verb+Compress+} 检查每一行。
+如果在规范的形式包含了非转义字符 \verb+=+。 Si c’est le cas, le
+programme remplace l’entrée par deux entrées :如果是这种情况，该程序由两个条目替换本：一种其中=字符由一个空取代，和一个在那里由破折号取代。因此，下面的条目：
+
+
+\bigskip \verb$grand=mères,grand=mère.N:fp$
+
+\bigskip
+\noindent 被以下两行替代
+
+\bigskip
+\verb$grand mères,grand mère.N:fp$
+
+\verb$grand-mères,grand-mère.N:fp$
+
+
+\bigskip
+\noindent NOTE : 注：如果您想保留包含\verb+=+字符的条目，使用\verb+\+ ，如下面的例子：
+
+
+\bigskip
+\verb$E\=mc2,.FORMULE$\\
+
+当字典被压缩，本次置换完成。在压缩字典中，转义字符 \verb+=+ 被简单 的 \verb+=+替换。
+因此，如果以下行被压缩： 
+
+\begin{verbatim}
+E=mc2,.FORMULE
+grand=mère,.N:fs
+\end{verbatim}
+
+\noindent 而我们运用字典的文字：
+
+\verb$Ma grand-mère m’a expliqué la formule E=mc2.$
+
+
+\bigskip \noindent 以下行会在文本的合成词词典获得：
+
+
+\begin{verbatim}
+E=mc2,.FORMULE
+grand-mère,.N:fs
+\end{verbatim}
+
+
+\subsubsection{保理项}
+
+具有相同的屈折和规范化形式多个条目可以被组合成一个，只要它具有相同的语法和语义码。这允许除其他为相同的动词组相同动词变化：
+
+
+\bigskip
+\begin{verbatim}
+glace,glacer.V+z1:P1s:P3s:S1s:S3s:Y2s
+\end{verbatim}
+
+\bigskip 
+\noindent 如果语法和语义信息不同，创建单独的条目：
+
+
+\bigskip
+\begin{verbatim}
+glace,.N+z1:fs
+glace,glacer.V+z1:P1s:P3s:S1s:S3s:Y2s
+\end{verbatim}
+
+\bigskip 
+\noindent 它指定一个加热器或面纱，女性对男性的厨房工具。我们可以区分在这种情况下，输入：\textit{poêle} 它指定一个转换器或面具，女性对男性的厨房工具。我们可以区分在这种情况下，输入：
+
+
+\bigskip
+\noindent
+\texttt{poêle,.N+z1:fs/ poêle à frire}
+
+\noindent
+\texttt{poêle,.N+z1:ms/ voile, linceul; appareil de chauffage}
+
+\bigskip 
+\noindent 注意：在实践中，这种区分没有其他结果，增加词典条目的数量。构成Unitex准确给出相同的结果，如果我们合并这些项的各种方案：
+
+\bigskip
+\noindent
+\texttt{poêle,.N+z1:fs:ms}
+
+\bigskip 
+\noindent 区别是字典自由裁量权。
+
+
+\index{DELAF|)}\index{Dictionnaire!DELAF|)}
+
+\subsection{DELAS format}
+\label{section-DELAS-format}
+\index{DELAS}\index{Dictionnaire!DELAS}
+
+DELAS的格式非常类似于DELAF的。不同的是，只提到了规范的形式随后语法码和/或语义。规范形式是用逗号分隔不同的代码。下面是一个例子：
+
+
+\begin{verbatim}
+cheval,N4+Anl
+\end{verbatim}
+
+\noindent 第一语法或语义代码将被弯曲程序所用弯曲的入口的语法的名称来解释。上面的例子中的入口指示字 \textit{cheval} 应与命名语法被弯曲 \verb+N4+.
+能够屈折码添加到条目，但在弯曲操作的性质限制了这个可能性是有用的。有关详细信息，请参阅下文本章节 ~\ref{section-automatic-inflection}.
+
+
+\subsection{内容框}
+\index{Dictionnaire contenu}\index{Dictionnaire codes utilises}
+
+提供Unitex的词典包含的简单复合词的描述。这些描述显示每个条目，潜在的弯曲代码和各种语义信息的语法范畴。下列表格提供在设置有汇利达的字典中使用的不同代码的概述。这些代码对几乎所有的语言相同的含义，虽然其中一些特定于某些语言 (\textit{i.e.} marque du neutre, etc.).
+
+\begin{table}[!h]
+\index{\verb+A+}\index{\verb+ADV+}\index{\verb+CONJC+}\index{\verb+CONJS+}\index{\verb+DET+}
+\index{\verb+INTJ+}\index{\verb+N+}\index{\verb+PREP+}\index{\verb+PRO+}\index{\verb+V+}
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Code} & \textbf{Signification} & \textbf{Exemples} \\
+\hline
+\verb+A+ & adjectif & fabuleux, broken-down \\
+\hline
+\verb+ADV+ & adverbe & réellement, à la longue \\
+\hline
+\verb+CONJC+ & conjonction de coordination & mais\\
+\hline
+\verb+CONJS+ & conjonction de subordination & puisque, à moins que \\
+\hline
+\verb+DET+ & déterminant & ses, trente-six \\
+\hline
+\verb+INTJ+ & interjection & adieu, mille millions de mille sabords \\
+\hline
+\verb+N+ & nom & prairie, vie sociale\\
+\hline
+\verb+PREP+ & préposition & sans, à la lumière de \\
+\hline
+\verb+PRO+ & pronom & tu, elle-même \\
+\hline
+\verb+V+ & verbe & continuer, copier-coller\\
+\hline
+\end{tabular}
+\caption{Codes grammaticaux usuels\label{tab-grammatical-codes}}
+\end{center}
+\end{table}
+\vspace{-0.7cm}
+\begin{table}[!h]
+\index{\verb+z1+}\index{\verb+z2+}\index{\verb+z3+}\index{\verb+Abst+}\index{\verb+Anl+}\index{\verb+AnlColl+}
+\index{\verb+Conc+}\index{\verb+ConcColl+}\index{\verb+Hum+}\index{\verb+HumColl+}\index{\verb+t+}\index{\verb+i+}
+\index{\verb+en+}\index{\verb+se+}\index{\verb+ne+}
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Code} & \textbf{Signification} & \textbf{Exemple} \\
+\hline
+\verb+z1+ & langage courant & blague \\
+\hline
+\verb+z2+ & langage spécialisé & sépulcre \\
+\hline
+\verb+z3+ & langage très spécialisé & houer \\
+\hline
+\verb+Abst+ & abstrait & bon goût \\
+\hline
+\verb+Anl+ & animal & cheval de race \\
+\hline
+\verb+AnlColl+ & animal collectif & troupeau \\
+\hline
+\verb+Conc+ & concret & abbaye \\
+\hline
+\verb+ConcColl+ & concret collectif & décombres \\
+\hline
+\verb+Hum+ & humain & diplomate \\
+\hline
+\verb+HumColl+ & humain collectif & vieille garde \\
+\hline
+\verb+t+ & verbe transitif & foudroyer \\
+\hline
+\verb+i+ & verbe intransitif & fraterniser \\
+\hline
+\verb+en+ & particule pré-verbale (PPV) obligatoire & en imposer \\
+\hline
+\verb+se+ & verbe pronominal & se marier \\
+\hline
+\verb+ne+ & verbe à négation obligatoire & ne pas cesser de \\
+\hline
+\end{tabular}
+\caption{Quelques codes sémantiques\label{tab-semantic-codes}}
+\end{center}
+\end{table}
+
+%\bigskip
+\noindent 注：计时表的说明 ~\ref{tab-inflectional-codes}匹配了法文。然而，大多数这些定义的几种语言（不定式，现在分词等）中找到。
+
+
+\bigskip
+\noindent 因为大多数语言的共同基础，字典包含特定编码具体到每一种语言。因此，弯曲的代码变化很大从一种语言到另一种，这里未描述。对于在字典中使用的所有代码的完整说明，我们建议您直接联系字典的作者。
+
+
+\begin{table}[!h]
+\index{\verb+m+}\index{\verb+f+}\index{\verb+n+}\index{\verb+s+}\index{\verb+p+}\index{\verb+1+}
+\index{\verb+2+}\index{\verb+3+}\index{\verb+P+}\index{\verb+I+}\index{\verb+S+}\index{\verb+T+}
+\index{\verb+Y+}\index{\verb+C+}\index{\verb+J+}\index{\verb+W+}\index{\verb+G+}\index{\verb+K+}
+\index{\verb+F+}
+\begin{center}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Code} & \textbf{Signification} \\
+\hline
+\verb+m+ & masculin \\
+\hline
+\verb+f+ & féminin \\
+\hline
+\verb+n+ & neutre \\
+\hline
+\verb+s+ & singulier \\
+\hline
+\verb+p+ & pluriel \\
+\hline
+\verb+1+, \verb+2+, \verb+3+ & 1st, 2nd, 3rd personne\\
+\hline
+\verb+P+ & présent de l’indicatif \\
+\hline
+\verb+I+ & imparfait de l’indicatif  \\
+\hline
+\verb+S+ & présent du subjonctif\\
+\hline
+\verb+T+ & imparfait du subjonctif \\
+\hline
+\verb+Y+ & présent de l’impératif \\
+\hline
+\verb+C+ & présent du conditionnel\\
+\hline
+\verb+J+ & passé simple \\
+\hline
+\verb+W+ & infinitif \\
+\hline
+\verb+G+ & participe présent \\
+\hline
+\verb+K+ & participe passé \\
+\hline
+\verb+F+ & futur \\
+\hline
+\end{tabular}
+\caption{Codes flexionnels usuels\label{tab-inflectional-codes}}
+\end{center}
+\end{table}
+
+
+\bigskip
+\noindent 显示的代码是绝对不限制。每个用户都可以将自己的代码，并创建自己的字典。例如，人们可以引入英语字典标志表示虚假的法文：
+
+\bigskip
+\begin{verbatim}
+bless,.V+faux-ami/bénir
+cask,.N+faux-ami/tonneau
+journey,.N+faux-ami/voyage
+\end{verbatim}
+
+另外，也可以使用字典存储特定信息。因此，人们可以使用描述的缩写和规范形式，得到完整的形式的条目的词尾变化的形式：
+
+\bigskip
+\begin{verbatim}
+ADN,Acide DésoxyriboNucléique.SIGLE
+LADL,Laboratoire d’Automatique Documentaire et Linguistique.SIGLE
+SAV,Service Après-Vente.SIGLE
+\end{verbatim}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{在字典中查找一个单词}
+\index{Dictionnaire!recherche}\index{Dictionnaire!consultation}\index{Consultation d'un dictionnaire}\index{Recherche dans un dictionnaire}
+\label{section-dictionary-lookup}
+您可以在多个词典用两种方式搜索一个词：
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=13cm]{resources/img/fig3-1.png}
+\caption{"DELA"菜单}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+如果你打开了一本字典，该窗口包含一个字段，允许你执行搜索。如果单词出现在字典中，“查找”按钮，突出显示第一个匹配的条目。如果有多个项目匹配，您可以通过点击这两个按钮状的箭头浏览。
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig3-2.png}
+\caption{在字典中查找一个单词}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+您也可以通过点击“查找”，从“DELA”菜单在多个词典搜索一个单词。然后，你可以选择词典在其中搜索你输入的字。
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig3-3.png}
+\caption{在多个字典中查找一个单词}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent
+
+%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{检查字典格式}
+\index{Dictionnaire!vérification} \index{Vérification du format d'un dictionnaire}
+当字典很大，就成了乏味的手工检查。 Unitex包含程序 \verb+CheckDic+\index{Programmes externes!\verb+CheckDic+}
+\index{\verb+CheckDic+} 它会自动检查和DELAFDELAS字典。
+
+\bigskip
+\noindent 这个程序检查项的语法。对于每个格式错误条目，程序将显示行号，该行的内容和错误的性质。分析的结果保存在一个文件名为
+\verb+CHECK_DIC.TXT+\index{Fichier!\verb+CHECK_DIC.TXT+}这验证完后显示。除了任何错误消息，该文件包含在屈折和规范的形式，语法和语义代码列表，并使用屈折代码列表中使用的所有字符的列表。字符列表确保在字典中的字符与在该语言的字母表文件保持一致。每个字符后面的十六进制值。代码清单可以用来验证有字典中的代码没有错别字。
+\index{Fichier!alphabet}
+
+
+\bigskip
+\noindent Le programme \verb+CheckDic+ 无压缩字典的作品，也就是为文本文件。该公约是通常适用于给予延期
+\verb+.dic+ \index{Fichier!\verb+.dic+}. 要检查字典的格式，必须
+首先通过点击在“DELA”菜单打开“打开...”。
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig3-4.png}
+\caption{词典例子\label{fig-dictionary-example}}
+\end{center}
+\end{figure}
+
+\noindent 加载字典图~\ref{fig-dictionary-example}.
+要启动自动验证，点击“检查格式...”，从“DELA”菜单。图的窗出现的图的窗口。图中词典的审计结果la fenêtre de la figure ~\ref{fig-dictionary-checking} apparaît alors.
+此窗口允许您选择要检查词典的类型。图中为词典的审计结果~\ref{fig-dictionary-example},
+显示在图~\ref{fig-dictionary-checking-results}.
+
+\bigskip
+\noindent 第一个错误是由于这样的事实，该方案还没有找到点。第二，事实证明，他没有找到点标词尾变化的形式的结束。第三个错误表明该程序没有发现任何语法或语义的代码。
+
+
+
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=7cm]{resources/img/fig3-5.png}
+\caption{字典的自动验证\label{fig-dictionary-checking}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=19.4cm]{resources/img/fig3-6.png}
+\caption{字典的自动验证\label{fig-dictionary-checking-results}}
+\end{center}
+\end{figure}
+
+
+\section{排序}
+\index{Dictionnaire!tri}\index{Tri!d'un dictionnaire}
+
+无论条目顺序的汇利达操纵词典。但是，对于演示目的，它往往是最好的字典排序。排序操作按照若干标准，首先是文本的语言进行排序而异。因此，以不同的顺序按字母顺序排列的执行泰国字典的排序，所以Unitex为泰语制定了排序方法 (见
+ \ref{chap-external-programs}).
+
+\bigskip
+\noindent 对于欧洲语言，排序通常是在字典顺序进行，但有一些变化。事实上，像法国的一些语言考虑某些字符等同。例如，字符之间的差异
+\verb+e+ 和 \texttt{é} 当比较词的时候会被忽略 \verb+manger+ 和
+\texttt{mangés}, 因为上下文 \verb+r+ 和 \verb+s+ 用于决定顺序。区别是当上下文是相同的，这是这种情况，如果我们比较 \texttt{pêche} 和 \texttt{pèche}.
+
+\bigskip \index{Alphabet!tri}
+\noindent
+为了处理这一现象，分拣程序 \verb+SortTxt+  
+\index{\verb+SortTxt+}\index{Programmes externes!\verb+SortTxt+} 使用该定义字符的等价的文件。 \index{Équivalence de caractères}  这个文件名为
+\verb+Alphabet_sort.txt+ \index{Fichier!\verb+Alphabet_sort.txt+} 和 是在当前用户语言的目录。下面是在默认情况下为法国使用的文件的第一行：
+
+
+\bigskip
+\noindent
+\texttt{AÀÂÄaàâä}
+
+\noindent
+\texttt{Bb}
+
+\noindent
+\texttt{CÇcç}
+
+\noindent
+\texttt{Dd}
+
+\noindent
+\texttt{EÉÈÊËeéèêë}
+
+
+\bigskip
+\noindent 当上下文允许在同一行中的字符被认为是相当的。当你需要比较两个相似的字符根据其左起出现合适就行的顺序进行比较。你可以从上面摘录不大小写区分，我们不知道的变音符号。
+
+
+\bigskip
+\noindent 要排序的字典，打开它，在“DELA”菜单中点击“排序辞典”。默认情况下，程序会尝试使用文件 \verb+Alphabet_sort.txt+。如果这个文件不存在，排序是按照Unicode编码字符的索引完成。通过修改这个文件，你可以定义自己的排序偏好。
+
+
+\bigskip
+\noindent 注：应用字典上的一个文本文件后
+\verb+dlf+, \verb+dlc+ 和 \verb+err+ 有了这个程序会自动排序。
+\index{Fichier!\verb+dlf+} \index{Fichier!\verb+dlc+}\index{Fichier!\verb+err+}
+
+
+
+\section{全自动弯管}
+\label{section-automatic-inflection}
+\index{Flexion automatique}\index{Conjugaison}\index{Déclinaison}\index{Dictionnaire!flexion automatique}
+\subsection{屈折简单的词}
+
+就像~\ref{section-DELAS-format}中定义的一样, DELAS通常由一个规范的形式和语法或语义编码序列：
+
+
+\begin{verbatim}
+aviatrix,N4+Hum
+matrix,N4+Math
+radix,N4
+\end{verbatim}
+
+\bigskip
+\noindent 第一次会议码被解释为用于屈折规范形式的语法的名称。有两种可能的形式：
+
+\begin{itemize}
+\item \verb+N4+:语法名=\verb+N4.fst2+, 语法码=\verb+N+
+	(最长前缀只能是字母)
+  \item \verb+N(NC_XXX)+: 语法名=\verb+NC_XXX.fst2+, 语法码=\verb+N+
+\end{itemize}
+
+\bigskip
+\noindent 这些屈折文法\index{Grammaires!de flexion}\index{Graphe!de flexion}\index{Transducteur!de flexion}
+如有必要，会自动编译。在上面的例子中，所有的条目将与命名语法被屈折
+\verb+N4+.
+
+\bigskip
+\noindent要开始屈折，在“DELA”菜单中点击“影响”。图的窗~\ref{fig-inflection-configuration} 指定屈折程序，其中，屈折文法的目录。默认情况下，子目录
+\verb+Inflection+ 当前语言的目录被使用。您也可以指定哪些类型的词词典应该包含。如果遇到非法入境，将显示一条错误消息。
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=8cm]{resources/img/fig3-7.png}
+\caption{自动屈折配置\label{fig-inflection-configuration}}
+\end{center}
+\end{figure}
+
+\bigskip
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=4.5cm]{resources/img/fig3-8.png}
+\caption{屈折语法
+\texttt{N4}\label{fig-example-inflectional-grammar}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent La figure~\ref{fig-example-inflectional-grammar} 示出了弯曲的语法的一个例子。描述后缀加上或减去来从规范形式词尾变化的形式的路径和输出（在框中粗体字）给予屈折代码添加到字典条目。
+
+\bigskip
+\noindent 在我们的例子，两个路径是可能的。第一个不修改规范形式，并增加了屈折代码 \verb+:s+. 第二个被削减
+\verb+L+, 然后加入 \verb+ces+ 和屈折码 \verb+:mp+.
+
+在这里，您可以使用操作器：
+
+\index{\verb+L+}\index{Opérateur!\verb+L+}\index{\verb+R+}\index{Opérateur!\verb+R+}
+\index{\verb+C+}\index{Opérateur!\verb+C+}\index{\verb+D+}\index{Opérateur!\verb+D+}
+\index{\verb+U+}\index{Opérateur!\verb+U+}
+\index{\verb+P+}\index{Opérateur!\verb+P+}
+\index{\verb+W+}\index{Opérateur!\verb+W+}
+\index{\verb+J+}\index{Opérateur!\verb+J+}
+\index{\verb+.+}\index{Opérateur!\verb+.+}
+\index{\verb+<R=?>+}\index{Opérateur!\verb+<R=?>+}
+\index{\verb+<I=?>+}\index{Opérateur!\verb+<I=?>+}
+\index{\verb+<X=n>+}\index{Opérateur!\verb+<X=n>+}
+
+\begin{itemize}
+\item \verb+L+ (left) 删除了一项输出;
+  	  
+\item \verb+R+ (right)从恢复信息。在法语中，第一组的许多动词第三人称单数除去不定式和从端部在改变信结合第四个最终的信息。
+  	  
+\item \verb+C+ (copy) 重复条目的信形，换挡一切。
+  	  
+例如，假设你想自动生成形容词
+\verb+able+如 \verb+regrettable+ 或 \verb+réquisitionnable+,
+ 还有最后的辅音字母名增加了一倍。避免编写一个偏转曲线图对于每个可能的最终辅音，可以使用C操作者重复任何种类的最终辅音;
+  
+  \item \verb+D+ (delete)除去从入口的一封信，换挡一切，这是他的权利。例如屈折罗马字 \verb+european+ 到 \verb+europeni+, 我们用 \verb+LDRi+. Le \verb+L+ 来确定字符 \verb+a+, \verb+D+ 删除 \verb+a+,在左边定义 \verb+n+, 随后 \verb+Ri+ 将代替 \verb+n+
+并加入\verb+i+.
+
+\item \verb+U+ 去掉了声调。
+	例如 \verb+LLUx+ 应用于
+	\texttt{mangés} 产生了变位 \verb+mangex+,然后 \verb+U+
+	将 \texttt{é} 替换为 \verb+e+.
+
+\item \verb+P+ 将首字母大写，例如
+	\verb$Px$ 将\verb$foo$ e转换为 \verb$Foox$.
+  
+\item \verb+W+ 首字母小写。
+
+\item \verb+<R=?>+ 将首字母替换为 \verb+?+.
+
+\item \verb+<I=?>+加入字母 \verb+?+
+
+\item \verb+<X=n>+ 去掉 $n$ 。
+\end{itemize}
+
+
+%\bigskip
+\noindent
+为使用操作器，考虑 {\it reprendre}~:
+
+\bigskip
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Verbe     & Opérateur & Variable & Résultat\\
+\hline
+\hline
+reprendre & <re> & & reprend\\
+reprendre & <\$> & \$ = e & reprendr\\
+reprendre & <{\pounds}> &{\pounds}= reprendre & $\varepsilon$ \\
+reprendre & <re\$re> & \$ = nd & rep\\
+reprendre & <re{\pounds}re> & {\pounds} = prend & \\
+reprendre & <\$re> & \$ = d & repren\\
+reprendre & <re\$> & \$ =  $\varepsilon$ & reprendre\\
+reprendre & <{\pounds}re> & {\pounds} = reprend & $\varepsilon$\\
+reprendre & <re{\pounds}> & {\pounds} = prendre & re\\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent
+程序 MultiFlex允许使用十个变量 \$ 它们的名字是 \$, \$1..., \$9
+十个 {\pounds}类型的变量名为 {\pounds}, {\pounds}1..., {\pounds}9. 此外，多个不同类型的变量可被同一个操作器使用
+因此操作器 <{\pounds}3re\$7re>应用于{\it reprendre}给出{\pounds}3 = 
+ rep 和 \$7 = \verb+nd+.
+
+\bigskip
+\noindent
+动词 \verb+accélérer+, \verb+sécher+,第二人称现在时可以由操作产生： <é\$er>è\$es~:
+
+\begin{center}
+\begin{tabular}{lllllllll}
+	\verb+accélérer+ & <é\$er> & $\rightarrow$ & accél & \$ = r & + & è\$es &  $\rightarrow$ & \verb+accélères+\\
+	\verb+sécher+ & <é\$er> & $\rightarrow$ & s & \$ = ch & + & è\$es & $\rightarrow$ & \verb+sèches+\\
+\end{tabular}
+\end{center}
+
+
+\noindent 在这里，获得屈折英语形容词 \verb+tranquil+:
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig3-flexion_tranquil.png}
+\end{center}
+\end{figure}
+
+\noindent 在一些语言中，某些屈折变化具有被添加到根的前缀。这是形成过去分词时的情况。联合使用操作器 \verb+£+ 和 \verb+$+ 允许弯曲德语动词 \verb+sprechen+ (parler)
+如图现在和过去分词~\ref{fig-inflection-sprechen}.
+
+\newpage
+\begin{figure}[!htbp]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig3-Advanced_operators_with_Variables-V_sprechen.png}
+\caption{弯曲图中的词语，如 {\it sprechen}
+\label{fig-inflection-sprechen}}
+\end{center}
+\end{figure}
+
+\noindent 这里的屈折德语动词 \verb+sprechen+:
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig3-flexion_sprechen.png}
+\end{center}
+\end{figure}
+
+\noindent 如果一个人想用动词短语可以使用两种类型的变量 \$.
+图~\ref{fig-inflection-aussprechen} 表明相称变量图 \verb+$1+ et \verb+$2+.
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10.5cm]{resources/img/fig3-Advanced_operators_with_Variables-V_aussprechen.png}
+\caption{弯曲图中的词语，如 {\it aussprechen}
+\label{fig-inflection-aussprechen}}
+\end{center}
+\end{figure}
+
+\noindent 这里为获得德国动词 \verb+aussprechen+:
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig3-flexion_aussprechen2.png}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent \textbf{Codes sémantiques}
+\noindent 在某些语言中，也有实际对应语义特征，如被动式的标记屈折变化特征。这些代码可能不显示为屈折码，但是作为语义码。以产生语义码，在一个盒的输出的开头插入一个加号。此框应只包含一个加之前，语义代码，如图~\ref{fig-inflection-sem}.
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=6cm]{resources/img/fig3-9sem.png}
+\caption{与语义代码语法弯曲\label{fig-inflection-sem}}
+\end{center}
+\end{figure}
+
+\subsection{屈复合词}
+Voir chapitre \ref{chap-multiflex}.
+
+\subsection{语法屈折}
+\label{subsection-semitic-inflection}
+\index{Langues sémitiques}
+像阿拉伯语和希伯来语闪含语系不以同样的方式为其他类型的语言下降。它们的形态遵循不同的逻辑。
+在这些语言中，单词在屈折 \textit{squelette consonantique}\index{Squelette consonantique}. 弯曲工艺结合这个骨架与元音。
+
+\bigskip
+\noindent 首先，让我们看看是否有代码，在进入DELAS区域：
+
+\bigskip
+\noindent \verb+ktb,$V31-123+
+
+\bigskip
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig3-15.png}
+\caption{弯曲语法发挥犹太语模式\label{semitic-grammar}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 遵循以下规则：
+\begin{enumerate}
+\item所有的弯曲标准运营商可以使用 (\verb+L+, \verb+R+, etc.).
+\item Un chiffre représente une lettre du champ lemme (\verb+1+ 第一个
+\verb+2+ 第二个，等)。在我们的例子中， \verb+1+, \verb+2+ 和 \verb+3+ 分别代表 \verb+k+, \verb+t+ et \verb+b+. 如果你想第九届后指定一个字母，则它必须保护其与椽子号： \verb+<10>+.
+\end{enumerate}  
+
+\bigskip
+\noindent Le DELAF produit par cette grammaire est:\\ 
+  
+\verb+yakotubu,ktb.V:aI3ms+
+
+\bigskip
+\noindent 如果一个代码引理领域的辅音和两个条目具有相同的辅音和元音的不同之处，您必须编写弯曲语法元音~:\\ 
+
+\verb+Hsb,$V3au	// compter, Hasaba, yaHosubu+
+
+\verb+Hsb,$V3ii	// penser, Hasiba, yaHosibu+
+
+\bigskip
+\noindent 复制所有引理字段，操作者可以使用 <LEMMA> (图~\ref{LEMMA-operator})。以这种方式，与任何引理字段路径不依赖于字母的数目。
+这个操作符是哪个男的阿拉伯形式由辅音骨架插入元音，而女性的添加后缀获得的名词和形容词有用。在这个例子中，在引理场编码既辅音和元音。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig3-LEMMA-operator.png}
+\caption{屈折语法犹太语模式与操作<LEMMA>\label{LEMMA-operator}}
+\end{center}
+\end{figure}
+
+\section{压缩}
+\index{Dictionnaire!compression}
+
+Unitex应用于文本片字典。压缩减少该词典的大小和加速协商。这是用程序来完成 \verb+Compress+. \index{\verb+Compress+}\index{Programmes externes!\verb+Compress+}
+它作为输入字典作为文本文件 (例如
+	\verb+mon_dico.dic+) 产生两个文件：\index{Fichier!\verb+.dic+}
+
+\begin{itemize}
+  \item \verb+mon_dico.bin+包含字典的屈折形式的最小自动机;
+  	  \index{Fichier!\verb+.bin+}
+  \item \verb+mon_dico.inf+ \index{Fichier!\verb+.inf+}包含代码允许重建从包含在屈折形式原始词典 \verb+mon_dico.bin+.
+\end{itemize}
+
+\index{Automate!minimal}
+\noindent 最低自动含量 \verb+mon_dico.bin+ 是的，所有的常用的前缀和后缀的因素屈折形式的表示。例如，最小自动机字 \verb+me+, \verb+te+, \verb+se+,
+\verb+ma+, \verb+ta+ et \verb+sa+可以通过图1的曲线图表示~\ref{fig-example-minimal-automaton}.
+\bigskip \begin{figure}[!h]
+\begin{center}
+\includegraphics[width=5cm]{resources/img/fig3-10.png}
+\caption{最小自动机的一个例子的表示\label{fig-example-minimal-automaton}}
+\end{center}
+\end{figure}
+
+\noindent 要压缩字典，打开它，然后单击“压缩到FST”中的“DELA”菜单。压缩是独立于语言和字典的内容。由程序产生的消息显示在不自动关闭一个窗口。你可以看到文件的大小
+\verb+.bin+, 得到的，读取的行的数量和屈折码产品数量。人物 ~\ref{fig-compression-result} 显示压缩的简单字的字典的结果。
+
+\bigskip
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig3-11.png}
+\caption{压缩的结果\label{fig-compression-result}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 作为一个指导原则，普遍观察到的压缩比为约 95\%
+简单的词和复合词 50\%的字典。
+
+
+\bigskip
+\noindent 注：对于闪语，一个特殊的压缩算法来减少文件大小 \verb+.bin+ et \verb+.inf+。该语言被认为是闪的事实可以在全局偏好进行配置。
+
+
+\section{词典中的应用}
+\label{section-applying-dictionaries}
+\index{Dictionnaire!application}
+
+\bigskip
+\noindent Unitex能够处理任何压缩字典 (\verb+.bin+)  (\verb+.fst2+)。这些词典可以在预处理过程中，无论是明确地通过点击“应用词汇资源...”，从“文字”菜单中应用。现在，我们将详细为词典的应用程序的规则。图的情况下，词典将在节中讨论 ~\ref{section-dictionary-graphs}.
+
+\subsection{优先级}
+\label{section-dictionary-priorities}
+\index{Dictionnaire!priorité}\index{Priorité!entre dictionnaires}
+优先级规则是：如果文本的单词在字典中被发现，
+施加具有优先的字典时这个字将不被考虑在内
+低。
+
+
+\bigskip
+\noindent 应用字典时，这消除歧义。
+例如，字 \textit{par} 在高尔夫球场的标称解释。如果不考虑这个工作，只需创建一个只包含词典入口过滤器
+\verb$par,.PREP$ 并给它最高的优先级保存。以这种方式，即使在字典包含简单的字的另一个输入，它将被忽略由于优先次序的播放。
+\index{Dictionnaire!filtre}
+
+\bigskip
+\noindent 有三个级别的优先级。字典是没有扩展名结尾 \verb+-+\index{\verb+-+}\index{\verb$+$} 具有最高优先级;其名称结尾 \verb-+- 有最低优先级;其他字典施加具有中等优先级。具有相同优先级的多个词典的顺序并不重要。在命令行上，语句：
+
+
+\bigskip
+\noindent
+\verb$Dico ex.snt alph.txt ctr+.bin cities-.bin rivers.bin regions-.bin$
+
+\bigskip \noindent 所以解释字典顺序如下 (\verb+ex.snt+ 是应用字典的文字， \verb+alph.txt+ 是所使用的字母的文件：
+
+\begin{enumerate}
+  \item \verb$cities-.bin$
+  \item \verb$regions-.bin$
+  \item \verb$rivers.bin$
+  \item \verb$ctr+.bin$
+\end{enumerate}
+
+\subsection{字典规则}
+\label{section-transducer-application-rules}
+
+除了优先规则，词典中的应用做尊重上的空间。尊重的大写规则是：
+
+\index{Règles!majuscules et minuscules}
+
+\begin{itemize}
+  \item 如果在字典中一个大写字母，那么就必须在文字资本化;
+
+  \item 如果在词典中的小写的，有可能是小写的或在文本中大写。
+
+\end{itemize}
+
+\noindent 同时，输入 \verb$pierre,.N:fs$ 识别词 \verb+pierre+,
+\verb+Pierre+ 和 \verb+PIERRE+, 因此
+
+\noindent \verb$Pierre,.N+Prénom$ 承认 \verb+Pierre+ et \verb+PIERRE+。大写和小写字母被作为参数传递给程序字母表文件中定义 \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+}
+\index{Fichier!\verb+Alphabet.txt+}\index{Fichier!alphabet}\index{Alphabet}.\index{Règles!espace}
+
+\bigskip
+\noindent 尊重间距是一个很简单的规则：一个文本序列由字典条目的认可，就必须有完全一样的空间。
+例如，如果该字典包含 \verb+aujourd'hui,.ADV+, 序列 \verb+Aujourd' hui+ 因为撇号以下的空间将不能被识别。
+
+
+\subsection{图-字典}
+\label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
+程序 \verb+Dico+\index{\verb+Dico+}\index{Programmes externes!\verb+Dico+} 还能够将图形的字典。这些都是遵循图表，
+默认情况下，\footnote{形态图，字典是个例外
+(见~\ref{section-morphological-dictionary-graphs}) .}, 以下规则 :
+如果应用程序 \verb+Locate+\index{\verb+Locate+}\index{Programmes externes!\verb+Locate+} 的 MERGE模式,\index{MERGE} 他们必须出示相应的行序列 DELAF.\index{DELAF}\index{Dictionnaire!DELAF}
+当施加到文本，它们附着词汇标签DELAF这些序列。
+
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=24cm]{resources/img/fig3-12.png}
+\caption{化学元素的图形词典\label{elements}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 图表\ref{elements} 示出了识别化学符号的曲线图。我们可以在这个图中看到的第一个优势压缩字典：使用引号来强制区分大小写。因此，该曲线图将认识到许多 \verb+Fe+
+除了 \verb+FE+, 而这是不可能的，以指定在一个常规DELAF这种禁止。
+
+\bigskip
+\noindent 图的词典的第二个优点是，他们可以利用从预先施加的词典的结果。因此，我们可以使用一般的字典，然后将其标记为专有名称未知单词大写与图 \verb$NPr+$ ~\ref{graph-NPr}.  \verb$+$ 图中的名称，给它一个低优先级，以便它一般字典之后施加。为了工作，该图是基于仍然通过一般的字典后未知的话。钩对应于定义上下文 (见 \ref{section-contexts}).
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=10.5cm]{resources/img/fig3-13.png}
+\caption{字典图形标识作为专名未登录词大写
+\label{graph-NPr}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 作为图-字典由发动机程序装入 \verb+Locate+,
+他们可以使用任何程序 \verb+Locate+ 授权。尤其是，它有可能使用的形态滤波器\index{Filtre morphologique} (见~\ref{section-filters}) 和大写模式 (见~\ref{section-morphological-mode}).\index{Mode
+morphologique}
+因此，图的曲线图中 \ref{graph-CR} 使用过滤器数罗马数字。注意，它也使用上下文来避免，例如，随后当由撇号即 \verb+C+ 被取为罗马数字。
+
+\begin{figure}[!p]
+\begin{center}
+\includegraphics[height=24cm]{resources/img/fig3-14.png}
+\caption{图词典承认罗马数字\label{graph-CR}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent 默认情况下，图表，词典在MERGE模式应用。它可以应用它们在REPLACE模式，增加了它们的后缀名 \verb+-r+. 这结合了优先 \verb-+- 和 \verb+-+:
+
+\bigskip
+\verb?bagpipe-r.fst2  McAdam-r-.fst2  phtirius-r+.fst2?
+
+
+\subsubsection{作为形态模式产生的字典词条出口}
+\index{Dictionnaire!du mode morphologique}
+用字典生成的图形条目由程序咨询 \verb+Locate+ 当遇见那些需要咨询的字典词汇口罩。
+
+\bigskip
+\noindent 但是，此功能受到限制时，词法面膜形态方法
+(见~\ref{section-morphological-mode}). 你不能声明形态字典模式像往常一样的字典形图 (见~\ref{dic-mode-morpho}),
+因为不是一个文件 \verb+.bin+. 在形态模式中，需要咨询字典词汇，面具不会触发字典。作为补偿，有几种解决方案。
+\begin{itemize}
+\item 可以考虑从在形态模式图的一部分调用图的字典。
+\item Unitex内部生产的公认形式的字典由图形词典中的文本。如果字典图的名称中包含\verb+b+（见命名约定如下图），这本词典是自动生成隐含形态字典模式中，因此，它被咨询的程序时，\verb+Locate+找到符合词法的形态模式。但这种方法只适用于由图的字典词典的初始应用程序识别表格 (见~\ref{section-applying-dictionaries}),而不能应用于那些出现在文本作为标记的部件。
+\end{itemize}
+如果我们添加 \verb+z+ 替代  \verb+b+, 文本内部生产字典立即压缩，当其他图形，字典是应用之后，可以协商。
+ 
+\subsubsection{命名约定}
+一个图的字典的命名过程如下:\\
+
+\verb$nom(-XYZ)([-+]).fst2$\\
+
+\noindent où:
+\begin{itemize}
+\item \verb+X+ 取一个值 \verb+[rRmM]+: \verb+r+ REPLACE模式; \verb+M+
+MERGE模式(默认模式);
+\item \verb+Y+ 取一个值 \verb+[bBzZ]+: 选项支配形态字典模式建设（见上文）;
+\item \verb+Z+ 取一个值 \verb+[aAlLsS]+: \verb+a+ 意味着该图是在“所有匹配”施加;\verb+l+模式"Longest matches" (默认模式); 
+\verb+s+ 表示 "Shortest matches".
+\end{itemize}
+
+
+\subsection{形态图词典}
+\label{section-morphological-dictionary-graphs}\index{Graphe-dictionnaire!morphologique}
+在图形词典中，每个路径必须，默认情况下，产生对包含在字典文本词汇条目。在一个形态字典的图，每个路径必须提供分隔的一个或多个标签的序列由括号和符合DELAF的语法
+ (见~\ref{section-DELAF-entry-syntax}).
+你的图表的输出将被用作输入来构造文本自动机。我们称之为``形态图形，字典'，因为他们的主要目的是提供新的形态在文本自动分析，通过形态学方法
+(见 \ref{section-morphological-mode}).此功能对于凝集语言如韩语很有用。
+要使用图形作为图形的形态字典，我们以斜杠声明它 (/) 作为其释放的第一个字符，如图 \ref{morphoA}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=14cm]{resources/img/fig3-14a.png}
+\caption{图的形态字典的例子\label{morphoA}}
+\end{center}
+\end{figure}
+
+\noindent 规则很简单：任何输出字典图形开始以斜杠 ( /) 
+加入文件 \verb+tags.ind+, \index{\verb+tags.ind+}，在索引中定位。
+该文件所使用的程序 \verb+Txt2Fst2+ afin d'ajouter des interprétations à
+l'automate du texte. La grammaire de la figure \ref{morphoA} 要解释添加到文本自动机。图的语法文字识别
+由前缀 \verb+un+ 加上形容词构成。 如果应用为图的字典获得在文本自动机的新路径，如图
+\ref{morphoB}. 注意，当在同样，它们之间的链路由虚线显示两个标签匹配分析。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-14b.png}
+\caption{由图的形态字典方式加入\label{morphoB}}
+\end{center}
+\end{figure}
+
+\section{参考书目}
+
+该表~\ref{ref-dicos}提供了简单和复合词电子词典提供一些参考。有关详细信息，请参阅Unitex网站上的参考页： \url{http://www-igm.univ-mlv.fr/~unitex}
+
+\bigskip
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Langue} & \textbf{Mots simples} & \textbf{Mots composés} \\
+\hline
+English & \cite{klarsfeld}, \cite{monceaux-1995} & \cite{delac-anglais},
+\cite{these-Savary} \\
+\hline
+French & \cite{formes-ambigues}, \cite{dicos-francais}, \cite{jacques-1995} & \cite{dicos-francais},
+\cite{Gross96},
+\cite{max-1993},
+\cite{syntaxe-de-ladverbe} \\
+\hline
+Modern Greek & \cite{modern-greek}, \cite{matthieu-anastasia}, \cite{these-tita} & \cite{tita-2002},
+\cite{anastasia-2002} \\
+\hline
+Italian & \cite{delaf-italien}, \cite{delaf-italien-book} & \cite{composes-italien} \\
+\hline
+Spanish & \cite{blanco-2000} & \cite{blanco-1997} \\
+\hline
+Portuguese & \cite{eleuterio1995}, \cite{ranchhod1996b}, \cite{ranchhodd1998},
+\cite{muniz2005} & \cite{ranchhod1991}, \cite{ranchhodd1998} \\
+\hline
+\end{tabular}
+\caption{对电子词典的一些引用\label{ref-dicos}}
+\end{center}
+\end{table}

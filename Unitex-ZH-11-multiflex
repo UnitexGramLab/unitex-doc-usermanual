@@ -1,0 +1,1243 @@
+\chapter{复合词的词形变化}
+
+\label{chap-multiflex}
+MULTIFLEX 是一个兼容\ Unicode 词形变化的平台，包括 \textit{复合词}或\textit{多字组合词}的自动词形变化（英文称\ \textit{multi-word units}\ 简称\ MWUs\ ）。
+\index{多字组合词}\index{复合词}
+它被专门设计为创造复合词形态的字典。
+它实现了一套有根据的统一的形式 （\ \cite{Savary05}\ ），
+用于描述复合词的词形变化和假设简单词变位模型的存在。
+
+\bigskip
+\noindent 在本章中，介绍了复合词的概念和描述了\ MULTIFLEX 词形变位的方法。
+
+\bigskip
+\noindent 本章节是基于\ MULTIFLEX 的指南, 由\ Agata Savary 编写, 他是\ MULTIFLEX 的作者。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{复合词}
+\label{section:MWUs}
+复合词(或\ MWUs )包含了一组难以界定的语言对象和争议\ (cf. \cite{HabertJacquemin93}，\cite{Corbin92})。
+它们大量的语义或实义 (\cite{Benven74}，\cite{Downing77}，\cite{Levi78}，
+\cite{Bauer83}，\cite{Gross90}，\cite{Anscombre90}，\cite{max-1993}，\cite{Gross96}，\cite{Cadiot92})\ 都基于以下三点：
+
+\begin{itemize}
+\item 它们由两个或多个单词组成
+\item 它们在形态、结构或语义上表现出一定程度的非组合性
+\item 它们具有恒定且独特的参照对象
+\end{itemize}
+
+\bigskip
+\noindent 然而，在这些定义中所用的基本概念（单词，参照对象，非组合性）和标准（某种程度的非组合性）本身存在争议。
+
+\bigskip
+\noindent 语用方式中，我们将复合词看成是\ \textit{unités graphiques} 的序列，与之相邻的\index{Unité graphique}将被排列成列表，并描述其属性（形态，句法，语义等），然后处理成单一的单元。
+
+ \subsection{正式描述复合词的词形变化}
+\label{subsec:MWUs inflection}
+MULTIFLEX\ 的主要目的是复合词的词形变化机制。
+这个现象已经被分析，在\cite{these-Savary}中包括英语，波兰语和法语。
+
+\bigskip
+\noindent 显然，一个可靠的单字词变形程序是复合词变形的先决条件，但也有特例。
+例如，英语中的复数形式：
+
+\begin{itemize}
+\item \emph{battle cry}
+\item \emph{battle royal}
+\item \emph{battle of nerves}
+\end{itemize}
+
+\noindent 它不仅要需要知道如何生成\ \emph{battle, royal} 和\ \emph{cry} 的复数形式，也要知道哪种变位形式的结构与它们相结合：
+
+\begin{itemize}
+\item \emph{battle cr\underline{ies}}
+\item \emph{battle royal\underline{s}}, or \emph{battle\underline{s} royal},
+\item \emph{battle\underline{s} of nerves}
+\end{itemize}
+
+\noindent 但不是
+ 
+\begin{itemize}
+\item[*] {\emph{battle\underline{s} cr\underline{ies}}}
+\item[*] {\emph{battle\underline{s} royal\underline{s}}}
+\item[*] {\emph{battle\underline{s} of nerve\underline{ }}}
+\end{itemize}
+
+\bigskip
+\noindent 从形式上看，如果要明确且充分描述复合词的词形变化，必须明白以下几点要求：
+
+\begin{itemize}
+\item 什么样的语法规则和词形变化规则（数量，阴阳性，时态等）适合复合词（包括名词，形容词等），这些规则对于复合词而言是恰当的吗？
+\cite{PrzepWol03} 形态句法语法范畴的定义：语法要明确复合词中的每个单词的变位形式，
+例如，在波兰语中，一个名词在不同的数量和不同的状态下将发生变位。
+
+\item 有哪些是词形变位中的例外？ 例如，波兰语中：
+
+\begin{itemize}
+\item \emph{wybory powszechne}\\
+	(\emph{élections générales}) 
+\end{itemize}
+
+该复合词没有单数形式（但复合词的词头\ \emph{wybory} 有单数形式）。
+
+\item 由简单词构成的复合词有哪些特点（规范格式，语法范畴，变位形式等）？
+例如，在法语中
+\emph{porte} 是一个变位形式的动词，
+
+\begin{itemize}
+\item \emph{porte-avion}
+\end{itemize}
+
+然而这是一个变位形式的名词，
+ 
+\begin{itemize}
+\item \emph{porte-fenêtre}
+\end{itemize}
+
+加一个\ \emph{s} 变为复数形式。
+
+\begin{itemize}
+\item \emph{porte\underline{s}-fenêtre\underline{s}}
+\end{itemize}
+
+\item 如何结合简单词汇的变位来构成复合词的变位？例如, 对于\ \emph{battle of nerves} 和\ \emph{battle cry} 我们需要分别对词组中的第一个和最后一个组件进行变位。
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{词汇或语法的形态描述}
+先前的研究 （\cite{these-Savary}）已经明确了复合词的特殊地位。
+它们的组成结构表明，复合词的变位形式都是由语法生成。 
+
+\noindent 然而，他们的一些形态，句法和语义的处理只在其成员的特性方面。 
+如以下两个举例：
+
+\begin{itemize}
+\item \emph{chief justice}
+\item \emph{lord justice}
+\end{itemize} 
+
+\noindent 英文中，符合词汇的复数形式通常是在其最后一个组件加 \emph{s} , 而它的复数有以下几个特征：
+
+\begin{itemize}
+\item \emph{chief justice\underline{s}}
+\item \emph{lord justice\underline{s}, lord\underline{s} justice,
+lord\underline{s} justice\underline{s}}
+\end{itemize}
+ 
+\bigskip
+\noindent 因此，下面的例子中至少有一个应被视为词汇化的自动变位。
+
+\bigskip
+\noindent MULTIFLEX 实现了基于统一的形式，该形式用于说明复合词的变位 \cite{Savary05}。
+其特点在\ \ref{section:formalism}\ 中有描述。这种形式的要求是描述\ \emph{pleinement}\ 词汇化：在词典中找到的每个复合词字具有代表变形范例的代码（\ ex:\emph{NC\_NN,NC\_NN2},etc. ），例如，在\ DELA\ 格式类型中：
+
+\[
+\begin{array}[c]{l}
+  $aircraft carrier(carrier.N1:s),\textbf{NC\_NN}$ \\
+  $chief justice(justice.N1:s),\textbf{NC\_NN}$ \\
+  $lord(lord.N1:s) justice(justice.N1:s),\textbf{NC\_NN2}$ \\
+  \dots
+\end{array}
+\]
+
+\bigskip
+\noindent 然而，绝大多数的复合词可以用一个小数目的代码进行处理。
+因此，描述的词汇是主要来判断复合词符合或不符合语法。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{复合词变位的形式}
+\label{section:formalism}
+由\ Agata Savary 在1985年\cite{Savary05}描述的复合词的形态形式是基于英语、波兰语和法语的研究，也已经对塞尔维亚语\cite{Krstevetal06}和希腊语\cite{Foufi13}进行测试。
+它是基于必须由给定语言的所有特征元件可完成的语言无关的表示。在本节中，我们将对这种形式详细说明。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{语言的形态特征}
+\label{subsec:langfeat}
+当处理某种语言的复合词时，定义语言的一般特性。这些数据储存在两个文本文件。
+
+\index{\verb+Morphology.txt+}\index{Fichier!\verb+Morphology.txt+}\bigskip
+\noindent 该文件\ \verb+Morphology.txt+ 表示语法范畴（名词，形容词，\dots），词汇变位（数量，性别，时态，\dots）和属性（阳性，阴性，单数，主格，\dots）。思考下面的例子：
+
+\[
+\begin{array}[c]{ll}
+$Polish$ \\
+$$<$CATEGORIES$>$$ \\
+$Nb: sing, pl$ \\
+$Case: Nom, Gen, Dat, Acc, Inst, Loc, Voc$ \\
+$Gen: masc\_pers, masc\_anim, masc\_inanim, fem, neu$ \\
+$$<$CLASSES$>$)$ \\
+$noun: (Nb,$<$var$>$),(Case,$<$var$>$),(Gen,$<$fixed$>$)$ \\
+$adj:(Nb,$<$var$>$),(Case,$<$var$>$),(Gen,$<$var$>$)$ \\
+$adv:$
+\end{array}
+\]
+
+\bigskip
+\noindent 上述文件指出，波兰语中三类变位被认为是数量（\ \emph{Nb} ），时态（\ \emph{Case} ）和阴阳性（\ \emph{Gen} ）。
+我们记录了每个词汇的完整属性列表（名词的单复数等）。
+然后每个语法范畴是根据与变位的种类，和那些中定义的描述。例如，一个名词根据数目和时态变形。
+这种类型的文件是必要的，表达一个词的数量，阴阳性或变位的情况下，无需列举它的每个变位形式（单数，复数，阳性等）。
+
+\index{\verb+Morphology.txt+}\index{Fichier!\verb+Morphology.txt+}
+\bigskip
+\noindent 同样，对于法语, 该文件\ \verb+Morphology.txt+ 如下:
+\[
+\begin{array}[c]{l}
+$French$ \\
+$$<$CATEGORIES$>$$ \\
+$Nb: s, p$ \\
+$Gen: m, f$ \\
+$$<$CLASSES$>$$\\
+$noun: (Nb,$<$var$>$),(Gen,$<$var$>$)$ \\
+$adj:(Nb,$<$var$>$),(Gen,$<$var$>$)$ \\
+$adv:$
+\end{array}
+\]
+
+\bigskip
+\noindent 但是，在现有的变位系统中，语法类这样的描述，变位类别和属性不总是存在的。
+例如，对于\ DELA\ （\cite{dicos-francais}）\ 的形态约定值简单的话都没有相应的类别明确提到的连续字符序列（\ e.g. \emph{ms} 对于阳性单数）。
+所以，为了程序与系统兼容，使用描述了特征的变位对应于我们的描述哪一对类别的列表。
+（包含于文件 \index{\verb+Equivalences.txt+}\index{Fichier!\verb+Equivalences.txt+}\ 中）
+例如，部分列表如下：
+
+\[
+\begin{array}[c]{ll}
+Polish                        &French\\
+s: Nb=sing                    &s: Nb=s  \\
+p: Nb=pl                      &p: Nb=p \\
+M: Case=Nom                   &f: Gen=f  \\
+D: Case=Gen                   &m: Gen=m    \\
+C: Case=Dat  &\\
+B: Case=Acc  &\\
+I: Case=Inst  &\\
+L: Case=Loc  &\\
+V: Case=Voc  &\\
+o: Gen=masc\_pers  &\\
+z: Gen=masc\_anim  &\\
+r: Gen=masc\_inanim  &\\
+f: Gen=fem  &\\
+n: Gen=neu &
+\end{array}
+\]
+
+\bigskip
+\noindent 先前的文件\ \verb+Morphology.txt+ 分别描述了波兰语和法语，并且由单个字母可在\ DELA 字典用于在\ Unitex 这些语言表示的特性之间的等价性。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{分解复合词的成分}
+\label{subsec:decomp}
+基本成分的概念是有争议的，因语言变化和\ TAL 系统的不同而不同。例如，在\ Unitex 中，一个字母，即一组字符，每种语言首次定义。没有字母表中的任何字符称为分隔符。
+一个基本成分是既是简单分离器(通常是标点符号，数字等)也是从字母表连续字符的序列(如\ \emph{aujourd'hui} 包含三个成分)。
+在其他系统中的组件可能包含标点符号(\ e.g.\emph{c'est-\`a-dire} )，
+或者以英文字母顺序可能会出现两种成分之间的边界(\ \emph{widzia\l$\mid$bym}，对照于“\ je verrais ”。
+\cite{PrzepWol03}). 
+
+\bigskip
+\noindent 这种对于组成物的可能性定义显然对复合词的定义产生影响。
+但是，我们希望这种架构也能够适应不同的简单词变位系统。
+因此，一个组件的定义是系统中的一个参数：每当\ MULTIFLEX 与外部插件一起被使用时，它必须决定一个字符序列是如何划分其成分。
+
+\bigskip
+\noindent 在我们的框架中，将成分通过数字表示\ \emph{\$1, \$2, \$3}, etc. 
+举例，Unitex 中的序列：
+
+\begin{itemize}
+\item \emph{Athens '04}
+\end{itemize} 
+
+\bigskip
+\noindent 这种方式包含了五个向\ MULTIFLEX 发送的组成部分：
+\[
+\begin{array}[c]{l}
+$\$1 = \emph{Athens}$ \\
+$\$2 = $<$space$>$$ \\
+$\$3 = \emph{'}$ \\
+$\$4 = \emph{0}$ \\
+$\$5 = \emph{4}$ \\
+\end{array}
+\]
+
+\bigskip
+\noindent 复合词的每个组件变位时可被形态学识别。该识别应该允许提供必要的信息，以便可按需生成的字的任何变化形式。例如在：
+\begin{itemize}
+\item \emph{mémoire vive}
+\end{itemize} 
+我们必须知道，\emph{vive} 是\ \emph{vif} 的阴性单数形式，从而能够产生阴性的复数\ \emph{vives}。
+在\ MULTIFLEX 中，处理简单词的外部插件用来识别和生成简单词的变位形式。
+
+\bigskip
+\noindent Unitex 中，变位形式的产生受到\ DELA 系统的启发
+(\cite{dicos-francais})。为了生成词汇的一个或多个变位的形式，我们需要知道：
+
+\begin{itemize}
+\item 规范格式
+\item 变位形式 (称作变位代码)
+\item 变位形式的特点
+\end{itemize}
+
+\bigskip
+\noindent 因此，在\ Unitex/MULTIFLEX 接口中简单词的描述如下：
+
+\begin{itemize}
+\item \emph{vive(vif.A54:fs)}
+\end{itemize} 
+
+\bigskip
+\noindent \emph{A54} 是\ \emph{vif} 和\ \emph{fs} 的变位代码，它形成\ DELA 类型特点的形态描述，介绍于文件\ \verb+Equivalences.txt+ 中（\ cf. section~\ref{subsec:langfeat} ）。 
+已知\ \emph{vive} 是\ \emph{vif} 的阴性单数形式， 我们可以直接生成复数形式而无需考虑性数。
+因为我们只需变换单复数，性数依然继承原型\ \emph{vive}，阴性。
+
+\subsection{复合词变位范例}
+\label{subsec:paradigm}
+在我们的框架中，复合词的形态描述基于\ DELA 系统，如下：
+
+\begin{itemize}
+\item 每一个复合词都有一个变位码
+\item 变位码明确地描述了处理规范形式和特点进行关联上执行
+\end{itemize}
+
+\bigskip
+\noindent Unitex 的版本中， MULTIFLEX 使用变位码\ \verb+.fst2+ 如\ ~\ref{fig:BattleRoyal} 展示了\ \emph{battle royal} 的变位图像。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/BattleRoyal.png}
+  \caption{\ \emph{battle royal} 的变位图像}
+  \label{fig:BattleRoyal}
+\end{figure}
+
+\bigskip
+\noindent 根据\ Unitex 的协议，在\ \emph{battle royal} 中展示了三个组成部分：\ \emph{battle} 命名为\ \emph{\$1}，空间命名为\ \emph{\$2}, 以及\ \emph{royal} 命名为\ \emph{\$3}。
+如果在一个组合中单独出现的变量，元件是一样的，在复合词引理。例如，\ $<$\$3$>$ 是图像的路径表示\ \emph{royal} 如此被复制。 如果变量是伴随着形式类别的分配，在要求的形式里组件将变形。
+同样\ $<$\$3:Nb=p$>$ 表示\ \emph{royal} 的复数形式。
+
+\bigskip
+\noindent 要生成一个复合词的所有变化形式，我们必须探索图的所有路径。
+每个路径始于右箭头左边，并在最终的一块结束。每到达一块时，它执行它包含动作和积累存在于盒中的信息（复制或部分变位）。
+积累箱总产量为词尾变化的形式的完整形态描述。
+
+\bigskip
+\noindent 例如，图像所示\ ~\ref{fig:BattleRoyal} 如果我们按照中间路线， 如图\ ~\ref{fig:BattleRoyalonepath}：
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/BattleRoyalonepath.png}
+  \caption{\ \emph{battle royal} 的变位路径图}
+  \label{fig:BattleRoyalonepath}
+\end{figure}
+
+\bigskip
+\noindent 重新填写\ \emph{battle}\ (\emph{\$1}) 和空间\ (\emph{\$2})， 并且设置\ \emph{royal} 的复数形式，这样就能生成\ \emph{battle royals} 复合词的复数形式。如图所示\ ~\ref{fig:BattleRoyal} 包括三个不同的路径，\ \emph{battle royal} 的所有变位形式如下：
+
+\[
+\begin{array}[l]{l}
+\emph{battle royal $<$Nb=s$>$} \\
+\emph{battle royals $<$Nb=p$>$} \\
+\emph{battles royal $<$Nb=p$>$}
+\end{array}
+\]
+\bigskip
+\noindent 重写\ DELACF 的格式后，得到以下条目：
+\[
+\begin{array}[l]{l}
+\emph{battle royal,battle royal.N:s} \\
+\emph{battle royals,battle royal.N:p} \\
+\emph{battles royal,battle royal.N:p}
+\end{array}
+\]
+
+\bigskip
+\noindent 注意，该描述是产生简单词变位形式的方法中的自变量，我们通过处理简单词的外部插件来管理。
+在\ MULTIFLEX 的版本中，我们生成\ \emph{royal} 的复数，因为我们知道它的变位代码\ \emph{N1} 对应图\ \ref{fig:N1}。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=2.8cm]{resources/img/N1'EN.png}
+  \caption{\ \emph{N1} 的变位图适用于像\ \emph{royal} 类似的简单词}
+  \label{fig:N1}
+\end{figure}
+
+\bigskip 在复合词变位的范例中，每个部件是伴随着这决定了它的变形类别。
+例如，在\ \emph{bateau-mouche} 中，两个名词组件有特定的性数变形： \ \emph{bateau\underline{x}-mouche\underline{s}}。 
+在这个复合词（\ figure~\ref{fig:BateauMouche1} ）的变位图形中， 相应的框中包含的数字值的分配。
+注意，这两种组分可具有相同类型，如\ \emph{bateau} 是阳性而\
+\emph{mouche} 是阴性。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/BateauMouche1.png}
+  \caption{变位图形用来词表示词汇的变位，如\ \emph{bateau-mouche} }
+  \label{fig:BateauMouche1}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{统一变量}
+词汇形式的一个重要特征是\ \textit{variables d'unification}。
+\index{Variable!d'unification}遵循美元符号（\ \emph{\$} ） 其次，它可以包含任何数量的识别符，如\ \emph{\$g1}，\ \emph{\$num\_10}，\ \emph{\$c} 等。
+展示\ ~\ref{fig:BateauMouche2} 相当于图像\ \footnote {甚至在的情况下出现的复合词的引理单个部件已经复数, 如在\ \emph{cross-road\underline{s}}中 } 展示如\ ~\ref{fig:BateauMouche1}
+
+只要它允许产生对于相同的复合词相同词尾变化的形式。
+然而，在这里，人们路径是单数和复数。这是通过该变量\ \emph{\$n} 是反过来由区域的所有值在同级车\ (\emph{Nb})，这里\ \emph{\$n=s} 实例化则成为可能\ \emph{\$n=p}。
+当一个统一的变量出现的类型\ \emph{Nb=\$n}，用一个等号（=）的公式中，该系统通过在这个类别的配置文件中声明的所有值运行（\ cf. section~\ref{subsec:langfeat}）。对于每一个值，它使变量的一个新的实例。的分配是用于所述路径的所有组件是相同的：如果一个值分配给所述第一组件，相同的值必须被分配给第三方的，而对于整个复合词。同样，如果我们赋予\ \emph{\$n} 值\ \emph{p}在第一个框中，一步步向这个值\ \emph{p} 一路走来。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/BateauMouche2.png}
+  \caption{变位图形，如\ \emph{bateau-mouche}}
+  \label{fig:BateauMouche2}
+\end{figure}
+
+\bigskip
+\noindent 变位图\ ~\ref{fig:BateauMouche2} 适用于大多数
+法语复合类型\ \emph{Nom Nom} 名称和\ \emph{Nom Adjectif} （\ \emph{bateau-mouche, ange
+gardien, circuit séquentiel}, etc. ）~：这是因为释放最终框中包\ \emph{Gen=m} 将为同一类型的所有的化合物中，但阴性的，如\ \emph{main courante, moissoneuse-batteuse} 等，将要创建一个新的图，相同图\ ~\ref{fig:BateauMouche2} 向上到最终输出包含\ \emph{$<$Gen=f;Nb=\$n$>$}。
+这不是很直观，因为\ \emph{circuit séquentiel} 和\ \emph{main courante} 变位相同的方式，在某种程度上，在这两种情况下，我们有复数的第一个和最后组件以获取多元复合词。
+
+
+\bigskip
+\noindent 因此，引入另一种使用统一实例化。
+它是由\ \emph{==}表示（而不是单个等号\ \emph{=} 像\ \emph{\$n}\ ~\ref{fig:BateauMouche2})。
+当值使用这个符号分配给一个变量，该变量实例化一次：
+它继承组件的范畴，因为它出现在复合词的规范形式。
+例如，图\ ~\ref{fig:BateauMouche3} 包含描述为男性为女性型复合词\ \emph{Nom Nom} 名称和\ \emph{Nom Adjectif} 变位的曲线图。所述第一框包含这样的双重等号到可变\ \emph{\$g}，
+这意味着该变量是在第一组件的类型的分配。\emph{bateau-mouche} 是男性，因为\ \emph{bateau} 是阳而\ \emph{main courante} 是阴。
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=11cm]{resources/img/BateauMouche3.png}
+  \caption{变位图\ \emph{bateau-mouche} 与两种类型实例化}
+  \label{fig:BateauMouche3}
+\end{figure}
+
+\bigskip
+\noindent 
+
+当一个双等于符号分配通过简单地等于符号与一个张贴共存，相同的路径和相同的变量上，双等于符号分配优先于其他〜：变量被实例化一次。例如，在图\ ~\ref{fig:BateauMouche3} 最后的输出包含\ \emph{Gen=\$g}，但\ \emph{\$g} 采用由第一部分确定一个值。
+
+\bigskip
+\noindent 统一系统是具有丰富的变形语言特别有用。
+例如，波兰语的大部分名变形的的数量（二个值）和例（七个值），其中涉及至少十四种不同的形式（如替代品和合一形式不同）。
+这个分数对于那些在数量，性别和时态（三到九种不同的方法）变位的形容词甚至更高。
+如果没有统一的机制是可用的，这些形式应通过在图中独立的路径进行说明。
+统一可显著减少图形的尺寸（在大多数情况下高达单程）。
+\bigskip
+\noindent 例如, 图\ ~\ref{fig:PranieMozgu} 能够对波兰语中的复合词进行变位，如\ \emph{pranie m\'ozgu}（\ \emph{lavage du cerveau} ）或\ \emph{powo\.zenie koniem}（\ ang. \emph{horse coaching} ）。
+在第三个组件（通常在是所有格或工具格）已经确定了的情况下，第一个和第三个组件在数量变位上彼此独立，（\ \emph{pranie m\'ozg\underline{\'ow}}，\emph{prani\underline{a} m\'ozgu}， \emph{prani\underline{a} m\'ozg\underline{\'ow}}, etc.）。
+这就是为什么每个变量对于数量的变位都不同，（\emph{\$n1} 与 \emph{\$n2}）。
+这三个变量\ $\$n1$，$\$n2$\ et\ $\$c$ 可以表示各自领域中的任何值（\ \emph{\{sing,pl\}，\{sing,pl\}} 及\ \emph{\{Nom,Gen,Dat,Acc,Inst,Loc,Voc\}}；\ cf. \verb+Morphology.txt+ 于\ ~\ref{subsec:langfeat} 部分）。
+该复合词继承第一个组件的性数及时态属性。
+阴阳性由（\ \emph{Gen==\$g} ）定义，而其数量和时态可表示十四种可能的组合。没有统一的表示，唯一路径图由二十八条不同的路径表示。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/PranieMozgu.png}
+  \caption{\ \emph{pranie m\'ozgu} 变位图形}
+  \label{fig:PranieMozgu}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{替换拼写的变体}
+词汇形式允许任何部件被省略或在必要时在不同的词尾变化的形式移动。
+它也允许不出现在复合词的基本形式的附加组件的插入。这允许变形模式扩展到变种，拼写或语法部分变种更广泛的说明（综合研究\ \cite{Jacquemin01} ）。
+
+英语中，\ \emph{student union} 出现在语料库中，\emph{student\underline{s} union} 和 \ \emph{student\underline{s'} union} 分别是它的单数和复数形式。
+我们将这两种都添加到该词的变为形式的描述中（\ cf. figure~\ref{fig:StudentUnion} )。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/StudentUnion.png}
+  \caption{\ \emph{student union} 变位图形}
+  \label{fig:StudentUnion}
+\end{figure}
+
+\bigskip
+\noindent ~\ref{fig:BirthDate} 指出\ lequel 的例子，除了一个新组件的插入，组件的顺序可以颠倒。
+顶端路径可以产生\ \emph{birth date} 和\ \emph{birth dates} 而底端路径表示上述语法变位形式：\emph{date of birth} 和\ \emph{dates of birth}。
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/BirthDate.png}
+  \caption{\ \emph{birth date} 的变位图像}
+  \label{fig:BirthDate}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{简单词汇的变位系统接口}
+\label{Interface}
+
+MULTIFLEX 是以实现复合词变位为前提，并存在满足以下约束条件的简单词变位系统：
+
+\begin{itemize}
+\item 对于一个给定的字符序列，它发送其必要的组件（标记）（\ cf. section~\ref{subsec:decomp} ）。
+例如在\ Unitex 中，一个标记的定义， 序列\ \emph{Athens '04} 被分成五个标记：
+\[
+\begin{array}[l]{l}
+\emph{``Athens '04'' $\rightarrow$ (``Athens'','' ``,''''',''0'',''4'')}
+\end{array}
+\]
+
+对于给定的一个变化形式，它返回所有的变位变化特征。
+这些特征应允许在由相同的挠曲模量的相同引理的任何词尾变化的形式的请求产生。
+例如，在\ Unitex 的情况下，该形式\ \emph{porte} 通向识别的形式（其中六个通过变位代码分解）：
+
+\[
+\begin{array}[l]{l}
+\emph{porte $\rightarrow$ ((porte,porte.N21:s),(porte,porter.V3:P1s:P3s:S1s:S3s:Y2s))}
+\end{array}
+\]
+在模糊的情况下，如上所述，适当的身份必须进行，此时由用户编辑字化合物弓的引理时（以后，这个任务将被部分自动的）。例如，在复合词\ \emph{porte-fenêtre} 的情况下，第一组件必须被识别为一个名词而不是动词。
+\item 对于给定的形态学鉴定和一套变位的值，将返回所有的变位形式。例如，在波兰语，所以这个词\ \emph{r\k{e}ka} 待产的工具的情况下，三种形式必须发送： \emph{r\k{e}k\k{a}} （奇异器乐） \emph{r\k{e}kami} 和\ \emph{r\k{e}koma} （器乐复数的两个变种）。
+\[
+\begin{array}[l]{lll}
+\emph{(r\k{e}ka,$<$Case=Inst$>$)}&  \rightarrow    &
+\emph{((r\k{e}k\k{a},<Nb=sing;Gen=fem;Case=Inst>)}, \\
+                                    &              & \emph{(r\k{e}kami,<Nb=pl;Gen=fem;Case=Inst>)},
+                                    \\
+                                    &              & \emph{(r\k{e}koma,<Nb=pl;Gen=fem;Case=Inst>))}
+\end{array}
+\]
+\end{itemize}
+
+\bigskip
+\noindent 简单词和复合词的变位系统，允许更好的模块化和独立之间的界面的存在-一个可见对方。
+变位系统正化合物词语并不需要知道如何的单词的词尾变化的形式被描述，分析和产生。他只需要一套正确的屈折复合词组成的形式。反过来，对于简单的单词的系统不知道的化合物话如何结合所提供的形式什么。     
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unitex}
+\label{section:UNITEXinterface}
+
+其中一个主要原则\ MULTIFLEX设计 的是要尽可能独立的简单词汇的变位系统。
+然而，由于一个复合词从简单的话，我们必须能够以得到一个复合词作为整体变位形成这样一个系统的存在是不可避免的。
+\bigskip
+\noindent 
+在当前版本的基础上，MULTIFLEX 建立于\ Unitex 的简单词汇的变位系统。
+\begin{itemize}
+
+\item MULTIFLEX 使用\ Unitex 相同的编码，即\ Unicode 3.0。
+\item MULTIFLEX 使用\ Unitex 图形编辑器来表示的复合词的变位。
+\item MULTIFLEX 承认形态描述的类似的原理\ BEYOND系统集合流片\ Unitex。因此，一个模式是一组动作来对引理执行生成其变位的形式，和它们的关联对应的变位信息。
+\item MULTIFLEX 通过从\ DELAC（电子\ BEYOND 复合词）一\ DELACF 生产延伸简单词到复合词的变位（电子\ BEYOND 变位的合成词形式）。
+生成的\ DELACF 格式与\ Unitex 兼容而\ DELAC 是新的，但\ DELAC（简单词\ DELA 电子词典）为蓝本。
+\end{itemize}
+
+\bigskip
+\noindent 
+以下部分提供了更多的语言，通过\ MULTIFLEX/Unitex 接口变位\ DELACF 于\ DELAC 的完整的例子。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{英语中的例子}
+支持英语的形态特征的描述由文件中定义\ \verb+Morphology.txt+ 如下：
+\[
+\begin{array}[l]{l}
+$English$ \\
+$<CATEGORIES>$ \\
+$Nb:s,p$ \\
+$<CLASSES>$ \\
+$noun:(Nb,<var>)$ \\
+$adj:$
+\end{array}
+\]
+
+\bigskip
+\noindent 与上述特征和在\ DELA 字典及其相应码之间等价由文件中定义\ \verb+Equivalences.txt+ 如下：
+\[
+\begin{array}[l]{l}
+$English$ \\
+$s : Nb=s$ \\
+$p : Nb=p$ \\
+\end{array}
+\]
+
+\bigskip
+\noindent 思考以下\ DELAC 的英语摘要：
+
+\begin{verbatim}
+angle(angle.N1:s) of reflection,NC_NXXXX
+Adam's apple(apple.N1:s),NC_XXXXN
+air brake(brake.N1:s),NC_XXN
+birth date(date.N1:s),NC_NN_NofN
+criminal police,NC_XXXinv
+cross-roads,NC_XXNs
+head(head.N1:s) of government(government.N1:s),NC_NofNs
+notary(notary.N3:s) public(public.N1:s),NC_NsNs
+rolling stone(stone.N1:s),NC_XXN
+student(student.N1:s) union(union.N1:s),NC_Ns'N
+\end{verbatim}
+
+\bigskip
+\noindent 与\ \emph{N1} 和\ \emph{N3} 相对应的简单词变位图 展示于\ ~\ref{fig:N1'EN} 和\ ~\ref{fig:N3'EN} 中，而复合词在\ ~\ref{fig:NC'NXXXX'EN} 及\ ~\ref{fig:NC'Ns'N'EN} 中。
+
+\bigskip
+\noindent DELACF 的变位结果由\ DELAC 的\ MULTIFLEX 呈现:
+
+\begin{verbatim}
+angle of reflection,angle of reflection.NC_NXXXX:s
+angles of reflection,angle of reflection.NC_NXXXX:p
+Adam's apple,Adam's apple.NC_XXXXN:s
+Adam's apples,Adam's apple.NC_XXXXN:p
+air brake,air brake.NC_XXN:s
+air brakes,air brake.NC_XXN:p
+date of birth,birth date.NC_NN_NofN:s
+dates of birth,birth date.NC_NN_NofN:p
+birth date,birth date.NC_NN_NofN:s
+birth dates,birth date.NC_NN_NofN:p
+criminal police,criminal police.NC_XXXinv:p
+cross-roads,cross-roads.NC_XXNs:s
+cross-roads,cross-roads.NC_XXNs:p
+heads of government,head of government.NC_NofNs:p
+heads of governments,head of government.NC_NofNs:p
+head of government,head of government.NC_NofNs:s
+notaries public,notary public.NC_NsNs:p
+notary public,notary public.NC_NsNs:s
+notary publics,notary public.NC_NsNs:p
+rolling stone,rolling stone.NC_XXN:s
+rolling stones,rolling stone.NC_XXN:p
+students' union,student union.NC_Ns'N:s
+students' unions,student union.NC_Ns'N:p
+students union,student union.NC_Ns'N:s
+students unions,student union.NC_Ns'N:p
+student union,student union.NC_Ns'N:s
+student unions,student union.NC_Ns'N:p
+\end{verbatim}
+ 
+\begin{figure}[ht]
+\begin{minipage}[c]{0.45\textwidth}
+ \centering
+ \includegraphics[width=2.5cm]{resources/img/N1'EN.png}
+ \caption{\ \emph{N1} 英语中的复合词变位图}
+  \label{fig:N1'EN}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\textwidth}
+ \centering
+ \includegraphics[width=3cm]{resources/img/N3'EN.png}
+  \caption{\ \emph{N3} 英语中的复合词变位图}
+  \label{fig:N3'EN}
+\end{minipage}
+\end{figure}
+
+%%%%%%%%%%%%MWUs
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/NC'NXXXX'EN.png}
+  \caption{\ \emph{NC\_NXXXX} 英语中的复合词变位图}
+  \label{fig:NC'NXXXX'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=9.7cm]{resources/img/NC'XXXXN'EN.png}
+  \caption{\ \emph{NC\_XXXXN}英语中的复合词变位图}
+  \label{fig:NC'XXXXN'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7.8cm]{resources/img/NC'XXN'EN.png}
+  \caption{\ \emph{NC\_XXN} 英语中的复合词变位图}
+  \label{fig:NC'XXN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/NC'NN'NofN'EN.png}
+  \caption{\ \emph{NC\_NN\_NofN} 英语中的复合词变位图}
+  \label{fig:NC'NN'NofN'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7cm]{resources/img/NC'XXXinv'EN.png}
+  \caption{\ \emph{NC\_XXXinv} 英语中的复合词变位图}
+  \label{fig:NC'XXXinv'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7cm]{resources/img/NC'XXNs'EN.png}
+  \caption{\ \emph{NC\_XXNs} 英语中的复合词变位图}
+  \label{fig:NC'XXNs'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10.4cm]{resources/img/NC'NofNs'EN.png}
+  \caption{\ \emph{NC\_NofNs} 英语中的复合词变位图}
+  \label{fig:NC'NofNs'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10.4cm]{resources/img/NC'NsNs'EN.png}
+  \caption{\ \emph{NC\_NsNs} 英语中的复合词变位图}
+  \label{fig:NC'NsNs'EN}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=9.8cm]{resources/img/NC'Ns'N'EN.png}
+  \caption{\ \emph{NC\_Ns'N} 英语中的复合词变位图}
+  \label{fig:NC'Ns'N'EN}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{法语例子}
+支持法语的形态特征的描述由文件中定义\ \verb+Morphology.txt+ ：
+\[
+\begin{array}[l]{l}
+$French$ \\
+$<CATEGORIES>$ \\
+$Nb : s, p$ \\
+$Gen : m, f$ \\
+$<CLASSES>$ \\
+$noun : (Nb,<var>),(Gen,<var>)$ \\
+$adj:(Nb,<var>),(Gen,<var>)$ \\
+$adv:$
+\end{array}
+\]
+
+\bigskip
+\noindent与上述特征和在\ DELA 字典及其相应码之间等价由文件中定义\ \verb+Equivalences.txt+ ：
+
+\[
+\begin{array}[l]{l}
+$French$ \\
+$s : Nb=s$ \\
+$p : Nb=p$ \\
+$m : Gen=m$ \\
+$f : Gen=f$
+\end{array}
+\]
+
+\bigskip
+\noindent 可考虑从法语\ DELAC 以下摘录（简单词汇的变位代码可能会不同于\ Unitex）：
+
+\begin{verbatim}
+avant-garde(garde.N21:fs),NC_XXN
+bateau(bateau.N3:ms)-mouche(mouche.N21:fs),NC_NN
+café(café.N1:ms) au lait,NC_NXXXX
+carte(carte.N21:fs) postale(postal.A8:fs),NC_NN$
+cousin(cousin.N8:ms) germain(germain.A8:ms),NC_NNmf
+franc(franc.A47:ms) maçon(maçon.N41:ms),NC_AN1
+mémoire(mémoire.N21:fs) vive(vif.A48:fs),NC_NN
+microscope(microscope.N1:ms) à effet tunnel,NC_NXXXXXX
+porte-serviette(serviette.N21:fs),NC_VNm
+\end{verbatim}
+
+
+\bigskip
+\noindent 变位图形\ ~\ref{fig:NC'XXN'FR} 展示于\ ~\ref{fig:NC'VNm'FR}。
+
+\bigskip
+\noindent DELACF 的变位结果由\ DELAC 的\ MULTIFLEX 呈现：
+
+\begin{verbatim}
+avant-garde,avant-garde.NC_XXN:fs
+avant-gardes,avant-garde.NC_XXN:fp
+bateau-mouche,bateau-mouche.NC_NN:ms
+bateaux-mouches,bateau-mouche.NC_NN:mp
+café au lait,café au lait.NC_NXXXX:ms
+cafés au lait,café au lait.NC_NXXXX:mp
+carte postale,carte postale.NC_NN:fs
+cartes postales,carte postale.NC_NN:fp
+cousin germain,cousin germain.NC_NNmf:ms
+cousins germains,cousin germain.NC_NNmf:mp
+cousine germaine,cousin germain.NC_NNmf:fs
+cousines germaines,cousin germain.NC_NNmf:fp
+franc-maçon,franc maçon.NC_AN1:ms
+franc-maçonne,franc maçon.NC_AN1:fs
+franc maçon,franc maçon.NC_AN1:ms
+franc maçonne,franc maçon.NC_AN1:fs
+francs-maçons,franc maçon.NC_AN1:mp
+francs-maçonnes,franc maçon.NC_AN1:fp
+francs maçons,franc maçon.NC_AN1:mp
+francs maçonnes,franc maçon.NC_AN1:fp
+mémoire vive,mémoire vive.NC_NN:fs
+mémoires vives,mémoire vive.NC_NN:fp
+microscope à effet tunnel,microscope à effet tunnel.NC_NXXXXXX:ms
+microscopes à effet tunnel,microscope à effet tunnel.NC_NXXXXXX:mp
+porte-serviette,porte-serviette.NC_VNm:ms
+porte-serviettes,porte-serviette.NC_VNm:ms
+porte-serviettes,porte-serviette.NC_VNm:mp 
+\end{verbatim}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10.2cm]{resources/img/NC'XXN'FR.png}
+  \caption{\ \emph{NC\_XXN} 法语中的复合词变位图}
+  \label{fig:NC'XXN'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10.8cm]{resources/img/NC'NN'FR.png}
+  \caption{\ \emph{NC\_NN} 法语中的复合词变位图}
+  \label{fig:NC'NN'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12cm]{resources/img/NC'NXXXX'FR.png}
+  \caption{\ \emph{NC\_NXXXX} 法语中的复合词变位图}
+  \label{fig:NC'NXXXX'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12cm]{resources/img/NC'NNmf'FR.png}
+  \caption{\ \emph{NC\_NNmf} 法语中的复合词变位图}
+  \label{fig:NC'NNmf'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12cm]{resources/img/NC'AN1'FR.png}
+  \caption{\ \emph{NC\_AN1} 法语中的复合词变位图}
+  \label{fig:NC'AN1'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12.2cm]{resources/img/NC'NXXXXXX'FR.png}
+  \caption{\ \emph{NC\_NXXXXXX} 法语中的复合词变位图}
+  \label{fig:NC'NXXXXXX'FR}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=9.2cm]{resources/img/NC'VNm'FR.png}
+  \caption{\ \emph{NC\_VNm} 法语中的复合词变位图}
+  \label{fig:NC'VNm'FR}
+\end{figure}
+
+
+%\clearpage
+\subsection{塞尔维亚语}
+支持法语的形态特征的描述由文件中定义\ \verb+Morphology.txt+ ：
+%\begin{comment}
+\[
+\begin{array}[l]{l}
+$Serbian$\\
+$<CATEGORIES>$\\
+$Nb:s,p,w$ \\
+$Case:1,2,3,4,5,6,7$\\
+$Gen:m,f,n$\\
+$Anim:v,q,g$\\
+$Comp:a,b,c$\\
+$Det:d,k,e$\\
+$<CLASSES>$\\
+$noun:(Nb,<var>),(Case,<var>),(Gen,<var>),(Anim,<fixed>)$\\
+$adj:(Nb,<var>),(Case,<var>),(Gen,<var>),(Anim,<var>),(Comp,<var>),(Det,<var>)$\\
+$adv:$
+\end{array}
+\]
+%\end{comment}
+
+\bigskip
+\noindent 这种形态模型的特点是不仅是财富，而且\ \emph{no-care} 如\ \emph{Anim=g} 或\ \emph{Det=e}。这些特性都与相同类别的其它特征相符。
+它们只用于名词或形容词的具体子类是必要的变位范式简单的话那些已经非常可观的最佳质量，厄尔紧凑，并且甚至会没有他们。
+
+\bigskip
+\noindent 上述特征和在\ DELA 字典及其相应码之间假设等同由文件中定义\ \verb+Equivalences.txt+ ：
+
+\[
+\begin{array}[l]{l}
+$Serbian$ \\
+$s:Nb=s$ \\
+$p:Nb=p$ \\
+$w:Nb=w$ \\
+$1:Case=1$ \\
+$2:Case=2$ \\
+$3:Case=3$ \\
+$4:Case=4$ \\
+$5:Case=5$ \\
+$6:Case=6$ \\
+$7:Case=7$ \\
+$m:Gen=m$ \\
+$f:Gen=f$ \\
+$n:Gen=n$ \\
+$v:Anim=v$ \\
+$q:Anim=q$ \\
+$g:Anim=g$ \\
+$a:Comp=a$ \\
+$b:Comp=b$ \\
+$c:Comp=c$ \\
+$d:Det=d$ \\
+$k:Det=k$ \\
+$e:Det=e$
+\end{array}
+\]
+
+\bigskip
+\noindent 考虑从塞尔维亚语\ DELAC 以下摘录（简单词汇的变位代码可能会不同于\ Unitex ）：
+\scriptsize
+\begin{verbatim}
+zxiro racyun(racyun.N1:ms1q),NC_2XN1+N+Comp
+avio-prevoznik(prevoznik.N10:ms1v),NC_2XN2+N+Comp
+predsednik(predsednik.N10:ms1v) drzxave(drzxava.N600:fs2q),NC_N2X1+N+Comp
+Ujedinxene(Ujedinxen.A1:aefp1g) nacije(nacija.N600:fp1q),NC_AXN3+N+Comp+NProp+Org
+Kosovo(Kosovo.N308:ns1q) i Metohija(Metohija.N623:fs1q),NC_N3XN+N+Comp+NProp+Top+Reg 
+istrazxni(istrazxni.A2:adms1g) sudija(sudija.N679:ms1v),NC_AXNF+N+Comp
+Mirosinka(Mirosinka.N1637:fs1v) Dinkicx(Dinkicx.N1028:ms1v),NC_ImePrezime+N+Comp+Hum+PersName
+gladan(gladan.A18:akms1g) kao vuk(vuk.N128:ms1v),AC_A3XN2/hungry as a wolf
+\end{verbatim}
+\normalsize
+
+\bigskip
+\noindent 变位图形\ ~\ref{fig:NC'2XN1'SRB} 展示于\ ~\ref{fig:AC'A3XN2'SRB}。
+
+\bigskip
+\noindent DELACF 的变位结果由\ DELAC 的\ MULTIFLEX 呈现：
+
+\footnotesize
+\begin{verbatim}
+zxiro-racyun,zxiro racyun.NC_2XN1+N+Comp:s1qm
+zxiro-racyuna,zxiro racyun.NC_2XN1+N+Comp:s2qm
+zxiro-racyunu,zxiro racyun.NC_2XN1+N+Comp:s3qm
+zxiro-racyun,zxiro racyun.NC_2XN1+N+Comp:s4qm
+zxiro-racyune,zxiro racyun.NC_2XN1+N+Comp:s5qm
+zxiro-racyunom,zxiro racyun.NC_2XN1+N+Comp:s6qm
+zxiro-racyunu,zxiro racyun.NC_2XN1+N+Comp:s7qm
+zxiro-racyuni,zxiro racyun.NC_2XN1+N+Comp:p1qm
+zxiro-racyuna,zxiro racyun.NC_2XN1+N+Comp:p2qm
+zxiro-racyunima,zxiro racyun.NC_2XN1+N+Comp:p3qm
+zxiro-racyune,zxiro racyun.NC_2XN1+N+Comp:p4qm
+zxiro-racyuni,zxiro racyun.NC_2XN1+N+Comp:p5qm
+zxiro-racyunima,zxiro racyun.NC_2XN1+N+Comp:p6qm
+zxiro-racyunima,zxiro racyun.NC_2XN1+N+Comp:p7qm
+zxiro-racyuna,zxiro racyun.NC_2XN1+N+Comp:w2qm
+zxiro-racyuna,zxiro racyun.NC_2XN1+N+Comp:w4qm
+zxiro racyun,zxiro racyun.NC_2XN1+N+Comp:s1qm
+zxiro racyuna,zxiro racyun.NC_2XN1+N+Comp:s2qm
+zxiro racyunu,zxiro racyun.NC_2XN1+N+Comp:s3qm
+zxiro racyun,zxiro racyun.NC_2XN1+N+Comp:s4qm
+zxiro racyune,zxiro racyun.NC_2XN1+N+Comp:s5qm
+zxiro racyunom,zxiro racyun.NC_2XN1+N+Comp:s6qm
+zxiro racyunu,zxiro racyun.NC_2XN1+N+Comp:s7qm
+zxiro racyuni,zxiro racyun.NC_2XN1+N+Comp:p1qm
+zxiro racyuna,zxiro racyun.NC_2XN1+N+Comp:p2qm
+zxiro racyunima,zxiro racyun.NC_2XN1+N+Comp:p3qm
+zxiro racyune,zxiro racyun.NC_2XN1+N+Comp:p4qm
+zxiro racyuni,zxiro racyun.NC_2XN1+N+Comp:p5qm
+zxiro racyunima,zxiro racyun.NC_2XN1+N+Comp:p6qm
+zxiro racyunima,zxiro racyun.NC_2XN1+N+Comp:p7qm
+zxiro racyuna,zxiro racyun.NC_2XN1+N+Comp:w2qm
+zxiro racyuna,zxiro racyun.NC_2XN1+N+Comp:w4qm
+avio-prevoznik,avio-prevoznik.NC_2XN2+N+Comp:s1vm
+avio-prevoznika,avio-prevoznik.NC_2XN2+N+Comp:s2vm
+avio-prevozniku,avio-prevoznik.NC_2XN2+N+Comp:s3vm
+avio-prevoznika,avio-prevoznik.NC_2XN2+N+Comp:s4vm
+avio-prevoznicye,avio-prevoznik.NC_2XN2+N+Comp:s5vm
+avio-prevoznikom,avio-prevoznik.NC_2XN2+N+Comp:s6vm
+avio-prevozniku,avio-prevoznik.NC_2XN2+N+Comp:s7vm
+avio-prevoznici,avio-prevoznik.NC_2XN2+N+Comp:p1vm
+avio-prevoznika,avio-prevoznik.NC_2XN2+N+Comp:p2vm
+avio-prevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p3vm
+avio-prevoznike,avio-prevoznik.NC_2XN2+N+Comp:p4vm
+avio-prevoznici,avio-prevoznik.NC_2XN2+N+Comp:p5vm
+avio-prevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p6vm
+avio-prevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p7vm
+avio-prevoznika,avio-prevoznik.NC_2XN2+N+Comp:w2vm
+avio-prevoznika,avio-prevoznik.NC_2XN2+N+Comp:w4vm
+avioprevoznik,avio-prevoznik.NC_2XN2+N+Comp:s1vm
+avioprevoznika,avio-prevoznik.NC_2XN2+N+Comp:s2vm
+avioprevozniku,avio-prevoznik.NC_2XN2+N+Comp:s3vm
+avioprevoznika,avio-prevoznik.NC_2XN2+N+Comp:s4vm
+avioprevoznicye,avio-prevoznik.NC_2XN2+N+Comp:s5vm
+avioprevoznikom,avio-prevoznik.NC_2XN2+N+Comp:s6vm
+avioprevozniku,avio-prevoznik.NC_2XN2+N+Comp:s7vm
+avioprevoznici,avio-prevoznik.NC_2XN2+N+Comp:p1vm
+avioprevoznika,avio-prevoznik.NC_2XN2+N+Comp:p2vm
+avioprevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p3vm
+avioprevoznike,avio-prevoznik.NC_2XN2+N+Comp:p4vm
+avioprevoznici,avio-prevoznik.NC_2XN2+N+Comp:p5vm
+avioprevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p6vm
+avioprevoznicima,avio-prevoznik.NC_2XN2+N+Comp:p7vm
+avioprevoznika,avio-prevoznik.NC_2XN2+N+Comp:w2vm
+avioprevoznika,avio-prevoznik.NC_2XN2+N+Comp:w4vm
+predsednik drzxave,predsednik drzxave.NC_N2X1+N+Comp:s1vm
+predsednika drzxave,predsednik drzxave.NC_N2X1+N+Comp:s2vm
+predsedniku drzxave,predsednik drzxave.NC_N2X1+N+Comp:s3vm
+predsednika drzxave,predsednik drzxave.NC_N2X1+N+Comp:s4vm
+predsednicye drzxave,predsednik drzxave.NC_N2X1+N+Comp:s5vm
+predsednikom drzxave,predsednik drzxave.NC_N2X1+N+Comp:s6vm
+predsedniku drzxave,predsednik drzxave.NC_N2X1+N+Comp:s7vm
+predsednici drzxave,predsednik drzxave.NC_N2X1+N+Comp:p1vm
+predsednici drzxava,predsednik drzxave.NC_N2X1+N+Comp:p1vm
+predsednika drzxave,predsednik drzxave.NC_N2X1+N+Comp:p2vm
+predsednika drzxava,predsednik drzxave.NC_N2X1+N+Comp:p2vm
+predsednicima drzxave,predsednik drzxave.NC_N2X1+N+Comp:p3vm
+predsednicima drzxava,predsednik drzxave.NC_N2X1+N+Comp:p3vm
+predsednike drzxave,predsednik drzxave.NC_N2X1+N+Comp:p4vm
+predsednike drzxava,predsednik drzxave.NC_N2X1+N+Comp:p4vm
+predsednici drzxave,predsednik drzxave.NC_N2X1+N+Comp:p5vm
+predsednici drzxava,predsednik drzxave.NC_N2X1+N+Comp:p5vm
+predsednicima drzxave,predsednik drzxave.NC_N2X1+N+Comp:p6vm
+predsednicima drzxava,predsednik drzxave.NC_N2X1+N+Comp:p6vm
+predsednicima drzxave,predsednik drzxave.NC_N2X1+N+Comp:p7vm
+predsednicima drzxava,predsednik drzxave.NC_N2X1+N+Comp:p7vm
+predsednika drzxave,predsednik drzxave.NC_N2X1+N+Comp:w2vm
+predsednika drzxava,predsednik drzxave.NC_N2X1+N+Comp:w2vm
+predsednika drzxave,predsednik drzxave.NC_N2X1+N+Comp:w4vm
+predsednika drzxava,predsednik drzxave.NC_N2X1+N+Comp:w4vm
+Ujedinxene nacije,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp1q
+Ujedinxenih nacija,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp2q
+Ujedinxenima nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp3q
+Ujedinxenim nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp3q
+Ujedinxene nacije,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp4q
+Ujedinxene nacije,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp5q
+Ujedinxenima nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp6q
+Ujedinxenim nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp6q
+Ujedinxenima nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp7q
+Ujedinxenim nacijama,Ujedinxene nacije.NC_AXN3+N+Comp+NProp+Org:fp7q
+Kosovo i Metohija,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns1q
+Kosova i Metohije,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns2q
+Kosovu i Metohiji,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns3q
+Kosovo i Metohiju,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns4q
+Kosovo i Metohijo,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns5q
+Kosovom i Metohijom,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns6q
+Kosovu i Metohiji,Kosovo i Metohija.NC_N3XN+N+Comp+NProp+Top+Reg:ns7q
+istrazxne sudije,istrazxni sudija.NC_AXNF+N+Comp:1vfp
+istrazxnih sudija,istrazxni sudija.NC_AXNF+N+Comp:2vfp
+istrazxnima sudijama,istrazxni sudija.NC_AXNF+N+Comp:3vfp
+istrazxnim sudijama,istrazxni sudija.NC_AXNF+N+Comp:3vfp
+istrazxne sudije,istrazxni sudija.NC_AXNF+N+Comp:4vfp
+istrazxne sudije,istrazxni sudija.NC_AXNF+N+Comp:5vfp
+istrazxnima sudijama,istrazxni sudija.NC_AXNF+N+Comp:6vfp
+istrazxnim sudijama,istrazxni sudija.NC_AXNF+N+Comp:6vfp
+istrazxnima sudijama,istrazxni sudija.NC_AXNF+N+Comp:7vfp
+istrazxnim sudijama,istrazxni sudija.NC_AXNF+N+Comp:7vfp
+istrazxne sudije,istrazxni sudija.NC_AXNF+N+Comp:2vfw
+istrazxne sudije,istrazxni sudija.NC_AXNF+N+Comp:4vfw
+istrazxnoga sudiju,istrazxni sudija.NC_AXNF+N+Comp:ms4v
+istrazxnog sudiju,istrazxni sudija.NC_AXNF+N+Comp:ms4v
+istrazxni sudija,istrazxni sudija.NC_AXNF+N+Comp:1vms
+istrazxnoga sudije,istrazxni sudija.NC_AXNF+N+Comp:2vms
+istrazxnog sudije,istrazxni sudija.NC_AXNF+N+Comp:2vms
+istrazxnomu sudiji,istrazxni sudija.NC_AXNF+N+Comp:3vms
+istrazxnome sudiji,istrazxni sudija.NC_AXNF+N+Comp:3vms
+istrazxnom sudiji,istrazxni sudija.NC_AXNF+N+Comp:3vms
+istrazxnomu sudiji,istrazxni sudija.NC_AXNF+N+Comp:7vms
+istrazxnome sudiji,istrazxni sudija.NC_AXNF+N+Comp:7vms
+istrazxnom sudiji,istrazxni sudija.NC_AXNF+N+Comp:7vms
+istrazxni sudijo,istrazxni sudija.NC_AXNF+N+Comp:5vms
+istrazxni sudija,istrazxni sudija.NC_AXNF+N+Comp:5vms
+istrazxnim sudijom,istrazxni sudija.NC_AXNF+N+Comp:6vms
+Dinkicx Mirosinka,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s1vf
+Dinkicx Mirosinke,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s2vf
+Dinkicx Mirosinki,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s3vf
+Dinkicx Mirosinku,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s4vf
+Dinkicx Mirosinka,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s5vf
+Dinkicx Mirosinkom,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s6vf
+Dinkicx Mirosinki,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s7vf
+Mirosinka Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s1vf
+Mirosinke Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s2vf
+Mirosinki Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s3vf
+Mirosinku Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s4vf
+Mirosinka Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s5vf
+Mirosinkom Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s6vf
+Mirosinki Dinkicx,Mirosinka Dinkicx.NC_ImePrezime+N+Comp+Hum+PersName:s7vf
+gladni kao vuk,gladan kao vuk.AC_A3XN2:s1mgda//hungry as a wolf
+gladan kao vuk,gladan kao vuk.AC_A3XN2:s1mgka//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:s1fgea//hungry as a wolf
+gladno kao vuk,gladan kao vuk.AC_A3XN2:s1ngea//hungry as a wolf
+gladnoga kao vuk,gladan kao vuk.AC_A3XN2:s2mgda//hungry as a wolf
+gladnog kao vuk,gladan kao vuk.AC_A3XN2:s2mgda//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:s2mgka//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:s2fgea//hungry as a wolf
+gladnoga kao vuk,gladan kao vuk.AC_A3XN2:s2ngda//hungry as a wolf
+gladnog kao vuk,gladan kao vuk.AC_A3XN2:s2ngda//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:s2ngka//hungry as a wolf
+gladnome kao vuk,gladan kao vuk.AC_A3XN2:s3mgda//hungry as a wolf
+gladnom kao vuk,gladan kao vuk.AC_A3XN2:s3mgda//hungry as a wolf
+gladnu kao vuk,gladan kao vuk.AC_A3XN2:s3mgka//hungry as a wolf
+gladnoj kao vuk,gladan kao vuk.AC_A3XN2:s3fgea//hungry as a wolf
+gladnome kao vuk,gladan kao vuk.AC_A3XN2:s3ngda//hungry as a wolf
+gladnom kao vuk,gladan kao vuk.AC_A3XN2:s3ngda//hungry as a wolf
+gladnu kao vuk,gladan kao vuk.AC_A3XN2:s3ngka//hungry as a wolf
+gladnu kao vuk,gladan kao vuk.AC_A3XN2:s4fgea//hungry as a wolf
+gladno kao vuk,gladan kao vuk.AC_A3XN2:s4ngea//hungry as a wolf
+gladni kao vuk,gladan kao vuk.AC_A3XN2:s5mgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:s5fgea//hungry as a wolf
+gladno kao vuk,gladan kao vuk.AC_A3XN2:s5ngea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:s6mgea//hungry as a wolf
+gladnom kao vuk,gladan kao vuk.AC_A3XN2:s6fgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:s6ngea//hungry as a wolf
+gladnome kao vuk,gladan kao vuk.AC_A3XN2:s7mgda//hungry as a wolf
+gladnom kao vuk,gladan kao vuk.AC_A3XN2:s7mgda//hungry as a wolf
+gladnu kao vuk,gladan kao vuk.AC_A3XN2:s7mgka//hungry as a wolf
+gladnoj kao vuk,gladan kao vuk.AC_A3XN2:s7fgea//hungry as a wolf
+gladnome kao vuk,gladan kao vuk.AC_A3XN2:s7ngda//hungry as a wolf
+gladnom kao vuk,gladan kao vuk.AC_A3XN2:s7ngda//hungry as a wolf
+gladnu kao vuk,gladan kao vuk.AC_A3XN2:s7ngka//hungry as a wolf
+gladni kao vuk,gladan kao vuk.AC_A3XN2:p1mgea//hungry as a wolf
+gladni kao vuci,gladan kao vuk.AC_A3XN2:p1mgea//hungry as a wolf
+gladni kao vukovi,gladan kao vuk.AC_A3XN2:p1mgea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:p1fgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:p1fgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:p1fgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:p1ngea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:p1ngea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:p1ngea//hungry as a wolf
+gladnih kao vuk,gladan kao vuk.AC_A3XN2:p2mgea//hungry as a wolf
+gladnih kao vuci,gladan kao vuk.AC_A3XN2:p2mgea//hungry as a wolf
+gladnih kao vukovi,gladan kao vuk.AC_A3XN2:p2mgea//hungry as a wolf
+gladnih kao vuk,gladan kao vuk.AC_A3XN2:p2fgea//hungry as a wolf
+gladnih kao vuci,gladan kao vuk.AC_A3XN2:p2fgea//hungry as a wolf
+gladnih kao vukovi,gladan kao vuk.AC_A3XN2:p2fgea//hungry as a wolf
+gladnih kao vuk,gladan kao vuk.AC_A3XN2:p2ngea//hungry as a wolf
+gladnih kao vuci,gladan kao vuk.AC_A3XN2:p2ngea//hungry as a wolf
+gladnih kao vukovi,gladan kao vuk.AC_A3XN2:p2ngea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p3mgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p3fgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf 
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p3ngea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:p4mgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:p4mgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:p4mgea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:p4fgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:p4fgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:p4fgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:p4ngea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:p4ngea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:p4ngea//hungry as a wolf
+gladni kao vuk,gladan kao vuk.AC_A3XN2:p5mgea//hungry as a wolf
+gladni kao vuci,gladan kao vuk.AC_A3XN2:p5mgea//hungry as a wolf
+gladni kao vukovi,gladan kao vuk.AC_A3XN2:p5mgea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:p5fgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:p5fgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:p5fgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:p5ngea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:p5ngea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:p5ngea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p6mgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p6fgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p6ngea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p7mgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p7fgea//hungry as a wolf
+gladnima kao vuk,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladnima kao vuci,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladnima kao vukovi,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladnim kao vuk,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladnim kao vuci,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladnim kao vukovi,gladan kao vuk.AC_A3XN2:p7ngea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:w2mgea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:w2mgea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:w2mgea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:w2fgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:w2fgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:w2fgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:w2ngea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:w2ngea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:w2ngea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:w4mgea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:w4mgea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:w4mgea//hungry as a wolf
+gladne kao vuk,gladan kao vuk.AC_A3XN2:w4fgea//hungry as a wolf
+gladne kao vuci,gladan kao vuk.AC_A3XN2:w4fgea//hungry as a wolf
+gladne kao vukovi,gladan kao vuk.AC_A3XN2:w4fgea//hungry as a wolf
+gladna kao vuk,gladan kao vuk.AC_A3XN2:w4ngea//hungry as a wolf
+gladna kao vuci,gladan kao vuk.AC_A3XN2:w4ngea//hungry as a wolf
+gladna kao vukovi,gladan kao vuk.AC_A3XN2:w4ngea//hungry as a wolf
+\end{verbatim}
+\normalsize
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12.4cm]{resources/img/NC'2XN1'SRB.png}
+  \caption{\ \emph{NC\_2XN1} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'2XN1'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12.4cm]{resources/img/NC'2XN2'SRB.png}
+  \caption{\ \emph{NC\_2XN2} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'2XN2'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=12.2cm]{resources/img/NC'N2X1'SRB.png}
+  \caption{\ \emph{NC\_N2X1} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'N2X1'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/NC'AXN3'SRB.png}
+  \caption{\ \emph{NC\_AXN3} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'AXN3'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=10cm]{resources/img/NC'N3XN'SRB.png}
+  \caption{\ \emph{NC\_N3XN} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'N3XN'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/NC'AXNF'SRB.png}
+  \caption{\ \emph{NC\_AXNF} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'AXNF'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/NC'ImePrezime'SRB.png}
+  \caption{\ \emph{NC\_ImePrezime} 塞尔维亚语的复合词变位图}
+  \label{fig:NC'ImePrezime'SRB}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/AC'A3XN2'SRB.png}
+  \caption{\ \emph{AC\_A3XN2} 塞尔维亚语的复合词变位图}
+  \label{fig:AC'A3XN2'SRB}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

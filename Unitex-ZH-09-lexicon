@@ -1,0 +1,167 @@
+\chapter{语法和词汇}
+\label{chap-lexicon-grammar}
+\index{Lexique-grammaire}
+词典 - 语法表是表示语言的元素的句法属性的一个紧凑的方式。能够通过一个参数化机构自动构建从这些表中的本地文法，图表。
+
+\bigskip
+\noindent本章的第一部分介绍了这些表的形式主义。第二部分介绍了参数化图形和从语法词汇表生成图形自动机制。
+
+
+
+\section{语法词汇表}
+\index{Lexique-grammaire!table}\index{Matrices}
+语法词汇已被\ Maurice Gross 和他的团队开发了一种方法\ LADL \index{LADL} (\cite{L}, \cite{BGL}, \cite{methodes-en-syntaxe}, \cite{GL},
+\cite{gross1994}, \cite{gross1994b}, \cite{gross1991}, \cite{gross1986}, 
+\cite{gross1984}, \cite{gross1984b}, \cite{gross1983}, \cite{gross1982}, 
+\cite{gross1978}, \cite{leclere2005}, \cite{salkoff2004})
+主要原则是每个动词几乎单一的语法属性。因此，这些性能必须系统描述的，因为它是不可能预测动词的精确的行为。这些系统的描述是通过矩阵，其中的行对应的动词，和列语法属性表示。所考虑的特性是正式性能如由动词允许添加和所述不同的转换，这动词可经历（被动，名词，外位等）的数量和性质。矩阵通常也称为表，是二进制：一个符号\ \verb$+$ 如果动词检查属性，标志\ \verb+-+出现在一个行的交叉点和属性的列，否则用\index{Propriétés syntaxiques}。有关更多信息，语法属性看\ \url{http://infolingu.univ-mlv.fr}，其中词汇，语法表都可以免费下载。
+
+\bigskip
+\noindent这种类型的描述的也用于形容词(\cite{these-annie}),表语(\cite{les-nominalisations},\cite{les-predicats-nominaux}, \cite{giry1978}, \cite{gross1976},
+\cite{ranchhod2001}), adverbes (\cite{syntaxe-de-ladverbe},
+\cite{grammaire-des-adverbes}), 在许多语言中有很多固定表达，
+(\cite{lexique-grammaire-allemand2}, \cite{lexique-grammaire-italien2},
+\cite{lexique-grammaire-italien}, \cite{lexique-grammaire-coreen2},
+\cite{lexique-grammaire-coreen}, \cite{lexique-grammaire-malgache},
+\cite{lexique-grammaire-espagnol}, \cite{lexique-grammaire-allemand},
+\cite{lexique-grammaire-hongrois}, \cite{ranchhod1996}, \cite{ranchhod1991},
+\cite{gross1986b})。
+
+\bigskip
+\noindent 图~\ref{fig-table-32NM}显示语法词汇的列表。此表涉及动词承认数字的补充。
+
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-1.png}
+\caption{ \ 32NM 语法表\label{fig-table-32NM}}
+\end{center}
+\end{figure}
+
+\section{转换图表}
+\subsection{图表主要参数}
+\index{Graphe!paramétré}
+变换的图表是由图机构的装置
+设置。其原理是：我们建立一个描述可能的结构图。此图通过变量引用表列。然后对表中，该曲线图，其中，变量根据位于对应的列的交叉点，并经处理的线的单元中的内容置换的副本中的每一行生成。如果表格单元格中包含的标志\ \verb$+$ 相应的变量由\ \verb+>+ 取代。如果单元格包含符号\ \verb+-+ ,含有相应变量的框被删除，同时删除这个框的路径。在所有其他情况下，该变量修改为被替换的单元的内容。
+
+
+\subsection{表的格式}
+词汇，语法表使用电子表格程序通常编码比如\ OpenOffice.org Calc (\cite{OpenOffice})。要使用\ Unitex ，该表必须在Unicode文本使用以下约定编码：列必须在标签和行由回车符分隔。
+
+\bigskip
+\noindent要转换使用\ OpenOffice.org Calc 的表，保存文本文件(拓展名为\ \verb$.csv$)。然后该程序通过提供类似图~\ref{fig-csv-export}。窗口设置备份。选择编码“Unicode”，选择制表符分隔列，不指定文字分隔符。
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig8-2.png}
+\caption{使用\ OpenOffice.org Calc 的备份配置表\label{fig-csv-export}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent当生成图表，\ Unitex 跳过第一行，考虑给予列的标题。因此，您必须确保列的标题正好占据一行。如果没有标题行，表中的第一行会被忽略，并且有几个头线，它们将来自第二线条被解释表。
+
+
+
+\subsection{图的参数}
+参数化曲线是显示在参照表语法词汇的列中的变量的曲线图。通常使用这种机制与语法图，但没有什么会阻止建立参数化图形，或预处理标准。
+
+\index{Variable!dans un graphe paramétré}
+\bigskip
+\noindent该参考列中的变量字符的形成\ \verb+@+\index{\verb+"@+}其次是用大写字母列名（列的编号从\verb+A+)。
+
+\bigskip
+\noindent 例子：\ \verb+@C+ 参照该表的第三列。
+
+\bigskip
+\noindent当变量是由\ \verb$+$ 或\ \verb+-+ 代替，\ \verb+-+ 标记对应于通过这个变量去除的方式。
+有可能通过字符前述执行反向操作\ \verb+@+一个感叹号。在这种情况下，这是当变量是指标志\ \verb$+$路径被删除。如果变量返回或标志既不是\ \verb-+-，也不是\ \verb+-+,它是由格子中的替换内容。
+
+\bigskip
+\noindent还有一个特殊的变量\ \verb+@%+ \index{\verb+"@%+}，这是由在表中的行号代替。它的值是每行不同的事实允许使用容易地表征的线。这个变量不会受到感叹号的在左边。
+
+
+\bigskip
+\noindent 图~\ref{fig-reference-graph}给出了示例参数化的曲线图，旨在被应用到如图~\ref{fig-table-31H}词库的无关文法表中的31H表。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-3.png}
+\caption{图的参数的实例\label{fig-reference-graph}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-4.png}
+\caption{词汇语法31H表\label{fig-table-31H}}
+\end{center}
+\end{figure}
+
+
+\subsection{自动生成图像}
+从参数化图形和表格生成图表，它必须首先通过点击菜单中的“词汇，语法”打开表“打开...”（参见~\ref{fig-lexicon-grammar-menu}）。该表必须已转换为\ Unicode文本。
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=12cm]{resources/img/fig8-5.png}
+\caption{Menu "Lexicon-Grammar"\label{fig-lexicon-grammar-menu}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent（见图~\ref{fig-table-display}）选定的表格显示在一个窗口。如果它不显示在屏幕上，它可以被其他窗口\ Unitex 被隐藏。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-6.png}
+\caption{Displaying a table\label{fig-table-display}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent  要自动生成一个参数化图形图表，请点击“编译到 GRF...”，从“词汇，语法”菜单。出现如图\ref{fig-configuration-graph-generation}。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=9cm]{resources/img/fig8-7.png}
+\caption{确认自动生成图像\label{fig-configuration-graph-generation}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent在“参考图形（在\ GRF 格式）”，然后设置为使用图的名称。在“\ GRF 语法”中，指定将要生成的主图的名称。主图表是利用已生成的所有图的曲线图。通过搜索这个图形文字，你会同时应用和所有生成的图表。
+
+
+\bigskip
+\noindent  设置“子图名”让你指定要生成的图的名称。可以肯定，所有的图形都会有不同的名称，建议使用变量\ \verb+@%+，这个变量将被替换为通过它的数字每个输入，以确保所有的图表都不同的名称。例如，如果填充的名称帧"\verb+TestGraph.grf+"，并且如果子图被命名为"\ \verb+TestGraph_@%.grf+ "，产生的子图16线将被命名为"\verb+TestGraph_0016.grf+"。
+
+\bigskip
+\noindent 图\ref{fig-archaiser} 和图\ref{fig-badauder}表明通过施加图的参数化曲线产生两个图~\ref{fig-reference-graph}在表31H。
+
+\bigskip
+\noindent 图~\ref{fig-main-graph}显示获得的主要图。
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-8.png}
+\caption{对于动词生成的图表
+\texttt{archaiser}\label{fig-archaiser}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig8-9.png}
+\caption{对于动词生成的图表 \texttt{badauder}\label{fig-badauder}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=10cm]{resources/img/fig8-10.png}
+\caption{主图调用所有生成的图\label{fig-main-graph}}
+\end{center}
+\end{figure}
+
+
+
