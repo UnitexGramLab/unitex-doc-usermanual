@@ -488,19 +488,6 @@ la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la fig
 \noindent Pour créer une boite vide avec une sortie contenant \verb+number+, on écrit \verb+<E>/number+ (exemple~: la boite la plus à droite dans la figure~\ref{fig-using-variable} est vide et a une sortie). La sortie associée à une boîte est représentée en gras
 sous celle-ci.
 
-\bigskip
-\noindent Cependant il n'est pas possible de placer une sortie sur une boîte contenant un appel à un sous-graphe. Il faut obligatoirement utiliser une boîte vide avec la sortie, boîte placée avant. Mais il n'est pas garantit qu'un espace ne se glissera pas entre la sortie et le texte qui suit. Si on veut placer une accolade ouvrante et être sûr que cette accolade collera au texte qui suit, il faut alors utiliser le graphe appelé B de la figure ~\ref{fig-graphe-B}, présent dans la distribution.
-
-\begin{figure}[!ht]
-\begin{center}
-\includegraphics[width=262px]{resources/img/B.png}
-\caption{Graphe B\label{fig-graphe-B}}
-\end{center}
-\end{figure}
-
-Si on place des accolades ouvrantes et fermantes pour créer des étiquettes lexicales, il est possible de vérifier si,à partir d'un graphe, toutes les accolades ouvrantes sont bien fermées sur tous le chemins possibles. Pour cela il faut choisir dans le menu \textit{Graphs} la commande \textit{Tools/Verify braces} qui prend en compte l'appel à des sous-graphes B, BB, etc. Cependant cette vérification exige que les accolades soient ouvertes et fermées dans le même graphe. Par contre, ce programme vérifie aussi les sous-graphes appelés. Il compile en même temps le graphes examiné.
-
-
 %%%%%%%%%%%%%%
 \bigskip
 \noindent \textbf{Poids}
