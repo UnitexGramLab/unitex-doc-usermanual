@@ -1,0 +1,29 @@
+#Unigraph
+SIZE 1887 862
+FONT Times New Roman:  10
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 16711680
+CCOLOR 255
+DBOXES y
+DFRAME n
+DDATE n
+DFILE n
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+9
+"<E>" 413 367 2 2 3 
+"" 1091 367 0 
+"<E>/${1}$" 552 252 1 5 
+"<E>/${2}$" 549 463 1 8 
+"<E>/,.personne" 736 252 1 6 
+"$G/{" 629 252 1 4 
+"<E>/+grfPersonneGenerique}" 882 367 1 1 
+"prenom/,.personne" 708 463 1 6 
+"$G/{" 668 463 1 7 

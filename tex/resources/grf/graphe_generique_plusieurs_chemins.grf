@@ -1,0 +1,33 @@
+#Unigraph
+SIZE 1887 862
+FONT Times New Roman:  10
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 16711680
+CCOLOR 255
+DBOXES y
+DFRAME n
+DDATE n
+DFILE n
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+13
+"<E>" 447 379 1 2 
+"" 1194 379 0 
+"avant" 516 379 3 3 5 6 
+"avant" 630 246 1 4 
+"$G/{" 730 246 1 7 
+"$G/{" 730 379 1 8 
+"$G/{" 730 519 1 9 
+"<E>/,.catégorie 1" 829 246 1 10 
+"<E>/,.catégorie 2" 829 379 1 10 
+"<E>/,.catégorie 3" 829 519 1 12 
+"<E>/}" 1005 246 1 11 
+"après" 1079 246 1 1 
+"<E>/+trait}" 1005 519 1 1 
