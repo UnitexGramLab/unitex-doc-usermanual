@@ -1,35 +1,35 @@
 \chapter{Cascade de Transducteurs}
 \label{chap-cassys}
 
-Ce chapitre presente l'outil \textit{CasSys} qui donne la possibilité de créer une cascade
+Ce chapitre présente l'outil \textit{CasSys} qui donne la possibilité de créer une cascade
 de  transducteurs et de nouvelles manières de travailler sur la langue naturelle avec des 
 graphes à états finis. Une \textit{cascade de transducteurs} \index{cascade de transducteurs}
 applique plusieurs graphes (automates ou transducteurs), l'un après l'autre, sur le texte: chaque
 graphe modifie le texte, et les changements peuvent être utilisés pour des traitements supplémentaires
-par les graphes suivants. Ce type de  système est notamment utilisé pour l'analyse syntaxique, le chunking,
-l'extraction d'information, la reconnaissance d'entitiés nommées etc. Pour faire cela, CasSys utilise
-une succession de "locate patterns" avec les options adéquates.
+par les graphes suivants. Ce type de  système est notamment utilisé pour l'analyse syntaxique, le parenthésage (chunking),
+l'extraction d'information, la reconnaissance d'entités nommées, etc. Pour faire cela, CasSys utilise
+une succession de "locate pattern" avec les options adéquates.
 
 \bigskip
 \noindent Le premier prototype du système \textit{CasSys} \index{CasSys}  a été créé en 2002 au 
-laboratoire LI (Laboratoire d'Informatique de l'Université de Tours) (\cite{these-nathalie}). 
+laboratoire LI (Laboratoire d'informatique de l'université de Tours) (\cite{these-nathalie}). 
 Ce prototype était entièrement spécialisé pour l'extraction d'entités nommées. CasSys a été  
 ensuite généralisé pour effectuer n'importe quelle sorte de traitement nécessitant une cascade. 
-Il a été constamment amélioré au cours des années, sans être réellement intégré à Unitex. 
-C'est grâce à un projet récent \footnote{"Feder-Région Centre entités nommées et nommables" 
+Il a été constamment amélioré au cours des années, puis intégré à Unitex, dans le cadre d'un projet\footnote{"Feder-Région Centre entités nommées et nommables" 
 dirigé par Denis Maurel, LI, Tours, France, intégration réalisée par Nathalie Friburger et
-David Nott}que l'intégration complète  de CasSys à Unitex a pu être réalisée.
+David Nott}.
 
-Les grammaire Unitex sont de type Context free et intègrent la notion de transduction issue
+\bigskip
+\noindent Les grammaires Unitex sont de type Context free et intègrent la notion de transduction issue
 du domaine des automates à états finis. Une grammaire avec transduction (un  transducteur) est
 capable de produire une sortie. CasSys est spécialisé dans l'application de transducteurs sous
 la forme d'une cascade.
 
 \bigskip
-Une cascade peut être utilisée pour l'analyse syntaxique, le chunking, l'extraction d'information, etc. 
-\noindent Les transducteurs sont intéréssants car ils permettent d'associer à la séquence
-reconnue l'information qui se trouve dans sorties des graphes.
-Ces  sorties peuvent :
+\noindent
+Les transducteurs sont intéressants car ils permettent d'associer à la séquence
+reconnue l'information qui se trouve dans les sorties des graphes.
+Ces  sorties peuvent:
 \begin{itemize}
 \item Être ajoutées à la séquence reconnue et apparaître dans la concordance résultante ou le texte modifié.
 \item Remplacer la séquence reconnue pour modifier le texte.
@@ -38,13 +38,13 @@ Ces  sorties peuvent :
 
 \bigskip
 \noindent Dans ce chapitre, nous expliquons comment créer des cascades de transducteurs et
-comment les appliquer. Ensuite, nous détaillons les options et possibilités offertent par CasSys.
+comment les appliquer. Ensuite, nous détaillons les options et possibilités offertes par CasSys.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appliquer une cascade de Transducteurs avec CasSys}
 \label{section:applyCascade}
 Appliquer une cascade de transducteurs avec CasSys consiste à représenter un phénomène linguistique par une
-liste de transducteurs à appliquer au texte dans un ordre précis: CasSys et son interface dans Unitex permet d'y parvenir.
+liste de transducteurs à appliquer au texte dans un ordre précis: CasSys et son interface dans Unitex permettent d'y parvenir.
 Cette section explique comment utiliser l'interface pour créer et gérer les graphes (ordre, ajout, suppression) et appliquer la cascade.   
 
 %%%%%%%%%%%%
@@ -52,8 +52,8 @@ Cette section explique comment utiliser l'interface pour créer et gérer les gr
 \label{subsec:listTrans}
 
 \bigskip
-\noindent Afin de pouvoir gérer la liste de transducteur, le menu FSGraph comporte deux sous-menus:
-"\textit{New cascade}" et "\textit{Edit cascade...}" (Figure \ref{fig13-08}). Pour créer la liste des
+\noindent Afin de pouvoir gérer la liste de transducteurs, le menu FSGraph comporte deux sous-menus:
+"\textit{New cascade}" et "\textit{Edit cascade...}" (Figure~\ref{fig13-08}). Pour créer la liste des
 transducteurs, sélectionnez "\textit{New cascade}". Si vous souhaitez modifier une cascade existante, sélectionnez
 "\textit{Edit cascade...}", puis  choisissez le nom de la cascade à ouvrir.
 
@@ -65,12 +65,12 @@ transducteurs, sélectionnez "\textit{New cascade}". Si vous souhaitez modifier 
 \end{figure}
 
 Le répertoire de la langue courante contient un sous-répertoire nommé CasSys dans lequel se trouvent
-les fichiers de configuration d'une cascade. Ce sont des fichiers textes avec l'extension \textit{.csc} (ex: ma cascade.csc)
+les fichiers de configuration d'une cascade. Ce sont des fichiers textes avec l'extension \textit{.csc} (ex: maCascade.csc)
 
-\subsection{Edition de la liste des transducteurs}
+\subsection{\'{E}dition de la liste des transducteurs}
 \label{subsec:editlistTrans}
 
-La fenêtre de configuration de CasSys (\ref{fig13-03}) comporte trois parties :
+La fenêtre de configuration de CasSys (Figure~\ref{fig13-03}) comporte trois parties :
 
 \begin{figure}[!htb]
   \centering
@@ -81,25 +81,25 @@ La fenêtre de configuration de CasSys (\ref{fig13-03}) comporte trois parties :
 
 \begin{enumerate}
 	\item Un \textit{gestionnaire de fichier} à gauche du cadre permet de choisir les transducteurs à mettre dans la cascade.
-	Le gestionnaire n'affiche que les fichiers fst2 (tous les graphes que vous souhaitez mettre dans la liste doivent être compilés au format fst2).
+	Le gestionnaire n'affiche que les fichiers \emph{fst2} (tous les graphes que vous souhaitez mettre dans la liste doivent être compilés au format \textit{fst2}).
 	
-	Pour éditer la cascade, choisissez les graphes à gauche et mettez les à droite à l'aide d'un glisser-déposer.
+	Pour éditer la cascade, choisissez les graphes à gauche et mettez-les à droite à l'aide d'un glisser-déposer.
 \item Le \textit{tableau} de droite affiche la cascade: la liste ordonnée des transducteurs et les options sélectionnées pour chaque graphe.
 		Le tableau est évidemment vide pour une nouvelle cascade.
 		 
-		Les colonnes du tableau (Figure \ref{fig13-09}) donne le numéro de chaque graphe et permettent de choisir leur comportement.
+		Les colonnes du tableau (Figure~\ref{fig13-09}) donne le numéro de chaque graphe et permettent de choisir leur comportement.
 	\begin{itemize}
-	\item \textbf{\#} : Numéro du graphe/transducteur dans la cascade pour chaque graphe; le fichier fst2 est numéroté.
+	\item \textbf{\#} : Numéro du graphe/transducteur dans la cascade pour chaque graphe; le fichier \emph{fst2} est numéroté.
 	\item \textbf{Disabled} : Pour désélectionner le graphe courant. \textit{Disabled} siginifie: "\textit{non appliqué dans la cascade}".
 		Les graphes non sélectionnés apparaissent sans numéro, en grisé et barré.
 	\item \textbf{Name} : Le nom du graphe (avec l'extension \emph{fst2}). Si vous laissez la souris sur le nom du graphe,
-		une info-bulle apparaît avec le chemin complet du graphe.
+		une info-bulle apparaît avec le chemin complet du graphe (depuis le répertoire courant \emph{Graphs}).
 		Les graphes dont le fichier source n'est pas trouvé apparaissent en italique et en rouge.
 
-	\item \textbf{Merge}: Si le transducteur doit être appliqué en mode merge.
-	\item \textbf{Replace}: Si le transducteur doit être appliqué en mode replace.
-	\item \textbf{Until fix point}: Si le transducteur doit être appliqué une fois ou plusieurs fois
-		jusqu'à ce que le texte soit inchangé c'est à dire qu'un point fixe est atteint (voir \ref{sub:AppWhiCon}).
+	\item \textbf{Merge}: Si le transducteur doit être appliqué en mode \textit{merge}.
+	\item \textbf{Replace}: Si le transducteur doit être appliqué en mode \textit{replace}.
+	\item \textbf{Until fix point}: Si le transducteur doit être appliqué une ou plusieurs fois
+		jusqu'à ce que le texte reste inchangé, c'est-à-dire jusqu'à ce qu'un point fixe soit atteint (voir \ref{sub:AppWhiCon}).
 	\end{itemize}
 	
 	 \item Au centre se trouvent les boutons décrits ci-dessous:
@@ -139,7 +139,7 @@ La fenêtre de configuration de CasSys (\ref{fig13-03}) comporte trois parties :
 \subsection{Application d'une cascade}
 \label{subsec:launchCascade}
 
-Dans le menu "Text", sélectionner le sous-menu "\textit{Apply CasSys cascade...}" (Figure \ref{fig13-01}) pour ouvrir la fenêtre CasSys.
+Dans le menu "Text", sélectionner le sous-menu "\textit{Apply CasSys cascade...}" (Figure~\ref{fig13-01}) pour ouvrir la fenêtre CasSys.
 Ce sous-menu "\textit{Apply CasSys cascade...}" n'est actif que si un texte a été préalablement ouvert.
 
 \begin{figure}[!htb]
@@ -149,9 +149,9 @@ Ce sous-menu "\textit{Apply CasSys cascade...}" n'est actif que si un texte a é
  \label{fig13-01}
 \end{figure}
 
-La fenêtre CasSys (\ref{fig13-02}) affiche le contenu du répertoire CasSys de la langue courante. Elle
+La fenêtre CasSys (Figure~\ref{fig13-02}) affiche le contenu du répertoire CasSys de la langue courante. Elle
 permet de choisir le fichier contenant la liste de transducteurs à appliquer au texte. Une fois que cette liste
-est choisie, vous pouvez cliquer sur le bouton "Launch" pour appliquer la cascade.
+est choisie, vous pouvez cliquer sur le bouton "Launch" pour appliquer la cascade. Attention, pour que l'affichage se fasse ici, il faut obligatoirement que le nom du fichier contenant la liste de transducteurs ait pour extension \verb+.csc+.
 
 \begin{figure}[!htb]
   \centering
@@ -164,22 +164,6 @@ N'importe quel dictionnaire du mode morphologique déclaré dans vos préférenc
 graphes.
 Les  préférences peuvent être modifiées à partir du menu "Info" (Info -->
 Preferences --> morphological-mode dictionaries).
-
-\subsection{Partage d'un fichier liste de transducteurs en cascade}
-\label{subsec:shareCascade}
-
-Afin de faciliter le travail collaboratif avec CasSys, une fonctionnalité d'export/import est
-fournie à l'aide d'un fichier liste de transducteurs. Cette possibilité est offerte par le menu
-"\textit{Text / Apply CasSys cascade...}" (Figure \ref{fig13-02}).
-
-Pour partager un fichier liste de cascade, les points suivants doivent être remplis:
-\begin{enumerate}
-\item \textbf{Export :} Choisissez un fichier cascade et cliquez sur le bouton "export".
-	(Un fichier partageable est créé dans le répertoire \texttt{/CasSys/Share})
-\item Envoyez le fichier partagé à vos collègues
-\item \textbf{Import :} Choisissez un fichier  et cliquez sur le bouton "import".
-	(Un fichier prêt à être utilisé est créé dans le répertoire \texttt{/CasSys})
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CasSys en détail}
@@ -196,7 +180,7 @@ utilisées dans Unitex. Elles peuvent comporter des sous-graphes, utiliser le mo
 morphologiques, et faire référence aux informations présentes dans les dictionnaires. 
 
 \bigskip
-\noindent CasSys n'est pas compatible avec les fichiers \verb+fst2+ en mode debug (\ref{section-debug-mode}).
+\noindent CasSys n'est pas compatible avec les fichiers \verb+fst2+ en mode debug (section~\ref{section-debug-mode}).
 Quand on applique un graphe en mode debug avec le menu \verb+Text>Locate Pattern+, le système
 compile le graphe dans un format spécial de mode debug. Pour obtenir un fichier au format \verb+fst2+ normal,
 recompilez le graphe, soit avec le menu \verb+FSGraph+, soit en ligne de commande, soit en décochant le mode
@@ -248,7 +232,7 @@ Ce changement est fait dans le but de proposer un texte plus manipulable  à l'u
 
 A partir de ce format, il est plus facile d'obtenir une sortie adaptable à tous.\\
 
-Plus précisement, les étiquettes lexicales :\\
+Plus précisément, les étiquettes lexicales :\\
 \begin{tabular}{c}
 \texttt{
 \{forme.lemme,code1+code2:flex1:flex2\}}
@@ -297,7 +281,7 @@ maintenant.
 
 \bigskip
 \noindent Unitex découpe les textes en tokens de différentes sortes comme le marqueur de fin de
-phrase {S}; le marqueur {STOP}, des séquences de lettres contiguës, des étiquettes lexicales
+phrase \{S\}; le marqueur {STOP}, des séquences de lettres contiguës, des étiquettes lexicales
 {aujourd'hui,.ADV}, etc. Les étiquettes lexicales sont utilisées dans CasSys de manière
 particulière. Une étiquette lexicale (entre accolades) est habituellement utilisée pour éviter les
 ambiguïtés (voir les explications à la section \ref{tokenization} et à la section
@@ -326,7 +310,7 @@ travaillons est :
 \emph{bac a b c cc a b b ba ab a b bca a b c abaabc}.
 
 \bigskip
-\noindent Le graphe grfAB (\ref{fig13-05}) reconnaît la séquence \emph{ab} dans le texte et lui
+\noindent Le graphe grfAB (Figure~\ref{fig13-05}) reconnaît la séquence \emph{ab} dans le texte et lui
 ajoute l'étiquette lexicale \{a b,.AB\}. Ce graphe appliqué en mode MERGE ajoute \emph{\{ } et
  \emph{,.AB\}} dans le texte.
 
@@ -346,7 +330,7 @@ ajoute l'étiquette lexicale \{a b,.AB\}. Ce graphe appliqué en mode MERGE ajou
 motif ne peut pas l'être à cause de l'étiquetage de \emph{a b}.
 
 \bigskip
-\noindent Après ce graphe, la cascade applique un autre graphe nommé "tagAB" (\ref{fig13-06})
+\noindent Après ce graphe, la cascade applique un autre graphe nommé "tagAB" (Figure~\ref{fig13-06})
 contenant le masque lexical <AB>. Il reconnait toutes les séquences lexicalement étiquetées par le
 graphe précédent.
 
@@ -363,8 +347,7 @@ b,.AB\} \{bca,.BCA\} \{\{a b,.AB\} c,.ABC\} abaabc}.
 
 
 \bigskip
-\noindent La concordance affichée par Unitex devrait ressembler à celle de la figure
-(\ref{fig13-07}). Pour des raisons liées à la programmation (les ambiguïtés entre les
+\noindent La concordance affichée par Unitex devrait ressembler à celle de la figure~\ref{fig13-07}. Pour des raisons liées à la programmation (les ambiguïtés entre les
 	caractères entre accolades des étiquettes lexicales), nous n'avons d'autres options que de
 placer des  $\backslash$ avant chaque caractère ambigu; c'est pourquoi ces symboles sont précédés de
 $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
@@ -381,7 +364,7 @@ $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
 Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} leur contexte, mais si ces \'{e}l\'{e}ments apparaissent ailleurs hors contexte on ne les reconna\^{i}t pas. Afin de trouver de telles occurences, CasSys propose d'utiliser des graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage. Ces graphes contiennent des bo\^{i}tes vides qui sont remplies automatiquement par le programme avant d'\^{e}tre appliqu\'{e}s au texte. Ces graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage ne fonctionnent qu'avec l'utilisation d'accolades, car le programme consulte la liste de token (tok\_by\_alph.txt) du texte \`{a} analyser par le futur graphe.
 
 \subsection{D\'{e}claration d'un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
-Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage il faut cocher la colonne \emph{Generalization} (figure \ref{fig12-3}).
+Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage il faut cocher la colonne \emph{Generalization} (figure~\ref{fig12-3}).
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=15cm]{resources/img/fig12-3.png}
@@ -390,7 +373,7 @@ Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage
 \end{figure}
 
 \subsection{Structure d'un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
-Un chemin dans un graphe de g\'{e}n\'{e}ralization d'\'{e}tiquetage doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure \ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites de la liste de token du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} de la liste de token du texte comme dans la figure \ref{fig12-3-01a}. En plus, un contexte droit n\'{e}gatif (section~\ref{section-contexts}) est plac\'{e} pour emp\^{e}cher le  deuxi\`{e}me \'{e}tiquetage de l'occurence.
+Un chemin dans un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage doit commencer par une bo\^{i}te avec \$G et, en sortie, une accolade ouvrante. C'est cette bo\^{i}te qui sera remplie par CasSys. La deuxi\`{e}me bo\^{i}te comprend en sortie l'\'{e}l\'{e}ment \`{a} chercher. Sur la figure~\ref{fig12-3-01}, CasSys place dans la bo\^{i}te toutes les entr\'{e}es de cat\'{e}gorie \textit{x} extraites de la liste de token du texte. Par exemple, CasSys extrait \textit{A} de la ligne \emph{\{A,.x\}} de la liste de token du texte comme dans la figure~\ref{fig12-3-01a}. En plus, un contexte droit n\'{e}gatif (section~\ref{section-contexts}) est plac\'{e} pour emp\^{e}cher le  deuxi\`{e}me \'{e}tiquetage de l'occurence.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-01.png}
@@ -405,7 +388,7 @@ Un chemin dans un graphe de g\'{e}n\'{e}ralization d'\'{e}tiquetage doit commenc
 \end{figure}
 
 
-Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la figure \ref{fig12-3-01} place dans la bo\^{i}te \textit{A B} comme dans la figure \ref{fig12-3-02}.
+Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la figure~\ref{fig12-3-01} place dans la bo\^{i}te \textit{A B} comme dans la figure~\ref{fig12-3-02}.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/fig12-3-02.png}
@@ -413,7 +396,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
   \label{fig12-3-02}
 \end{figure}
 
-\noindent Des restrictions sont possibles en \'{e}crivant \`{a} l'int\'{e}rieur de la deuxi\`{e}me bo\^{i}te une cat\'{e}gorie, par exemple \textit{y} sur la figure \ref{fig12-3-03}; c'est alors seulement \textit{A} qui est placé dans la bo\^{i}te comme montr\'{e} dans la figure \ref{fig12-3-04}.
+\noindent Des restrictions sont possibles en \'{e}crivant \`{a} l'int\'{e}rieur de la deuxi\`{e}me bo\^{i}te une cat\'{e}gorie, par exemple \textit{y} sur la figure~\ref{fig12-3-03}; c'est alors seulement \textit{A} qui est placé dans la bo\^{i}te comme montr\'{e} dans la figure~\ref{fig12-3-04}.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-03.png}
@@ -428,7 +411,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
   \label{fig12-3-04}
 \end{figure}
 
-\noindent Au contraire, la n\'{e}gation d'une cat\'{e}gorie, par exemple \textit{\textasciitilde y} sur la figure \ref{fig12-3-05} placera \textit{B} dans cette bo\^{i}te (figure \ref{fig12-3-06}).
+\noindent Au contraire, la n\'{e}gation d'une cat\'{e}gorie, par exemple \textit{\textasciitilde y} sur la figure~\ref{fig12-3-05} placera \textit{B} dans cette bo\^{i}te (figure~\ref{fig12-3-06}).
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=5cm]{resources/img/fig12-3-05.png}
@@ -443,7 +426,7 @@ Dans le cas d'une imbrication \emph{\{\{A,.y\} \{B,.z\},.x\}} le graphe de la fi
   \label{fig12-3-06}
 \end{figure}
 
-Si on veut compl\'{e}ter la sortie du graphe par quelque chose qui ne doit pas \^{e}tre cherch\'{e}e, on ajoute une troisi\`{e}me bo\^{i}te comme dans la figure \ref{fig12-3-07}.
+Si on veut compl\'{e}ter la sortie du graphe par quelque chose qui ne doit pas \^{e}tre cherch\'{e}e, on ajoute une troisi\`{e}me bo\^{i}te comme dans la figure~\ref{fig12-3-07}.
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=6cm]{resources/img/fig12-3-07.png}
@@ -451,7 +434,7 @@ Si on veut compl\'{e}ter la sortie du graphe par quelque chose qui ne doit pas \
   \label{fig12-3-07}
 \end{figure}
 
-\large{\textbf{Attention :}}  Si le graphe comporte plusieurs chemins, la bo\^{i}te avec \$G doit être répétée sur chaque chemin.
+\large{\textbf{Attention :}}  Si le graphe comporte plusieurs chemins, la bo\^{i}te avec \$G doit être répéter sur chaque chemin.
 
 \section{Les résultats d'une cascade}
 
@@ -465,7 +448,7 @@ reconnues conformément aux règles fixées dans Unitex.
 \bigskip
 \noindent Pour afficher une concordance, il suffit de cliquer sur le bouton "Build concordance"
 (comme décrit au chapitre \ref{chap-advanced-grammars}) dans la menu "Text / Located sequences".
-La figure \ref{fig13-04} présente un échantillon de concordance d'une cascade qui reconnaît les entités
+La figure~\ref{fig13-04} présente un échantillon de concordance d'une cascade qui reconnaît les entités
 nommées.
 
 
@@ -479,7 +462,7 @@ nommées.
 \subsection{Les différents fichiers résultats d'une cascade}
 
 CasSys conserve tous les textes créés par chaque graphe  de la cascade. Ceci peut être
-utile  pour des tests, le débugage ou la vérification de différents résultats de la cascade. Il est
+utile  pour des tests, le débogage ou la vérification de différents résultats de la cascade. Il est
 alors possible de corriger les erreurs selon l'ordre d'application des graphes ou de trouver des
 erreurs dans leur écriture. Il est pratique d'ajouter dans la sortie d'un transducteur le nom de ce
 dernier, afin de voir dans le résultat final quel motif a été reconnu par quel graphe.
@@ -528,5 +511,59 @@ La DTD de notre format est la suivante~:
 \texttt{<!ELEMENT inflect (\#PCDATA)>}\\
 \end{tabular}
 
+\section{La création d'un fichier \textit{standOff}}
+
+Le programme standOff permet de créer un fichier comprenant des éléments balisés (en principe reconnus par des cascades antérieures) accompagnés de leur nombre d'occurrences dans le texte. Les balises doivent être sous la forme \emph{<nom type="type">} ... \emph{</nom>} et ne pas contenir de balises du même type. Le fichier de sortie est défini par un modèle de la forme:
+
+\bigskip
+\noindent \emph{Ici le début du fichier.}\\
+\emph{\#LINE}\\
+\hspace*{1cm} \emph{Début pour le type "{TYPE}" <<et le sous-type="{SUBTYPE}">>}\\
+\emph{\#BLOCK}\\
+\hspace*{1cm} \emph{term="{TERM}"}\\
+\hspace*{1cm} \emph{value={COUNT}}\\
+\emph{\#END}\\
+\hspace*{1cm} \emph{Fin pour ce type.}\\
+\emph{\#REST}\\
+\emph{Ici la fin du fichier.}\\
 
 
+\noindent Pour la phrase:
+
+\bigskip
+\noindent \emph{<placeName type="ville">Tours</placeName> est une très belle ville. <placeName type="ville">Tours</placeName> est la capitale de la <placeName type="région">Touraine</placeName>.}\\
+
+Nous obtenons:
+
+\bigskip
+\noindent \emph{Ici le début du fichier.}\\
+\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="ville"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{term="Tours"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{value=2} \\
+\hspace*{1cm} \emph{Fin pour ce type.}\\
+\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="région"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{term="Touraine"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{value=1} \\
+\hspace*{1cm} \emph{Fin pour ce type.}\\
+\emph{Ici la fin du fichier.}\\
+
+\noindent Attention, ce programme ne peut être lancé via l'interface d'Unitex.
+
+
+Les balises affectées sont décrites dans une cascade, souvent par des graphes avec un contexte droit négatif (section~\ref{section-contexts}). Le graphe de la figure \ref{standOffOrgName} insère les balises \emph{OrgName} dans le fichier standOff. Le graphe de la figure \ref{standOffDate} y insère les balises \emph{date}, sauf si le mot \emph{published} se trouve à l'intérieur.
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7.28cm]{resources/img/grfOrgName.png}
+  \caption{Un graphe pour le décompte des balises \emph{orgName} dans le fichier standOff}
+  \label{standOffOrgName}
+\end{figure}
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7.28cm]{resources/img/grfDate.png}
+  \caption{Un graphe pour le décompte des balises \emph{date} dans le fichier standOff, sauf en cas de présence du mot \emph{published}}
+  \label{standOffDate}
+\end{figure}
