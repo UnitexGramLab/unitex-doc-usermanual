@@ -22,8 +22,8 @@ PORIENT L
 "" 1091 367 0 
 "<E>/${1}$" 552 252 1 5 
 "<E>/${2}$" 549 463 1 8 
-"<E>/,.personne" 736 252 1 6 
+"<E>/,.person" 736 252 1 6 
 "$G/{" 629 252 1 4 
-"<E>/+grfPersonneGenerique}" 882 367 1 1 
-"prenom/,.personne" 708 463 1 6 
+"<E>/+grfPersonGeneric}" 882 367 1 1 
+"firstname/,.person" 708 463 1 6 
 "$G/{" 668 463 1 7 

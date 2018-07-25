@@ -147,11 +147,11 @@ des occurrences trouvées.
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
 \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: fichier alphabet de la langue;
-\item \verb+-r X+/\verb+--transducer_dir=X+: prend un transducteur dans le répertoire \verb+X+ (ainsi ne
-		donnez pas le chemin complet pour chaque transducteur; remarquons que \verb+X+ doit se
+\item \verb+-r X+/\verb+--transducer_dir=X+: prend un transducteur dans le répertoire \verb+X+ (cela évite de 
+		donner le chemin complet pour chaque transducteur; remarquons que \verb+X+ doit se
 		terminer par un antislash;
 	\item \verb+-w DIC/--morpho=DIC+: indique que \verb+DIC+ est un \verb+.bin+ dictionnaire à utiliser en mode morphologique.
-		Utiliser autant de  \verb+-m XXX+ qu'il y a de \verb+.bin+. Vou pouvez égalemnt séparer plusieurs \verb+.bin+ par des deux-points.
+		Utiliser autant de  \verb+-m XXX+ qu'il y a de \verb+.bin+. Il est également possible de séparer plusieurs \verb+.bin+ par le caractère deux-points.
 
 \item \verb+-l TRANSDUCERS_LIST+/\verb+--transducers_list=TRANSDUCERS_LIST+: fichier
 		contenant la liste des transducteurs avec leur mode d'application;
@@ -160,7 +160,7 @@ des occurrences trouvées.
 \item \verb+-m output_policy+/\verb+--transducer_policy=output_policy+: le mode
 		d'application du transducteur spécifié;
 \item \verb+-t TXT+/\verb+--text=TXT+: le fichier texte avec l'extension \verb+.snt+ à modifier;
-\item \verb+-i+/\verb+--in_place+: sigifie qu'il faut utiliser les mêmes répertoires \verb+csc/snt+
+\item \verb+-i+/\verb+--in_place+: signifie qu'il faut utiliser les mêmes répertoires \verb+csc/snt+
 	pour chaque transducteur;
 \item \verb+-d+/\verb+--no_create_directory+: signifie que tous les répertoires \verb+snt/csc+
 	existent déjà et n'ont pas besoin d'être crées;
@@ -168,6 +168,7 @@ des occurrences trouvées.
 	négation pour les graphes version Unitex 2.0;
 \item \verb+-g tilde+/\verb+--negation_operator=tilde+: utilise \verb+tilde+ comme opérateur de
 	négation (par défaut);
+\item \verb+--standoff=+: indique le chemin et le nom du fichier indiquant le modèle de standoff et lance la création du standOff du texte;
 \item \verb+-h+/\verb+--help+: affiche cette aide
 \end{itemize} 	
 
@@ -175,7 +176,7 @@ des occurrences trouvées.
 \bigskip
 \noindent CasSys applique une liste de grammaires à un texte et sauve les séquences reconnues dans
 un fichier index nommé \verb+concord.ind+ stocké dans le répertoire texte.
-Le fichier cible doit être un fichier snt avec son répertoire \verb+\_snt/+. 
+Le fichier cible doit être un fichier snt avec son répertoire \verb+_snt+. 
 Le fichier contenant la liste des transducteurs est un fichier dans lequel chaque ligne contient le
 nom complet du transducteur suivi de son mode d'application.
 
@@ -193,7 +194,7 @@ obligatoires
      
 \bigskip
 \noindent Comme le programme Locate, ce programme enregistre les références des occurrences dans un
-fichier \verb+concord.ind+ stocké dans le répertoire \verb+\_snt\verb+ du texte.
+fichier \verb+concord.ind+ stocké dans le répertoire \verb+_snt+ du texte.
 Le fichier \verb+concord.ind+ produit est dans le même format que celui décrit chapitre
 \ref{chap-file-formats} , mais la cascade peut être formée de graphes appliqués en mode merge ou
 replace, de ce fait \#M ou \#R à la première ligne du fichier \verb+concord.ind+ n'a pas de sens dans ce contexte.
