@@ -438,7 +438,6 @@ et que l'on veuille extraire la sous-étiquette lexicale de sous-catégorie \tex
 \bigskip
 Le graphe de la figure~\ref{fig:graphe_restriction_A} une fois généré donnera le graphe en figure~\ref{fig:graphe_restriction_A_genere}, alors que le graphe en figure~\ref{fig:graphe_restriction_B} donnera le graphe en figure~\ref{fig:graphe_restriction_B_genere}.
 
-
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/graphe_restriction_A.png}
@@ -655,3 +654,42 @@ Les balises affectées sont décrites dans une cascade, souvent par des graphes 
   \label{standOffDate}
 \end{figure}
 
+\noindent Pour la phrase:
+
+\bigskip
+\noindent \emph{<placeName type="ville">Tours</placeName> est une très belle ville. <placeName type="ville">Tours</placeName> est la capitale de la <placeName type="région">Touraine</placeName>.}\\
+
+Nous obtenons:
+
+\bigskip
+\noindent \emph{Ici le début du fichier.}\\
+\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="ville"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{term="Tours"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{value=2} \\
+\hspace*{1cm} \emph{Fin pour ce type.}\\
+\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="région"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{term="Touraine"} \\
+\hspace*{1cm} \hspace*{1cm} \emph{value=1} \\
+\hspace*{1cm} \emph{Fin pour ce type.}\\
+\emph{Ici la fin du fichier.}\\
+
+\noindent Attention, ce programme ne peut être lancé via l'interface d'Unitex.
+
+
+Les balises affectées sont décrites dans une cascade, souvent par des graphes avec un contexte droit négatif (section~\ref{section-contexts}). Le graphe de la figure \ref{standOffOrgName} insère les balises \emph{OrgName} dans le fichier standOff. Le graphe de la figure \ref{standOffDate} y insère les balises \emph{date}, sauf si le mot \emph{published} se trouve à l'intérieur.
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7.28cm]{resources/img/grfOrgName.png}
+  \caption{Un graphe pour le décompte des balises \emph{orgName} dans le fichier standOff}
+  \label{standOffOrgName}
+\end{figure}
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=7.28cm]{resources/img/grfDate.png}
+  \caption{Un graphe pour le décompte des balises \emph{date} dans le fichier standOff, sauf en cas de présence du mot \emph{published}}
+  \label{standOffDate}
+\end{figure}
