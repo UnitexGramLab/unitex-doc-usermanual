@@ -471,6 +471,24 @@ a box like in figure~\ref{fig-exemple-transduction}.
 
 \noindent To create an empty box with an output consisting of \verb+number+, type \verb+<E>/number+ (example: the rightmost box in Fig.~\ref{fig-using-variable} is empty and has an output). The output associated with a box is represented in bold text below it.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\noindent However, it it not possible to associate an output to a box that calls a sub-graph. To do so, you must create an empty box with the output before the box that calls the sub-graph, but there is no garranty that a space won't be detected between the output and the text that follows. To put a curly bracket and ensure that this bracket will stick to the following text, you should use the graph called B of the figure~\ref{fig-graphe-B}, available in the distribution.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=262px]{resources/img/B.png}
+\caption{Graph B \label{fig-graphe-B}}
+\end{center}
+\end{figure}
+
+If you use left and right curly bracket to create lexical tags, it it possible to check if, from a graph, all the left and right curly brackets are matching and well formed. To do it, you have to chose in the menu \textit{Graphs} the command \textit{Tools/Verify braces}, which supports calls to sub-graphs B, BB etc. However this verification require that lexical tags formed with curly brackets are opened and closed in the same graph.
+
+This program also checks the called sub-graphs, and compile the checked graph at the same time.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Weights}
 \index{Weight}
 You can assign integer weights to the boxes of a transducer.
