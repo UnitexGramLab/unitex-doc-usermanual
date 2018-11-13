@@ -912,9 +912,11 @@ transform it into a finite-state transducer.
 
 
 \section{Fst2List}\index{External programs!\verbc{Fst2List}}\index{\verbc{Fst2List}}
-\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
+\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s "Str"]@
 
-\verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
+\verb@         [--io_separator "Str"] [--stop_mark "Str"]@
+
+\verb@         [-r [s/l/x] "Str"] [-l line#] [-i subname]*@
 
 \verb@         [-c SS=0xxxx]* fname@
 
@@ -948,7 +950,7 @@ recognized by this grammar. The parameters are:
   \item \verb$-s "L[,R]"$ : specifies the left (\verb$L$) and right (\verb$R$)
   delimiters that will enclose items. By default, no delimiters are specified;
 
-  \item \verb$-s0 "Str"$ : if the program must take  outputs into account, this
+  \item \verb$-g/--io_separator "Str"$ : if the program must take outputs into account, this
   parameter specifies the sequence \verb$Str$ that will be inserted between input
   and output. By default, there is no separator;
 
@@ -957,7 +959,7 @@ recognized by this grammar. The parameters are:
   \verb$in0 in1 out0 out1$ (\verb$s$) or \verb$in0 out0 in1 out1$ (\verb$a$). The default
   value is \verb$s$;
   
-  \item \verb$-ss "stop"$: set "str" as the mark of stop exploitation at "<stop>".
+  \item \verb$-q/--stop_mark "stop"$: stops exploration at \verb$"stop"$.
   The defauld value is \verb$null$
 
   \item \verb$-v$ : prints information during the process (verbose mode);
