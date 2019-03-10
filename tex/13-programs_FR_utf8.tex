@@ -651,118 +651,6 @@ texte
 
 \section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
 \label{section-DumpOffsets}
-\textbf{Utilisation:} \verb+DumpOffsets [OPTIONS] <txt>+
-
-\bigskip
-\noindent\verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
-certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
-
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-
-\begin{itemize} 	 
-  \item \verb+-o X+/\verb+--old=X+: nom du fichier d'origine 
-  \item \verb+-n X+/\verb+--new=X+:  nom du fichier d'arrivée
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier de sortie
-  \item \verb+-f+/\verb+--full+: ajouter le texte courant
-  \item \verb+-q+/\verb+--quiet+: ne pas afficher de message
-  \item \verb+-c+/\verb+--no_escape_sequence+: don't escape text sequence 	 
-  \item \verb+-h+/\verb+--help+: cet aide 	 
-\end{itemize}
-
-\noindent Exemple: 
-\begin{verbatim}
-	 UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt 	 
-	         --output_offsets .\work\text_file_offset.txt 	 
-	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt 	 
-	        -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt 	 
-\end{verbatim}
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-m/--merge] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Fusionner deux fichiers d'offsets produits par deux modifications successives du texte.
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-
-\begin{itemize} 	 
-  \item \verb+-o X+/\verb+--old=X+: nom du fichier d'origine
-  \item \verb+-n X+/\verb+--output=X+: nom du fichier d'offset issu de la fusion
-\end{itemize}
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-v/--convert_modified_to_common] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Crée un fichier d'offset des chaines identiques dans le fichier original et le fichier modifié.
-Au moins une taille doit être fournie.	 
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-	  	 
-\begin{itemize} 	 
-  \item \verb+-s N+/\verb+--old_size=N+: taille en caractère de la version d'origine du fichier texte
-  \item \verb+-S N+/\verb+--new_size=N+: taille en caractère de la version d'arrivée du fichier texte
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier d'offsets courant	 
-  \item \verb+-h+/\verb+--help+: cet aide
-\end{itemize} 	 
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-M/--convert_modified_to_common] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Crée un fichier d'offsets à partir des offsets des chaines identiques dans le fichier original et le fichier modifié.
-Il faut obligatoirement spécifier les deux tailles.
-	
-\bigskip
-\noindent \textbf{OPTIONS:}
-	  	 
-\begin{itemize} 	 
-  \item \verb+-s N+/\verb+--old_size=N+: taille en caractère de la version d'origine du fichier texte
-  \item \verb+-S N+/\verb+--new_size=N+: taille en caractère de la version d'arrivée du fichier texte
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier d'offsets courant	 
-  \item \verb+-h+/\verb+--help+: cet aide	 
-\end{itemize} 	 
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets -o <list_of_position_file_to_read.txt>+
-
-\bigskip
-\noindent \verb+<list_of_position_file_to_read.txt>+ est un fichier avec seulement un nombre par ligne (une position).
-
-\bigskip
-\noindent Ceci convertit une liste de positions en utilisant le fichier d'offsets.
-	  Le fichier créé contient à chaque ligne la nouvelle position suivi d'un +  si le caractère à cette position 
-	  est dans le fichier d'arrivée, suivi d'un - si le caractère a été supprimé.
-	  	 
-\begin{itemize}
-  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
-\end{itemize} 	 
-
-\noindent Utiliser \verb+-t+ à la place de \verb+-T+ produit la traduction inverse.	 
-
-
-
-
-
-
-\section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
-\label{section-DumpOffsets}
 
 \noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
 certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
@@ -843,7 +731,23 @@ Le fichier\_dump contient les textes du fichier version 1 et les textes entre ch
 DumpOffsets [OPTIONS] -d -o <fichier_version1>
 -n <fichier_version2> <fichier_offset> -p <fichier_dump>
 \end{verbatim}
+
 \bigskip
+\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets -o <list_of_position_file_to_read.txt>+
+
+\bigskip
+\noindent \verb+<list_of_position_file_to_read.txt>+ est un fichier avec seulement un nombre par ligne (une position).
+
+\bigskip
+\noindent Ceci convertit une liste de positions en utilisant le fichier d'offsets.
+	  Le fichier créé contient à chaque ligne la nouvelle position suivi d'un +  si le caractère à cette position 
+	  est dans le fichier d'arrivée, suivi d'un - si le caractère a été supprimé.
+	  	 
+\begin{itemize}
+  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
+\end{itemize} 	 
+
+\noindent Utiliser \verb+-t+ à la place de \verb+-T+ produit la traduction inverse.	 
 
 
 \section{Elag}\index{Programmes externes!\verbc{Elag}}\index{\verbc{Elag}}
