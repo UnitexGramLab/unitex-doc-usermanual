@@ -434,7 +434,7 @@ principe suivant :
   \item une séquence de lettres contiguës (les lettres sont définies dans le fichier alphabet de la
   langue);
   \index{Fichier!alphabet}
-  \item un (et un seul) caractère différrent d'une lettre, i.e. tous les caractères non définis
+  \item un (et un seul) caractère different d'une lettre, i.e. tous les caractères non définis
   dans le fichier alphabet de la langue courante; s'il s'agit d'une newline, il est remplacé par un
   espace.
 \end{itemize}
@@ -443,7 +443,7 @@ principe suivant :
 \noindent Pour les autres langues, le découpage est effectué caractère par caractère, à l’exception
 du délimiteur de phrases \verb+{S}+ le marqueur \verb+{STOP}+ et des étiquettes lexicales. Ce
 découpage basique garantit le fonctionnement d’Unitex, mais limite l’optimisation des opérations de
-recherche de motifs.
+recherche de motifs. Par exemple une boite contenant \verb+aujourd'hui+ ne reconnaitra pas l'étiquette lexicale \verb+{aujourd'hui,.ADV}+. Pour la reconnaitre, il faut placer dans la boite le masque lexical: \verb+<aujourd'hui>+.
 
 
 \bigskip
