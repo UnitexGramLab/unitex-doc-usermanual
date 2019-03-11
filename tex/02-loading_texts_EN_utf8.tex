@@ -463,7 +463,7 @@ follows:
 \noindent For other languages, tokenization is done on a character by character
 basis, except for the sentence delimiter \verb+{S}+, the \verb+{STOP}+ marker
 and lexical tags. This simple tokenization is fundamental for the use of Unitex,
-but limits the optimization of search operations for patterns.
+but limits the optimization of search operations for patterns. For instance, a box with the sequence \verb+aujourd'hui+ doesn't recognize the lexical tag \verb+{aujourd'hui,.ADV}+. To recognize it, one must use the lexical mask: \verb+<aujourd'hui>+.
 
 \bigskip
 \noindent Regardless of the tokenization mode, newlines in a text are

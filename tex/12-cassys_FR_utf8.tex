@@ -396,7 +396,7 @@ Il est possible d'utiliser le bouton \$G (figure~\ref{fig:bouton_g}) pour insér
 \end{figure}
 
 \bigskip
-Par exemple, si le fichier de tokens contient l'étiquette lexicale \emph{\{A,.x\}}, le graphe générique de la figure~\ref{fig:graphe_generique_simple} qui permet d'extraire les éléments de catégorie \textit{x} va générer le graphe en figure~\ref{fig:graphe_generique_simple_genere}. Un contexte droit négatif est ajouté automatiquement pour empêcher un deuxième étiquetage des occurrences déjà étiquetées.
+Par exemple, si le fichier de tokens contient l'étiquette lexicale \emph{\{A,.x\}}, le graphe générique de la figure~\ref{fig:graphe_generique_simple} qui permet d'extraire les éléments de catégorie \textit{x} va générer le graphe en figure~\ref{fig:graphe_generique_simple_genere}. Un contexte droit négatif est ajouté automatiquement pour empêcher un deuxième étiquetage des occurrences déjà étiquetées. Attention cependant que les éléments de la boite sont des masques lexicaux (voir la justification en section~\ref{tokenization}), ce qui peut créer une ambiguité avec un code grammatical. Le graphe de la figure~\ref{fig:graphe_generique_simple_genere} est catastrophique de ce point de vue là, car il reconnait tous les adjectifs du texte!
 
 \begin{figure}[!htb]
   \centering
