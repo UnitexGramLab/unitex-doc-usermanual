@@ -147,11 +147,11 @@ des occurrences trouvées.
 \noindent \textbf{OPTIONS:}
 \begin{itemize}
 \item \verb+-a ALPH+/\verb+--alphabet=ALPH+: fichier alphabet de la langue;
-\item \verb+-r X+/\verb+--transducer_dir=X+: prend un transducteur dans le répertoire \verb+X+ (ainsi ne
-		donnez pas le chemin complet pour chaque transducteur; remarquons que \verb+X+ doit se
+\item \verb+-r X+/\verb+--transducer_dir=X+: prend un transducteur dans le répertoire \verb+X+ (cela évite de 
+		donner le chemin complet pour chaque transducteur; remarquons que \verb+X+ doit se
 		terminer par un antislash;
 	\item \verb+-w DIC/--morpho=DIC+: indique que \verb+DIC+ est un \verb+.bin+ dictionnaire à utiliser en mode morphologique.
-		Utiliser autant de  \verb+-m XXX+ qu'il y a de \verb+.bin+. Vou pouvez égalemnt séparer plusieurs \verb+.bin+ par des deux-points.
+		Utiliser autant de  \verb+-m XXX+ qu'il y a de \verb+.bin+. Il est également possible de séparer plusieurs \verb+.bin+ par le caractère deux-points.
 
 \item \verb+-l TRANSDUCERS_LIST+/\verb+--transducers_list=TRANSDUCERS_LIST+: fichier
 		contenant la liste des transducteurs avec leur mode d'application;
@@ -160,7 +160,7 @@ des occurrences trouvées.
 \item \verb+-m output_policy+/\verb+--transducer_policy=output_policy+: le mode
 		d'application du transducteur spécifié;
 \item \verb+-t TXT+/\verb+--text=TXT+: le fichier texte avec l'extension \verb+.snt+ à modifier;
-\item \verb+-i+/\verb+--in_place+: sigifie qu'il faut utiliser les mêmes répertoires \verb+csc/snt+
+\item \verb+-i+/\verb+--in_place+: signifie qu'il faut utiliser les mêmes répertoires \verb+csc/snt+
 	pour chaque transducteur;
 \item \verb+-d+/\verb+--no_create_directory+: signifie que tous les répertoires \verb+snt/csc+
 	existent déjà et n'ont pas besoin d'être crées;
@@ -168,6 +168,7 @@ des occurrences trouvées.
 	négation pour les graphes version Unitex 2.0;
 \item \verb+-g tilde+/\verb+--negation_operator=tilde+: utilise \verb+tilde+ comme opérateur de
 	négation (par défaut);
+\item \verb+--standoff=+: indique le chemin et le nom du fichier indiquant le modèle de standoff et lance la création du standOff du texte;
 \item \verb+-h+/\verb+--help+: affiche cette aide
 \end{itemize} 	
 
@@ -175,7 +176,7 @@ des occurrences trouvées.
 \bigskip
 \noindent CasSys applique une liste de grammaires à un texte et sauve les séquences reconnues dans
 un fichier index nommé \verb+concord.ind+ stocké dans le répertoire texte.
-Le fichier cible doit être un fichier snt avec son répertoire \verb+\_snt/+. 
+Le fichier cible doit être un fichier snt avec son répertoire \verb+_snt+. 
 Le fichier contenant la liste des transducteurs est un fichier dans lequel chaque ligne contient le
 nom complet du transducteur suivi de son mode d'application.
 
@@ -193,7 +194,7 @@ obligatoires
      
 \bigskip
 \noindent Comme le programme Locate, ce programme enregistre les références des occurrences dans un
-fichier \verb+concord.ind+ stocké dans le répertoire \verb+\_snt\verb+ du texte.
+fichier \verb+concord.ind+ stocké dans le répertoire \verb+_snt+ du texte.
 Le fichier \verb+concord.ind+ produit est dans le même format que celui décrit chapitre
 \ref{chap-file-formats} , mais la cascade peut être formée de graphes appliqués en mode merge ou
 replace, de ce fait \#M ou \#R à la première ligne du fichier \verb+concord.ind+ n'a pas de sens dans ce contexte.
@@ -650,118 +651,6 @@ texte
 
 \section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
 \label{section-DumpOffsets}
-\textbf{Utilisation:} \verb+DumpOffsets [OPTIONS] <txt>+
-
-\bigskip
-\noindent\verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
-certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
-
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-
-\begin{itemize} 	 
-  \item \verb+-o X+/\verb+--old=X+: nom du fichier d'origine 
-  \item \verb+-n X+/\verb+--new=X+:  nom du fichier d'arrivée
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier de sortie
-  \item \verb+-f+/\verb+--full+: ajouter le texte courant
-  \item \verb+-q+/\verb+--quiet+: ne pas afficher de message
-  \item \verb+-c+/\verb+--no_escape_sequence+: don't escape text sequence 	 
-  \item \verb+-h+/\verb+--help+: cet aide 	 
-\end{itemize}
-
-\noindent Exemple: 
-\begin{verbatim}
-	 UnitexToolLogger Normalize -r .\resource\Norm.txt .\work\text_file.txt 	 
-	         --output_offsets .\work\text_file_offset.txt 	 
-	 UnitexToolLogger DumpOffsets -o .\work\text_file_offset.txt -n .\work\text_file_offset.snt 	 
-	        -p .\work\dump\dump_offsets.txt .\work\text_file_offset.txt 	 
-\end{verbatim}
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-m/--merge] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Fusionner deux fichiers d'offsets produits par deux modifications successives du texte.
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-
-\begin{itemize} 	 
-  \item \verb+-o X+/\verb+--old=X+: nom du fichier d'origine
-  \item \verb+-n X+/\verb+--output=X+: nom du fichier d'offset issu de la fusion
-\end{itemize}
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-v/--convert_modified_to_common] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Crée un fichier d'offset des chaines identiques dans le fichier original et le fichier modifié.
-Au moins une taille doit être fournie.	 
-
-\bigskip
-\noindent \textbf{OPTIONS:}
-	  	 
-\begin{itemize} 	 
-  \item \verb+-s N+/\verb+--old_size=N+: taille en caractère de la version d'origine du fichier texte
-  \item \verb+-S N+/\verb+--new_size=N+: taille en caractère de la version d'arrivée du fichier texte
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier d'offsets courant	 
-  \item \verb+-h+/\verb+--help+: cet aide
-\end{itemize} 	 
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets [-M/--convert_modified_to_common] [OPTIONS] <txt>+
-
-\bigskip
-\noindent \verb+<txt>: fichier d'offsets d'origine+
-
-\bigskip
-\noindent Crée un fichier d'offsets à partir des offsets des chaines identiques dans le fichier original et le fichier modifié.
-Il faut obligatoirement spécifier les deux tailles.
-	
-\bigskip
-\noindent \textbf{OPTIONS:}
-	  	 
-\begin{itemize} 	 
-  \item \verb+-s N+/\verb+--old_size=N+: taille en caractère de la version d'origine du fichier texte
-  \item \verb+-S N+/\verb+--new_size=N+: taille en caractère de la version d'arrivée du fichier texte
-  \item \verb+-p X+/\verb+--output=X+: nom du fichier d'offsets courant	 
-  \item \verb+-h+/\verb+--help+: cet aide	 
-\end{itemize} 	 
-
-\bigskip
-\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets -o <list_of_position_file_to_read.txt>+
-
-\bigskip
-\noindent \verb+<list_of_position_file_to_read.txt>+ est un fichier avec seulement un nombre par ligne (une position).
-
-\bigskip
-\noindent Ceci convertit une liste de positions en utilisant le fichier d'offsets.
-	  Le fichier créé contient à chaque ligne la nouvelle position suivi d'un +  si le caractère à cette position 
-	  est dans le fichier d'arrivée, suivi d'un - si le caractère a été supprimé.
-	  	 
-\begin{itemize}
-  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
-\end{itemize} 	 
-
-\noindent Utiliser \verb+-t+ à la place de \verb+-T+ produit la traduction inverse.	 
-
-
-
-
-
-
-\section{DumpOffsets}\index{Programmes externes!\verbc{DumpOffsets}}\index{\verbc{DumpOffsets}}
-\label{section-DumpOffsets}
 
 \noindent Ce programme permet d'étudier et d'utiliser les fichiers de correspondance d'Offsets, manipulé par
 certains outils Unitex comme Unxmlize, Normalize, Fst2Txt, Tokenize, Concord et GrfTest.
@@ -842,7 +731,23 @@ Le fichier\_dump contient les textes du fichier version 1 et les textes entre ch
 DumpOffsets [OPTIONS] -d -o <fichier_version1>
 -n <fichier_version2> <fichier_offset> -p <fichier_dump>
 \end{verbatim}
+
 \bigskip
+\noindent \textbf{Autre Utilisation:} \verb+DumpOffsets -o <list_of_position_file_to_read.txt>+
+
+\bigskip
+\noindent \verb+<list_of_position_file_to_read.txt>+ est un fichier avec seulement un nombre par ligne (une position).
+
+\bigskip
+\noindent Ceci convertit une liste de positions en utilisant le fichier d'offsets.
+	  Le fichier créé contient à chaque ligne la nouvelle position suivi d'un +  si le caractère à cette position 
+	  est dans le fichier d'arrivée, suivi d'un - si le caractère a été supprimé.
+	  	 
+\begin{itemize}
+  \item \verb+-p <list_to_create> -T <offset_file_to_read>+
+\end{itemize} 	 
+
+\noindent Utiliser \verb+-t+ à la place de \verb+-T+ produit la traduction inverse.	 
 
 
 \section{Elag}\index{Programmes externes!\verbc{Elag}}\index{\verbc{Elag}}
@@ -1013,9 +918,11 @@ en un transducteur à états finis.
 
 
 \section{Fst2List}\index{Programmes externes!\verbc{Fst2List}}\index{\verbc{Fst2List}}
-\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s[0s] "Str"]@
+\verb@Fst2List [-o out][-p s/f/d][-[a/t] s/m][-m][-f s/a][-s "Str"]@
 
-\verb@         [-r[s/l] "Str"] [-l line#] [-i subname]*@
+\verb@         [--io_separator "Str"] [--stop_mark "Str"]@
+
+\verb@         [-r [s/l/x] "Str"] [-l line#] [-i subname]*@
 
 \verb@         [-c SS=0xxxx]* fname@
 
@@ -1041,13 +948,13 @@ en un transducteur à états finis.
   \item \verb$-p s/f/d$ : \verb$s$ produit l’affichage des chemins de chaque sous-graphe de la
   	  grammaire ; \verb$f$ (par défaut) affiche les chemins globaux de la grammaire; \verb$d$ affiche les chemins en ajoutant des indications sur les imbrications d’appels de sous-graphes;
 
-  \item \verb$-c SS=0xXXXX$: remplace le symbole \verb$SS$ quand il apparaît entre angles par
+  \item \verb$-c SS=0xXXXX$: remplace le symbole \verb$SS$ quand il apparait entre angles par
   le caractère unicode de code hexadécimal \verb$0xXXXX$;
 
   \item \verb$-s "L[,R]"$ : spécifie les délimiteurs gauche (\verb$L$) et droit (\verb$R$)
   qui entoureront les items. Par défaut, ces délimiteurs sont nuls;
 
-  \item \verb$-s0 "Str"$ :si l’on tient compte des sorties de la grammaire, ce paramètre spécifie la
+  \item \verb$-g/--io_separator "Str"$ : si l’on tient compte des sorties de la grammaire, ce paramètre spécifie la
    séquence \verb$Str$ qui séparera une entrée de sa sortie. Par défaut, il n’y a pas de séparateur;
 
   \item \verb$-f a/s$ : si l’on tient compte des sorties de la grammaire, ce paramètre spécifie le
@@ -1055,14 +962,14 @@ en un transducteur à états finis.
   \verb$in0 in1 out0 out1$ (\verb$s$) ou \verb$in0 out0 in1 out1$ (\verb$a$). La valeur par défaut
   est \verb$s$;
   
-\item \verb$-ss "stop"$: définit "str" comme la marque d'arrêt à l'exploitation à \verb$"<stop>"$.
+\item \verb$-q/--stop_mark "stop"$ : arrête l'exploration à \verb$"<stop>"$.
 	La valeur par défaut est \verb$null$;
 
   \item \verb$-v$ : ce paramètre produit l’affichage de messages d’informations; (mode verbose);
   
   \item \verb$-m$ : mode spécial pour description avec alphabet;
   	  
-  \item \verb$-rx "L,[R]"$: ce paramètre spécifie comment les cycles doivent être présentés \verb$L$ et \verb$R$ désignent des délimiteurs. Si l’on considère le graphe de la figure \ref{cycle},
+  \item \verb$-rx "L[,R]"$: ce paramètre spécifie comment les cycles doivent être présentés \verb$L$ et \verb$R$ désignent des délimiteurs. Si l’on considère le graphe de la figure \ref{cycle},
   	  voici les résultats que l’on obtient si l’on pose \verb$L$="\verb$[$" et \verb$R$="\verb$]*$":
 
   \medskip

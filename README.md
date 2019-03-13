@@ -1,6 +1,6 @@
 # Unitex/GramLab User's Manual [![Build Status](https://travis-ci.org/UnitexGramLab/unitex-doc-usermanual.svg?branch=master)](https://travis-ci.org/UnitexGramLab/unitex-doc-usermanual)
 
-> [Unitex/GramLab][unitex] is an open source, cross-platform, multilingual, lexicon- and grammar-based corpus processing suite.
+> [Unitex/GramLab][unitex] is the open source, cross-platform, multilingual, lexicon- and grammar-based corpus processing suite.
 
 This is the repository for the Unitex/GramLab User's Manual. User's Manual is available 
 in English and French (more translations are welcome). You can view and print them with Evince, 
@@ -46,7 +46,7 @@ asking technical support questions can be found
 ## Reporting Bugs
 
 See the [Bug Reporting
-Guide](http://unitexgramlab.org/index.php?page=6) for information on
+Guide](https://unitexgramlab.org/how-to-report-a-bug) for information on
 how to report bugs.
 
 ## Governance Model
@@ -88,8 +88,8 @@ We welcome everyone to contribute to improve this project. Below are some of the
 
 -  Submit [bug reports or feature requests](https://github.com/UnitexGramLab/unitex-doc-usermanual/issues)
 
---
+---
 
-Copyright (C) 2017 Université Paris-Est Marne-la-Vallée
+Copyright (C) 2019 Université Paris-Est Marne-la-Vallée
 
-[unitex]: http://unitexgramlab.org
+[unitex]: https://unitexgramlab.org
