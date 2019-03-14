@@ -1316,7 +1316,9 @@ ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 \subsection{Graphes-dictionnaires}
 \label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
 Le programme \verb+Dico+\index{\verbc{Dico}}\index{Programmes externes!\verbc{Dico}} est également capable
-d’appliquer des graphes-dictionnaires. Il s’agit de graphes qui respectent,
+d’appliquer des graphes-dictionnaires.
+Un graphe-dictionnaire est un graphe qui sert de dictionnaire.
+Les graphes-dictionnaires respectent,
 par défaut\footnote{Les graphes-dictionnaires morphologiques sont une exception
 (section~\ref{section-morphological-dictionary-graphs}) .}, la règle suivante :
 si on les applique avec le programme \verb+Locate+\index{\verbc{Locate}}\index{Programmes externes!\verbc{Locate}} en mode MERGE,\index{MERGE} ils doivent produire des séquences
@@ -1339,7 +1341,12 @@ mais pas \verb+FE+, alors qu’il est impossible de spécifier une telle interdi
 usuel.
 
 \bigskip
-\noindent Le second avantage des graphes-dictionnaires est qu’ils peuvent exploiter les résultats
+\noindent Pour faire un graphe-dictionaire, on utilise les outils pour les graphes (menu FSGraph, section~\ref{section-editing-graphs})
+mais on les sauvegarde et on les compile de préférence dans le répertoire pour les dictionnaires (le répertoire Dela).
+Pour appliquer un graphe-dictionnaire à un texte, on utilise un outil pour les dictionnaires: "Text > Apply lexical resources" (section~\ref{text-applying-dictionaries}).
+\bigskip
+
+\noindent Un autre avantage des graphes-dictionnaires est qu’ils peuvent exploiter les résultats
 fournis par les dictionnaires appliqués précédemment. Ainsi, on peut appliquer le dictionnaire
 général, puis étiqueter comme noms propres les mots inconnus commençant par une majuscule à l’aide
 du graphe \verb$NPr+$ de la figure~\ref{graph-NPr}. Le \verb$+$ dans le nom du graphe lui donne une

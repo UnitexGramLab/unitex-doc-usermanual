@@ -1337,7 +1337,9 @@ follows the apostrophe.
 \subsection{Dictionary graphs}
 \label{section-dictionary-graphs}\index{Dictionary graphs}
 The \verb+Dico+\index{\verbc{Dico}}\index{External programs!\verbc{Dico}} program
-can also apply dictionary graphs. Dictionary graphs,
+can also apply dictionary graphs.
+A dictionary graph is a graph used as a dictionary.
+Dictionary graphs,
 by default,\footnote{Morphological dictionary-graphs are an exception (section
 \ref{section-morphological-dictionary-graphs}) .}
 conform to the following rule: if applied by \verb+Locate+\index{\verbc{Locate}}\index{External
@@ -1358,6 +1360,11 @@ elements. We can observe a first advantage of graphs over usual dictionaries: we
 with double quotes. Thus, this graph will
 correctly match \verb+Fe+ but not \verb+FE+, while this restriction cannot be specified in a
 normal DELAF.
+
+\bigskip
+\noindent To make a dictionary graph, use the graph tools (FSGraph menu, section~\ref{section-editing-graphs})
+but save and compile it preferably in the directory for dictionaries (Dela directory).
+To apply a dictionary graph to a text, use a dictionary tool: "Text > Apply lexical resources" (section~\ref{text-applying-dictionaries}).
 
 \bigskip
 \noindent Another advantage of dictionary graphs is that they can use results
