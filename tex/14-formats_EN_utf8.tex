@@ -2119,15 +2119,16 @@ if this line contains 1, they are recorded;
 \label{subsection-arabic-typo-rules}
 \index{Arabic typographic rules}
 \index{File!\verbc{arabic_typo_rules.txt}}
-For Arabic, dictionary lookups can be parameterized with a file that describes whether some typographic 
-variations are allowed or not. This file is made of lines like the following:
+For Arabic, dictionary lookups can be parameterized with a configuration file named
+\verb$Arabic/arabic_typo_rules.txt$, which allows for some typographic variations
+(Section~\ref{section-vowel-restoration}). This file contains lines like the following:
 
 \bigskip
-\noindent \verb+fatha omission=YES+
+\verb+fatha omission=YES+
 
 \bigskip
-\noindent where \verb+fatha omission+ is the name of the rule. For a complete description of all the
-available rules, you have to consult the \verb+Arabic.h+ file in the program sources.
+\noindent where \verb+fatha omission+ is the name of a predefined rule. All the
+available rules are described in the \verb+Arabic.h+ file in the program sources.
 
 
 \subsection{Offsets file of difference}

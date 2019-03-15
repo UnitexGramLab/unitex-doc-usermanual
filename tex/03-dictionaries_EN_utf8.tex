@@ -1486,6 +1486,61 @@ token, the link between them is displayed with a dashed line.
 \end{center}
 \end{figure}
 
+\subsection{Allowing for omission, substitution or insertion of letters}
+\label{section-vowel-restoration}\index{Arabic typographic rules}
+For Arabic and other languages, the recognition of words may allow for some differences between dictionary entries and sequences in the text. In Arabic, some letters, mostly short vowels, are generally omitted in written text.\footnote{ Other letters may be substituted, e.g. a letter that denotes a glottal stop (\textit{hamza}) and a long \textit{a}  (\textit{alif}) may be replaced by the letter that denotes a long \textit{a}. A transposition of adjacent letters and an insertion are also allowed.} These typographical variations are optional but follow specific rules.
+
+\bigskip
+\noindent If the Arabic dictionary is fully vowelled, Unitex is able to deal with unvowelled, partially vowelled and fully vowelled words for Arabic. If a word includes one or several explicit vowels, the lookup procedure retains only the word candidates with those same vowel(s) at the same position(s) from the dictionary.
+
+\bigskip
+\noindent Unitex allows for parameterizing dictionary lookup with a configuration file that specifies which typographic variations are allowed (Section~\ref{subsection-arabic-typo-rules}). This file is made of lines like the following:
+
+\bigskip
+\verb$fatha omission=YES$
+
+\bigskip
+\noindent where \verb$fatha omission$ is the name of a rule. The data distributed with Unitex contains this file with 26 predefined rules, but you can change them by substituting \verb$NO$ for \verb$YES$. The predefined rules are designed to be used with a fully vowelled dictionary. Here are examples, with Buckwalter++ transliteration (cf.~Fig.~\ref{buckwalter1} and \ref{buckwalter2}):
+
+\begin{itemize}
+\item Omission of one letter
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& final \textit{GN} $\rightarrow$ \verb$<E>$ & {\small (dictionary form $\rightarrow$ allowed form)} \kill
+      Rule name	& Meaning & Example \\ 
+                    	&              & {\small (dictionary form $\rightarrow$ allowed form)} \\ 
+      {\small fatha omission}	& \textit{a} $\rightarrow$ \verb$<E>$ & \textit{kitaAbN} $\rightarrow$ \textit{kitAbN} \\
+      {\small dammatan omission at end}	& final \textit{N} $\rightarrow$ \verb$<E>$ & \textit{kitaAbN} $\rightarrow$ \textit{kitaAb} \\ \hline
+    \end{longtable}
+    
+\item Omission of two adjacent letters
+    \begin{longtable}{| l | l | l | }\hline
+      {\small shadda dammatan omission at end}	& final \textit{GN} $\rightarrow$ \verb$<E>$ & {\small (dictionary form $\rightarrow$ allowed form)} \kill
+      {\small shadda fatha omission}	& \textit{Ga} $\rightarrow$ \verb$<E>$ & \textit{katGaba} $\rightarrow$ \textit{katba} \\
+      {\small shadda dammatan omission at end} & final \textit{GN} $\rightarrow$ \verb$<E>$ & \textit{ruwsiyGN} $\rightarrow$ \textit{ruwsiy} \\\hline
+    \end{longtable}
+    
+\item Transposition of two adjacent letters
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& final \textit{GN} $\rightarrow$ \verb$<E>$ & {\small (dictionary form $\rightarrow$ allowed form)} \kill
+      {\small fathatan alef equiv alef fathatan}	& final \textit{FA} $\rightarrow$ \textit{AF} & \textit{kitabFA} $\rightarrow$ \textit{kitabAF} \\\hline
+    \end{longtable}
+    
+\item Substitution
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& final \textit{GN} $\rightarrow$ \verb$<E>$ & {\small (dictionary form $\rightarrow$ allowed form)} \kill
+      {\small alef hamza above O}	& initial \textit{O} $\rightarrow$ \textit{A} & \textit{Oakala} $\rightarrow$ \textit{Aakala} \\\hline
+    \end{longtable}
+    
+\item Insertion
+    \begin{longtable}{| l | l | l | }\hline
+      {\small shadda dammatan omission at end}	& final \textit{GN} $\rightarrow$ \verb$<E>$ & {\small (dictionary form $\rightarrow$ allowed form)} \kill
+      {\small solar assimilation}	& \textit{Alt} $\rightarrow$ \textit{AltG} & \textit{AltaAniy} $\rightarrow$ \textit{AltGaAniy} \\\hline
+    \end{longtable}
+ \vspace{-3mm}    and the same for 14 other consonants besides \textit{t}.
+\end{itemize}
+
+
+
 
 \section{Bibliography}
 
