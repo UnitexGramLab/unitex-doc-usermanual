@@ -2090,20 +2090,23 @@ enregistrés; si cette ligne contient 1, ils sont enregistrés;
 
 \subsection{Règles typographiques de l'arabe: arabic\_typo\_rules.txt}
 \label{subsection-arabic-typo-rules}
+\index{Règles!typographiques de l'arabe}
 \index{Fichier!des règles typographiques de l'arabe}
 \index{Fichier!\verbc{arabic_typo_rules.txt}}
-Pour l'arabe, la recherche dans le dictionnaire peut être paramétrée avec un fichier qui décrit si
-certaines variations typographiques sont autorisées ou non. Ce fichier est constitué de lignes comme
-celles-ci:
+Pour l'arabe, la recherche dans le dictionnaire peut être paramétrée avec un fichier de configuration nommé
+\verb$Arabic/arabic_typo_rules.txt$, qui autorise
+certaines variations typographiques (section~\ref{section-vowel-restoration}). Ce fichier est constitué de lignes comme
+celle-ci:
 
 \bigskip
-\noindent \verb+fatha omission=YES+
+\verb+fatha omission=YES+
 
 \bigskip
-\noindent où \verb+fatha omission+ est le nom de la règle. Pour une description complète de toutes
-les règles disponibles, il faut consulter le fichier \verb+Arabic.h+ dans les sources du programme.
+\noindent où \verb+fatha omission+ est le nom d'une règle prédéfinie. Toutes
+les règles disponibles sont décrites dans le fichier \verb+Arabic.h+ dans les sources du programme.
 
-\subsection{fichier d'offsets de différence}
+
+\subsection{Fichier d'offsets de différence}
 \label{subsection-offsets-diff}
 
 Les fichiers d'offsets de différence sont lu et écrit par l'outils Unxmlize(\ref{section-Unxmlize}), DumpOffsets(\ref{section-DumpOffsets}), Normalize(\ref{section-Normalize}), Fst2Txt(\ref{section-Fst2Txt}), Tokenize(\ref{section-Tokenize}), Concord(\ref{section-Concord}) et GrfTest, et lu par Tokenize(\ref{section-Tokenize}).

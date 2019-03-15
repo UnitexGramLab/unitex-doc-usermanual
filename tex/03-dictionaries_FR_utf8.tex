@@ -1468,6 +1468,63 @@ on obtient de nouveaux chemins dans l'automate du texte comme le montre la figur
 \end{center}
 \end{figure}
 
+\subsection{Tolérance à l'omission, à la substitution et à l'insertion de lettres}
+\label{section-vowel-restoration}\index{Règles!typographiques de l'arabe}
+Pour l'arabe et d'autres langues, la reconnaissance des mots peut tolérer certaines différences entre les entrées de dictionnaire et les séquences présentes dans le texte. En arabe, certaines lettres, surtout des voyelles brèves, sont généralement omises à l'écrit
+\footnote{ D'autres lettres peuvent être remplacées, par exemple une lettre qui représente l'occlusive glottale (\textit{hamza}) et \textit{a} long (\textit{alif}) peut être remplacée par la lettre qui représente \textit{a} long. Une interversion de lettres adjacentes et une insertion sont aussi acceptées dans l'usage.}. Ces variations typographiques sont facultatives mais suivent des règles spécifiques.
+
+\bigskip
+\noindent Si le dictionnaire d'arabe est entièrement voyellé, Unitex peut traiter des mots non voyellés, partiellement voyellés ou entièrement voyellés. Si un mot contient une ou plusieurs voyelles explicites, la procédure de consultation ne retient dans le dictionnaire que les mots qui ont ces mêmes voyelles aux mêmes positions.
+
+\bigskip
+\noindent Unitex donne la possibilité de paramétrer la consultation du dictionnaire à l'aide d'un fichier de configuration qui spécifie quelles variations typographiques sont admises (section~\ref{subsection-arabic-typo-rules}). Ce fichier est constitué de lignes de cette forme:
+
+\bigskip
+\verb$fatha omission=YES$
+
+\bigskip
+\noindent où \verb$fatha omission$ est le nom d'une règle. Les données distribuées avec Unitex fournissent ce fichier avec 26 règles prédéfinies, mais on peut les changer en remplaçant \verb$YES$ par \verb$NO$. Les règles prédéfinies sont conçues pour être utilisées avec un dictionnaire entièrement voyellé. Voici des exemples, avec la translittération Buckwalter++ (cf.~fig.~\ref{buckwalter1} et \ref{buckwalter2}):
+
+\begin{itemize}
+
+\item Omission d'une lettre
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& \textit{GN} final $\rightarrow$ \verb$<E>$ & {\small dictionnaire $\rightarrow$ forme permise)} \kill
+      Nom de la règle	& Signification & Exemple {\small (forme dans le} \\ 
+                    	&              & {\small dictionnaire $\rightarrow$ forme permise)} \\ 
+      {\small fatha omission}	& \textit{a} $\rightarrow$ \verb$<E>$ & \textit{kitaAbN} $\rightarrow$ \textit{kitAbN} \\
+      {\small dammatan omission at end}	& \textit{N} final $\rightarrow$ \verb$<E>$ & \textit{kitaAbN} $\rightarrow$ \textit{kitaAb} \\ \hline
+    \end{longtable}
+    
+\item Omission de deux lettres adjacentes
+    \begin{longtable}{| l | l | l | }\hline
+      {\small shadda dammatan omission at end}	& \textit{GN} final $\rightarrow$ \verb$<E>$ & {\small  dictionnaire $\rightarrow$ forme permise)} \kill
+      {\small shadda fatha omission}	& \textit{Ga} $\rightarrow$ \verb$<E>$ & \textit{katGaba} $\rightarrow$ \textit{katba} \\
+      {\small shadda dammatan omission at end} & \textit{GN} final $\rightarrow$ \verb$<E>$ & \textit{ruwsiyGN} $\rightarrow$ \textit{ruwsiy} \\\hline
+    \end{longtable}
+    
+\item Interversion de deux lettres adjacentes
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& \textit{GN} final $\rightarrow$ \verb$<E>$ & {\small  dictionnaire $\rightarrow$ forme permise)} \kill
+      {\small fathatan alef equiv alef fathatan}	& \textit{FA} final $\rightarrow$ \textit{AF} & \textit{kitabFA} $\rightarrow$ \textit{kitabAF} \\\hline
+    \end{longtable}
+    
+\item Substitution
+    \begin{longtable}{| l | l | l |}\hline
+      {\small shadda dammatan omission at end}	& \textit{GN} final $\rightarrow$ \verb$<E>$ & {\small  dictionnaire $\rightarrow$ forme permise)} \kill
+      {\small alef hamza above O}	& \textit{O} initial $\rightarrow$ \textit{A} & \textit{Oakala} $\rightarrow$ \textit{Aakala} \\\hline
+    \end{longtable}
+    
+\item Insertion
+    \begin{longtable}{| l | l | l | }\hline
+      {\small shadda dammatan omission at end}	& \textit{GN} final $\rightarrow$ \verb$<E>$ & {\small  dictionnaire $\rightarrow$ forme permise)} \kill
+      {\small solar assimilation}	& \textit{Alt} $\rightarrow$ \textit{AltG} & \textit{AltaAniy} $\rightarrow$ \textit{AltGaAniy} \\\hline
+    \end{longtable}
+ \vspace{-3mm}    et de même pour 14 autres consonnes en plus de \textit{t}.
+\end{itemize}
+
+
+
 \section{Bibliographie}
 
 Le tableau ~\ref{ref-dicos} donne quelques références relatives aux dictionnaires électroniques de
