@@ -1,28 +1,42 @@
 \chapter{Utilisation d'Unitex/GramLab à l'aide de scripts}
 \label{chap-scripts}
 
-On peut utiliser Unitex/GramLab par l'intermédiaire de scripts au lieu de l'interface graphique. Le script lance des commandes Unitex (cf. chapitre~\ref{chap-external-programs}).
-
-\bigskip
-\noindent L'avantage de cette possibilité est qu'on a accès à des options supplémentaires dans les commandes, par exemple l'option \textit{standoff} de la commande \textit{CasSys} (voir section~\ref{section-standOff}), et même à des commandes supplémentaires, comme \textit{DumpOffsets} (voir section~\ref{section-DumpOffsets}). On peut aussi enchainer plusieurs graphes en cascade en mode \emph{merge} dans le prétraitement, alors que l'interface graphique ne permet d'en lancer qu'un.
-L'utilisation de scripts nécessite plus d'habileté en informatique, et en particulier plus de familiarité avec le système d'exploitation.
+On peut utiliser Unitex/GramLab par l'intermédiaire de scripts au lieu de l'interface graphique.
+Le script lance des programmes externes d'Unitex, documentés dans le
+chapitre~\ref{chap-external-programs}. L'avantage de cette possibilité est qu'on a accès à des options
+supplémentaires dans les programmes, par exemple l'option \verb$standoff$ de CasSys
+(section~\ref{section-standOff}), et même à des programmes supplémentaires, comme
+\verb$DumpOffsets$ (section~\ref{section-DumpOffsets}). On peut aussi, pendant le prétraitement,
+enchainer en cascade plusieurs graphes en mode MERGE, alors que l'interface graphique ne permet d'en
+lancer qu'un.
+L'utilisation de scripts nécessite plus d'habileté en informatique, et en particulier plus de familiarité
+avec le système d'exploitation.
 
 \section{Traduire en script un traitement lancé via l'interface graphique}
+\label{section-console}
 
-\subsection{Utilisation de la console}
-
-L'interface graphique d'Unitex garde en mémoire les opérations lancées. On peut ainsi les afficher dans la console (\emph{Info > Console}, section \ref{section-console}). Cela traduit vos clics en une suite de commandes. Une façon simple d'écrire un script qui utilise Unitex/GramLab est de lancer l'interface graphique Unitex, d'y réaliser une première version du traitement, d'afficher la console (fig. \ref{fig-console}), de sélectionner les étapes à retenir, de les copier dans un fichier texte et éventuellement de les adapter en un script opérationnel. Pour sélectionner des étapes dans la console, cliquer sur les cellules correspondantes de la colonne \textit{Log \#} (un majuscule-clic et un ctrl-clic ont l'effet habituel pour sélectionner plusieurs éléments). On peut y ajouter des commandes ou options documentées dans  le chapitre \ref{chap-external-programs}, même si elles ne sont pas disponibles via l'interface.
+Une façon simple d'écrire un script qui utilise Unitex/GramLab est de lancer l'interface graphique Unitex,
+d'y réaliser une première version du traitement, puis de traduire les clics en une suite de commandes.
+L'interface graphique d'Unitex garde en mémoire les opérations lancées. On peut ainsi les afficher dans la
+console ("Info > Console", section \ref{section-console}, fig. \ref{fig-console}). On sélectionne les étapes
+à retenir, on les copie dans un fichier texte et éventuellement on les adapte en un script opérationnel.
+Pour sélectionner des étapes dans la console, cliquer sur les cellules correspondantes dans la colonne
+"Log \#" (un majuscule-clic et un ctrl-clic ont l'effet habituel pour sélectionner plusieurs éléments).
+On peut ajouter dans le script des programmes ou options documentés dans le
+chapitre~\ref{chap-external-programs}, même s'ils ne sont pas disponibles via l'interface.
 
 \bigskip
-\noindent On peut formaliser un script sous la forme shell ou batch, ou encore sous la forme d'un script interprété par Unitex.
+\noindent On peut formaliser un script sous la forme shell ou batch, ou encore sous la forme d'un script
+interprété par Unitex.
 
-\subsection{Scripts shell ou batch}
+\section{Scripts shell ou batch}
 \label{section-batch}
 
-On peut formaliser un script sous la forme shell ou batch et le faire exécuter par l'interpréteur de commandes du système d'exploitation.
-
-\bigskip
-\noindent Par exemple, les commandes suivantes ouvrent le corpus \textit{80jours}, sans le prétraitement ni en mode Replace ni en mode Merge, mais avec le dictionnaire par défaut, \textit{Dela\_fr}, puis lancent un \textit{Locate pattern} avec le graphe \textit{test.fst2} et créent une concordance:
+On peut formaliser un script sous la forme shell ou batch et le faire exécuter par l'interpréteur de
+commandes du système d'exploitation. Par exemple, les commandes suivantes ouvrent le corpus
+\verb$80jours$, sans le prétraitement ni en mode REPLACE ni en mode MERGE, mais avec le dictionnaire
+par défaut, \verb$Dela_fr$, puis lancent un "Locate pattern" avec le graphe \verb$test.fst2$
+et créent une concordance:
 
 \begin{verbatim}
 mkdir 
