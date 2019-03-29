@@ -1,0 +1,419 @@
+\chapter{Utilisation d'Unitex/GramLab à l'aide de scripts}
+\label{chap-scripts}
+
+On peut utiliser Unitex/GramLab par l'intermédiaire de scripts au lieu de l'interface graphique. Le script lance des commandes Unitex (cf. chapitre~\ref{chap-external-programs}).
+
+\bigskip
+\noindent L'avantage de cette possibilité est qu'on a accès à des options supplémentaires dans les commandes, par exemple l'option \textit{standoff} de la commande \textit{CasSys} (voir section~\ref{section-standOff}), et même à des commandes supplémentaires, comme \textit{DumpOffsets} (voir section~\ref{section-DumpOffsets}). On peut aussi enchainer plusieurs graphes en cascade en mode \emph{merge} dans le prétraitement, alors que l'interface graphique ne permet d'en lancer qu'un.
+L'utilisation de scripts nécessite plus d'habileté en informatique, et en particulier plus de familiarité avec le système d'exploitation.
+
+\section{Traduire en script un traitement lancé via l'interface graphique}
+
+\subsection{Utilisation de la console}
+
+L'interface graphique d'Unitex garde en mémoire les opérations lancées. On peut ainsi les afficher dans la console (\emph{Info > Console}, section \ref{section-console}). Cela traduit vos clics en une suite de commandes. Une façon simple d'écrire un script qui utilise Unitex/GramLab est de lancer l'interface graphique Unitex, d'y réaliser une première version du traitement, d'afficher la console (fig. \ref{fig-console}), de sélectionner les étapes à retenir, de les copier dans un fichier texte et éventuellement de les adapter en un script opérationnel. Pour sélectionner des étapes dans la console, cliquer sur les cellules correspondantes de la colonne \textit{Log \#} (un majuscule-clic et un ctrl-clic ont l'effet habituel pour sélectionner plusieurs éléments). On peut y ajouter des commandes ou options documentées dans  le chapitre \ref{chap-external-programs}, même si elles ne sont pas disponibles via l'interface.
+
+\bigskip
+\noindent On peut formaliser un script sous la forme shell ou batch, ou encore sous la forme d'un script interprété par Unitex.
+
+\subsection{Scripts shell ou batch}
+\label{section-batch}
+
+On peut formaliser un script sous la forme shell ou batch et le faire exécuter par l'interpréteur de commandes du système d'exploitation.
+
+\bigskip
+\noindent Par exemple, les commandes suivantes ouvrent le corpus \textit{80jours}, sans le prétraitement ni en mode Replace ni en mode Merge, mais avec le dictionnaire par défaut, \textit{Dela\_fr}, puis lancent un \textit{Locate pattern} avec le graphe \textit{test.fst2} et créent une concordance:
+
+\begin{verbatim}
+mkdir 
+"U:\Unitex\French\Corpus\80jours\_snt" 
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+Normalize 
+"U:\Unitex\French/corpus.txt" 
+"-rU:\Unitex\French\Norm.txt" 
+"--output\_offsets=
+U:\Unitex\French\Corpus\80jours\_snt\normalize.out.offsets" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+Tokenize 
+"U:\Unitex\French\Corpus\80jours.snt" 
+"-aU:\Unitex\French\Alphabet.txt" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+Dico 
+"-tU:\Unitex\French\Corpus\80jours.snt" 
+"-aU:\Unitex\French\Alphabet.txt" 
+"C:\Unitex-GramLab\French\Dela\Dela\_fr.bin" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+SortTxt 
+"U:\Unitex\French\Corpus\80jours\_snt\dlf" 
+"-lU:\Unitex\French\Corpus\80jours\_snt\dlf.n" 
+"-oU:\Unitex\French\Alphabet\_sort.txt" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+SortTxt 
+"U:\Unitex\French\Corpus\80jours\_snt\dlc" 
+"-lU:\Unitex\French\Corpus\80jours\_snt\dlc.n" 
+"-oU:\Unitex\French\Alphabet\_sort.txt" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+SortTxt 
+"U:\Unitex\French\Corpus\80jours\_snt\err" 
+"-lU:\Unitex\French\Corpus\80jours\_snt\err.n" 
+"-oU:\Unitex\French\Alphabet\_sort.txt" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+SortTxt 
+"U:\Unitex\French\Corpus\80jours\_snt\tags\_err" 
+"-lU:\Unitex\French\Corpus\80jours\_snt\tags\_err.n" 
+"-oU:\Unitex\French\Alphabet\_sort.txt" 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+Locate 
+"-tU:\Unitex\French\Corpus\80jours.snt" 
+"U:\Unitex\French\Graphs\test.fst2" 
+"-aU:\Unitex\French\Alphabet.txt" 
+-L -M --all -b -Y --stack\_max=1000 
+--max\_matches\_per\_subgraph=200 
+--max\_matches\_at\_token\_pos=400 
+--max\_errors=50 
+-qutf8-no-bom
+
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+Concord 
+"U:\Unitex\French\Corpus\80jours\_snt\concord.ind" 
+"-fCourier new" -s10 -l40 -r55 --html 
+"-aU:\Unitex\French\Alphabet\_sort.txt" 
+--CL -qutf8-no-bom
+\end{verbatim}
+
+\bigskip
+\noindent Pour les détails des scripts et les commentaires éventuels, il faut respecter les conventions propres au système d'exploitation.
+
+\subsection{Scripts interprétés par Unitex/GramLab}
+
+Unitex/GramLab a aussi un interpréteur de scripts, décrit dans ce chapitre, qui a plusieurs avantages par rapport à des scripts shell ou batch.
+\begin{itemize}
+    \item L'exécution est plus rapide que celle d'un script shell ou batch équivalent, car l'interpréteur fait appel à un système de fichiers virtuel.
+    \item L'interpréteur est multiplateformes, comme le reste d'Unitex/GramLab. On peut donc mettre au point un script dans un environnement et le déployer dans un autre, du moment qu'Unitex est installé dans les deux environnements.
+    \item Le traitement n'affecte pas les données de l'utilisateur, car il est réalisé sur une copie de ces données. Seuls les fichiers explicitement spécifiés comme fichiers résultats sont copiés dans les données de l'utilisateur à la fin du traitement.
+\end{itemize}
+
+\bigskip
+\noindent Le script et toutes les ressources linguistiques qu'il utilisera doivent être regroupés dans un \emph{package linguistique}, qu'on peut mettre au point dans un environnement et déployer dans un autre.
+
+\bigskip
+\noindent Le langage de script reconnu est constitué des commandes Unitex/GramLab, y compris quelques commandes spécifiques qui ont été implémentées pour l'interpréteur de scripts. Il peut y avoir des lignes de commentaire, commençant par le caractère \#. Les commandes du système d'exploitation ne sont pas reconnues.
+
+\bigskip
+\noindent L'interpréteur de scripts d'Unitex/GramLab existe en deux variantes, \emph{RunScript} et \emph{BatchRunScript}. \emph{RunScript} permet de lancer un script sur un corpus contenu dans un seul fichier, tandis que \emph{BatchRunScript} permet de lancer un script sur un corpus constitué par tous les fichiers d'un répertoire.
+
+\section{Package linguistique}
+
+\subsection{Création}
+\label{section-creation}
+
+Un package linguistique pour Unitex/GramLab regroupe un ou plusieurs scripts et les ressources linguistiques qu'ils utiliseront. Le package est organisé sous la forme d'une arborescence de répertoires, puis compressé au format Zip.
+
+\bigskip
+\noindent La racine de l'arborescence est un répertoire \emph{projet\_lingpkg} avec deux sous-répertoires, obligatoirement nommés \emph{script} et \emph{resource}. Le ou les scripts doivent être placés dans \emph{projet\_lingpkg/script} et toutes les ressources dans \emph{projet\_lingpkg/resource}. On peut reproduire dans resource l'organisation d'un répertoire personnel Unitex, avec un sous-répertoire pour chaque langue traitée par les scripts (par exemple \emph{French}), puis, à l'intérieur de chaque répertoire de langue, les fichiers d'alphabet (\emph{Alphabet.txt} et \emph{Alphabet\_sort.txt}), le fichier de normalisation (\emph{Norm.txt}), etc. et des sous-répertoires \emph{Dela}, \emph{Graphs}, etc. contenant à leur tour les ressources correspondantes. Avec cette organisation, on peut plus facilement écrire le script en adaptant un script issu de la console.
+
+\bigskip
+\noindent Si on souhaite récupérer la date du package, il faut créer dans le répertoire \emph{projet\_lingpkg/resource} un fichier texte vide dont le nom est VERSION\_AAAAMMJJ (sans extension).
+
+\bigskip
+\noindent Une fois cette arborescence réalisée, on la compresse au format Zip.
+
+\subsection{Lancement avec RunScript}
+
+\emph{RunScript} permet de lancer un script sur un corpus contenu dans un seul fichier. Pour cela, on invoque le programme \emph{UnitexToolLogger} en respectant la syntaxe suivante :
+
+\begin{verbatim}
+UnitexToolLogger [ { SelectOutput <args1> } ] 
+{ InstallLingResourcePackage <args2> } 
+{ RunScript <args3> } 
+{ InstallLingResourcePackage <args4> }
+\end{verbatim}
+
+\bigskip
+\noindent Chaque paire d'accolades délimite l'invocation d'une commande Unitex avec ses arguments.
+
+\begin{enumerate}
+\item L'étape \emph{SelectOutput} est facultative mais recommandée, car \emph{\{ SelectOutput --output=off \}} permet de masquer les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes dans le cas d'une exécution massive.
+\item L'étape suivante, \emph{InstallLingResourcePackage}, installe le contenu du package linguistique dans le système de fichiers virtuel.
+\item L'étape \emph{Rusncript} lance le script. Elle doit définir dans \emph{INPUT\_FILE\_1} le nom du fichier contenant le corpus d'entrée ; dans \emph{OUTPUT\_FILE\_1}, \emph{OUTPUT\_FILE\_2}, etc. le nom du ou des fichiers résultats; dans \emph{PACKAGE\_DIR} le nom du répertoire racine du package linguistique dans le système de fichiers virtuel ; dans \emph{CORPUS\_WORK\_DIR} le nom du répertoire qui contiendra les fichiers créés pendant l'exécution du script.
+\item La dernière étape écrit le ou les fichiers résultats, puis met fin au système de fichiers virtuel.
+\end{enumerate}
+
+\bigskip
+\noindent Par exemple, la commande suivante utilise le package linguistique \emph{test\_lingpkg.zip} et lance le script \emph{test.uniscript} contenu dans ce package, avec comme corpus d'entrée \emph{80jours.txt} et comme fichier de sortie \emph{80jours\_result.html}.
+
+\begin{verbatim}
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+{ SelectOutput --output=off } 
+{ InstallLingResourcePackage 
+-p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
+-x "$:UnitexPkgResource" -v } 
+{ RunScript 
+-v -a INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
+-a "CORPUS_WORK_DIR=$:UnitexPkgWork" 
+-a "PACKAGE_DIR=$:UnitexPkgResource" 
+-a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
+"$:UnitexPkgResource\script\test.uniscript" } 
+{ InstallLingResourcePackage 
+-p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
+-x "$:UnitexPkgResource" -u -v }
+\end{verbatim}
+
+\subsection{Lancement avec BatchRunScript}
+
+\emph{BatchRunScript} permet de lancer un script sur un corpus constitué par tous les fichiers d'un répertoire. On peut ainsi réaliser des traitements massifs efficacement, même sur des documents nombreux contenus dans des fichiers séparés. Le résultat est stocké dans un répertoire de sortie, dans des fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par \emph{.result.txt}. \emph{BatchRunScript} fonctionne en multithread et lance plusieurs exécutions en parallèle: ainsi tous les cœurs de la machine de traitement peuvent fonctionner en même temps et traiter l’ensemble des fichiers plus vite.
+
+\bigskip
+\noindent Pour déployer un script avec \emph{BatchRunScript}, on invoque le programme \emph{UnitexToolLogger} en respectant la syntaxe suivante:
+
+\begin{verbatim}
+UnitexToolLogger { BatchRunScript <args> }
+\end{verbatim}
+
+\bigskip
+\noindent Les arguments doivent définir le nom du répertoire contenant le corpus d'entrée dans le système de fichiers virtuel, le nom du répertoire de sortie, le nombre de threads, le nom du package linguistique et le nom du script. Par exemple, la commande suivante traite tous les fichiers du dossier \emph{input\_folder}, stocke le résultat dans \emph{output\_folder} et fonctionne sur quatre threads :
+
+\begin{verbatim}
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+{ SelectOutput --output=off } 
+{ InstallLingResourcePackage 
+-p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
+-x "$:UnitexPkgResource" -v } 
+{ RunScript -v -a 
+INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
+-a "CORPUS_WORK_DIR=$:UnitexPkgWork" 
+-a "PACKAGE_DIR=$:UnitexPkgResource" 
+-a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
+"$:UnitexPkgResourcescripttest.uniscript" } 
+{ InstallLingResourcePackage 
+-p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
+-x "$:UnitexPkgResource" -u -v }
+\end{verbatim}
+
+\bigskip
+\noindent Les options -v, -m et -p permettent de contrôler quelles informations sont émises sur la console pendant les traitements pour vérification. Ainsi, en utilisant « -v -p », le maximum de sorties seront affichées, ce qui est utile pendant la mise au point. Avec -m et plus encore -f, le minimum d’informations seront affichées.
+
+\bigskip
+\noindent Contrairement à \emph{RunScript}, il n'est pas possible avec BatchRunScript de renvoyer plusieurs fichiers par fichier d'entrée\footnote{Il est possible de contourner cette limitation avec les outils \emph{UnpackFile}/\emph{PackFile} pour regrouper plusieurs fichiers résultats en un seul fichier de type zip}.
+
+\section{Mise au point d'un script pour RunScript}
+
+Pour écrire un script dans un package linguistique, il est recommandé d'adapter un script issu de la console.
+
+\begin{enumerate}
+\item Dans chaque ligne du script issu de la console, supprimer la mention du programme \emph{UnitexToolLogger} en début de ligne. Dans notre exemple, on supprime donc partout \emph{C:\textbackslash UnitexToolLogger.exe}.
+\item Dans les noms des ressources, remplacer le chemin du répertoire de travail personnel par \emph{\{PACKAGE\_DIR\}/resource}. Dans notre exemple, le nom du fichier français de normalisation devient \emph{\{PACKAGE\_DIR\}/resource/French/Norm.txt}.
+\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par \emph{\{CURRENT\_WORK\_DIR\}}. Dans notre exemple, le nom du fichier \emph{80jours.snt} devient \emph{\{CURRENT\_WORK\_DIR\}/80jours.snt}.
+\end{enumerate}
+
+\bigskip
+\noindent La valeur de \emph{\{PACKAGE\_DIR\}} est déjà définie quand le script commence à s'exécuter, mais pour \emph{\{CURRENT\_WORK\_DIR\}} il faut commencer le script par quelques lignes qui vont donner un nom à ce répertoire, le créer et y placer le corpus d'entrée.
+
+\begin{verbatim}
+CURRENT_WORK_DIR = 
+{CORPUS_WORK_DIR}/{UNIQUE_VALUE}
+\end{verbatim}
+
+\bigskip
+\noindent Cette ligne donne un nom au répertoire \emph{\{CURRENT\_WORK\_DIR\}}. La valeur de \emph{\{CORPUS\_WORK\_DIR\}} est déjà définie quand le script commence à s'exécuter. La variable \emph{\{UNIQUE\_VALUE\}} contient une chaine de caractères définie par \emph{RunScript} ou par \emph{BatchRunScript}, avec la garantie que la chaine est différente pour chaque exécution de \emph{RunScript} ou pour chaque thread de \emph{BatchRunScript} s’exécutant simultanément. Cela permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés.
+
+\begin{verbatim}
+DuplicateFile -p 
+{CURRENT_WORK_DIR}
+\end{verbatim}
+
+\bigskip
+\noindent Comme la commande \emph{mkdir} n’est pas utilisable dans un script interprété par Unitex/GramLab, on utilise \emph{DuplicateFile -p} pour créer le répertoire. Ensuite, on y copie le corpus d’entrée:
+
+\begin{verbatim}
+DuplicateFile -i 
+{INPUT_FILE_1} 
+{CURRENT_WORK_DIR}/corpus.txt
+\end{verbatim}
+
+\bigskip
+\noindent Dans notre exemple, la première commande du script issu de la console utilise la commande \emph{mkdir} pour créer le sous-répertoire \emph{corpus\_snt}, on doit donc la remplacer par \emph{DuplicateFile} :
+
+\begin{verbatim}
+DuplicateFile --make-dir 
+{CURRENT_WORK_DIR}/corpus_snt
+\end{verbatim}
+
+\bigskip
+\noindent Les deux premières lignes ci-dessous récupèrent des informations sur la version d'Unitex utilisée et les sauvegardent dans des fichiers:
+
+\begin{verbatim}
+VersionInfo -n -o 
+{CURRENT_WORK_DIR}/newrevision.txt
+VersionInfo -s -o 
+{CURRENT_WORK_DIR}/semver.txt
+\end{verbatim}
+
+\bigskip
+\noindent La ligne suivante sauvegarde la date de version du package linguistique (à condition d'avoir créé un fichier \emph{VERSION\_AAAAMMJJ}, voir section \ref{section-creation}):
+
+\begin{verbatim}
+VersionInfo -B -o 
+{CURRENT_WORK_DIR}/builddate.txt
+\end{verbatim}
+
+\bigskip
+\noindent La fin du script doit copier le fichier de sortie et libérer la mémoire:
+
+\begin{verbatim}
+DuplicateFile -i 
+{CURRENT_WORK_DIR}/corpus_final.txt {OUTPUT_FILE_1}
+DuplicateFile --recursive-delete 
+{CURRENT_WORK_DIR}
+\end{verbatim}
+
+\section{Exemple final}
+
+Reprenons l'exemple de la section \ref{section-batch} où un script a été extrait de la console et transformons-le en un script Unitex/Gramlab: créons un package linguistique \emph{test.lingpkg} avec:
+\begin{itemize}
+\item Dans le dossier \emph{resource} :
+\begin{itemize}
+\item Les fichiers d'alphabet (\emph{Alphabet.txt} et \emph{Alphabet\_sort.txt}) et le fichier de normalisation (\emph{Norm.txt}) dans le dossier \emph{French}.
+\item Les fichiers dictionnaire \emph{Dela\_fr.bin} et \emph{Dela\_fr.inf} dans le dossier \emph{French/Dela}.
+\item Le graphe \emph{test.fst2} dans le dossier \emph{French/Graphs} (on peut aussi y placer optionnellement le fichier \emph{test.grf).
+\end{itemize}
+\item Dans le dossier \emph{script} :
+\begin{itemize}
+\item Le fichier \emph{test.uniscript} ci-dessous:
+\end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+CURRENT_WORK_DIR = 
+{CORPUS_WORK_DIR}/{UNIQUE_VALUE}
+
+DuplicateFile -p 
+{CURRENT_WORK_DIR}
+
+DuplicateFile --make-dir 
+{CURRENT_WORK_DIR}/corpus_snt
+
+DuplicateFile -i 
+{INPUT_FILE_1} 
+{CURRENT_WORK_DIR}/corpus.txt
+
+Normalize 
+"{CURRENT_WORK_DIR}/corpus.txt" 
+"-r{PACKAGE_DIR}/resource/French/Norm.txt" 
+"--output_offsets=
+{CURRENT_WORK_DIR}/corpus_snt/normalize.out.offsets" 
+-qutf8-no-bom
+
+Tokenize 
+"{CURRENT_WORK_DIR}/corpus.snt" 
+"-a{PACKAGE_DIR}/resource/French/Alphabet.txt" 
+-qutf8-no-bom
+
+Dico 
+"-t{CURRENT_WORK_DIR}/corpus.snt" 
+"-a{PACKAGE_DIR}/resource/French/Alphabet.txt" 
+"{PACKAGE_DIR}/resource/French/Dela/Dela_fr.bin" 
+-qutf8-no-bom
+
+SortTxt 
+"{CURRENT_WORK_DIR}/corpus_snt/dlf" 
+"-l{CURRENT_WORK_DIR}/corpus_snt/dlf.n" 
+"-o{PACKAGE_DIR}/resource/French/Alphabet_sort.txt" 
+-qutf8-no-bom
+
+SortTxt 
+"{CURRENT_WORK_DIR}/corpus_snt/dlc" 
+"-l{CURRENT_WORK_DIR}/corpus_snt/dlc.n" 
+"-o{PACKAGE_DIR}/resource/French/Alphabet_sort.txt" 
+-qutf8-no-bom
+
+SortTxt 
+"{CURRENT_WORK_DIR}/corpus_snt/err" 
+"-l{CURRENT_WORK_DIR}/corpus_snt/err.n" 
+"-o{PACKAGE_DIR}/resource/French/Alphabet_sort.txt" 
+-qutf8-no-bom
+
+SortTxt 
+"{CURRENT_WORK_DIR}/corpus_snt/tags_err" 
+"-l{CURRENT_WORK_DIR}/corpus_snt/tags_err.n" 
+"-o{PACKAGE_DIR}/resource/French/Alphabet_sort.txt" 
+-qutf8-no-bom
+
+Locate 
+"-t{CURRENT_WORK_DIR}/corpus.snt" 
+"{PACKAGE_DIR}/resource/French/Graphs/test.fst2" 
+"-a{PACKAGE_DIR}/resource/French/Alphabet.txt" 
+-L -M --all -b -Y --stack_max=1000 
+--max_matches_per_subgraph=200 
+--max_matches_at_token_pos=400 
+--max_errors=50 -qutf8-no-bom
+
+Concord 
+"{CURRENT_WORK_DIR}/corpus_snt/concord.ind" 
+"-fCourier new" -s10 -l40 -r55 --html 
+"-a{PACKAGE_DIR}/resource/French/Alphabet_sort.txt" 
+--CL -qutf8-no-bom
+
+DuplicateFile -i 
+{CURRENT_WORK_DIR}/corpus_snt/concord.html 
+{OUTPUT_FILE_1}
+
+DuplicateFile --recursive-delete 
+{CURRENT_WORK_DIR}
+\end{verbatim}
+
+\bigskip
+\noindent Nous pouvons alors lancer le script:
+
+\begin{verbatim}
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
+{ SelectOutput --output=off } 
+{ InstallLingResourcePackage 
+-p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
+-x "$:UnitexPkgResource" -v } 
+{ RunScript -v -a INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
+-a "CORPUS_WORK_DIR=$:UnitexPkgWork" 
+-a "PACKAGE_DIR=$:UnitexPkgResource" 
+-a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
+"$:UnitexPkgResourcescripttest.uniscript" } 
+{ InstallLingResourcePackage 
+-p U:UnitexScriptsScriptTesttest_lingpkg.zip 
+-x "$:UnitexPkgResource" -u -v }
+\end{verbatim}
+
+\bigskip
+\noindent Le résultat est juste un fichier de concordance \emph{80jours\_result.html}, placé à côté du fichier \emph{80jours.txt}.
+
+\bigskip
+\noindent Si on ajoute au script de lancement l'option:
+
+\begin{verbatim}
+-a OUTPUT_FILE_2=U:\Unitex\French\Corpus\80jours_result.dic
+\end{verbatim}
+
+on doit ajouter aussi au script interne, en avant-dernière position, la ligne:
+
+\begin{verbatim}
+DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/dlf {OUTPUT_FILE_2}
+\end{verbatim}
+
+On obtient alors comme résultat un fichier dictionnaire \emph{80jours\_result.dic}, placé à côté des deux autres.
+
+
+
+
+
