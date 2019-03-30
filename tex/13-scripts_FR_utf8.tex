@@ -103,9 +103,9 @@ par le caractère \#. Les commandes du système d'exploitation ne sont pas recon
 \bigskip
 \noindent L'interpréteur de scripts d'Unitex/GramLab existe en deux variantes, \verb$RunScript$ et
 \verb$BatchRunScript$. \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un
-ou plusieurs fichiers; \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers
-d'un répertoire, en lançant un même script une fois sur chaque fichier, et en produisant un fichier résultat
-séparé à chaque fois.
+ou plusieurs fichiers. \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers
+d'un répertoire, en lançant le script une fois sur chaque fichier; il produit à chaque fois un fichier résultat
+séparé.
 
 \subsection{Réalisation d'un package linguistique}
 \label{section-creation}
@@ -140,14 +140,14 @@ répertoire \verb$<ling_pkg_name>/resource$ un fichier texte vide dont le nom es
 Pour cela, on invoque le programme \verb$UnitexToolLogger$ en respectant la syntaxe suivante:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
-UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args2> } 
-    { RunScript <args3> } { InstallLingResourcePackage <args4> }
+UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args2> } { RunScript
+    <args3> } { InstallLingResourcePackage <args4> }
 \end{Verbatim}
 
 \noindent Chaque paire d'accolades délimite l'invocation d'une commande Unitex avec ses arguments.
 
 \begin{enumerate}
-\item L'étape \emph{SelectOutput} est facultative mais recommandée, car \emph{\{ SelectOutput --output=off \}} permet de masquer les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes dans le cas d'une exécution massive.
+\item L'étape \verb$SelectOutput$ est facultative mais recommandée, car en incluant \verb${ SelectOutput --output=off }$ on masque les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes dans le cas d'une exécution massive.
 \item L'étape suivante, \emph{InstallLingResourcePackage}, installe le contenu du package linguistique dans le système de fichiers virtuel.
 \item L'étape \emph{Rusncript} lance le script. Elle doit définir dans \emph{INPUT\_FILE\_1} le nom du fichier contenant le corpus d'entrée ; dans \emph{OUTPUT\_FILE\_1}, \emph{OUTPUT\_FILE\_2}, etc. le nom du ou des fichiers résultats; dans \emph{PACKAGE\_DIR} le nom du répertoire racine du package linguistique dans le système de fichiers virtuel ; dans \emph{CORPUS\_WORK\_DIR} le nom du répertoire qui contiendra les fichiers créés pendant l'exécution du script.
 \item La dernière étape écrit le ou les fichiers résultats, puis met fin au système de fichiers virtuel.
