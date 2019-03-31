@@ -35,7 +35,7 @@ ou encore sous la forme d'un script interprété par Unitex (section~\ref{sectio
 On peut mettre un script sous la forme shell ou batch et le faire exécuter par l'interpréteur de
 commandes du système d'exploitation. Par exemple, les commandes suivantes ouvrent le corpus
 \verb$80jours$, sans le prétraitement en mode REPLACE ni en mode MERGE, mais avec le dictionnaire
-par défaut, \verb$Dela_fr$, puis lancent un "Locate pattern" avec le graphe \verb$test.fst2$
+par défaut, \verb$Dela_fr$, puis lancent un "Locate pattern" avec le graphe \verb$pattern.fst2$
 et créent une concordance:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
@@ -61,7 +61,7 @@ mkdir "U:\Unitex\French\Corpus\80jours_snt"
     "-lU:\Unitex\French\Corpus\80jours_snt\tags_err.n" "-oU:\Unitex\French\Alphabet_sort.txt"
     -qutf8-no-bom
 "C:\Unitex-GramLab\App\UnitexToolLogger.exe" Locate "-tU:\Unitex\French\Corpus\80jours.snt" 
-    "U:\Unitex\French\Graphs\test.fst2" "-aU:\Unitex\French\Alphabet.txt" -L -M --all -b -Y
+    "U:\Unitex\French\Graphs\pattern.fst2" "-aU:\Unitex\French\Alphabet.txt" -L -M --all -b -Y
     --stack_max=1000 --max_matches_per_subgraph=200 --max_matches_at_token_pos=400 
     --max_errors=50 -qutf8-no-bom
 "C:\Unitex-GramLab\App\UnitexToolLogger.exe" Concord
@@ -127,7 +127,7 @@ correspondantes. Avec cette organisation, on peut plus facilement écrire le scr
 issu de la console.
 
 \bigskip
-\noindent Si on souhaite mettre à la disposition du script la date du package, il faut créer dans le
+\noindent Si on souhaite que le script ait accès à la date du package, il faut créer dans le
 répertoire \verb$<ling_pkg_name>/resource$ un fichier texte vide dont le nom est
 \verb$VERSION_AAAAMMJJ$ (sans extension).
 
@@ -147,87 +147,94 @@ UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args
 \noindent Chaque paire d'accolades délimite l'invocation d'une commande Unitex avec ses arguments.
 
 \begin{enumerate}
-\item L'étape \verb$SelectOutput$ est facultative mais recommandée, car en incluant \verb${ SelectOutput --output=off }$ on masque les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes dans le cas d'une exécution massive.
-\item L'étape suivante, \emph{InstallLingResourcePackage}, installe le contenu du package linguistique dans le système de fichiers virtuel.
-\item L'étape \emph{Rusncript} lance le script. Elle doit définir dans \emph{INPUT\_FILE\_1} le nom du fichier contenant le corpus d'entrée ; dans \emph{OUTPUT\_FILE\_1}, \emph{OUTPUT\_FILE\_2}, etc. le nom du ou des fichiers résultats; dans \emph{PACKAGE\_DIR} le nom du répertoire racine du package linguistique dans le système de fichiers virtuel ; dans \emph{CORPUS\_WORK\_DIR} le nom du répertoire qui contiendra les fichiers créés pendant l'exécution du script.
+\item L'étape \verb$SelectOutput$ est facultative mais recommandée. En l'incluant sous la forme
+suivante:\\
+\verb$     { SelectOutput --output=off }$\\
+on masque les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes
+dans le cas d'une exécution massive.
+\item L'étape suivante, \verb$InstallLingResourcePackage$, installe le contenu du package linguistique
+dans le système de fichiers virtuel.
+\item L'étape \verb$Rusncript$ lance le script. Elle doit définir dans  \verb$INPUT\_FILE\_1$,
+\verb$INPUT\_FILE\_2$, etc., le nom du ou des fichiers contenant le corpus d'entrée; dans
+\verb$OUTPUT\_FILE\_1$, \verb$OUTPUT\_FILE\_2$, etc., le nom du ou des fichiers résultats;
+dans \verb$PACKAGE\_DIR$ le nom du répertoire racine du package linguistique dans le système
+de fichiers virtuel ; dans \verb$CORPUS\_WORK\_DIR$ le nom du répertoire qui contiendra les fichiers
+créés pendant l'exécution du script.
 \item La dernière étape écrit le ou les fichiers résultats, puis met fin au système de fichiers virtuel.
 \end{enumerate}
 
-\noindent Par exemple, la commande suivante utilise le package linguistique \emph{test\_lingpkg.zip} et lance le script \emph{test.uniscript} contenu dans ce package, avec comme corpus d'entrée \emph{80jours.txt} et comme fichier de sortie \emph{80jours\_result.html}.
+\noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ et lance
+le script \verb$uniscript$ contenu dans ce package, avec comme corpus d'entrée \verb$80jours.txt$
+et comme fichier de sortie \verb$80jours_result.html$.
 
-\begin{verbatim}
-"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
-{ SelectOutput --output=off } 
-{ InstallLingResourcePackage 
--p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
--x "$:UnitexPkgResource" -v } 
-{ RunScript 
--v -a INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
--a "CORPUS_WORK_DIR=$:UnitexPkgWork" 
--a "PACKAGE_DIR=$:UnitexPkgResource" 
--a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
-"$:UnitexPkgResource\script\test.uniscript" } 
-{ InstallLingResourcePackage 
--p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
--x "$:UnitexPkgResource" -u -v }
-\end{verbatim}
+\begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
+"C:\Unitex-GramLab\App\UnitexToolLogger.exe" { SelectOutput --output=off } {
+    InstallLingResourcePackage -p U:\Unitex\Scripts\ScriptTest\pkg.zip -x "$:UnitexPkgResource" -v
+    } { RunScript -v -a INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
+    -a "CORPUS_WORK_DIR=$:UnitexPkgWork" -a "PACKAGE_DIR=$:UnitexPkgResource"
+    -a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
+    "$:UnitexPkgResource\script\uniscript" } { InstallLingResourcePackage
+    -p U:\Unitex\Scripts\ScriptTest\pkg.zip -x "$:UnitexPkgResource" -u -v }
+\end{Verbatim}
 
 \subsection{Lancement avec BatchRunScript}
 
-\emph{BatchRunScript} permet de lancer un script sur un corpus constitué par tous les fichiers d'un répertoire. On peut ainsi réaliser des traitements massifs efficacement, même sur des documents nombreux contenus dans des fichiers séparés. Le résultat est stocké dans un répertoire de sortie, dans des fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par \emph{.result.txt}. \emph{BatchRunScript} fonctionne en multithread et lance plusieurs exécutions en parallèle: ainsi tous les cœurs de la machine de traitement peuvent fonctionner en même temps et traiter l’ensemble des fichiers plus vite.
+\verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers d'un répertoire.
+Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
+On peut ainsi réaliser des traitements massifs efficacement, même sur des documents nombreux
+contenus dans des fichiers séparés. Le résultat est stocké dans un répertoire de sortie, dans des
+fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par \verb$.result.txt$.
+\verb$BatchRunScript$ fonctionne en multithread et lance plusieurs exécutions en parallèle: ainsi
+tous les cœurs de la machine de traitement peuvent fonctionner en même temps et traiter
+l’ensemble des fichiers plus vite.
 
 \bigskip
-\noindent Pour déployer un script avec \emph{BatchRunScript}, on invoque le programme \emph{UnitexToolLogger} en respectant la syntaxe suivante:
+\noindent Pour déployer un script avec \verb$BatchRunScript$, on respecte la syntaxe suivante:
 
 \begin{verbatim}
 UnitexToolLogger { BatchRunScript <args> }
 \end{verbatim}
 
-\bigskip
-\noindent Les arguments doivent définir le nom du répertoire contenant le corpus d'entrée dans le système de fichiers virtuel, le nom du répertoire de sortie, le nombre de threads, le nom du package linguistique et le nom du script. Par exemple, la commande suivante traite tous les fichiers du dossier \emph{input\_folder}, stocke le résultat dans \emph{output\_folder} et fonctionne sur quatre threads :
+\noindent Les arguments doivent définir le nom du répertoire contenant le corpus d'entrée
+dans le système de fichiers virtuel, le nom du répertoire de sortie, le nombre de threads, le nom
+du package linguistique et le nom du script. Par exemple, la commande suivante traite tous les
+fichiers du répertoire \verb$input_folder$, stocke les résultats dans \verb$output_folder$
+et fonctionne sur quatre threads:
 
-\begin{verbatim}
-"C:\Unitex-GramLab\App\UnitexToolLogger.exe" 
-{ SelectOutput --output=off } 
-{ InstallLingResourcePackage 
--p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
--x "$:UnitexPkgResource" -v } 
-{ RunScript -v -a 
-INPUT_FILE_1=U:\Unitex\French\Corpus\80jours.txt 
--a "CORPUS_WORK_DIR=$:UnitexPkgWork" 
--a "PACKAGE_DIR=$:UnitexPkgResource" 
--a OUTPUT_FILE_1=U:\Unitex\French\Corpus\80jours_result.html 
-"$:UnitexPkgResourcescripttest.uniscript" } 
-{ InstallLingResourcePackage 
--p U:\Unitex\Scripts\ScriptTest\test_lingpkg.zip 
--x "$:UnitexPkgResource" -u -v }
-\end{verbatim}
+\begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
+"C:\Program Files (x86)\Unitex-GramLab\App\UnitexToolLogger.exe" { BatchRunScript
+    -i .\input_folder -o .\output_folder -t 4 .\pkg -v -p -m -s script/uniscript }
+\end{Verbatim}
+
+\noindent Les options \verb$-v$, \verb$-m$ et \verb$-p$ permettent de contrôler quelles 
+informations sont émises sur la console pendant les traitements. Ainsi, en utilisant \verb$-v -p$,
+on affiche le maximum de sorties, ce qui est utile pendant la mise au point. Avec \verb$-m$
+et plus encore \verb$-f$, on affiche le minimum de messages.
 
 \bigskip
-\noindent Les options -v, -m et -p permettent de contrôler quelles informations sont émises sur la console pendant les traitements pour vérification. Ainsi, en utilisant « -v -p », le maximum de sorties seront affichées, ce qui est utile pendant la mise au point. Avec -m et plus encore -f, le minimum d’informations seront affichées.
-
-\bigskip
-\noindent Contrairement à \emph{RunScript}, il n'est pas possible avec BatchRunScript de renvoyer plusieurs fichiers par fichier d'entrée\footnote{Il est possible de contourner cette limitation avec les outils \emph{UnpackFile}/\emph{PackFile} pour regrouper plusieurs fichiers résultats en un seul fichier de type zip}.
+\noindent Avec \verb$BatchRunScript$, une exécution du script sur un fichier ne peut pas
+renvoyer plusieurs fichiers, contrairement à \verb$RunScript$\footnote{Il est possible de
+contourner cette limitation avec les outils \texttt{PackFile}  et \texttt{UnpackFile}, en
+regroupant plusieurs fichiers résultats en un seul fichier de type Zip.}.
 
 \subsection{Mise au point d'un script pour RunScript}
 \label{section-script-for-runscript}
-Pour écrire un script dans un package linguistique, il est recommandé d'adapter un script issu de la console.
+Pour écrire un script dans un package linguistique, il est recommandé d'adapter un script issu
+de la console.
 
-\begin{enumerate}
-\item Dans chaque ligne du script issu de la console, supprimer la mention du programme \emph{UnitexToolLogger} en début de ligne. Dans notre exemple, on supprime donc partout \emph{C:\textbackslash UnitexToolLogger.exe}.
-\item Dans les noms des ressources, remplacer le chemin du répertoire de travail personnel par \emph{\{PACKAGE\_DIR\}/resource}. Dans notre exemple, le nom du fichier français de normalisation devient \emph{\{PACKAGE\_DIR\}/resource/French/Norm.txt}.
-\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par \emph{\{CURRENT\_WORK\_DIR\}}. Dans notre exemple, le nom du fichier \emph{80jours.snt} devient \emph{\{CURRENT\_WORK\_DIR\}/80jours.snt}.
-\end{enumerate}
+\begin{itemize}
+\item Dans chaque ligne du script issu de la console, supprimer la mention du programme
+\verb$UnitexToolLogger$ en début de ligne, c'est-à-dire dans l'exemple {\small \verb$"C:\Program Files (x86)\Unitex-GramLab\App\UnitexToolLogger.exe"$}.
+\item Dans les noms des ressources, remplacer le chemin du répertoire de travail par \verb${PACKAGE_DIR}/resource$. Dans notre exemple, le nom du fichier français de normalisation devient \verb${PACKAGE_DIR}/resource/French/Norm.txt$.
+\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par \verb${CURRENT_WORK_DIR}$. Dans notre exemple, le nom du fichier \verb$80jours.snt$ devient \verb${CURRENT_WORK_DIR}/80jours.snt$.
+\end{itemize}
 
-\bigskip
-\noindent La valeur de \emph{\{PACKAGE\_DIR\}} est déjà définie quand le script commence à s'exécuter, mais pour \emph{\{CURRENT\_WORK\_DIR\}} il faut commencer le script par quelques lignes qui vont donner un nom à ce répertoire, le créer et y placer le corpus d'entrée.
+\noindent La valeur de \verb${PACKAGEDIR}$ est déjà définie quand le script commence à s'exécuter, mais pour \verb${CURRENT_WORK_DIR}$ il faut commencer le script par quelques lignes qui donnent un nom à ce répertoire, le créent et y placent le corpus d'entrée.
 
 \begin{verbatim}
-CURRENT_WORK_DIR = 
-{CORPUS_WORK_DIR}/{UNIQUE_VALUE}
+CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 \end{verbatim}
 
-\bigskip
 \noindent Cette ligne donne un nom au répertoire \emph{\{CURRENT\_WORK\_DIR\}}. La valeur de \emph{\{CORPUS\_WORK\_DIR\}} est déjà définie quand le script commence à s'exécuter. La variable \emph{\{UNIQUE\_VALUE\}} contient une chaine de caractères définie par \emph{RunScript} ou par \emph{BatchRunScript}, avec la garantie que la chaine est différente pour chaque exécution de \emph{RunScript} ou pour chaque thread de \emph{BatchRunScript} s’exécutant simultanément. Cela permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés.
 
 \begin{verbatim}
