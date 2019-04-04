@@ -102,7 +102,8 @@ d'utilisation à la fin du traitement.
 \end{itemize}
 \end{itemize}
 
-\noindent Le langage de script reconnu est constitué des programmes externes d'Unitex, y compris quelques programmes qui ont été implémentés spécialement pour l'interpréteur de scripts
+\noindent Le langage de script reconnu est constitué des programmes externes d'Unitex, y compris
+quelques programmes qui ont été implémentés spécialement pour l'interpréteur de scripts
 (section~\ref{section-script-for-runscript}). Il peut y avoir des lignes de commentaires, commençant
 par le caractère \#. Les commandes du système d'exploitation ne sont pas reconnues.
 
@@ -143,13 +144,17 @@ répertoire \verb$<ling_pkg_name>/resource$ un fichier texte vide dont le nom es
 \noindent Une fois cette arborescence réalisée, on la compresse au format Zip.
 
 \bigskip
-\noindent Par exemple, si on veut encapsuler dans un package \verb$pkg.zip$ le traitement de la section \ref{section-batch}, il faut prévoir dans un répertoire \verb$pkg$:
+\noindent Par exemple, si on veut encapsuler dans un package \verb$pkg.zip$ le traitement de la
+section \ref{section-batch}, il faut prévoir dans un répertoire \verb$pkg$:
 \begin{itemize}
 \item dans le sous-répertoire \verb$resource$:
 \begin{itemize}
-\item les fichiers d'alphabet, \verb$Alphabet.txt$ et \verb$Alphabet_sort.txt$, et le fichier de normalisation \verb$Norm.txt$ dans \verb$French$;
-\item les fichiers dictionnaire \verb$Dela_fr.bin$ et \verb$Dela_fr.inf$ dans le répertoire \verb$French/Dela$;
-\item le graphe \verb$pattern.fst2$ dans \verb$French/Graphs$ (on peut aussi y placer optionnellement le fichier \verb$pattern.grf$);
+\item les fichiers d'alphabet, \verb$Alphabet.txt$ et \verb$Alphabet_sort.txt$, et le fichier de
+normalisation \verb$Norm.txt$ dans \verb$French$;
+\item les fichiers dictionnaire \verb$Dela_fr.bin$ et \verb$Dela_fr.inf$ dans le répertoire
+\verb$French/Dela$;
+\item le graphe \verb$pattern.fst2$ dans \verb$French/Graphs$ (on peut aussi y placer optionnellement
+le fichier \verb$pattern.grf$);
 \end{itemize}
 \item dans le sous-répertoire \verb$script$, le fichier contenant le script.
 \end{itemize}
@@ -185,7 +190,8 @@ créés pendant l'exécution du script.
 \item La dernière étape écrit le ou les fichiers résultats, puis met fin au système de fichiers virtuel.
 \end{enumerate}
 
-\noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ de la section~\ref{section-creation} et lance
+\noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ de la
+section~\ref{section-creation} et lance
 le script \verb$uniscript$ contenu dans ce package, avec comme corpus d'entrée \verb$80jours.txt$
 et comme fichier de sortie \verb$80jours_result.html$.
 
@@ -251,19 +257,32 @@ de la console, comme celui de la section~\ref{section-batch}.
 
 \begin{itemize}     \hyphenation{exem-ple}
 \item Dans chaque ligne du script issu de la console, supprimer la mention du programme
-\verb$UnitexToolLogger$ en début de ligne, c'est-à-dire dans notre exemple \verb$"C:\Unitex-GramLab\App\UnitexToolLogger.exe"$.
-\item Dans les noms des ressources, remplacer le chemin du répertoire de travail par \verb${PACKAGE_DIR}/resource$. Dans notre exemple, le fichier de normalisation pour le français devient \verb${PACKAGE_DIR}/resource/French/Norm.txt$.
-\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par \verb${CURRENT_WORK_DIR}$. Dans notre exemple, le nom du fichier \verb$80jours.snt$ devient \verb${CURRENT_WORK_DIR}/80jours.snt$.
+\verb$UnitexToolLogger$ en début de ligne, c'est-à-dire dans notre exemple
+\verb$"C:\Unitex-GramLab\App\UnitexToolLogger.exe"$.
+\item Dans les noms des ressources, remplacer le chemin du répertoire de travail par
+\verb${PACKAGE_DIR}/resource$. Dans notre exemple, le fichier de normalisation pour le français
+devient \verb${PACKAGE_DIR}/resource/French/Norm.txt$.
+\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par
+\verb${CURRENT_WORK_DIR}$. Dans notre exemple, le nom du fichier \verb$80jours.snt$ devient
+\verb${CURRENT_WORK_DIR}/80jours.snt$.
 \end{itemize}
 
-\noindent La valeur de \verb$PACKAGEDIR$ est déjà définie quand le script commence à s'exécuter, mais pour \verb$CURRENT_WORK_DIR$ il faut commencer le script par quelques lignes qui donnent un nom à ce répertoire, le créent, y copient le corpus d'entrée et font quelques autres préparatifs:
+\noindent La valeur de \verb$PACKAGEDIR$ est déjà définie quand le script commence à s'exécuter,
+mais pour \verb$CURRENT_WORK_DIR$ il faut commencer le script par quelques lignes qui donnent un
+nom à ce répertoire, le créent, y copient le corpus d'entrée et font quelques autres préparatifs:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 \end{Verbatim}
 
 \noindent Cette ligne donne un nom à \verb$CURRENT_WORK_DIR$. La valeur de
-\verb$CORPUS_WORK_DIR$ est déjà définie quand le script commence à s'exécuter. La variable \verb$UNIQUE_VALUE$ contient une chaine de caractères définie par \verb$RunScript$ ou par \verb$BatchRunScript$, avec la garantie que la chaine est différente pour chaque exécution de \verb$RunScript$ ou pour chaque thread de \verb$BatchRunScript$ s’exécutant simultanément. Cela permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite, comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on utilise \verb$DuplicateFile -p$ pour créer le répertoire:
+\verb$CORPUS_WORK_DIR$ est déjà définie quand le script commence à s'exécuter. La variable
+\verb$UNIQUE_VALUE$ contient une chaine de caractères définie par \verb$RunScript$ ou par
+\verb$BatchRunScript$, avec la garantie que la chaine est différente pour chaque exécution de
+\verb$RunScript$ ou pour chaque thread de \verb$BatchRunScript$ s’exécutant simultanément. Cela
+permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite,
+comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on
+utilise \verb$DuplicateFile -p$ pour créer le répertoire:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -p {CURRENT_WORK_DIR}
@@ -275,20 +294,24 @@ DuplicateFile -p {CURRENT_WORK_DIR}
 DuplicateFile -i {INPUT_FILE_1} {CURRENT_WORK_DIR}/corpus.txt
 \end{Verbatim}
 
-\noindent Dans notre exemple, la première commande du script issu de la console utilisait la commande \verb$mkdir$ pour créer le sous-répertoire \verb$corpus_snt$. On doit donc la remplacer par \verb$DuplicateFile$:
+\noindent Dans notre exemple, la première commande du script issu de la console utilisait la commande
+\verb$mkdir$ pour créer le sous-répertoire \verb$corpus_snt$. On doit donc la remplacer par
+\verb$DuplicateFile$:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile --make-dir {CURRENT_WORK_DIR}/corpus_snt
 \end{Verbatim}
 
-\noindent Les deux lignes suivantes écrivent dans des fichiers des informations sur la version d'Unitex utilisée:
+\noindent Les deux lignes suivantes écrivent dans des fichiers des informations sur la version d'Unitex
+utilisée:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -n -o {CURRENT_WORK_DIR}/newrevision.txt
 VersionInfo -s -o {CURRENT_WORK_DIR}/semver.txt
 \end{Verbatim}
 
-\noindent La ligne suivante sauvegarde la date de version du package linguistique, à condition d'avoir inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-creation}):
+\noindent La ligne suivante sauvegarde la date de version du package linguistique, à condition d'avoir
+inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-creation}):
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -B -o {CURRENT_WORK_DIR}/builddate.txt
@@ -328,7 +351,9 @@ DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/concord.html {OUTPUT_FILE_1}
 DuplicateFile --recursive-delete {CURRENT_WORK_DIR}
 \end{Verbatim}
 
-\noindent On peut lancer le script avec la commande de la section~\ref{launch-script}. Le résultat obtenu est juste un fichier de concordance \verb$80jours_result.html$, placé à côté de \verb$80jours.txt$.
+\noindent On peut lancer le script avec la commande de la section~\ref{launch-script}. Le résultat
+obtenu est juste un fichier de concordance \verb$80jours_result.html$, placé à côté de
+\verb$80jours.txt$.
 
 \bigskip
 \noindent Si on ajoute au script, en avant-dernière position, la ligne:
@@ -343,7 +368,5 @@ DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/dlf {OUTPUT_FILE_2}
 -a OUTPUT_FILE_2=U:\Unitex\French\Corpus\80jours_result.dic
 \end{Verbatim}
 
-\noindent On obtient alors comme résultat un fichier dictionnaire \verb$80jours_result.dic$, placé à côté des deux autres.
-
-
-
+\noindent On obtient alors comme résultat un fichier dictionnaire \verb$80jours_result.dic$, placé à côté
+des deux autres.
