@@ -1,5 +1,5 @@
 \chapter{Utilisation d'Unitex/GramLab à l'aide de scripts}
-\label{chap-scripts}
+\label{chap-scripts}\index{Script de programmes Unitex}
 
 On peut utiliser Unitex/GramLab par l'intermédiaire de scripts au lieu de l'interface graphique.
 Le script lance des programmes externes d'Unitex, documentés dans le
@@ -19,7 +19,9 @@ avec le système d'exploitation.
 
 Une façon simple d'écrire un script qui utilise Unitex/GramLab est de lancer l'interface graphique Unitex,
 d'y réaliser une première version du traitement, puis de traduire les clics en une suite de commandes.
-L'interface graphique d'Unitex garde en mémoire les opérations lancées. On peut ainsi les afficher dans la
+Pour cela, on peut produire un fichier de journal des opérations lancées (section~\ref{section-log-file}).
+On peut aussi tirer parti du fait que l'interface graphique d'Unitex garde en mémoire ces opérations
+et peut les afficher dans la
 console ("Info > Console", section \ref{section-console}, fig. \ref{fig-console}). On sélectionne les étapes
 à retenir, on les copie dans un fichier texte et éventuellement on les adapte en un script opérationnel.
 Pour sélectionner des étapes dans la console, cliquer sur les cellules correspondantes dans la colonne
@@ -79,7 +81,7 @@ propres au système d'exploitation.
 
 
 \section{Scripts interprétés par Unitex/GramLab}
-\label{section-unitex-scripts}
+\label{section-unitex-scripts}\index{Package linguistique}
 
 Unitex/GramLab a aussi un interpréteur de scripts, qui a plusieurs avantages par rapport à des scripts
 shell ou batch.
@@ -107,7 +109,7 @@ quelques programmes qui ont été implémentés spécialement pour l'interpréte
 (section~\ref{section-script-for-runscript}). Il peut y avoir des lignes de commentaires, commençant
 par le caractère \#. Les commandes du système d'exploitation ne sont pas reconnues.
 
-\bigskip
+\bigskip\index{Programmes externes!\verbc{RunScript}}\index{Programmes externes!\verbc{BatchRunScript}}
 \noindent L'interpréteur de scripts d'Unitex/GramLab existe en deux variantes, \verb$RunScript$ et
 \verb$BatchRunScript$. \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un
 ou plusieurs fichiers. \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers
@@ -162,9 +164,13 @@ le fichier \verb$pattern.grf$);
 
 
 \subsection{Lancement avec RunScript}
-\label{section-runscript}
+\label{section-runscript}\index{Programmes externes!\verbc{RunScript}}
+\index{Programmes externes!\verbc{UnitexToolLogger}}
 \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un ou plusieurs fichiers.
-Pour cela, on invoque le programme \verb$UnitexToolLogger$ en respectant la syntaxe suivante:
+Pour cela, on invoque le programme \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
+en respectant la syntaxe suivante:
+\index{Programmes externes!\verbc{SelectOutput}}
+\index{Programmes externes!\verbc{InstallLingResourcePackage}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args2> } { RunScript
@@ -208,7 +214,7 @@ et comme fichier de sortie \verb$80jours_result.html$.
 
 
 \subsection{Lancement avec BatchRunScript}
-\label{launch-script}
+\label{launch-script}\index{Programmes externes!\verbc{BatchRunScript}}
 
 \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers d'un répertoire.
 Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
@@ -283,6 +289,7 @@ CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite,
 comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on
 utilise \verb$DuplicateFile -p$ pour créer le répertoire:
+\index{Programmes externes!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -p {CURRENT_WORK_DIR}
@@ -303,7 +310,8 @@ DuplicateFile --make-dir {CURRENT_WORK_DIR}/corpus_snt
 \end{Verbatim}
 
 \noindent Les deux lignes suivantes écrivent dans des fichiers des informations sur la version d'Unitex
-utilisée:
+utilisée:\index{Programmes externes!\verbc{VersionInfo}}
+
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -n -o {CURRENT_WORK_DIR}/newrevision.txt
@@ -345,6 +353,7 @@ Concord "{CURRENT_WORK_DIR}/corpus_snt/concord.ind" "-fCourier new" -s10 -l40 -r
 \end{Verbatim}
 
 \noindent La fin du script doit indiquer le nom du ou des fichiers résultats et libérer la mémoire:
+\index{Programmes externes!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/concord.html {OUTPUT_FILE_1}
