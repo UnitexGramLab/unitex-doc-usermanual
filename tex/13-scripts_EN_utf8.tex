@@ -21,26 +21,26 @@ To do that, you can generate a log file of the launched operations (Section~\ref
 You can also take advantage of the fact that the Unitex graphical interface keeps track of these operations
 and can display them in the
 console ("Info > Console", Section \ref{section-console}, Fig. \ref{fig-console}). You select the steps
-are to be retained, you copy them into a txt file and if needed you adapt them into an operational script.
+to be retained, you copy them into a text file and if needed you adapt them into an operational script.
 In order to select the steps in the console, click on the corresponding cells in the `Log \#' column
 (a shift-click and a ctrl-click have the usual effect in selecting several items).
 You can insert into the script programs or options documented in
 Chapter~\ref{chap-external-programs}, even if they are not available via the interface.
 
 \bigskip
-\noindent You can formalize un script in shell or batch form (Section~\ref{section-batch}),
+\noindent You can formalize a script in shell or batch form (Section~\ref{section-batch}),
 or in the form of a Unitex-interpreted script (Section~\ref{section-unitex-scripts}).
 
 
 
-\section{Scripts shell ou batch}
+\section{Shell or batch scripts}
 \label{section-batch}
 
-On peut mettre un script sous la forme shell ou batch et le faire exécuter par l'interpréteur de
-commandes du système d'exploitation. Par exemple, les commandes suivantes ouvrent le corpus
-\verb$80jours$, sans le prétraitement en mode REPLACE ni en mode MERGE, mais avec le dictionnaire
-par défaut, \verb$Dela_fr$, puis lancent un "Locate pattern" avec le graphe \verb$pattern.fst2$
-et créent une concordance:
+You can put a script in the form of a shell or batch script and execute it in the command-line
+interface of the operating system. For example, the following commands open the
+\verb$80jours$ French corpus, without the REPLACE- or MERGE-mode preprocessings, but with the default
+dictionary, \verb$Dela_fr$, and launch a "Locate pattern" with graph \verb$pattern.fst2$
+and generate a concordance:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 mkdir "U:\Unitex\French\Corpus\80jours_snt" 
@@ -73,51 +73,51 @@ mkdir "U:\Unitex\French\Corpus\80jours_snt"
     "-aU:\Unitex\French\Alphabet_sort.txt" --CL -qutf8-no-bom
 \end{Verbatim}
 
-\noindent Pour les détails des scripts et les commentaires éventuels, il faut respecter les conventions
-propres au système d'exploitation.
+\noindent For details of the scripts or any comments in it, you have to respect the operating system's
+ conventions.
 
 
 
-\section{Scripts interprétés par Unitex/GramLab}
-\label{section-unitex-scripts}\index{Package linguistique}
+\section{Unitex/GramLab-interpreted scripts}
+\label{section-unitex-scripts}\index{Package!\verbc{linguistic}}
 
-Unitex/GramLab a aussi un interpréteur de scripts, qui a plusieurs avantages par rapport à des scripts
-shell ou batch.
+Unitex/GramLab has also a scripting language, with several advantages over shell or batch
+scripts.
 \begin{itemize}
-    \item L'exécution est plus rapide que celle d'un script shell ou batch équivalent, car l'interpréteur fait
-appel à un système de fichiers virtuel.
+    \item Execution is quicker than with an equivalent shell or batch script, since the interpreter manages a
+virtual file system.
     \hyphenation{pac-kage}
-    \item Le script est encapsulé, avec toutes les ressources qu'il utilise, dans un "package linguistique"
-qu'on peut ensuite déployer dans un autre environnement. De cette façon, la mise au point du script
-et son utilisation dans une chaine de traitement sont entièrement indépendantes:
+    \item The script and all the resources it requires are encapsulated in a `linguistic package'
+    that you can deploy in another environment later. This way, the development of the script and its
+    use in a processing chain are completely independent:
 \begin{itemize}
-    \item on peut déployer le package sans aucune connaissance sur Unitex ni sur les traitements
-linguistiques réalisés par le script,
-    \item l'environnement de mise au point et l'environnement d'utilisation ne sont pas nécessairement
-dans le même système d'exploitation,
-    \item le traitement ne modifie aucune donnée dans l'environnement d'utilisation, car il est réalisé
-sur une copie du corpus et avec une copie des ressources contenues dans le package. Seuls les fichiers
-explicitement spécifiés comme fichiers résultats du traitement sont copiés dans l'environnement
-d'utilisation à la fin du traitement.
+    \item you can deploy the package without any knowledge of Unitex or of the linguistic processing
+    implemented in the script,
+    \item the development environment and the deployment environment are not necessarily
+    in the same operating system,
+    \item the processing does not modify any data in the deployment environment, since it is applied
+    to a copy of the corpus and uses a copy of the resources included in the package. Only the files
+explicitly specified as being the output of the processing are copied into the deployment environment in the end 
+of the processing.
 \end{itemize}
 \end{itemize}
 
-\noindent Le langage de script reconnu est constitué des programmes externes d'Unitex, y compris
-quelques programmes qui ont été implémentés spécialement pour l'interpréteur de scripts
-(section~\ref{section-script-for-runscript}). Il peut y avoir des lignes de commentaires, commençant
-par le caractère \#. Les commandes du système d'exploitation ne sont pas reconnues.
+\noindent The scripting language consists of the Unitex external programs, including
+a few programs that have been implemented specially for the script interpreter 
+(Section~\ref{section-script-for-runscript}). There can be comment lines, beginning with 
+the  \# character. The commands of the operating system are not recognised.
 
-\bigskip\index{Programmes externes!\verbc{RunScript}}\index{Programmes externes!\verbc{BatchRunScript}}
-\noindent L'interpréteur de scripts d'Unitex/GramLab existe en deux variantes, \verb$RunScript$ et
-\verb$BatchRunScript$. \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un
-ou plusieurs fichiers. \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers
-d'un répertoire, en lançant le script une fois sur chaque fichier; il produit à chaque fois un fichier résultat
-séparé.
+\bigskip\index{External programs!\verbc{RunScript}}\index{External programs!\verbc{BatchRunScript}}
+\noindent The Unitex/GramLab script interpreter exists in two variants named \verb$RunScript$ and
+\verb$BatchRunScript$. \verb$RunScript$ launches a script on a corpus contained in one or several files.
+\verb$BatchRunScript$ processes a corpus consisting of all the files in a directory,
+by launching the script once on each file, and it generates a separate output file for each.
+
 
 
 
 \subsection{Réalisation d'un package linguistique}
-\label{section-creation}
+\label{section-packaga-creation}
 
 Un package linguistique pour Unitex/GramLab regroupe un script et toutes les ressources linguistiques
 qu'il utilise, sauf le corpus d'entrée. Le package est organisé sous la forme d'une arborescence
@@ -162,13 +162,13 @@ le fichier \verb$pattern.grf$);
 
 
 \subsection{Lancement avec RunScript}
-\label{section-runscript}\index{Programmes externes!\verbc{RunScript}}
-\index{Programmes externes!\verbc{UnitexToolLogger}}
+\label{section-runscript}\index{External programs!\verbc{RunScript}}
+\index{External programs!\verbc{UnitexToolLogger}}
 \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un ou plusieurs fichiers.
 Pour cela, on invoque le programme \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
 en respectant la syntaxe suivante:
-\index{Programmes externes!\verbc{SelectOutput}}
-\index{Programmes externes!\verbc{InstallLingResourcePackage}}
+\index{External programs!\verbc{SelectOutput}}
+\index{External programs!\verbc{InstallLingResourcePackage}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args2> } { RunScript
@@ -195,7 +195,7 @@ créés pendant l'exécution du script.
 \end{enumerate}
 
 \noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ de la
-section~\ref{section-creation} et lance
+section~\ref{section-packaga-creation} et lance
 le script \verb$uniscript$ contenu dans ce package, avec comme corpus d'entrée \verb$80jours.txt$
 et comme fichier de sortie \verb$80jours_result.html$.
 
@@ -212,7 +212,7 @@ et comme fichier de sortie \verb$80jours_result.html$.
 
 
 \subsection{Lancement avec BatchRunScript}
-\label{launch-script}\index{Programmes externes!\verbc{BatchRunScript}}
+\label{launch-script}\index{External programs!\verbc{BatchRunScript}}
 
 \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers d'un répertoire.
 Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
@@ -287,7 +287,7 @@ CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite,
 comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on
 utilise \verb$DuplicateFile -p$ pour créer le répertoire:
-\index{Programmes externes!\verbc{DuplicateFile}}
+\index{External programs!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -p {CURRENT_WORK_DIR}
@@ -308,7 +308,7 @@ DuplicateFile --make-dir {CURRENT_WORK_DIR}/corpus_snt
 \end{Verbatim}
 
 \noindent Les deux lignes suivantes écrivent dans des fichiers des informations sur la version d'Unitex
-utilisée:\index{Programmes externes!\verbc{VersionInfo}}
+utilisée:\index{External programs!\verbc{VersionInfo}}
 
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
@@ -317,7 +317,7 @@ VersionInfo -s -o {CURRENT_WORK_DIR}/semver.txt
 \end{Verbatim}
 
 \noindent La ligne suivante sauvegarde la date de version du package linguistique, à condition d'avoir
-inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-creation}):
+inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-packaga-creation}):
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -B -o {CURRENT_WORK_DIR}/builddate.txt
@@ -351,7 +351,7 @@ Concord "{CURRENT_WORK_DIR}/corpus_snt/concord.ind" "-fCourier new" -s10 -l40 -r
 \end{Verbatim}
 
 \noindent La fin du script doit indiquer le nom du ou des fichiers résultats et libérer la mémoire:
-\index{Programmes externes!\verbc{DuplicateFile}}
+\index{External programs!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/concord.html {OUTPUT_FILE_1}

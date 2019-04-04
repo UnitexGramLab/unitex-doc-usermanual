@@ -119,7 +119,7 @@ séparé.
 
 
 \subsection{Réalisation d'un package linguistique}
-\label{section-creation}
+\label{section-packaga-creation}
 
 Un package linguistique pour Unitex/GramLab regroupe un script et toutes les ressources linguistiques
 qu'il utilise, sauf le corpus d'entrée. Le package est organisé sous la forme d'une arborescence
@@ -197,7 +197,7 @@ créés pendant l'exécution du script.
 \end{enumerate}
 
 \noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ de la
-section~\ref{section-creation} et lance
+section~\ref{section-packaga-creation} et lance
 le script \verb$uniscript$ contenu dans ce package, avec comme corpus d'entrée \verb$80jours.txt$
 et comme fichier de sortie \verb$80jours_result.html$.
 
@@ -319,7 +319,7 @@ VersionInfo -s -o {CURRENT_WORK_DIR}/semver.txt
 \end{Verbatim}
 
 \noindent La ligne suivante sauvegarde la date de version du package linguistique, à condition d'avoir
-inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-creation}):
+inclus dans le package un fichier \verb$VERSION_AAAAMMJJ$ (voir section \ref{section-packaga-creation}):
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -B -o {CURRENT_WORK_DIR}/builddate.txt
