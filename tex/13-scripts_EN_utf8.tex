@@ -103,7 +103,7 @@ of the processing.
 \end{itemize}
 
 \noindent The scripting language consists of the Unitex external programs, including
-a few programs that have been implemented specially for the script interpreter 
+a few programs implemented specially for the script interpreter 
 (Section~\ref{section-script-for-runscript}). There can be comment lines, beginning with 
 the  \# character. The commands of the operating system are not recognised.
 
@@ -116,47 +116,45 @@ by launching the script once on each file, and it generates a separate output fi
 
 
 
-\subsection{Réalisation d'un package linguistique}
+\subsection{Implementing a linguistic package}
 \label{section-packaga-creation}
 
-Un package linguistique pour Unitex/GramLab regroupe un script et toutes les ressources linguistiques
-qu'il utilise, sauf le corpus d'entrée. Le package est organisé sous la forme d'une arborescence
-de répertoires, puis compressé au format Zip.
-
-\bigskip     \hyphenation{lan-gue}
-\noindent La racine de l'arborescence est un répertoire \verb$<ling_pkg_name>$ avec deux
-sous-répertoires, obligatoirement nommés \verb$script$ et \verb$resource$. Le script doit être placé
-dans \verb$<ling_pkg_name>/script$ et toutes les ressources linguistiques nécessaires dans
-\verb$<ling_pkg_name>/resource$. On peut reproduire dans \verb$resource$ l'organisation d'un
-répertoire personnel Unitex, avec un sous-répertoire pour chaque langue traitée par le script
-(par exemple \verb$French$), puis, à l'intérieur de chaque répertoire de langue, les fichiers d'alphabet
-\verb$Alphabet.txt$ et \verb$Alphabet_sort.txt$, le fichier de normalisation \verb$Norm.txt$, etc. et
-des sous-répertoires \verb$Dela$, \verb$Graphs$, etc. contenant à leur tour les ressources
-correspondantes. Avec cette organisation, on peut plus facilement écrire le script en adaptant un script
-issu de la console.
+A Unitex/GramLab linguistic package includes a script and all the language resources it uses,
+except the input corpus. The package is organised in the form of a directory tree, and 
+compressed in Zip format.
 
 \bigskip
-\noindent Si on souhaite que le script ait accès à la date du package, il faut créer dans le
-répertoire \verb$<ling_pkg_name>/resource$ un fichier texte vide dont le nom est
-\verb$VERSION_AAAAMMJJ$ (sans extension).
+\noindent The tree root is a directory \verb$<ling_pkg_name>$ with two subdirectories
+named \verb$script$ and \verb$resource$. The script must be placed in
+ \verb$<ling_pkg_name>/script$ and all the required language resources in
+\verb$<ling_pkg_name>/resource$. You can mimic in \verb$resource$ the organization of a
+personal Unitex workspace, with a subdirectory for each language processed by the script
+(for example \verb$French$), then, in each language directory, alphabet files
+\verb$Alphabet.txt$ and \verb$Alphabet_sort.txt$, normalization file \verb$Norm.txt$ etc., and
+subdirectories \verb$Dela$, \verb$Graphs$ etc.\ and, in turn, the respective data in them.
+With this organization, it is easier to write the script by adapting a script from the console.
 
 \bigskip
-\noindent Une fois cette arborescence réalisée, on la compresse au format Zip.
+\noindent If you want the script to access the date of the package, create an empty text file in 
+\verb$<ling_pkg_name>/resource$ and name it \verb$VERSION_AAAAMMJJ$
+(without extension).
 
 \bigskip
-\noindent Par exemple, si on veut encapsuler dans un package \verb$pkg.zip$ le traitement de la
-section \ref{section-batch}, il faut prévoir dans un répertoire \verb$pkg$:
+\noindent When the tree is finished, compress it in Zip format.
+
+\bigskip
+\noindent For example, in order to encapsulate the processing of Section~\ref{section-batch}
+in a package named \verb$pkg.zip$, you have to copy into a \verb$pkg$ directory:
 \begin{itemize}
-\item dans le sous-répertoire \verb$resource$:
+\item in subdirectory \verb$resource$:
 \begin{itemize}
-\item les fichiers d'alphabet, \verb$Alphabet.txt$ et \verb$Alphabet_sort.txt$, et le fichier de
-normalisation \verb$Norm.txt$ dans \verb$French$;
-\item les fichiers dictionnaire \verb$Dela_fr.bin$ et \verb$Dela_fr.inf$ dans le répertoire
-\verb$French/Dela$;
-\item le graphe \verb$pattern.fst2$ dans \verb$French/Graphs$ (on peut aussi y placer optionnellement
-le fichier \verb$pattern.grf$);
+\item the alphabet files, \verb$Alphabet.txt$ and \verb$Alphabet_sort.txt$, and the normalization
+file \verb$Norm.txt$ in \verb$French$;
+\item the dictionary files \verb$Dela_fr.bin$ and \verb$Dela_fr.inf$ in \verb$French/Dela$;
+\item the graph \verb$pattern.fst2$ in \verb$French/Graphs$ (optionally, you can also copy the file
+\verb$pattern.grf$ there);
 \end{itemize}
-\item dans le sous-répertoire \verb$script$, le fichier contenant le script.
+\item in subdirectory \verb$script$, the script file.
 \end{itemize}
 
 
