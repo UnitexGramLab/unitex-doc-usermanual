@@ -1,35 +1,35 @@
-\chapter{Utilisation d'Unitex/GramLab à l'aide de scripts}
-\label{chap-scripts}
+\chapter{Using Unitex/GramLab with scripts}
+\label{chap-scripts}\index{Scripting Unitex programs}
 
-On peut utiliser Unitex/GramLab par l'intermédiaire de scripts au lieu de l'interface graphique.
-Le script lance des programmes externes d'Unitex, documentés dans le
-chapitre~\ref{chap-external-programs}. L'avantage de cette possibilité est qu'on a accès à des options
-supplémentaires dans les programmes, par exemple l'option \verb$standoff$ de CasSys
-(section~\ref{section-standOff}), et même à des programmes supplémentaires, comme
-\verb$DumpOffsets$ (section~\ref{section-DumpOffsets}). On peut aussi, pendant le prétraitement,
-enchainer en cascade plusieurs graphes en mode MERGE, alors que l'interface graphique ne permet d'en
-lancer qu'un.
-L'utilisation de scripts nécessite plus d'habileté en informatique, et en particulier plus de familiarité
-avec le système d'exploitation.
+Unitex/GramLab can be used through scripts instead of the graphical interface.
+The script launches external programs, which are documented in
+Chapter~\ref{chap-external-programs}. The advantage of this possibility is that you may
+access additional options in the programs, like option \verb$standoff$ of CasSys
+(Section~\ref{section-standOff}), and even additional programs, such as
+\verb$DumpOffsets$ (Section~\ref{section-DumpOffsets}). You may also, during preprocessing,
+apply a cascade of several graphs in MERGE mode, whereas the graphical interface allows for only one.
+Using scripts require more computer skills, and in particular more familiarity with the operating system.
 
 
 
-\section{Traduire en script un traitement lancé via l'interface graphique}
+\section{Translating into a script a processing launched via the graphical interface}
 \label{section-console}
 
-Une façon simple d'écrire un script qui utilise Unitex/GramLab est de lancer l'interface graphique Unitex,
-d'y réaliser une première version du traitement, puis de traduire les clics en une suite de commandes.
-L'interface graphique d'Unitex garde en mémoire les opérations lancées. On peut ainsi les afficher dans la
-console ("Info > Console", section \ref{section-console}, fig. \ref{fig-console}). On sélectionne les étapes
-à retenir, on les copie dans un fichier texte et éventuellement on les adapte en un script opérationnel.
-Pour sélectionner des étapes dans la console, cliquer sur les cellules correspondantes dans la colonne
-"Log \#" (un majuscule-clic et un ctrl-clic ont l'effet habituel pour sélectionner plusieurs éléments).
-On peut ajouter dans le script des programmes ou options documentés dans le
-chapitre~\ref{chap-external-programs}, même s'ils ne sont pas disponibles via l'interface.
+A simple way of writing a script that uses Unitex/GramLab is to launch the Unitex graphical interface,
+to implement a preliminary version of the processing, and to translate your clicks into a sequence of commands.
+To do that, you can generate a log file of the launched operations (Section~\ref{section-log-file}).
+You can also take advantage of the fact that the Unitex graphical interface keeps track of these operations
+and can display them in the
+console ("Info > Console", Section \ref{section-console}, Fig. \ref{fig-console}). You select the steps
+are to be retained, you copy them into a txt file and if needed you adapt them into an operational script.
+In order to select the steps in the console, click on the corresponding cells in the `Log \#' column
+(a shift-click and a ctrl-click have the usual effect in selecting several items).
+You can insert into the script programs or options documented in
+Chapter~\ref{chap-external-programs}, even if they are not available via the interface.
 
 \bigskip
-\noindent On peut formaliser un script sous la forme shell ou batch (section~\ref{section-batch}),
-ou encore sous la forme d'un script interprété par Unitex (section~\ref{section-unitex-scripts}).
+\noindent You can formalize un script in shell or batch form (Section~\ref{section-batch}),
+or in the form of a Unitex-interpreted script (Section~\ref{section-unitex-scripts}).
 
 
 
@@ -79,7 +79,7 @@ propres au système d'exploitation.
 
 
 \section{Scripts interprétés par Unitex/GramLab}
-\label{section-unitex-scripts}
+\label{section-unitex-scripts}\index{Package linguistique}
 
 Unitex/GramLab a aussi un interpréteur de scripts, qui a plusieurs avantages par rapport à des scripts
 shell ou batch.
@@ -107,7 +107,7 @@ quelques programmes qui ont été implémentés spécialement pour l'interpréte
 (section~\ref{section-script-for-runscript}). Il peut y avoir des lignes de commentaires, commençant
 par le caractère \#. Les commandes du système d'exploitation ne sont pas reconnues.
 
-\bigskip
+\bigskip\index{Programmes externes!\verbc{RunScript}}\index{Programmes externes!\verbc{BatchRunScript}}
 \noindent L'interpréteur de scripts d'Unitex/GramLab existe en deux variantes, \verb$RunScript$ et
 \verb$BatchRunScript$. \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un
 ou plusieurs fichiers. \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers
@@ -162,9 +162,13 @@ le fichier \verb$pattern.grf$);
 
 
 \subsection{Lancement avec RunScript}
-\label{section-runscript}
+\label{section-runscript}\index{Programmes externes!\verbc{RunScript}}
+\index{Programmes externes!\verbc{UnitexToolLogger}}
 \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un ou plusieurs fichiers.
-Pour cela, on invoque le programme \verb$UnitexToolLogger$ en respectant la syntaxe suivante:
+Pour cela, on invoque le programme \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
+en respectant la syntaxe suivante:
+\index{Programmes externes!\verbc{SelectOutput}}
+\index{Programmes externes!\verbc{InstallLingResourcePackage}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args2> } { RunScript
@@ -208,7 +212,7 @@ et comme fichier de sortie \verb$80jours_result.html$.
 
 
 \subsection{Lancement avec BatchRunScript}
-\label{launch-script}
+\label{launch-script}\index{Programmes externes!\verbc{BatchRunScript}}
 
 \verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers d'un répertoire.
 Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
@@ -283,6 +287,7 @@ CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite,
 comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on
 utilise \verb$DuplicateFile -p$ pour créer le répertoire:
+\index{Programmes externes!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -p {CURRENT_WORK_DIR}
@@ -303,7 +308,8 @@ DuplicateFile --make-dir {CURRENT_WORK_DIR}/corpus_snt
 \end{Verbatim}
 
 \noindent Les deux lignes suivantes écrivent dans des fichiers des informations sur la version d'Unitex
-utilisée:
+utilisée:\index{Programmes externes!\verbc{VersionInfo}}
+
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 VersionInfo -n -o {CURRENT_WORK_DIR}/newrevision.txt
@@ -345,6 +351,7 @@ Concord "{CURRENT_WORK_DIR}/corpus_snt/concord.ind" "-fCourier new" -s10 -l40 -r
 \end{Verbatim}
 
 \noindent La fin du script doit indiquer le nom du ou des fichiers résultats et libérer la mémoire:
+\index{Programmes externes!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/concord.html {OUTPUT_FILE_1}
