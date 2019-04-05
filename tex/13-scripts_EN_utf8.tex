@@ -7,7 +7,7 @@ Chapter~\ref{chap-external-programs}. The advantage of this possibility is that 
 access additional options in the programs, like option \verb$standoff$ of CasSys
 (Section~\ref{section-standOff}), and even additional programs, such as
 \verb$DumpOffsets$ (Section~\ref{section-DumpOffsets}). You may also, during preprocessing,
-apply a cascade of several graphs in MERGE mode, whereas the graphical interface allows for only one.
+chain graphs in MERGE mode, whereas the graphical interface allows for only one.
 Using scripts require more computer skills, and in particular more familiarity with the operating system.
 
 
@@ -16,10 +16,11 @@ Using scripts require more computer skills, and in particular more familiarity w
 \label{section-console}
 
 A simple way of writing a script that uses Unitex/GramLab is to launch the Unitex graphical interface,
-to implement a preliminary version of the processing, and to translate your clicks into a sequence of commands.
+to implement a preliminary version of the processing, and to translate your clicks into a sequence
+of commands.
 To do that, you can generate a log file of the launched operations (Section~\ref{section-log-file}).
-You can also take advantage of the fact that the Unitex graphical interface keeps track of these operations
-and can display them in the
+You can also take advantage of the fact that the Unitex graphical interface keeps track
+of these operations and can display them in the
 console ("Info > Console", Section \ref{section-console}, Fig. \ref{fig-console}). You select the steps
 to be retained, you copy them into a text file and if needed you adapt them into an operational script.
 In order to select the steps in the console, click on the corresponding cells in the `Log \#' column
@@ -84,7 +85,7 @@ mkdir "U:\Unitex\French\Corpus\80jours_snt"
 Unitex/GramLab has also a scripting language, with several advantages over shell or batch
 scripts.
 \begin{itemize}
-    \item Execution is quicker than with an equivalent shell or batch script, since the interpreter manages a
+    \item Execution is faster than with an equivalent shell or batch script, since the interpreter manages a
 virtual file system.
     \hyphenation{pac-kage}
     \item The script and all the resources it requires are encapsulated in a `linguistic package'
@@ -159,12 +160,12 @@ file \verb$Norm.txt$ in \verb$French$;
 
 
 
-\subsection{Lancement avec RunScript}
+\subsection{Launching with RunScript}
 \label{section-runscript}\index{External programs!\verbc{RunScript}}
 \index{External programs!\verbc{UnitexToolLogger}}
-\verb$RunScript$ permet de lancer un script sur un corpus contenu dans un ou plusieurs fichiers.
-Pour cela, on invoque le programme \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
-en respectant la syntaxe suivante:
+\verb$RunScript$ launches a script on a corpus contained in one or several files.
+To do that, invoke \verb$UnitexToolLogger$ (Section~\ref{section-UnitexToolLogger})
+with the following syntax:
 \index{External programs!\verbc{SelectOutput}}
 \index{External programs!\verbc{InstallLingResourcePackage}}
 
@@ -173,29 +174,28 @@ UnitexToolLogger [ { SelectOutput <args1> } ] { InstallLingResourcePackage <args
     <args3> } { InstallLingResourcePackage <args4> }
 \end{Verbatim}
 
-\noindent Chaque paire d'accolades délimite l'invocation d'une commande Unitex avec ses arguments.
+\noindent Each pair of curly brackets delimits the invocation of a Unitex command with its arguments.
 
 \begin{enumerate}
-\item L'étape \verb$SelectOutput$ est facultative mais recommandée. En l'incluant sous la forme
-suivante:\\
+\item The \verb$SelectOutput$ step is optional but recommended. By including it in the following form:
+\\
 \verb$     { SelectOutput --output=off }$\\
-on masque les sorties de mise au point de chaque commande ultérieure, qui sont encombrantes
-dans le cas d'une exécution massive.
-\item L'étape suivante, \verb$InstallLingResourcePackage$, installe le contenu du package linguistique
-dans le système de fichiers virtuel.
-\item L'étape \verb$Rusncript$ lance le script. Elle doit définir dans  \verb$INPUT_FILE_1$ et
-éventuellement \verb$INPUT_FILE_2$, etc., le nom du ou des fichiers contenant le corpus d'entrée; dans
-\verb$OUTPUT_FILE_1$, \verb$OUTPUT_FILE_2$, etc., le nom du ou des fichiers résultats;
-dans \verb$PACKAGE_DIR$ le nom du répertoire racine du package linguistique dans le système
-de fichiers virtuel ; dans \verb$CORPUS_WORK_DIR$ le nom du répertoire qui contiendra les fichiers
-créés pendant l'exécution du script.
-\item La dernière étape écrit le ou les fichiers résultats, puis met fin au système de fichiers virtuel.
+you block the debugging messages of each subsequent command, which would consume space in the case of an extensive run.
+\item The next step, \verb$InstallLingResourcePackage$, installs the content of the linguistic package
+in the virtual file system.
+\item The \verb$Rusncript$ step launches the script. It must set in  \verb$INPUT_FILE_1$ and
+if necessary \verb$INPUT_FILE_2$, etc., the name of the file(s) that contain the input corpus; in
+\verb$OUTPUT_FILE_1$, \verb$OUTPUT_FILE_2$, etc., the name of the output file(s);
+in \verb$PACKAGE_DIR$ the name of the root directory of the linguistic package in the virtual
+fils system; in \verb$CORPUS_WORK_DIR$ the name of the directory that will contain the files
+generated during the execution of the script.
+\item The last step writes the output file(s) and then terminates the virtual file system.
 \end{enumerate}
 
-\noindent Par exemple, la commande suivante utilise le package linguistique \verb$pkg.zip$ de la
-section~\ref{section-packaga-creation} et lance
-le script \verb$uniscript$ contenu dans ce package, avec comme corpus d'entrée \verb$80jours.txt$
-et comme fichier de sortie \verb$80jours_result.html$.
+\noindent For example, the following command uses the \verb$pkg.zip$ linguistic package of
+Section~\ref{section-packaga-creation} and launches the 
+ \verb$uniscript$ script contained in the package, with the \verb$80jours.txt$ file as input corpus
+and \verb$80jours_result.html$ as output file.
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 "C:\Unitex-GramLab\App\UnitexToolLogger.exe" { SelectOutput --output=off } {
@@ -209,76 +209,78 @@ et comme fichier de sortie \verb$80jours_result.html$.
 
 
 
-\subsection{Lancement avec BatchRunScript}
+\subsection{Launching with BatchRunScript}
 \label{launch-script}\index{External programs!\verbc{BatchRunScript}}
 
-\verb$BatchRunScript$ permet de traiter un corpus constitué par tous les fichiers d'un répertoire.
-Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
-On peut ainsi réaliser des traitements massifs efficacement, même sur des documents nombreux
-contenus dans des fichiers séparés. Le résultat est stocké dans un répertoire de sortie, dans des
-fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par \verb$.result.txt$.
-\verb$BatchRunScript$ fonctionne en multithread et lance plusieurs exécutions en parallèle: ainsi
-tous les cœurs de la machine de traitement peuvent fonctionner en même temps et traiter
-l’ensemble des fichiers plus vite.
+\verb$BatchRunScript$ processes a corpus consisting of all the files in a directory.
+It launches the script once on each file and generates a separate output file for each.
+This way, you can implement massive processings efficiently, even on many documents
+contained in separate files. The result is stored in an output directory, in files
+with the same names as the input files, suffixed by \verb$.result.txt$.
+\verb$BatchRunScript$ is multi-threaded and runs several instances in parallel: this way,
+all the cores of the processing machine can work at the same time and process all the files faster.
 
 \bigskip
-\noindent Pour déployer un script avec \verb$BatchRunScript$, on respecte la syntaxe suivante:
+\noindent To deploy a script with \verb$BatchRunScript$, use the following syntax:
 
 \begin{verbatim}
 UnitexToolLogger { BatchRunScript <args> }
 \end{verbatim}
 
-\noindent Les arguments doivent définir le nom du répertoire contenant le corpus d'entrée
-dans le système de fichiers virtuel, le nom du répertoire de sortie, le nombre de threads, le nom
-du package linguistique et le nom du script. Par exemple, la commande suivante traite tous les
-fichiers du répertoire \verb$input_folder$, stocke les résultats dans \verb$output_folder$
-et fonctionne sur quatre threads:
+\noindent The arguments must set the name of the directory containing the input corpus
+in the virtual file system, the name of the output directory, the number of threads, the name
+of the linguistic package and the name of the script. For example, the following command processes
+all the files in the \verb$input_folder$ directory, stores the output in \verb$output_folder$ and runs
+on four threads:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 "C:\Unitex-GramLab\App\UnitexToolLogger.exe" { BatchRunScript -i .\input_folder -o .\output_folder 
     -t 4 .\pkg -v -p -m -s script/uniscript }
 \end{Verbatim}
 
-\noindent Les options \verb$-v$, \verb$-m$ et \verb$-p$ permettent de contrôler quelles 
-informations sont émises sur la console pendant les traitements. Ainsi, en utilisant \verb$-v -p$,
-on affiche le maximum de sorties, ce qui est utile pendant la mise au point. Avec \verb$-m$
-et plus encore \verb$-f$, on affiche le minimum de messages.
+\noindent The \verb$-v$, \verb$-m$ and \verb$-p$ options control the information output on the
+teminal during the processing. With \verb$-v -p$, you display the most messages, which is
+useful during development. With \verb$-m$ and even more with \verb$-f$, you display the least
+messages.
 
 \bigskip
-\noindent Avec \verb$BatchRunScript$, une exécution du script sur un fichier ne peut pas
-renvoyer plusieurs fichiers, contrairement à \verb$RunScript$\footnote{Il est possible de
-contourner cette limitation avec les outils \texttt{PackFile}  et \texttt{UnpackFile}, en
-regroupant plusieurs fichiers résultats en un seul fichier de type Zip.}.
+\noindent With \verb$BatchRunScript$, the running of a script on an input file cannot generate
+several output files, as opposed to \verb$RunScript$.\footnote{You can bypass this constraint
+with the \texttt{PackFile} and \texttt{UnpackFile} tools, by grouping several output files
+into a single Zip file.}
 
 
 
-\subsection{Mise au point d'un script pour RunScript}
+\subsection{Developing a script for RunScript}
 \label{section-script-for-runscript}
-Pour écrire un script dans un package linguistique, il est recommandé d'adapter un script issu
-de la console, comme celui de la section~\ref{section-batch}.
+In order to write a script in a linguistic package, we recommend adapting a script from the
+console, such as that of Section~\ref{section-batch}.
 
-\begin{itemize}     \hyphenation{exem-ple}
-\item Dans chaque ligne du script issu de la console, supprimer la mention du programme
-\verb$UnitexToolLogger$ en début de ligne, c'est-à-dire dans notre exemple
+\begin{itemize}
+\item In each line of the script from the console, remove the mention of the
+\verb$UnitexToolLogger$ program at the beginning of the line, i.e.\ in our example
 \verb$"C:\Unitex-GramLab\App\UnitexToolLogger.exe"$.
-\item Dans les noms des ressources, remplacer le chemin du répertoire de travail par
-\verb${PACKAGE_DIR}/resource$. Dans notre exemple, le fichier de normalisation pour le français
-devient \verb${PACKAGE_DIR}/resource/French/Norm.txt$.
-\item Dans les noms des fichiers créés par le script, remplacer le chemin complet par
-\verb${CURRENT_WORK_DIR}$. Dans notre exemple, le nom du fichier \verb$80jours.snt$ devient
-\verb${CURRENT_WORK_DIR}/80jours.snt$.
+\item In the name of the resource files, substitute
+\verb${PACKAGE_DIR}/resource$ for the path of the working directory.
+In our example, the normalization file for French becomes
+\verb${PACKAGE_DIR}/resource/French/Norm.txt$.
+\item In the names of the files generated by the script, substitute
+\verb${CURRENT_WORK_DIR}$ for the complete path. In our example, \verb$80jours.snt$
+becomes \verb${CURRENT_WORK_DIR}/80jours.snt$.
 \end{itemize}
 
-\noindent La valeur de \verb$PACKAGEDIR$ est déjà définie quand le script commence à s'exécuter,
-mais pour \verb$CURRENT_WORK_DIR$ il faut commencer le script par quelques lignes qui donnent un
-nom à ce répertoire, le créent, y copient le corpus d'entrée et font quelques autres préparatifs:
+\noindent The value of \verb$PACKAGEDIR$ is already set when the script begins to run, but
+for \verb$CURRENT_WORK_DIR,$ a few lines are required at the beginning of the script
+in order to name the directory, create it, copy the input corpus in it and make some
+other arrangements:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 \end{Verbatim}
 
-\noindent Cette ligne donne un nom à \verb$CURRENT_WORK_DIR$. La valeur de
-\verb$CORPUS_WORK_DIR$ est déjà définie quand le script commence à s'exécuter. La variable
+\noindent This line gives a name to \verb$CURRENT_WORK_DIR$. The value of
+\verb$CORPUS_WORK_DIR$ is already set when the script begins to run.
+
 \verb$UNIQUE_VALUE$ contient une chaine de caractères définie par \verb$RunScript$ ou par
 \verb$BatchRunScript$, avec la garantie que la chaine est différente pour chaque exécution de
 \verb$RunScript$ ou pour chaque thread de \verb$BatchRunScript$ s’exécutant simultanément. Cela

@@ -2098,18 +2098,19 @@ programs!\verbc{Untokenize}}\index{\verbc{Untokenize}}
 
 
 
-\section{UnitexTool}\index{External
-programs!\verbc{UnitexTool}}\index{\verbc{UnitexTool}}\index{Scripting Unitex programs}
+\section{UnitexTool}\index{External programs!\verbc{UnitexTool}}
+\index{\verbc{UnitexTool}}\index{Scripting Unitex programs}
 \label{section-UnitexTool}
 \verb+UnitexTool <utilities>+
 
 \bigskip
 \noindent This program is a super-program that allows you to invoke all Unitex
-external programs. With it, you can chain commands so that they will be invoked
-within a same system process, in order to speed up processing. This can done by
-invoking commands nested in round brackets as this:
+external programs. With it, you can chain programs so that they will be invoked
+within a same system process, in order to speed up processing (see also
+Chapter~\ref{chap-scripts}). This can be done by
+invoking commands nested in curly brackets as follows:
 
-\bigskip
+\bigskip\index{External programs!\verbc{SelectOutput}}
 \begin{verbatim}
 UnitexTool { SelectOutput [OPTIONS] } 
              { cmd #1+args } 
@@ -2118,7 +2119,7 @@ UnitexTool { SelectOutput [OPTIONS] }
 \end{verbatim}
 
 \bigskip
-\noindent For instance, if you want to join a locate operation and the
+\noindent For instance, if you want to join a Locate operation and the
 construction of the concordance, you can use the following command:
 
 \bigskip
@@ -2140,7 +2141,7 @@ UnitexTool { Locate "-tD:\My Unitex\English\Corpus\ivanhoe.snt"
 \end{itemize} 
 
 
-\noindent By example:
+\noindent For example:
 \begin{verbatim}
 UnitexTool { SelectOutput -o off -e off } { Normalize
 Unitex\English\Corpus\ivanhoe.txt }
@@ -2151,8 +2152,8 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 
-\section{UnitexToolLogger}\index{External
-programs!\verbc{UnitexToolLogger}}\index{\verbc{UnitexToolLogger}}\index{Log Unitex programs}
+\section{UnitexToolLogger}\index{External programs!\verbc{UnitexToolLogger}}
+\index{\verbc{UnitexToolLogger}}\index{Log Unitex programs}
 \label{section-UnitexToolLogger}
 \verb+UnitexToolLogger <utilities>+
 
@@ -2262,7 +2263,7 @@ UnitexToolLogger { SelectOutput [OPTIONS] }
              etc.
 \end{verbatim}
 
-\bigskip
+\bigskip\index{External programs!\verbc{SelectOutput}}
 \noindent \textbf{OPTIONS after SelectOutput}:
 \begin{itemize}
 \item \verb+-o [on/off]+/\verb+--output=[on/off]+: enable (on) or disable (off) standard output

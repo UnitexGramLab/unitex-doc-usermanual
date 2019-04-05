@@ -2093,13 +2093,12 @@ Ces fichiers se trouvent dans le répertoire XXX\_snt où XXX est sans son exten
 \verb+UnitexTool <utilities>+
 
 \bigskip
-\noindent Ce programme est un programme qui vous permet d'exécuter tous les programmes externes
-d'Unitex
-Avec lui, vous pouvez enchaîner les commandes afin qu'elles soit exécutées dans un même processus,
-afin d'accélérer le traitement. Cela se fait en invoquant des commandes imbriquées entre parenthèses
-comme ceci:
+\noindent Ce programme permet d'exécuter tous les programmes externes d'Unitex.
+Avec lui, on peut enchaîner une séquence de programmes afin qu'ils soient exécutés dans un même processus,
+ce qui accélère le traitement (voir aussi le chapitre~\ref{chap-scripts}).
+Cela se fait en invoquant des commandes imbriquées entre accolades comme ceci:
 
-\bigskip
+\bigskip\index{Programmes externes!\verbc{SelectOutput}}
 \begin{verbatim}
 UnitexTool { SelectOutput [OPTIONS] } 
                 { cmd #1+args } 
@@ -2108,7 +2107,7 @@ UnitexTool { SelectOutput [OPTIONS] }
 \end{verbatim}
 
 \bigskip
-\noindent Par exemple, si vous souhaitez faire un locate et construire la  concordance, vous pouvez
+\noindent Par exemple, si vous souhaitez faire un Locate et construire la  concordance, vous pouvez
 utiliser la commande suivante:
 
 \bigskip
@@ -2140,12 +2139,14 @@ Unitex\English\Corpus\ivanhoe.txt }
 
 
 
-\section{UnitexToolLogger}\index{Programmes externes!\verbc{UnitexToolLogger}}\index{\verbc{UnitexToolLogger}}\index{Log programmes Unitex}\index{Script de programmes Unitex}
+\section{UnitexToolLogger}
+\index{Programmes externes!\verbc{UnitexToolLogger}}\index{\verbc{UnitexToolLogger}}
+\index{Log programmes Unitex}
 \label{section-UnitexToolLogger}
 \verb+UnitexToolLogger <utilities>+
 
 \bigskip
-\noindent Ce programme est un surensemble de UnitexTool. Il permet d'exécuter à nouveau un
+\noindent Ce programme est un sur-ensemble d'UnitexTool. Il permet d'exécuter à nouveau un
 fichier de log .ulp.
 Il peut également enregistrer une session d'UnitexTool en cours d'exécution et créer un fichier de
 log .ulp.
@@ -2190,7 +2191,7 @@ Le fichier .ulp est un fichier zip comprimé (compatible avec unzip), qui peut �
 \end{itemize}
 
 
-Une autre utilisation UnitexToolLogger  est d'utiliser l'option MzRepairUlp pour réparer un fichier ulp abîmé (souvent, un log de crash):
+Une autre utilisation d'UnitexToolLogger  est d'utiliser l'option MzRepairUlp pour réparer un fichier ulp abîmé (souvent, un log de crash):
 
 \bigskip
 \verb+UnitexToolLogger MzRepairUlp [OPTIONS] <ulpfile>+
@@ -2205,7 +2206,7 @@ Une autre utilisation UnitexToolLogger  est d'utiliser l'option MzRepairUlp pour
 \end{itemize}
 
 
-Une autre utilisation de UnitexToolLogger est d'utiliser l'option CreateLog option (avec des accolades) pour créer un fichier log d'exécutions de programme Unitex, comme:
+Une autre utilisation de UnitexToolLogger est d'utiliser l'option CreateLog (avec des accolades) pour créer un fichier log d'exécutions de programmes Unitex, comme:
 
 \bigskip
 \noindent \verb$UnitexToolLogger { CreateLog [OPTIONS] } cmd args$
@@ -2246,7 +2247,7 @@ UnitexToolLogger { CreateLog --directory=c:\logs }
 \end{itemize}
 
  
-\bigskip
+\bigskip\index{Programmes externes!\verbc{SelectOutput}}
 \begin{verbatim}
 UnitexToolLogger { SelectOutput [OPTIONS] } 
                 { cmd #1+args } 
@@ -2268,8 +2269,9 @@ Unitex\English\Corpus\ivanhoe.txt }
 \end{verbatim}
 
 
-\section{Unxmlize}\index{Programmes externes!\verbc{Unxmlize}}\index{\verbc{Unxmlize}}\index{Fichier
-de log programmes Unitex}
+\section{Unxmlize}
+\index{Programmes externes!\verbc{Unxmlize}}\index{\verbc{Unxmlize}}
+\index{Fichier de log programmes Unitex}
 \label{section-Unxmlize}
 
 Ce programme supprime tous les tags xml d'un fichier .xml ou .html donné pour produire un fichier
