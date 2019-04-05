@@ -96,7 +96,7 @@ et son utilisation dans une chaine de traitement sont entièrement indépendante
     \item on peut déployer le package sans aucune connaissance sur Unitex ni sur les traitements
 linguistiques réalisés par le script,
     \item l'environnement de mise au point et l'environnement d'utilisation ne sont pas nécessairement
-dans le même système d'exploitation,
+sous le même système d'exploitation,
     \item le traitement ne modifie aucune donnée dans l'environnement d'utilisation, car il est réalisé
 sur une copie du corpus et avec une copie des ressources contenues dans le package. Seuls les fichiers
 explicitement spécifiés comme fichiers résultats du traitement sont copiés dans l'environnement
@@ -167,7 +167,7 @@ le fichier \verb$pattern.grf$);
 \label{section-runscript}\index{Programmes externes!\verbc{RunScript}}
 \index{Programmes externes!\verbc{UnitexToolLogger}}
 \verb$RunScript$ permet de lancer un script sur un corpus contenu dans un ou plusieurs fichiers.
-Pour cela, on invoque le programme \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
+Pour cela, on invoque \verb$UnitexToolLogger$ (section~\ref{section-UnitexToolLogger})
 en respectant la syntaxe suivante:
 \index{Programmes externes!\verbc{SelectOutput}}
 \index{Programmes externes!\verbc{InstallLingResourcePackage}}
@@ -187,7 +187,7 @@ on masque les sorties de mise au point de chaque commande ultérieure, qui sont 
 dans le cas d'une exécution massive.
 \item L'étape suivante, \verb$InstallLingResourcePackage$, installe le contenu du package linguistique
 dans le système de fichiers virtuel.
-\item L'étape \verb$Rusncript$ lance le script. Elle doit définir dans  \verb$INPUT_FILE_1$ et
+\item L'étape \verb$Runscript$ lance le script. Elle doit définir dans  \verb$INPUT_FILE_1$ et
 éventuellement \verb$INPUT_FILE_2$, etc., le nom du ou des fichiers contenant le corpus d'entrée; dans
 \verb$OUTPUT_FILE_1$, \verb$OUTPUT_FILE_2$, etc., le nom du ou des fichiers résultats;
 dans \verb$PACKAGE_DIR$ le nom du répertoire racine du package linguistique dans le système
@@ -288,8 +288,7 @@ CURRENT_WORK_DIR = {CORPUS_WORK_DIR}/{UNIQUE_VALUE}
 \verb$RunScript$ ou pour chaque thread de \verb$BatchRunScript$ s’exécutant simultanément. Cela
 permet d'éviter toute collision entre fichiers temporaires pendant des travaux simultanés. Ensuite,
 comme la commande \verb$mkdir$ n’est pas utilisable dans un script interprété par Unitex/GramLab, on
-utilise \verb$DuplicateFile -p$ pour créer le répertoire:
-\index{Programmes externes!\verbc{DuplicateFile}}
+utilise \verb$DuplicateFile$ pour créer le répertoire:\index{Programmes externes!\verbc{DuplicateFile}}
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
 DuplicateFile -p {CURRENT_WORK_DIR}
@@ -377,5 +376,5 @@ DuplicateFile -i {CURRENT_WORK_DIR}/corpus_snt/dlf {OUTPUT_FILE_2}
 -a OUTPUT_FILE_2=U:\Unitex\French\Corpus\80jours_result.dic
 \end{Verbatim}
 
-\noindent On obtient alors comme résultat un fichier dictionnaire \verb$80jours_result.dic$, placé à côté
-des deux autres.
+\noindent On obtient alors comme résultat supplémentaire un fichier dictionnaire,
+placé à côté des deux autres et nommé \verb$80jours_result.dic$.
