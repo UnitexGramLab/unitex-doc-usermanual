@@ -560,11 +560,13 @@ répertoire  \verb+exemple_3+\newline\verb+_0_snt+ le fichier \verb+exemple_3_0.
 
 \subsection{Un texte au format de type XML pour les étiquettes lexicales}
 
-En sortie, le résultat est fourni sous deux formes~: le texte résultant directement de l'application des transducteurs, et un format de type XML dans lequel les étiquettes lexicales ont été transformées en XML.
+En sortie, le résultat est fourni sous deux formes~: le texte résultant directement de l'application
+des transducteurs, et un format de type XML dans lequel les étiquettes lexicales ont été transformées en XML.
 Ce changement est fait dans le but de proposer un texte plus manipulable  à l'utilisateur final.
 A partir de ce format, il est possible d'utiliser l'un des nombreux outils de traitement du XML.
 Il est également facile d'appliquer des transducteurs supplémentaires afin d'obtenir la sortie souhaitée.
-Le texte résultant directement des transducteurs est sauvegardé dans le fichier  \verb+exemple_csc.raw+, et la version  XML-isée est dans le fichier \verb+exemple_csc.txt+.
+Le texte résultant directement des transducteurs est sauvegardé dans le fichier  \verb+exemple_csc.raw+,
+et la version  XML-isée est dans le fichier \verb+exemple_csc.txt+.
 
 Plus précisement, les étiquettes lexicales sont dans le format suivant~:\\
 \begin{tabular}{c}
@@ -595,102 +597,119 @@ La DTD de notre format est la suivante~:
 \texttt{<!ELEMENT inflect (\#PCDATA)>}\\
 \end{tabular}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{La création d'un fichier \textit{standOff}}
+\section{La création d'un inventaire d'occurrences balisées}
 \label{section-standOff}
 
-Le programme standOff permet de créer un fichier comprenant des éléments balisés (en principe reconnus par des cascades antérieures) accompagnés de leur nombre d'occurrences dans le texte. Les balises doivent être sous la forme \emph{<nom>} ... \emph{</nom>} ou \emph{<nom type="type">} ... \emph{</nom>} et ne pas contenir de balises du même type. Le fichier de sortie est défini par un modèle de la forme:
+L'option \verb$standoff$ de CasSys (section~\ref{section-program-Cassys}) permet de traiter
+un corpus balisé dans le style XML, et de produire un fichier résultat répertoriant les expressions du
+corpus qui sont délimitées par des balises, avec le nombre d'occurrences de chaque expression distincte.
+Cette option n'est pas disponible via l'interface d'Unitex et doit être lancée par un script
+(chapitre~\ref{chap-scripts}) ou un programme externe.
 
 \bigskip
-\noindent \emph{Ici le début du fichier.}\\
-\emph{\#LINE}\\
-\hspace*{1cm} \emph{Début pour le type "\{TYPE\}" <<et le sous-type="\{SUBTYPE\}">>}\\
-\emph{\#BLOCK}\\
-\hspace*{1cm} \emph{term="\{TERM\}"}\\
-\hspace*{1cm} \emph{value=\{COUNT\}}\\
-\emph{\#END}\\
-\hspace*{1cm} \emph{Fin pour ce type.}\\
-\emph{\#REST}\\
-\emph{Ici la fin du fichier.}\\
-
-
-\noindent Pour la phrase:
-
-\bigskip
-\noindent \emph{<placeName type="ville">Tours</placeName> est une très belle ville. <placeName type="ville">Tours</placeName> est la capitale de la <placeName type="région">Touraine</placeName>.}\\
-
-Nous obtenons:
-
-\bigskip
-\noindent \emph{Ici le début du fichier.}\\
-\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="ville"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{term="Tours"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{value=2} \\
-\hspace*{1cm} \emph{Fin pour ce type.}\\
-\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="région"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{term="Touraine"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{value=1} \\
-\hspace*{1cm} \emph{Fin pour ce type.}\\
-\emph{Ici la fin du fichier.}\\
-
-\noindent Attention, ce programme ne peut être lancé via l'interface d'Unitex.
-
-
-Les balises affectées sont décrites dans une cascade, souvent par des graphes avec un contexte droit négatif (section~\ref{section-contexts}). Le graphe de la figure \ref{standOffOrgName} insère les balises \emph{OrgName} dans le fichier standOff. Le graphe de la figure \ref{standOffDate} y insère les balises \emph{date}, sauf si le mot \emph{published} se trouve à l'intérieur.
-
+\noindent Il faut fournir un graphe qui reconnait les éléments à rechercher (éléments au sens XML,
+c'est-à-dire expressions délimitées par une balise ouvrante et la balise fermante correspondante).
+Ce graphe aura généralement un contexte droit négatif (section~\ref{section-contexts}). 
+Par exemple, le graphe de la figure~\ref{fig-placeNameStandoff} permet d'inventorier les expressions
+balisées entre \verb$<placeName>$ et  \verb$</placeName>$.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=7.28cm]{resources/img/grfOrgName.png}
-  \caption{Un graphe pour le décompte des balises \emph{orgName} dans le fichier standOff}
-  \label{standOffOrgName}
+  \includegraphics[width=15cm]{resources/img/placeNameStandoff.png}
+  \caption{Graphe pour chercher les balises \emph{placeName}}
+  \label{fig-placeNameStandoff}
 \end{figure}
 
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=7.28cm]{resources/img/grfDate.png}
-  \caption{Un graphe pour le décompte des balises \emph{date} dans le fichier standOff, sauf en cas de présence du mot \emph{published}}
-  \label{standOffDate}
-\end{figure}
-
-\noindent Pour la phrase:
+\noindent Le programme peut traiter le cas où un élément contient un autre élément d'un nom
+différent~\footnote{Le nom d'un élément XML est le nom qui figure à l'intérieur de la balise.}, mais
+pas celui où il contient un élément du même nom. 
 
 \bigskip
-\noindent \emph{<placeName type="ville">Tours</placeName> est une très belle ville. <placeName type="ville">Tours</placeName> est la capitale de la <placeName type="région">Touraine</placeName>.}\\
-
-Nous obtenons:
+\noindent Pour utiliser l'option \verb$standoff$, on lance une cascade contenant le graphe. Le résultat
+est un fichier dont le nom est suffixé par \verb$_standoff$, et
+qui liste les expressions trouvées. Il les présente classées suivant les noms d'éléments,
+et secondairement suivant les valeurs de l'attribut \verb$type$, si les balises ouvrantes en possèdent
+un. Prenons comme exemple le texte balisé suivant:
 
 \bigskip
-\noindent \emph{Ici le début du fichier.}\\
-\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="ville"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{term="Tours"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{value=2} \\
-\hspace*{1cm} \emph{Fin pour ce type.}\\
-\hspace*{1cm} \emph{Début pour le type "placeName" et le sous-type="région"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{term="Touraine"} \\
-\hspace*{1cm} \hspace*{1cm} \emph{value=1} \\
-\hspace*{1cm} \emph{Fin pour ce type.}\\
-\emph{Ici la fin du fichier.}\\
+\noindent \emph{<placeName type="City">Tours</placeName> est une très belle ville. \\
+<placeName type="City">Tours</placeName> est la capitale \\
+de la <placeName type="Region">Touraine</placeName>}.
 
-\noindent Attention, ce programme ne peut être lancé via l'interface d'Unitex.
+\bigskip
+\noindent En y appliquant une cascade avec le graphe de la figure~\ref{fig-placeNameStandoff},
+% et prenons comme option le modèle de fichier ci-dessus.
+on obtient:
+\begin{verbatim}
+Voici les expressions trouvées :
+     Liste pour l'élément "placeName" et l'attribut "City" 
+          terme="Tours" 
+          nombre=2 
+     Fin de la liste pour cette paire.
+     Liste pour l'élément "placeName" et l'attribut "Region" 
+          terme="Touraine" 
+          nombre=1 
+     Fin de la liste pour cette paire.
+Fin de la liste pour ce corpus
+\end{verbatim}
 
-
-Les balises affectées sont décrites dans une cascade, souvent par des graphes avec un contexte droit négatif (section~\ref{section-contexts}). Le graphe de la figure \ref{standOffOrgName} insère les balises \emph{OrgName} dans le fichier standOff. Le graphe de la figure \ref{standOffDate} y insère les balises \emph{date}, sauf si le mot \emph{published} se trouve à l'intérieur.
-
+\noindent Dans le graphe qui reconnait les éléments, on peut aussi restreindre les valeurs de
+l'attribut \verb$type$. Par exemple, le graphe de la figure~\ref{fig-placeNameHorsRegionStandoff}
+permet de répertorier les balises \verb$placeName$, sauf celles de type \verb$Region$.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=7.28cm]{resources/img/grfOrgName.png}
-  \caption{Un graphe pour le décompte des balises \emph{orgName} dans le fichier standOff}
-  \label{standOffOrgName}
+  \includegraphics[width=15cm]{resources/img/placeNameHorsRegionStandoff.png}
+  \caption{Graphe pour les balises \emph{placeName}, sauf celles de type \emph{Region}}
+  \label{fig-placeNameHorsRegionStandoff}
 \end{figure}
 
+\noindent En passant une cascade avec le graphe de la figure~\ref{fig-placeNameHorsRegionStandoff},
+on obtient un résultat avec une seule combinaison élément-type:
+\begin{verbatim}
+Voici les expressions trouvées :
+     Liste pour l'élément "placeName" et l'attribut "City" 
+          terme="Tours" 
+          nombre=2 
+     Fin de la liste pour cette paire.
+Fin de la liste pour ce corpus
+\end{verbatim}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=7.28cm]{resources/img/grfDate.png}
-  \caption{Un graphe pour le décompte des balises \emph{date} dans le fichier standOff, sauf en cas de présence du mot \emph{published}}
-  \label{standOffDate}
-\end{figure}
+\noindent Le fichier résultat est construit à partir d'un fichier modèle, dont on donne le nom en
+ligne de commande avec l'option \verb$--standoff=<template file name>$.
+Le fichier modèle est un fichier texte qui comprend au plus dix sections:
+
+\begin{enumerate}
+\item un texte introductif libre
+\item une ligne contenant juste \verb$#LINE$: la partie entre \verb$#LINE$ et \verb$#REST$ servira
+de modèle pour former dans le fichier résultat la partie sur un élément (ou sur une combinaison
+élément-type)
+\item un texte qui introduit un nom d'élément, noté \verb${TYPE}$, et éventuellement une valeur de
+l'attribut \verb$type$, notée \verb${SUBTYPE}$. La partie optionnelle doit être délimitée entre
+doubles chevrons: \verb$<<...>>$
+\item une ligne \verb$#BLOCK$: la partie entre \verb$#BLOCK$ et \verb$#END$ servira de modèle
+pour former dans le fichier résultat la partie sur une expression balisée
+\item un texte introduisant une expression balisée, notée \verb${TERM}$
+\item un texte introduisant le nombre d'occurrences de cette expression, noté \verb${COUNT}$
+\item une ligne \verb$#END$
+\item un texte signalant la fin de la partie sur un élément (ou sur une combinaison élément-type)
+\item une ligne \verb$#REST$
+\item un texte conclusif libre
+\end{enumerate}
+
+\noindent Voici un exemple de fichier modèle:
+\begin{verbatim}
+Voici les expressions trouvées :
+#LINE
+     Liste pour l'élément "{TYPE}"<< et l'attribut "{SUBTYPE}">>
+#BLOCK
+          terme="{TERM}"
+          nombre={COUNT}
+#END
+     Fin de la liste pour cette paire.
+#REST
+Fin de la liste pour ce corpus
+\end{verbatim}
+
