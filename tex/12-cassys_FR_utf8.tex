@@ -599,21 +599,21 @@ La DTD de notre format est la suivante~:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{La création d'un fichier \textit{standOff}}
+\section{La création d'un inventaire d'occurrences balisées}
 \label{section-standOff}
 
 L'option \verb$standoff$ de CasSys (section~\ref{section-program-Cassys}) permet de traiter
-un corpus balisé dans le style XML, et de produire un fichier résultat répertoriant les passages du
-corpus qui sont délimités par des balises, avec le nombre d'occurrences de chaque passage distinct.
+un corpus balisé dans le style XML, et de produire un fichier résultat répertoriant les expressions du
+corpus qui sont délimitées par des balises, avec le nombre d'occurrences de chaque expression distincte.
 Cette option n'est pas disponible via l'interface d'Unitex et doit être lancée par un script
 (chapitre~\ref{chap-scripts}) ou un programme externe.
 
 \bigskip
 \noindent Il faut fournir un graphe qui reconnait les éléments à rechercher (éléments au sens XML,
-c'est-à-dire passages délimités par une balise ouvrante et la balise fermante correspondante).
+c'est-à-dire expressions délimitées par une balise ouvrante et la balise fermante correspondante).
 Ce graphe aura généralement un contexte droit négatif (section~\ref{section-contexts}). 
-Par exemple, le graphe de la figure \ref{fig-placeNameStandoff} permet d'inventorier les passages
-balisés entre \verb$<placeName>$ et  \verb$</placeName>$.
+Par exemple, le graphe de la figure~\ref{fig-placeNameStandoff} permet d'inventorier les expressions
+balisées entre \verb$<placeName>$ et  \verb$</placeName>$.
 
 \begin{figure}[!htb]
   \centering
@@ -622,13 +622,16 @@ balisés entre \verb$<placeName>$ et  \verb$</placeName>$.
   \label{fig-placeNameStandoff}
 \end{figure}
 
-\noindent Le programme peut traiter le cas où un élément contient un autre élément d'un nom différent~\footnote{Le nom d'un élément XML est le nom qui figure à l'intérieur de la balise.}, mais pas celui où il contient un élément du même nom. 
+\noindent Le programme peut traiter le cas où un élément contient un autre élément d'un nom
+différent~\footnote{Le nom d'un élément XML est le nom qui figure à l'intérieur de la balise.}, mais
+pas celui où il contient un élément du même nom. 
 
 \bigskip
-\noindent Pour utiliser l'option \verb$standoff$, on lance une cascade contenant le graphe. Le résultat est un fichier dont le nom est suffixé par \verb$_standoff$, et
-qui liste les passages trouvés. Il les présente classés suivant les noms d'éléments,
-et secondairement suivant les valeurs de l'attribut \verb$type$, si les balises ouvrantes possèdent
-cet attribut. Donnons un exemple avec le texte balisé suivant:
+\noindent Pour utiliser l'option \verb$standoff$, on lance une cascade contenant le graphe. Le résultat
+est un fichier dont le nom est suffixé par \verb$_standoff$, et
+qui liste les expressions trouvées. Il les présente classées suivant les noms d'éléments,
+et secondairement suivant les valeurs de l'attribut \verb$type$, si les balises ouvrantes en possèdent
+un. Prenons comme exemple le texte balisé suivant:
 
 \bigskip
 \noindent \emph{<placeName type="City">Tours</placeName> est une très belle ville. \\
@@ -640,7 +643,7 @@ de la <placeName type="Region">Touraine</placeName>}.
 % et prenons comme option le modèle de fichier ci-dessus.
 on obtient:
 \begin{verbatim}
-Voici les balises trouvées :
+Voici les expressions trouvées :
      Liste pour l'élément "placeName" et l'attribut "City" 
           terme="Tours" 
           nombre=2 
@@ -653,7 +656,8 @@ Fin de la liste pour ce corpus
 \end{verbatim}
 
 \noindent Dans le graphe qui reconnait les éléments, on peut aussi restreindre les valeurs de
-l'attribut \verb$type$. Par exemple, le graphe de la figure \ref{fig-placeNameHorsRegionStandoff} permet de répertorier les balises \verb$placeName$, sauf celles de type \verb$Region$.
+l'attribut \verb$type$. Par exemple, le graphe de la figure~\ref{fig-placeNameHorsRegionStandoff}
+permet de répertorier les balises \verb$placeName$, sauf celles de type \verb$Region$.
 
 \begin{figure}[!htb]
   \centering
@@ -662,10 +666,10 @@ l'attribut \verb$type$. Par exemple, le graphe de la figure \ref{fig-placeNameHo
   \label{fig-placeNameHorsRegionStandoff}
 \end{figure}
 
-\noindent En passant une cascade avec le graphe de la figure
-\ref{fig-placeNameHorsRegionStandoff}, on obtient un résultat avec un seul paragraphe:
+\noindent En passant une cascade avec le graphe de la figure~\ref{fig-placeNameHorsRegionStandoff},
+on obtient un résultat avec une seule combinaison élément-type:
 \begin{verbatim}
-Voici les balises trouvées :
+Voici les expressions trouvées :
      Liste pour l'élément "placeName" et l'attribut "City" 
           terme="Tours" 
           nombre=2 
@@ -679,11 +683,16 @@ Le fichier modèle est un fichier texte qui comprend au plus dix sections:
 
 \begin{enumerate}
 \item un texte introductif libre
-\item une ligne contenant juste \verb$#LINE$: la partie entre \verb$#LINE$ et \verb$#REST$ servira de modèle pour former dans le fichier résultat la partie sur un élément (ou sur une combinaison élément-type)
-\item un texte qui introduit un nom d'élément, noté \verb${TYPE}$, et éventuellement une valeur de l'attribut \verb$type$, notée \verb${SUBTYPE}$. La partie optionnelle doit être délimitée entre doubles chevrons: \verb$<<...>>$
-\item une ligne \verb$#BLOCK$: la partie entre \verb$#BLOCK$ et \verb$#END$ servira de modèle pour former dans le fichier résultat la partie sur un passage balisé
-\item un texte introduisant un passage balisé, noté \verb${TERM}$
-\item un texte introduisant le nombre d'occurrences de ce passage, noté \verb${COUNT}$
+\item une ligne contenant juste \verb$#LINE$: la partie entre \verb$#LINE$ et \verb$#REST$ servira
+de modèle pour former dans le fichier résultat la partie sur un élément (ou sur une combinaison
+élément-type)
+\item un texte qui introduit un nom d'élément, noté \verb${TYPE}$, et éventuellement une valeur de
+l'attribut \verb$type$, notée \verb${SUBTYPE}$. La partie optionnelle doit être délimitée entre
+doubles chevrons: \verb$<<...>>$
+\item une ligne \verb$#BLOCK$: la partie entre \verb$#BLOCK$ et \verb$#END$ servira de modèle
+pour former dans le fichier résultat la partie sur une expression balisée
+\item un texte introduisant une expression balisée, notée \verb${TERM}$
+\item un texte introduisant le nombre d'occurrences de cette expression, noté \verb${COUNT}$
 \item une ligne \verb$#END$
 \item un texte signalant la fin de la partie sur un élément (ou sur une combinaison élément-type)
 \item une ligne \verb$#REST$
@@ -692,7 +701,7 @@ Le fichier modèle est un fichier texte qui comprend au plus dix sections:
 
 \noindent Voici un exemple de fichier modèle:
 \begin{verbatim}
-Voici les balises trouvées :
+Voici les expressions trouvées :
 #LINE
      Liste pour l'élément "{TYPE}"<< et l'attribut "{SUBTYPE}">>
 #BLOCK

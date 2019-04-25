@@ -506,5 +506,116 @@ The DTD of our xml format is:
 \texttt{<!ELEMENT inflect (\#PCDATA)>}\\
 \end{tabular}
 
-\section{Creating a \textit{standOff} file}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Creating an inventory of tag occurrences}
 \label{section-standOff}
+The \verb$standoff$ option of CasSys (section~\ref{section-program-Cassys}) allows for processing
+an XML-style tagged corpus, and producing a file that inventories the tag-delimited phrases of the 
+corpus, with the number of occurrences of each unique phrase.
+This option is not available via the Unitex graphical user interface. It must be launched from a script
+(chapitre~\ref{chap-scripts}) or an external program.
+
+\bigskip
+\noindent You need to provide a graph that recognises the elements to be searched for (elements
+in the XML sense, i.e.\ phrases delimited by an opening tag and the corresponding end tag).
+Ths graph will generally involve a negative right context (section~\ref{section-contexts}). 
+For example, the graph of Figure~\ref{fig-placeNameStandoff} inventories the phrases
+enclosed between \verb$<placeName>$ and \verb$</placeName>$.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/placeNameStandoff.png}
+  \caption{Graph for \emph{placeName}-tagged elements}
+  \label{fig-placeNameStandoff}
+\end{figure}
+
+\noindent The program can process a corpus where an element contains another element with another
+name,\footnote{The name of an XML element is the name in the tag.} but not a corpus where it contains another
+element with the same name. 
+
+\bigskip
+\noindent To use the \verb$standoff$ option, launch a cascade containing the graph. The output is a file
+with a \verb$_standoff$-suffixed name,
+which lists the phrases found. It sorts them according to the element names,
+and, as a secondary criterion, according to the values of the \verb$type$ attribute, if the opening tags have
+it. Take for example the following tagged text:
+
+\bigskip
+\noindent \emph{<placeName type="City">Birmingham</placeName> is a populous city. \\
+<placeName type="City">Birmingham</placeName> is the largest urban area of \\
+<placeName type="Region">West Midlands</placeName>}.
+
+\bigskip
+\noindent By applying a cascade with the graph of Figure~\ref{fig-placeNameStandoff},
+% et prenons comme option le modèle de fichier ci-dessus.
+you get:
+\begin{verbatim}
+Tagged elements found:
+     List for element "placeName" and attribute "City" 
+          term="Birmingham" 
+          number=2 
+     End of list for this pair.
+     List for element "placeName" and attribute "Region" 
+          term="West Midlands" 
+          number=1 
+     End of list for this pair.
+End of list for this corpus
+\end{verbatim}
+
+\noindent In the graph that recognises the elements, you can also restrict the values of the
+\verb$type$ attribute. For example, the graph of Figure~\ref{fig-placeNameHorsRegionStandoff}
+inventories the \verb$placeName$-tagged elements, except those of the \verb$Region$ type.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=15cm]{resources/img/placeNameHorsRegionStandoff.png}
+  \caption{Graph for \emph{placeName}-tagged elements, except those of the \emph{Region} type}
+  \label{fig-placeNameHorsRegionStandoff}
+\end{figure}
+
+\noindent By applying a cascade with the graph of Figure~\ref{fig-placeNameHorsRegionStandoff},
+you get a result about a single pair:
+\begin{verbatim}
+Tagged elements found:
+     List for element "placeName" and attribute "City" 
+          term="Birmingham" 
+          number=2 
+     End of list for this pair.
+End of list for this corpus
+\end{verbatim}
+
+\noindent The output file is produced on the model of a template file. Provide the name of the template file in
+command line with the following syntax: \verb$--standoff=<template file name>$.
+The tempate file is a text file with at most 10 sections:
+
+\begin{enumerate}
+\item free introductive text
+\item a line with just \verb$#LINE$: the part from \verb$#LINE$ to \verb$#REST$ will be used as a template
+to generate the part on an element (or on an element-type pair) in the output file
+\item text introducing an element name, noted \verb${TYPE}$, and optionally a value of the
+\verb$type$ attribute, noted \verb${SUBTYPE}$. The optional part must be enclosed in double angles:
+\verb$<<...>>$
+\item a \verb$#BLOCK$ line: the part from \verb$#BLOCK$ to \verb$#END$ will be a template for
+the part on a tagged phrase in the output file
+\item text introducing a tagged phrase, noted \verb${TERM}$
+\item text introducing the number of occurrences of this phrase, noted \verb${COUNT}$
+\item an \verb$#END$ line
+\item text signaling the end of the part on an element (or on an element-type pair)
+\item a \verb$#REST$ line
+\item free conclusive text
+\end{enumerate}
+
+\noindent Here is an example of a template file:
+\begin{verbatim}
+Tagged elements found:
+#LINE
+     List for element "{TYPE}"<< and attribute "{SUBTYPE}">>
+#BLOCK
+          term="{TERM}"
+          number={COUNT}
+#END
+     End of list for this pair.
+#REST
+End of list for this corpus
+\end{verbatim}
+
