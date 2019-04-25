@@ -39,8 +39,8 @@ or in the form of a Unitex-interpreted script (Section~\ref{section-unitex-scrip
 
 You can put a script in the form of a shell or batch script and execute it in the command-line
 interface of the operating system. For example, the following commands open the
-\verb$80jours$ French corpus, without the REPLACE- or MERGE-mode preprocessings, but with the default
-dictionary, \verb$Dela_fr$, and launch a "Locate pattern" with graph \verb$pattern.fst2$
+\verb$80jours$ French corpus, without the REPLACE- or MERGE-mode preprocessings, but with default
+dictionary \verb$Dela_fr$, then they launch a "Locate pattern" with graph \verb$pattern.fst2$ as a query
 and generate a concordance:
 
 \begin{Verbatim}[fontsize=\small,fontfamily=helvetica]
@@ -98,7 +98,7 @@ virtual file system.
     in the same operating system,
     \item the processing does not modify any data in the deployment environment, since it is applied
     to a copy of the corpus and uses a copy of the resources included in the package. Only the files
-explicitly specified as being the output of the processing are copied into the deployment environment in the end 
+explicitly specified as being the output of the processing are copied into the deployment environment at the end 
 of the processing.
 \end{itemize}
 \end{itemize}
@@ -187,7 +187,7 @@ in the virtual file system.
 if necessary \verb$INPUT_FILE_2$, etc., the name of the file(s) that contain the input corpus; in
 \verb$OUTPUT_FILE_1$, \verb$OUTPUT_FILE_2$, etc., the name of the output file(s);
 in \verb$PACKAGE_DIR$ the name of the root directory of the linguistic package in the virtual
-fils system; in \verb$CORPUS_WORK_DIR$ the name of the directory that will contain the files
+file system; in \verb$CORPUS_WORK_DIR$ the name of the directory that will contain the files
 generated during the execution of the script.
 \item The last step writes the output file(s) and then terminates the virtual file system.
 \end{enumerate}
