@@ -585,8 +585,11 @@ End of list for this corpus
 \end{verbatim}
 
 \noindent The output file is produced on the model of a template file. Provide the name of the template file in
-command line with the following syntax: \verb$--standoff=<template file name>$.
-The tempate file is a text file with at most 10 sections:
+command line with the following syntax:
+
+\verb$--standoff=<template file name>$.
+
+\noindent The template file is a text file with at most 10 sections:
 
 \begin{enumerate}
 \item free introductive text
@@ -600,7 +603,7 @@ the part on a tagged phrase in the output file
 \item text introducing a tagged phrase, noted \verb${TERM}$
 \item text introducing the number of occurrences of this phrase, noted \verb${COUNT}$
 \item an \verb$#END$ line
-\item text signaling the end of the part on an element (or on an element-type pair)
+\item text signalling the end of the part on an element (or on an element-type pair)
 \item a \verb$#REST$ line
 \item free conclusive text
 \end{enumerate}
