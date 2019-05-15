@@ -398,7 +398,7 @@ In these Lists of subgraphs :
 \end{figure}
 
 \subsection{Manipulating boxes}
-\index{Multiple selection}\index{Boxes!selection}
+\label{boxes-selection}\index{Multiple selection}\index{Boxes!selection}
 
 You can select several boxes using the mouse. In order to do so, click and drag the
 mouse without releasing the button. When you release the button, all boxes
@@ -764,7 +764,95 @@ The last six buttons are shortcuts to use variables, morphological mode or inser
 \item \textcolor{green}{\$![} : negative right context (see section~\ref{section-contexts})
 \end{itemize}
 
+\subsection{Find and replace in graphs}
+\index{Find and replace}
+\label{find-replace}
+In order to search graphs for an expression or for a sequence of boxes, open one of
+the graphs and click either on "Find and replace" in the "FSGraph" menu, or on the
+magnifying glass in the graph toolbar. This will display a window as in
+Figure~\ref{find-in-one-box}.
+
+\noindent 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=13.6cm]{resources/img/findandreplace-one-box.jpg}
+\caption{Window for finding and replacing inside one box\label{find-in-one-box}}
+\end{center}
+\end{figure}
+
+\noindent The "Inside one box" tab allows you to search boxes for an expression
+contained in one of them. You can find every occurrence of a word, expression or
+character string, in a box, below a box (cf.~\ref{Transducers}) or both. Type what
+you are looking for in "Find what", then click either "Find Previous" or "Find Next"
+to move to each box that contains one or several occurrences of the query.
+The frame of the box will be highlighted in colour. If a box contains the name of a
+subgraph or of a variable (cf.~\ref{section-using-variables}) or any special-purpose
+codes, the program considers that as part of the normal content of the box.
+
 \bigskip
+\noindent The list in "Graphs" allows you to find and replace either on a specific graph
+or on all open graphs.
+
+\bigskip
+\noindent You can replace the occurrence(s) in a single box with the content of
+"Replace with": first select the box you wish to modify, then click "Replace".
+This will replace the content of "Find what" with the content of "Replace with".
+
+\bigskip
+\noindent If you want to replace every occurrence in the graph(s), click "Replace
+All".
+
+\bigskip
+\noindent You can narrow or extend the search by checking or unchecking the following
+options:
+\begin{itemize}
+	\item	Case sensitive: the search is sensitive to capitalization of letters.
+	\item	Use regular expressions: the search interprets the query as a regular
+expression according to POSIX rules, i.e.\ \verb$un.*able$ for a sequence of characters
+containing \textit{un} somewhere and \textit{able} somewhere after.
+	\item	Match only a whole line: the search matches complete lines instead. In a box with an output, the program considers the output belongs to the last line.
+	\item	Ignore comment boxes (default): the search ignores boxes not linked
+	to any box at all.
+\end{itemize}
+
+\bigskip
+\noindent To search graphs for a sequence of boxes, select the "Complete boxes"
+tab (Figure~\ref{find-complete-boxes}).
+
+\noindent 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=13.6cm]{resources/img/findandreplaceseq.jpg}
+\caption{Window for finding and replacing complete boxes\label{find-complete-boxes}}
+\end{center}
+\end{figure}
+
+\noindent
+You can find every occurrence of a sequence of boxes. To express your query easily,
+first find some existing graph(s) containing an occurrence of the first boxes of the
+sequence (or you can make a graph just for that, and you don’t need save that graph),
+select a graph either by clicking on it or by using the "Graphs" drop-down list, click an
+occurrence of the first box and then click the Add button. Do the same to add other
+boxes to the query. The query is displayed in the field next to the Add button, with
+each box separated from the next by a $\blacktriangleright$ character.
+To add several boxes at once, check the "All boxes at once" option, select a sequence
+of boxes (cf.~\ref{boxes-selection}) and add them.
+
+\bigskip
+\noindent Once your query is ready, make sure the "Graphs" drop-down list
+specifies the graph(s) you want to search and click "Find Next" or "Find Previous".
+The system finds the box sequences that match the query. A box with various lines
+matches only a box with the same lines in the same order.
+
+\bigskip
+\noindent Only the sequences which do not contain any incoming or outgoing
+transitions are found, except for incoming transitions to the first box or outgoing
+transitions from the last box. This restriction ensures the Replace operation is clearly
+defined.
+
+\bigskip
+\noindent "Replace" and "Replace All" replace the sequence in "Find what" with the sequence in "Replace with". The incoming transitions to the first box and the outgoing transitions from the last box are maintained.
+
 %\pagebreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

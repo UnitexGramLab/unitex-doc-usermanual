@@ -406,7 +406,7 @@ Dans ces listes de sous-graphes:
 %%%%%%%%%%%%%%%%%%
 
 \subsection{Manipulation des boîtes}
-\index{Sélection multiple}\index{Boîtes!sélection}
+\label{boxes-selection}\index{Sélection multiple}\index{Boîtes!sélection}
 
 Vous pouvez sélectionner plusieurs boîtes au moyen de la souris. Pour cela, cliquez et
 déplacez la souris sans relâcher le bouton. Lorsque vous relâcherez le bouton, toutes les
@@ -783,6 +783,104 @@ ou d'un contexte sur une ou plusieurs boîtes sélectionnées. Ces boutons ne so
 \item \textcolor{green}{\$![} : contexte droit négatif (voir section~\ref{section-contexts})
 \end{itemize}
 
+\subsection{Rechercher et remplacer dans les graphes}
+\index{Rechercher et remplacer}
+\label{find-replace}
+Pour chercher une expression ou une suite de boites dans des graphes, on ouvre un des
+graphes et on clique soit sur "Find and replace" dans le menu "FSGraph", soit sur la loupe
+dans la barre d'outils. Il apparait une fenêtre comme celle de la
+figure~\ref{find-in-one-box}.
+
+\noindent 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=13.6cm]{resources/img/findandreplace-one-box.jpg}
+\caption{Fenêtre pour rechercher et remplacer dans une boite\label{find-in-one-box}}
+\end{center}
+\end{figure}
+
+\noindent L'onglet "Inside one box" permet de rechercher une expression entièrement
+contenue dans une des boites. On peut trouver toutes les occurrences d'un mot, d'une
+expression ou d'une chaine de caractères, dans une boite, sous une boite
+(cf.~\ref{Transducers}) ou  les deux. On écrit ce qu'on cherche dans "Find what",
+puis on clique sur "Find Previous" ou "Find Next" pour atteindre chaque boite qui contient
+une ou plusieurs occurrences de la requête. La boite trouvée est signalée par un cadre 
+coloré. Si une boite contient le nom d'un sous-graphe ou d'une variable
+(cf.~\ref{section-using-variables}) ou encore des codes spécifiques, le programme
+traite cela comme n'importe quel autre contenu de boite.
+
+\bigskip
+\noindent La liste dans "Graphs" permet de rechercher et de remplacer soit dans un
+graphe particulier, soit dans tous les graphes ouverts.
+
+\bigskip
+\noindent On peut remplacer la ou les occurrences présentes dans une boite par le
+contenu de "Replace with": on sélectionne la boite qu'on veut modifier, puis on clique
+sur "Replace". Le contenu de "Find what" dans la boite est remplacé par le contenu
+de "Replace with".
+
+\bigskip
+\noindent Pour remplacer toutes les occurrences présentes dans le ou les graphes, on
+clique sur "Replace All".
+
+\bigskip
+\noindent On peut restreindre ou étendre la recherche en cochant ou en décochant des
+options:
+\begin{itemize}
+	\item	Case sensitive: la recherche fait la différence entre majuscules et minuscules.
+	\item	Use regular expressions: la recherche interprète la requête comme une
+	expression régulière conforme aux conventions POSIX, par exemple
+	\verb$un.*able$ reconnait une séquence de caractères qui contient \textit{un}
+	quelque 	part et \textit{able} plus loin.
+	\item	Match only a whole line: la recherche cible uniquement des lignes complètes.
+	Dans une boite avec une sortie, le programme considère que la sortie fait partie de la
+	dernière ligne de la boite.
+	\item	Ignore comment boxes (par défaut): la recherche ignore les boites qui ne
+	sont liées à aucune autre.
+\end{itemize}
+
+\bigskip
+\noindent Pour rechercher une séquence de boites dans un ou plusieurs graphes, on
+sélectionne l'onglet "Complete boxes" (figure~\ref{find-complete-boxes}).
+
+\noindent 
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=13.6cm]{resources/img/findandreplaceseq.jpg}
+\caption{Fenêtre pour rechercher et remplacer des boites
+complètes\label{find-complete-boxes}}
+\end{center}
+\end{figure}
+
+\noindent On peut trouver toutes les occurrences d'une séquence de boites.
+Pour former une requête, le plus simple est de trouver d'abord un ou des graphes
+existants qui contiennent une occurrence des premières boites de la séquence
+(on peut aussi faire un graphe pour cela, sans qu'il soit obligatoire de le sauvegarder),
+on sélectionne un graphe soit en cliquant dessus soit en utilisant le menu déroulant
+"Graphs", on clique sur une occurrence de la première boite et on clique sur le bouton
+Add. On répète l'opération pour ajouter à la requête les autres boites. Le champ
+à côté du bouton Add affiche la requête, avec chaque boite séparée de la suivante par
+un caractère $\blacktriangleright$. Pour ajouter plusieurs boites en même temps,
+on coche l'option "All boxes at once", on sélectionne une séquence de boites
+(cf.~\ref{boxes-selection}) et on les ajoute.
+
+\bigskip
+\noindent Une fois la requête prête, on s'assure que le menu déroulant "Graphs"
+indique le ou les graphes dans lesquels on veut rechercher, puis on clique sur
+"Find Next" ou "Find Previous". Le programme trouve les séquences de boites
+qui coïncident avec la requête. Une boite avec plusieurs lignes ne correspond
+qu'à une boite qui contient les mêmes lignes dans le même ordre.
+
+\bigskip
+\noindent Le programme ne recherche que les séquences qui ne contiennent aucune
+transition entrante ni sortante, à part des transitions entrantes dans la première
+boite ou des transitions sortantes dans la dernière. Grâce à cette restriction,
+l'opération Replace est clairement définie.
+
+\bigskip
+\noindent "Replace" et "Replace All" remplacent la séquence indiquée dans
+ "Find what" par celle indiquée dans "Replace with". Les transitions entrantes de la
+ première boite et les sortantes de la dernière sont conservées.
 %\pagebreak
 
 
