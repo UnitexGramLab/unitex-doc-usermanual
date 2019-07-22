@@ -360,18 +360,32 @@ $\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
 \end{figure}
 
 \section{Graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
-\label{section:graphe_generalisation}
+\label{graph-generalization}
 
-Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} leur contexte, mais si ces \'{e}l\'{e}ments apparaissent ailleurs hors contexte on ne les reconna\^{i}t pas. Afin de trouver de telles occurences, CasSys propose d'utiliser des graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage. Ces graphes contiennent des bo\^{i}tes vides qui sont remplies automatiquement par le programme avant d'\^{e}tre appliqu\'{e}s au texte. Ces graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage ne fonctionnent qu'avec l'utilisation d'accolades, car le programme consulte la liste de tokens (tokens.txt) du texte \`{a} analyser par le futur graphe.
+Parfois, on a identifi\'{e} des \'{e}l\'{e}ments recherch\'{e}s gr\^{a}ce \`{a} certains contextes,
+mais si ces \'{e}l\'{e}ments apparaissent dans un autre contexte on ne les reconna\^{i}t pas.
+Afin de trouver de telles occurrences, CasSys propose d'utiliser des graphes de
+g\'{e}n\'{e}ralisation d'\'{e}tiquetage. Ces graphes contiennent des bo\^{i}tes vides
+quer le programme remplit automatiquement avant d'appliquer les graphes
+au texte. Les graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage ne fonctionnent
+qu'avec l'utilisation d'accolades, car le programme consulte la liste de tokens
+(tokens.txt) du texte \`{a} analyser par le futur graphe.
 
-Dans le cas d'un token comme :
+\bigskip
+\noindent Dans le cas d'un token comme:
 
+\bigskip
 \emph{\{\{mars,.mois\} \{2018,.année\},.date\}}
 
-nous appellerons dans la \emph{suite sous-étiquette lexicale} les éléments \emph{\{mars,.mois\}} et \emph{\{2018,.année\}}, et \emph{sous-catégorie} les catégories \textit{mois} et \textit{année}.
+\bigskip
+\noindent nous appellerons dans la suite \emph{sous-étiquettes lexicales} les éléments
+\emph{\{mars,.mois\}} et \emph{\{2018,.année\}}, et \emph{sous-catégories}
+les catégories \textit{mois} et \textit{année}.
 
 \subsection{D\'{e}claration d'un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage}
-Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage il faut cocher la colonne \emph{Generalization} (figure~\ref{fig12-3}).
+Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage, il faut
+cocher la colonne \emph{Generalization} (figure~\ref{fig12-3}).
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=15cm]{resources/img/fig12-3.png}
@@ -383,10 +397,13 @@ Pour que CasSys reconnaisse un graphe de g\'{e}n\'{e}ralisation d'\'{e}tiquetage
 
 \subsubsection{Graphe de généralisation d'étiquetage simple}
 
-Pour créer un graphe de généralisation d'étiquetage, il faut marquer le début de la partie générique par une boîte \$G, avec en sortie une accolade ouvrante, et la fin par une boîte vide, avec en sortie une accolade fermante, éventuellement précédée d'un ou plusieurs traits. Il faut placer entre les deux une (et une seule) boîte vide avec en sortie l'élément à rechercher, précédé de ",.".
-
-\bigskip
-Il est possible d'utiliser le bouton \$G (figure~\ref{fig:bouton_g}) pour insérer automatiquement les boîtes de début et de fin de la partie générique après avoir sélectionné une boîte.
+Pour créer un graphe de généralisation d'étiquetage, on marque le début de la partie
+générique par une boîte \$G avec en sortie une accolade ouvrante, et la fin
+par une boîte vide avec en sortie une accolade fermante éventuellement précédée
+d'un ou plusieurs traits. Il faut placer entre les deux une (et une seule) boîte vide
+avec en sortie l'élément à rechercher, précédé de ",.". Il est possible d'utiliser
+le bouton \$G (figure~\ref{fig:bouton_g}) pour insérer automatiquement les boîtes
+de début et de fin de la partie générique après avoir sélectionné une boîte.
 
 \begin{figure}[!htb]
   \centering
@@ -396,7 +413,15 @@ Il est possible d'utiliser le bouton \$G (figure~\ref{fig:bouton_g}) pour insér
 \end{figure}
 
 \bigskip
-Par exemple, si le fichier de tokens contient l'étiquette lexicale \emph{\{A,.x\}}, le graphe générique de la figure~\ref{fig:graphe_generique_simple} qui permet d'extraire les éléments de catégorie \textit{x} va générer le graphe en figure~\ref{fig:graphe_generique_simple_genere}. Un contexte droit négatif est ajouté automatiquement pour empêcher un deuxième étiquetage des occurrences déjà étiquetées. Attention cependant que les éléments de la boite sont des masques lexicaux (voir la justification en section~\ref{tokenization}), ce qui peut créer une ambiguité avec un code grammatical. Le graphe de la figure~\ref{fig:graphe_generique_simple_genere} est catastrophique de ce point de vue là, car il reconnait tous les adjectifs du texte!
+\noindent Par exemple, si le fichier de tokens contient l'étiquette lexicale
+\emph{\{A,.x\}}, le graphe générique de la figure~\ref{fig:graphe_generique_simple}
+est conçu pour extraire les éléments de catégorie \textit{x} et son traitement va générer
+le graphe en figure~\ref{fig:graphe_generique_simple_genere}. Un contexte droit négatif
+est ajouté automatiquement pour empêcher un deuxième étiquetage des occurrences
+déjà étiquetées. Attention cependant que les éléments de la boite sont des masques
+lexicaux (voir la justification en section~\ref{tokenization}), ce qui peut créer une ambiguïté
+avec un code grammatical. Le graphe de la figure~\ref{fig:graphe_generique_simple_genere}
+est catastrophique de ce point de vue, car il reconnait tous les adjectifs du texte!
 
 \begin{figure}[!htb]
   \centering
@@ -408,12 +433,15 @@ Par exemple, si le fichier de tokens contient l'étiquette lexicale \emph{\{A,.x
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=10cm]{resources/img/graphe_generique_simple_genere.png}
-  \caption{Graphe de généralisation d'étiquetage simple généré}
+  \caption{Graphe de généralisation d'étiquetage simple après traitement}
   \label{fig:graphe_generique_simple_genere}
 \end{figure}
 
 \bigskip
-Remarque : Lors de la création d'un graphe de généralisation d'étiquetage, plusieurs parties génériques peuvent être insérées dans le graphe et des boîtes classiques peuvent être ajoutées avant et après chaque partie générique, comme le montre la figure~\ref{fig:graphe_generique_plusieurs_chemins}.
+\noindent Remarque: lors de la création d'un graphe de généralisation d'étiquetage, plusieurs
+parties génériques peuvent être insérées dans le graphe, et des boîtes classiques
+peuvent être ajoutées avant et après chaque partie générique, comme le montre
+la figure~\ref{fig:graphe_generique_plusieurs_chemins}.
 
 \begin{figure}[!htb]
   \centering
@@ -422,21 +450,35 @@ Remarque : Lors de la création d'un graphe de généralisation d'étiquetage, p
   \label{fig:graphe_generique_plusieurs_chemins}
 \end{figure}
 
-\subsubsection{Graphe de généralisation d'étiquetage avec restriction\protect\footnote{Dans certaines versions 3.2 alpha des restrictions négatives étaient présentes. Elles ne le sont plus, mais le comportement d'une partie générique utilisant des restrictions négatives peut être reproduit en utilisant des restrictions positives. Pour plus d'information ou en cas de besoin, contacter la liste Google Unitex.}}
+\subsubsection{Graphe de généralisation d'étiquetage avec restriction\protect\footnote{Dans
+certaines versions 3.2 alpha, des restrictions négatives étaient présentes. Elles ne le sont plus,
+mais le comportement d'une partie générique utilisant des restrictions négatives
+peut être reproduit en utilisant des restrictions positives. Pour plus d'information ou
+en cas de besoin, contacter la liste Google Unitex.}}
 
-Les graphes simples permettent de récupérer le contenu des tokens de catégorie cherchée du fichier tokens.txt, mais il peut arriver que l'on veuille récupérer le contenu d'une sous-étiquette lexicale. Pour cela on peut utiliser des restrictions dans les graphes de généralisation d'étiquetage. On place alors la sous-catégorie à rechercher dans la boîte, tout en laissant en sortie la catégorie principale précédée de ",.". Cette sous-catégorie doit être seul dans la boîte. Si on veut extraire plusieurs sous-catégories il faut créer plusieurs chemins.
-
+Les graphes simples permettent de récupérer le contenu des tokens de catégorie cherchée
+du fichier tokens.txt, mais il peut arriver que l'on veuille récupérer le contenu d'une
+sous-étiquette lexicale. Pour cela on peut utiliser des restrictions dans les graphes
+de généralisation d'étiquetage. On place alors la sous-catégorie à rechercher
+dans la boîte, tout en laissant en sortie la catégorie principale précédée de ",.".
+Cette sous-catégorie doit être seule dans la boîte. Si on veut extraire plusieurs sous-catégories,
+il faut créer plusieurs chemins.
 
 \bigskip
-Prenons un exemple, supposons que la ligne suivante soit présente dans le fichier tokens.txt :
+Prenons un exemple, supposons que la ligne suivante soit présente dans le fichier tokens.txt:
 
-
+\bigskip
 \emph{\{\{first,.A\} \{\{second,.A\} \{third,.B\},.B\},.main\}}
 
-et que l'on veuille extraire la sous-étiquette lexicale de sous-catégorie \textit{A} ou celle de sous-catégorie \textit{B}.
+\bigskip
+\noindent et que l'on veuille extraire la sous-étiquette lexicale de sous-catégorie \textit{A}
+ou celle de sous-catégorie \textit{B}.
 
 \bigskip
-Le graphe de la figure~\ref{fig:graphe_restriction_A} une fois généré donnera le graphe en figure~\ref{fig:graphe_restriction_A_genere}, alors que le graphe en figure~\ref{fig:graphe_restriction_B} donnera le graphe en figure~\ref{fig:graphe_restriction_B_genere}.
+\noindent Le graphe de la figure~\ref{fig:graphe_restriction_A} une fois traité donnera
+le graphe en figure~\ref{fig:graphe_restriction_A_genere}, alors que le graphe en
+figure~\ref{fig:graphe_restriction_B} donnera le graphe en
+figure~\ref{fig:graphe_restriction_B_genere}.
 
 \begin{figure}[!htb]
   \centering
@@ -448,7 +490,8 @@ Le graphe de la figure~\ref{fig:graphe_restriction_A} une fois généré donnera
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/graphe_restriction_A_genere.png}
-  \caption{Graphe de généralisation d'étiquetage avec une restriction sur la sous-catégorie A après génération}
+  \caption{Graphe de généralisation d'étiquetage avec une restriction sur la sous-catégorie A
+  après traitement}
   \label{fig:graphe_restriction_A_genere}
 \end{figure}
 
@@ -462,17 +505,30 @@ Le graphe de la figure~\ref{fig:graphe_restriction_A} une fois généré donnera
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/graphe_restriction_B_genere.png}
-  \caption{Graphe de généralisation d'étiquetage avec une restriction sur la sous-catégorie B après génération}
+  \caption{Graphe de généralisation d'étiquetage avec une restriction sur la sous-catégorie B
+  après traitement}
   \label{fig:graphe_restriction_B_genere}
 \end{figure}
 
 \bigskip
-Dans le premier cas, deux sous-étiquettes lexicales de sous-catégorie \textit{A} ont été trouvées, "first" et "second". Alors que dans le deuxième cas, une seule sous-étiquette lexicale de sous-catégorie \textit{B} a été trouvée, cette sous-étiquette lexicale contient elle-même deux autres sous-étiquettes lexicales, le contenu extrait est donc la concaténation de ce qui se trouve à l'intérieur, c'est-à-dire "second third". Comme la sous-catégorie correspondait, la recherche n'a pas été propagée aux sous-étiquettes lexicales de niveau inférieur et la sous-étiquette lexicale "third" toute seule n'a pas été trouvée.
-
-Par ailleurs, on remarque plusieurs choses; tout d'abord, le contexte droit négatif contient maintenant la catégorie du token principal et la sous-catégorie recherchée. De plus, les éléments trouvés sont doublement étiquetés, avec les deux catégories imbriquées.
+\noindent Dans le premier cas, deux sous-étiquettes lexicales de sous-catégorie \textit{A}
+ont été trouvées, "first" et "second". Dans le deuxième cas, une seule sous-étiquette
+lexicale de sous-catégorie \textit{B} a été trouvée; cette sous-étiquette lexicale contient
+elle-même deux autres sous-étiquettes lexicales; le contenu extrait est donc la concaténation
+de ce qui se trouve à l'intérieur, c'est-à-dire "second third". Comme la sous-catégorie
+correspondait, la recherche n'a pas été propagée aux sous-étiquettes lexicales
+de niveau inférieur et la sous-étiquette lexicale "third" toute seule n'a pas été trouvée.
 
 \bigskip
-Un graphe de généralisation d'étiquetage ne doit pas contenir un chemin sans restriction et un chemin avec restriction pour la même catégorie, à cause de l'ambiguïté générée, sauf en utilisant des poids sur les chemins (voir section~\ref{Transducers}), comme le montre la figure~\ref{fig:graphe_poids}.
+\noindent Par ailleurs, on remarque plusieurs choses: tout d'abord, le contexte droit négatif
+contient maintenant la catégorie du token principal et la sous-catégorie recherchée; de plus,
+les éléments trouvés sont doublement étiquetés, avec les deux catégories imbriquées.
+
+\bigskip
+\noindent Un graphe de généralisation d'étiquetage ne doit pas contenir un chemin
+sans restriction et un chemin avec restriction pour la même catégorie, à cause de
+l'ambiguïté qui en résulterait, sauf en utilisant des poids sur les chemins (voir
+section~\ref{Transducers}), comme le montre la figure~\ref{fig:graphe_poids}.
 
 \begin{figure}[!htb]
   \centering
@@ -481,30 +537,32 @@ Un graphe de généralisation d'étiquetage ne doit pas contenir un chemin sans 
   \label{fig:graphe_poids}
 \end{figure}
 
-\bigskip
 \subsubsection{Remplacement de la catégorie}
 
-Dans certains cas, il peut arriver que l'on veuille modifier la catégorie qui sera étiquetée sur les sous-étiquettes lexicales que l'on extrait par un graphe de généralisation d'étiquetage. Par exemple dans le cas suivant :
+Dans certains cas, il peut arriver que l'on veuille modifier la catégorie qui sera indiquée
+dans les sous-étiquettes lexicales que l'on extrait par un graphe de généralisation d'étiquetage.
+Par exemple dans le cas suivant :
 
-
-\emph{\{from \{\{january,.month\} \{2017,.year\},.date\} to \{\{novembre,.month\} \{2018,.year\},.date\},.period\}}
+\bigskip
+\noindent \emph{\{from \{\{january,.month\} \{2017,.year\},.date\} to \{\{novembre,.month\} \{2018,.year\},.date\},.period\}}
 
 
 \bigskip
-En utilisant un graphe de généralisation d'étiquetage avec restriction pour extraire les années, les sous-étiquettes lexicales nouvellement trouvées seraient étiquetées de la façon suivante :
+\noindent En utilisant un graphe de généralisation d'étiquetage avec restriction pour extraire
+les années, les sous-étiquettes lexicales nouvellement trouvées seraient étiquetées
+de la façon suivante:
 
-
+\bigskip
 \emph{\{\{2017,.year\},.period\}} et \emph{\{\{2018,.year\},.period\}}
 
 \bigskip
-Ici, on voudrait remplacer "period" qui ne représente pas très bien la catégorie de ces sous-étiquettes lexicales par "date".
-
-
-Pour cela il est possible de préciser la catégorie finale à obtenir, en l'ajoutant (après un point) à la sous-catégorie à rechercher.
+\noindent Ici, on voudrait remplacer "period", qui ne représente pas très bien la catégorie
+de ces sous-étiquettes lexicales, par "date".
 
 \bigskip
-Voir les figures~\ref{fig:graphe_remplacement} et~\ref{fig:graphe_remplacement_genere}.
-
+\noindent Pour cela il est possible de préciser la catégorie finale à obtenir, en l'ajoutant
+(après un point) à la sous-catégorie à rechercher (voir les figures~\ref{fig:graphe_remplacement}
+et \ref{fig:graphe_remplacement_genere}).
 
 \begin{figure}[!htb]
   \centering
@@ -516,7 +574,7 @@ Voir les figures~\ref{fig:graphe_remplacement} et~\ref{fig:graphe_remplacement_g
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=10cm]{resources/img/graphe_remplacement_genere.png}
-  \caption{Graphe avec remplacement de la catégorie finale après génération}
+  \caption{Graphe avec remplacement de la catégorie finale après traitement}
   \label{fig:graphe_remplacement_genere}
 \end{figure}
 
