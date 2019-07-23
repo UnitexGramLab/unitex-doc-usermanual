@@ -289,26 +289,16 @@ Note that for programming reasons (ambiguities between characters in the curly b
 \end{figure}
 
 
-\section{Tagging Generalization Graphs}
+\section{Tagging generalization graphs}
 \label{graph-generalization}
-Sometimes, we are able to locate elements because of some context, but if these elements appear
-in another context, they are not identified. In order to locate such occurrences, CasSys proposes to
+Sometimes, we locate elements with the aid of triggering contexts, but we can't detect them if they appear
+in another context. In order to locate such occurrences, CasSys proposes to
 utilise tagging generalization graphs. These graphs contain empty boxes that the program fills automatically
-before applying the graphs to the text. Generalization graphs work only with the usage
-of curly brackets, because the program consults the token list (tokens.txt) of the text to be analysed by the
-future graph.
+by extracting from the list of tokens of the text (tokens.txt) the forms previously tagged in a given way.
+By applying the resulting graphs to the text, this tagging is generalized to the other occurrencs of these forms.
 
-\bigskip
-\noindent In the case of a token such as the following:
-
-\bigskip
-\emph{\{\{March,.month\} \{2018,.year\},.date\}}
-
-\bigskip
-\noindent we will call \emph{sub-lexical tags} the elements \emph{\{March,.month\}} and \emph{\{2018,.year\}}, and \emph{sub-categories} the categories \textit{month} and \textit{year}.
-
-\subsection{Identifying a tagging generalization graph}
-CasSys recognises a graph as tagging generalization graph if the column \emph{Generalization} is
+\subsection{Declaration}
+CasSys recognises a graph as a tagging generalization graph if the column \emph{Generalization} is
 checked (Figure~\ref{fig12-3}).
 \begin{figure}[!htb]
   \centering
@@ -317,15 +307,14 @@ checked (Figure~\ref{fig12-3}).
   \label{fig12-3}
 \end{figure}
 
-\subsection{Structure of a tagging generalization graph}
-\subsubsection{Simple tagging generalization graph}
+\subsection{Simple graphs}
 
-\noindent To create a tagging generalization graph, indicate the beginning of the generic part by a box \$G
-with a left curly bracket in the output, and the end by an empty box with a right curly bracket in the output,
-optionally preceded by features. Between these two boxes there must be one empty box (and only one)
-with the searched element, preceded by ",.", in the output.
-It is possible to use the \$G button (Figure~\ref{fig:bouton_g}) to automatically insert the beginning and
-ending boxes of the generic part after selecting a box.
+To create a tagging generalization graph, you indicate the beginning of the generalizing part by a \$G box
+with a left curly bracket in the output, and the end by an empty box with in the output a right curly bracket,
+optionally preceded by features. Between these two boxes, one (and only one) empty box
+must have in its output the targeted tag preceded by ",.".
+You can use the \$G button (Figure~\ref{fig:bouton_g}) to automatically insert the beginning and
+ending boxes of the generalizing part after selecting a box.
 
 \begin{figure}[!htb]
   \centering
@@ -335,61 +324,76 @@ ending boxes of the generic part after selecting a box.
 \end{figure}
 
 \bigskip
-\noindent For example, if the tokens.txt file contains the lexical tag \emph{\{A,.X\}}, the generalization graph of
-Figure~\ref{fig:graphe_generique_simple} is designed to extract elements with the category \textit{x}
-and its processing will produce the graph in Figure~\ref{fig:graphe_generique_simple_genere}. A right
-negative context is automatically added to avoid a second tagging of already found tags. Warning:
-the box contains lexical tags (see Section~\ref{tokenization}). An ambiguity is possible. The graph
-of Figure~\ref{fig:graphe_generique_simple_genere} has a catastrophic effect because it recognizes
-all the adjectives of the text!
+\noindent For example, the graph of
+Figure~\ref{fig:graphe_gener_simple} is designed to generalize the \textit{x} tag.
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/graphe_generique_simple.png}
   \caption{Simple generalization graph}
-  \label{fig:graphe_generique_simple}
+  \label{fig:graphe_gener_simple}
 \end{figure}
+
+\bigskip
+\noindent If the file with the token list contains the lexical tag \emph{\{A,.x\}}, the processing
+will produce the graph in Figure~\ref{fig:graphe_gener_simple_genere}.
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=10cm]{resources/img/graphe_generique_simple_genere.png}
-  \caption{Simple generalization graph after processing}
-  \label{fig:graphe_generique_simple_genere}
+  \caption{Simple generalization graph, after processing}
+  \label{fig:graphe_gener_simple_genere}
 \end{figure}
 
 \bigskip
-\noindent Note : When creating a generalization graph, multiple generic parts can be inserted in the graph, and
-classic boxes can be added before and after each generic part, as shown in
-Figure~\ref{fig:graphe_generique_plusieurs_chemins}.
+\noindent This graph will assign the \textit{x} tag to the occurrences of \emph{A} that have not received it before.
+The automatically inserted negative right
+context avoids tagging again already tagged occurrences. Warning:
+what the program inserts into the box after the negative right context are lexical masks (see
+Section~\ref{tokenization} to understand why). In case of an ambiguity between a word and a grammatical code,
+they can be interpreted as grammatical codes. This is what happens with the graph
+of \ref{fig:graphe_gener_simple}, which has a disastrous effect, because that of
+\ref{fig:graphe_gener_simple_genere} recognizes
+all the adjectives of the text!
+
+\bigskip
+\noindent Generalization graphs work only by inserting
+curly-brackets-delimited lexical tags, because the forms to be tagged are extracted from the list of tokens.
+
+\bigskip
+\noindent When creating a generalization graph, several generalizing parts can be inserted in the graph, and
+classic boxes can be added before and after each generalizing part, as shown in
+Figure~\ref{fig:graphe_gener_plusieurs_chemins}.
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/graphe_generique_plusieurs_chemins.png}
-  \caption{Simple generalization graph with multiple paths}
-  \label{fig:graphe_generique_plusieurs_chemins}
+  \caption{Simple generalization graph with several paths}
+  \label{fig:graphe_gener_plusieurs_chemins}
 \end{figure}
 
-\subsubsection{Tagging generalization graph with restriction \protect\footnote{ In some 3.2 alpha versions,
-negative restrictions were available. They are not anymore, but the behavior of a generic part using
-negative restriction can be reproduced with positive restriction. For more information, contact the
-Google Unitex list.}}
+\subsection{Graphs with restrictions}
 
-Simple generalization graphs allow for extracting the content of the searched tokens in the tokens.txt file,
-but sometimes one might want to get the content of sub-lexical tags. To do that, you can use restriction
-in generalization graphs. The sub-category to be found is put in the box, with the main category preceded
-by ",." still in the output. There must be only one sub-category in the box: to extract multiple sub-categories, 
-you have to create multiple generic parts. For example, imagine the file tokens.txt contains the following line:
+You may want to extract from tokens.txt the forms with a given sub-lexical tag. In the case of a token such as the following:
+
+\bigskip
+\emph{\{\{March,.month\} \{2018,.year\},.date\}}
+
+\bigskip
+\noindent we call `sub-lexical tags' the elements \emph{\{March,.month\}} and \emph{\{2018,.year\}}, and `sub-categories' the categories \textit{month} and \textit{year}.
+To target the forms with a given sub-category included in forms with a given category, you can use restrictions
+in generalization graphs. \footnote{ In some 3.2 alpha versions,
+negative restrictions were available. They are not anymore, but the behavior of a generic part using
+negative restriction can be reproduced with positive restrictions. For more information, contact the
+Google Unitex list.} You type the name of the sub-category in the box, with in the output the category preceded
+by ",.". \footnote{ There must be only one sub-category in the box. To extract multiple sub-categories, 
+you have to create multiple generic parts.} For example, assume we want to tag more occurrences
+with \textit{main} and \textit{A}, and the file tokens.txt contains the following line:
 
 \bigskip
 \emph{\{\{first,.A\} \{\{second,.A\} \{third,.B\},.B\},.main\}}
 
 \bigskip
-\noindent and we want to extract the sub-lexical tag with the sub-category \textit{A} or the one
-with the sub-category \textit{B}.
-The graph in Figure~\ref{fig:graphe_restriction_A} after processing will give the result shown in
-Figure~\ref{fig:graphe_restriction_A_genere}, and the one in Figure~\ref{fig:graphe_restriction_B}
-will give the graph in Figure~\ref{fig:graphe_restriction_B_genere}.
-
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=8cm]{resources/img/graphe_restriction_A.png}
@@ -397,12 +401,22 @@ will give the graph in Figure~\ref{fig:graphe_restriction_B_genere}.
   \label{fig:graphe_restriction_A}
 \end{figure}
 
+\bigskip
+\noindent The processing of the graph in Figure~\ref{fig:graphe_restriction_A} will give the result shown in
+Figure~\ref{fig:graphe_restriction_A_genere}.
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/graphe_restriction_A_genere.png}
-  \caption{Generalization graph with a restriction on the sub-category A after processing}
+  \caption{Generalization graph with a restriction on the sub-category A, after processing}
   \label{fig:graphe_restriction_A_genere}
 \end{figure}
+
+\bigskip
+\noindent This graph generalizes the sub-category \textit{A} to two forms, \textit{first} and
+\textit{second}. The negative right context contains the category of the main
+lexical tag as well as the sub-category of the targeted sub-lexical tag. The found occurrences are
+tagged twice, with both categories nested.
 
 \begin{figure}[!htb]
   \centering
@@ -411,62 +425,55 @@ will give the graph in Figure~\ref{fig:graphe_restriction_B_genere}.
   \label{fig:graphe_restriction_B}
 \end{figure}
 
+\bigskip
+\noindent Still with the same tokens.txt file, the graph in Figure~\ref{fig:graphe_restriction_B}
+will give the one in Figure~\ref{fig:graphe_restriction_B_genere}.
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=14cm]{resources/img/graphe_restriction_B_genere.png}
-  \caption{Generalization graph with a restriction on the sub-category B after processing}
+  \caption{Generalization graph with a restriction on the sub-category B, after processing}
   \label{fig:graphe_restriction_B_genere}
 \end{figure}
 
 \bigskip
-\noindent In the first graph, the two sub-lexical tags with the sub-category \textit{A} were found, "first" and
-"second". However in the second graph, only one sub-lexical tag with the sub-category \textit{B}
-was found, this sub-lexical tag contains itself two other sub-lexical tags, so the extracted content
-is the concatenation of everything that is inside, i.e.\ "second third". Because the sub-category matched,
-the research was not spread to sub-lexical tags, and the sub-lexical tag "third" alone was not found.
+\noindent Only one sub-lexical tag with the sub-category \textit{B}
+has been found in tokens.txt; this sub-lexical tag contains in turn two other sub-lexical tags; so the extracted content
+is \textit{second third}. Because the sub-category matched,
+the search was not spread to further nested sub-lexical tags, and the sub-lexical tag \textit{third} alone has not been found.
 
 \bigskip
-\noindent Also, note that the negative right context now contains the category of the main
-lexical tag as well as the sub-category of the searched sub-lexical tag. In addition, the found elements are
-tagged twice, with both categories nested.
-
-\bigskip
-\noindent A generalization graph should not contain a generic part with a restriction and another generic part
-without restriction for the same main category, because of ambiguity, except if you are using weights
+\noindent A generalization graph should not contain a generalizing part with a restriction and another
+without restriction for the same outer category, because of the ambiguity that would result, except using weights
 on the different paths (see Section~\ref{Transducers}), as shown on Figure~\ref{fig:graphe_poids}.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=10cm]{resources/img/graphe_poids.png}
+  \includegraphics[width=14cm]{resources/img/graphe_poids.png}
   \caption{Graph with weights to avoid ambiguity}
   \label{fig:graphe_poids}
 \end{figure}
 
 \bigskip
-\subsubsection{Replacement of a category}
-In certain specific cases, we might want to change the main category that will be tagged on found
-sub-lexical tags that are extracted by a generalization graph, for example in the following case:
+\subsection{Substitution of a category}
+You may want to change the outer category that will be assigned to the
+sub-lexical tags extracted form the token list. For example, in the following case:
 
 \bigskip
 \noindent
-\emph{\{from \{\{january,.month\} \{2017,.year\},.date\} to \{\{novembre,.month\} \{2018,.year\},.date\},.period\}}
-
+\emph{\{from \{\{January,.month\} \{2017,.year\},.date\} to \{\{November,.month\} \{2018,.year\},.date\},.period\}}
 
 \bigskip
-\noindent By using a generalization graph to extract years, the found sub-lexical tags would be tagged like this:
+\noindent with a generalization graph with restriction in order to extract years, the resulting sub-lexical tags would be:
 
 \bigskip
 \emph{\{\{2017,.year\},.period\}} and \emph{\{\{2018,.year\},.period\}}
 
 \bigskip
-\noindent Here, we would like to replace "period", which doesn't describe well the category
-of these sub-lexical tags, by "date".
-
-\bigskip
-\noindent To do so, it is possible to indicate the final category, by appending it (separated by a dot)
-to the searched sub-category (see Figures~\ref{fig:graphe_remplacement} and
+\noindent The "period" tag is little relevant for these occurrenes. To replace it with "date",
+you can indicate the final category, by appending it (separated by a dot)
+to the targeted sub-category (see Figures~\ref{fig:graphe_remplacement} and
 \ref{fig:graphe_remplacement_genere}).
-
 
 \begin{figure}[!htb]
   \centering
@@ -477,8 +484,8 @@ to the searched sub-category (see Figures~\ref{fig:graphe_remplacement} and
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=10cm]{resources/img/graphe_remplacement_genere.png}
-  \caption{Graph with replacement of the final category after procesing}
+  \includegraphics[width=14cm]{resources/img/graphe_remplacement_genere.png}
+  \caption{Graph with replacement of the final category, after procesing}
   \label{fig:graphe_remplacement_genere}
 \end{figure}
 
