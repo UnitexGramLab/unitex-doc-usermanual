@@ -1,0 +1,58 @@
+#Unigraph
+SIZE 1047 763
+FONT Times New Roman:  12
+OFONT Courier New:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 12632256
+SCOLOR 255
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+38
+"<E>" 80 421 2 16 6 
+"" 961 389 0 
+"<^>+.+...+?+!" 180 380 1 5 
+"; " 468 128 1 4 
+"<E>/{S}" 544 128 1 35 
+"<E>/{S}" 275 369 3 8 10 34 
+"<E>" 388 540 3 21 22 23 
+"<E>" 240 84 3 3 9 12 
+"<PNC>" 408 308 4 8 10 19 34 
+"(...)+[...]" 460 60 1 36 
+"<UPPER>+<FIRST>+<NB>" 709 336 1 17 
+":parentheses+:crochets" 700 208 1 17 
+"..." 464 96 1 13 
+"," 552 96 1 36 
+"\:" 245 312 1 15 
+"<E>/{S}" 304 311 1 8 
+"<E>" 152 208 6 14 2 19 25 26 7 
+"<E>" 824 280 1 1 
+"/Cas général +Ponctuation" 92 180 0 
+"<E>" 664 208 0 
+"\" \"/{S}" 460 244 1 19 
+":cas2" 592 464 1 24 
+":cas3" 588 540 1 24 
+":cas4" 588 612 1 24 
+"<E>" 880 540 1 1 
+".+?+!" 320 244 1 20 
+"<^>" 320 172 1 27 
+"<E>/{S}" 456 172 1 19 
+"/Placement des marques de séparation de phrases {S}" 92 45 0 
+"/Sigles, prénoms, anthroponymes" 532 440 0 
+"/Abréviations" 572 584 0 
+"/Mots composés ou suivis d'une lettre majuscule, symboles" 480 516 0 
+"/Ponctuation suivie de cas particuliers+sigles, noms, symboles ..." 396 404 0 
+"/Cas particuliers" 324 564 0 
+"<E>" 364 416 1 6 
+"<E>" 780 104 1 1 
+"<E>" 660 60 1 35 
+"/Graphe réalisé par+Nathalie Friburger (LI-Tours)+Anne Dister (Univ. de Lièges)+Denis Maurel (LI-Tours)" 766 617 0 
