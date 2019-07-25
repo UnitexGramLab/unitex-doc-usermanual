@@ -1,4 +1,4 @@
-\chapter{Cascade de Transducteurs}
+\chapter{Cascades de Transducteurs}
 \label{chap-cassys}
 
 Ce chapitre présente l'outil \textit{CasSys} qui donne la possibilité de créer une cascade
@@ -190,9 +190,10 @@ debug avant d'appliquer le graphe avec \verb+Locate Pattern+.
 \label{sub:AppWhiCon}
 
 CasSys peut appliquer un graphe sur un texte de manière itérative tant que de nouvelles concordances sont obtenues.
-Ce comportement est sélectionné ou non pour chaque graphe selon que la case \verb+Until fix point+ est cochée ou non. Cette section présente le comportement de cette option\\
+Ce comportement est sélectionné ou non pour chaque graphe selon que la case \verb+Until fix point+ est cochée ou non.
 
-Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le remplace par \emph{A}.\\
+\bigskip
+\noindent Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le remplace par \emph{A}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -201,7 +202,8 @@ Considérons par exemple le graphe \ref{fig:AB->A} qui reconnait \emph{AB} et le
   \label{fig:AB->A}
 \end{figure}
 
-Considérons le texte \emph{B B B A A A}. L'application du graphe \ref{fig:AB->A} sur ce texte avec \emph{Until fix point}  donne :\\
+\bigskip
+\noindent Considérons le texte \emph{B B B A A A}. L'application du graphe \ref{fig:AB->A} sur ce texte avec \emph{Until fix point}  donne :\\
 
 \begin{tabular}{|l|cccccc|r|}
 \hline
@@ -215,12 +217,12 @@ itération 4 & & & &A&A&A& 0 match\\
 \end{tabular}
 
 \bigskip
-Durant les trois premières itérations, une concordance est obtenue, le graphe
+\noindent Durant les trois premières itérations, une concordance est obtenue, le graphe
 est alors appliqué à nouveau au texte résultant. A la quatrième itération, aucune
 concordance n'est trouvée, le graphe n'est donc plus réappliqué.
 
 \bigskip
-\large{\textbf{Attention :}} Prendre garde à la possibilité de blocage en utilisant cette 
+\noindent \textbf{Attention :} Prendre garde à la possibilité de blocage en utilisant cette 
 option. Par exemple, un transducteur qui reconnaît \emph{A} et le remplace par
 \emph{A} causerait un blocage s'il était appliqué sur le texte de l'exemple.
 
@@ -281,23 +283,25 @@ maintenant.
 
 \bigskip
 \noindent Unitex découpe les textes en tokens de différentes sortes comme le marqueur de fin de
-phrase \{S\}; le marqueur {STOP}, des séquences de lettres contiguës, des étiquettes lexicales
-{aujourd'hui,.ADV}, etc. Les étiquettes lexicales sont utilisées dans CasSys de manière
+phrase \{S\}; le marqueur \{STOP\}; des séquences de lettres contiguës; des étiquettes lexicales
+\{aujourd'hui,.ADV\}, etc. Les étiquettes lexicales sont utilisées dans CasSys de manière
 particulière. Une étiquette lexicale (entre accolades) est habituellement utilisée pour éviter les
-ambiguïtés (voir les explications à la section \ref{tokenization} et à la section
+ambiguïtés (voir les explications dans les sections~\ref{tokenization} et 
 \ref{section-displaying-sentence-automata}). 
 Par exemple, dans un texte, si vous avez le token \emph{\{curly brackets,.N\}}, ni "curly" ni
 "brackets" ne seront reconnus, mais seulement la séquence toute entière
-"curly brackets". Une étiquette lexicale peut contenir une information lexicale complexe comme
+"curly brackets". 
+
+\bigskip
+\noindent Une étiquette lexicale peut contenir une suite complexe d'informations lexicales, comme
 \emph{N+Pers+Hum:fs}.
 Dans un graphe, il est possible de chercher un token en utilisant l'information contenue dans un
 masque lexical : par exemple, on peut écrire \emph{<.N>} pour chercher 
 un nom, \emph{<.Pers+Hum>} pour un être humain ou \emph{<.Pers>}. Ces masques lexicaux sont décrits
-dans le chapitre "Recherche d'expressions rationnelles" section
-\ref{section-special-symbols}.
+dans le chapitre "Recherche d'expressions rationnelles" (section~\ref{section-special-symbols}).
  
 \bigskip
-\noindent Dans CasSys, nous utilisons la marque lexicale de manière particulière. Une cascade de
+\noindent Une cascade de
 transducteurs est intéressante pour localiser un îlot de certitude. Il est nécessaire pour ce type
 de système d'éviter que des motifs précédemment reconnus soient ambigus avec ceux reconnus par les
 graphes suivants. Pour éviter cela, on étiquette les motifs reconnus par les graphes sous la forme
@@ -347,10 +351,10 @@ b,.AB\} \{bca,.BCA\} \{\{a b,.AB\} c,.ABC\} abaabc}.
 
 
 \bigskip
-\noindent La concordance affichée par Unitex devrait ressembler à celle de la figure~\ref{fig13-07}. Pour des raisons liées à la programmation (les ambiguïtés entre les
-	caractères entre accolades des étiquettes lexicales), nous n'avons d'autres options que de
+\noindent La concordance affichée par Unitex devrait ressembler à celle de la figure~\ref{fig13-07}. Pour des raisons techniques (les ambiguïtés entre les
+	caractères entre accolades des étiquettes lexicales), nous n'avons d'autre option que de
 placer des  $\backslash$ avant chaque caractère ambigu; c'est pourquoi ces symboles sont précédés de
-$\backslash$ dans la concordance pour éviter des problèmes avec Unitex.
+$\backslash$ dans la concordance.
 
 \begin{figure}[!htb]
   \centering

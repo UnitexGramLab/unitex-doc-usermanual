@@ -474,7 +474,7 @@ a box like in figure~\ref{fig-exemple-transduction}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bigskip
-\noindent However, it it not possible to associate an output to a box that calls a sub-graph. To do so, you must create an empty box with the output before the box that calls the sub-graph, but there is no garranty that a space won't be detected between the output and the text that follows. To put a curly bracket and ensure that this bracket will stick to the following text, you should use the graph called B of the figure~\ref{fig-graphe-B}, available in the distribution.
+\noindent However, it is not possible to associate an output to a box that calls a sub-graph. Instead of that, you must create an empty box with the output before the box that calls the sub-graph. Unfortunately, there is no guarantee that a space won't be inserted between the output and the text that follows. For example, to insert a curly bracket and ensure it will stick to the following text, you can use graph B of Figure~\ref{fig-graphe-B}, available in the distribution.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -483,9 +483,8 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \end{center}
 \end{figure}
 
-If you use left and right curly bracket to create lexical tags, it it possible to check if, from a graph, all the left and right curly brackets are matching and well formed. To do it, you have to chose in the menu \textit{Graphs} the command \textit{Tools/Verify braces}, which supports calls to sub-graphs B, BB etc. However this verification require that lexical tags formed with curly brackets are opened and closed in the same graph.
-
-This program also checks the called sub-graphs, and compile the checked graph at the same time.
+\bigskip
+\noindent If you use curly brackets to create lexical tags, you can check if all the curly brackets of a grammar are balanced and well formed. To do that, you choose in the \textit{Graphs} menu the \textit{Tools/Verify braces} command. However, the verification assumes that curly brackets opened in a graph are closed in the same graph. This program also checks called sub-graphs, and compiles the checked graph at the same time.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
