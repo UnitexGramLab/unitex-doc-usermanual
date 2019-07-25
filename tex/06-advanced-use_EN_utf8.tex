@@ -899,41 +899,44 @@ finite number, for example to check that it correctly generates the expected
 forms. For that, open the main graph of your grammar, and ensure that the graph
 window is the active window (the active window has a blue title bar, while the
 inactive windows have a gray title bar). Now go to the "FSGraph" menu and then to
-the "Tools" menu, and click on "Explore Graph paths". The Window of
+the "Tools" menu, and click on "Explore graph paths". The Window of
 figure~\ref{fig-explore-graph-paths} appears.
 
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=10.4cm]{resources/img/fig6-18.png}
+\includegraphics[width=15cm]{resources/img/fig6-18.png}
 \caption{Exploring the paths of a grammar\label{fig-explore-graph-paths}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent The upper box contains the name of the main graph of the grammar to be
-explored. The following options are connected to the outputs of the grammar and
+\noindent The top field contains the name of the main graph of the grammar to be
+explored. The second field shows the name of the file where the paths will be listed.
+The following options are connected to the outputs of the grammar boxes and
 to subgraph calls:
 
 \begin{itemize}
-  \item "Ignore outputs": outputs are ignored;
-  \item "Separate inputs and outputs": outputs are displayed after inputs
-  (\verb$ a b c / A B C$);
-  \item "Merge inputs and outputs": each output is emitted immediately after
-  the input to which it corresponds  (\verb$a/A b/B c/C$).
-  \item "Only paths": calls to subgraphs are explored recursively;
-  \item "Do not explore subgraphs recursively": calls to subgraphs are printed
-  but not explored recursively.
+  \item "Outputs": if "Ignore" is checked, box outputs are ignored; with "Split inputs and
+  outputs", all the box outputs of a path are displayed after all the box inputs of the same
+ path  (\verb$a b c / A B C$); with "Merge inputs and outputs", the output of a box is emitted
+  immediately after its input (\verb$a/A b/B c/C$);
+  \item "Explore subgraphs": with "Recursively", calls to subgraphs are explored recursively;
+  with "Independently, printing names of called subgraphs", calls to subgraphs are replaced
+  by the name of the subgraph, and  the paths recognized by the subgraph are explored separately later.
 \end{itemize}
 
-\noindent If the option "Maximum number of sequences" is activated, the
+\noindent If the option "Max sequences" is checked, the
 specified number will be the maximum number of generated paths. If the 
-option is not selected, all
-paths will be generated, if they are in finite number.
+option is not checked, all paths will be generated if they are in finite number.
 
 \bigskip
-\noindent Here you see what is created for the graph shown on
-Figure~\ref{fig-glace} with default settings (ignoring outputs, limit = 100
+\noindent With "Flatten graphs", the program flattens the grammar (see Section~\ref{flatten-section})
+before exploring.
+
+\bigskip
+\noindent Here you see the output for the graph shown on
+Figure~\ref{fig-glace} with the default settings (ignoring outputs, no limit on the number of
 paths):
 
 \bigskip

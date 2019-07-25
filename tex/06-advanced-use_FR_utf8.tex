@@ -243,8 +243,8 @@ différents programmes d’Unitex.
 \index{Approximation d'une grammaire par un transducteur fini}
 \index{\verbc{Flatten}}\index{Programmes externes!\verbc{Flatten}}\label{flatten-section}
 Le format FST2 conserve l’architecture en sous-graphes des grammaires, ce qui les différencie
-des stricts transducteurs à états finis. Le programme \verb+Flatten+ permet de transformer
-une grammaire FST2 en un transducteur à états finis quand cela est possible, et d’en
+des stricts transducteurs finis. Le programme \verb+Flatten+ permet de transformer
+une grammaire FST2 en un transducteur fini quand cela est possible, et d’en
 construire une approximation dans le cas contraire. Cette fonction permet ainsi d’obtenir des objets
 plus simples à manipuler et sur lesquels peuvent s’appliquer tous les algorithmes classiques sur
 les automates.
@@ -252,7 +252,7 @@ les automates.
 
 \bigskip
 \noindent Pour compiler et transformer ainsi une grammaire, sélectionnez la commande "Compile
-Flatten FST2" dans le sous-menu "Tools" du menu "FSGraph". La fenêtre de la figure~\ref{fig-flatten-configuration}
+\& Flatten FST2" dans le sous-menu "Tools" du menu "FSGraph". La fenêtre de la figure~\ref{fig-flatten-configuration}
 vous permet de configurer l’opération d’approximation.
 
 \bigskip
@@ -271,18 +271,18 @@ graphes ne seront plus remplacés par les sous-graphes eux-mêmes.
 \bigskip
 \noindent Le cadre "Expected result grammar format" permet de déterminer le comportement du
 programme au-delà de la limite indiquée. Si vous sélectionnez l’option "Finite State Transducer",
-les appels aux sous-graphes seront ignorés (remplacé par \verb+<E>+) au-delà de la profondeur
-maximale. Cette option garantit ainsi l’obtention d’un transducteur à états finis, éventuellement
+les appels aux sous-graphes seront ignorés (remplacés par \verb+<E>+) au-delà de la profondeur
+maximale. Cette option garantit ainsi l’obtention d’un transducteur fini, éventuellement
 non équivalent à la grammaire de départ. En revanche, l’option "equivalent FST2" indique au
 programme de laisser tels quels les appels aux sous-graphes au-delà de la profondeur limite.
 Cette option garantit la stricte équivalence du résultat avec la grammaire d’origine, mais
-ne produit pas forcément un transducteur à états finis. Cette option peut être utilisée pour
+ne produit pas forcément un transducteur fini. Cette option peut être utilisée pour
 optimiser certaines grammaires.
 
 
 \bigskip
 \noindent Un message indique à la fin du processus d’approximation si le résultat est un transducteur
-à états finis ou une grammaire FST2, et dans le cas d’un transducteur, s’il est équivalent
+fini ou une grammaire FST2, et dans le cas d’un transducteur, s’il est équivalent
 à la grammaire d’origine (voir figure~\ref{fig-flatten-result}).
 
 
@@ -317,27 +317,27 @@ de l’appel au sous-graphe pour porter la sortie (voir figure~\ref{fig-subgraph
 \end{center}
 \end{figure}
 
-\index{Boucles sans fin}
-\noindent Les grammaires ne doivent pas non plus comporter de boucles infinies, car les programmes
-d’Unitex ne pourraient jamais terminer l’exploration de telles grammaires.
-%A void loop is a configuration that causes the \verb+Locate+ program to enter an infinite loop.
-Ces boucles peuvent être dues à des transitions étiquetées par le mot vide epsilon ou à des
+\index{Boucles vides}
+\noindent Les grammaires ne doivent pas non plus comporter de boucles vides, car les programmes
+d’Unitex ne pourraient jamais terminer l’exploration de telles grammaires. Une boucle vide
+peut faire entrer le programme \verb+Locate+ dans une boucle infinie.
+Les boucles vides peuvent être dues à des transitions étiquetées par le mot vide ou à certains
 appels de sous-graphes récursifs.
 
 
 \bigskip
-\noindent Les boucles dues à des transitions par le mot vide peuvent avoir deux origines dont la
+\noindent Les boucles vides dues à des transitions par le mot vide peuvent avoir deux origines dont la
 première est illustrée par la figure~\ref{fig-epsilon-output-loop}.
 Ce type de boucle est dû au fait qu’une transition par le mot vide ne peut pas être éliminée
 automatiquement par Unitex lorsqu’elle est munie d’une sortie. Ainsi, la transition par
 le mot vide de la figure~\ref{fig-epsilon-output-loop} ne sera pas supprimée et provoquera une
-boucle infinie.
+boucle vide.
 
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=6.2cm]{resources/img/fig6-8.png}
-\caption{Boucle infinie due à une transition par le mot vide avec sortie\label{fig-epsilon-output-loop}}
+\caption{Boucle vide due à une transition par le mot vide avec sortie\label{fig-epsilon-output-loop}}
 \end{center}
 \end{figure}
 
@@ -345,13 +345,13 @@ boucle infinie.
 \noindent La seconde catégorie de boucle par epsilon concerne les appels à des sous-graphes pouvant
 reconnaître le mot vide. Ce cas de figure est illustré par la
 figure~\ref{fig-epsilon-subgraph-loop}: si le sous-graphe \verb+Adj+ reconnait epsilon, on a une
-boucle infinie qu’Unitex ne peut pas éliminer.
+boucle vide qu’Unitex ne peut pas éliminer.
 
 \bigskip
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=7.9cm]{resources/img/fig6-9.png}
-\caption{Boucle infinie due à un appel à un sous-graphe reconnaissant epsilon
+\caption{Boucle vide due à un appel à un sous-graphe reconnaissant epsilon
 \label{fig-epsilon-subgraph-loop}}
 \end{center}
 \end{figure}
@@ -359,24 +359,23 @@ boucle infinie qu’Unitex ne peut pas éliminer.
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=15.5cm]{resources/img/fig6-10.png}
-\caption{Boucle infinie causée par deux graphes s'appelant l'un l'autre
+\caption{Boucle vide causée par deux graphes s'appelant l'un l'autre
 \label{fig-recursive-calls-loop}}
 \end{center}
 \end{figure}
 
-\noindent La troisième possibilité de boucle infinie concerne les appels récursifs à des
+\noindent La troisième possibilité de boucle vide vient de certains appels récursifs à des
 sous-graphes. Considérons les graphes \verb+Det+ et \verb+DetCompose+ de la
 figure~\ref{fig-recursive-calls-loop}.
  Chacun de ces graphes peut appeler l’autre \textit{sans rien lire dans le texte}. Le fait qu’aucun
  des deux graphes ne comporte d’étiquette entre l’état initial et l’appel à l’autre graphe est
- capital. En effet, s’il y avait au moins une étiquette différente d’epsilon entre le début du
+ capital. En effet, s’il y avait au moins une étiquette autre qu’epsilon entre le début du
  graphe \verb+Det+ et l’appel à \verb+DetCompose+, cela signifierait que les programmes d’Unitex
  explorant le graphe \verb+Det+ devraient lire le motif décrit par cette étiquette dans le texte
- avant d’appeler récursivement \verb+DetCompose+ Dans ce cas, les programmes ne pourraient boucler
+ avant d’appeler récursivement \verb+DetCompose+. Dans ce cas, les programmes ne pourraient boucler
  indéfiniment que s’ils rencontraient une infinité de fois le motif dans le texte, ce qui ne peut
  pas arriver.
 
-\pagebreak
 \subsection{Intervalle pour le nombre de répétitions}
 \label{nb-repetitions}\index{Intervalle}\index{Boucle!nombre de répétitions}\index{Nombre de répétitions}\index{Répétition!nombre de}
 \noindent Pour reconnaître des séquences de tokens dans laquelle un motif apparaît une fois, plusieurs fois
@@ -891,47 +890,50 @@ catégorie grammaticale, ses codes sémantiques, ses codes flexionnels et la val
 \section{Exploration des chemins d’une grammaire}
 \index{Exploration des chemins d’une grammaire}
 
-Il est possible de générer les chemins reconnus par une grammaire, par exemple pour
-vérifier qu’elle engendre correctement les formes attendues. Pour cela, ouvrez le graphe
-principal de votre grammaire et assurez-vous que la fenêtre du graphe est bien la fenêtre active
-(la fenêtre active possède une barre de titre bleu, tandis que les fenêtres inactives ont une
-barre de titre grise). Allez ensuite dans le menu "FSGraph", puis dans le sous-menu "Tools",
-et cliquez sur "Explore graph paths". La fenêtre de la figure 
+On peut générer la liste des chemins reconnus par une grammaire, par exemple pour
+vérifier qu’elle engendre correctement les formes attendues. Pour cela, on ouvre le graphe
+principal de la grammaire, on s'assure que la fenêtre du graphe est bien la fenêtre active
+(la fenêtre active possède une barre de titre bleue, tandis que les fenêtres inactives ont une
+barre de titre grise). On va ensuite dans le menu "FSGraph", puis dans le sous-menu "Tools",
+et on clique sur "Explore graph paths". La fenêtre de la figure 
 ~\ref{fig-explore-graph-paths} apparaît alors.
 
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=10.4cm]{resources/img/fig6-18.png}
+\includegraphics[width=15cm]{resources/img/fig6-18.png}
 \caption{Exploration des chemins d’une grammaire\label{fig-explore-graph-paths}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Le cadre supérieur contient le nom du graphe principal de la grammaire à explorer.
-Les options suivantes concernent la gestion des sorties de la grammaire ainsi que le mode
-d’exploration:
+\noindent Le champ du haut contient le nom du graphe principal de la grammaire à explorer.
+Le deuxième champ indique le nom du fichier où le programme listera les chemins.
+Les options suivantes concernent la gestion des sorties des boites de la grammaire ainsi que
+le traitement des appels à des sous-graphes:
 
 
 \begin{itemize}
-  \item "Ignore outputs": les sorties sont ignorées;
-  \item "Separate inputs and outputs": les sorties sont affichées groupées après les entrées
-  (\verb$ a b c / A B C$);
-  \item "Merge inputs and outputs": chaque sortie est affichée immédiatement après l’entrée 
-  	  qui lui correspond
-  (\verb$a/A b/B c/C$).
-  \item "Only paths": les appels aux sous-graphes sont explorés récursivement;
-  \item "Do not explore subgraphs recursively": les appels aux sous-graphes sont affichés sans
-être explorés récursivement.
+  \item "Outputs": si "Ignore" est coché, les sorties sont ignorées; avec "Split inputs and
+  outputs", les sorties de toutes les boites d'un chemin sont affichées après les entrées des
+  boites du même chemin (\verb$a b c / A B C$); avec "Merge inputs and outputs", la sortie d'une
+  boite est émise juste après l'entrée correspondante (\verb$a/A b/B c/C$);
+ \item "Explore subgraphs": avec "Recursively", les appels aux sous-graphes sont explorés récursivement;
+ avec "Independently, printing names of called subgraphs", ils sont remplacés par le nom du sous-graphe,
+ et les chemins reconnus par le sous-graphe sont explorés séparément, plus loin dans la liste.
 \end{itemize}
 
-\noindent Si l’option "Maximum number of sequences" est cochée, le nombre spécifié sera le nombre
-maximum de chemins générés. Si l’option n’est pas sélectionnée, tous les chemins seront générés.
+\noindent Si l’option "Max sequences" est cochée, le nombre spécifié sera le nombre
+maximual de chemins générés. Si l’option n’est pas cochée, tous les chemins seront générés
+à condition qu'ils soient en nombre fini.
 
+\bigskip
+\noindent Avec "Flatten graphs", le programme remplace la grammaire par un transducteur fini ou
+si nécessaire par une approximation (voir section~\ref{flatten-section}) avant de l'explorer.
 
 \bigskip
 \noindent Voici ce que l’on obtient pour le graphe de la figure ~\ref{fig-glace} 
- avec les paramètres par défaut (ignorer les sorties, limite = 100 chemins) :
+ avec les paramètres par défaut (ignorer les sorties, pas de limite sur le nombre de chemins):
 
 
 \bigskip
