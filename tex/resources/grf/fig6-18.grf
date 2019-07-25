@@ -1,0 +1,29 @@
+#Unigraph
+SIZE 1188 840
+FONT Arial:  16
+OFONT Arial:B 18
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 16711680
+CCOLOR 255
+DBOXES y
+DFRAME n
+DDATE n
+DFILE n
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+9
+"<E>" 70 198 2 2 6 
+"" 725 198 0 
+"<E>" 178 252 1 3 
+"glace" 433 252 1 4 
+"<E>+à la" 524 252 1 5 
+"vanille+fraise+pistache" 620 198 1 1 
+"<NB>" 156 153 1 7 
+"<boule>" 258 153 1 8 
+"de" 369 153 2 3 5 
