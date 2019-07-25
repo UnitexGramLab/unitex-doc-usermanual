@@ -1,20 +1,19 @@
-\chapter{Cascade of Transducers}
+\chapter{Cascades of Transducers}
 \label{chap-cassys}
 
-This chapter presents the tool \textit{CasSys} that provides users the possibility to create Unitex cascade of transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{Cascade of transducers} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate patterns" to which was added special options and behaviors.
+This chapter presents the \textit{CasSys} tool, which provides users the possibility to create cascades of Unitex transducers and new opportunities to work on natural language whith Finite State Graphs. A \textit{cascade of transducers} \index{Cascade of transducers} applies several FSGraphs (also called automata or transducers), one after the other, onto a text: each graph modifies the text, and changes can be useful for further processings with the next graphs. Such a system is typically used for syntactic analysis, chunking, information extraction, recognizing named entities etc. To do that, CasSys uses a succession of "locate pattern" commands with special options and behaviors.
 
 \bigskip
 \noindent The first prototype of the \textit{CasSys} \index{CasSys} system was created in 2002 at the LI 
-(Computer science Laboratory of Université François Rabelais Tours, France) \cite{these-nathalie}. This prototype was totally  dedicated to named entity recognition. Later, CasSys was generalized to allow any sort of work needing a cascade: throughout the years,  it was improved but never really integrated in Unitex, until a recent project which resulted in the complete integration of CasSys in Unitex\footnote{"Feder-Région Centre Entités  nommées et nommables" managed by Denis Maurel, LI, Tours, France, integration carried out by Nathalie Friburger and David Nott}.
+(Computer science Laboratory of Université François Rabelais Tours, France) \cite{these-nathalie}. This prototype was totally  dedicated to named entity recognition. Later, CasSys was generalized to allow any sort of work needing a cascade: throughout the years,  it was improved but never really integrated in Unitex, until a recent project which resulted in the complete integration of CasSys in Unitex\footnote{"Feder-Région Centre Entités  nommées et nommables" managed by Denis Maurel, LI, Tours, France, integration carried out by Nathalie Friburger and David Nott.}.
 
-
-Unitex grammars are known as Context free grammars and contain the notion of transduction derived from the field 
+\bigskip
+\noindent Unitex grammars are known as Context free grammars and contain the notion of transduction derived from the field 
 of finite state automata. A grammar with transduction (a transducer) is enabled to produce some ouput. 
 CasSys is dedicated to the application of transducers in the form of a cascade.
 
 \bigskip
-A cascade can be used for syntactic analysis, chunking, information extraction, etc. 
-\noindent Transducers are interesting because they allow the association of a recognized sequence to informations found in the outputs of the graphs. 
+\noindent Transducers are interesting because they associate a recognized sequence to informations found in the outputs of the graphs. 
 These outputs can:
 \begin{itemize}
 	\item	Be merged with the recognized sequence and appear in the resulting concordance or modified text. 
@@ -25,7 +24,7 @@ These outputs can:
 
 \bigskip
 \noindent  
-In this chapter, we will explain how to create/modify cascades of transducers and how to apply them. Then, we deals with options and behaviors offered by CasSys.
+In this chapter, we will explain how to create/modify cascades of transducers and how to apply them. Then, we deal with options and behaviors offered by CasSys.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Applying a cascade of transducers with CasSys}
@@ -38,7 +37,7 @@ Applying a cascade of transducers consists in the modelling of linguistic phenom
 
 \bigskip
 \noindent 
-In order to manage the list of transducers, the menu FSGraph proposes two submenus: "\textit{New cascade}" and "\textit{Edit cascade...}" (Figure \ref{fig13-08}). You can choose "\textit{new cascade}" to create a new list of transducers. If you want to modify an existing cascade, you can choose "\textit{Edit cascade}" that open a file explorer to choose the cascade to open. 
+In order to manage the list of transducers, the FSGraph menu proposes two submenus: "\textit{New cascade}" and "\textit{Edit cascade...}" (Figure \ref{fig13-08}). You can choose "\textit{new cascade}" to create a new list of transducers. If you want to modify an existing cascade, you can choose "\textit{Edit cascade}" to open a file explorer and choose the cascade to be opened. 
 
 \begin{figure}[!htb]
  \centering
@@ -64,20 +63,20 @@ The CasSys configuration window (Figure \ref{fig13-03}) is divided into three pa
 
 \begin{enumerate}
 	\item a \textit{file explorer} at the left of the frame permits to select the transducers to place in the cascade. 
-	The file explorer only displays fst2 files (all the graphs you want to place in the list of transducers must be compiled in fst2 format). 
+	The file explorer only displays \verb+fst2+ files (all the graphs you want to place in the list of transducers must be compiled in the \verb+fst2+ format). 
 	
-	To edit the cascade, select the graphs in the file explorer at the left and drag and drop them into the right frame of the window.
+	To edit the cascade, select the graphs in the file explorer at the left, then drag and drop them into the right frame of the window.
 	\item A \textit{table} at the right displays the cascade: the ordered list of transducers and the selected options for each graph.
 		This table is obviously empty for a new cascade. 
 	 
 	The different columns of this table (Figure \ref{fig13-09}) show the numbering of each graph and permit to choose its behavior:
 	\begin{itemize}
-		  \item \textbf{\#}: Rank of the graph/transducer in the cascade. The resulting file of a graph is numbered with this rank.
-		  \item \textbf{Disabled}: checkbox to disable the current graph. \textit{Disabled} meaning "\textit{not applied in the cascade}". The disabled graphs appear not numbered, in light grey and striked out.
-			\item \textbf{Name}: The name of the graph (with extension \emph{fst2}). If you let the mouse over the name of the graph, a tooltip appears with the whole path ot the graph. Graphs which source file are not found appear in italic red font style.
-		  \item \textbf{Merge}: Whether the transducer should be applied in merge mode at the sense of unitex locate pattern.
-			\item \textbf{Replace}: Whether the transducer should be applied in replace mode at the sense of unitex locate pattern.
-		  \item \textbf{Until fix point}: Whether the transducer should be applied once or re-applied several times until no change occur in the text i.e. until a fix point is reached (See \ref{sub:AppWhiCon}).
+		  \item \textbf{\#}: Rank of the graph/transducer in the cascade. The \verb+fst2+ file corresponding to a graph is numbered with this rank.
+		  \item \textbf{Disabled}: checkbox to disable the current graph. \textit{Disabled} meaning "\textit{not applied in the cascade}". The disabled graphs appear not numbered, greyed out and in strikethrough.
+			\item \textbf{Name}: The name of the graph (with extension \verb+fst2+). If you let the mouse over the name of the graph, a tooltip appears with the whole path ot the graph (from the \verb+Graphs+ directory). Graph names appear in red italics when the source file of the graph is not found.
+		  \item \textbf{Merge}: Whether the transducer should be applied in merge mode in the sense of Unitex Locate pattern functionality.
+			\item \textbf{Replace}: Whether the transducer should be applied in replace mode in the sense of Unitex Locate pattern functionality.
+		  \item \textbf{Until fix point}: Whether the transducer should be applied one or several times until no change occurs anymore in the text, i.e.\ until a fixed point is reached (see Section~\ref{sub:AppWhiCon}).
 	\end{itemize}
 
 	\item \textit{Several buttons} in the middle for different needs: 
@@ -107,7 +106,7 @@ The CasSys configuration window (Figure \ref{fig13-03}) is divided into three pa
 \subsection{Applying a cascade}
 \label{subsec:launchCascade}
 
-To apply a cascade on a text, you can select the menu "\textit{Text / Apply CasSys cascade...}" (Figure \ref{fig13-01}) which will open the CasSys window.
+To apply a cascade on a text, you can select the menu "\textit{Text / Apply CasSys cascade...}" (Figure~\ref{fig13-01}), which will open the CasSys window.
 This submenu "\textit{Apply CasSys cascade...}" is active only if a text has previously been opened.
 
 \begin{figure}[!htb]
@@ -118,8 +117,8 @@ This submenu "\textit{Apply CasSys cascade...}" is active only if a text has pre
 \end{figure}
 
 
-The CasSys window (Figure \ref{fig13-02}) displays the content of the CasSys directory of the current language. It allows you to choose 
-the cascade file to be applied on the text. When this list is chosen, you can click on the "Launch" button to apply the cascade.
+The CasSys window (Figure \ref{fig13-02}) displays the content of the CasSys directory of the current language. You choose 
+the cascade file to be applied on the text. Then, you click on the "Launch" button to apply the cascade. The file with the list of transducers is displayed only if it has \verb+.csc+ extension.
 
 \begin{figure}[!htb]
   \centering
@@ -131,45 +130,43 @@ the cascade file to be applied on the text. When this list is chosen, you can cl
 All morphological-mode dictionaries added in your preferences are applied to your
 graphs. Preferences may be edited from the main Unitex frame (\textit{info / Preferences / morphological-mode dictionaries}).
 
-\subsection{Sharing a cascade transducer list file}
-\label{subsec:shareCascade}
+%\subsection{Sharing a cascade transducer list file}
+%\label{subsec:shareCascade}
+%
+%In order to ease collaborating work within CasSys, a  simple export/import
+%system for the cascades is provided. This possibility is offered in the "\textit{Text / Apply CasSys cascade...}" menu (Figure \ref{fig13-02}).
 
-In order to ease collaborating work within CasSys, a  simple export/import
-system for the cascades is provided. This possibility is offered in the "\textit{Text / Apply CasSys cascade...}" menu (Figure \ref{fig13-02}).
-
-To share a cascade list file, the following steps has to be fullfilled :
-\begin{enumerate}
-  \item \textbf{Export :} Select a cascade file and click the export button. (A
-  ready to share file is created in the \texttt{/CasSys/Share} repository)
-  \item Send the file to share to your colleague
-  \item \textbf{Import :} Select the imported file and click the import button.
-  (A ready to use file is created in the \texttt{/CasSys} repository)
-\end{enumerate}
+%To share a cascade list file, the following steps has to be fullfilled :
+%\begin{enumerate}
+%  \item \textbf{Export :} Select a cascade file and click the export button. (A
+%  ready to share file is created in the \texttt{/CasSys/Share} repository)
+%  \item Send the file to share to your colleague
+%  \item \textbf{Import :} Select the imported file and click the import button.
+%  (A ready to use file is created in the \texttt{/CasSys} repository)
+%\end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Details on the behavior of CasSys}
 
-In this section , we present details concerning the functioning of CasSys.
+In this section, we present details about the operation of CasSys.
 
 %%%%%%%%%%%%%
 \subsection{Type of graphs used}
 \label{graphs-for-cassys}
 
-CasSys uses the compiled version of the graphs (the \verb+fst2+ files). CasSys can handle the local grammars (section~\ref{syntactic-graphs}) presented in Chapter \ref{chap-advanced-grammars}. 
+CasSys uses the compiled version of the graphs (the \verb+fst2+ files). CasSys can handle local grammars (section~\ref{syntactic-graphs}) such as those in Chapter \ref{chap-advanced-grammars}. 
 The grammars used in the cascade must follow the constraints of the grammars used in Unitex.
 They may use subgraphs, morphological filters, the morphological mode, and references to information in dictionaries.
  
 \bigskip
-\noindent CasSys does not support debug-mode \verb+fst2+ files (\ref{section-debug-mode}). When you apply a graph in debug mode through the \verb+Text > Locate Pattern+ menu, the system compiles the graph into a special debug-mode format. To obtain a regular \verb+fst2+ file, compile the graph again, either with the \verb+FSGraph+ menu, or with a command line, or by unchecking the debug mode before applying the graph with \verb+Text > Locate Pattern+ menu.
+\noindent CasSys does not support debug-mode \verb+fst2+ files (Section~\ref{section-debug-mode}). When you apply a graph in debug mode through the \verb+Text > Locate Pattern+ menu, the system compiles the graph into a special debug-mode format. To obtain a regular \verb+fst2+ file, compile the graph again, either with the \verb+FSGraph+ menu, or with a command line, or by unchecking the debug mode before applying the graph with \verb+Text > Locate Pattern+ menu.
 
 \subsection{\textit{Repeat until fix point} behaviour}
 \label{sub:AppWhiCon}
 
-CasSys may apply a transducer on a text while concordances are found. This behavior is selected if the checkbox \textbf{Until fix point} is checked or not for each graph of a cascade.
-This section presents the behaviour of this option.
-\bigskip
-For instance, consider the very simple graph \ref{fig:AB->A} which recognizes \emph{AB} and
+With this option, CasSys applies a transducer repeatedly on a text as long as occurrences are found. This behavior is selected for a graph of a cascade if the corresponding \textbf{Until fix point} checkbox is checked.
+For instance, consider the very simple graph of Figure~\ref{fig:AB->A} which recognizes \emph{AB} and
 replaces it with \emph{A}. 
 
 \begin{figure}[!htb]
@@ -179,7 +176,7 @@ replaces it with \emph{A}.
   \label{fig:AB->A}
 \end{figure}
 
-Consider the text \emph{B B B A A A}. Applying the graph \ref{fig:AB->A} onto this text with the option \emph{Until fix point} will have the following result :\\
+Consider the text \emph{B B B A A A}. Applying the graph \ref{fig:AB->A} onto this text with the option \emph{Until fix point} will produce the following result :\\
 
 \begin{tabular}{|l|cccccc|r|}
 \hline
@@ -192,18 +189,18 @@ iteration 4 & & & &A&A&A& 0 match\\
 \hline
 \end{tabular} \\
 
-During the three first iterations, a match is found, so the graph
-re-applied on the resulting text. At the fourth iteration, no match is
-found, the graph is not re-applied.
+During the first three iterations, a match is found, so the graph is
+applied again on the resulting text. At the fourth iteration, no match is
+found, the graph is not applied again.
 
-\large{\textbf{Warning:}} Be aware of the risk of livelock when applying this
+\textbf{Warning:} Be aware of the risk of livelock when applying this
 option. For example, a transducer which recognizes \emph{A} and replaces it with
 \emph{A} would be caught in a livelock if applied on the example text.
 
 %%%%%%%%%%%%%%%%%%%%
 \subsection{The Unitex rules used for the cascade}
 
-In the cascade, each successive graph is applied following the unitex rules:
+In the cascade, each successive graph is applied following the Unitex rules:
 \begin{itemize}
 	\item \textit{Insertion to the left of the matched patterns}: in the merge mode, the ouput is inserted to the left of the recognized sequence.
 	\item	\textit{Priority of the leftmost match}: during the application of a local grammar, overlapping occurrences are all indexed. 
@@ -217,20 +214,24 @@ In the cascade, each successive graph is applied following the unitex rules:
 %%%%%%%%%%%%%%%%%%%%
 \subsection{A special way to mark up patterns with CasSys}
 
-The output of the transducers can be used to insert special information into texts, particularly to mark up the recognized patterns: it is 
-possible to use all the marks you want such as ( ), [], "", etc. or xml tags such as <xxx> </xxx>.\\
-CasSys also offers\textit{ a special way to mark up patterns}, that offers some advantages and that we present here.  
+The output of the transducers can be used to insert special information into texts, particularly to mark up recognized patterns: it is 
+possible to use all the marks you want such as ( ), [], "", etc. or xml tags such as <xxx> </xxx>.
 
 \bigskip
-\noindent Unitex splits texts into different sorts of tokens like the sentence delimiter {S}; the stop marker {STOP}, contiguous 
-sequences of letters, lexical tags {aujourd'hui,.ADV}, etc.
-The lexical tag is used by CasSys in a special way. The lexical tag (between curly brackets) is normally used to avoid ambiguities (see section \ref{tokenization} and section\ref{section-displaying-sentence-automata}). 
+\noindent CasSys also offers\textit{ a special way to mark up patterns}, that offers some advantages and that we present here.  
+
+\bigskip
+\noindent Unitex splits texts into different sorts of tokens like the sentence delimiter \{S\}; the stop marker \{STOP\}; contiguous 
+sequences of letters; curly-bracket-delimited lexical tags like \{aujourd'hui,.ADV\}, etc.
+The lexical tag is used by CasSys in a special way. The lexical tag (between curly brackets) is normally used to avoid ambiguities (see Sections~\ref{tokenization} and \ref{section-displaying-sentence-automata}). 
 For example, if the token \emph{\{curly brackets,.N\}} is in a text, neither "curly" nor "brackets" will be recognized but the whole sequence 
 "curly brackets" or the tag <N>.
-A lexical tag can contain complex lexical information. For example, the codes \emph{N+Pers+Hum:fs} tags a token which is a noun, a person, a human and feminine singular. In a graph, you can look for a lexical token using the lexical codes it contains: for example, you can write lexical masks such as \emph{<N>} to search a noun, \emph{<Pers+Hum>} for a human person or simply \emph{<Pers>} (lexical masks are explained in section \ref{section-special-symbols}).
+
+\bigskip
+\noindent A lexical tag can contain complex lexical information. For example, the sequence of codes \emph{N+Pers+Hum:fs} tags a token which is a noun, a person, a human and feminine singular. In a graph, you can look for a lexical token using the lexical codes it contains: for example, you can write lexical masks such as \emph{<N>} to search a noun, \emph{<Pers+Hum>} for a human person or simply \emph{<Pers>} (lexical masks are explained in Section~\ref{section-special-symbols}).
  
 \bigskip
-\noindent In CasSys, we use the lexical tag in a special way. A cascade of transducers is interesting to locate the island of certainty first. It is necessary for such a system to avoid that previously recognized patterns be ambiguous with patterns recognized by the following graphs. To do that, you can tag the patterns of your graphs surrounding them by \emph{\{} and \emph{,.tag1+tag2+tagn\}} in the outputs of the graph (where \emph{tag1, tag2, etc.} are your own tags).
+\noindent A cascade of transducers is interesting to locate an island of certainty first. It is necessary for such a system to avoid that previously recognized patterns be ambiguous with patterns recognized by the following graphs. To do that, you can tag the patterns of your graphs surrounding them by \emph{\{} and \emph{,.tag1+tag2+tagn\}} in the outputs of the graph (where \emph{tag1, tag2, etc.} are your own tags).
 
 \bigskip
 \noindent To explain this behavior, here is a very simple example. The text on which we work is :
@@ -238,7 +239,7 @@ A lexical tag can contain complex lexical information. For example, the codes \e
 \emph{bac a b c cc a b b ba ab a b bca a b c abaabc}.
 
 \bigskip
-\noindent The graph grfAB (\ref{fig13-05}) recognizes the sequence \emph{a b} in the text and tags this sequence with the lexical tag \textit{\{a b,.AB\}}. The results are merged with the text adding the outputs \emph{\{ }and \emph{,.AB\}} around \textit{"a b"} sequences. 
+\noindent The graph grfAB (Figure~\ref{fig13-05}) recognizes the sequence \emph{a b} in the text and tags this sequence with the lexical tag \textit{\{a b,.AB\}}. The results are merged with the text adding the outputs \emph{\{ }and \emph{,.AB\}} around \textit{"a b"} sequences. 
 
 \begin{figure}[!htb]
   \centering
@@ -254,7 +255,7 @@ A lexical tag can contain complex lexical information. For example, the codes \e
 \noindent Now the pattern \emph{a b} is tagged \emph{AB}. A part (a or b alone) of this pattern cannot be recognized because of the tagging of \emph{a b}. 
 
 \bigskip
-\noindent After that graph, the cascade applies another graph named tagAB (\ref{fig13-06}). iI has two paths: 
+\noindent After that graph, the cascade applies another graph named tagAB (Figure~\ref{fig13-06}). It has two paths: 
 \begin{itemize}
 	\item the first one to recognize the lexical mask \textit{<AB>} followed by \textit{c} and tags this sequence as \textit{ABC}.
   \item the second one to recognize and tag \textit{bca} preceeded by \textit{<AB>}. Only \textit{bca} is tagged as \textit{BCA}.
@@ -277,9 +278,9 @@ A lexical tag can contain complex lexical information. For example, the codes \e
 % 26.0.0 30.0.0 \{\\\{a b\\,\\.AB\\\} c,.ABC\}
 
 \bigskip
-\noindent The concordance displayed by Unitex should be like in (\ref{fig13-07}). //
+\noindent The concordance displayed by Unitex should be like Figure~\ref{fig13-07}.
 
-Note that for programming reasons (ambiguities between characters in the curly brackets of the lexical tags), we have no option but to place backslashes $\backslash$ before all ambiguous characters for Unitex ; that is why these symbols are protected with $\backslash$ in the concordance to avoid problems in Unitex. 
+Note that for programming reasons (ambiguities between characters in the curly brackets of the lexical tags), we have no option but to place backslashes $\backslash$ before all ambiguous characters for Unitex ; that is why these symbols are protected with $\backslash$ in the concordance. 
 
 \begin{figure}[!htb]
   \centering
