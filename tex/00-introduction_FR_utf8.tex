@@ -46,40 +46,53 @@ posés.
 
 
 
-\section*{Quoi de neuf depuis la version 3.0 ?}
-\addcontentsline{toc}{section}{Quoi de neuf depuis la version 3.0 ?}
+\section*{Quoi de neuf depuis la version 3.1~?}
+\addcontentsline{toc}{section}{Quoi de neuf depuis la version 3.1~?}
 Voici les principales nouvelles fonctionnalités:
 \begin{itemize}
-
-  \item Moteur plus rapide qui utilise moins de pile.
-  \item Version améliorée de \verb$CasSys$~:
-  nouveaux fichiers \verb$csc$,
-  ouverture de cascade possible aussi avec le menu \verb$FSGraph$,
-  suppression du répertoire \verb$Share$,
-  application de graphe jusqu'au point fixe, graphes de g\'{e}n\'{e}ralisation d'\'{e}tiquetage,
-  redénormalisation du dernier fichier
-  (chapitre \ref{chap-cassys}).
-  \item Introduction du malgache.
-  \item Publication de \verb$main_UnitexTool_C$ comme API publique.
-  \item Version améliorée de l'éditeur de graphes~: sélection et édition des boites, ouverture, sauvegarde, exportation comme image (\ref{section-editing-graphs}, \ref{exporting-graphs}).
-  \item Les commandes non applicables des menus sont maintenant grisées.
-  \item Introduction de l'opérateur \verb$<n.LEMMA>$ pour la flexion en mode sémitique (non encore documenté).
-  \item Introduction d'une liste de graphes et corpus récemment ouverts.
-  \item Introduction d'une liste de fenêtres ouvertes.
-  \item Compatibilité améliorée avec Ruby.
-  \item Introduction de \verb$InstallLingResourcePackage$, un outil qui installe un paquetage de ressources et de scripts dans un environnement cible (non encore documenté).
-  \item Introduction de \verb$RunScript$, qui exécute dans l'environnement cible des scripts installés par \verb$InstallLingResourcePackage$ (non encore documenté). Avec ces deux outils, on peut mettre au point des opérations Unitex dans un environnement et les déployer dans un autre.
-  \item Introduction de l'option "match word boundaries" dans l'algorithme de recherche par intersection d'automates (\ref{section-locate-tfst})~: avec cette option, active par défaut pour la plupart des langues, \textit{enlever} and \textit{en lever} ne matchent pas (non encore documenté).
-  \item Suivi amélioré des offsets, c'est-à-dire de la différence entre les adresses d'une même position dans un corpus suivant différentes versions du corpus (\ref{section-DumpOffsets}).
-  \item Compilation quotidienne d'exécutables pour Windows (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) et 0S X (10.7+).
-  \item Installateurs automatiques pour toutes ces plates-formes.
-
+  \item Unitex/GramLab inclut maintenant des données expérimentales sur le chinois.
+  \item On peut ouvrir un sous-graphe --- ou le créer s'il n'existe pas --- en faisant un clic droit sur un
+  appel à ce sous-graphe.
+  \item Le développement fait appel à l'intégration continue; le code source, les ressources
+  linguistiques et les versions précédentes sont disponibles sur des dépôts de données publics:\\
+  \verb$          https://github.com/UnitexGramLab$
+  \item CasSys et les graphes de généralisation d'étiquetage (chapitre~\ref{chap-cassys}) sont plus
+  satisfaisants.
+  \item L'exploration des chemins des grammaires (section~\ref{explore-paths}) fonctionne mieux.
+  \item Il y a une meilleure compatibilité entre le mode morphologique, l'option de recherche de motifs
+  "All matches",   le mode debug, la recherche de motifs dans l'automate du texte
+  (section~\ref{section-locate-tfst}) et les variables d'entrée de dictionnaire.
+  \item Il y a une fonctionnalité "rechercher et remplacer" pour les graphes et pour l'automate du texte;
+  les fonctionnalités "défaire" et "refaire" fonctionnent maintenant aussi sur l'automate du texte.
+  \item On peut sauvegarder un corpus traité dans le répertoire qu'on veut; on peut sauvegarder
+  et ouvrir des concordances.
+  \item L'automate du texte s'affiche avec un marquage en couleur plus satisfaisant.
+  \item Les dictionnaires du français ont été mis à jour. Les orthographes anciennes ont été retirées du
+  dictionnaire du portugais du Brésil conforme à l'orthographe actuelle. Les graphes d'affixes verbaux
+  du malgache ont été mis à jour.
+  \item Des graphes pour les nombres en toutes lettres dans cinq langues sont fournis.
+  \item Le menu pour les dictionnaires a une liste des dictionnaires qui ont été ouverts récemment.
+  \item Le menu "File edition" ouvre un répertoire adéquat en fonction du type de fichier.
+  \item La compatibilité avec les corpus en XML est améliorée.
+  \item L'ordre alphabétique en grec moderne est pris en charge.
+  \item Les codes sémantiques dupliqués sont détectés dans les dictionnaires de lemmes polylexicaux
+  aussi.
+  \item Le format tabulaire de l'automate du texte a un bouton pour filtrer les étiquettes.
+  \item Les boites de dialogue se ferment quand on appuie sur la touche échappement.
+  \item Les guillemets vides (\verb$""$) sont autorisés dans les graphes et interprétés comme
+  \verb$<E>$.
+  \item Le concordancier peut maintenant traiter des textes avec des mots de plus de
+  5~000~caractères.
+  \item Les boites de dialogue affichant un message d'erreur ont un bouton "Copy". La liste des
+  sous-graphes appelés par un graphe a aussi un bouton de copie.
+  \item On peut configurer une option dabs les préférences pour que les messages d'erreur
+  n'apparaissent pas.
+  \item Des fonctionnalités récentes ont été documentées dans le manuel d'utilisation.
+  \item Diverses anomalies ont été corrigées. 
 \end{itemize}
 
-\bigskip
-\noindent IMPORTANT: certains formats de fichiers ayant été changés et de nouveaux ayant été
-ajoutés, nous vous recommandons d'effectuer un nouveau prétraitement de vos textes en particulier si
-vous utilisez l'automate du texte.
+\noindent Merci à Cristian Martinez, Marwin Damis, Anubhav Gupta, Renaud Mouronval,
+Maxime Petit, Victorien Villiers et Gilles Vollant pour leurs contributions substantielles.
 
 \clearpage
 
@@ -149,20 +162,29 @@ universitaire (voir \url{http://unitexgramlab.org/why-unitex}), en s'appuyant su
     \item Matthieu Constant: auteur de \verb+Grf2Fst2+
     \item Julien Decreton: auteur de l'éditeur de texte intégré à Unitex,
     	    a aussi réalisé la fonctionnalité \verb+undo+ de l'éditeur de graphe
+    \item Marwin Damis: amélioration de l'interface de l'automate du texte
     \item Claude Devis: ajout des filtres morphologiques, fondé sur la bibliothèque TRE
+    \item Nathalie Friburger: auteure de \verb+CasSys+
+    \item Anubhav Gupta: a perfectionné \verb+CasSys+
     \item Hyun-Gue Huh: auteur de l'outil de génération de dictionnaires coréens
     \item Claude Martineau: a travaillé sur la flexion des mots simples dans \verb+MultiFlex+
+    \item Cristian Martinez: a mis en place la chaine d'intégration continue et corrigé des anomalies
+    importantes
+    \item  Renaud Mouronval: a amélioré l'exploration des chemins des grammaires
     \item Sebastian Nagel: a optimisé de nombreuses parties du code, il a également adapté
     	    \verb+PolyLex+ pour l'allemand et le russe
-    \item Alexis Neme: a optimisé \verb+Dico+ et \verb+Tokenize+, a aussi intégré \verb+Locate+ dans \verb+Dico+ pour accepter des graphes dictionnaires
+    \item Alexis Neme: a optimisé \verb+Dico+ et \verb+Tokenize+, a aussi intégré \verb+Locate+
+    dans \verb+Dico+ pour accepter des graphes dictionnaires
      \item Aljosa Obuljen: auteur de \verb+Stats+
      \item Sébastien Paumier: développeur principal
+    \item Maxime Petit: a amélioré la fonctionnalité "rechercher et remplacer" pour les graphes
      \item Agata Savary: auteure de \verb+MultiFlex+
+    \item Anthony Sigogne: auteur de \verb+Tagger+ et de \verb+TrainingTagger+
     \item Gilles Vollant: auteur de \verb+UnitexTool+, a optimisé beaucoup
-    	    d'aspects du code d'Unitex (mémoire, vitesse, compatibilité multi-compilateur, etc)
+    	    d'aspects du code d'Unitex (mémoire, vitesse, compatibilité multi-compilateur, etc.) et corrigé
+    	    d'innombrables anomalies
     \item Patrick Watrin: auteur de \verb+XMLizer+, a travaillé sur l'intégration de \verb+XAlign+ à Unitex
     \item Anthony Sigogne: auteur de \verb+Tagger+ et de \verb+TrainingTagger+
-    \item Nathalie Friburger: auteure de \verb+CaSsys+
 \end{itemize}
 
 \bigskip
