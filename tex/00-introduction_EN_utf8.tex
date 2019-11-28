@@ -49,80 +49,99 @@ these resources: precision, completeness, and the taking into account of frozen
 expressions, most notably those which concern the enumeration of compound words.
 
 
-\section*{What's new from version 3.0 ?}
-\addcontentsline{toc}{section}{What's new from version 3.0 ?}
+\section*{What's new from version 3.1?}
+\addcontentsline{toc}{section}{What's new from version 3.1?}
 Here are the main new features:
 \begin{itemize}
-
-  \item Faster engine that uses less stack.
-  \item Enhanced version of \verb$CasSys$: new \verb$csc$ files, suppression of the \verb$Share$ directory, open cascade also by the \verb$FSGraph$ menu, apply graph until fixed point, tagging generalization graphs, last file may be denormalized
-  (Chapter \ref{chap-cassys}).
-  \item Introduction of Malagasy.
-  \item Publication of \verb$main_UnitexTool_C$ as public API.
-  \item Enhanced version of the graph editor: box selection, box editing, open, save, export as image (\ref{section-editing-graphs}, \ref{exporting-graphs}).
-  \item Non-applicable menu items are now grayed out.
-  \item Introduction of the \verb$<n.LEMMA>$ operator for inflection in Semitic mode (yet undocumented).
-  \item Introduction of list of recently opened graphs and corpora.
-  \item Introduction of list of open windows.
-  \item Enhanced compatibility with Ruby.
-  \item Introduction of \verb$InstallLingResourcePackage$, a tool that installs a package of resources and scripts into a target environment (yet undocumented).
-  \item Introduction of \verb$RunScript$, a tool that runs in the target environment scripts installed there by \verb$InstallLingResourcePackage$ (yet undocumented). With these two tools, users can implement Unitex operations in an environment and deploy them in another.
-  \item Introduction of the "match word boundaries" option in the automaton-intersection search algorithm (\ref{section-locate-tfst}), so that e.g. \textit{nowhere} and \textit{now here} don't match (or match, if user wants). Yet undocumented.
-  \item Enhanced tracking of the offset between the addresses of a given position in a corpus in different versions of the corpus (\ref{section-DumpOffsets}).
-  \item Daily compilation of binaries for Windows (32-bit, 64-bit), GNU/Linux (Intel, Intel 64-bit) and 0S X (10.7+).
-  \item Setup installers are provided for all target platforms.
-  
+  \item Unitex/GramLab now comes with experimental resources on Chinese.
+  \item You can open a subgraph---or creating it if it doesn't exist---by
+  right-clicking on a call to it.
+  \item The development includes continuous integration; source code, language
+  resources and older versions are available on public repositories on:\\
+  \verb$          https://github.com/UnitexGramLab$
+  \item CasSys and tagging generalization graphs (Chapter~\ref{chap-cassys}) are more satisfactory.
+  \item The exploration of grammar paths (Section~\ref{explore-paths}) works better.
+  \item Compatibility between morphological mode, the 'All-matches' search option,
+  debug mode, search in the text automaton (Section~\ref{section-locate-tfst}) and
+  dictionary-entry variables is higher.
+  \item There is a 'Find and replace' service for graphs and for the text automaton;
+  undo and redo now work for the text automaton too.
+  \item You can save a processed corpus in the folder of your choice; you can save
+  and open concordances.
+  \item The text automaton is displayed with a more satisfactory colour marking.
+  \item The French dictionaries have been updated. Obsolete spellings were removed
+  from the Portuguese (Brazil) dictionary with the current spelling. The Malagasy
+  graphs for verbal affixes have been updated.
+  \item Graphs for numbers in full in five languages are provided.
+  \item The menu for dictionaries has a list of recently opened dictionaries.
+  \item The 'File edition' menu now opens an appropriate folder depending on file type.
+  \item Compatibility with XML texts is higher.
+  \item Alphabetical ordering in Modern Greek is available.
+  \item Duplicate semantic codes are detected in dictionaries of multiword
+  lemmas too.
+  \item The Table view of the text automaton has a 'Filter tags' button.
+  \item Dialog boxes close when you type the Escape key.
+  \item Empty double quotes (\verb$""$) are allowed in graphs and intepreted
+  as \verb$<E>$.
+  \item The concordancer can now process texts containing words with more than
+   5,000  characters.
+  \item Dialog boxes with an error message have a Copy button. The list of
+  subgraphs called by a graph has a Copy button too.
+  \item You can set an option in the preferences to hide error messages.
+  \item Recent functionality has been documented in the user manual.
+  \item Miscellaneous bugs have been fixed.
 \end{itemize}
 
-\bigskip
-\noindent IMPORTANT: as some file formats changed and some new files were introduced, we recommend that you
-repreprocess your existing text files, especially if you work with text
-automata.
+\noindent Thanks to Cristian Martinez, Marwin Damis, Anubhav Gupta, Renaud Mouronval,
+Maxime Petit, Victorien Villiers and Gilles Vollant for major contributions.
 
 \section*{Content}
 \addcontentsline{toc}{section}{Content}
-\noindent Chapter \ref{chap-install} describes how to install and run
+\noindent Chapter~\ref{chap-install} describes how to install and run
 Unitex.
 
-\bigskip \noindent Chapter \ref{chap-text} presents the different steps in the
+\bigskip \noindent Chapter~\ref{chap-text} presents the different steps in the
 analysis of  a text.
 
-\bigskip \noindent Chapter \ref{chap-dictionaries} describes the formalism of
+\bigskip \noindent Chapter~\ref{chap-dictionaries} describes the formalism of
 the DELA electronic dictionaries and the different operations that can be applied to them.
 
-\bigskip \noindent Chapters \ref{chap-regexp} and \ref{chap-grammars}
+\bigskip \noindent Chapters~\ref{chap-regexp} and \ref{chap-grammars}
 present different means for making text searches more effective. 
 Chapter \ref{chap-grammars} describes in detail how to use the graph
 editor.
 
-\bigskip \noindent Chapter \ref{chap-advanced-grammars} is concerned
+\bigskip \noindent Chapter~\ref{chap-advanced-grammars} is concerned
 with the different possible applications of grammars. The particularities of each type of grammar are
 presented.
 
-\bigskip \noindent Chapter \ref{chap-text-automaton} introduces the 
+\bigskip \noindent Chapter~\ref{chap-text-automaton} introduces the 
 concept of text automaton and describes the properties of this notion. This chapter also describes 
 operations on this object, in particular, how to disambiguate lexical items with
 the ELAG program.
 
-\bigskip \noindent Chapter \ref{chap-sequence-automaton} describes the sequence automaton module, the file formats that are accepted as input, the user interface and introduces the search by approximation.
+\bigskip \noindent Chapter~\ref{chap-sequence-automaton} describes the sequence automaton module, the file formats that are accepted as input, the user interface and introduces the search by approximation.
 
-\bigskip \noindent Chapter \ref{chap-lexicon-grammar} contains an
+\bigskip \noindent Chapter~\ref{chap-lexicon-grammar} contains an
 introduction to lexicon-grammar tables, followed by a description of the method of constructing grammars based on these
 tables.
 
-\bigskip \noindent Chapter \ref{chap-alignment} describes the text
+\bigskip \noindent Chapter~\ref{chap-alignment} describes the text
 alignment module, based on the XAlign tool.
 
-\bigskip \noindent Chapter \ref{chap-multiflex} describes the compound word
+\bigskip \noindent Chapter~\ref{chap-multiflex} describes the compound word
 inflection module, as a complement of the simple word inflection mechanism
 presented in chapter \ref{chap-dictionaries}.
 
-\bigskip \noindent Chapter \ref{chap-cassys} describes the CasSys cascade of transducer system.
+\bigskip \noindent Chapter~\ref{chap-cassys} describes the CasSys cascade of transducer system.
 
-\bigskip \noindent Chapter \ref{chap-external-programs} contains a
+\bigskip \noindent Chapter~\ref{chap-scripts} documents the use of Unitex/GramLab
+with scripts launching external programs.
+
+\bigskip \noindent Chapter~\ref{chap-external-programs} contains a
 detailed description of the external programs that make up the Unitex system.
 
-\bigskip \noindent Chapter \ref{chap-file-formats} contains
+\bigskip \noindent Chapter~\ref{chap-file-formats} contains
 descriptions of all file formats used in the system. 
 
 
@@ -144,30 +163,39 @@ sounds like Open Source is good for science:
 \begin{itemize}
     \item Olivier Blanc: has integrated the ELAG system into Unitex, originally
     designed by Eric Laporte, Anne Monceaux and some of their students, has
-    also written \verb+RebuildTfst+ (previously known as \verb+MergeTextAutomaton+)
+    also written \verb+RebuildTfst+ (previously known as
+    \verb+MergeTextAutomaton+)
     \item Matthieu Constant: author of \verb+Grf2Fst2+
     \item Julien Decreton: author of the text editor integrated in Unitex,
     has also designed the undo functionality in the graph editor
+    \item Marwin Damis: enhancement of the interface of the text automaton
     \item Claude Devis: introduction of morphological filters, 
     based on the TRE library
     \item Nathalie Friburger: author of \verb+CasSys+
+    \item Anubhav Gupta: has enhanced \verb+CasSys+
     \item Hyun-Gue Huh: author of the tools used to
     generate Korean dictionaries
     \item Claude Martineau: had worked on the simple word inflection part of
     \verb+MultiFlex+
+    \item Cristian Martinez: has set up the continuous-integration framework and
+    fixed major bugs
+    \item  Renaud Mouronval: has enhanced the exploration of grammar paths
     \item Sebastian Nagel: has optimized many parts of the code, has also
     adapted \verb+PolyLex+ for German and Russian
     \item Alexis Neme: has optimized \verb+Dico+ and \verb+Tokenize+, has also
     merged \verb+Locate+ into \verb+Dico+ in order to allow dictionary graphs 
     \item Aljosa Obuljen: author of \verb+Stats+
     \item S\'ebastien Paumier: main developer
+    \item Maxime Petit: has enhanced the 'find and replace' service for graphs
     \item Agata Savary: author of \verb+MultiFlex+
     \item Anthony Sigogne: author of \verb+Tagger+ and \verb+TrainingTagger+
     \item Gilles Vollant: author of \verb+UnitexTool+, has optimized many
-    aspects of Unitex code (memory, speed, multi-compiler compliance, etc)
+    aspects of Unitex code (memory, speed, multi-compiler compliance, etc.) and
+    fixed countless bugs
     \item Patrick Watrin: author of \verb+XMLizer+, has worked on the
     integration of \verb+XAlign+
 \end{itemize}
+
 
 \bigskip
 \noindent Moreover, Unitex would be useless without all the precious linguistic
