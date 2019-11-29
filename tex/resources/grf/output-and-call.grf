@@ -1,0 +1,26 @@
+#Unigraph
+SIZE 1188 840
+FONT Times New Roman:  14
+OFONT Arial Unicode MS:B 12
+BCOLOR 16777215
+FCOLOR 0
+ACOLOR 13487565
+SCOLOR 16711680
+CCOLOR 255
+DBOXES y
+DFRAME y
+DDATE y
+DFILE y
+DDIR n
+DRIG n
+DRST n
+FITS 100
+PORIENT L
+#
+6
+"<E>" 70 196 1 3 
+"" 558 196 0 
+":number" 357 196 1 5 
+"<PREP>" 145 196 1 4 
+"<E>/<number>" 258 196 1 2 
+"<E>/</number>" 441 196 1 1 

@@ -21,7 +21,8 @@ $S \rightarrow$ \E
 
 \bigskip
 \noindent Les symboles figurant à gauche des règles sont appelés \textit{symboles
- non-terminaux}\index{Symboles!non-terminaux}                                                                                       car ils peuvent être réécrits. Les symboles qui ne peuvent pas être réécrits par des règles sont
+ non-terminaux}\index{Symboles!non-terminaux}
+car ils peuvent être réécrits. Les symboles qui ne peuvent pas être réécrits par des règles sont
  appelés \textit{symboles terminaux}\index{Symboles!terminaux}. Les membres droits des règles
 sont des suites de symboles non-terminaux et terminaux. Le symbole epsilon noté \E ~
 désigne le mot vide. Dans la grammaire ci-dessus, $S$ est un symbole non-terminal et
@@ -470,13 +471,8 @@ elle est issue.
 \bigskip
 \noindent On ne peut pas supprimer l'état initial ni l'état final.
 
-\subsection{Sortie}
+\subsection{Sorties}
 \label{Transducers}\index{Transducteur}\index{\verbc{/}}
-Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le caractère spécial
-\verb+/+. Tous les caractères situés à droite de celui-ci seront considérés comme faisant partie de
-la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
-~\ref{fig-exemple-transduction}.
-
 \begin{figure}[!ht]
 \begin{center}
 \includegraphics[width=4.5cm]{resources/img/fig5-15.png}
@@ -484,29 +480,120 @@ la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la fig
 \end{center}
 \end{figure}
 
-\bigskip
-\noindent Pour créer une boite vide avec une sortie contenant \verb+number+, on écrit \verb+<E>/number+ (exemple~: la boite la plus à droite dans la figure~\ref{fig-using-variable} est vide et a une sortie). La sortie associée à une boîte est représentée en gras
-sous celle-ci.
+\noindent Il est possible d’associer une sortie à une boîte. Pour cela, on utilise le caractère spécial
+\verb+/+. Tous les caractères situés à droite de celui-ci seront considérés comme faisant partie de
+la sortie. Ainsi, le texte \verb$one+two+three/number$ donne la boîte de la figure
+~\ref{fig-exemple-transduction}. La sortie associée à une boîte est représentée en gras
+au-dessous de celle-ci.
 
 \bigskip
-\noindent Cependant il n'est pas possible de placer une sortie sur une boîte contenant un appel à un sous-graphe. Il faut obligatoirement utiliser une boîte vide avec la sortie, boîte placée avant. Mais il n'est pas garanti qu'un espace ne se glissera pas entre la sortie et le texte qui suit. Par exemple, si on veut placer une accolade ouvrante et être sûr qu'elle collera au texte qui suit, on peut utiliser le graphe B de la figure~\ref{fig-graphe-B}, présent dans la distribution.
+\noindent Les graphes dans lesquels les boites ont des sorties sont souvent utilisés pour
+produire une version modifiée d'un corpus (voir sec\-tion~\ref{section-modifying-text}).
+Soit les sorties sont insérées dans le corpus, soit elles remplacent le texte reconnu
+par la boite à laquelle elles sont attachées, selon qu'on lance la recherche
+(section~\ref{section-applying-graphs-to-text}) en mode MERGE ou en mode REPLACE
+(section~\ref{section-applying-transducers-rules}).
+
+\bigskip
+\noindent Cependant, il n'est pas autorisé de placer une sortie sur une boîte contenant
+un appel à un sous-graphe. Pour obtenir le même effet, il faut insérer une boîte vide avant
+celle de l'appel, et placer la sortie sur la boîte vide, comme dans la
+figure~\ref{output-and-call}.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=262px]{resources/img/B.png}
-\caption{Graphe B\label{fig-graphe-B}}
+\includegraphics[width=320px]{resources/img/output-and-call.png}
+\caption{La boite vide juste avant l'appel a une sortie
+\label{output-and-call}}
+\end{center}
+\end{figure}
+
+\subsubsection{Boites vides avec une sortie}
+
+\noindent Pour créer une boite vide avec une sortie contenant \verb+number+, on écrit
+\verb+<E>/number+. Quand on utilise un graphe pour produire une version
+modifiée d'un corpus, la sortie d'une boite vide sera insérée dans le corpus,
+qu'on lance la recherche en mode MERGE ou en mode REPLACE
+(section~\ref{section-applying-transducers-rules}): de toutes façons, la boite
+vide ne reconnait aucune portion de texte. Par exemple, le graphe de la
+figure~\ref{empty-with-output}, utilisé en mode MERGE, insère
+\verb$<number>$ avant les nombres.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=280px]{resources/img/empty-with-output.png}
+\caption{Boites vides avec sorties \label{empty-with-output}}
+\end{center}
+\end{figure}
+
+\noindent La sortie est insérée entre le texte produit par la boite précédente
+(ici la préposition) et celui produit par la boite suivante (ici le nombre).
+
+\bigskip
+\noindent Dans la version modifiée du corpus, la sortie est soudée au token de
+gauche: avec le graphe de la figure~\ref{empty-with-output}, \verb$<number>$
+est soudé à la préposition. Cela donne, par exemple:\\
+
+\verb$        (...) with<number> two</number> of (...)$
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=280px]{resources/img/empty-with-output-right-word.png}
+\caption{Une boite vide dont la sortie sera soudée au mot suivant
+\label{empty-with-output-right-word}}
 \end{center}
 \end{figure}
 
 \bigskip
-\noindent Si on place des accolades ouvrantes et fermantes pour créer des étiquettes lexicales, on peut vérifier si, dans une grammaire, toutes les accolades ouvrantes sont bien fermées sur tous les chemins possibles. Pour cela on choisit dans le menu \textit{Graphs} la commande \textit{Tools/Verify braces}. Cependant cette vérification exige que les accolades soient ouvertes et fermées dans le même graphe. Ce programme vérifie aussi les sous-graphes appelés. Il compile en même temps le graphe examiné.
+\noindent Si on veut au contraire souder la sortie au token de droite, on peut
+utiliser le caractère spécial \verb$#$ (section~\ref{section-special-symbols})
+comme dans la figure~\ref{empty-with-output-right-word}. La version
+modifiée du corpus contiendra maintenant:\\
 
+\verb$        (...) with <number>two</number> of (...)$\\
+
+\noindent De même, si on veut insérer une accolade ouvrante et faire en sorte qu'elle
+soit soudée au texte qui suit dans la version modifiée du corpus,
+on peut appeler le graphe \textit{B} de la figure~\ref{fig-graphe-B}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=200px]{resources/img/B.png}
+\caption{Le graphe \textit{B}\label{fig-graphe-B}}
+\end{center}
+\end{figure}
+
+\subsubsection{Vérification des accolades}
+
+\noindent Unitex peut vérifier si toutes les accolades ouvrantes d'une grammaire
+sont bien fermées sur tous les chemins possibles. (Cette commande est utile, par
+exemple, dans le cas d'une grammaire qui crée des étiquettes lexicales délimitées
+par des accolades.) Pour invoquer cette commande, on choisit dans le menu
+\textit{Graphs} la commande \textit{Tools/Verify braces}. La commande vérifie
+aussi les sous-graphes appelés, et compile les graphes en même
+temps\footnote{L'outil crée aussi un fichier \texttt{<nom du graphe>autolst.txt},
+qu'on peut effacer une fois l'analyse terminée.}. Les accolades à
+l'intérieur des boites (y compris les accolades déspécialisées) comptent aussi bien
+que celles dans les sorties. L'outil ne vérifie pas si la grammaire ouvre les accolades
+avant de les fermer ou après.
+
+\bigskip
+\noindent La vérification suppose que les accolades qui sont ouvertes dans un
+graphe sont fermées dans le même, sauf qu'un appel à un graphe nommé \textit{B},
+quel que soit son contenu, compte automatiquement comme une accolade
+ouvrante\footnote{ Un appel à un graphe \textit{BB} compte pour deux accolades
+ouvrantes, et à \textit{BBB} pour trois.}. Cette exception est conçue pour être
+utilisée avec le graphe de la figure~\ref{fig-graphe-B}\footnote{ L'outil vérifie aussi
+les accolades dans les sous-graphes qui porteent les noms spéciaux \textit{B},
+\textit{BB} et \textit{BBB}, mais dans tout graphe, il ignore les chemins dans
+lesquels la séquence des contenus des boites se termine par \# et la séquence des
+sorties des boites commence par \{, ce qui est le cas de tous les chemins du graphe
+\textit{B}.}.
 
 %%%%%%%%%%%%%%
 \bigskip
 \noindent \textbf{Poids}
 \index{Poids}
-
 \noindent On peut attribuer un poids à des boîtes d'un transducteur. Ainsi, lorsqu'une séquence est
 reconnue par plusieurs chemins avec des sorties différentes
 (transducteur ambigu\index{Ambigu!transducteur}\index{Sortie d'un transducteur!ambiguïté}),

@@ -372,7 +372,7 @@ repository root.
 
 \bigskip
 \noindent Calls to sub-graphs are represented in the boxes by grey lines, as in Fig.~\ref{call-colours}, or brown
-lines in the case of graphs located in the repository, as in Fig.~\ref{repository-graph-call}. If the .GRF File of the sub-graph is not found at the path you indicated, Unitex will try to find a fst2 file of the same name. If Unitex can't find any of the .grf and .fst2 files, the call to the missing subgraph will be displayed on a red line. 
+lines in the case of graphs located in the repository, as in Fig.~\ref{repository-graph-call}. If the .GRF File of the sub-graph is not found at the path you indicated, Unitex will try to find a fst2 file of the same name. If Unitex can't find any of the .grf and .fst2 files, the call to the missing sub-graph will be displayed on a red line. 
 On Windows, you can open a sub-graph by clicking on the grey line while pressing the Alt key.
 On Linux, the <Alt+Click>  combination is intercepted by the system:\footnote{If you are 
 working on KDE, you can deactivate <Alt+Click> in kcontrol.} in order to open a
@@ -380,9 +380,9 @@ sub-graph, middle-click on its name, or click on its name by pressing the left a
 simultaneously.
 
 \bigskip
-\noindent The list of subgraphs called from the current graph and the graphs in which the current graph is called can be displayed by clicking on the second and third button of the fourth set of buttons in the toolbar command (see Figure~\ref{list-called-graphs} and
+\noindent The list of sub-graphs called from the current graph and the graphs in which the current graph is called can be displayed by clicking on the second and third button of the fourth set of buttons in the toolbar command (see Figure~\ref{list-called-graphs} and
 Figure~\ref{fig-toolbar} in section~\ref{toolbar-commands}).
-In these Lists of subgraphs : 
+In these Lists of sub-graphs : 
 \begin{itemize}
 \item sub-graphs directly called from the current graph appear with their simple filename
 \item sub-graphs indirectly called from one of the graphs called by the current graph appear with an arrow before their filename.
@@ -460,7 +460,8 @@ and press the Enter key.
 A transducer is a graph in which outputs can be associated with boxes. To insert
 an output, use the special character \verb+/+. All characters to the right of
 it will be part of the output. Thus, the text \verb$one+two+three/number$ results in
-a box like in figure~\ref{fig-exemple-transduction}.
+a box like in figure~\ref{fig-exemple-transduction}. The output associated with a box
+is represented in bold text below it.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -469,24 +470,102 @@ a box like in figure~\ref{fig-exemple-transduction}.
 \end{center}
 \end{figure}
 
-\noindent To create an empty box with an output consisting of \verb+number+, type \verb+<E>/number+ (example: the rightmost box in Fig.~\ref{fig-using-variable} is empty and has an output). The output associated with a box is represented in bold text below it.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent Graphs with outputs are often used to produce a modified version of a corpus
+(see Sec\-tion~\ref{section-modifying-text}). Outputs will either be inserted in the
+corpus, or replace the text that matches the box, depending on whether you launch the
+search (Section~\ref{section-applying-graphs-to-text}) in MERGE or REPLACE mode
+(Section~\ref{section-applying-transducers-rules}).
 
 \bigskip
-\noindent However, it is not possible to associate an output to a box that calls a sub-graph. Instead of that, you must create an empty box with the output before the box that calls the sub-graph. Unfortunately, there is no guarantee that a space won't be inserted between the output and the text that follows. For example, to insert a curly bracket and ensure it will stick to the following text, you can use graph B of Figure~\ref{fig-graphe-B}, available in the distribution.
+\noindent However, you may not associate an output to a box that calls a sub-graph.
+Instead of that, you must create an empty box before the box that calls the sub-graph,
+and associate the output to the empty box, as in Fig.~\ref{output-and-call}.
 
 \begin{figure}[!ht]
 \begin{center}
-\includegraphics[width=262px]{resources/img/B.png}
-\caption{Graph B \label{fig-graphe-B}}
+\includegraphics[width=320px]{resources/img/output-and-call.png}
+\caption{Box before call to sub-graph is empty and has output
+\label{output-and-call}}
 \end{center}
 \end{figure}
 
-\bigskip
-\noindent If you use curly brackets to create lexical tags, you can check if all the curly brackets of a grammar are balanced and well formed. To do that, you choose in the \textit{Graphs} menu the \textit{Tools/Verify braces} command. However, the verification assumes that curly brackets opened in a graph are closed in the same graph. This program also checks called sub-graphs, and compiles the checked graph at the same time.
+\subsubsection{Empty boxes with an output}
+To create an empty box with an output consisting of \verb+number+, type
+\verb+<E>/number+. When you use a graph to produce a modified version of a
+corpus, the output of empty boxes will be inserted in the corpus, no matter
+whether you launch the search in MERGE or REPLACE mode
+(Section~\ref{section-applying-transducers-rules}): an empty box does not match
+any text anyway. For example, the graph in Fig.~\ref{empty-with-output}, used in
+MERGE mode, inserts \verb$<number>$ before the numbers.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=280px]{resources/img/empty-with-output.png}
+\caption{Empty boxes with outputs \label{empty-with-output}}
+\end{center}
+\end{figure}
+
+\noindent The output is inserted between the text produced by the preceding box
+(here the preposition) and the text produced by the next box (here the number).
+
+\bigskip
+\noindent In the modified version of the corpus, the output is stuck to the left:
+with the graph of Fig.~\ref{empty-with-output},
+\verb$<number>$ is stuck to the preposition. This results, for instance, in:\\
+
+\verb$        (...) with<number> two</number> of (...)$\\
+
+\noindent If you want to stick the output to the right instead,
+you can use the special character \verb$#$ (Section~\ref{section-special-symbols})
+as in Fig.~\ref{empty-with-output-right-word}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=280px]{resources/img/empty-with-output-right-word.png}
+\caption{An empty box with an output that will stick to the next word
+\label{empty-with-output-right-word}}
+\end{center}
+\end{figure}
+
+\noindent Now the result is:\\
+
+\verb$        (...) with <number>two</number> of (...)$\\
+
+\noindent Similarly, to insert a curly brace and make sure it will stick to the following text in the
+modified version of the corpus, you can call the graph \textit{B} of
+Figure~\ref{fig-graphe-B}.
+
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=200px]{resources/img/B.png}
+\caption{Graph \textit{B} \label{fig-graphe-B}}
+\end{center}
+\end{figure}
+
+\subsubsection{Checking braces}
+Unitex can check if all the curly braces of a grammar are balanced in all paths.
+(This command is useful, for example, in the case of a grammar that creates
+lexical tags enclosed in braces.) To invoke this command, choose in the
+\textit{FSGraph} menu the \textit{Tools/Verify braces} item. It also checks the called
+sub-graphs, and compiles the graphs at the same time.\footnote{ The tool generates
+a file named \texttt{<graph name>autolst.txt}, which you can delete after the
+analysis.} Both the braces inside the boxes (including despecialized braces) and the
+braces in the box outputs count. The tool does not check if the grammar opens braces
+before or after closing them.
+
+\bigskip
+\noindent The verification assumes that the braces opened in a graph are closed in the
+same graph, except that a call to a graph named \textit{B}, no matter its content,
+automatically counts for one opening brace.\footnote{ A call to graph \textit{BB} counts
+for two, and \textit{BBB} for three.} This exception is designed to be used with the
+graph of  Figure~\ref{fig-graphe-B}.\footnote{ The tool checks braces in sub-graphs
+with the  special  names \textit{B}, \textit{BB} and \textit{BBB} too, but in any graph,
+it ignores every path where the string of box contents ends with \# and the string of
+box outputs begins with \{, which is the case of all the paths in graph \textit{B}.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Weights}
 \index{Weight}
@@ -517,7 +596,7 @@ You cannot define a priority among embedded matching sequences (cf. section~\ref
  or among overlapping matching sequences (cf. section~\ref{section-priority-leftmost-match}).
  
 \bigskip
-\noindent Weights are valid only within a graph, not in subgraphs or in calling graphs.
+\noindent Weights are valid only within a graph, not in sub-graphs or in calling graphs.
 
 \subsection{Input Variables}
 \label{section-using-variables}
@@ -657,7 +736,7 @@ Unitex, and whose case must be taken verbatim & \verb$\"$
 \verb$+$ & \verb$+$ separates different lines within the boxes& \verb$"+"$ or \verb$\+$
 \\
 \hline
-\verb$:$ & \verb$:$ introduces a call to a subgraph& \verb$":"$ or \verb$\:$
+\verb$:$ & \verb$:$ introduces a call to a sub-graph& \verb$":"$ or \verb$\:$
 \\
 \hline
 \verb$/$ & \verb$/$ indicates the start of a transduction within a box& \verb$\/$
@@ -732,10 +811,10 @@ then, mouse clicks will be interpreted in the normal way again.
 \noindent The next icon (showing a wrench) is a shortcut to open the window with the graph display
 options.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following two icons allow you to view lists of graphs that are related to the current graph by a  "graph/subgraph" relation :
+The following two icons allow you to view lists of graphs that are related to the current graph by a  "graph/sub-graph" relation :
 \begin{itemize}
 \item The first displays a list of graphs called by the current graph
-\item The second button shows the list of all the graphs calling the current graph as a subgraph.
+\item The second button shows the list of all the graphs calling the current graph as a sub-graph.
 \end{itemize}
 The two green arrows button will refresh the current graph to load the latest version of the current graph. If any graph has its .grf file changed by any operation while displayed in a Unitex window, a window will pop up to warn you and invite you to refresh its window.
 
@@ -786,7 +865,7 @@ character string, in a box, below a box (cf.~\ref{Transducers}) or both. Type wh
 you are looking for in "Find what", then click either "Find Previous" or "Find Next"
 to move to each box that contains one or several occurrences of the query.
 The frame of the box will be highlighted in colour. If a box contains the name of a
-subgraph or of a variable (cf.~\ref{section-using-variables}) or any special-purpose
+sub-graph or of a variable (cf.~\ref{section-using-variables}) or any special-purpose
 codes, the program considers that as part of the normal content of the box.
 
 \bigskip
