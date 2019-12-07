@@ -225,7 +225,9 @@ and \verb$80jours_result.html$ as output file.
 It launches the script once on each file and generates a separate output file for each.
 This way, you can implement massive processings efficiently, even on many documents
 contained in separate files. The result is stored in an output directory, in files
-with the same names as the input files, suffixed by \verb$.result.txt$.
+with the same names as the input files, suffixed by default \footnote{You can specify
+another suffix with the \texttt{-x} option. With the \texttt{-e} option, the extension
+of the input file is stripped off before appending the suffix.} by \verb$.result.txt$.
 \verb$BatchRunScript$ is multi-threaded and runs several instances in parallel: this way,
 all the cores of the processing machine can work at the same time and process all the files faster.
 
