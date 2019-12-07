@@ -222,7 +222,9 @@ et comme fichier de sortie \verb$80jours_result.html$.
 Il lance le script une fois sur chaque fichier, produisant à chaque fois un fichier résultat séparé.
 On peut ainsi réaliser des traitements massifs efficacement, même sur des documents nombreux
 contenus dans des fichiers séparés. Le résultat est stocké dans un répertoire de sortie, dans des
-fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par \verb$.result.txt$.
+fichiers portant les mêmes noms que les fichiers d'entrée, suffixés par défaut\footnote{On peut
+spécifier un autre suffixe avec l'option \texttt{-x}. Avec l'option \texttt{-e}, l'extension du fichier
+d'entrée est retirée avant d'ajouter le suffixe.} par \verb$.result.txt$.
 \verb$BatchRunScript$ fonctionne en multithread et lance plusieurs exécutions en parallèle: ainsi
 tous les cœurs de la machine de traitement peuvent fonctionner en même temps et traiter
 l’ensemble des fichiers plus vite.
