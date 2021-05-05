@@ -24,7 +24,7 @@ notifications:
     secure: QiGkl5HS7YGL2+OZt9slPGH3LDzK9jYSlKdI3WkCXSj9VCkjaLWexwATNXdW/udzZutaJ4m5k+tdRY6LX+Lwn5EnMWmM605+avVfxc7paZxCyVHXlHs6Axqq/kqxEXcybE5A06TA0U/0qnQPnwX1qjToL/vNP8y5+DxoPKn5GvZqA4azOyf8q5bIOFQA24TdiAfrf/V17eNx2IlaVwI5obI5N7bgV8quqBOj7usoDt/IyClDJXpoHKxvW8uYds4o1SyDDs9Rbg/LCBL/1IEO6c43YwSzpbobW9IZ7wa0kdBTk+pcGsC0IormoNyxshgp1EdN234BngbusBZBZb6wFFA39T0wSIR9kiUzzr19isP5/deKgy/cXAiuhK1xAXVvXnuK9xU0nGKxgt8J/Jf9UIip/JhVWyaN5teisVbO3Qe7hS9H0MMMpt9RPL06l3QG7hhw/Tk/gt9iMpx3AMJbRHKVCyAWVzQ61Cp+BY8hu8gXh450hiNisJS6yDhjx4bX8fC859inYND91rd6LlTs/IHpNeovv+8bg7ST1XZ+mH67uLyLadaLTxOYEdVqA1yGqyxPedxJAljloivuXHDGZVkoAY3d3O4ODLTXwl6WuLASDDlV6oxYEyeOV31+x8B8H1o6JHSlGTFow5cYS7u1692ZObNscHRURNvZzpuQ7jA=
 
 before_install:
-  - sudo apt-get update && sudo apt-get install -y --no-install-recommends  texlive-latex3 texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-lang-french texlive-latex-recommended dvipng xindy chktex
+  - sudo apt-get update --option Acquire::Retries=100 --option Acquire::http::Timeout="300" && sudo apt-get install -y --no-install-recommends  texlive-latex3 texlive-latex-base texlive-fonts-recommended texlive-latex-extra texlive-lang-french texlive-latex-recommended dvipng xindy chktex
     
 install:
   - cd tex
