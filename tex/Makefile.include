@@ -45,6 +45,10 @@ TEXINDY         += --verbose
 ERRFILTER=
 endif
 
+ifneq ($(TEXINDY_CODEPAGE),)
+TEXINDY         += --codepage $(TEXINDY_CODEPAGE)
+endif
+
 ## Action for 'make view'
 OS=$(shell uname -s)
 ifeq ($(OS),Darwin)
