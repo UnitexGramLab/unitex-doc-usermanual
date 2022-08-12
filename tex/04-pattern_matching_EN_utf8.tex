@@ -489,8 +489,8 @@ elementary filters:
   are better described using contexts (see section~\ref{section-contexts}).
 \end{itemize}
 
-\noindent By default, a morphological filter alone is regarded as applying it to the lexical
-mask \verb$<TOKEN>$, that means any token except space and \verb+{STOP}+. On the other hand,
+\noindent By default, a morphological filter that does not follow a lexical mask is applied to the
+\verb$<TOKEN>$ lexical mask, that means any token except space and \verb+{STOP}+. On the other hand,
 when a filter follows a lexical mask immediately, it applies to what was recognized by the lexical
 mask. Here are some examples of such combinations:
 

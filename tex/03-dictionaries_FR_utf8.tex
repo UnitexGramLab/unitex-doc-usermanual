@@ -1264,8 +1264,11 @@ des priorités.
 terminent par \verb+-+\index{\verbc{-}}\index{\verbc{+}} ont la priorité la plus grande ; ceux dont
 le nom se termine par \verb-+- ont la priorité la plus faible ; les autres dictionnaires sont
 appliqués avec une priorité moyenne. L’ordre d’application de plusieurs dictionnaires ayant la même
-priorité est sans importance. En ligne de commande, l’instruction :
-
+priorité est sans importance, sauf dans le cas particulier où plusieurs graphes-dictionnaires sont
+appliqués au même texte\footnote{Quand un graphe-dic\-tion\-naire a l'option \texttt{z}
+(cf.~section~\ref{section-dictionary-graphs}) et qu'un autre contient une partie en mode
+morphologique (cf.~section~\ref{section-morphological-mode}), ce dernier peut reconnaitre des
+formes préalablement étiquetées par le premier (cf.~fig.\ref{3-exp4}).}. En ligne de commande, l’instruction :
 
 \bigskip
 \noindent
@@ -1317,7 +1320,7 @@ ne sera pas reconnue à cause de l’espace qui suit l’apostrophe.
 \label{section-dictionary-graphs}\index{Graphe!dictionnaire}\index{Graphe-dictionnaire}
 Le programme \verb+Dico+\index{\verbc{Dico}}\index{Programmes externes!\verbc{Dico}} est également capable
 d’appliquer des graphes-dictionnaires.
-Un graphe-dictionnaire est un graphe qui sert de dictionnaire.
+Un graphe-dic\-tion\-naire est un graphe qui sert de dictionnaire.
 Les graphes-dictionnaires respectent,
 par défaut\footnote{Les graphes-dictionnaires morphologiques sont une exception
 (section~\ref{section-morphological-dictionary-graphs}) .}, la règle suivante :
@@ -1343,7 +1346,7 @@ usuel.
 \bigskip
 \noindent Pour faire un graphe-dictionaire, on utilise les outils pour les graphes (menu FSGraph, section~\ref{section-editing-graphs})
 mais on les sauvegarde et on les compile de préférence dans le répertoire pour les dictionnaires (le répertoire Dela).
-Pour appliquer un graphe-dictionnaire à un texte, on utilise un outil pour les dictionnaires: "Text > Apply lexical resources" (section~\ref{text-applying-dictionaries}).
+Pour appliquer un graphe-dic\-tion\-naire à un texte, on utilise un outil pour les dictionnaires: "Text > Apply lexical resources" (section~\ref{text-applying-dictionaries}).
 \bigskip
 
 \noindent Un autre avantage des graphes-dictionnaires est qu’ils peuvent exploiter les résultats
@@ -1366,7 +1369,9 @@ majuscule
 \bigskip
 \noindent Comme les graphes-dictionnaires sont appliqués par le moteur du programme \verb+Locate+,
 ils peuvent utiliser tout ce que le programme \verb+Locate+ autorise. En particulier, il est
-possible d’utiliser les filtres morphologiques\index{Filtre morphologique} (section~\ref{section-filters}) et le mode morphologique (section~\ref{section-morphological-mode}).\index{Mode
+possible d’utiliser les filtres morphologiques\index{Filtre morphologique}
+(section~\ref{section-filters}) et le mode morphologique
+(section~\ref{section-morphological-mode}).\index{Mode
 morphologique}
 Ainsi, le graphe de la figure \ref{graph-CR} utilise ces filtres pour reconnaître les nombres en
 chiffres romains. Notons qu’il utilise également des contextes afin d’éviter, par exemple, que
@@ -1375,67 +1380,178 @@ chiffres romains. Notons qu’il utilise également des contextes afin d’évit
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=24cm]{resources/img/fig3-14.png}
-\caption{Graphe-dictionnaire reconnaissant les nombres en chiffres romains\label{graph-CR}}
+\caption{Graphe-dictionnaire des nombres en chiffres romains pour le français\label{graph-CR}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent Par défaut, les graphes-dictionnaires sont appliqués en mode MERGE. Il est possible 
-de les appliquer en mode REPLACE, en ajoutant à leur le nom le suffixe \verb+-r+. Celui-ci se
-combine avec les priorités \verb-+- et \verb+-+:
+de les appliquer en mode REPLACE, en ajoutant au nom du graphe principal le suffixe \verb+-r+.
+Celui-ci se combine avec les marques de priorité \verb-+- et \verb+-+:
 
 \bigskip
 \verb?bagpipe-r.fst2  McAdam-r-.fst2  phtirius-r+.fst2?
 
-
-\subsubsection{Exporter les entrées produites comme dictionnaire du mode morphologique}
-\index{Dictionnaire!du mode morphologique}
-Les entrées produites par un graphe-dictionnaire sont consultées
-par le programme \verb+Locate+ quand il rencontre des masques lexicaux qui nécessitent la consultation
-d'un dictionnaire.
+\bigskip
+\noindent Par défaut, les graphes-dictionnaires sont appliqués en mode "Longest matches"
+(cf.~section~\ref{search-configuration}).
+Pour appliquer un graphe dictionniare en mode "All matches", on suffixe le nom du graphe
+principale avec \verb+-a+, et avec \verb+-s+ pour le mode "Shortest matches".
+Voyez la section~\ref{naming-conventions} pour combiner l'option pour le mode REPLACE
+avec l'option \verb+a+ ou \verb+s+.
 
 \bigskip
-\noindent Cependant, cette fonctionnalité est restreinte quand le masque lexical est en mode morphologique
-(cf.~section~\ref{section-morphological-mode}). On ne peut pas déclarer un graphe-dictionnaire
-comme dictionnaire du mode morphologique de la manière habituelle (cf.~section~\ref{dic-mode-morpho}),
-car ce n'est pas un fichier \verb+.bin+. Quand on est en mode morphologique, les masques
-lexicaux qui nécessitent la consultation d'un dictionnaire ne déclenchent pas la consultation
-de graphes-dictionnaires. En compensation, on dispose de plusieurs solutions.
+\noindent Quand un graphe-dic\-tion\-naire a été appliqué au texte, cela affecte les recherches
+qu'on lance avec le programme \verb+Locate+, comme pour tout autre dictionnaire: les masques
+lexicaux dans la requête sont capables de reconnaitre des mots par l'intermédiaire des
+étiquettes lexicales que le graphe-dic\-tion\-naire leur a attachées. Par exemple, si on a appliqué le
+graphe-dic\-tion\-naire de la fig.~\ref{graph-CR}, la requête \verb+<CR>+ détecte les nombres en
+chiffres romains.
+
+\bigskip
+\noindent Cependant, cette fonctionnalité est limitée quand le masque lexical est en mode
+morphologique (section~\ref{dg-and-mm}).
+
+\subsection{Utiliser des graphes-dictionnaires avec des masques lexicaux en mode morphologique}
+\label{dg-and-mm}
+\index{Dictionnaire!du mode morphologique}
+En mode morphologique (section~\ref{section-morphological-mode}), on peut lancer des
+recherches avec des masques lexicaux qui utilisent des dictionnaires, mais seulement si ces
+dictionnaires ont été préalablement déclarés comme dictionnaires du mode morphologique
+(section~\ref{dic-mode-morpho}).
+Mais on ne peut pas déclarer les graphes-dictionnaires comme dictionnaires du mode
+morphologique au sens habituel: seuls les fichiers \verb+.bin+ sont acceptés.
+Donc, en mode morphologique, les masques lexicaux qui mettent en jeu une consultation de
+dictionnaire ne déclenchent pas de consultation des graphes-dictionnaires.
+
+\bigskip
+\noindent Par exemple, dans la fig.~\ref{3-exp1}, après avoir appliqué
+\verb+neg-adj.grf+ comme graphe-dic\-tion\-naire, on lance une recherche avec la requête
+\verb+adj-ly.grf+:
+\verb+<A>+ ne reconnait pas \textit{unrough} parce qu'il n'est étiqueté que par le graphe-dic\-tion\-naire,
+qu'on ne peut pas déclarer comme dictionnaire du mode morphologique. Et la recherche ne
+trouve pas \textit{unroughly}.
+
+\begin{figure}[!th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp1.png}
+\caption{Graphe-dictionnaire \texttt{neg-adj} ignoré par \texttt{adj-ly} qui est en mode morphogique\label{3-exp1}}
+\end{center}
+\end{figure}
+
+
+\bigskip
+\noindent En compensation, on dispose de plusieurs solutions.
+
+\bigskip
+\noindent Tout d'abord, le graphe-dic\-tion\-naire contient sans doute une partie qui décrit
+ce qu'on voulait reconnaitre avec le masque lexical en mode morphologique. Pourquoi ne pas
+faire une variante du graphe-dic\-tion\-naire et l'invoquer à la place du masque lexical? Par
+exemple, dans la fig.~\ref{3-exp7}, la requête
+\verb+adj-ly-v2.grf+, qui invoque \verb+neg-adj-v2.grf+, trouve \textit{ungayly} et \textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp7.png}
+\caption{Variante d'un graphe-dictionnaire invoquée depuis un graphe de recherche en mode morphogique\label{3-exp7}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent Le graphe-dic\-tion\-naire \verb+neg-adj.grf+ de la fig.~\ref{3-exp1} a dû être retouché
+pour la fig.~\ref{3-exp7} parce qu'il déclare le mode morphologique, alors que le graphe
+principal \verb+adj-ly-v2.grf+ est déjà en mode morphologique. De même, les sorties des
+boites d'un graphe-dic\-tion\-naire peuvent devenir inadaptées quand on l'invoque comme
+sous-graphe d'une requête.
+
+\subsection{Dictionnaire du mode morphologique approximant un graphe-dictionnaire}
+\label{z-and-b-switches}
+Si la solution de la section~\ref{dg-and-mm} n'est pas commode ou pas applicable,
+il existe une alternative: engendrer automatiquement une approximation au format \verb+bin+ du graphe-dic\-tion\-naire, et la déclarer comme dictionnaire du mode morphologique.
+
+\bigskip
+\noindent Pour cela, on insère \verb+-z+ à la fin du nom du graphe principal du graphe-dic\-tion\-naire  (voir les détails dans la section~\ref{naming-conventions}). Pendant l'application initiale des dictionnaires au texte (section~\ref{section-applying-dictionaries}), Unitex va implicitement engendrer un dictionnaire des
+formes reconnues dans le texte par le graphe-dic\-tion\-naire (appelons \verb+morpho.dic+ ce
+dictionnaire interne), le comprimer et l'ajouter à la liste des dictionnaires du mode morphologique. Par la suite, pendant les recherches, les masques lexicaux en mode morphologique utiliseront \verb+morpho.bin+.
+
+\bigskip
+\noindent Par example, dans la fig.~\ref{3-exp2}, après avoir appliqué
+\verb+neg-adj-z.grf+ comme graphe-dic\-tion\-naire, on lance la requête \verb+adj-ly.grf+, et comme
+\verb+<A>+ reconnait \textit{unrough}, la recherche trouve \textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp2.png}
+\caption{Graphe-dictionnaire avec l'option \texttt{-z}\label{3-exp2}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent Cependant, \verb+morpho.bin+ n'équivaut en général qu'à une partie des formes
+décrites dans le graphe-dic\-tion\-naire, parce qu'il est limité à celles qui apparaissent dans le texte
+comme mots séparés, comme \textit{unrough} dans la fig.~\ref{3-exp2}. Il ne contient pas les formes qui n'apparaissent dans le texte que comme parties de tokens, comme
+\textit{ungay} dans \textit{ungayly}, car il se trouve que \textit{ungay} n'apparait pas dans ce
+texte comme mot séparé. Comme \textit{ungay} n'est pas inséré dans \verb+morpho.dic+ pendant
+l'application de \verb+neg-adj-z.grf+, \verb+<A>+ dans \verb+adj-ly.grf+ ne le reconnait pas.
+Et la recherche ne trouve pas \textit{ungayly}.
+
+\bigskip
+\noindent Ainsi, l'option \verb+-z+ n'a d'intérêt qu'avec un grand corpus qui contient des
+occurrences diverses des formes décrites dans le graphe-dic\-tion\-naire.
+
+\bigskip
+\noindent Avec l'option \verb+-z+, le dictionnaire \verb+morpho.dic+ est également consulté
+pendant l'application initiale des dictionnaires, dans le cas où d'autres graphes-dictionnaires avec une partie en mode morphologique sont appliqués après le graphe-dic\-tion\-naire courant.
+
+\bigskip
+\noindent Par exemple, dans la fig.~\ref{3-exp4}, \verb+neg-adj-z.grf+ et \verb!adj-ly+.grf! sont
+tous les deux appliqués comme graphes-dictionnaires. À cause du caractère \verb$+$ à la fin
+du nom, \verb!adj-ly+.grf! a la priorité la plus basse et est appliqué en dernier.
+\verb+<A>+ reconnait \textit{unrough}, et \verb!adj-ly+.grf! étiquète \textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp4.png}
+\caption{Graphe-dictionnaire avec l'option \texttt{-z} suivi par un autre graphe-dictionnaire\label{3-exp4}}
+\end{center}
+\end{figure}
+
+Cependant, toujours dans la fig.~\ref{3-exp4}, \verb+<A>+ ne reconnait pas \textit{ungay}, et
+\textit{ungayly} n'est pas étiqueté, pour la même raison que dans la fig.~\ref{3-exp2}.
+
+Pour la fonctionnalité commandée par l'option \verb+-z+, l'ordre d'application des graphes-dictionnaires est déterminé:
 \begin{itemize}
-\item On peut envisager d'invoquer le graphe-dictionnaire depuis la partie du graphe qui est en mode morphologique.
-\item Unitex produit de façon interne un dictionnaire des formes reconnues dans le texte par un
-graphe-dictionnaire. Si le nom du graphe-dictionnaire contient l'option \verb+b+ (voir ci-dessous
-Conventions de nommage), ce dictionnaire produit automatiquement est inclus implicitement parmi
-les dictionnaires du mode morphologique, de telle sorte qu'il est consulté quand le programme
- \verb+Locate+ rencontre des masques lexicaux en mode morphologique. Mais cette solution 
- ne fonctionne que pour les formes reconnues par le graphe-dictionnaire pendant l'application initiale
- des dictionnaires (cf.~section~\ref{section-applying-dictionaries}), et non pour celles qui n'apparaissent
- dans le texte que comme parties de tokens.
+\item
+en premier lieu, par les niveaux de priorité (cf.~section~\ref{section-dictionary-priorities}),
+\item
+en deuxième lieu, par l'ordre d'apparition des noms des dictionnaires dans la ligne de commande
+(cf.~section~\ref{section-console}).
 \end{itemize}
-Si on ajoute \verb+z+ à la place de  \verb+b+, le dictionnaire produit de façon interne pour le texte est immédiatement
-compressé, et il peut être consulté quand d'autres graphes-dictionnaires sont appliqués  par la suite.
- 
-\subsubsection{Conventions de nommage}
-Le processus de nommage d'un graphe-dictionnaire s'établit comme suit :\\
+L'option \verb+-b+ est une variante de \verb+-z+: si on insère \verb+b+ au lieu de \verb+z+, le
+dictionnaire \verb+morpho.dic+ ne peut être consulté qu'après l'application des dictionnaires, si
+bien que \verb!adj-ly+.grf!, par exemple, n'étiquèterait pas \textit{unroughly} dans la fig.~\ref{3-exp4}.
+
+\subsection{Conventions de nommage}
+\label{naming-conventions}
+Le processus de nommage d'un graphe-dic\-tion\-naire s'établit comme suit :\\
 
 \verb$nom(-XYZ)([-+]).fst2$\\
 
 \noindent où:
 \begin{itemize}
-\item \verb+X+ prend l'une des valeurs \verb+[rRmM]+: \verb+r+ signifie mode REPLACE; \verb+M+
-signifie mode MERGE (mode par défaut);
+\item \verb+X+ prend l'une des valeurs \verb+[rRmM]+: \verb+r+ signifie mode REPLACE
+(section~\ref{replace-mode});  \verb+M+ signifie mode MERGE (mode par défaut);
 \item \verb+Y+ prend l'une des valeurs \verb+[bBzZ]+: option qui régit la construction d'un
-dictionnaire du mode morphologique (voir ci-dessus);
-\item \verb+Z+ prend l'une des valeurs \verb+[aAlLsS]+: \verb+a+ signifie que le graphe est appliqué
-en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défault); 
-\verb+s+ signifie "Shortest matches".
+dictionnaire du mode morphologique (cf.~section~\ref{z-and-b-switches});
+\item \verb+Z+ prend l'une des valeurs \verb+[aAlLsS]+: \verb+a+ signifie que le graphe est
+appliqué en mode "All matches"; \verb+l+ signifie mode "Longest matches" (mode par défault); 
+\verb+s+ signifie "Short\-est matches" (section~\ref{search-configuration}).
 \end{itemize}
 
-
-\subsection{Graphe-dictionnaire morphologique}
+\subsection{Graphes-dictionnaires morphologiques}
 \label{section-morphological-dictionary-graphs}\index{Graphe-dictionnaire!morphologique}
-Dans un graphe-dictionnaire, chaque chemin doit, par défaut, produire une entrée lexicale à inclure dans le dictionnaire du
-texte. Dans un graphe-dictionnaire morphologique, chaque chemin doit produire une séquence d'une ou plusieurs
+Dans un graphe-dic\-tion\-naire, chaque chemin doit, par défaut, produire une entrée lexicale à inclure dans le dictionnaire du
+texte. Dans un graphe-dic\-tion\-naire morphologique, chaque chemin doit produire une séquence d'une ou plusieurs
 étiquettes délimitées par des accolades et conformes à la syntaxe des lignes du DELAF
  (section~\ref{section-DELAF-entry-syntax}).
 Les sorties de tels graphes seront utilisées comme entrées pour construire l'automate du texte. Nous
@@ -1443,8 +1559,10 @@ les appelons ``graphes-dictionnaires morphologiques'' parce que leur principale 
 fournir de nouvelles analyses morphologiques dans l'automate du texte, grâce au mode morphologique
 (voir \ref{section-morphological-mode}). Cette fonctionnalité est utile pour des langues
 agglutinantes comme le coréen.
-Pour pouvoir utiliser un graphe comme graphe-dictionnaire morphologique, on le déclare
-par une barre oblique (slash, /) comme premier caractère de sa sortie, comme dans la figure \ref{morphoA}.
+Pour pouvoir utiliser un graphe comme graphe-dic\-tion\-naire morphologique, on le déclare
+par une barre oblique (slash, /) comme premier caractère de sa sortie\footnote{La barre oblique
+peut être placée dans un sous-graphe, mais ce doit être le premier caractère émis comme
+sortie par la grammaire.}, comme dans la figure \ref{morphoA}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1453,13 +1571,22 @@ par une barre oblique (slash, /) comme premier caractère de sa sortie, comme da
 \end{center}
 \end{figure}
 
-\noindent La règle est simple: toute sortie du graphe-dictionnaire commençant par une barre oblique (slash, /) 
+\bigskip
+\noindent Un graphe-dic\-tion\-naire qui utilise le mode morphologique n'est pas nécessairement un
+graphe-dic\-tion\-naire morphologique. Un graphe-dic\-tion\-naire morphologique n'utilise pas
+nécessairement le mode morphologique.
+
+\bigskip
+\noindent L'effet d'un graphe-dic\-tion\-naire morphologique est simple: toute sortie d'un
+graphe-dic\-tion\-naire commençant par une barre oblique (slash, /) 
 est ajoutée au fichier \verb+tags.ind+, \index{\verbc{tags.ind}} situé dans le répertoire du texte.
-Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des interprétations à
-l'automate du texte. La grammaire de la figure \ref{morphoA} reconnaît des mots
-formés par le préfixe \verb+un+ suivi d'un adjectif. Si on l'applique comme graphe-dictionnaire,
+Ce fichier est utilisé par le programme \verb+Txt2Fst2+ afin d'ajouter des chemins étiquetés à
+l'automate du texte. La grammaire de la figure~\ref{morphoA} reconnaît des mots
+formés par le préfixe \verb+un+ suivi d'un adjectif. Si on l'applique comme graphe-dic\-tion\-naire,
 on obtient de nouveaux chemins dans l'automate du texte comme le montre la figure
-\ref{morphoB}. Remarquons que lorsque deux tags correspondent à des analyses dans la même unité lexicale, le lien entre eux est affiché par une ligne discontinue.
+\ref{morphoB}. Remarquons que lorsque deux étiquettes correspondent à des analyses
+de deux parties dans la même
+unité lexicale, le lien entre eux est affiché par une ligne discontinue.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1467,6 +1594,10 @@ on obtient de nouveaux chemins dans l'automate du texte comme le montre la figur
 \caption{Chemin ajouté par un graphe-dictionnaire morphologique\label{morphoB}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent Les options \verb+-z+ et \verb+-b+ (section~\ref{z-and-b-switches}) sont
+incompatibles avec les graphes-dic\-tion\-naires morphologiques.
 
 \subsection{Tolérance à l'omission, à la substitution et à l'insertion de lettres}
 \label{section-vowel-restoration}\index{Règles!typographiques de l'arabe}

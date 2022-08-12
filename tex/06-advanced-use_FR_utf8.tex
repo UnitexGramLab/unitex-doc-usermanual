@@ -780,7 +780,7 @@ pour ne pas faire augmenter inutilement le nombre de masques lexicaux en usage.
 \index{Dictionnaire!du mode morphologique}
 \label{dic-mode-morpho}
 Dans le mode morphologique, on peut faire des requêtes qui utilisent les dictionnaires.
-Par exemple,  la grammaire de la figure \ref{fig-morpho3} cherche les mots constitués du préfixe \verb+un+ suivi d'un adjectif.
+Par exemple, la grammaire de la figure \ref{fig-morpho3} cherche les mots constitués du préfixe \verb+un+ suivi d'un adjectif: le masque lexical \verb+<A>+ nécessite la consultation d'un dictionnaire.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -798,22 +798,21 @@ Par exemple,  la grammaire de la figure \ref{fig-morpho3} cherche les mots const
 \end{figure}
 
 \bigskip
-\noindent Pour pouvoir reconnaître le mot 
-\verb+unaware+ avec cette grammaire, le système doit savoir que \verb+aware+ est un adjectif. 
-Le masque lexical \verb+<A>+ nécessite la consultation d'un dictionnaire. Mais
-\verb+aware+ peut ne pas être présent dans le texte, de sorte qu'on ne peut pas compter
-sur les dictionnaires du texte\footnote{Les dictionnaires du texte sont compilés pendant l'application
-initiale des dictionnaires (section~\ref{section-applying-dictionaries}), non pas pendant la recherche
-de motifs.}.
-C'est la raison pour laquelle on doit définir une liste de
-dictionnaires à consulter en mode morphologique.
-Pour ce faire, on va dans ``Info>Preferences>Morphological-mode dictionaries''
-(figure~\ref{fig-morpho4}).
-On peut définir autant de dictionnaires du mode morphologique qu'on veut, mais ils doivent
-être au format \verb+.bin+. Ceci fait, on peut appliquer la grammaire.
-Pour spécifier qu'un graphe-dictionnaire doit être consulté lorsqu'on est en mode morphologique,
-on utilise l'option \verb+b+ ou \verb+z+ (section~\ref{section-dictionary-graphs}, Exporter les entrées produites
-comme dictionnaire du mode morphologique).
+\noindent Cependant, avant de lancer la recherche, on doit définir quels dictionnaires seront consultés
+en mode morphologique. (En effet, pour pouvoir reconnaître le mot \verb+unaware+ avec cette
+grammaire, par exemple, le système doit savoir que \verb+aware+ est un adjectif en tirant cette
+information d'un dictionnaire. Mais \verb+aware+ peut ne pas être présent dans le texte, de sorte
+qu'on ne peut pas compter sur les dictionnaires du texte\footnote{Les dictionnaires du texte sont
+compilés pendant l'application initiale des dictionnaires (section~\ref{section-applying-dictionaries}),
+non pas pendant la recherche de motifs.}.)
+
+\bigskip
+\noindent Pour définir une liste de dictionnaires à consulter en mode morphologique, on va dans
+``Info > Preferences > Morphological-mode dictionaries'' (figure~\ref{fig-morpho4}).
+On peut définir autant de dictionnaires du mode morphologique qu'on veut, y compris des dictionnaires
+qui n'ont pas été appliqués au texte, mais ils doivent être au format \verb+.bin+\footnote{Si vous
+souhaitez qu'un graphe-dictionnaire soit consulté en mode morphologique, voyez les
+sections~\ref{dg-and-mm} et \ref{z-and-b-switches}.}. Ceci fait, on peut appliquer la grammaire.
 
 \subsection{Variables de dictionnaire}
 \index{Variable!de dictionnaire}
@@ -1071,6 +1070,7 @@ ambiguës ne sont pas concernés par ce qui suit.
 
 
 \subsection{Insertion à gauche du motif reconnu}
+\label{replace-mode}
 \index{MERGE}\index{REPLACE}
 Lorsqu’un transducteur est appliqué en mode REPLACE, les sorties remplacent les séquences lues dans le texte. 
 %When a box in a transducer has no output, it is processed as if it had an \verb+<E>+ output.
@@ -1389,6 +1389,7 @@ nombreux dans l'ensemble de la grammaire et ils provoquent plus de consultations
 \label{section-applying-graphs-to-text}
 Cette section concerne uniquement les graphes syntaxiques.
 \subsection{Configuration de la recherche}
+\label{search-configuration}
 Pour appliquer un graphe à un texte, vous devez ouvrir le texte, puis cliquer sur "Locate
 Pattern..." dans le menu "Text" ou appuyer sur <Ctrl+L>. Vous pouvez alors configurer votre
 recherche grâce à la fenêtre de la figure

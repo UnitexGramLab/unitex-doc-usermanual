@@ -1259,7 +1259,7 @@ dictionary graphs (\verb+.fst2+). We will now describe  the rules for applying d
 in detail. Dictionary graphs will be described in
 section~\ref{section-dictionary-graphs}.
 
-\subsection{Priorities}
+\subsection{Levels of priority}
 \label{section-dictionary-priorities}
 \index{Dictionaries!priority}\index{Priority!of dictionaries}
 The priority rule says that  if a word in a text is found in a dictionary, this
@@ -1280,7 +1280,12 @@ extension end with~\verb+-+
 \index{\verbc{-}}\index{\verbc{+}}
 have the highest priority; those that end with~\verb-+- have the lowest one.
 All other dictionaries are applied with medium priority. The order in which
-dictionaries with the same priority are applied does not matter.
+dictionaries with the same priority are applied does not matter, except in
+a specific situation where several dictionary graphs are applied
+to the same text.\footnote{When a dictionary graph has the \texttt{z} switch
+(cf.~Section~\ref{section-dictionary-graphs}) and another contains a part in
+morphological mode (cf.~Section~\ref{section-morphological-mode}), the latter
+can recognize forms previously tagged by the former (cf.~Fig.\ref{3-exp4}).}
 On the command line, the command:
 
 \bigskip
@@ -1389,60 +1394,180 @@ they have exactly the same properties than syntactic graphs. So,
 you can use morphological filters (section~\ref{section-filters})
 and/or the morphological mode (section~\ref{section-morphological-mode}).
 \index{Morphological filters}\index{Morphological mode}For instance, the
-graph shown on Figure \ref{graph-CR} uses morphological filters to recognize
-roman numerals. Note that it also uses contexts in order to avoid recognizing 
+graph shown on Figure~\ref{graph-CR} uses morphological filters to recognize
+Roman numerals. Note that it also uses contexts in order to avoid recognizing 
 uppercase letters in some contexts.
 
 \begin{figure}[!p]
 \begin{center}
 \includegraphics[height=24cm]{resources/img/fig3-14.png}
-\caption{Dictionary graph of roman numerals\label{graph-CR}}
+\caption{Dictionary graph of Roman numerals in French\label{graph-CR}}
 \end{center}
 \end{figure}
 
 \bigskip
 \noindent By default, dictionary graphs are applied in MERGE mode. If you want
-to apply them in REPLACE mode, you must suffix graph names with \verb+-r+. This can
-be combined with the \verb-+- and \verb+-+ priority marks:
+to apply a dictionary graph in REPLACE mode, you must suffix the name of the main
+graph with \verb+-r+. This can be combined with the \verb-+- and \verb+-+ priority markers:
 
 \bigskip
 \verb?bagpipe-r.fst2  McAdam-r-.fst2  phtirius-r+.fst2?
 
-\subsubsection{Exporting produced entries as a morphological-mode dictionary}
-\index{Morphological-mode dictionaries}
-Dictionary entries produced by dictionary graphs are looked up 
-by the \verb+Locate+ program when it comes across lexical masks involving dictionary lookup.
+\bigskip
+\noindent  By default, dictionary graphs are applied in the "Longest matches" mode
+(cf.~Section~\ref{search-configuration}).
+If you want to apply a dictionary graph in the "All matches" mode, suffix the name of
+the main graph with \verb+-a+, and with \verb+-s+ for the "Shortest matches" mode.
+See Section~\ref{naming-conventions} to combine the switch for the REPLACE mode
+with a \verb+a+ or \verb+s+ switch.
 
 \bigskip
-\noindent However, this functionality is restricted when the lexical mask is
-in morphological mode (section~\ref{section-morphological-mode}).
-Dictionary graphs cannot be declared as being morphological-mode 
-dictionaries in the usual way (section~\ref{morph-mode-dic}), because they are not \verb+.bin+ files.
-When in morphological mode, lexical masks involving dictionary lookup do not trigger lookup of dictionary graphs.
-To compensate for this, there are several solutions.
+\noindent Once a dictionary graph has been applied to the text, it will affect searches
+launched with the \verb+Locate+ program, just like any other dictionary: lexical masks
+in the search query will be able to match words through the lexical tags attached to them
+by the dictionary graph. For example, if the dictionary graph of Fig.~\ref{graph-CR} has
+been applied, the \verb+<CR>+ query will locate Roman numerals.
+
+\bigskip
+\noindent However, this effect is restricted when the lexical mask is in
+morphological mode (Section~\ref{dg-and-mm}).
+
+\subsection{Using dictionary graphs with lexical masks in morphological mode}
+\label{dg-and-mm}
+\index{Morphological-mode dictionaries}
+In morphological mode (Section~\ref{section-morphological-mode}), you can
+search with lexical masks that use dictionaries, but only if these dictionaries
+have been declared previously as mor\-pho\-log\-i\-c\-al-mode dictionaries (Section~\ref{morph-mode-dic}).
+But dictionary graphs cannot be declared as being mor\-pho\-log\-i\-c\-al-mode dictionaries
+in the usual way: only \verb+.bin+ files are accepted.
+In consequence, when in morphological mode, lexical masks involving dictionary lookup do not
+trigger lookup of dictionary graphs.
+
+\bigskip
+\noindent For example, in Fig.~\ref{3-exp1}, after applying
+\verb+neg-adj.grf+ as a dictionary graph, we launch a search with the \verb+adj-ly.grf+ query:
+\verb+<A>+ does not match \textit{unrough} because it is tagged only by the dictionary graph,
+which cannot be declared as a mor\-pho\-log\-i\-c\-al-mode dictionary. So, the search does not
+locate \textit{unroughly}.
+
+\begin{figure}[!th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp1.png}
+\caption{Dictionary graph \texttt{neg-adj} ignored by \texttt{adj-ly} in morphogical mode\label{3-exp1}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent To compensate for this, there are several solutions.
+
+\bigskip
+\noindent First, the dictionary graph is likely to contain a part that recognizes what you wanted to
+match with the lexical mask in morphological mode. Why not make a variant of the dictionary graph
+and invoke it instead of the lexical mask? For example, in Fig.~\ref{3-exp7}, a search with
+\verb+adj-ly-v2.grf+, which invokes \verb+neg-adj-v2.grf+, locates \textit{ungayly} and \textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp7.png}
+\caption{Variant of dictionary graph invoked from a search graph in morphogical mode\label{3-exp7}}
+\end{center}
+\end{figure}
+
+\noindent The dictionary graph \verb+neg-adj.grf+ of Fig.~\ref{3-exp1} had to be edited for Fig.~\ref{3-exp7}
+because it declares the morphological mode, while the main graph, \verb+adj-ly-v2.grf+, is
+already in morphological mode. Also, the outputs of the boxes of the dictionary graph may
+become unsuitable when it is invoked as a subgraph of a search query.
+
+\subsection{Morphological-mode dictionary approximating a dictionary graph}
+\label{z-and-b-switches}
+If the solution of Section~\ref{dg-and-mm} is not convenient or not applicable, an alternative
+is available: automatically generating an approximation in \verb+bin+ format of the dictionary
+graph, and declaring it as a mor\-pho\-log\-i\-c\-al-mode dictionary.
+
+\bigskip
+\noindent To do this, include the \verb+-z+ switch in the end of the name of the main graph
+of the dictionary graph (see details in
+Section~\ref{naming-conventions}). During the initial application of dictionaries to the text
+(Section~\ref{section-applying-dictionaries}), Unitex will internally generate a dictionary of
+the forms recognised in the text by the dictionary graph, compress this internal dictionary
+(say \verb+morpho.dic+) and include it among the mor\-pho\-log\-i\-c\-al-mode dictionaries.
+Then, during searches, \verb+morpho.bin+ will be used to match lexical masks in
+morphological mode.
+
+\bigskip
+\noindent For example, in Fig.~\ref{3-exp2}, after applying
+\verb+neg-adj-z.grf+ as a dictionary graph, we launch a search with \verb+adj-ly.grf+, and as
+\verb+<A>+ matches \textit{unrough}, the search now locates \textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp2.png}
+\caption{Dictionary graph with the \texttt{-z} switch\label{3-exp2}}
+\end{center}
+\end{figure}
+
+\bigskip
+\noindent However, \verb+morpho.bin+ is equivalent, in general, to only a subset of the forms described
+in the dictionary graph,
+because it is limited to forms that occur in the text as separate words, such as \textit{unrough}
+in Fig.~\ref{3-exp2}. It does not contain forms that occur in the text only as token parts, like
+\textit{ungay} in \textit{ungayly}, since \textit{ungay} does not happen to occur in this text
+as a separate word. As \textit{ungay} is not inserted in \verb+morpho.dic+ during the
+application of \verb+neg-adj-z.grf+, \verb+<A>+ in \verb+adj-ly.grf+ does not match it.
+As a consequence, the search does not locate \textit{ungayly}.
+
+\bigskip
+\noindent Thus, the \verb+-z+ switch is worth trying only on a large corpus with diverse
+occurrences of the forms described in the dictionary graph.
+
+\bigskip
+\noindent With the \verb+-z+ switch, the \verb+morpho.dic+ dictionary is also looked up during the initial
+application of dictionaries, in case other dictionary graphs with a part in morphological mode are applied
+after the current one.
+
+\bigskip
+\noindent For example, in Fig.~\ref{3-exp4}, both \verb+neg-adj-z.grf+ and \verb!adj-ly+.grf! are applied
+as dictionary graphs. Due to the \verb$+$ character, \verb!adj-ly+.grf! has low priority and
+is applied last. \verb+<A>+ matches \textit{unrough}, so that \verb!adj-ly+.grf! tags
+\textit{unroughly}.
+
+\begin{figure}[th]
+\begin{center}
+\includegraphics[width=15cm]{resources/img/fig3-exp4.png}
+\caption{Dictionary graph with the \texttt{-z} switch followed by another dictionary graph\label{3-exp4}}
+\end{center}
+\end{figure}
+
+However, still in Fig.~\ref{3-exp4}, \verb+<A>+ does not match \textit{ungay}, so that
+\textit{ungayly} is left untagged, for the same reason as with Fig.~\ref{3-exp2}.
+
+For the \verb+-z+ option, the order of application of the dictionary graphs is determined:
 \begin{itemize}
-\item Consider invoking the dictionary graph from the part of the graph which is in morphological mode.
-\item Unitex internally generates a dictionary of the forms recognized in the text by a dictionary graph.
-If the name of the dictionary graph contains the \verb+b+ switch (see Naming conventions below),
-Unitex includes this internal dictionary among morphological-mode dictionaries, so that it is looked up
-when the \verb+Locate+ program comes across lexical masks in morphological mode. But this
-solution works only for forms recognised in the text by the dictionary graph during initial application
- of dictionaries (section~\ref{section-applying-dictionaries}), and not for forms that appear in the text only as token parts.
+\item
+first, by levels of priority (cf.~Section~\ref{section-dictionary-priorities}),
+\item
+second, by order of occurrence of the dictionary names in the command line
+(cf.~Section~\ref{section-console}).
 \end{itemize}
-If you add \verb+z+ instead of \verb+b+, then the dictionary internally generated for the text
-is compressed immediately, and  can be looked up when other dictionary graphs are applied later.
- 
-\subsubsection{Naming conventions}
+A variant of the \verb+-z+ switch is  \verb+-b+: if you add \verb+b+ instead of \verb+z+, the
+\verb+morpho.dic+ dictionary can only be looked up after the dictionaries have been applied, so that
+\verb!adj-ly+.grf! would not tag \textit{unroughly} in Fig.~\ref{3-exp4}.
+
+\subsection{Naming conventions for dictionary graphs}
+\label{naming-conventions}
 The whole naming scheme for dictionary graphs is as follows:
 
 \verb$name(-XYZ)([-+]).fst2$
 
 \noindent where:
 \begin{itemize}
-\item \verb+X+ is in \verb+[rRmM]+: \verb+r+ means REPLACE mode; \verb+M+ means MERGE mode (default);
-\item \verb+Y+ is in \verb+[bBzZ]+: option that rules the production of a morphological-mode dictionary (see above Exporting produced entries as a morphological-mode dictionary);
-\item \verb+Z+ is in \verb+[aAlLsS]+: \verb+a+ means that the graph will be applied in "All matches" mode; \verb+l+ means 
-      "Longest matches" mode (default); \verb+s+ means "Shortest matches" mode.
+\item \verb+X+ is in \verb+[rRmM]+: \verb+r+ means the REPLACE mode
+(Section~\ref{replace-mode}); \verb+M+ means the MERGE mode (default);
+\item \verb+Y+ is in \verb+[bBzZ]+: option that rules the production of a
+mor\-pho\-log\-i\-c\-al-mode dictionary (cf.~Section~\ref{z-and-b-switches});
+\item \verb+Z+ is in \verb+[aAlLsS]+: \verb+a+ means that the graph will be applied
+in the `All matches' mode; \verb+l+ means `Longest matches'' (default); \verb+s+
+means `Shortest matches' (Section~\ref{search-configuration}).
 \end{itemize}
 
 
@@ -1459,8 +1584,8 @@ main utility is to introduce new morphological analyses in the text automaton,
 using the morphological mode (see section \ref{section-morphological-mode}).
 This functionality is helpful for agglutinative languages like Korean. To allow the use of a
 graph as a morphological dictionary-graph, declare it with a slash (/) as the first
-character of its output, as in Figure \ref{morphoA}.
-
+character of its output,\footnote{The slash output can occur in a subgraph, but it must be
+the first character output by the grammar.} as in Figure \ref{morphoA}.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -1469,14 +1594,21 @@ character of its output, as in Figure \ref{morphoA}.
 \end{center}
 \end{figure}
 
-\noindent The rule is simple: any output of a dictionary graph that begins
+\bigskip
+\noindent A dictionary graph that uses the morphological mode is not necessarily a
+morphological dictionary graph. A morphological dictionary graph does not necessarily use
+the morphological mode.
+
+\bigskip
+\noindent The effect of a morphological dictionary graph is simple: any output of a
+dictionary graph that begins
 with a slash will be added to the file \verb+tags.ind+, \index{\verbc{tags.ind}}
 located in the text directory. This file is used by the \verb+Txt2Fst2+ program
-in order to add interpretations into the text automaton. The
+in order to add tagged paths into the text automaton. The
 grammar of Figure \ref{morphoA} matches words made of the prefix
 \verb+un+ followed by an adjective. If we apply it as a dictionary
 graph, we obtain new paths in the text automaton, as shown on Figure
-\ref{morphoB}. Note that when two tags correspond to analyses within the same
+\ref{morphoB}. Note that when two tags correspond to analyses of two parts within the same
 token, the link between them is displayed with a dashed line.
 
 \begin{figure}[!ht]
@@ -1485,6 +1617,10 @@ token, the link between them is displayed with a dashed line.
 \caption{Path added by a morphological dictionary-graph\label{morphoB}}
 \end{center}
 \end{figure}
+
+\bigskip
+\noindent The \verb+-z+ and \verb+-b+ switches (Section~\ref{z-and-b-switches}) are
+incompatible with morphological dictionary graphs.
 
 \subsection{Allowing for omission, substitution or insertion of letters}
 \label{section-vowel-restoration}\index{Arabic typographic rules}
