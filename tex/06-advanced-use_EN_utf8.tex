@@ -786,9 +786,9 @@ so that the number of lexical masks in use does not increase uselessly.
 \subsection{Morphological-mode dictionaries}
 \index{Morphological-mode dictionaries}
 \label{morph-mode-dic}
-In morphological mode, you can perform queries using dictionaries. For instance,  the grammar
+In morphological mode, you can perform queries using dictionaries. For instance, the grammar
 of Figure~\ref{fig-morpho3} searches for every word made of the prefix \verb+un+ followed
-by an adjective.
+by an adjective: the lexical mask \verb+<A>+ involves a dictionary lookup.
 
 \begin{figure}[!ht]
 \begin{center}
@@ -806,20 +806,22 @@ by an adjective.
 \end{figure}
 
 \bigskip
-\noindent To be able to match with this grammar the word 
-\verb+unaware+, the system must know that \verb+aware+ is an adjective.
-The lexical mask \verb+<A>+ involves a dictionary lookup. But
-\verb+aware+ may not be present in the text, so that we cannot rely on the text
-dictionaries.\footnote{The text dictionaries are compiled during initial application of
-dictionaries (section~\ref{section-applying-dictionaries}), not during search for patterns.}
- This is the reason why we must define a list of dictionaries
-to be looked up in the morphological mode. To do that, go in
-``Info>Preferences>Morphological-mode dictionaries'', as shown on Figure
-\ref{fig-morpho4}. You can select as many dictionaries as you want, but they
-MUST be \verb+.bin+ ones. Once this is done, you can apply your grammar and get results.
-In order to specify that a dictionary-graph should be looked up in the morphological mode,
-use option \verb+b+ or \verb+z+ (section~\ref{section-dictionary-graphs}, Exporting produced entries
-as a morphological-mode dictionary).
+\noindent However, before launching the search, you have to define which dictionaries are to
+be looked up in the morphological mode. (This is because, for example, in order to be able to
+match with this grammar the word \verb+unaware+, the system must know from some dictionary
+that \verb+aware+ is an adjective. But \verb+aware+ may not be present in the text, so that
+we cannot rely on the text dictionaries.\footnote{The text dictionaries are compiled during
+initial application of dictionaries (section~\ref{section-applying-dictionaries}), not during
+search for patterns.})
+
+\bigskip
+\noindent To define a list of dictionaries to be looked up in the morphological mode, go in
+``Info > Preferences > Morphological-mode dictionaries'', as shown on Figure~\ref{fig-morpho4}.
+You can select as many dictionaries as you want, including dictionaries that have not been
+applied to the text, but they MUST be \verb+.bin+
+ones.\footnote{If you want to allow for a dictionary-graph to be looked up in the morphological
+mode, check Sections~\ref{dg-and-mm} and \ref{z-and-b-switches} before.}
+Once this is done, you can apply your grammar and get results.
 
 \subsection{Dictionary-entry variables}
 \index{Dictionary-entry variables}
@@ -1069,6 +1071,7 @@ the operations of preprocessing and the search for patterns. The following does
 not apply to inflection graphs and normalization graphs for ambiguous forms.
 
 \subsection{Insertion to the left of the matched pattern}
+\label{replace-mode}
 \index{MERGE}\index{REPLACE}
 When a transducer is applied in REPLACE mode, the output replaces the sequences
 that have been read in the text. When a box in a transducer has no
@@ -1386,6 +1389,7 @@ in the complete grammar and they provoke more searches in morphological-mode dic
 \label{section-applying-graphs-to-text}
 This section only applies to syntactic graphs.
 \subsection{Configuration of the search}
+\label{search-configuration}
 In order to apply a graph to a text, you open the text, then click on "Locate
 Pattern..." in the "Text" menu, or press <Ctrl+L>. You can then configure your
 search in the window shown in figure~\ref{fig-regexp-frame}.

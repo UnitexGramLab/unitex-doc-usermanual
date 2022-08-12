@@ -477,11 +477,11 @@ un \verb$e$, c’est-à-dire n’importe quel mot sauf ceux qui commencent par \
 (voir~\ref{section-contexts}).
 \end{itemize}
 
-\noindent Par défaut, un filtre morphologique tout seul est considéré comme s’appliquant au méta
-\verb$<TOKEN>$, c’est-à-dire à n’importe quelle unité lexicale sauf l’espace et le marqueur
+\noindent Par défaut, un filtre morphologique qui ne suit pas un masque lexical s’applique au méta
+\verb$<TOKEN>$, qui reconnait n’importe quelle unité lexicale sauf l’espace et la marque
 \verb+{STOP}+.
-En revanche, lorsqu’un filtre suit immédiatement un motif, il s’applique à ce qui est reconnu par
-le motif. Voici quelques exemples de telles combinaisons:
+En revanche, lorsqu’un filtre suit immédiatement un masque lexical, il s’applique à ce qui est reconnu par
+le masque. Voici quelques exemples de telles combinaisons:
 
 
 \begin{itemize}
